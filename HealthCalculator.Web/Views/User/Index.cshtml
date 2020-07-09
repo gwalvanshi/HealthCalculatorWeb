@@ -1,0 +1,446 @@
+﻿@using CaptchaMvc.HtmlHelpers;
+
+
+
+@{
+
+
+
+    ViewBag.Title = "Index";
+
+    Layout = null;
+
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+
+    <title>Login Page</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="~/css/style.css" />
+
+    <script src="~/js/jquery-1.11.3.min.js"></script>
+
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <!--<script src="js/bootstrap.js"></script>-->
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+
+    <script src="~/Scripts/DevScript/Common/Common.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+
+    <div class="header">
+
+        <img class="logo" src="~/images/logo.png" /><label class="sysname">My Web</label>
+
+    </div>
+
+    <div class="container-fluid">
+
+
+
+        <div class="col-md-6 col-md-offset-3">
+
+            <div class="login-wh ">
+
+
+
+                <div class="text-center">
+
+                    <div>WELCOME TO</div>
+
+                    <div>My Web</div>
+
+                </div>
+
+
+
+                <hr />
+
+
+
+                <div>
+
+
+
+                    
+
+
+
+                    <div class="clear-10"></div>
+
+                    <div class="form-group">
+
+
+
+                        <input type="text" class="form-control Mandatory" placeholder="Username" id="txtEmail">
+
+                    </div>
+
+                    <div class="form-group">
+
+
+
+                        <input type="password" class="form-control Mandatory" placeholder="Password" id="txtPassword">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.MathCaptcha()
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-10">
+
+                            <div class="col-md-5">
+
+                                <a href="#" id="btnLogin" class="btn btn-default btn-login" role="button">Login</a>
+
+                            </div>
+
+                            <div class="col-md-5">
+
+                                <a href="#" id="btnCancel" class="btn btn-default btn-login" role="button">Reset</a>
+
+                            </div>
+
+                            <br />
+
+                            <div class="col-md-5">
+
+                                <a href="/Login/User/ChangePassword">Change Password</a>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+                <div id="toastmsg"><p class="yellow">Fill all mandatory feilds (*)..</p></div>
+
+            </div>
+
+
+
+            <div class="footer">
+
+                <div>My Web</div>
+
+            </div>
+
+            <script src="~/Scripts/DevScript/Common/Common.js"></script>
+
+            <script type="text/javascript">
+
+                $(document).ready(function () {
+
+
+
+                    function checkfirssttimelogin() {
+
+                        var ltype;
+
+                        if (document.getElementById("rdbExternal").checked != undefined) {
+
+                            if (document.getElementById("rdbExternal").checked == true)
+
+                                ltype = 2;
+
+                            else {
+
+                                ltype = 1;
+
+                            }
+
+                        }
+
+
+
+                        if (ltype == 2) {
+
+                            $.ajax({
+
+                                url: '/Login/User/CheckfirstTimeLoginUser',
+
+                                method: 'Post',
+
+                                data: {
+
+                                    username: $('#txtEmail').val()
+
+                                },
+
+                                success: function (response) {
+
+                                    if (response.data == true) {
+
+                                        checkfirssttimelogin = false;
+
+                                        window.location.href = "/Login/User/ChangePassword";
+
+                                    }
+
+                                    else {
+
+                                        login();
+
+                                    }
+
+                                },
+
+                                error: function (jqXHR) {
+
+                                    alert(jqXHR.responseText);
+
+                                }
+
+
+
+                            });
+
+                        }
+
+                        else {
+
+                            $.ajax({
+
+                                url: '/Login/User/LDAPLoginUser',
+
+                                method: 'Post',
+
+                                data: {
+
+                                    username: $('#txtEmail').val(),
+
+                                    Password: $('#txtPassword').val()
+
+                                },
+
+                               success: function (response) {
+
+
+
+                                    if (response) {
+
+                                        window.location.href = "/DashBoard/Dashboard/Index";
+
+                                   }
+
+                                    else {
+
+                                        checkfirssttimelogin = false;
+
+                                        window.location.href = "/Login/User/ChangePassword";
+
+                                    }
+
+                                },
+
+                                error: function (jqXHR) {
+
+                                    alert(jqXHR.responseText);
+
+                                }
+
+
+
+                            });
+
+
+
+                        }
+
+
+
+                    }
+
+
+
+
+
+                    $('#btnChange').click(function () {
+
+                        window.location.href = "/Login/User/ChangePassword";
+
+                    });
+
+
+
+                    function login() {
+
+                        debugger;
+
+                        var logintype = 1;
+
+                        if (document.getElementById("rdbTechm").checked != undefined) {
+
+                            if (document.getElementById("rdbTechm").checked == true)
+
+                                 logintype = 1;
+
+                            else {
+
+                                 logintype = 2;
+
+                            }
+
+                        }
+
+                        if (document.getElementById("rdbExternal").checked != undefined) {
+
+                            if (document.getElementById("rdbExternal").checked == true)
+
+                                 logintype = 2;
+
+                            else {
+
+                                 logintype = 1;
+
+                            }
+
+                        }
+
+                        $.ajax({
+
+                            url: '/Login/User/Token',
+
+                            method: 'POST',
+
+                            data: {
+
+
+
+                                username: $('#txtEmail').val(),
+
+                                password: $('#txtPassword').val(),
+
+                                CaptchaDeText: $('#CaptchaDeText').val(),
+
+                                CaptchaInputText: $('#CaptchaInputText').val(),
+
+                                LoginType: logintype
+
+                            },
+
+                            success: function (response) {
+
+                                if (response != "") {
+
+                                    alert(response);
+
+                                    window.location.href = "/Login/User/Index";
+
+                                }
+
+                                else {
+
+                                    window.location.href = "/DashBoard/Dashboard/Index";
+
+                                }
+
+
+
+                            },
+
+                            error: function (jqXHR) {
+
+                                alert(jqXHR.responseText);
+
+                            }
+
+                        });
+
+                    }
+
+
+
+                    $('#btnLogin').click(function () {
+
+                        var rbs = document.querySelectorAll('input[name="optradio"]');
+
+                        if (rbs == undefined) {
+
+                            var x = document.getElementById("toastmsg");
+
+                            x.innerHTML = '<p class="yellow">Please slelect Login Type!</p>';
+
+                            x.className = "show";
+
+                            setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+
+
+
+                        }
+
+                        else {
+
+                            if (checkValidationOnSubmit()) {
+
+                                checkfirssttimelogin();
+
+                            }
+
+                        }
+
+                    });
+
+
+
+                    $('#btnCancel').click(function () {
+
+                        document.getElementById("txtEmail").value = "";
+
+                        document.getElementById("txtPassword").value = "";
+
+                        document.getElementById("CaptchaInputText").value = "";
+
+                    });
+
+                });
+
+
+
+            </script>
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
