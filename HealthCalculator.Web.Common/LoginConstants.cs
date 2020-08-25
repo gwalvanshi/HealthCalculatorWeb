@@ -8,16 +8,16 @@ namespace HealthCalculator.Web.Common
 {
    public class LoginConstants
     {
-        public const string LOGIN_GET_API = "";
-        public const string LOGIN_AuthenticateUserCredentials = "";
+        public const string LOGIN_GET_API = "api/login";
+        public const string LOGIN_AuthenticateUserCredentials = "api/AuthenticateUserCredentials";
 
-        public const string LOGIN_ChangePassword = "";
+        public const string LOGIN_ChangePassword = "api/ChangePassword";
 
-        public const string LOGIN_CheckIfFirstTimeLogin = "";
+        public const string LOGIN_CheckIfFirstTimeLogin = "api/CheckIfFirstTimeLogin";
 
-        public const string LOGIN_CheckIfPassExpired = "";
+        public const string LOGIN_CheckIfPassExpired = "api/CheckIfPassExpired";
 
-        public const string LOGIN_CheckIfPasswordReused = "";
+        public const string LOGIN_CheckIfPasswordReused = "api/CheckIfPasswordReused";
            
     }
 }

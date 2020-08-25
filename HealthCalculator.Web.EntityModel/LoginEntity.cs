@@ -18,6 +18,7 @@ namespace HealthCalculator.Web.EntityModel
 
     {
 
+
         public int tokenId { get; set; }
 
         public int LoginType { get; set; }
@@ -177,6 +178,64 @@ namespace HealthCalculator.Web.EntityModel
         }
 
         public string RoleName
+
+        {
+
+            get;
+
+            set;
+
+        }
+        public string FirstName
+
+        {
+
+            get;
+
+            set;
+
+        }
+
+
+
+
+        public string LastName
+
+        {
+
+            get;
+
+            set;
+
+        }
+        public int CreatedBy
+
+        {
+
+            get;
+
+            set;
+
+        }
+        public bool IsExternalUser
+
+        {
+
+            get;
+
+            set;
+
+        }
+        public string MobileNo
+
+        {
+
+            get;
+
+            set;
+
+        }
+        public string PhoneNo
 
         {
 

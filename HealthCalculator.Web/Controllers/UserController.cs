@@ -47,6 +47,24 @@ namespace HealthCalculator.Web.Controllers
             return View();
 
         }
+        public ActionResult SingUp()
+        {
+
+
+
+            return View();
+
+        }
+        [HttpPost]
+        public async Task<JsonResult> AddUserDetails(LoginEntity collection)
+        {
+
+            UserService objLoginServices = new UserService();      
+            var stringContent = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+            var isAuth = await objLoginServices.SaveUserDetails(stringContent);
+            return new JsonResult { Data = isAuth };
+
+        }
 
         public ActionResult Logout()
 
