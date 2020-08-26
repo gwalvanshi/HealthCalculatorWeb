@@ -8,8 +8,8 @@ namespace HealthCalculator.Web.Common
 {
    public class CommonConstants
     {
-        public const string BASE_URL = "";
-        public const string API_DROPDOWN = "";
+       
         
+
     }
 }

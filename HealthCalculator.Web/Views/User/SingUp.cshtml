@@ -4,5 +4,165 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SingUp</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container-fluid border ">
+        <div class="row">
+
+            <div id="toastmsg"><p class="yellow">Fill all mandatory feilds (*)..</p></div>
+
+            <div class="col-md-12 border-left p-3 bg-light">
+                <h5 class="pb-2 text-center text-uppercase font-weight-bold"> USER MANAGEMENT </h5>
+
+                <div class="mb-3">
+
+
+
+                    <div class="pb-2">
+                        <h6 class="py-1"><i class="fas fa-user-circle mr-2"></i>User Information</h6>
+                        <div class="row bg-white border mx-auto py-2 mb-2">
+                           
+                            <div class="input-div">
+                                <label class="input-header">First Name </label>
+                                <input class="input-value" type="text" placeholder="FirstName" id="txtFirstName" maxlength="50"  onchange="return IsValidCharacters('txtFirstName', 'Only alpha numeric')">
+                            </div>
+                            <div class="input-div">
+                                <label class="input-header">Last Name </label>
+                                <input class="input-value" type="text" placeholder="LastName" id="txtLastName" maxlength="50" onchange="return IsValidCharacters('txtLastName', 'Only alpha numeric')">
+                            </div>
+                            <div class="input-div">
+                                <label class="input-header">Email ID </label>
+                                <input class="input-value" type="text" placeholder="EmailID" id="txtEmailID" name="email" maxlength="50" title="EmailID">
+                            </div>
+                            <div class="input-div">
+                                <label class="input-header">Phone Number </label>
+                                <input class="input-value" type="text" placeholder="PhoneNumber" id="txtPhoneNumber" OnPaste="return ValidatePasteNumeric(false, this)" onkeypress="return AllowNumbersOnly(false,this,'Numeric only')" maxlength="10" onblur="ClearInvalidText(this)" title="PhoneNumber">
+                            </div>
+                            <div class="input-div">
+                                <label class="input-header">Mobile Number </label>
+                                <input class="input-value" type="text" placeholder="MobileNumber" id="txtMobileNumber" OnPaste="return ValidatePasteNumeric(false, this)" onkeypress="return AllowNumbersOnly(false,this,'Numeric only')" maxlength="10" onblur="ClearInvalidText(this)" title="PhoneNumber">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pb-2">
+                        <h6 class="py-1"><i class="fas fa-sign-in-alt mr-2"></i>Login Information</h6>
+                        <div class="row bg-white border mx-auto py-2 mb-2">
+                            <div class="input-div">
+                                <label class="input-header"><i class="fas fa-user-tie mr-2"></i>Login ID </label>
+                                <input class="input-value" type="text" placeholder="LoginID" id="txtLoginId" maxlength="50" title="LoginId">
+                            </div>
+                            <div class="input-div">
+                                <label class="input-header"><i class="fas fa-user-tie mr-2"></i>Password </label>
+                                <input class="input-value" type="Password" placeholder="Password" id="txtPassword" maxlength="12" title="Password">
+                            </div>
+                            <div class="input-div">
+                                <label class="input-header"><i class="fas fa-user-tie mr-2"></i>Confirm Password </label>
+                                <input class="input-value" type="Password" placeholder="confirmpassword" id="txtconfirmpassword" maxlength="12" title="ConfirmPassword">
+                            </div>
+                        </div>
+                    </div>
+
+
+                   
+
+                    <div class="pb-2">
+                        <div class="form-group">
+                            <div>
+                                
+                                <button class="mybtndark" type="button" id="UserSubmit"><i class="far fa-save mr-2"></i>Save</button>
+                                <button class="mybtndark" type="button" onclick="FormControlValueClear(true);"><i class="far fa-close mr-2"></i>Cancel</button>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        @*<div class="modal" tabindex="-1" id="loginModal"
+             data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div>
+                            <div id="Ptoastmsg"><p class="yellow"></p></div>
+                            <h4 class="modal-title" id="headerValue"></h4>
+                            <input id="hdnlookupId" type="hidden" />
+                            <input id="hdnlooupName" type="hidden" />
+                        </div>
+                        <div class="row bg-white border mx-auto py-2 mb-2" style="text-align:center;">
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                    <input class="form-control form-control-sm" id="txtSearch" name="name" placeholder="Search Data" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="form-group form-group-sm">
+                                    <button class="mybtn" type="button" onclick="SearchPopupData()"><i class="fas fa-search mr-2"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="tblPopup" class="table table-striped table-bordered table-sm table-hover" style="width:100%">
+                                <thead class="bg-blue text-white">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Select</th>
+                                        <th>@Resource.GEE1401POPName</th>
+                                        <th>@Resource.GEE1401POPLastName</th>
+                                        <th>@Resource.GEE1401POPFatherName</th>
+                                        <th>@Resource.GEE1401POPPhonenum</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary button button4" id="btnAdd" onclick="AddData();">OK</button>
+                        <button type="button" id="btnHideModal" class="btn btn-primary button button4">
+                            Cancel
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    </div>
+
+}
+
+<style>
+    .modal-dialog {
+        position: relative;
+        display: table; /* <-- This makes the trick */
+        overflow-y: auto;
+        overflow-x: auto;
+        width: auto;
+        min-width: 800px;
+    }
+    /*Css to target the dropdownbox*/
+    ul.ui-autocomplete {
+        color: black !important;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+    }
+</style>
+
+<script type="text/javascript">
+   // $(document).tooltip();
+    //Resource Variable Declaration Start
+    
+
+    //End
+</script>
+<script src="~/Scripts/DevScript/Common.js"></script>
+<script src="~/Scripts/DevScript/Transaction/ManageUser.js"></script>
 

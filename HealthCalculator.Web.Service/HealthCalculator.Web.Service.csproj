@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgeMasterService.cs" />
     <Compile Include="BaseAuthorizationToken.cs" />
     <Compile Include="CommonService.cs" />
     <Compile Include="DropdownLookupService.cs" />

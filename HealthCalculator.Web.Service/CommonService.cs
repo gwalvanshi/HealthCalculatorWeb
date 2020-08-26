@@ -50,7 +50,7 @@ namespace HealthCalculator.Web.Service
 
             {
 
-                BaseAddress = new Uri(CommonConstants.BASE_URL)
+                BaseAddress = new Uri(Constants.BASE_URL)
 
             };
 

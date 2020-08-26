@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgeModel.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="CommonConstants.cs" />
     <Compile Include="DropdownRequestModel.cs" />
     <Compile Include="DropdownResponseModel.cs" />
     <Compile Include="LoginEntity.cs" />

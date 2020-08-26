@@ -28,7 +28,7 @@ namespace HealthCalculator.Web.Service
 
         {
 
-            return await HttpUtil.PostListAsync<DropdownResponseModel>(collection, CommonConstants.API_DROPDOWN);
+            return await HttpUtil.PostListAsync<DropdownResponseModel>(collection, Constants.API_DROPDOWN);
 
         }
 
