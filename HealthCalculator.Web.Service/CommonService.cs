@@ -3,7 +3,7 @@
 using System;
 
 using System.Collections.Generic;
-
+using System.Configuration;
 using System.Linq;
 
 using System.Net.Http;
@@ -50,7 +50,7 @@ namespace HealthCalculator.Web.Service
 
             {
 
-                BaseAddress = new Uri(Constants.BASE_URL)
+                BaseAddress = new Uri(ConfigurationManager.AppSettings["BaseURL"].ToString())
 
             };
 

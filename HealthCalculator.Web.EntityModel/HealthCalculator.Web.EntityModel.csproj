@@ -47,7 +47,9 @@
     <Compile Include="DropdownResponseModel.cs" />
     <Compile Include="LoginEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysMasterTableModel.cs" />
     <Compile Include="TokenEntity.cs" />
+    <Compile Include="vSysMasttablewithfilter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
