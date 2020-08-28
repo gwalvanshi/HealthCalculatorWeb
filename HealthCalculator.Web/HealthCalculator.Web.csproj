@@ -368,6 +368,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\SingUp.cshtml" />
     <Content Include="Views\ManageAge\AgeMaster.cshtml" />
+    <Content Include="Views\MasterTable\ManageMasterData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

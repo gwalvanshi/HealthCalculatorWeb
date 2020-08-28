@@ -8,6 +8,8 @@ var GridColumnDetails = "";
 var GridColumnForRadioButton = "";
 var ResxColumnDetails = "";
 
+
+
 ////End
 if ($('#hdnwelcomeMsg').val() != undefined) {
     var userwlc = $('#hdnwelcomeMsg').val();
@@ -24,26 +26,7 @@ if ($('#hdnwelcomeMsg').val() != undefined) {
 
 var SystemMasterTableEnum = {
 
-    CalenderType: 1,
-    FeePeriod: 2,
-    FeeFrequency: 3,
-    FeeCategory: 4,
-    FeeType: 5,
-    PenaltyType: 7,
-    FeePostingStatus: 8,
-    FeeTypeStatus: 9,
-    TransportType: 10,
-    QuesTypeMaster: 11,
-    OnlineAssessStatus: 12,
-    ScreenDBMappingType: 13,
-    SchoolConfigDataType: 14,
-    NumberGENDateFormate: 15,
-    NumberGENDelimeter: 16,
-    UserType: 17,
-    TranTypeMaster: 18,
-    TranPaymentMode: 19,
-    PermissionMaster: 20,
-    AdmissionStatusValue: 21
+     Role : 1,SystemMaster:2, SystemMasterType : 3,
 
 }
 

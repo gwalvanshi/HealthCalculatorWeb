@@ -11,9 +11,9 @@ namespace HealthCalculator.Web.Service
 {
    public class MasterTableService
     {
-        public async Task<HttpCustomResponse<List<vSysMasttablewithfilter>>> GetSystemMasterTableData()
+        public async Task<HttpCustomResponse<List<vSysMasttablewithfilter>>> GetSystemMasterTableData(int ? tableType)
         {
-            return await HttpUtil.GetListAsync<List<vSysMasttablewithfilter>>(Constants.API_GETSYSTEMMASTERTABLEDATA);
+            return await HttpUtil.GetListAsync<List<vSysMasttablewithfilter>>(Constants.API_GETSYSTEMMASTERTABLEDATA + "?tableType=" + tableType);
         }
         public async Task<HttpCustomResponse<vSysMasttablewithfilter>> GetSystemMasterTable(int  id)
         {

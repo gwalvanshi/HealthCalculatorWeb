@@ -14,6 +14,10 @@ namespace HealthCalculator.Web.Controllers
 {
     public class MasterTableController: Controller
     {
+        public ActionResult ManageMasterData()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<JsonResult> ManageSysMasterTable(SysMasterTableModel collection)
         {
@@ -25,10 +29,10 @@ namespace HealthCalculator.Web.Controllers
 
         }
         [HttpGet]
-        public async Task<JsonResult> GetSystemMasterTableData()
+        public async Task<JsonResult> GetSystemMasterTableData(int ?tableType)
         {
             MasterTableService objLoginServices = new MasterTableService();
-            var status = await objLoginServices.GetSystemMasterTableData();
+            var status = await objLoginServices.GetSystemMasterTableData(tableType);
             return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         [HttpGet]

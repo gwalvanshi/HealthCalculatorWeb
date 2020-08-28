@@ -1,0 +1,228 @@
+﻿
+@{
+    ViewBag.Title = "ManageMasterData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ManageMasterData</h2>
+<div class="row">
+    <div class="col-md-8">
+      
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <h4>Manage Master Data</h4>
+                <hr />
+              
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Master Table Type</label>                  
+                    <div class="col-md-10">
+                        <div id="ddlMasterTableType" class="Mandatory" required></div>
+                    </div>
+                   
+
+                   
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Master Data</label>  
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="txtMasterData" />                      
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Code</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="txtCode" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Description</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="txtRemark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="hidden" id="hdnID" />
+                        <input type="button" value="Save" class="btn btn-default" onclick="SaveMasterData()" />
+                        <input type="button" value="Clear" class="btn btn-default" />
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <div class="demo-container">
+                        <div id="gridContainer"></div>
+                    </div>
+
+                </div>
+
+            }
+      
+    </div>
+    
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {        
+        SystemTypeTableBind();
+        var tableId = $("#ddlDepartment").dxSelectBox('instance').option('value');
+        if (tableId == "" || tableId == "Select Master Data")
+        {
+            tableId = null;
+        }
+        GetMasterTableData(tableId);
+
+    });
+       
+    function SaveMasterData()
+    {       
+      
+
+        CommonAjaxMethod('/MasterTable/ManageSysMasterTable/', { SysMasterTable_id: $("#hdnID").val(), SysMasterTabletype_id: $("#ddlDepartment").dxSelectBox('instance').option('value'), Code: $("#txtCode").val(), Name: $("#txtMasterData").val(), Remark: $("#txtRemark").val() }, false, 'POST', function (response)
+        {
+            GetMasterTableData($("#ddlDepartment").dxSelectBox('instance').option('value'));
+        });
+    }
+    function SystemTypeTableBind() {
+
+        debugger;
+        CommonAjaxMethod('/CommonMethods/GetDropDownData/', { LookType: SystemMasterTableEnum.SystemMasterType, FixedSearchParam: "" }, false, 'GET', function (response) {
+
+
+            $("#ddlDepartment").dxSelectBox({
+
+                dataSource: response.dataCollection,
+
+                displayExpr: "Name",
+
+                valueExpr: "Id",
+
+                placeholder: "Select Master Data",
+
+                searchEnabled: true,
+
+                searchExpr: 'Name',
+
+                searchTimeout: 1000,
+
+                onValueChanged: function (data) {
+
+                    //onchange method
+
+                }
+
+            });
+
+
+
+        });
+
+
+
+    }
+
+    function GetMasterTableData(tableId)
+    {
+        debugger;
+        CommonAjaxMethod('/MasterTable/GetSystemMasterTableData/', { tableType: tableId }, false, 'GET', function (response)
+                {
+
+            var reports = response.dataCollection;          
+            DataBind(reports);
+
+        });
+    }
+
+    function DataBind(response)
+    {
+        
+
+    
+        var configdataGrid = $("#gridContainer").dxDataGrid({
+
+            dataSource: response,
+
+            columnAutoWidth: true,
+
+            allowColumnReordering: true,
+
+            showBorders: true,
+
+            searchPanel: {
+
+                visible: true
+
+            },
+
+            export: {
+
+                enabled: true
+
+            },
+
+            filterRow: {
+
+                visible: true
+
+            },
+
+            paging: {
+
+                enabled: true,
+
+                pageSize: 10
+
+            },
+
+            pager: {
+
+                showPageSizeSelector: true,
+
+                allowedPageSizes: [5, 10, 20]
+
+            },
+
+            columns: [{
+
+                dataField: "ID", caption: "ID"
+
+
+
+            },
+
+             {
+
+                 dataField: "SysMastertableName", caption: "Master Data"
+
+
+
+             },
+
+             {
+
+                 dataField: "displayName", caption: "Child Data"
+
+
+
+             },
+
+            {
+
+                dataField: "Remark", caption: "Remark"
+
+
+
+            },
+
+           
+
+
+
+            ],
+
+
+
+        }).dxDataGrid("instance");
+
+    }
+   
+</script>
+
