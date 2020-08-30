@@ -21,19 +21,39 @@ namespace HealthCalculator.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> ManageSysMasterTable(SysMasterTableModel collection)
         {
-           
-            MasterTableService objLoginServices = new MasterTableService();
+            try
+            {
+                MasterTableService objLoginServices = new MasterTableService();
             var stringContent = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
             var status = await objLoginServices.ManageSysMasterTable(stringContent);
             return new JsonResult { Data = status, JsonRequestBehavior=JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+
+            {
+
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+
+            }
 
         }
         [HttpGet]
         public async Task<JsonResult> GetSystemMasterTableData(int ?tableType)
         {
-            MasterTableService objLoginServices = new MasterTableService();
-            var status = await objLoginServices.GetSystemMasterTableData(tableType);
-            return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            try
+            {
+                MasterTableService objLoginServices = new MasterTableService();
+                var status = await objLoginServices.GetSystemMasterTableData(tableType);
+                return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+
+            {
+
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+
+            }
+          
         }
         [HttpGet]
         public async Task<JsonResult> GetSystemMasterTable(int id)

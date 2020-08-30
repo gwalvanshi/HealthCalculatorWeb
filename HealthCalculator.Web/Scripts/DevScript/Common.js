@@ -1491,10 +1491,10 @@ function ChangeDateFormatToddMMYYY(dateValue) {
 
 
 }
-function LoadSystemMasterDropdown(element, typeID, selectedValue) {
+function LoadSystemMasterDropdown(element, typeID,fxdData, selectedValue) {
     if (SystemdropdownMasterData.length == 0) {
         //ajax func
-        CommonAjaxMethod('/CommonMethods/GetDropDownData', { tableType: typeID}, false, 'GET',
+        CommonAjaxMethod('/CommonMethods/GetDropDownData', { tableType: typeID, FixedSearchParam: fxdData}, false, 'GET',
             function (response) {
                 SystemdropdownMasterData = response.dataCollection;
                 //render catagory

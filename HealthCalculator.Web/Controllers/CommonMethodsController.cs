@@ -19,13 +19,24 @@ namespace HealthCalculator.Web.Controllers
         [HttpGet]
         public async Task<JsonResult> GetDropDownData( int tableType, string FixedSearchParam)
         {
-            DropdownRequestModel objDropdownRequestModel = new DropdownRequestModel();
-            objDropdownRequestModel.LookType = tableType;
-            objDropdownRequestModel.FixedSearchParam = FixedSearchParam;
-            DropdownLookupService objDropdownLookupService = new DropdownLookupService();
-            var stringContent = new StringContent(JsonConvert.SerializeObject(objDropdownRequestModel).ToString(), Encoding.UTF8, "application/json");
-            var data = await objDropdownLookupService.GetDropdown(stringContent);
-            return new JsonResult { Data = data };
+            try
+            {
+                DropdownRequestModel objDropdownRequestModel = new DropdownRequestModel();
+                objDropdownRequestModel.LookType = tableType;
+                objDropdownRequestModel.FixedSearchParam = FixedSearchParam;
+                DropdownLookupService objDropdownLookupService = new DropdownLookupService();
+                var stringContent = new StringContent(JsonConvert.SerializeObject(objDropdownRequestModel).ToString(), Encoding.UTF8, "application/json");
+                var data = await objDropdownLookupService.GetDropdown(stringContent);
+                return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+
+            {
+
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+
+            }
+
 
         }
     }

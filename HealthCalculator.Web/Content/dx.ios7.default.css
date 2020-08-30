@@ -1,7 +1,7 @@
 /**
 * DevExtreme (dx.ios7.default.css)
-* Version: 20.1.6
-* Build date: Fri Jul 17 2020
+* Version: 20.1.7
+* Build date: Tue Aug 25 2020
 *
 * Copyright (c) 2012 - 2020 Developer Express Inc. ALL RIGHTS RESERVED
 * Read about DevExtreme licensing here: https://js.devexpress.com/Licensing/
@@ -9714,12 +9714,9 @@
   width: 100%;
   height: 0;
 }
-.dx-scheduler-small .dx-scheduler-agenda .dx-scheduler-scrollable-appointments {
-  padding-left: 35px;
-}
 .dx-scheduler-small .dx-scheduler-agenda .dx-scheduler-scrollable-appointments.dx-rtl {
   padding-left: 0;
-  padding-right: 35px;
+  padding-right: 70px;
 }
 .dx-scheduler-agenda .dx-scheduler-time-panel-cell {
   vertical-align: top;

@@ -17,11 +17,10 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">Master Table Type</label>                  
                     <div class="col-md-10">
-                        <div id="ddlMasterTableType" class="Mandatory" required></div>
+                        <select id="ddlMasterTableType" class="Mandatory"></select>
+                        <div id="ddlCountry" class="Mandatory"></div>
                     </div>
-                   
-
-                   
+                  
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">Master Data</label>  
@@ -61,68 +60,53 @@
     
 </div>
 <script type="text/javascript">
+    var SystemdropdownMasterData=[];
     $(document).ready(function () {        
-        SystemTypeTableBind();
-        var tableId = $("#ddlDepartment").dxSelectBox('instance').option('value');
-        if (tableId == "" || tableId == "Select Master Data")
+        LoadSystemMasterDropdown("ddlMasterTableType", SystemMasterTableEnum.SystemMasterType, "", "");
+        CountryBind();
+        var tableId = $("#ddlMasterTableType").val();
+        if (tableId == "" || tableId == "Select")
         {
             tableId = null;
         }
         GetMasterTableData(tableId);
 
     });
+    function CountryBind() {
+
+        CommonAjaxMethod('/CommonMethods/GetDropDownData', { tableType: SystemMasterTableEnum.SystemMasterType, FixedSearchParam: "" }, false, 'GET',
+            function (response) {
+                debugger;
+                $("#ddlCountry").dxSelectBox({
+                    dataSource: response.dataCollection,
+                    displayExpr: "Name",
+                    valueExpr: "Id",
+                    placeholder: "Select",
+                    searchEnabled: true,
+                    searchExpr: 'Name',
+                    searchTimeout: 1000
+                });
+            }
+
+        );
+    }
        
+
+
     function SaveMasterData()
     {       
-      
 
         CommonAjaxMethod('/MasterTable/ManageSysMasterTable/', { SysMasterTable_id: $("#hdnID").val(), SysMasterTabletype_id: $("#ddlDepartment").dxSelectBox('instance').option('value'), Code: $("#txtCode").val(), Name: $("#txtMasterData").val(), Remark: $("#txtRemark").val() }, false, 'POST', function (response)
         {
-            GetMasterTableData($("#ddlDepartment").dxSelectBox('instance').option('value'));
+            GetMasterTableData($("#ddlMasterTableType").val());
         });
     }
-    function SystemTypeTableBind() {
-
-        debugger;
-        CommonAjaxMethod('/CommonMethods/GetDropDownData/', { LookType: SystemMasterTableEnum.SystemMasterType, FixedSearchParam: "" }, false, 'GET', function (response) {
-
-
-            $("#ddlDepartment").dxSelectBox({
-
-                dataSource: response.dataCollection,
-
-                displayExpr: "Name",
-
-                valueExpr: "Id",
-
-                placeholder: "Select Master Data",
-
-                searchEnabled: true,
-
-                searchExpr: 'Name',
-
-                searchTimeout: 1000,
-
-                onValueChanged: function (data) {
-
-                    //onchange method
-
-                }
-
-            });
-
-
-
-        });
-
-
-
-    }
+  
 
     function GetMasterTableData(tableId)
     {
         debugger;
-        CommonAjaxMethod('/MasterTable/GetSystemMasterTableData/', { tableType: tableId }, false, 'GET', function (response)
+        CommonAjaxMethod('/MasterTable/GetSystemMasterTableData/', { tableType: null }, false, 'GET', function (response)
                 {
 
             var reports = response.dataCollection;          
@@ -130,99 +114,77 @@
 
         });
     }
-
-    function DataBind(response)
-    {
-        
-
-    
+    function DataBind(response) {
         var configdataGrid = $("#gridContainer").dxDataGrid({
-
             dataSource: response,
-
             columnAutoWidth: true,
-
             allowColumnReordering: true,
-
             showBorders: true,
-
             searchPanel: {
-
                 visible: true
-
             },
-
-            export: {
-
-                enabled: true
-
-            },
-
-            filterRow: {
-
-                visible: true
-
-            },
-
             paging: {
-
                 enabled: true,
-
                 pageSize: 10
-
             },
-
+            filterRow: {
+                visible: true
+            },
             pager: {
-
                 showPageSizeSelector: true,
-
                 allowedPageSizes: [5, 10, 20]
-
             },
-
+            export: {
+                enabled: true,
+                allowExportSelectedData: false,
+                fileName: "NewFileName"
+            },
             columns: [{
+                dataField: "ID",
+                visible: false
+            }, {
+                    dataField: "SysMastertableName", caption: "Parent Data"
 
-                dataField: "ID", caption: "ID"
-
-
+            }, {
+                    dataField: "displayName", caption: "Name"
 
             },
-
-             {
-
-                 dataField: "SysMastertableName", caption: "Master Data"
-
-
-
-             },
-
-             {
-
-                 dataField: "displayName", caption: "Child Data"
-
-
-
-             },
-
             {
-
-                dataField: "Remark", caption: "Remark"
-
-
+                dataField: "Remark", caption: "CountryName"
 
             },
+               
+            {
+                caption: "Action",
+                alignment: 'center',
+                cellTemplate: function (container, options) {
+                    $('<a style="margin-right:10px" />').addClass('dx-link')
+                        .text('Edit')
+                        .on('dxclick', function () {
+                            editedRow = options.data;
+                            //Calling method
+                            EditCity(editedRow);
 
-           
+                        }).appendTo(container);
+                    $('<a style="padding-left:10px" />').addClass('dx-link')
+                        .text('Delete')
+                        .on('dxclick', function () {
+                            editedRow = options.data;
+                            //Caling method
+                            Delete(editedRow);
 
 
+                        })
+                        .appendTo(container);
 
+                }
+
+            }
             ],
 
-
-
         }).dxDataGrid("instance");
-
     }
+
    
 </script>
 
