@@ -41,10 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgeModel.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="CommonConstants.cs" />
     <Compile Include="DropdownRequestModel.cs" />
     <Compile Include="DropdownResponseModel.cs" />
+    <Compile Include="GridResponseModel.cs" />
+    <Compile Include="GridViewRequestModel.cs" />
     <Compile Include="LoginEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysMasterTableModel.cs" />

@@ -13,7 +13,7 @@ namespace HealthCalculator.Web.Common
         public const string API_SAVEMASTERTABLE = "api/SaveMasterTable";
         public const string API_GETSYSTEMMASTERTABLEDATA = "api/GetSystemMasterTableData";
         public const string API_GETSYSTEMMASTERTABLE = "api/GetSystemMasterTable";
-
-
+        public const string API_GETGRIDDATA = "api/GetGridData";
+     
     }
 }

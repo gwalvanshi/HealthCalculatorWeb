@@ -17,4 +17,5 @@ namespace HealthCalculator.Web.EntityModel
         public Nullable<int> parent_id { get; set; }
         public Nullable<bool> ISDeleted { get; set; }
     }
+   
 }
