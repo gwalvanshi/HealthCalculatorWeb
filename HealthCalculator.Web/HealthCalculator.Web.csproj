@@ -196,6 +196,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MasterTableController.cs" />
     <Compile Include="Controllers\PasswordPolicy.cs" />
+    <Compile Include="Controllers\UploadDocumentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -386,9 +387,11 @@
     <Content Include="Views\User\SingUp.cshtml" />
     <Content Include="Views\ManageAge\AgeMaster.cshtml" />
     <Content Include="Views\MasterTable\ManageMasterData.cshtml" />
+    <Content Include="Views\UploadDocument\UploadMaster.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
