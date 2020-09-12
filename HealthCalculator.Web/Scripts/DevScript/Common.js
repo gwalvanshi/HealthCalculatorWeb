@@ -26,7 +26,7 @@ if ($('#hdnwelcomeMsg').val() != undefined) {
 
 var SystemMasterTableEnum = {
 
-     Role : 1,SystemMaster:2, SystemMasterType : 3,
+     Role : 1,SystemMaster:2, SystemMasterType : 3,Age:4,Gender:5,
 
 }
 
@@ -43,9 +43,9 @@ var UserPermission =
 //Hard code
 var MasterTypeEnum = {
     CastCategory: 1,
-    Designation: 2,
-    Languages: 3,
-    MarketingSource: 4,
+    Age: 2,
+    Gender: 3,
+    Age_1: 4,
     Qualificaton: 5,
     Religion: 6,
     StudentType: 7,
@@ -1525,7 +1525,7 @@ function BindSystemDropDown(element, selectedValue) {
     $ele.append($('<option/>').val('0').text('Select'));
     $.each(SystemdropdownMasterData, function (ii, vall) {
 
-        $ele.append($('<option/>').val(vall.Sysmastertable_id).text(vall.Name));
+        $ele.append($('<option/>').val(vall.Id).text(vall.Name));
     })
     var ddlselectValue = selectedValue == undefined ? "" : selectedValue;
     if (ddlselectValue != "")
