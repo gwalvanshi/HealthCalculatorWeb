@@ -30,6 +30,13 @@ var SystemMasterTableEnum = {
 
 }
 
+var UserPermission =
+{
+    View:"View",
+    Delete:"Delete",
+    Update:"Update",
+    Add:"Add",
+}
 ///This is common  enum to bind the master dropdown
 //// We have to add the masterttype data and value accoding to database ids in enum.
 //Data depandancy 
