@@ -22,7 +22,7 @@ namespace HealthCalculator.Web.Controllers
 
     {
 
-        public static string key = "INVOICE2020";
+        public static string key = "HEALTH2020";
 
         public static string Encrypt(string input)
 

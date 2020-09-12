@@ -58,7 +58,7 @@ namespace HealthCalculator.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> AddUserDetails(LoginEntity collection)
         {
-
+            collection.Password = DataEncryption.Encrypt(collection.Password.Trim());
             UserService objLoginServices = new UserService();      
             var stringContent = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
             var isAuth = await objLoginServices.SaveUserDetails(stringContent);

@@ -413,13 +413,15 @@ Modified By / On DateTime   :
 Description                 : This is common  method for validate  control on submit.
 */
 
-function checkValidationOnSubmit() {
-
-
+function checkValidationOnSubmit()
+{
     var isMandatory = true;
-    $.each(requiredFeild, function (key, value) {
-        if ($("#" + value).length > 0) {
-            if ($("#" + value) != null) {
+    $.each(requiredFeild, function (key, value)
+    {
+        if ($("#" + value).length > 0)
+        {
+            if ($("#" + value) != null)
+            {
                 var text = Trim($("#" + value).val());
                 if (text != undefined) {
                     text = text.trim();
@@ -429,11 +431,10 @@ function checkValidationOnSubmit() {
                 }
             }
 
-
-
         }
     });
-    if (!isMandatory) {
+    if (!isMandatory)
+    {
         var x = document.getElementById("toastmsg");
         x.className = "show";
         setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);

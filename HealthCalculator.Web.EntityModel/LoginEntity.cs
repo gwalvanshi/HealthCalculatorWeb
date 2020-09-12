@@ -244,6 +244,16 @@ namespace HealthCalculator.Web.EntityModel
             set;
 
         }
+        public string ConfirmPassword
+
+        {
+
+            get;
+
+            set;
+
+        }
+        
 
     }
 
