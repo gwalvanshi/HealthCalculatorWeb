@@ -5,7 +5,7 @@
 }
 
 
-<h2>ManageMasterData</h2>
+<h4>Manage Master Data</h4>
 <div class="row">
     <div class="col-md-12">
         <div id="toastmsg"><p class="yellow">Fill all mandatory feilds (*)..</p></div>
@@ -33,36 +33,14 @@
                 <div class="col-md-10">
                     <input type="text" class="form-control" id="txtCode" />
                 </div>
-            </div>
-            <div class="form-group">
-                <div style="display:inline-block">
-                    <label class="col-md-2 control-label">Age</label>
-                    <div class="col-md-6">
-                        <select id="ddlMasterTableType1" class="form-control Mandatory"></select>
-                    </div>
-                    <label class="col-md-2 control-label">Gender</label>
-                    <div class="col-md-4">
-                        <select id="ddlGender" class="form-control Mandatory"></select>
-                    </div>
-                    <label class="col-md-2 control-label">Feet</label>
-                    <div  class="col-md-4">
-                        <select id="ddlfeet" class="form-control Mandatory"></select>
-                    </div>
-                </div>
-            </div>
+            </div>            
             <div class="form-group">
                 <label class="col-md-2 control-label">Description</label>
                 <div class="col-md-10">
                     <input type="text" class="form-control" id="txtRemark" />
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-md-2 control-label">Upload File</label>
-                <input type="file" name="File Upload" /><br /><br />
-                <input type="button" name="Upload" class="btn btn-default" onclick="Uploadfile()" />
-                <br /><br />
-
-            </div>
+            
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -101,11 +79,8 @@
 <script type="text/javascript">
     var SystemdropdownMasterData = [];
     $(document).ready(function () {
-        LoadSystemMasterDropdown("ddlMasterTableType", SystemMasterTableEnum.SystemMasterType,"", "");
-        LoadSystemMasterDropdown("ddlMasterTableType1", SystemMasterTableEnum.SystemMaster, MasterTypeEnum.Age, "");
-        LoadSystemMasterDropdown("ddlGender", SystemMasterTableEnum.SystemMaster, "3", "");
-        LoadSystemMasterDropdown("ddlfeet", SystemMasterTableEnum.SystemMaster, "4", "");
-
+        LoadSystemMasterDropdown("ddlMasterTableType", SystemMasterTableEnum.SystemMasterType, "", "");
+      
         var tableId = $("#ddlMasterTableType").val();
         if (tableId == "" || tableId == "Select") {
             tableId = null;
@@ -118,7 +93,7 @@
 
     function SaveMasterData() {
 
-        CommonAjaxMethod('/MasterTable/ManageSysMasterTable/', { SysMasterTable_id: $("#hdnID").val(), SysMasterTabletype_id: $("#ddlMasterTableType").val(), Name: $("#txtMasterData").val(), Code: $("#txtCode").val(), Remark: $("#txtRemark").val() }, false, 'POST', function (response) {
+        CommonAjaxMethod('MasterTable/ManageSysMasterTable/', { SysMasterTable_id: $("#hdnID").val(), SysMasterTabletype_id: $("#ddlMasterTableType").val(), Name: $("#txtMasterData").val(), Code: $("#txtCode").val(), Remark: $("#txtRemark").val() }, false, 'POST', function (response) {
             DataBind($("#ddlMasterTableType").val());
         });
     }
@@ -136,7 +111,7 @@
             "filter": true, // this is for disable filter (search box)
             "orderMulti": false, // for disable multiple column at once
             "ajax": {
-                "url": "/MasterTable/LoadMasterTableGrid/",
+                "url": virtualPath + "MasterTable/LoadMasterTableGrid/",
                 "type": "POST",
                 "datatype": "json",
                 "data": Postdata,
@@ -167,9 +142,14 @@
                 { "data": "Remark", "name": "Remark", "autoWidth": true },
 
                 {
-                    "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/DemoGrid/Edit/' + full.ID + '">Edit</a>'; }
+                   
+                     "orderable": false,
+                    data: null, render: function (data, type, row) {
+                        return "<a href='#' class='btn btn-danger' onclick=Edit('" + row.ID + "'); >Edit</a>";
+                    }
                 },
                 {
+                    "orderable":false,
                     data: null, render: function (data, type, row) {
                         return "<a href='#' class='btn btn-danger' onclick=DeleteData('" + row.ID + "'); >Delete</a>";
                     }
@@ -182,6 +162,13 @@
 
     }
 
+    function DeleteData(id) {
+        alert("delete")
+    }
+    function Edit(id) {
+        //delete function
+        alert("edit")
+    }
 
 </script>
 

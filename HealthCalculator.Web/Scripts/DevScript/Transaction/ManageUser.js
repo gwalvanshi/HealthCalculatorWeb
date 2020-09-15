@@ -24,7 +24,7 @@ $('#UserSubmit').click(function ()
             MobileNo: $("#txtMobileNumber").val() == undefined ? 0 : $('#txtMobileNumber').val().trim(),
         }
 
-        CommonAjaxMethod('/User/AddUserDetails', data, false, 'POST');
+        CommonAjaxMethod('User/AddUserDetails', data, false, 'POST');
 
     }
     //isAllValid = checkValidationOnSubmit();

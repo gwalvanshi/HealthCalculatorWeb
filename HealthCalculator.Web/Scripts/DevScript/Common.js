@@ -223,7 +223,7 @@ function handleErrorResponse(response) {
 }
 function CommonAjaxMethod(actionMethodUrl, data, optional, methodType, successCallBack) {
 
-
+    
     var isSuccess = false;
     var dataObj;
     if (methodType == "GET") {
@@ -240,7 +240,7 @@ function CommonAjaxMethod(actionMethodUrl, data, optional, methodType, successCa
     }
     $.ajax({
         type: methodType,
-        url: actionMethodUrl,
+        url: virtualPath + actionMethodUrl,
         data: dataObj,
         contentType: 'application/json',
         beforeSend: function (request) {
@@ -1502,7 +1502,7 @@ function ChangeDateFormatToddMMYYY(dateValue) {
 function LoadSystemMasterDropdown(element, typeID,fxdData, selectedValue) {
     if (SystemdropdownMasterData.length == 0) {
         //ajax func
-        CommonAjaxMethod('/CommonMethods/GetDropDownData', { tableType: typeID, FixedSearchParam: fxdData}, false, 'GET',
+        CommonAjaxMethod('CommonMethods/GetDropDownData', { tableType: typeID, FixedSearchParam: fxdData}, false, 'GET',
             function (response) {
                 SystemdropdownMasterData = response.dataCollection;
                 //render catagory
