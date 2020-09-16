@@ -14,6 +14,7 @@ namespace HealthCalculator.Web.Common
         public const string API_GETSYSTEMMASTERTABLEDATA = "api/GetSystemMasterTableData";
         public const string API_GETSYSTEMMASTERTABLE = "api/GetSystemMasterTable";
         public const string API_GETGRIDDATA = "api/GetGridData";
-     
+        public const string GENERIC_CRUD_API_URL = "api/PerformDataOperation";
+        public const string GENERIC_API_GETRECORDS = "api/GetRecords";
     }
 }

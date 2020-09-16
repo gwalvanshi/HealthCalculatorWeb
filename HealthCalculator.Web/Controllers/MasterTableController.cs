@@ -19,6 +19,99 @@ namespace HealthCalculator.Web.Controllers
             return View();
         }
         [HttpPost]
+        public async Task<JsonResult> Save(GenericOperationModel collection)
+        {
+            try
+            {
+                GenericService _genericService = new GenericService();
+                var stringContent = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<SysMasterTableModel>(stringContent);
+
+                return new JsonResult { Data = status };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+        [HttpGet]
+        public async Task<JsonResult> Get(int id, string ScreenID)
+        {
+            try
+            {
+                int loggedIdUserID = Convert.ToInt32(Session["UserID"]);
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();              
+                collection.ScreenID = ScreenID;
+                collection.UserId = loggedIdUserID;
+                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "CommTemplateMaster_Id",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue = id.ToString()
+                    }
+                };
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<SysMasterTableModel>(stringContent1);
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
+
+
+
+
+        public List<IndexScreenSearchParameterModel> GetSearchList(int loggedIdUserID)
+        {
+            List<IndexScreenSearchParameterModel> objSearchList = new List<IndexScreenSearchParameterModel>();
+            IndexScreenSearchParameterModel objCategory = new IndexScreenSearchParameterModel
+            {
+                SearchParameter = "UserId",
+                SearchParameterDataType = "int",
+                SearchParameterValue = loggedIdUserID.ToString()
+            };
+            objSearchList.Add(objCategory);
+            IndexScreenSearchParameterModel objIsDelete = new IndexScreenSearchParameterModel
+            {
+                SearchParameter = "IsDeleted",
+                SearchParameterDataType = "int",
+                SearchParameterValue = "0"
+            };
+            objSearchList.Add(objIsDelete);
+
+            IndexScreenSearchParameterModel objIsActive = new IndexScreenSearchParameterModel
+            {
+                SearchParameter = "IsActive",
+                SearchParameterDataType = "int",
+                SearchParameterValue = "1"
+            };
+            objSearchList.Add(objIsActive);
+
+            return objSearchList;
+        }
+        public async Task<JsonResult> GetAssessment()
+        {
+            int loggedIdUserID = Convert.ToInt32(Session["UserID"]);
+            MasterTableService objLoginServices = new MasterTableService();
+            IndexScreenParameterModel collection = new IndexScreenParameterModel
+            {
+                IndexScreenSearchParameterModel = GetSearchList(loggedIdUserID),
+                ScreenID = "x_OnlineAssessmentMaster" ,
+                UserId = Convert.ToInt32(Session["UserID"])
+
+            };
+            var stringContent = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+            var status = await objLoginServices.ManageSysMasterTable(stringContent);
+            return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        [HttpPost]
         public async Task<JsonResult> ManageSysMasterTable(SysMasterTableModel collection)
         {
             try

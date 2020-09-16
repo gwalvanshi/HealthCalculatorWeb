@@ -56,6 +56,7 @@
     <Compile Include="BaseAuthorizationToken.cs" />
     <Compile Include="CommonService.cs" />
     <Compile Include="DropdownLookupService.cs" />
+    <Compile Include="GenericService.cs" />
     <Compile Include="GridBindService.cs" />
     <Compile Include="HttpUtil.cs" />
     <Compile Include="HttpCustomResponse.cs" />

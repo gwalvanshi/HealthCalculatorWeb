@@ -672,6 +672,10 @@ namespace HealthCalculator.Web.Service
 
         }
 
+        internal static Task<HttpCustomResponse<T>> PostListAsync<T>(HttpContent collection, object gENERIC_API_GETRECORDS)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 
