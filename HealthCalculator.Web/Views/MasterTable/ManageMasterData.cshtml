@@ -46,7 +46,7 @@
                 <div class="col-md-offset-2 col-md-10">
                     <input type="hidden" id="hdnID" />
                     <input type="button" value="Save" class="btn btn-default" onclick="SaveMasterData()" />
-                    <input type="button" value="Clear" class="btn btn-default" />
+                    <input type="button" value="Clear" class="btn btn-default"  onclick="clearPage()" />
                 </div>
             </div>
             <div class="table-responsive">
@@ -89,13 +89,54 @@
 
     });
 
+    function clearPage() {
+        $("#hdnID").val("");
+        $('#ddlMasterTableType').prop('selectedIndex', 0);
+        $("#txtMasterData").val("");
+        $("#txtCode").val("");
+        $("#txtRemark").val("");
+    }
+    function FieldValidation(validationType) {
 
+        if ($("#ddlMasterTableType").val() == "0") {
+            alert("Please select Master Table type");
+            $("#ddlMasterTableType").focus();
+            return false;
+        }
+        else if ($("#ddlMasterTableType").val() == "3") {
+            if ($("#txtMasterData").val() == "Male" || $("#txtMasterData").val() == "Female") {
+                return true
+            }
+            else {
+                alert("Please provide correct text");
+                $("#txtMasterData").val("");
+                $("#txtMasterData").focus();
+                return false;
+            }
+        }
+        else if ($("#txtMasterData").val() == "") {
+            alert("Please Master Data text");
+            $("#txtMasterData").focus();
+            return false;
+        }
+        else if ($("#txtCode").val() == "") {
+            alert("Please provide code");
+            $("#txtCode").focus();
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
 
     function SaveMasterData() {
-
+        if (FieldValidation($("#ddlMasterTableType").val())) { 
         CommonAjaxMethod('MasterTable/ManageSysMasterTable/', { SysMasterTable_id: $("#hdnID").val(), SysMasterTabletype_id: $("#ddlMasterTableType").val(), Name: $("#txtMasterData").val(), Code: $("#txtCode").val(), Remark: $("#txtRemark").val() }, false, 'POST', function (response) {
             DataBind($("#ddlMasterTableType").val());
-        });
+            });
+        }
+        clearPage();
     }
 
     function Uploadfile() {
