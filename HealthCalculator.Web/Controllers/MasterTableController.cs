@@ -1,4 +1,5 @@
-﻿using HealthCalculator.Web.EntityModel;
+﻿using HealthCalculator.Web.Common;
+using HealthCalculator.Web.EntityModel;
 using HealthCalculator.Web.Service;
 using Newtonsoft.Json;
 using System;
@@ -19,11 +20,17 @@ namespace HealthCalculator.Web.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<JsonResult> Save(GenericOperationModel collection)
+        public async Task<JsonResult> Save(SysMasterTableModel collection1)
         {
             try
             {
-                GenericService _genericService = new GenericService();
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel collection = new GenericOperationModel();
+                collection.ScreenID = Constants.Enquiry_ScreenID;
+                collection.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
+                collection.Operation = "ADD";
+                collection.XML = objCommonMethods.GetXMLFromObject(collection1);
+                 GenericService _genericService = new GenericService();
                 var stringContent = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
                 var status = await _genericService.PerformDataOperationList<SysMasterTableModel>(stringContent);
 
