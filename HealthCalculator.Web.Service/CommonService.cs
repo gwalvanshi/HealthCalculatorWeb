@@ -50,9 +50,10 @@ namespace HealthCalculator.Web.Service
 
             {
 
-                BaseAddress = new Uri(ConfigurationManager.AppSettings["BaseURL"].ToString())
+                BaseAddress = new Uri(ConfigurationManager.AppSettings["BaseURL"].ToString()),
+                Timeout= TimeSpan.FromMinutes(30)
 
-            };
+        };
 
             client.DefaultRequestHeaders.Clear();
 
