@@ -60,11 +60,11 @@
         <div class="col-md-6 col-md-offset-3">
 
             <div class="login-wh ">
-
+                <div id="toastmsg"><p class="hidden">Fill all mandatory feilds (*)..</p></div>
 
 
                 <div class="text-center">
-
+                    
                     <div>WELCOME TO</div>
 
                     <div>My Web</div>
@@ -81,7 +81,7 @@
 
 
 
-                    
+
 
 
 
@@ -160,14 +160,9 @@
             <script type="text/javascript">
 
                 $(document).ready(function () {
-
-
-
                     function checkfirssttimelogin() {
-
                         var ltype;
-
-                        if (document.getElementById("rdbExternal").checked != undefined) {
+                       /* if (document.getElementById("rdbExternal").checked != undefined) {
 
                             if (document.getElementById("rdbExternal").checked == true)
 
@@ -179,11 +174,8 @@
 
                             }
 
-                        }
-
-
-
-                        if (ltype == 2) {
+                        } */
+                       /* if (ltype == 2) {
 
                             $.ajax({
 
@@ -207,11 +199,11 @@
 
                                     }
 
-                                    else {
+                                    else { */
 
                                         login();
 
-                                    }
+                                 /*   }
 
                                 },
 
@@ -225,7 +217,7 @@
 
                             });
 
-                        }
+                        } 
 
                         else {
 
@@ -275,16 +267,8 @@
 
 
 
-                        }
-
-
-
+                        } */
                     }
-
-
-
-
-
                     $('#btnChange').click(function () {
 
                         window.location.href = "/Login/User/ChangePassword";
@@ -294,11 +278,8 @@
 
 
                     function login() {
-
-                        debugger;
-
                         var logintype = 1;
-
+                        /*
                         if (document.getElementById("rdbTechm").checked != undefined) {
 
                             if (document.getElementById("rdbTechm").checked == true)
@@ -325,18 +306,12 @@
 
                             }
 
-                        }
-
-                        $.ajax({
-
-                            url: '/Login/User/Token',
-
+                        } */
+                        $.ajax( {
+                           
+                            url: 'User/Token',
                             method: 'POST',
-
                             data: {
-
-
-
                                 username: $('#txtEmail').val(),
 
                                 password: $('#txtPassword').val(),
@@ -352,21 +327,13 @@
                             success: function (response) {
 
                                 if (response != "") {
-
-                                    alert(response);
-
-                                    window.location.href = "/Login/User/Index";
-
+                                    window.location.href = "/User";
                                 }
 
                                 else {
-
-                                    window.location.href = "/DashBoard/Dashboard/Index";
-
+                                    //window.location.href = "/DashBoard/Dashboard/Index";
+                                    window.location.href = "/Enquiry/EnquiryTransaction";
                                 }
-
-
-
                             },
 
                             error: function (jqXHR) {
@@ -378,12 +345,8 @@
                         });
 
                     }
-
-
-
                     $('#btnLogin').click(function () {
-
-                        var rbs = document.querySelectorAll('input[name="optradio"]');
+                     /*   var rbs = document.querySelectorAll('input[name="optradio"]');
 
                         if (rbs == undefined) {
 
@@ -394,25 +357,19 @@
                             x.className = "show";
 
                             setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-
-
-
                         }
 
-                        else {
-
+                        else { */
+                           
                             if (checkValidationOnSubmit()) {
-
+                               
                                 checkfirssttimelogin();
 
-                            }
+                          /*  }*/
 
-                        }
+                        } 
 
                     });
-
-
-
                     $('#btnCancel').click(function () {
 
                         document.getElementById("txtEmail").value = "";
@@ -424,23 +381,48 @@
                     });
 
                 });
+                function checkValidationOnSubmit() {
+                    var isMandatory = true;
+                    if (document.getElementById("txtEmail").value == "") {
+                        alert("Please enter Email/UserName");
+                        document.getElementById("txtEmail").focus();
+                        isMandatory = false;
+                    }
+                    else if (document.getElementById("txtPassword").value == "") {
+                        alert("Please enter password");
+                        document.getElementById("txtPassword").focus();
+                        isMandatory = false;
+                    }
+                    else if (document.getElementById("CaptchaInputText").value == "") {
+                        alert("Please enter Captcha Input Text");
+                        document.getElementById("CaptchaInputText").focus();
+                        isMandatory = false;
+                    }                    
+                /*
+                    $.each(requiredFeild, function (key, value) {
+                        if ($("#" + value).length > 0) {
+                            if ($("#" + value) != null) {
+                                var text = Trim($("#" + value).val());
+                                if (text != undefined) {
+                                    text = text.trim();
+                                }
+                                if (text == "" || text == "0" || text == "Select") {
+                                    isMandatory = false;
+                                }
+                            }
 
-
-
+                        }
+                    });
+                    if (!isMandatory) {
+                        var x = document.getElementById("toastmsg");
+                        x.className = "show";
+                        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+                        return false;
+                    } */
+                    return isMandatory;
+                }
             </script>
-
-
-
-
-
-
-
-
-
         </div>
-
     </div>
-
 </body>
-
 </html>

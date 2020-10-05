@@ -299,7 +299,8 @@ namespace HealthCalculator.Web.Controllers
                     {
 
                         //check if LDAP login.
-
+                        var pwd = DataEncryption.Decrypt("LVad7apil5gTwlACD29+7A==");
+                        collection.Password = DataEncryption.Encrypt(collection.Password.Trim());
                         var stringContent3 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
 
                         objLoginServices = new LoginServices();
@@ -314,7 +315,7 @@ namespace HealthCalculator.Web.Controllers
 
                             Session["Access_Token"] = status.data.authToken;
 
-                            Session["UserId"] = status.data.EmployeeID;
+                            Session["UserId"] = status.data.userId;
 
                             Session["UserName"] = status.data.EmployeeName;
 

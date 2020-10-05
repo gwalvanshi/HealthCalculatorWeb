@@ -1,0 +1,303 @@
+﻿
+@{
+    ViewBag.Title = "EnquiryTransaction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EnquiryTransaction</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div id="toastmsg"><p class="yellow">Personal Details and Anthropometry.</p></div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <hr />
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">First Name</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtFName" />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Last Name</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtLName" />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">City</label>
+                <div class="col-md-10">
+                    <select id="ddlCity" class="form-control Mandatory"></select>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">State</label>
+                <div class="col-md-10">
+                    <select id="ddlState" class="form-control Mandatory"></select>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Address1</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtAddress1" />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Address2</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtAddress2" />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">PIN</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtPin" />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Country</label>
+                <div class="col-md-10">
+                    <select id="ddlCountry" class="form-control Mandatory"></select>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Age</label>
+                <div class="col-md-10">
+                    <select id="ddlAge" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">AgeGroup</label>
+                <div class="col-md-10">
+                    <select id="ddlAgeGroup" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Gender</label>
+                <div class="col-md-10">
+                    <select id="ddlGender" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">feet</label>
+                <div class="col-md-10">
+                    <select id="ddlfeet" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Inch</label>
+                <div class="col-md-10">
+                    <select id="ddlInch" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">KG</label>
+                <div class="col-md-10">                   
+                    <select id="ddlKG" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">LB</label>
+                <div class="col-md-10">                  
+                    <select id="ddlLB" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <p class="yellow">Step 2: Health Profile</p><hr />
+            <p class="yellow">Do you suffer from any health issues?</p>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Diabetes</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtDiabetes" />
+                </div>
+            </div>
+            <p class="yellow">Step 3: Lifestyle</p><hr />
+            <p class="yellow">Activity level: Sedentary/ Light Physical activity level/ Moderate physical activity level/ Heavy Physical activity level</p>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Duration of sleep</label>
+                <div class="col-md-10">                   
+                    <select id="ddlSleepDuration" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Exercise</label>
+                <div class="col-md-10">                  
+                    <select id="ddlExcersice" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">ExerciseType</label>
+                <div class="col-md-10">                  
+                    <select id="ddlExcersceType" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">ExerciseDuration</label>
+                <div class="col-md-10">                   
+                    <select id="ddlExcersiceDuration" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <p class="yellow">[If yes then choice of cardio/ strength training]</p>
+            <div class="form-group">
+                <label class="col-md-2 control-label">DurationOften</label>
+                <div class="col-md-10">                   
+                    <select id="ddlDurationOften" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Smoking</label>
+                <div class="col-md-10">                   
+                    <select id="ddlSmoke" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Alcohol</label>
+                <div class="col-md-10">                  
+                    <select id="ddlAlcohol" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">ChildHealthIsuue</label>
+                <div class="col-md-10">
+                    <select id="ddlChildHealthIsuue" class="form-control Mandatory"></select>
+                </div>
+            </div>
+            <p class="yellow">Step 4:</p><hr />
+            <div class="form-group">
+                <label class="col-md-2 control-label">Email id</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtEmailid" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Contact number</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtContactnumber" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="hidden" id="hdnID" />
+                    <input type="button" value="Save" class="btn btn-default" onclick="SaveMasterData()" />
+                    <input type="button" value="Clear" class="btn btn-default" />
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>
+<script type="text/javascript">
+    var SystemdropdownMasterData = [];
+    $(document).ready(function () {
+      LoadSystemMasterDropdown("ddlAge", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Age, "");
+        LoadSystemMasterDropdown("ddlKG", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.KG, "");
+        LoadSystemMasterDropdown("ddlLB", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.LB, "");
+        LoadSystemMasterDropdown("ddlAgeGroup", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.AgeGroup, "");
+        LoadSystemMasterDropdown("ddlGender", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Gender, "");
+        LoadSystemMasterDropdown("ddlCity", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.City, "");
+        LoadSystemMasterDropdown("ddlState", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.State, "");
+        LoadSystemMasterDropdown("ddlCountry", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Country, "");
+        LoadSystemMasterDropdown("ddlfeet", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Feet, "");
+        LoadSystemMasterDropdown("ddlInch", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Inch, ""); 
+        LoadSystemMasterDropdown("ddlSmoke", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Smoking, "");
+        LoadSystemMasterDropdown("ddlAlcohol", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Alcohol, "");
+
+        LoadSystemMasterDropdown("ddlExcersice", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Excersice, "");
+        LoadSystemMasterDropdown("ddlExcersceType", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.ExcersceType, "");
+        LoadSystemMasterDropdown("ddlExcersiceDuration", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.ExcersiceDuration, "");
+        LoadSystemMasterDropdown("ddlDurationOften", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.DurationOften, "");
+        LoadSystemMasterDropdown("ddlSleepDuration", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.SleepDuration, "");
+        LoadSystemMasterDropdown("ddlChildHealthIsuue", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.ChildHealthIsuue, ""); 
+    });
+    function SaveMasterData() {
+        
+        var EnquiryModel = {
+            Instance_enquiry: {
+                Enquiry_Id: $("#hdnID").val(),
+                FirstName: $("#txtFName").val(),
+                LastName: $("#txtLName").val(),
+                Contactnumber: $("#txtContactnumber").val(),
+                Email_ID: $("#txtEmailid").val(),
+                City: $("#ddlCity").val(),
+                State: $("#ddlState").val(),
+                Address1: $("#txtAddress1").val(),
+                Address2: $("#txtAddress2").val(),
+                Pin_Code: $("#txtPin").val(),
+                Country: $("#ddlCountry").val(),
+                AgeGroup: $("#ddlAgeGroup").val(),
+                UserId: "",
+            },
+            Instance_Enquiry_Transaction: []
+        }
+        var Enquiry = {
+            Enquiry_Id: $("#hdnID").val(),
+            FirstName: $("#txtFName").val(),
+            LastName: $("#txtLName").val(),
+            Contactnumber: $("#txtContactnumber").val(),
+            Email_ID: $("#txtEmailid").val(),
+            City: $("#ddlCity").val(),
+            State: $("#ddlState").val(),
+            Address1: $("#txtAddress1").val(),
+            Address2: $("#txtAddress2").val(),
+            Pin_Code: $("#txtPin").val(),
+            Country: $("#ddlCountry").val(),
+            AgeGroup: $("#ddlAgeGroup").val(),
+            UserId: $("#txtCountry").val(),
+        }
+        var paramAge = { MasterTable_ID: SystemMasterTableType.Age, OptionValue:"" , MasterTableTypeId: $("#ddlAge").val() } 
+        var paramGender = { MasterTable_ID: SystemMasterTableType.Gender, OptionValue: "", MasterTableTypeId: $("#ddlGender").val() }
+        var paramfeet = { MasterTable_ID: SystemMasterTableType.Feet, OptionValue: "", MasterTableTypeId: $("#ddlfeet").val() }
+        var paramInch = { MasterTable_ID: SystemMasterTableType.Inches, OptionValue:"", MasterTableTypeId: $("#ddlInch").val() }
+
+        var paramKG = { MasterTable_ID: SystemMasterTableType.KG, OptionValue:"", MasterTableTypeId: $("#ddlKG").val() }
+        var paramLB = { MasterTable_ID: SystemMasterTableType.LB, OptionValue: "", MasterTableTypeId: $("#ddlLB").val() }
+
+        var paramSmoke = { MasterTable_ID: SystemMasterTableType.Smoking, OptionValue: "", MasterTableTypeId: $("#ddlSmoke").val() }
+        var paramAlcohol = { MasterTable_ID: SystemMasterTableType.Alcohol, OptionValue: "", MasterTableTypeId: $("#ddlAlcohol").val() }
+
+        var paramExcersice = { MasterTable_ID: SystemMasterTableType.Excersice, OptionValue: "", MasterTableTypeId: $("#ddlExcersice").val() }
+        var paramExcersceType = { MasterTable_ID: SystemMasterTableType.ExcersceType, OptionValue: "", MasterTableTypeId: $("#ddlExcersceType").val() }
+
+        var paramExcersiceDuration = { MasterTable_ID: SystemMasterTableType.ExcersiceDuration, OptionValue: "", MasterTableTypeId: $("#ddlExcersiceDuration").val() }
+        var paramDurationOften = { MasterTable_ID: SystemMasterTableType.DurationOften, OptionValue: "", MasterTableTypeId: $("#ddlDurationOften").val() }
+
+        var paramSleepDuration = { MasterTable_ID: SystemMasterTableType.SleepDuration, OptionValue:"" , MasterTableTypeId: $("#ddlSleepDuration").val() }
+        var paramChildHealthIsuue = { MasterTable_ID: SystemMasterTableType.ChildHealthIsuue, OptionValue:"", MasterTableTypeId: $("#ddlChildHealthIsuue").val() }
+
+
+        //EnquiryModel.Instance_enquiry.push(Enquiry)
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramAge);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramGender);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramfeet);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramInch);
+
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramKG);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramLB);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramSmoke);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramAlcohol);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramExcersice);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramExcersceType);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramExcersiceDuration);
+
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramDurationOften);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramSleepDuration);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramChildHealthIsuue);
+
+       // if (FieldValidation($("#ddlMasterTableType").val())) {
+        CommonAjaxMethod('Enquiry/Save/',  EnquiryModel , false, 'POST', function (response) {
+                DataBind($("#ddlMasterTableType").val());
+        });
+       // clearPage();
+    }
+
+</script>

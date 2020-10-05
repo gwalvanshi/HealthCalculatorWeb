@@ -191,6 +191,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommonMethodsController.cs" />
     <Compile Include="Controllers\DataEncryption.cs" />
+    <Compile Include="Controllers\EnquiryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageAgeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -356,7 +357,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -388,6 +391,7 @@
     <Content Include="Views\ManageAge\AgeMaster.cshtml" />
     <Content Include="Views\MasterTable\ManageMasterData.cshtml" />
     <Content Include="Views\UploadDocument\UploadMaster.cshtml" />
+    <Content Include="Views\Enquiry\EnquiryTransaction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -44,6 +44,7 @@
     <Compile Include="CommonConstants.cs" />
     <Compile Include="DropdownRequestModel.cs" />
     <Compile Include="DropdownResponseModel.cs" />
+    <Compile Include="EnquiryModel.cs" />
     <Compile Include="GenericGetRecordModel.cs" />
     <Compile Include="GenericOperationModel.cs" />
     <Compile Include="GridResponseModel.cs" />

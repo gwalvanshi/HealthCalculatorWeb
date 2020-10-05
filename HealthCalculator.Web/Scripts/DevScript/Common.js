@@ -30,6 +30,29 @@ var SystemMasterTableEnum = {
 
 }
 
+var SystemMasterTableType = {
+    Age: 2,
+    Gender: 3,
+    Feet: 4,
+    Inches: 6,
+    Gram: 7,
+    KG: 8,
+    LB: 9,
+    ActivityLevel: 10,
+    SleepDuration: 11,
+    Excersice: 12,
+    ExcersceType: 13,
+    ExcersiceDuration: 15,
+    DurationOften: 16,
+    Smoking: 18,
+    Alcohol: 19,
+    ChildHealthIsuue: 20,
+    City: 23,
+    State: 24,
+    Country: 25,
+    AgeGroup: 26
+}
+
 var UserPermission =
 {
     View:"View",
@@ -415,6 +438,7 @@ Description                 : This is common  method for validate  control on su
 
 function checkValidationOnSubmit()
 {
+    alert("checkValidationOnSubmit javascript");
     var isMandatory = true;
     $.each(requiredFeild, function (key, value)
     {

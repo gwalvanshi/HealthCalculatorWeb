@@ -130,6 +130,7 @@
 
     }
 
+
     function SaveMasterData() {
         if (FieldValidation($("#ddlMasterTableType").val())) { 
         CommonAjaxMethod('MasterTable/ManageSysMasterTable/', { SysMasterTable_id: $("#hdnID").val(), SysMasterTabletype_id: $("#ddlMasterTableType").val(), Name: $("#txtMasterData").val(), Code: $("#txtCode").val(), Remark: $("#txtRemark").val() }, false, 'POST', function (response) {
