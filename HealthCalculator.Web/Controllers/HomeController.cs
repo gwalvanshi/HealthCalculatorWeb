@@ -10,7 +10,8 @@ namespace HealthCalculator.Web.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "User");
+            return View();
+            // return RedirectToAction("Index", "User");
         }
 
         public ActionResult About()

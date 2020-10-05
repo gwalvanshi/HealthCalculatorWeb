@@ -1,31 +1,458 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+
+<div class="container-fluid pl-0 pr-0">
+    <div class="row no-gutters">
+        <div class="col-12 text-center">
+            <img src="/img/home1-a.jpg" class="img-fluid w-100" />
+            <div class="bannerAfter shadow">
+                <h2 class="mb-0 dib pr-2 light">Looking For A Happy & Healthy Lifestyle? <a class="btn btn-reg mb-2 hvr-sweep-to-top" data-toggle="modal" href="#checkHealthMeter">CHECK YOUR HEALTH METER</a>	</h2>
+            </div>
+            <h2 class="marthin mt-5 semi">
+                "Eating is a necessity but<br />
+                eating smart is an art"
+            </h2>
+            <p class="text-yellow bold">QUOTE BY SIDRA PATEL</p>
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12 text-center">
+            <h2 class="text-sky mt-5 mb-4 light">OUR EXCLUSIVE PROGRAMS</h2>
+        </div>
+        <div class="col-12 col-md-4 text-center">
+            <div class="proThumb effects" data-rotate-x="90deg" data-move-z="-500px" data-move-y="200px">
+                <div class="proImg shadow">
+                    <img src="/img/exc1.jpg" class="img-fluid w-100" />
+                </div>
+                <div class="proText">
+                    <h1 class="text-yellow bold marthin">Smart</h1>
+                    <h5>WEIGHT LOSS PROGRAM</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 text-center">
+            <div class="proThumb effects" data-rotate-x="90deg" data-move-z="-500px" data-move-y="200px">
+                <div class="proImg shadow">
+                    <img src="/img/exc2.jpg" class="img-fluid w-100" />
+                </div>
+                <div class="proText">
+                    <h1 class="text-yellow bold marthin">Smart</h1>
+                    <h5>WEIGHT LOSS PROGRAM</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 text-center">
+            <div class="proThumb effects" data-rotate-x="90deg" data-move-z="-500px" data-move-y="200px">
+                <div class="proImg shadow">
+                    <img src="/img/exc3.jpg" class="img-fluid w-100" />
+                </div>
+                <div class="proText">
+                    <h1 class="text-yellow bold marthin">Smart</h1>
+                    <h5>WEIGHT LOSS PROGRAM</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 text-center">
+            <a href="services.php" class="btn mb-5 hvr-sweep-to-top">SEE ALL SERVICES</a>
+        </div>
     </div>
 </div>
+
+<div class="sidraPatel">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-11 col-md-6 text-center">
+                <img src="/img/sidraPatel.png" class="img-fluid mb-3" />
+                <h6 class="semi text-sky">YOUR DIGITAL HEALTH & FITNESS EXPERT</h6>
+                <p class="mt-4 mb-5">Kudos to the smarter ways to a healthier you with Sidra. Sidra is a Dietitian & health expert. Being in love with food herself, she has embarked on this amazing journey to encourage her clients to focus on “Eating Smart”, instead of depriving themselves of the happiness that food is. </p>
+                <a href="services.php" class="btn bg-sky hvr-sweep-to-top">READ MORE</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-12 text-center">
+            <h2 class="text-sky mt-5 mb-4 light">HOW IT WORKS?</h2>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 workBlock effects" data-move-y="200px" data-move-x="-200px">
+            <img src="/img/capsule.jpg" class="img-fluid" />
+            <h5>Follow The <span class="semi">Regime</span></h5>
+            <p class="mb-3">Observance of your own regime of the day, nutrition and exercise is the key to success.</p>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 workBlock effects" data-move-y="200px" data-move-x="-100px">
+            <img src="/img/weight.jpg" class="img-fluid" />
+            <h5>Follow The <span class="semi">Regime</span></h5>
+            <p class="mb-3">Observance of your own regime of the day, nutrition and exercise is the key to success.</p>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 workBlock effects" data-move-y="200px" data-move-x="100px">
+            <img src="/img/masroom.jpg" class="img-fluid" />
+            <h5>Follow The <span class="semi">Regime</span></h5>
+            <p class="mb-3">Observance of your own regime of the day, nutrition and exercise is the key to success.</p>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 workBlock effects" data-move-y="200px" data-move-x="200px">
+            <img src="/img/medal.jpg" class="img-fluid mb-3" />
+            <h5>Follow The <span class="bold">Regime</span></h5>
+            <h6 class="mb-3">Observance of your own regime of the day, nutrition and exercise is the key to success.</h6>
+        </div>
+    </div>
+</div>
+
+<div class="heathMeterSection">
+    <img src="/img/img3.png" class="img-fluid imgLeft effects" data-move-x="-100px" />
+    <img src="/img/img4.png" class="img-fluid imgRight effects" data-move-x="100px" />
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-11 col-md-auto text-center">
+                <div class="text-left mt-4">
+                    <img src="/img/calc.png" class="img-fluid mb-1" />
+                </div>
+                <h2 class="mb-1">LET'S CHECK YOUR <span class="bold text-orange">HEALTH METER!</span></h2>
+                <div class="text-right mb-5">
+                    <a href="services.php" class="btn bg-sky hvr-sweep-to-top">START USING CALCULATOR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonialBlock">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-11 col-md-6 col-lg-5 text-center">
+                    <h2 class="light">
+                        HAPPY<br />
+                        TESTIMONAILS
+                    </h2>
+                    <p class="mt-4 mb-4">Bonfire has been an absolute dream to work with - the platform is simple and easy to use, it is risk-free, and the products are truly excellent quality. In addition, their support team is prompt and very helpful. I would definitely recommend using Bonfire!</p>
+                    <div>
+                        <img src="/img/annie.png" class="img-fluid mr-3 align-bottom dib" />
+                        <div class="dib">
+                            <p class="semi mb-1">ANNIE SEGARRA</p>
+                            <p class="mb-1">Alpenglow Collective</p>
+                            <p class="mb-1">San Rafael, CA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="checkHealthMeter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-6 bg-sky healthRating">
+                        <img src="/img/healthRating.png" class="healthRatingImg" />
+                        <div class="text-center pl-3 pr-3">
+                            <p class="text-white"><span class="bold">Note:</span> <i>Forms for Adults & Childrens are different. All results would be mailed to user email address after completing the details!</i></p>
+                        </div>
+                        <div class="col1lftbgimg">
+                            <img src="/img/img8.png" class="img-fluid" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-6 healthContent">
+                        <p class="text-white"><span class="bold">Step 1 :</span> Personal Details and Anthropometry</p>
+                        <ul class="nav nav-tabs navDefaultType">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="adult-tab" data-toggle="tab" href="#adult" aria-selected="true"><span class="imgActive"></span> Adult</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="child-tab" data-toggle="tab" href="#child" aria-selected="false"><span class="imgActive"></span> Child</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="adult">
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" placeholder="Age" />
+                                    </div>
+                                    <div class="form-group">
+                                        <select id="inputState" class="form-control">
+                                            <option selected>Gender</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                    </div>
+                                    <p class="text-white mb-0 position-absolute">Height</p>
+                                    <ul class="nav nav-tabs navDefaultType  justify-content-end">
+                                        <li class="nav-item">
+                                            <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> Centimeters</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> Feet &amp; Inches</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="centimeters">
+                                            <div class="row no-gutters">
+                                                <div class="col-6">
+                                                    <div class="form-group pr-1">
+                                                        <select id="inputState" class="form-control">
+                                                            <option selected>Feet</option>
+                                                            <option>Male</option>
+                                                            <option>Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group pl-1">
+                                                        <select id="inputState" class="form-control">
+                                                            <option selected>Inches</option>
+                                                            <option>22</option>
+                                                            <option>23</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="feetInches">
+                                            <div class="row no-gutters">
+                                                <div class="col-12">
+                                                    <div class="form-group pr-1">
+                                                        <select id="inputState" class="form-control">
+                                                            <option selected>Centimeter</option>
+                                                            <option>Male</option>
+                                                            <option>Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text-white mb-0 position-absolute">Weight</p>
+                                    <ul class="nav nav-tabs navDefaultType  justify-content-end">
+                                        <li class="nav-item">
+                                            <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="kilograms-tab" data-toggle="tab" href="#kilograms" aria-selected="true"><span class="imgActive"></span> Kilograms</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="pounds-tab" data-toggle="tab" href="#pounds" aria-selected="false"><span class="imgActive"></span> Pounds</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="kilograms">
+                                            <div class="row no-gutters">
+                                                <div class="col-6">
+                                                    <div class="form-group pr-1">
+                                                        <select id="inputState" class="form-control">
+                                                            <option selected>Kilo</option>
+                                                            <option>Male</option>
+                                                            <option>Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group pl-1">
+                                                        <select id="inputState" class="form-control">
+                                                            <option selected>Grams</option>
+                                                            <option>22</option>
+                                                            <option>23</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="pounds">
+                                            <div class="row no-gutters">
+                                                <div class="col-12">
+                                                    <div class="form-group pr-1">
+                                                        <select id="inputState" class="form-control">
+                                                            <option selected>Centimeter</option>
+                                                            <option>Male</option>
+                                                            <option>Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <a href="#" class="btn bg-sky hvr-sweep-to-top">FILL STEP 2</a>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="child">
+                                <div class="childScrA">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Name" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" placeholder="Age" />
+                                        </div>
+                                        <div class="form-group">
+                                            <select id="inputState" class="form-control">
+                                                <option selected>Gender</option>
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                        <p class="text-white mb-0 position-absolute">Height</p>
+                                        <ul class="nav nav-tabs navDefaultType  justify-content-end">
+                                            <li class="nav-item">
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> Centimeters</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> Feet &amp; Inches</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="centimeters">
+                                                <div class="row no-gutters">
+                                                    <div class="col-6">
+                                                        <div class="form-group pr-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Feet</option>
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group pl-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Inches</option>
+                                                                <option>22</option>
+                                                                <option>23</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="feetInches">
+                                                <div class="row no-gutters">
+                                                    <div class="col-12">
+                                                        <div class="form-group pr-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Centimeter</option>
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-white mb-0 position-absolute">Weight</p>
+                                        <ul class="nav nav-tabs navDefaultType  justify-content-end">
+                                            <li class="nav-item">
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="kilograms-tab" data-toggle="tab" href="#kilograms" aria-selected="true"><span class="imgActive"></span> Kilograms</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="pounds-tab" data-toggle="tab" href="#pounds" aria-selected="false"><span class="imgActive"></span> Pounds</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="kilograms">
+                                                <div class="row no-gutters">
+                                                    <div class="col-6">
+                                                        <div class="form-group pr-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Kilo</option>
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group pl-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Grams</option>
+                                                                <option>22</option>
+                                                                <option>23</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pounds">
+                                                <div class="row no-gutters">
+                                                    <div class="col-12">
+                                                        <div class="form-group pr-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Centimeter</option>
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right nextStep">
+                                            <a rel="childScrB" class="btn bg-sky hvr-sweep-to-top">FILL STEP 2</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="childScrB">
+                                    <form>
+                                        <p class="semi mb-2">Does your child suffer from any health issues?</p>
+                                        <ul class="nav nav-tabs navDefaultType mb-3">
+                                            <li class="nav-item">
+                                                <a class="nav-link active pt-0" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> yes</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link pt-0" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> No</a>
+                                            </li>
+                                        </ul>
+                                        <div class="form-group">
+                                            <textarea rows="5" class="form-control" placeholder="Describe In Details..."></textarea>
+                                        </div>
+                                        <div class="nextStep d-flex justify-content-between">
+                                            <a rel="childScrA" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 1</a>
+                                            <a rel="childScrC" class="btn bg-sky hvr-sweep-to-top">FILL STEP 3</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="childScrC">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Email Adress" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Phone No." />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="parent / Guardian Name" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Location" />
+                                        </div>
+                                        <div class="nextStep d-flex justify-content-between mb-4">
+                                            <a rel="childScrB" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 2</a>
+                                            <button type="submit" class="btn bg-sky hvr-sweep-to-top">SUBMIT FORM</a>
+                                        </div>
+                                        <div class="text-center">
+                                            <p class="text-white"><span class="bold">Note:</span> <i>You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX</i></p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col2rgtbgimg">
+                            <img src="/img/img7.png" class="img-fluid" />
+                        </div>
+                        <div class="col2btmbgimg">
+                            <img src="/img/img6.png" class="img-fluid" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

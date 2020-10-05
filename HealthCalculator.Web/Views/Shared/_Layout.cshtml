@@ -1,17 +1,18 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="/img/favicon.png">
 
-    <link rel="stylesheet" href="~/css/style.css" />
-    <script src="~/js/jquery-1.11.3.min.js"></script>
-    <script src="~/Scripts/jquery-3.4.1.js"></script>
-    <script src="~/Scripts/DevScript/Common.js"></script>
-    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+    <title>Home</title>
+
+
+    <link href="/css/hover-min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
 
     <style>
         .Mandtory {
@@ -23,12 +24,124 @@
     </script>
 </head>
 <body>
- 
-    <div class="container body-content">
-        @RenderBody()        
+    <div class="notiBlock">
+        <div class="container-fluid">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-auto">
+                    <p class="mb-2 mt-2">We are fully operational and here to help. <span class="semi">Raise money</span> for COVID-19 relief.</p>
+                </div>
+                <div class="col-auto">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item"><a href="faq.php">FAQ’S</a></li>
+                        <li class="list-group-item"><a href="reviews.php">Reviews</a></li>
+                        <li class="list-group-item"><a href="contact.php">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <a class="navbar-brand" href="#"><img src="/img/logo.png" class="img-fluid" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-  
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
+                        Home
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="index.php">Homepage 1</a>
+                        <a class="dropdown-item" href="index2.php">Homepage 2</a>
+                        <a class="dropdown-item" href="index3.php">Homepage 3</a>
+                        <a class="dropdown-item" href="index4.php">Homepage 4</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="index.php">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php">Health Programs</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php">Health Guide</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php">Health Calculator</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <img src="/img/logoDark.png" class="img-fluid mb-3" />
+                    <img src="/img/fruits.png" class="" />
+                </div>
+                <div class="col-12 col-md-2">
+                    <h5>COMPANY</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="profile.php">Founders Profile</a></li>
+                        <li><a href="csrPolicy.php">CSR Policy</a></li>
+                        <li><a href="visionMission.php">Vision & Mission</a></li>
+                        <li><a href="certifications.php">Certifications</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3">
+                    <h5>SERVICES</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="">Smart Weight Loss Program</a></li>
+                        <li><a href="">Smart Disease Management</a></li>
+                        <li><a href="">Smart Weight Gain Program</a></li>
+                        <li><a href="">Smart Enhancer</a></li>
+                        <li><a href="">Mental Health & Emotional Eating</a></li>
+                        <li><a href="">Smart Eating Out</a></li>
+                        <li><a href="">Smart Body Toning</a></li>
+                        <li><a href="">Smart Child Nutrition</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-2">
+                    <h5>RESOURCES</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="careers.php">Careers</a></li>
+                        <li><a href="terms.php">Terms Of Use</a></li>
+                        <li><a href="privacyPolicy.php">Privacy Policy</a></li>
+                        <li><a href="refundPolicy.php">Refund Policy</a></li>
+                        <li><a href="faq.php">FAQ’s</a></li>
+                        <li><a href="contact.php">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-2">
+                    <h5>FOLLOW US</h5>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href=""><img src="/img/fb.png" /></a></li>
+                        <li class="list-inline-item"><a href=""><img src="/img/tw.png" /></a></li>
+                        <li class="list-inline-item"><a href=""><img src="/img/insta.png" /></a></li>
+                    </ul>
+                </div>
+                <div class="col-12 text-right">
+                    <hr />
+                    <p class="mb-2">
+                        Site designed by ExellarTech &nbsp;&nbsp;
+                       2020 Kagani.com. All rights reserved
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/js/custom.js"></script>
+
+    <!-- scroll effects -->
+    <script src="/js/jquery.smoove.js"></script>
+    <script>$('.effects').smoove({ offset: '30%' });</script>
+
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
     @RenderSection("scripts", required: false)
 </body>
 
