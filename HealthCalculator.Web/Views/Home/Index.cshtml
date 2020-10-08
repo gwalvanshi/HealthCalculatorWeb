@@ -162,7 +162,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-6 healthContent">
-                        <p class="text-white"><span class="bold">Step 1 :</span> Personal Details and Anthropometry</p>
+                      
                         <ul class="nav nav-tabs navDefaultType">
                             <li class="nav-item">
                                 <a class="nav-link active" id="adult-tab" data-toggle="tab" href="#adult" aria-selected="true"><span class="imgActive"></span> Adult</a>
@@ -172,78 +172,274 @@
                             </li>
                         </ul>
                         <div class="tab-content">
+                          
                             <div class="tab-pane fade show active" id="adult">
-                                <form>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="number" class="form-control" placeholder="Age" />
-                                    </div>
-                                    <div class="form-group">
+
+                                <div class="adultSrcA">
+                                    <p class="text-white"><span class="bold">Step 1 :</span> Personal Details and Anthropometry</p>
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Name" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" placeholder="Age" />
+                                        </div>
+                                        <div class="form-group">
+                                            <select id="inputState" class="form-control">
+                                                <option selected>Gender</option>
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                        <p class="text-white mb-0 position-absolute">Height</p>
+                                        <ul class="nav nav-tabs navDefaultType  justify-content-end">
+                                            <li class="nav-item">
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> Centimeters</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> Feet &amp; Inches</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="centimeters">
+                                                <div class="row no-gutters">
+                                                    <div class="col-6">
+                                                        <div class="form-group pr-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Feet</option>
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group pl-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Inches</option>
+                                                                <option>22</option>
+                                                                <option>23</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="feetInches">
+                                                <div class="row no-gutters">
+                                                    <div class="col-12">
+                                                        <div class="form-group pr-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Centimeter</option>
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-white mb-0 position-absolute">Weight</p>
+                                        <ul class="nav nav-tabs navDefaultType  justify-content-end">
+                                            <li class="nav-item">
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="kilograms-tab" data-toggle="tab" href="#kilograms" aria-selected="true"><span class="imgActive"></span> Kilograms</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="pounds-tab" data-toggle="tab" href="#pounds" aria-selected="false"><span class="imgActive"></span> Pounds</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="kilograms">
+                                                <div class="row no-gutters">
+                                                    <div class="col-6">
+                                                        <div class="form-group pr-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Kilo</option>
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group pl-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Grams</option>
+                                                                <option>22</option>
+                                                                <option>23</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pounds">
+                                                <div class="row no-gutters">
+                                                    <div class="col-12">
+                                                        <div class="form-group pr-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Centimeter</option>
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right nextStepA">
+                                            <a rel="adultSrcB" class="btn bg-sky hvr-sweep-to-top">FILL STEP 2</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="adultSrcB" style="display:none;">
+                                    <form>
+                                        <p class="text-white"><span class="bold">Step 2 :</span>Health Profile</p>
+
+                                        <p class="semi mb-2">Do you suffer from any health issues?</p>
+
+                                        <ul style="list-style-type:none;">
+                                            <li>
+                                                <input type="checkbox" id="chkAdbType" />Diabetes Type1
+
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="chkAdbType2" />Diabetes Type2
+
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="chkAThyroid" />Thyroid
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="chkAPCOS" />PCOS
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="chkAHypertension" />Hypertension or any heart related diseases
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="chkAGastrointestinal" />Gastrointestinal disorders
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="chkAOthers" />Any other
+                                                <textarea rows="5" class="form-control" placeholder="Any other..."></textarea>
+                                            </li>
+                                        </ul>
+
+                                        <div class="nextStepA d-flex justify-content-between">
+                                            <a rel="adultSrcA" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 1</a>
+                                            <a rel="adultSrcC" class="btn bg-sky hvr-sweep-to-top">FILL STEP 3</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="adultSrcC" style="display:none;">
+                                    <form>
+                                        <p class="text-white"><span class="bold">Step 3 :</span>Lifestyle</p>
+
+
+                                        <p class="semi mb-2">Activity level:</p>
+
+                                        <ul style="list-style-type:none;">
+                                            <li>
+                                                <input type="checkbox" id="chkAdSedentary" />Sedentary
+
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="chkAdLight" />Light Physical activity level
+
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="chkAdModerate" />Moderate physical activity level
+                                            </li>
+                                            <li>
+                                                <input type="checkbox" id="chkAdHeavy" />Heavy Physical activity level
+                                            </li>
+                                        </ul>
+                                        <p class="semi mb-2">Duration of sleep:</p>
                                         <select id="inputState" class="form-control">
-                                            <option selected>Gender</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
+                                            <option> < 6 hours</option>
+                                            <option>7–8 hours</option>
+                                            <option>10> hours</option>
                                         </select>
-                                    </div>
-                                    <p class="text-white mb-0 position-absolute">Height</p>
-                                    <ul class="nav nav-tabs navDefaultType  justify-content-end">
-                                        <li class="nav-item">
-                                            <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> Centimeters</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> Feet &amp; Inches</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane fade show active" id="centimeters">
-                                            <div class="row no-gutters">
-                                                <div class="col-6">
-                                                    <div class="form-group pr-1">
-                                                        <select id="inputState" class="form-control">
-                                                            <option selected>Feet</option>
-                                                            <option>Male</option>
-                                                            <option>Female</option>
-                                                        </select>
+
+
+                                        <p class="semi mb-2">Water intake:</p>
+                                        <ul class="nav nav-tabs navDefaultType  justify-content-end">
+                                            <li class="nav-item">
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="Litters-tab" data-toggle="tab" href="#Litters" aria-selected="true"><span class="imgActive"></span> L</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="Glass-tab" data-toggle="tab" href="#Glass" aria-selected="false"><span class="imgActive"></span> Glass</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="Litters">
+                                                <div class="row no-gutters">
+                                                    <div class="col-6">
+                                                        <div class="form-group pr-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Litter</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
+
                                                 </div>
-                                                <div class="col-6">
-                                                    <div class="form-group pl-1">
-                                                        <select id="inputState" class="form-control">
-                                                            <option selected>Inches</option>
-                                                            <option>22</option>
-                                                            <option>23</option>
-                                                        </select>
+                                            </div>
+                                            <div class="tab-pane fade" id="Glass">
+                                                <div class="row no-gutters">
+                                                    <div class="col-12">
+                                                        <div class="form-group pr-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option selected>Glass</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="feetInches">
-                                            <div class="row no-gutters">
-                                                <div class="col-12">
-                                                    <div class="form-group pr-1">
-                                                        <select id="inputState" class="form-control">
-                                                            <option selected>Centimeter</option>
-                                                            <option>Male</option>
-                                                            <option>Female</option>
-                                                        </select>
+                                        <p class="semi mb-2">Exercise:</p>
+
+                                        <ul class="nav nav-tabs navDefaultType  justify-content-end">
+                                            <li class="nav-item">
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="AYes-tab" data-toggle="tab" href="#AYes" aria-selected="true"><span class="imgActive"></span> Yes</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="ANo-tab" data-toggle="tab" href="#ANo" aria-selected="false"><span class="imgActive"></span> No</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="AYes">
+                                                <div class="row no-gutters">
+                                                    <div class="col-6">
+                                                        <div class="form-group pr-1">
+                                                            <ul style="list-style-type:none;">
+                                                                <li>
+                                                                    <input type="checkbox" id="chkACardio" />Cardio
+
+                                                                </li>
+                                                                <li>
+                                                                    <input type="checkbox" id="chkAdbType2" />Strength Training
+
+                                                                </li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
+
                                                 </div>
                                             </div>
+                                            <div class="tab-pane fade" id="ANo">
+
+                                            </div>
                                         </div>
-                                    </div>
-                                    <p class="text-white mb-0 position-absolute">Weight</p>
-                                    <ul class="nav nav-tabs navDefaultType  justify-content-end">
-                                        <li class="nav-item">
-                                            <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="kilograms-tab" data-toggle="tab" href="#kilograms" aria-selected="true"><span class="imgActive"></span> Kilograms</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="pounds-tab" data-toggle="tab" href="#pounds" aria-selected="false"><span class="imgActive"></span> Pounds</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane fade show active" id="kilograms">
+                                        <div class="form-group">
+                                            <p class="semi mb-2">Duration:</p>
                                             <div class="row no-gutters">
                                                 <div class="col-6">
                                                     <div class="form-group pr-1">
@@ -265,27 +461,81 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="pounds">
+                                        <div class="form-group">
+                                            <p class="semi mb-2">How Often:</p>
                                             <div class="row no-gutters">
-                                                <div class="col-12">
+                                                <div class="col-6">
                                                     <div class="form-group pr-1">
                                                         <select id="inputState" class="form-control">
-                                                            <option selected>Centimeter</option>
-                                                            <option>Male</option>
-                                                            <option>Female</option>
+                                                            <option>daily</option>
+                                                            <option>thrice a week</option>
+                                                            <option>twice a week</option>
                                                         </select>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="text-right">
-                                        <a href="#" class="btn bg-sky hvr-sweep-to-top">FILL STEP 2</a>
-                                    </div>
-                                </form>
+                                        <div class="form-group">
+                                            <p class="semi mb-2">Smoking:</p>
+                                            <div class="row no-gutters">
+                                                <div class="col-6">
+                                                    <div class="form-group pr-1">
+                                                        <select id="inputState" class="form-control">
+                                                            <option>No</option>
+                                                            <option>Yes</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <p class="semi mb-2">Alcohol:</p>
+                                                <div class="row no-gutters">
+                                                    <div class="col-6">
+                                                        <div class="form-group pr-1">
+                                                            <select id="inputState" class="form-control">
+                                                                <option>No</option>
+                                                                <option>Yes</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="nextStepA d-flex justify-content-between">
+                                            <a rel="adultSrcB" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 2</a>
+                                            <a rel="adultSrcD" class="btn bg-sky hvr-sweep-to-top">FILL STEP 4</a>
+
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="adultSrcD" style="display:none;">
+                                    <form>
+                                        <p class="text-white"><span class="bold">Step 4 :</span>Personal Details</p>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Email Adress" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Phone No." />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Location" />
+                                        </div>
+                                        <div class="nextStep d-flex justify-content-between mb-4">
+                                            <a rel="adultSrcC" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 3</a>
+                                            <button type="submit" class="btn bg-sky hvr-sweep-to-top">SUBMIT FORM</a>
+                                        </div>
+                                        <div class="text-center">
+                                            <p class="text-white"><span class="bold">Note:</span> <i>You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX</i></p>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="child">
                                 <div class="childScrA">
+                                    <p class="text-white"><span class="bold">Step 1 :</span> Personal Details and Anthropometry</p>
                                     <form>
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Name" />
@@ -394,6 +644,7 @@
                                         </div>
                                         <div class="text-right nextStep">
                                             <a rel="childScrB" class="btn bg-sky hvr-sweep-to-top">FILL STEP 2</a>
+
                                         </div>
                                     </form>
                                 </div>
@@ -402,7 +653,7 @@
                                         <p class="semi mb-2">Does your child suffer from any health issues?</p>
                                         <ul class="nav nav-tabs navDefaultType mb-3">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> yes</a>
+                                                <a class="nav-link active pt-0" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> Yes</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link pt-0" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> No</a>
