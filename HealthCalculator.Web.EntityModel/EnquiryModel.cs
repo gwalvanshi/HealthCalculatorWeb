@@ -50,9 +50,11 @@ namespace HealthCalculator.Web.EntityModel
     {
         public int  Trans_Id { get; set; }
         public int  Enquiry_ID { get; set; }
-        public int MasterTable_ID { get; set; }
+       // public int MasterTable_ID { get; set; }
+       public string ControlName { get; set; }
         public string OptionValue { get; set; }
-        public int MasterTableTypeId { get; set; }
+        //public int MasterTableTypeId { get; set; }
+        public string OtherOption { get; set; }
     }
  
 }

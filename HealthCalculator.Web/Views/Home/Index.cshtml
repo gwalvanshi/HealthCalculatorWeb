@@ -184,7 +184,7 @@
                                             <input type="text" class="form-control" id="txtFName" placeholder="Name" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" class="form-control" id="ddlAge" placeholder="Age" />
+                                            <input type="number" class="form-control" id="txtAge" placeholder="Age" />
                                         </div>
                                         <div class="form-group">
                                             <select id="ddlGender" class="form-control">
@@ -196,10 +196,10 @@
                                         <p class="text-white mb-0 position-absolute">Height</p>
                                         <ul class="nav nav-tabs navDefaultType  justify-content-end">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> Feet &amp; Inches</a>
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive" onclick="heightSelection(1)" ></span> Feet &amp; Inches</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> Centimeters</a>
+                                                <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive" onclick="heightSelection(2)"></span> Centimeters</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">
@@ -265,10 +265,10 @@
                                         <p class="text-white mb-0 position-absolute">Weight</p>
                                         <ul class="nav nav-tabs navDefaultType  justify-content-end">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="kilograms-tab" data-toggle="tab" href="#kilograms" aria-selected="true"><span class="imgActive"></span> Kilograms</a>
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="kilograms-tab" data-toggle="tab" href="#kilograms" aria-selected="true"><span class="imgActive" onclick="WeightSelection(1)" ></span> Kilograms</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="pounds-tab" data-toggle="tab" href="#pounds" aria-selected="false"><span class="imgActive"></span> Pounds</a>
+                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="pounds-tab" data-toggle="tab" href="#pounds" aria-selected="false"><span class="imgActive" onclick="WeightSelection(2)"></span> Pounds</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">
@@ -276,7 +276,7 @@
                                                 <div class="row no-gutters">
                                                     <div class="col-6">
                                                         <div class="form-group pr-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="ddlKilo" class="form-control">
                                                                 <option selected>Kilo</option>
                                                                 <option>50</option>
                                                                 <option>51</option>
@@ -298,7 +298,7 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group pl-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="ddlgrams" class="form-control">
                                                                 <option selected>Grams</option>
                                                                 <option>100</option>
                                                                 <option>150</option>
@@ -319,8 +319,8 @@
                                                 <div class="row no-gutters">
                                                     <div class="col-12">
                                                         <div class="form-group pr-1">
-                                                            <select id="inputState" class="form-control">
-                                                                <option selected>Centimeter</option>
+                                                            <select id="ddlpounds" class="form-control">
+                                                                <option selected>Pounds</option>
                                                                 <option>100</option>
                                                                 <option>101</option>
                                                                 <option>102</option>
@@ -370,7 +370,7 @@
                                             </li>
                                             <li>
                                                 <input type="checkbox" id="chkAOthers" />Any other
-                                                <textarea rows="5" class="form-control" placeholder="Any other..."></textarea>
+                                                <textarea rows="5" id="otherHealthProblem" class="form-control" placeholder="Any other..."></textarea>
                                             </li>
                                         </ul>
 
@@ -404,7 +404,7 @@
                                             </li>
                                         </ul>
                                         <p class="semi mb-2">Duration of sleep:</p>
-                                        <select id="inputState" class="form-control">
+                                        <select id="ddlSleepDuration" class="form-control">
                                             <option> < 6 hours</option>
                                             <option>7–8 hours</option>
                                             <option>10> hours</option>
@@ -414,10 +414,10 @@
                                         <p class="semi mb-2">Water intake:</p>
                                         <ul class="nav nav-tabs navDefaultType  justify-content-end">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="Litters-tab" data-toggle="tab" href="#Litters" aria-selected="true"><span class="imgActive"></span> L</a>
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="Litters-tab" data-toggle="tab" href="#Litters" aria-selected="true" onclick="waterIntakeSelect(1)"><span class="imgActive"></span> L</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="Glass-tab" data-toggle="tab" href="#Glass" aria-selected="false"><span class="imgActive"></span> Glass</a>
+                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="Glass-tab" data-toggle="tab" href="#Glass" aria-selected="false" onclick="waterIntakeSelect(2)"><span class="imgActive"></span> Glass</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">
@@ -425,7 +425,7 @@
                                                 <div class="row no-gutters">
                                                     <div class="col-6">
                                                         <div class="form-group pr-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="waterIntakeLitter" class="form-control">
                                                                 <option selected>Litter</option>
                                                                 <option>1</option>
                                                                 <option>2</option>
@@ -443,7 +443,7 @@
                                                 <div class="row no-gutters">
                                                     <div class="col-12">
                                                         <div class="form-group pr-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="waterIntakeGlass" class="form-control">
                                                                 <option selected>Glass</option>
                                                                 <option>1</option>
                                                                 <option>2</option>
@@ -461,10 +461,10 @@
 
                                         <ul class="nav nav-tabs navDefaultType  justify-content-end">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="AYes-tab" data-toggle="tab" href="#AYes" aria-selected="true"><span class="imgActive"></span> Yes</a>
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="AYes-tab" data-toggle="tab" href="#AYes" aria-selected="true" onclick="exerciseSelection(1)"><span class="imgActive"></span> Yes</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="ANo-tab" data-toggle="tab" href="#ANo" aria-selected="false"><span class="imgActive"></span> No</a>
+                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="ANo-tab" data-toggle="tab" href="#ANo" aria-selected="false" onclick="exerciseSelection(2)"><span class="imgActive"></span> No</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">
@@ -478,7 +478,7 @@
 
                                                                 </li>
                                                                 <li>
-                                                                    <input type="checkbox" id="chkAdbType2" />Strength Training
+                                                                    <input type="checkbox" id="chkStrenghtTarining" />Strength Training
 
                                                                 </li>
                                                             </ul>
@@ -496,7 +496,7 @@
                                             <div class="row no-gutters">
                                                 <div class="col-6">
                                                     <div class="form-group pr-1">
-                                                        <select id="inputState" class="form-control">
+                                                        <select id="ddlExerciseDurationHour" class="form-control">
                                                             <option selected>Hours</option>
                                                             <option>1</option>
                                                             <option>2</option>
@@ -509,7 +509,7 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group pl-1">
-                                                        <select id="inputState" class="form-control">
+                                                        <select id="ddlExerciseDurationMins" class="form-control">
                                                             <option selected>Mins</option>
                                                             <option>10</option>
                                                             <option>15</option>
@@ -527,7 +527,7 @@
                                             <div class="row no-gutters">
                                                 <div class="col-6">
                                                     <div class="form-group pr-1">
-                                                        <select id="inputState" class="form-control">
+                                                        <select id="ddlHowOften" class="form-control">
                                                             <option>daily</option>
                                                             <option>thrice a week</option>
                                                             <option>twice a week</option>
@@ -542,7 +542,7 @@
                                             <div class="row no-gutters">
                                                 <div class="col-6">
                                                     <div class="form-group pr-1">
-                                                        <select id="inputState" class="form-control">
+                                                        <select id="ddlSmoke" class="form-control">
                                                             <option>No</option>
                                                             <option>Yes</option>
                                                         </select>
@@ -555,7 +555,7 @@
                                                 <div class="row no-gutters">
                                                     <div class="col-6">
                                                         <div class="form-group pr-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="ddlAlcohol" class="form-control">
                                                                 <option>No</option>
                                                                 <option>Yes</option>
                                                             </select>
@@ -576,13 +576,13 @@
                                     <form>
                                         <p class="text-white"><span class="bold">Step 4 :</span>Personal Details</p>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Email Adress" />
+                                            <input id="txtEmailID" type="text" class="form-control" placeholder="Email Adress" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Phone No." />
+                                            <input id="contactNo" type="text" class="form-control" placeholder="Phone No." />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Location" />
+                                            <input id="location" type="text" class="form-control" placeholder="Location" />
                                         </div>
                                         <div class="nextStep d-flex justify-content-between mb-4">
                                             <a rel="adultSrcC" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 3</a>
@@ -599,13 +599,13 @@
                                     <p class="text-white"><span class="bold">Step 1 :</span> Personal Details and Anthropometry</p>
                                     <form>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Name" />
+                                            <input type="text" id="txtChildName" class="form-control" placeholder="Name" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" class="form-control" placeholder="Age" />
+                                            <input type="number" id="txtChildAge" class="form-control" placeholder="Age" />
                                         </div>
                                         <div class="form-group">
-                                            <select id="inputState" class="form-control">
+                                            <select id="ddlChildGender" class="form-control">
                                                 <option selected>Gender</option>
                                                 <option>Male</option>
                                                 <option>Female</option>
@@ -614,18 +614,18 @@
                                         <p class="text-white mb-0 position-absolute">Height</p>
                                         <ul class="nav nav-tabs navDefaultType  justify-content-end">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> Centimeters</a>
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#feetChildInches" aria-selected="true" onclick="heightChildSel(1)"><span class="imgActive"></span>Feet &amp; Inches </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> Feet &amp; Inches</a>
+                                                <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#Childcentimeters" aria-selected="false"><span class="imgActive" onclick="heightChildSel(2)"></span>Centimeters </a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">
-                                            <div class="tab-pane fade show active" id="centimeters">
+                                            <div class="tab-pane fade show active" id="feetChildInches">
                                                 <div class="row no-gutters">
                                                     <div class="col-6">
                                                         <div class="form-group pr-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="ddlChildFeet" class="form-control">
                                                                 <option selected>Feet</option>
                                                                 <option>1</option>
                                                                 <option>2</option>
@@ -640,7 +640,7 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group pl-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="ddlChildInches" class="form-control">
                                                                 <option selected>Inches</option>
                                                                 <option>1</option>
                                                                 <option>2</option>
@@ -658,11 +658,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="feetInches">
+                                            <div class="tab-pane fade" id="Childcentimeters">
                                                 <div class="row no-gutters">
                                                     <div class="col-12">
                                                         <div class="form-group pr-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="ddlChildCentimeter" class="form-control">
                                                                 <option selected>Centimeter</option>
                                                                 <option>100</option>
                                                                 <option>105</option>
@@ -681,18 +681,18 @@
                                         <p class="text-white mb-0 position-absolute">Weight</p>
                                         <ul class="nav nav-tabs navDefaultType  justify-content-end">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="kilograms-tab" data-toggle="tab" href="#kilograms" aria-selected="true"><span class="imgActive"></span> Kilograms</a>
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="kilograms-tab" data-toggle="tab" href="#Chkilograms" aria-selected="true" onclick="weightChildSelect(1)"><span class="imgActive"></span> Kilograms</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="pounds-tab" data-toggle="tab" href="#pounds" aria-selected="false"><span class="imgActive"></span> Pounds</a>
+                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="pounds-tab" data-toggle="tab" href="#chpounds" aria-selected="false" onclick="weightChildSelect(2)"><span class="imgActive"></span> Pounds</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">
-                                            <div class="tab-pane fade show active" id="kilograms">
+                                            <div class="tab-pane fade show active" id="Chkilograms">
                                                 <div class="row no-gutters">
                                                     <div class="col-6">
                                                         <div class="form-group pr-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="ddlChildKilo" class="form-control">
                                                                 <option selected>Kilo</option>
                                                                 <option>50</option>
                                                                 <option>51</option>
@@ -714,7 +714,7 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group pl-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="ddlChildGaram" class="form-control">
                                                                 <option selected>Grams</option>
                                                                 <option>150</option>
                                                                 <option>151</option>
@@ -736,12 +736,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="pounds">
+                                            <div class="tab-pane fade" id="chpounds">
                                                 <div class="row no-gutters">
                                                     <div class="col-12">
                                                         <div class="form-group pr-1">
-                                                            <select id="inputState" class="form-control">
-                                                                <option selected>Centimeter</option>
+                                                            <select id="ddlChildPounds" class="form-control">
+                                                                <option selected>Pounds</option>
                                                                 <option>1</option>
                                                                 <option>2</option>
                                                                 <option>3</option>
@@ -770,14 +770,14 @@
                                         <p class="semi mb-2">Does your child suffer from any health issues?</p>
                                         <ul class="nav nav-tabs navDefaultType mb-3">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> Yes</a>
+                                                <a class="nav-link active pt-0" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true" onclick="childHealthIssue(1)"><span class="imgActive"></span> Yes</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link pt-0" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> No</a>
+                                                <a class="nav-link pt-0" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false" onclick="childHealthIssue(2)"><span class="imgActive"></span> No</a>
                                             </li>
                                         </ul>
                                         <div class="form-group">
-                                            <textarea rows="5" class="form-control" placeholder="Describe In Details..."></textarea>
+                                            <textarea rows="5" id="txtChildHealthIssue" class="form-control" placeholder="Describe In Details..."></textarea>
                                         </div>
                                         <div class="nextStep d-flex justify-content-between">
                                             <a rel="childScrA" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 1</a>
@@ -788,20 +788,20 @@
                                 <div class="childScrC">
                                     <form>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Email Adress" />
+                                            <input type="text" id="txtChildEmail" class="form-control" placeholder="Email Adress" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Phone No." />
+                                            <input type="text" id="txtChildContactNo" class="form-control" placeholder="Phone No." />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="parent / Guardian Name" />
+                                            <input type="text" id="txtChildParentGurdian" class="form-control" placeholder="parent / Guardian Name" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Location" />
+                                            <input type="text" id="txtChildLoacation" class="form-control" placeholder="Location" />
                                         </div>
                                         <div class="nextStep d-flex justify-content-between mb-4">
                                             <a rel="childScrB" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 2</a>
-                                            <button type="submit" class="btn bg-sky hvr-sweep-to-top">SUBMIT FORM</a>
+                                            <button type="submit" class="btn bg-sky hvr-sweep-to-top" onclick="SaveChildData()">SUBMIT FORM</a>
                                         </div>
                                         <div class="text-center">
                                             <p class="text-white"><span class="bold">Note:</span> <i>You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX</i></p>
@@ -821,12 +821,123 @@
             </div>
         </div>
     </div>
+    <div>
+        <input type="hidden" id="hdnID" />
+        <input type="hidden" id="heightSelect" value="1" />
+        <input type="hidden" id="WeightSelect" value="1" />
+        <input type="hidden" id="WaterIntakeGlassLitter" value="1" />
+        <input type="hidden" id="ExerciseSelect" value="1" />
+
+        <input type="hidden" id="ChildheightSelect" value="1" />
+        <input type="hidden" id="ChildWeightSelect" value="1" />
+        <input type="hidden" id="ChildHealthIssueSelect" value="1" />
+
+
+    </div>
 </div>
 
 <script src="~/Scripts/DevScript/Common.js"></script>
 
 <script type="text/javascript">
+    function heightChildSel(sel) {
+        $("#ChildheightSelect").val(sel);
+    }
 
+    function weightChildSelect(sel) {
+        $("#ChildWeightSelect").val(sel);
+    }
+    function childHealthIssue(sel) {
+        $("#ChildHealthIssueSelect").val(sel);
+        if (sel == "1") {
+            $("#txtChildHealthIssue").val("");
+            $("#txtChildHealthIssue").prop("disabled", false);
+        }
+        else {
+            $("#txtChildHealthIssue").prop("disabled", true);
+            $("#txtChildHealthIssue").val("");
+        }
+    }
+
+    function SaveChildData(){
+        debugger;
+        var EnquiryModel = {
+            Instance_enquiry: {
+                Enquiry_Id: $("#hdnID").val(),
+                FirstName: $("#txtChildName").val(),
+                LastName: "",
+                Contactnumber: $("#txtChildContactNo").val(),
+                Email_ID: $("#txtChildEmail").val(),
+                City: $("txtChildLoacation").val(),
+                State: "",
+                Address1: $("txtChildParentGurdian").val(),
+                Address2: "",
+                Pin_Code: "",
+                Country: "",
+                AgeGroup: "Child",
+                UserId: "",
+            },
+            Instance_Enquiry_Transaction: []
+        }
+        var paramAge = { ControlName: "txtChildAge", OptionValue: $("#txtChildAge").val(), OtherOption: "" }
+        var paramGender = { ControlName: "ddlChildGender", OptionValue: $("#ddlChildGender").val(), OtherOption: "" }
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramAge);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramGender);
+
+        //1 = Centemer 2 = feet,Inches
+        if ($("#ChildheightSelect").val() == "1") {
+            var paramfeet = { ControlName: "ddlChildFeet", OptionValue: $("#ddlChildFeet").val(), OtherOption: "" }
+            var paramInch = { ControlName: "ddlChildInches", OptionValue: $("#ddlChildInches").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramfeet);
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramInch);
+        }
+        else {
+            var paramCM = { ControlName: "ddlChildCentimeter", OptionValue: $("#ddlChildCentimeter").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramCM);
+        }
+        //1 = KG  2 = Pounds
+        if ($("#ChildWeightSelect").val() == "1") {
+
+            var paramKG = { ControlName: "ddlChildKilo", OptionValue: $("#ddlChildKilo").val(), OtherOption: "" }
+            var paramGrams = { ControlName: "ddlChildGaram", OptionValue: $("#ddlChildGaram").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramKG);
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramGrams);
+        }
+        else {
+            var parampounds = { ControlName: "ddlChildPounds", OptionValue: $("#ddlChildPounds").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(parampounds);
+        }
+        if ($("#ChildHealthIssueSelect").val() == "1") {
+            var paramChildHealthIssue = { ControlName: "txtChildHealthIssue", OptionValue: $("#txtChildHealthIssue").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramChildHealthIssue);
+        }
+
+
+        //if ($("#txtChildEmail").val() != "") {
+            CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response) {
+                alert("Thanks for submitting.");
+                //DataBind($("#ddlMasterTableType").val());
+            });
+        //}
+        //else {
+       //     alert("Please email address");
+        //    $("#txtChildEmail").focus();
+       // }
+        // clearPage();
+
+    }
+
+    function heightSelection(selectedval) {
+        $("#heightSelect").val(selectedval);
+    }
+    function WeightSelection(sel) {
+        $("#WeightSelect").val(sel);
+    }
+    function waterIntakeSelect(sel) {
+        $("#WaterIntakeGlassLitter").val(sel);
+    }
+    function exerciseSelection(sel) {
+        $("#ExerciseSelect").val(sel);
+    }
     
     var SystemdropdownMasterData = [];
     /* $(document).ready(function () {
@@ -852,22 +963,22 @@
      }); */
     function SaveAdultData() {
         //alert("hello");
-        debugger;
+        //debugger;
         var EnquiryModel = {
             Instance_enquiry: {
-                //Enquiry_Id: $("#hdnID").val(),
-                //FirstName: $("#txtFName").val(),
-                //LastName: $("#txtLName").val(),
-                //Contactnumber: $("#txtContactnumber").val(),
-                //Email_ID: $("#txtEmailid").val(),
-                //City: $("#ddlCity").val(),
-                //State: $("#ddlState").val(),
-                //Address1: $("#txtAddress1").val(),
-                //Address2: $("#txtAddress2").val(),
-                //Pin_Code: $("#txtPin").val(),
-                //Country: $("#ddlCountry").val(),
-                //AgeGroup: $("#ddlAgeGroup").val(),
-                //UserId: "",
+                Enquiry_Id: $("#hdnID").val(),
+                FirstName: $("#txtFName").val(),
+                LastName: "",
+                Contactnumber: $("#contactNo").val(),
+                Email_ID: $("#txtEmailID").val(),
+                City: $("location").val(),
+                State: "",
+                Address1: "",
+                Address2: "",
+                Pin_Code:"",
+                Country: "",
+                AgeGroup: "Adult",
+                UserId: "",
             },
             Instance_Enquiry_Transaction: []
         }
@@ -886,50 +997,97 @@
             // AgeGroup: $("#ddlAgeGroup").val(),
             // UserId: $("#txtCountry").val(),
         }
-        /*    var paramAge = { MasterTable_ID: SystemMasterTableType.Age, OptionValue:"" , MasterTableTypeId: $("#ddlAge").val() }
-         var paramGender = { MasterTable_ID: SystemMasterTableType.Gender, OptionValue: "", MasterTableTypeId: $("#ddlGender").val() }
-         var paramfeet = { MasterTable_ID: SystemMasterTableType.Feet, OptionValue: "", MasterTableTypeId: $("#ddlAuditFeet").val() }
-         var paramInch = { MasterTable_ID: SystemMasterTableType.Inches, OptionValue: "", MasterTableTypeId: $("#ddlAuditInches").val() }
+        var paramAge = { ControlName: "txtAge", OptionValue: $("#txtAge").val(), OtherOption: "" }
+        var paramGender = { ControlName: "ddlGender", OptionValue: $("#ddlGender").val(), OtherOption: "" }
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramAge);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramGender);
+       
+       //1 = Centemer 2 = feet,Inches
+        if ($("#heightSelect").val() == "1") {
+            var paramfeet = { ControlName: "ddlAuditfeet", OptionValue: $("#ddlAuditfeet").val(), OtherOption: "" }
+            var paramInch = { ControlName: "ddlAuditInches", OptionValue: $("#ddlAuditInches").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramfeet);
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramInch);
+        }
+        else
+        {
+            var paramCM = { ControlName: "ddlAuditCentemer", OptionValue: $("#ddlAuditCentemer").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramCM);
+            
+        }
+        //1 = KG  2 = Pounds
+        if ($("#WeightSelect").val() == "1") {
 
-        var paramddlAuditCentemer = { MasterTable_ID: SystemMasterTableType.Inches, OptionValue: "", MasterTableTypeId: $("#ddlAuditCentemer").val() }
+            var paramKG = { ControlName: "ddlKilo", OptionValue: $("#ddlKilo").val(), OtherOption: "" }
+            var paramGrams = { ControlName: "ddlgrams", OptionValue: $("#ddlgrams").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramKG);
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramGrams);
+        }
+        else {
+            var parampounds = { ControlName: "ddlpounds", OptionValue: $("#ddlpounds").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(parampounds);
+        }
 
-         var paramKG = { MasterTable_ID: SystemMasterTableType.KG, OptionValue:"", MasterTableTypeId: $("#ddlKG").val() }
-         var paramLB = { MasterTable_ID: SystemMasterTableType.LB, OptionValue: "", MasterTableTypeId: $("#ddlLB").val() }
+        var paramchkAdbType = { ControlName: "chkAdbType", OptionValue: $("#chkAdbType").val(), OtherOption: "" }
+        var paramchkAdbType2 = { ControlName: "chkAdbType2", OptionValue: $("#chkAdbType2").val(), OtherOption: "" }
 
-         var paramSmoke = { MasterTable_ID: SystemMasterTableType.Smoking, OptionValue: "", MasterTableTypeId: $("#ddlSmoke").val() }
-         var paramAlcohol = { MasterTable_ID: SystemMasterTableType.Alcohol, OptionValue: "", MasterTableTypeId: $("#ddlAlcohol").val() }
+        var paramchkAThyroid = { ControlName: "chkAThyroid", OptionValue: $("#chkAThyroid").val(), OtherOption: "" }
+        var paramchkAPCOS = { ControlName: "chkAPCOS", OptionValue: $("#chkAPCOS").val(), OtherOption: "" }
+        var paramchkAHypertension = { ControlName: "chkAHypertension", OptionValue: $("#chkAHypertension").val(), OtherOption: "" }
+        var paramchkAGastrointestinal = { ControlName: "chkAGastrointestinal", OptionValue: $("#chkAGastrointestinal").val(), OtherOption: "" }
+        var paramchkAOthers = { ControlName: "chkAOthers", OptionValue: $("#chkAOthers").val(), OtherOption: $("#otherHealthProblem").val()}
 
-         var paramExcersice = { MasterTable_ID: SystemMasterTableType.Excersice, OptionValue: "", MasterTableTypeId: $("#ddlExcersice").val() }
-         var paramExcersceType = { MasterTable_ID: SystemMasterTableType.ExcersceType, OptionValue: "", MasterTableTypeId: $("#ddlExcersceType").val() }
+        var paramchkAdSedentary = { ControlName: "chkAdSedentary", OptionValue: $("#chkAdSedentary").val(), OtherOption: "" }
+        var paramchkAdLight = { ControlName: "chkAdLight", OptionValue: $("#chkAdLight").val(), OtherOption: "" }
+        var paramchkAdModerate = { ControlName: "chkAdModerate", OptionValue: $("#chkAdModerate").val(), OtherOption: "" }
+        var paramchkAdHeavy = { ControlName: "chkAdHeavy", OptionValue: $("#chkAdHeavy").val(), OtherOption: "" }
+        var paramddlSleepDuration = { ControlName: "ddlSleepDuration", OptionValue: $("#ddlSleepDuration").val(), OtherOption: "" }
 
-         var paramExcersiceDuration = { MasterTable_ID: SystemMasterTableType.ExcersiceDuration, OptionValue: "", MasterTableTypeId: $("#ddlExcersiceDuration").val() }
-         var paramDurationOften = { MasterTable_ID: SystemMasterTableType.DurationOften, OptionValue: "", MasterTableTypeId: $("#ddlDurationOften").val() }
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdbType);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdbType2);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAThyroid);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAHypertension);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAGastrointestinal);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAPCOS);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAOthers);
 
-         var paramSleepDuration = { MasterTable_ID: SystemMasterTableType.SleepDuration, OptionValue:"" , MasterTableTypeId: $("#ddlSleepDuration").val() }
-         var paramChildHealthIsuue = { MasterTable_ID: SystemMasterTableType.ChildHealthIsuue, OptionValue:"", MasterTableTypeId: $("#ddlChildHealthIsuue").val() } */
-        //alert("222");
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdSedentary);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdLight);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdModerate);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdHeavy);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramddlSleepDuration);
+        //1= Litter 2 = Glass
+        if ($("#WaterIntakeGlassLitter").val() == "1") {
+            var paramL = { ControlName: "waterIntakeLitter", OptionValue: $("#waterIntakeLitter").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramL);
+        }
+        else {
+            var paramGlass = { ControlName: "waterIntakeGlass", OptionValue: $("#waterIntakeGlass").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramGlass);
+        }
+        //1= Exercise yes 2 = no
+        if ($("#ExerciseSelect").val() == "1") {
+            var paramchkACardio = { ControlName: "chkACardio", OptionValue: $("#chkACardio").val(), OtherOption: "" }
+            var paramchkStrenghtTarining = { ControlName: "chkStrenghtTarining", OptionValue: $("#chkStrenghtTarining").val(), OtherOption: "" }
+            var paramExerciseDurationHour = { ControlName: "ddlExerciseDurationHour", OptionValue: $("#ddlExerciseDurationHour").val(), OtherOption: "" }
+            var paramExerciseDurationMins = { ControlName: "ddlExerciseDurationMins", OptionValue: $("#ddlExerciseDurationMins").val(), OtherOption: "" }
+            var paramddlHowOften = { ControlName: "ddlHowOften", OptionValue: $("#ddlHowOften").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramchkACardio);
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramchkStrenghtTarining);
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseDurationHour);
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseDurationMins);
+        }
 
-        //EnquiryModel.Instance_enquiry.push(Enquiry)
-        /*   EnquiryModel.Instance_Enquiry_Transaction.push(paramAge);
-         EnquiryModel.Instance_Enquiry_Transaction.push(paramGender);
-         EnquiryModel.Instance_Enquiry_Transaction.push(paramfeet);
-         EnquiryModel.Instance_Enquiry_Transaction.push(paramInch);
+        var paramddlSmoke = { ControlName: "ddlSmoke", OptionValue: $("#ddlSmoke").val(), OtherOption: "" }
+        var paramddlAlcohol = { ControlName: "ddlAlcohol", OptionValue: $("#ddlAlcohol").val(), OtherOption: "" }
 
-       EnquiryModel.Instance_Enquiry_Transaction.push(paramKG);
-         EnquiryModel.Instance_Enquiry_Transaction.push(paramLB);
-         EnquiryModel.Instance_Enquiry_Transaction.push(paramSmoke);
-         EnquiryModel.Instance_Enquiry_Transaction.push(paramAlcohol);
-         EnquiryModel.Instance_Enquiry_Transaction.push(paramExcersice);
-         EnquiryModel.Instance_Enquiry_Transaction.push(paramExcersceType);
-         EnquiryModel.Instance_Enquiry_Transaction.push(paramExcersiceDuration);
-
-         EnquiryModel.Instance_Enquiry_Transaction.push(paramDurationOften);
-         EnquiryModel.Instance_Enquiry_Transaction.push(paramSleepDuration);
-         EnquiryModel.Instance_Enquiry_Transaction.push(paramChildHealthIsuue); */
-        //alert("333");
-        debugger;
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramddlHowOften);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramddlSmoke);
+        EnquiryModel.Instance_Enquiry_Transaction.push(paramddlAlcohol);
+   
         // if (FieldValidation($("#ddlMasterTableType").val())) {
         CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response) {
+            alert("Thanks for submitting.");
             //DataBind($("#ddlMasterTableType").val());
         });
         // clearPage();
