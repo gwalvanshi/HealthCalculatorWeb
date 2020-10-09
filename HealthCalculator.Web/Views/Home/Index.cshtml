@@ -5,6 +5,7 @@
 
 
 
+
 <div class="container-fluid pl-0 pr-0">
     <div class="row no-gutters">
         <div class="col-12 text-center">
@@ -162,7 +163,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-6 healthContent">
-                      
+
                         <ul class="nav nav-tabs navDefaultType">
                             <li class="nav-item">
                                 <a class="nav-link active" id="adult-tab" data-toggle="tab" href="#adult" aria-selected="true"><span class="imgActive"></span> Adult</a>
@@ -172,20 +173,20 @@
                             </li>
                         </ul>
                         <div class="tab-content">
-                          
+
                             <div class="tab-pane fade show active" id="adult">
 
                                 <div class="adultSrcA">
                                     <p class="text-white"><span class="bold">Step 1 :</span> Personal Details and Anthropometry</p>
                                     <form>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Name" />
+                                            <input type="text" class="form-control" id="txtFName" placeholder="Name" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" class="form-control" placeholder="Age" />
+                                            <input type="number" class="form-control" id="ddlAge" placeholder="Age" />
                                         </div>
                                         <div class="form-group">
-                                            <select id="inputState" class="form-control">
+                                            <select id="ddlGender" class="form-control">
                                                 <option selected>Gender</option>
                                                 <option>Male</option>
                                                 <option>Female</option>
@@ -194,10 +195,10 @@
                                         <p class="text-white mb-0 position-absolute">Height</p>
                                         <ul class="nav nav-tabs navDefaultType  justify-content-end">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> Centimeters</a>
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> Feet &amp; Inches</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> Feet &amp; Inches</a>
+                                                <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> Centimeters</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">
@@ -205,19 +206,36 @@
                                                 <div class="row no-gutters">
                                                     <div class="col-6">
                                                         <div class="form-group pr-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="ddlAuditfeet" class="form-control">
                                                                 <option selected>Feet</option>
-                                                                <option>Male</option>
-                                                                <option>Female</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                                <option>7</option>
+                                                                <option>8</option>
+                                                                <option>9</option>
+                                                                <option>10</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group pl-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="ddlAuditInches" class="form-control">
                                                                 <option selected>Inches</option>
-                                                                <option>22</option>
-                                                                <option>23</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                                <option>7</option>
+                                                                <option>8</option>
+                                                                <option>9</option>
+                                                                <option>10</option>
+                                                                <option>11</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -227,10 +245,16 @@
                                                 <div class="row no-gutters">
                                                     <div class="col-12">
                                                         <div class="form-group pr-1">
-                                                            <select id="inputState" class="form-control">
+                                                            <select id="ddlAuditCentemer" class="form-control">
                                                                 <option selected>Centimeter</option>
-                                                                <option>Male</option>
-                                                                <option>Female</option>
+                                                                <option>100</option>
+                                                                <option>105</option>
+                                                                <option>110</option>
+                                                                <option>115</option>
+                                                                <option>120</option>
+                                                                <option>125</option>
+                                                                <option>130</option>
+                                                                <option>135</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -253,8 +277,21 @@
                                                         <div class="form-group pr-1">
                                                             <select id="inputState" class="form-control">
                                                                 <option selected>Kilo</option>
-                                                                <option>Male</option>
-                                                                <option>Female</option>
+                                                                <option>50</option>
+                                                                <option>51</option>
+                                                                <option>52</option>
+                                                                <option>53</option>
+                                                                <option>54</option>
+                                                                <option>55</option>
+                                                                <option>56</option>
+                                                                <option>57</option>
+                                                                <option>58</option>
+                                                                <option>59</option>
+                                                                <option>60</option>
+                                                                <option>61</option>
+                                                                <option>62</option>
+                                                                <option>63</option>
+                                                                <option>64</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -262,8 +299,16 @@
                                                         <div class="form-group pl-1">
                                                             <select id="inputState" class="form-control">
                                                                 <option selected>Grams</option>
-                                                                <option>22</option>
-                                                                <option>23</option>
+                                                                <option>100</option>
+                                                                <option>150</option>
+                                                                <option>155</option>
+                                                                <option>160</option>
+                                                                <option>165</option>
+                                                                <option>170</option>
+                                                                <option>175</option>
+                                                                <option>180</option>
+                                                                <option>185</option>
+                                                                <option>190</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -275,8 +320,15 @@
                                                         <div class="form-group pr-1">
                                                             <select id="inputState" class="form-control">
                                                                 <option selected>Centimeter</option>
-                                                                <option>Male</option>
-                                                                <option>Female</option>
+                                                                <option>100</option>
+                                                                <option>101</option>
+                                                                <option>102</option>
+                                                                <option>103</option>
+                                                                <option>104</option>
+                                                                <option>105</option>
+                                                                <option>106</option>
+                                                                <option>107</option>
+                                                                <option>108</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -444,18 +496,26 @@
                                                 <div class="col-6">
                                                     <div class="form-group pr-1">
                                                         <select id="inputState" class="form-control">
-                                                            <option selected>Kilo</option>
-                                                            <option>Male</option>
-                                                            <option>Female</option>
+                                                            <option selected>Hours</option>
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                            <option>6</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group pl-1">
                                                         <select id="inputState" class="form-control">
-                                                            <option selected>Grams</option>
-                                                            <option>22</option>
-                                                            <option>23</option>
+                                                            <option selected>Mins</option>
+                                                            <option>10</option>
+                                                            <option>15</option>
+                                                            <option>20</option>
+                                                            <option>25</option>
+                                                            <option>30</option>
+                                                            <option>35</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -525,7 +585,7 @@
                                         </div>
                                         <div class="nextStep d-flex justify-content-between mb-4">
                                             <a rel="adultSrcC" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 3</a>
-                                            <button type="submit" class="btn bg-sky hvr-sweep-to-top">SUBMIT FORM</a>
+                                            <button type="submit" onclick="SaveAdultData()" class="btn bg-sky hvr-sweep-to-top">SUBMIT FORM</a>
                                         </div>
                                         <div class="text-center">
                                             <p class="text-white"><span class="bold">Note:</span> <i>You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX</i></p>
@@ -553,10 +613,10 @@
                                         <p class="text-white mb-0 position-absolute">Height</p>
                                         <ul class="nav nav-tabs navDefaultType  justify-content-end">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> Centimeters</a>
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive"></span> Centimeters</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> Feet &amp; Inches</a>
+                                                <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive"></span> Feet &amp; Inches</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">
@@ -566,8 +626,14 @@
                                                         <div class="form-group pr-1">
                                                             <select id="inputState" class="form-control">
                                                                 <option selected>Feet</option>
-                                                                <option>Male</option>
-                                                                <option>Female</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                                <option>7</option>
+                                                                <option>8</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -575,8 +641,17 @@
                                                         <div class="form-group pl-1">
                                                             <select id="inputState" class="form-control">
                                                                 <option selected>Inches</option>
-                                                                <option>22</option>
-                                                                <option>23</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                                <option>7</option>
+                                                                <option>8</option>
+                                                                <option>9</option>
+                                                                <option>10</option>
+                                                                <option>11</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -588,8 +663,14 @@
                                                         <div class="form-group pr-1">
                                                             <select id="inputState" class="form-control">
                                                                 <option selected>Centimeter</option>
-                                                                <option>Male</option>
-                                                                <option>Female</option>
+                                                                <option>100</option>
+                                                                <option>105</option>
+                                                                <option>110</option>
+                                                                <option>115</option>
+                                                                <option>120</option>
+                                                                <option>125</option>
+                                                                <option>130</option>
+                                                                <option>135</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -612,8 +693,21 @@
                                                         <div class="form-group pr-1">
                                                             <select id="inputState" class="form-control">
                                                                 <option selected>Kilo</option>
-                                                                <option>Male</option>
-                                                                <option>Female</option>
+                                                                <option>50</option>
+                                                                <option>51</option>
+                                                                <option>52</option>
+                                                                <option>53</option>
+                                                                <option>54</option>
+                                                                <option>55</option>
+                                                                <option>56</option>
+                                                                <option>57</option>
+                                                                <option>58</option>
+                                                                <option>59</option>
+                                                                <option>60</option>
+                                                                <option>61</option>
+                                                                <option>62</option>
+                                                                <option>63</option>
+                                                                <option>64</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -621,8 +715,21 @@
                                                         <div class="form-group pl-1">
                                                             <select id="inputState" class="form-control">
                                                                 <option selected>Grams</option>
-                                                                <option>22</option>
-                                                                <option>23</option>
+                                                                <option>150</option>
+                                                                <option>151</option>
+                                                                <option>152</option>
+                                                                <option>153</option>
+                                                                <option>154</option>
+                                                                <option>155</option>
+                                                                <option>156</option>
+                                                                <option>157</option>
+                                                                <option>158</option>
+                                                                <option>159</option>
+                                                                <option>160</option>
+                                                                <option>161</option>
+                                                                <option>162</option>
+                                                                <option>163</option>
+                                                                <option>164</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -634,8 +741,17 @@
                                                         <div class="form-group pr-1">
                                                             <select id="inputState" class="form-control">
                                                                 <option selected>Centimeter</option>
-                                                                <option>Male</option>
-                                                                <option>Female</option>
+                                                                <option>1</option>
+                                                                <option>2</option>
+                                                                <option>3</option>
+                                                                <option>4</option>
+                                                                <option>5</option>
+                                                                <option>6</option>
+                                                                <option>7</option>
+                                                                <option>8</option>
+                                                                <option>9</option>
+                                                                <option>10</option>
+                                                                <option>11</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -705,5 +821,117 @@
         </div>
     </div>
 </div>
+
+<script src="~/Scripts/DevScript/Common.js"></script>
+
+<script type="text/javascript">
+    var SystemdropdownMasterData = [];
+    /* $(document).ready(function () {
+         LoadSystemMasterDropdown("ddlAge", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Age, "");
+         LoadSystemMasterDropdown("ddlKG", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.KG, "");
+         LoadSystemMasterDropdown("ddlLB", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.LB, "");
+         LoadSystemMasterDropdown("ddlAgeGroup", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.AgeGroup, "");
+         LoadSystemMasterDropdown("ddlGender", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Gender, "");
+         LoadSystemMasterDropdown("ddlCity", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.City, "");
+         LoadSystemMasterDropdown("ddlState", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.State, "");
+         LoadSystemMasterDropdown("ddlCountry", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Country, "");
+         LoadSystemMasterDropdown("ddlfeet", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Feet, "");
+         LoadSystemMasterDropdown("ddlInch", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Inch, "");
+         LoadSystemMasterDropdown("ddlSmoke", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Smoking, "");
+         LoadSystemMasterDropdown("ddlAlcohol", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Alcohol, "");
+
+         LoadSystemMasterDropdown("ddlExcersice", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Excersice, "");
+         LoadSystemMasterDropdown("ddlExcersceType", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.ExcersceType, "");
+         LoadSystemMasterDropdown("ddlExcersiceDuration", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.ExcersiceDuration, "");
+         LoadSystemMasterDropdown("ddlDurationOften", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.DurationOften, "");
+         LoadSystemMasterDropdown("ddlSleepDuration", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.SleepDuration, "");
+         LoadSystemMasterDropdown("ddlChildHealthIsuue", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.ChildHealthIsuue, "");
+     }); */
+    function SaveAdultData() {
+        //alert("hello");
+        debugger;
+        var EnquiryModel = {
+            Instance_enquiry: {
+                //Enquiry_Id: $("#hdnID").val(),
+                //FirstName: $("#txtFName").val(),
+                //LastName: $("#txtLName").val(),
+                //Contactnumber: $("#txtContactnumber").val(),
+                //Email_ID: $("#txtEmailid").val(),
+                //City: $("#ddlCity").val(),
+                //State: $("#ddlState").val(),
+                //Address1: $("#txtAddress1").val(),
+                //Address2: $("#txtAddress2").val(),
+                //Pin_Code: $("#txtPin").val(),
+                //Country: $("#ddlCountry").val(),
+                //AgeGroup: $("#ddlAgeGroup").val(),
+                //UserId: "",
+            },
+            Instance_Enquiry_Transaction: []
+        }
+        var Enquiry = {
+            //Enquiry_Id: $("#hdnID").val(),
+            // FirstName: $("#txtFName").val(),
+            // LastName: $("#txtLName").val(),
+            // Contactnumber: $("#txtContactnumber").val(),
+            // Email_ID: $("#txtEmailid").val(),
+            // City: $("#ddlCity").val(),
+            // State: $("#ddlState").val(),
+            // Address1: $("#txtAddress1").val(),
+            // Address2: $("#txtAddress2").val(),
+            // Pin_Code: $("#txtPin").val(),
+            // Country: $("#ddlCountry").val(),
+            // AgeGroup: $("#ddlAgeGroup").val(),
+            // UserId: $("#txtCountry").val(),
+        }
+        /*    var paramAge = { MasterTable_ID: SystemMasterTableType.Age, OptionValue:"" , MasterTableTypeId: $("#ddlAge").val() }
+         var paramGender = { MasterTable_ID: SystemMasterTableType.Gender, OptionValue: "", MasterTableTypeId: $("#ddlGender").val() }
+         var paramfeet = { MasterTable_ID: SystemMasterTableType.Feet, OptionValue: "", MasterTableTypeId: $("#ddlAuditFeet").val() }
+         var paramInch = { MasterTable_ID: SystemMasterTableType.Inches, OptionValue: "", MasterTableTypeId: $("#ddlAuditInches").val() }
+
+        var paramddlAuditCentemer = { MasterTable_ID: SystemMasterTableType.Inches, OptionValue: "", MasterTableTypeId: $("#ddlAuditCentemer").val() }
+
+         var paramKG = { MasterTable_ID: SystemMasterTableType.KG, OptionValue:"", MasterTableTypeId: $("#ddlKG").val() }
+         var paramLB = { MasterTable_ID: SystemMasterTableType.LB, OptionValue: "", MasterTableTypeId: $("#ddlLB").val() }
+
+         var paramSmoke = { MasterTable_ID: SystemMasterTableType.Smoking, OptionValue: "", MasterTableTypeId: $("#ddlSmoke").val() }
+         var paramAlcohol = { MasterTable_ID: SystemMasterTableType.Alcohol, OptionValue: "", MasterTableTypeId: $("#ddlAlcohol").val() }
+
+         var paramExcersice = { MasterTable_ID: SystemMasterTableType.Excersice, OptionValue: "", MasterTableTypeId: $("#ddlExcersice").val() }
+         var paramExcersceType = { MasterTable_ID: SystemMasterTableType.ExcersceType, OptionValue: "", MasterTableTypeId: $("#ddlExcersceType").val() }
+
+         var paramExcersiceDuration = { MasterTable_ID: SystemMasterTableType.ExcersiceDuration, OptionValue: "", MasterTableTypeId: $("#ddlExcersiceDuration").val() }
+         var paramDurationOften = { MasterTable_ID: SystemMasterTableType.DurationOften, OptionValue: "", MasterTableTypeId: $("#ddlDurationOften").val() }
+
+         var paramSleepDuration = { MasterTable_ID: SystemMasterTableType.SleepDuration, OptionValue:"" , MasterTableTypeId: $("#ddlSleepDuration").val() }
+         var paramChildHealthIsuue = { MasterTable_ID: SystemMasterTableType.ChildHealthIsuue, OptionValue:"", MasterTableTypeId: $("#ddlChildHealthIsuue").val() } */
+        //alert("222");
+
+        //EnquiryModel.Instance_enquiry.push(Enquiry)
+        /*   EnquiryModel.Instance_Enquiry_Transaction.push(paramAge);
+         EnquiryModel.Instance_Enquiry_Transaction.push(paramGender);
+         EnquiryModel.Instance_Enquiry_Transaction.push(paramfeet);
+         EnquiryModel.Instance_Enquiry_Transaction.push(paramInch);
+
+       EnquiryModel.Instance_Enquiry_Transaction.push(paramKG);
+         EnquiryModel.Instance_Enquiry_Transaction.push(paramLB);
+         EnquiryModel.Instance_Enquiry_Transaction.push(paramSmoke);
+         EnquiryModel.Instance_Enquiry_Transaction.push(paramAlcohol);
+         EnquiryModel.Instance_Enquiry_Transaction.push(paramExcersice);
+         EnquiryModel.Instance_Enquiry_Transaction.push(paramExcersceType);
+         EnquiryModel.Instance_Enquiry_Transaction.push(paramExcersiceDuration);
+
+         EnquiryModel.Instance_Enquiry_Transaction.push(paramDurationOften);
+         EnquiryModel.Instance_Enquiry_Transaction.push(paramSleepDuration);
+         EnquiryModel.Instance_Enquiry_Transaction.push(paramChildHealthIsuue); */
+        //alert("333");
+
+        // if (FieldValidation($("#ddlMasterTableType").val())) {
+        CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response) {
+            //DataBind($("#ddlMasterTableType").val());
+        });
+        // clearPage();
+    }
+
+</script>
 
 

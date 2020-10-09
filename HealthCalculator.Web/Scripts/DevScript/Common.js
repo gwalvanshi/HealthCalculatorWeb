@@ -11,18 +11,18 @@ var ResxColumnDetails = "";
 
 
 ////End
-if ($('#hdnwelcomeMsg').val() != undefined) {
-    var userwlc = $('#hdnwelcomeMsg').val();
-    var userwlc1 = $('#hdnwelcomeMsg1').val();
-    //$('#loggedInUser').text(userwlc + ' ' + sessionStorage.getItem('userName'));
-    //$('#loggedInUser1').text(sessionStorage.getItem('userName'));
+//if ($('#hdnwelcomeMsg').val() != undefined) {
+//    var userwlc = $('#hdnwelcomeMsg').val();
+//    var userwlc1 = $('#hdnwelcomeMsg1').val();
+//    //$('#loggedInUser').text(userwlc + ' ' + sessionStorage.getItem('userName'));
+//    //$('#loggedInUser1').text(sessionStorage.getItem('userName'));
 
-    $('#loggedInUser').text(userwlc + ' ' + sessionStorage.getItem('DisplayUserName'));
-    $('#loggedInUser1').text(sessionStorage.getItem('DisplayUserName'));
+//    $('#loggedInUser').text(userwlc + ' ' + sessionStorage.getItem('DisplayUserName'));
+//    $('#loggedInUser1').text(sessionStorage.getItem('DisplayUserName'));
 
 
-    $("#imgUserImage").attr("src", sessionStorage.getItem('ProfilePhoto'));
-}
+//    $("#imgUserImage").attr("src", sessionStorage.getItem('ProfilePhoto'));
+//}
 
 var SystemMasterTableEnum = {
 
