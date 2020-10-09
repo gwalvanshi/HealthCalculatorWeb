@@ -8,6 +8,7 @@
 
 <div class="container-fluid pl-0 pr-0">
     <div class="row no-gutters">
+        @*<div id="toastmsg"><p class="yellow">Fill all mandatory feilds (*)..</p></div>*@
         <div class="col-12 text-center">
             <img src="/img/home1-a.jpg" class="img-fluid w-100" />
             <div class="bannerAfter shadow">
@@ -825,6 +826,8 @@
 <script src="~/Scripts/DevScript/Common.js"></script>
 
 <script type="text/javascript">
+
+    
     var SystemdropdownMasterData = [];
     /* $(document).ready(function () {
          LoadSystemMasterDropdown("ddlAge", SystemMasterTableEnum.SystemMaster, SystemMasterTableType.Age, "");
@@ -924,7 +927,7 @@
          EnquiryModel.Instance_Enquiry_Transaction.push(paramSleepDuration);
          EnquiryModel.Instance_Enquiry_Transaction.push(paramChildHealthIsuue); */
         //alert("333");
-
+        debugger;
         // if (FieldValidation($("#ddlMasterTableType").val())) {
         CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response) {
             //DataBind($("#ddlMasterTableType").val());

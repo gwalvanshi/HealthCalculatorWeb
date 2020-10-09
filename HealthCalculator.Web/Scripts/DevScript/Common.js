@@ -203,25 +203,30 @@ function handleError(request, status, error) {
 
 }
 
-function processMethodType(methodType) {
-    if (methodType == "POST") {
-        //alert('Successfully Saved');
-        var x = document.getElementById("toastmsg");
-        x.innerHTML = '<p class="green">Saved successfully!</p>';
-        x.className = "show";
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+function processMethodType(methodType)
+{
+    if (methodType == "POST")
+    {
+        alert('Successfully Saved');
+        //var x = document.getElementById("toastmsg");
+        //x.innerHTML = '<p class="green">Saved successfully!</p>';
+        //x.className = "show";
+        //setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
     }
     else if (methodType == "PUT") {
-        var x = document.getElementById("toastmsg");
-        x.innerHTML = '<p class="green">Successfully updated!</p>';
-        x.className = "show";
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+        alert('Successfully Saved');
+        //var x = document.getElementById("toastmsg");
+        //x.innerHTML = '<p class="green">Successfully updated!</p>';
+        //x.className = "show";
+        //setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
     }
-    else if (methodType == "DELETE") {
-        var x = document.getElementById("toastmsg");
-        x.innerHTML = '<p class="green">Successfully Deleted!</p>';
-        x.className = "show";
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    else if (methodType == "DELETE")
+    {
+        alert('Successfully Saved');
+        //var x = document.getElementById("toastmsg");
+        //x.innerHTML = '<p class="green">Successfully Deleted!</p>';
+        //x.className = "show";
+        //setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
     }
 
 }
@@ -281,10 +286,11 @@ function CommonAjaxMethod(actionMethodUrl, data, optional, methodType, successCa
                         processMethodType(methodType);
                     }
                     else {
-                        var x = document.getElementById("toastmsg");
-                        x.innerHTML = '<p class="green">' + response.Message + '!</p>';
-                        x.className = "show";
-                        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+                        alert('Successfully Saved');
+                        //var x = document.getElementById(response.Message);
+                        //x.innerHTML = '<p class="green">' + response.Message + '!</p>';
+                        //x.className = "show";
+                        //setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
                     }
                     if (successCallBack) {
                         successCallBack(response);
@@ -320,14 +326,15 @@ function CommonAjaxMethod(actionMethodUrl, data, optional, methodType, successCa
                     processMethodType(methodType);
                 }
                 else {
-                    var x = document.getElementById("toastmsg");
-                    x.innerHTML = '<p class="green">' + response.Message + '!</p>';
-                    x.className = "show";
-                    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+                    alert(response.Message);
+                    //var x = document.getElementById("toastmsg");
+                    //x.innerHTML = '<p class="green">' + response.Message + '!</p>';
+                    //x.className = "show";
+                    //setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
                 }
 
                 //This method should be declared in calling page js to get result.
-                FormControlValueClear(true);
+                //FormControlValueClear(true);
 
             }
             else {
