@@ -1011,6 +1011,7 @@
         }
         else
         {
+
             var paramCM = { ControlName: "ddlAuditCentemer", OptionValue: $("#ddlAuditCentemer").val(), OtherOption: "" }
             EnquiryModel.Instance_Enquiry_Transaction.push(paramCM);
             
@@ -1086,7 +1087,8 @@
         EnquiryModel.Instance_Enquiry_Transaction.push(paramddlAlcohol);
    
         // if (FieldValidation($("#ddlMasterTableType").val())) {
-        CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response) {
+        CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response)
+        {
             alert("Thanks for submitting.");
             //DataBind($("#ddlMasterTableType").val());
         });
