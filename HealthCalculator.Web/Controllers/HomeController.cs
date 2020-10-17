@@ -45,12 +45,13 @@ namespace HealthCalculator.Web.Controllers
                 SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
                 collection.Instance_enquiry.UserId = Session["UserID"] != null ? Convert.ToString(Session["UserID"]) : Convert.ToString(Constants.Default_UserId);
                 SendObjData.Operation = "ADD";
+                
                 string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
                 SendObjData.XML = stringTOXml;
 
                 GenericService _genericService = new GenericService();
                 var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
-                var status = await _genericService.PerformDataOperationList<SysMasterTableModel>(stringContent);
+                var status = await _genericService.PerformDataOperationList<Root>(stringContent);
 
                 return new JsonResult { Data = status };
             }

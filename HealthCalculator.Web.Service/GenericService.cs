@@ -20,7 +20,7 @@ namespace HealthCalculator.Web.Service
         }
         public async Task<HttpCustomResponse<T>> PerformDataOperationList<T>(HttpContent collection)
         {
-            return await HttpUtil.PostListAsync<T>(collection, Constants.GENERIC_CRUD_API_URL);
+            return await HttpUtil.PostAsync<T>(collection, Constants.GENERIC_CRUD_API_URL);
         }
         public async Task<HttpCustomResponse<T>> GetRecords<T>(HttpContent collection)
         {

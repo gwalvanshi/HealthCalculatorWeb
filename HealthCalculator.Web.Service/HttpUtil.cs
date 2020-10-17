@@ -615,6 +615,51 @@ namespace HealthCalculator.Web.Service
             }
 
         }
+        public static async Task<HttpCustomResponse<T>> PostAsync<T>(HttpContent collection, String url)
+
+        {
+
+            using (var client = CommonService.GetHttpClient())
+
+            {
+
+                try
+
+                {
+
+                    var Response = await client.PostAsync(url, collection);
+
+                    var response = new HttpCustomResponse<T>(Response, null);
+
+                    if (Response.IsSuccessStatusCode)
+
+                    {
+
+                        response.data = JsonConvert.DeserializeObject<T>(Response.Content.ReadAsStringAsync().Result);
+
+                    }
+
+
+
+                    return response;
+
+
+
+                }
+
+                catch (Exception ex)
+
+                {
+
+
+
+                    return new HttpCustomResponse<T>(ex);
+
+                }
+
+            }
+
+        }
 
         public static HttpCustomResponse<T> PostListAsyncWithResult<T>(HttpContent collection, String url)
 

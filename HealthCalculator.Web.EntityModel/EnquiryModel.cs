@@ -56,6 +56,38 @@ namespace HealthCalculator.Web.EntityModel
         //public int MasterTableTypeId { get; set; }
         public string OtherOption { get; set; }
     }
+    public class Datum
+    {
+        public int EnquiryId { get; set; }
+        public double BMI { get; set; }
+        public double WaterIntake { get; set; }
+        public double IdealBodyWeight { get; set; }
+        public double BMR { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string ContactNumber { get; set; }
+        public string Email_ID { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string Pin_Code { get; set; }
+        public string Country { get; set; }
+        public string AgeGroup { get; set; }
+    }
+
+    public class Root
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public string FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public List<Datum> Data { get; set; }
+    }
  
+
 }
 
