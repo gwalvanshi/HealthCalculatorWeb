@@ -2586,8 +2586,9 @@
             EnquiryModel.Instance_Enquiry_Transaction.push(paramddlAlcohol);
 
             // if (FieldValidation($("#ddlMasterTableType").val())) {
-            CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response) {
-                alert("Thanks for submitting.");
+            CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response)
+            {
+               // alert("Thanks for submitting.");
                 //DataBind($("#ddlMasterTableType").val());
             });
             // clearPage();
