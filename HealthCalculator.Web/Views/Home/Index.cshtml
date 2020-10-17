@@ -1295,7 +1295,7 @@
                                         </div>
                                         <div class="nextStep d-flex justify-content-between mb-4">
                                             <a rel="adultSrcC" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 3</a>
-                                            <button type="submit" onclick="SaveAdultData()" class="btn bg-sky hvr-sweep-to-top">SUBMIT FORM</a>
+                                            <button type="button" onclick="return SaveAdultData()" class="btn bg-sky hvr-sweep-to-top">SUBMIT FORM</a>
                                         </div>
                                         <div class="text-center">
                                             <p class="text-white"><span class="bold">Note:</span> <i>You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX</i></p>
@@ -2211,7 +2211,7 @@
                                         </div>
                                         <div class="nextStep d-flex justify-content-between mb-4">
                                             <a rel="childScrB" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 2</a>
-                                            <button type="submit" class="btn bg-sky hvr-sweep-to-top" onclick="SaveChildData()">SUBMIT FORM</a>
+                                            <button type="button" class="btn bg-sky hvr-sweep-to-top" onclick="SaveChildData()">SUBMIT FORM</a>
                                         </div>
                                         <div class="text-center">
                                             <p class="text-white"><span class="bold">Note:</span> <i>You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX</i></p>
@@ -2453,15 +2453,20 @@
 
     function validateAdult() {
         //debugger;
-        isValidAdult = true;
+        //isValidAdult = true;
         if ($("#txtEmailID").val() == "" && isValidAdult == true) {
             alert("Please enter email address");
-            isValidAdult = false;
+            //isValidAdult = false;
             return false;
         }
+        if ($("#contactNo").val() == "" && isValidAdult == true){
+            alert("Please enter contact number.");
+            //isValidAdult = false;
+            return false;
+            }
         if ($("location").val() == "" && isValidAdult == true) {
             alert("Please enter location.");
-            isValidAdult = false;
+            //isValidAdult = false;
             return false;
         }
         return true;
