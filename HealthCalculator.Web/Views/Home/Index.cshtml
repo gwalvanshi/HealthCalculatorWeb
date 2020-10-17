@@ -1298,7 +1298,7 @@
                                             <button type="button" onclick="return SaveAdultData()" class="btn bg-sky hvr-sweep-to-top">SUBMIT FORM</a>
                                         </div>
                                         <div class="text-center">
-                                            <p class="text-white"><span class="bold">Note:</span> <i>You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX</i></p>
+                                            <p class="text-white"><span class="bold">Note:</span> <i></i></p>
                                         </div>
                                     </form>
                                 </div>
@@ -2214,7 +2214,7 @@
                                             <button type="button" class="btn bg-sky hvr-sweep-to-top" onclick="SaveChildData()">SUBMIT FORM</a>
                                         </div>
                                         <div class="text-center">
-                                            <p class="text-white"><span class="bold">Note:</span> <i>You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX</i></p>
+                                            <p class="text-white"><span class="bold">Note:</span> <i></i></p>
                                         </div>
                                     </form>
                                 </div>
@@ -2588,6 +2588,7 @@
             // if (FieldValidation($("#ddlMasterTableType").val())) {
             CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response)
             {
+                alert('You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX.');
                // alert("Thanks for submitting.");
                 //DataBind($("#ddlMasterTableType").val());
             });

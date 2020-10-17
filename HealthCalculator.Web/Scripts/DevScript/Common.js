@@ -207,14 +207,14 @@ function processMethodType(methodType)
 {
     if (methodType == "POST")
     {
-        alert('Successfully Saved');
+        //alert('Successfully Saved');
         //var x = document.getElementById("toastmsg");
         //x.innerHTML = '<p class="green">Saved successfully!</p>';
         //x.className = "show";
         //setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
     }
     else if (methodType == "PUT") {
-        alert('Successfully Saved');
+        //alert('Successfully Saved');
         //var x = document.getElementById("toastmsg");
         //x.innerHTML = '<p class="green">Successfully updated!</p>';
         //x.className = "show";
@@ -222,7 +222,7 @@ function processMethodType(methodType)
     }
     else if (methodType == "DELETE")
     {
-        alert('Successfully Saved');
+       // alert('Successfully Saved');
         //var x = document.getElementById("toastmsg");
         //x.innerHTML = '<p class="green">Successfully Deleted!</p>';
         //x.className = "show";
