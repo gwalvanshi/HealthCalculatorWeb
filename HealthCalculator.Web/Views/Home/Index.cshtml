@@ -1046,7 +1046,7 @@
                                             </div>
                                         </div>
                                         <div class="text-right nextStepA">
-                                            <a rel="adultSrcB" class="btn bg-sky hvr-sweep-to-top" >FILL STEP 2</a>
+                                            <a rel="adultSrcB" id="AdultStep2" class="btn bg-sky hvr-sweep-to-top" onclick="return checkAdultStepOne()" >FILL STEP 2</a>
                                         </div>
                                     </form>
                                 </div>
@@ -1085,7 +1085,7 @@
 
                                         <div class="nextStepA d-flex justify-content-between">
                                             <a rel="adultSrcA" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 1</a>
-                                            <a rel="adultSrcC" class="btn bg-sky hvr-sweep-to-top">FILL STEP 3</a>
+                                            <a rel="adultSrcC" id="AdultStep3" class="btn bg-sky hvr-sweep-to-top" onclick="return checkAdultStepTwo()">FILL STEP 3</a>
                                         </div>
                                     </form>
                                 </div>
@@ -1123,7 +1123,7 @@
                                         <p class="semi mb-2">Water intake:</p>
                                         <ul class="nav nav-tabs navDefaultType  justify-content-end">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="Litters-tab" data-toggle="tab" href="#Litters" aria-selected="true" onclick="waterIntakeSelect(1)"><span class="imgActive"></span> L</a>
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="Litters-tab" data-toggle="tab" href="#Litters" aria-selected="true" onclick="waterIntakeSelect(1)"><span class="imgActive"></span> Litter</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="Glass-tab" data-toggle="tab" href="#Glass" aria-selected="false" onclick="waterIntakeSelect(2)"><span class="imgActive"></span> Glass</a>
@@ -1276,7 +1276,7 @@
                                         </div>
                                         <div class="nextStepA d-flex justify-content-between">
                                             <a rel="adultSrcB" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 2</a>
-                                            <a rel="adultSrcD" class="btn bg-sky hvr-sweep-to-top">FILL STEP 4</a>
+                                            <a rel="adultSrcD" id="AdultStep4" class="btn bg-sky hvr-sweep-to-top" onclick="return checkAdultStepFour()">FILL STEP 4</a>
 
                                         </div>
                                     </form>
@@ -2249,18 +2249,113 @@
 <script src="~/Scripts/DevScript/Common.js"></script>
 
 <script type="text/javascript">
+    var isValidAdult = true;
+
+    function checkAdultStepTwo() {
+        //debugger;        
+        isValidAdult = true;
+        if (($("#chkAOthers").prop("checked") == true && $("#otherHealthProblem").val() == "")) {
+            alert("Please enter health issues other in below textbox.");
+            $("#otherHealthProblem").focus();
+            isValidAdult = false;
+            return false;
+        }
+    }
+
+    function checkAdultStepFour() {
+        //debugger;        
+        isValidAdult = true;
+        if ($("#WaterIntakeGlassLitter").val() == "1" && isValidAdult == true) {
+            if ($("#waterIntakeLitter").val() == "Litter" && isValidAdult == true) {
+                alert("Please select water intake in Litter.");
+                $("#waterIntakeLitter").focus();
+                isValidAdult = false;
+                return false;
+            }
+        }
+        else {
+            if ($("#waterIntakeGlass").val() == "Glass" && isValidAdult == true) {
+                alert("Please enter the water intake in Glass.");
+                $("#waterIntakeGlass").focus();
+                isValidAdult = false;
+                return false;
+            }
+        }
+        if ($("#ExerciseSelect").val() == "1" && isValidAdult == true) {
+            if (($("#chkACardio").prop("checked") == false && $("#chkStrenghtTarining").prop("checked") == false) && isValidAdult == true) {
+                alert("Please select Exercise any one type check box");
+                isValidAdult = false;
+                return false;
+            }
+            else if (($("#ddlExerciseDurationHour").val() == "Hours" || $("#ddlExerciseDurationMins").val() == "Mins") && isValidAdult == true) {
+                alert("Please select exercise duration hours and mins");
+                $("#ddlExerciseDurationHour").focus();
+                isValidAdult = false;
+                return false;
+            }
+            else if ($("#ddlHowOften").val() == "daily" && isValidAdult == true) {
+                alert("Please select how often");
+                $("#ddlHowOften").focus();
+                isValidAdult = false;
+                return false;
+            }
+        }
+    }
 
     function checkAdultStepOne() {
-        alert("This testing...")
-        debugger;
-        $("#divadultSrcB").css("display", "none");
-        $("#divadultSrcA").css("display", "block");
-        $("#divadultSrcA").addClass("btn bg-purple hvr-sweep-to-top");
-        return false;
+        //debugger;        
+        isValidAdult = true;
+        if ($("#txtFName").val() == "")
+        {
+            alert("Please enter Name.");
+            $("#txtFName").focus();
+            isValidAdult = false;
+        }
+        if ($("#ddlGender").val() == "Gender" && isValidAdult==true)
+        {
+            alert("Please select gender.");
+            isValidAdult = false;
+            $("#ddlGender").focus();
+        }
+        if ($("#txtAge").val() == "" && isValidAdult==true)
+        {
+            alert("Please enter Age.");
+            isValidAdult = false;
+            $("#txtAge").focus();
+        }
+        if ($("#heightSelect").val() == "1" && isValidAdult == true) {
+            if (($("#ddlAuditfeet").val() == "Feet" || $("#ddlAuditInches").val() == "Inches") && isValidAdult == true) {
+                alert("Please select Height in feet & Inches.");
+                $("#ddlAuditfeet").focus();
+                isValidAdult = false;
+            }
+
+        } else {
+            if ($("#ddlAuditCentemer").val() == "Centimeter" && isValidAdult == true) {
+                alert("Please enter Height in Centimeter");
+                $("#ddlAuditCentemer").focus();
+                isValidAdult = false;
+            }
+        }
+        if ($("#WeightSelect").val() == "1" && isValidAdult == true) {
+            if (($("#ddlKilo").val() == "Kilo" || $("#ddlgrams").val() == "Grams") && isValidAdult == true) {
+                alert("Please enter the weight in Kilo and gram");
+                $("#WeightSelect").focus();
+                isValidAdult = false;
+            }
+        }
+        else {
+            if ($("#ddlpounds").val() == "Pounds" && isValidAdult == true) {
+                alert("Please enter weight in Pounds");
+                $("#ddlpounds").focus();
+                isValidAdult = false;
+            }
+        }
     }
 
     function heightChildSel(sel) {
         $("#ChildheightSelect").val(sel);
+
     }
 
     function weightChildSelect(sel) {
@@ -2344,6 +2439,7 @@
         $("#heightSelect").val(selectedval);
     }
     function WeightSelection(sel) {
+        //debugger;
         $("#WeightSelect").val(sel);
     }
     function waterIntakeSelect(sel) {
@@ -2357,75 +2453,15 @@
 
     function validateAdult() {
         //debugger;
-        if ($("#txtFName").val() == "") {
-            alert("Please enter Name.");
-            $("#divadultSrcA").css("display", "block");
-            return false;
-        }
-        if ($("#ddlGender").val() == "Gender") {
-            alert("Please select gender.");
-            return false;
-        }
-        if ($("#txtAge").val() == "") {
-            alert("Please enter Age.");
-            return false;
-        }
-        if ($("#heightSelect").val() == "1") {
-            if ($("#ddlAuditfeet").val() == "Feet" || $("#ddlAuditInches").val() == "Inches") {
-                alert("Please select Height in feet & Inches.");
-                return false;
-            }
-
-        } else {
-            if ($("#ddlAuditCentemer").val() == "Centimeter") {
-                alert("Please enter Height in Centimeter");
-                return false;
-            }
-        }
-        if ($("#WeightSelect").val() == "1") {
-            if ($("#ddlKilo").val() == "Kilo" || $("#ddlgrams").val() == "Grams") {
-                alert("Please enter the weight in Kilo and gram");
-                return false;
-            }
-        }
-        else {
-            if ($("#ddlpounds").val() == "Pounds") {
-                alert("Please enter weight in Pounds");
-                return false;
-            }
-        }
-        if ($("#WaterIntakeGlassLitter").val() == "1") {
-            if ($("#waterIntakeLitter").val() == "Litter") {
-                alert("Please select water intake in Litter.");
-                return false;
-            }
-        }
-        else {
-            if ($("#waterIntakeGlass").val() == "Glass") {
-                alert("Please enter the water intake in Glass.");
-                return false;
-            }
-        }
-        if ($("#ExerciseSelect").val() == "1") {
-            if ($("#chkACardio").val() == "off" && $("#chkStrenghtTarining").val() == "off") {
-                alert("Please select Exercise type check box");
-                return false;
-            }
-            else if ($("#ddlExerciseDurationHour").val() == "Hours" || $("#ddlExerciseDurationMins").val() == "Mins") {
-                alert("Please select exercise duration hours and mins");
-                return false;
-            }
-            else if ($("#ddlHowOften").val() == "daily") {
-                alert("Please select how often");
-                return false;
-            }
-        }
-        if ($("#txtEmailID").val() == "") {
+        isValidAdult = true;
+        if ($("#txtEmailID").val() == "" && isValidAdult == true) {
             alert("Please enter email address");
+            isValidAdult = false;
             return false;
         }
-        if ($("location").val() == "") {
+        if ($("location").val() == "" && isValidAdult == true) {
             alert("Please enter location.");
+            isValidAdult = false;
             return false;
         }
         return true;
@@ -2487,19 +2523,19 @@
                 EnquiryModel.Instance_Enquiry_Transaction.push(parampounds);
             }
 
-            var paramchkAdbType = { ControlName: "chkAdbType", OptionValue: $("#chkAdbType").val(), OtherOption: "" }
-            var paramchkAdbType2 = { ControlName: "chkAdbType2", OptionValue: $("#chkAdbType2").val(), OtherOption: "" }
+            var paramchkAdbType = { ControlName: "chkAdbType", OptionValue: $("#chkAdbType").prop("checked"), OtherOption: "" }
+            var paramchkAdbType2 = { ControlName: "chkAdbType2", OptionValue: $("#chkAdbType2").prop("checked"), OtherOption: "" }
 
-            var paramchkAThyroid = { ControlName: "chkAThyroid", OptionValue: $("#chkAThyroid").val(), OtherOption: "" }
-            var paramchkAPCOS = { ControlName: "chkAPCOS", OptionValue: $("#chkAPCOS").val(), OtherOption: "" }
-            var paramchkAHypertension = { ControlName: "chkAHypertension", OptionValue: $("#chkAHypertension").val(), OtherOption: "" }
-            var paramchkAGastrointestinal = { ControlName: "chkAGastrointestinal", OptionValue: $("#chkAGastrointestinal").val(), OtherOption: "" }
-            var paramchkAOthers = { ControlName: "chkAOthers", OptionValue: $("#chkAOthers").val(), OtherOption: $("#otherHealthProblem").val() }
+            var paramchkAThyroid = { ControlName: "chkAThyroid", OptionValue: $("#chkAThyroid").prop("checked"), OtherOption: "" }
+            var paramchkAPCOS = { ControlName: "chkAPCOS", OptionValue: $("#chkAPCOS").prop("checked"), OtherOption: "" }
+            var paramchkAHypertension = { ControlName: "chkAHypertension", OptionValue: $("#chkAHypertension").prop("checked"), OtherOption: "" }
+            var paramchkAGastrointestinal = { ControlName: "chkAGastrointestinal", OptionValue: $("#chkAGastrointestinal").prop("checked"), OtherOption: "" }
+            var paramchkAOthers = { ControlName: "chkAOthers", OptionValue: $("#chkAOthers").prop("checked"), OtherOption: $("#otherHealthProblem").val() }
 
-            var paramchkAdSedentary = { ControlName: "chkAdSedentary", OptionValue: $("#chkAdSedentary").val(), OtherOption: "" }
-            var paramchkAdLight = { ControlName: "chkAdLight", OptionValue: $("#chkAdLight").val(), OtherOption: "" }
-            var paramchkAdModerate = { ControlName: "chkAdModerate", OptionValue: $("#chkAdModerate").val(), OtherOption: "" }
-            var paramchkAdHeavy = { ControlName: "chkAdHeavy", OptionValue: $("#chkAdHeavy").val(), OtherOption: "" }
+            var paramchkAdSedentary = { ControlName: "chkAdSedentary", OptionValue: $("#chkAdSedentary").prop("checked"), OtherOption: "" }
+            var paramchkAdLight = { ControlName: "chkAdLight", OptionValue: $("#chkAdLight").prop("checked"), OtherOption: "" }
+            var paramchkAdModerate = { ControlName: "chkAdModerate", OptionValue: $("#chkAdModerate").prop("checked"), OtherOption: "" }
+            var paramchkAdHeavy = { ControlName: "chkAdHeavy", OptionValue: $("#chkAdHeavy").prop("checked"), OtherOption: "" }
             var paramddlSleepDuration = { ControlName: "ddlSleepDuration", OptionValue: $("#ddlSleepDuration").val(), OtherOption: "" }
 
             EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdbType);
@@ -2526,8 +2562,8 @@
             }
             //1= Exercise yes 2 = no
             if ($("#ExerciseSelect").val() == "1") {
-                var paramchkACardio = { ControlName: "chkACardio", OptionValue: $("#chkACardio").val(), OtherOption: "" }
-                var paramchkStrenghtTarining = { ControlName: "chkStrenghtTarining", OptionValue: $("#chkStrenghtTarining").val(), OtherOption: "" }
+                var paramchkACardio = { ControlName: "chkACardio", OptionValue: $("#chkACardio").prop("checked"), OtherOption: "" }
+                var paramchkStrenghtTarining = { ControlName: "chkStrenghtTarining", OptionValue: $("#chkStrenghtTarining").prop("checked"), OtherOption: "" }
                 var paramExerciseDurationHour = { ControlName: "ddlExerciseDurationHour", OptionValue: $("#ddlExerciseDurationHour").val(), OtherOption: "" }
                 var paramExerciseDurationMins = { ControlName: "ddlExerciseDurationMins", OptionValue: $("#ddlExerciseDurationMins").val(), OtherOption: "" }
                 var paramddlHowOften = { ControlName: "ddlHowOften", OptionValue: $("#ddlHowOften").val(), OtherOption: "" }
