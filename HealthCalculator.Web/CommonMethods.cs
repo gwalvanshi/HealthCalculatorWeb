@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Reflection;
 using System.Web;
 using System.Xml;
@@ -13,6 +15,41 @@ namespace HealthCalculator.Web
 {
     public class CommonMethods
     {
+        
+        public bool SendEmail(string toEmail, string Subject, string content)
+        {
+            try
+            {
+
+                bool isValid = false;
+                using (MailMessage mm = new MailMessage("Admin@EATINGSMART.IN", toEmail))
+                // using (MailMessage mm = new MailMessage("emailus @d2digitalservices.com", ToEmail))
+                {
+                    mm.Subject = Subject;                                    
+                    mm.Body = content;
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "Hostmailbox.com";
+                    smtp.Port = 25;
+                    // smtp.Host = "smtpout.secureserver.net";
+                    smtp.EnableSsl = true;
+                    smtp.UseDefaultCredentials = true;
+                    NetworkCredential NetworkCred = new NetworkCredential("Admin@EATINGSMART.IN", "P@ssword@123");
+                    // NetworkCredential NetworkCred = new NetworkCredential("emailus@d2digitalservices.com", "Ddig@87!");          
+                    smtp.Credentials = NetworkCred;
+                    smtp.TargetName = "STARTTLS/Hostmailbox.com";
+                    // smtp.Port = 565;
+                    smtp.Send(mm);
+                     isValid = true;
+                    return isValid;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }           
+        }
         public string GetXMLFromObject(object o)
         {
             StringWriter sw = new StringWriter();
