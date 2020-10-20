@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -10,7 +11,7 @@
     <div class="row no-gutters">
         @*<div id="toastmsg"><p class="yellow">Fill all mandatory feilds (*)..</p></div>*@
         <div class="col-12 text-center">
-            <img src="/img/home1-a.jpg" class="img-fluid w-100" />
+            <img src="@CommonMethods.ServerPath/img/home1-a.jpg" class="img-fluid w-100" />
             <div class="bannerAfter shadow">
                 <h2 class="mb-0 dib pr-2 light">Looking For A Happy & Healthy Lifestyle? <a class="btn btn-reg mb-2 hvr-sweep-to-top" data-toggle="modal" href="#checkHealthMeter">CHECK YOUR HEALTH METER</a>	</h2>
             </div>
@@ -31,7 +32,7 @@
         <div class="col-12 col-md-4 text-center">
             <div class="proThumb effects" data-rotate-x="90deg" data-move-z="-500px" data-move-y="200px">
                 <div class="proImg shadow">
-                    <img src="/img/exc1.jpg" class="img-fluid w-100" />
+                    <img src="@CommonMethods.ServerPath/img/exc1.jpg" class="img-fluid w-100" />
                 </div>
                 <div class="proText">
                     <h1 class="text-yellow bold marthin">Smart</h1>
@@ -42,7 +43,7 @@
         <div class="col-12 col-md-4 text-center">
             <div class="proThumb effects" data-rotate-x="90deg" data-move-z="-500px" data-move-y="200px">
                 <div class="proImg shadow">
-                    <img src="/img/exc2.jpg" class="img-fluid w-100" />
+                    <img src="@CommonMethods.ServerPath/img/exc2.jpg" class="img-fluid w-100" />
                 </div>
                 <div class="proText">
                     <h1 class="text-yellow bold marthin">Smart</h1>
@@ -53,7 +54,7 @@
         <div class="col-12 col-md-4 text-center">
             <div class="proThumb effects" data-rotate-x="90deg" data-move-z="-500px" data-move-y="200px">
                 <div class="proImg shadow">
-                    <img src="/img/exc3.jpg" class="img-fluid w-100" />
+                    <img src="@CommonMethods.ServerPath/img/exc3.jpg" class="img-fluid w-100" />
                 </div>
                 <div class="proText">
                     <h1 class="text-yellow bold marthin">Smart</h1>
@@ -71,7 +72,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-11 col-md-6 text-center">
-                <img src="/img/sidraPatel.png" class="img-fluid mb-3" />
+                <img src="@CommonMethods.ServerPath/img/sidraPatel.png" class="img-fluid mb-3" />
                 <h6 class="semi text-sky">YOUR DIGITAL HEALTH & FITNESS EXPERT</h6>
                 <p class="mt-4 mb-5">Kudos to the smarter ways to a healthier you with Sidra. Sidra is a Dietitian & health expert. Being in love with food herself, she has embarked on this amazing journey to encourage her clients to focus on “Eating Smart”, instead of depriving themselves of the happiness that food is. </p>
                 <a href="services.php" class="btn bg-sky hvr-sweep-to-top">READ MORE</a>
@@ -86,22 +87,22 @@
             <h2 class="text-sky mt-5 mb-4 light">HOW IT WORKS?</h2>
         </div>
         <div class="col-12 col-sm-6 col-md-3 workBlock effects" data-move-y="200px" data-move-x="-200px">
-            <img src="/img/capsule.jpg" class="img-fluid" />
+            <img src="@CommonMethods.ServerPath/img/capsule.jpg" class="img-fluid" />
             <h5>Follow The <span class="semi">Regime</span></h5>
             <p class="mb-3">Observance of your own regime of the day, nutrition and exercise is the key to success.</p>
         </div>
         <div class="col-12 col-sm-6 col-md-3 workBlock effects" data-move-y="200px" data-move-x="-100px">
-            <img src="/img/weight.jpg" class="img-fluid" />
+            <img src="@CommonMethods.ServerPath/img/weight.jpg" class="img-fluid" />
             <h5>Follow The <span class="semi">Regime</span></h5>
             <p class="mb-3">Observance of your own regime of the day, nutrition and exercise is the key to success.</p>
         </div>
         <div class="col-12 col-sm-6 col-md-3 workBlock effects" data-move-y="200px" data-move-x="100px">
-            <img src="/img/masroom.jpg" class="img-fluid" />
+            <img src="@CommonMethods.ServerPath/img/masroom.jpg" class="img-fluid" />
             <h5>Follow The <span class="semi">Regime</span></h5>
             <p class="mb-3">Observance of your own regime of the day, nutrition and exercise is the key to success.</p>
         </div>
         <div class="col-12 col-sm-6 col-md-3 workBlock effects" data-move-y="200px" data-move-x="200px">
-            <img src="/img/medal.jpg" class="img-fluid mb-3" />
+            <img src="@CommonMethods.ServerPath/img/medal.jpg" class="img-fluid mb-3" />
             <h5>Follow The <span class="bold">Regime</span></h5>
             <h6 class="mb-3">Observance of your own regime of the day, nutrition and exercise is the key to success.</h6>
         </div>
@@ -109,14 +110,14 @@
 </div>
 
 <div class="heathMeterSection">
-    <img src="/img/img3.png" class="img-fluid imgLeft effects" data-move-x="-100px" />
-    <img src="/img/img4.png" class="img-fluid imgRight effects" data-move-x="100px" />
+    <img src="@CommonMethods.ServerPath/img/img3.png" class="img-fluid imgLeft effects" data-move-x="-100px" />
+    <img src="@CommonMethods.ServerPath/img/img4.png" class="img-fluid imgRight effects" data-move-x="100px" />
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-11 col-md-auto text-center">
                 <div class="text-left mt-4">
-                    <img src="/img/calc.png" class="img-fluid mb-1" />
+                    <img src="@CommonMethods.ServerPath/img/calc.png" class="img-fluid mb-1" />
                 </div>
                 <h2 class="mb-1">LET'S CHECK YOUR <span class="bold text-orange">HEALTH METER!</span></h2>
                 <div class="text-right mb-5">
@@ -136,7 +137,7 @@
                     </h2>
                     <p class="mt-4 mb-4">Bonfire has been an absolute dream to work with - the platform is simple and easy to use, it is risk-free, and the products are truly excellent quality. In addition, their support team is prompt and very helpful. I would definitely recommend using Bonfire!</p>
                     <div>
-                        <img src="/img/annie.png" class="img-fluid mr-3 align-bottom dib" />
+                        <img src="@CommonMethods.ServerPath/img/annie.png" class="img-fluid mr-3 align-bottom dib" />
                         <div class="dib">
                             <p class="semi mb-1">ANNIE SEGARRA</p>
                             <p class="mb-1">Alpenglow Collective</p>
@@ -155,12 +156,12 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-6 bg-sky healthRating">
-                        <img src="/img/healthRating.png" class="healthRatingImg" />
+                        <img src="@CommonMethods.ServerPath/img/healthRating.png" class="healthRatingImg" />
                         <div class="text-center pl-3 pr-3">
                             <p class="text-white"><span class="bold">Note:</span> <i>Forms for Adults & Childrens are different. All results would be mailed to user email address after completing the details!</i></p>
                         </div>
                         <div class="col1lftbgimg">
-                            <img src="/img/img8.png" class="img-fluid" />
+                            <img src="@CommonMethods.ServerPath/img/img8.png" class="img-fluid" />
                         </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-6 healthContent">
@@ -2568,10 +2569,10 @@
                             </div>
                         </div>
                         <div class="col2rgtbgimg">
-                            <img src="/img/img7.png" class="img-fluid" />
+                            <img src="@CommonMethods.ServerPath/img/img7.png" class="img-fluid" />
                         </div>
                         <div class="col2btmbgimg">
-                            <img src="/img/img6.png" class="img-fluid" />
+                            <img src="@CommonMethods.ServerPath/img/img6.png" class="img-fluid" />
                         </div>
                     </div>
                 </div>

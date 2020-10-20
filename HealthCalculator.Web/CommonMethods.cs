@@ -15,7 +15,12 @@ namespace HealthCalculator.Web
 {
     public class CommonMethods
     {
+
+        // Set server
+        ///public const string ServerPath = "../HealthWeb";
         
+        //To set local
+        public const string ServerPath = "";
         public bool SendEmail(string toEmail, string Subject, string content)
         {
             try
