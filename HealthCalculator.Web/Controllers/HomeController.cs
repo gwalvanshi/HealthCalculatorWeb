@@ -53,6 +53,9 @@ namespace HealthCalculator.Web.Controllers
                 var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
                 var status = await _genericService.PerformDataOperationList<Root>(stringContent);
 
+                CommonMethods cm = new CommonMethods();
+                cm.SendEmail("harish.lavangade@gmail.com", "test", "",status.data.Data, collection);
+
                 return new JsonResult { Data = status };
             }
             catch (Exception ex)
