@@ -23,8 +23,12 @@ namespace HealthCalculator.Web
         public const string ServerPath = "";
         public bool SendEmail(string toEmail, string Subject, string content, List<Datum> dt, EnquiryModel collection)
         {
+            string emailbody = string.Empty;
+            if (dt[0].AgeGroup == "Adult")
+                emailbody = CommonMethods.AdultEmailBody(dt, collection);
+            else if(dt[0].AgeGroup == "Child")
+                emailbody = CommonMethods.ChildEmailBody(dt, collection);
 
-            string emailbody = CommonMethods.emailBody(dt,collection);
             content = emailbody;
 
             try
@@ -66,7 +70,45 @@ namespace HealthCalculator.Web
             }           
         }
 
-        public static string emailBody(List<Datum> dt, EnquiryModel collection)
+        public static string ChildEmailBody(List<Datum> dt, EnquiryModel collection)
+        {
+            string retVal = string.Empty;
+            retVal = retVal + "<p style='font-family: Verdana; font-size: 11pt; text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222;'>Hi Ms/ Mr 'name”, </span><span style='color: #ff0000;'>[This will be name of parent]</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Greetings from our team Eating Smart.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Hope you and your little one are doing good.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>Congratulations on taking your first step towards a smart lifestyle 12 </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>We sincerely thank you for providing us this opportunity to assess your child’s health status and assist your little one to enjoy a smart lifestyle with Eating Smart.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>We believe in the modern concept 'Every natural produce has it’s benefits, we just need to channelize it the smart way”.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Please find herein below, your child’s health status report.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>According to the inputs weight and height for age should be as follows:</span></p>";
+            int childAge = Convert.ToInt32(GetChildSaveValue(collection, "txtChildAge"));
+            string gender = GetChildSaveValue(collection, "ddlChildGender");
+            if(childAge <=2)
+            {
+                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #ff0000; font-family: Verdana; font-size: 11pt;'>Growth chart</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Arial; font-size: 10.5pt;'>Growth charts help to assess how your child is growing compared with other kids of the same age and gender.&nbsp;</span></p><p style='text-align: left; margin: 12pt 0pt 18pt; line-height: 16.8pt;'><span style='font-family: Arial; font-size: 10.5pt;'>On the growth charts, the percentiles are shown as lines drawn in curved patterns.&nbsp;</span><span style='font-family: Verdana; font-size: 10.5pt;'>The higher the percentile number, the bigger a child is compared with other kids of the same age and gender, whether it's for height or weight.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 10.5pt;'>The lower the percentile number, the smaller the child is.</span></p>";
+            }
+            else if(childAge >2 && childAge <=5)
+            {
+
+            }
+            else if(childAge >5 && childAge <=14)
+            {
+
+            }
+
+            return retVal;
+
+        }
+      
+        public static string GetChildSaveValue(EnquiryModel enqModel,string type)
+        {
+            string retValue = 0;
+            foreach (Enquiry_Transaction tx in enqModel.Instance_Enquiry_Transaction)
+            {
+                if (tx.ControlName == type)
+                {
+                    retValue = Convert.ToString(tx.OptionValue);
+                }
+            }
+
+            return retValue;
+        }
+
+
+        public static string AdultEmailBody(List<Datum> dt, EnquiryModel collection)
         {
             string retVal = string.Empty;
 

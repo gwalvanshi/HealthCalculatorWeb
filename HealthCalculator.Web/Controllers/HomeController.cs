@@ -54,7 +54,7 @@ namespace HealthCalculator.Web.Controllers
                 var status = await _genericService.PerformDataOperationList<Root>(stringContent);
 
                 CommonMethods cm = new CommonMethods();
-                cm.SendEmail("harish.lavangade@gmail.com", "test", "",status.data.Data, collection);
+                cm.SendEmail(collection.Instance_enquiry.Email_ID, "Welcome to Eating india", "",status.data.Data, collection);
 
                 return new JsonResult { Data = status };
             }
