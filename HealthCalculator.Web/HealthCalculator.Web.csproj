@@ -281,6 +281,15 @@
     <Content Include="img\certifications\6.jpg" />
     <Content Include="img\circle.png" />
     <Content Include="img\circleRight.png" />
+    <Content Include="img\EmailImages\BodyMassIndexImage.jpg" />
+    <Content Include="img\EmailImages\IAP-Boys-BMI-Chart-5-18-years new.jpg" />
+    <Content Include="img\EmailImages\IAP-Girls-BMI-Chart-5-18-years new.jpg" />
+    <Content Include="img\EmailImages\RatingImage.jpg" />
+    <Content Include="img\EmailImages\Weight_Boys_02_20Years.JPG" />
+    <Content Include="img\EmailImages\Weight_for_age_Boys_00_02Years.JPG" />
+    <Content Include="img\EmailImages\Weight_Girls_00_02Years.JPG" />
+    <Content Include="img\EmailImages\Weight_Girls_02_20Years.JPG" />
+    <Content Include="img\EmailImages\Weight_length_Girls_0_2_year.JPG" />
     <Content Include="img\exc1.jpg" />
     <Content Include="img\exc2.jpg" />
     <Content Include="img\exc3.jpg" />

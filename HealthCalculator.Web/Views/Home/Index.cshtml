@@ -1472,7 +1472,7 @@
                                         <select id="ddlSleepDuration" class="form-control">
                                             <option> < 6 hours</option>
                                             <option>7–8 hours</option>
-                                            <option>10> hours</option>
+                                            <option>10 > hours</option>
                                         </select>
 
 
@@ -2653,6 +2653,15 @@
             isValidChild = false;
             $("#txtChildAge").focus();
         }
+        if ($("#txtChildAge").val() != "" && isValidChild == true) {
+            var chAge = parseInt($("#txtChildAge").val());
+            if (chAge > 18)
+            {
+                alert("Child Age should be less than 18.");
+                isValidChild = false;
+                $("#txtChildAge").focus();
+            }
+        }
         if ($("#ddlChildGender").val() == "Gender" && isValidChild == true) {
             alert("Please select gender.");
             isValidChild = false;
@@ -2917,7 +2926,7 @@
 
     function SaveAdultData() {
         if (validateAdult()) {
-    debugger;
+    //debugger;
             var EnquiryModel = {
                 Instance_enquiry: {
                     Enquiry_Id: $("#hdnID").val(),
