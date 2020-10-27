@@ -86,7 +86,7 @@ namespace HealthCalculator.Web
       
         public static string GetChildSaveValue(EnquiryModel enqModel,string type)
         {
-            string retValue = 0;
+            string retValue = "0";
             foreach (Enquiry_Transaction tx in enqModel.Instance_Enquiry_Transaction)
             {
                 if (tx.ControlName == type)
