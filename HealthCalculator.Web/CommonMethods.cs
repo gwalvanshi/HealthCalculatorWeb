@@ -27,28 +27,25 @@ namespace HealthCalculator.Web
             {
 
                 bool isValid = false;
-                using (MailMessage mm = new MailMessage("Admin@EATINGSMART.IN", toEmail))
+                using (MailMessage mm = new MailMessage("alerts@EATINGSMART.IN", toEmail))
                 // using (MailMessage mm = new MailMessage("emailus @d2digitalservices.com", ToEmail))
                 {
-                    mm.Subject = Subject;                                    
+                    mm.Subject = Subject;
                     mm.Body = content;
                     mm.IsBodyHtml = true;
                     SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "Hostmailbox.com";
-                    smtp.Port = 25;
-                    // smtp.Host = "smtpout.secureserver.net";
-                    smtp.EnableSsl = true;
-                    smtp.UseDefaultCredentials = true;
-                    NetworkCredential NetworkCred = new NetworkCredential("Admin@EATINGSMART.IN", "P@ssword@123");
-                    // NetworkCredential NetworkCred = new NetworkCredential("emailus@d2digitalservices.com", "Ddig@87!");          
+                    smtp.Host = "mail.EATINGSMART.IN";
+                    smtp.EnableSsl = false;
+                    NetworkCredential NetworkCred = new NetworkCredential();
+                    NetworkCred.UserName = "alerts@EATINGSMART.IN";
+                    NetworkCred.Password = "d73Clh~9";
+                    smtp.UseDefaultCredentials = false;
                     smtp.Credentials = NetworkCred;
-                    smtp.TargetName = "STARTTLS/Hostmailbox.com";
-                    // smtp.Port = 565;
-                    smtp.Send(mm);
-                     isValid = true;
+                    smtp.Port = 26;
+                    isValid = true;
                     return isValid;
                 }
-
+              
             }
             catch (Exception ex)
             {
