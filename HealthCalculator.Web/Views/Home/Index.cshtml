@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -197,7 +196,7 @@
                                         <p class="text-white mb-0 position-absolute">Height</p>
                                         <ul class="nav nav-tabs navDefaultType  justify-content-end">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive" onclick="heightSelection(1)" ></span> Feet &amp; Inches</a>
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="centimeters-tab" data-toggle="tab" href="#centimeters" aria-selected="true"><span class="imgActive" onclick="heightSelection(1)"></span> Feet &amp; Inches</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link pt-0 pb-0 pr-0 pl-3" id="feetInches-tab" data-toggle="tab" href="#feetInches" aria-selected="false"><span class="imgActive" onclick="heightSelection(2)"></span> Centimeters</a>
@@ -734,7 +733,7 @@
                                         <p class="text-white mb-0 position-absolute">Weight</p>
                                         <ul class="nav nav-tabs navDefaultType  justify-content-end">
                                             <li class="nav-item">
-                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="kilograms-tab" data-toggle="tab" href="#kilograms" aria-selected="true"><span class="imgActive" onclick="WeightSelection(1)" ></span> Kilograms</a>
+                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="kilograms-tab" data-toggle="tab" href="#kilograms" aria-selected="true"><span class="imgActive" onclick="WeightSelection(1)"></span> Kilograms</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="pounds-tab" data-toggle="tab" href="#pounds" aria-selected="false"><span class="imgActive" onclick="WeightSelection(2)"></span> Pounds</a>
@@ -1395,7 +1394,7 @@
                                             </div>
                                         </div>
                                         <div class="text-right nextStepA">
-                                            <a rel="adultSrcB" id="AdultStep2" class="btn bg-sky hvr-sweep-to-top" onclick="return checkAdultStepOne()" >FILL STEP 2</a>
+                                            <a rel="adultSrcB" id="AdultStep2" class="btn bg-sky hvr-sweep-to-top" onclick="return checkAdultStepOne()">FILL STEP 2</a>
                                         </div>
                                     </form>
                                 </div>
@@ -1461,11 +1460,19 @@
                                                 <input type="checkbox" id="chkAdHeavy" />Heavy Physical activity level
                                             </li>
                                         </ul>
+                                        <p class="semi mb-2">Fruits and vegetable intake:</p>
+                                        <select id="ddlFruitsVegi" class="form-control">
+                                            <option>Fruits and vegetable</option>
+                                            <option>1 – 2 serving</option>
+                                            <option>3 – 4 serving</option>
+                                            <option>4> serving</option>
+                                        </select>
+
                                         <p class="semi mb-2">Duration of sleep:</p>
                                         <select id="ddlSleepDuration" class="form-control">
                                             <option> < 6 hours</option>
                                             <option>7–8 hours</option>
-                                            <option>10> hours</option>
+                                            <option>10 > hours</option>
                                         </select>
 
 
@@ -2518,7 +2525,7 @@
                                             </div>
                                         </div>
                                         <div class="text-right nextStep">
-                                            <a rel="childScrB" class="btn bg-sky hvr-sweep-to-top" onclick="return checkChildStepOne()" >FILL STEP 2</a>
+                                            <a rel="childScrB" class="btn bg-sky hvr-sweep-to-top" onclick="return checkChildStepOne()">FILL STEP 2</a>
 
                                         </div>
                                     </form>
@@ -2646,6 +2653,15 @@
             isValidChild = false;
             $("#txtChildAge").focus();
         }
+        if ($("#txtChildAge").val() != "" && isValidChild == true) {
+            var chAge = parseInt($("#txtChildAge").val());
+            if (chAge > 18)
+            {
+                alert("Child Age should be less than 18.");
+                isValidChild = false;
+                $("#txtChildAge").focus();
+            }
+        }
         if ($("#ddlChildGender").val() == "Gender" && isValidChild == true) {
             alert("Please select gender.");
             isValidChild = false;
@@ -2683,7 +2699,7 @@
     }
 
     function checkAdultStepTwo() {
-        //debugger;        
+        //debugger;
         isValidAdult = true;
         if (($("#chkAOthers").prop("checked") == true && $("#otherHealthProblem").val() == "")) {
             alert("Please enter health issues other in below textbox.");
@@ -2694,7 +2710,7 @@
     }
 
     function checkAdultStepFour() {
-        //debugger;        
+        //debugger;
         isValidAdult = true;
         if ($("#WaterIntakeGlassLitter").val() == "1" && isValidAdult == true) {
             if ($("#waterIntakeLitter").val() == "Litter" && isValidAdult == true) {
@@ -2734,7 +2750,7 @@
     }
 
     function checkAdultStepOne() {
-        //debugger;        
+        //debugger;
         isValidAdult = true;
         if ($("#txtFName").val() == "")
         {
@@ -2878,7 +2894,7 @@
     function exerciseSelection(sel) {
         $("#ExerciseSelect").val(sel);
     }
-    
+
     var SystemdropdownMasterData = [];
 
     function validateAdult() {
@@ -2894,7 +2910,7 @@
         //        alert("Please enter email address");
         //        return false;
         //    }
-        //}   
+        //}
         if ($("#contactNo").val() == "" && isValidAdult == true){
             alert("Please enter contact number.");
             isValidAdult = false;
@@ -2910,7 +2926,7 @@
 
     function SaveAdultData() {
         if (validateAdult()) {
-
+    //debugger;
             var EnquiryModel = {
                 Instance_enquiry: {
                     Enquiry_Id: $("#hdnID").val(),
@@ -3000,6 +3016,7 @@
             }
             //1= Exercise yes 2 = no
             if ($("#ExerciseSelect").val() == "1") {
+                var paramExerciseSelect = { ControlName: "Exercise", OptionValue: "Yes", OtherOption: "" }
                 var paramchkACardio = { ControlName: "chkACardio", OptionValue: $("#chkACardio").prop("checked"), OtherOption: "" }
                 var paramchkStrenghtTarining = { ControlName: "chkStrenghtTarining", OptionValue: $("#chkStrenghtTarining").prop("checked"), OtherOption: "" }
                 var paramExerciseDurationHour = { ControlName: "ddlExerciseDurationHour", OptionValue: $("#ddlExerciseDurationHour").val(), OtherOption: "" }
@@ -3010,6 +3027,11 @@
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseDurationHour);
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseDurationMins);
             }
+    else
+    {
+     var paramExerciseSelect = { ControlName: "Exercise", OptionValue: "No", OtherOption: "" }
+    }
+     EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseSelect);
 
             var paramddlSmoke = { ControlName: "ddlSmoke", OptionValue: $("#ddlSmoke").val(), OtherOption: "" }
             var paramddlAlcohol = { ControlName: "ddlAlcohol", OptionValue: $("#ddlAlcohol").val(), OtherOption: "" }
@@ -3017,12 +3039,17 @@
             EnquiryModel.Instance_Enquiry_Transaction.push(paramddlHowOften);
             EnquiryModel.Instance_Enquiry_Transaction.push(paramddlSmoke);
             EnquiryModel.Instance_Enquiry_Transaction.push(paramddlAlcohol);
-          
+
+    var parddlFruitsVegi = { ControlName: "ddlFruitsVegi", OptionValue: $("#ddlFruitsVegi").val(), OtherOption: "" }
+
+    EnquiryModel.Instance_Enquiry_Transaction.push(parddlFruitsVegi);
+
             CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response) {
+                //debugger;
                 alert('You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX.');
-              
+
             });
-          
+
         }
     }
 
