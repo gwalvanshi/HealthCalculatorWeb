@@ -2820,7 +2820,7 @@
     }
 
     function SaveChildData(){
-       // debugger;
+        debugger;
         if (validateChild()) {
             var EnquiryModel = {
                 Instance_enquiry: {
@@ -2829,12 +2829,12 @@
                     LastName: "",
                     Contactnumber: $("#txtChildContactNo").val(),
                     Email_ID: $("#txtChildEmail").val(),
-                    City: $("txtChildLoacation").val(),
-                    State: "",
-                    Address1: $("txtChildParentGurdian").val(),
-                    Address2: "",
-                    Pin_Code: "",
-                    Country: "",
+                    City: $("#txtChildLoacation").val(),
+                    State: $("#txtChildParentGurdian").val(),
+                    Address1: $("#txtChildParentGurdian").val(),
+                    Address2: $("#txtChildParentGurdian").val(),
+                    Pin_Code: $("#txtChildParentGurdian").val(),
+                    Country: $("#txtChildParentGurdian").val(),
                     AgeGroup: "Child",
                     UserId: "",
                 },
@@ -2856,18 +2856,21 @@
                 var paramCM = { ControlName: "ddlChildCentimeter", OptionValue: $("#ddlChildCentimeter").val(), OtherOption: "" }
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramCM);
             }
+            var paramWeightSelection = "";
             //1 = KG  2 = Pounds
             if ($("#ChildWeightSelect").val() == "1") {
-
+                paramWeightSelection = { ControlName: "WeightSelection", OptionValue: "KG", OtherOption: "" }
                 var paramKG = { ControlName: "ddlChildKilo", OptionValue: $("#ddlChildKilo").val(), OtherOption: "" }
                 var paramGrams = { ControlName: "ddlChildGaram", OptionValue: $("#ddlChildGaram").val(), OtherOption: "" }
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramKG);
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramGrams);
             }
             else {
+                paramWeightSelection = { ControlName: "WeightSelection", OptionValue: "POUNDS", OtherOption: "" }
                 var parampounds = { ControlName: "ddlChildPounds", OptionValue: $("#ddlChildPounds").val(), OtherOption: "" }
                 EnquiryModel.Instance_Enquiry_Transaction.push(parampounds);
             }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramWeightSelection);
             if ($("#ChildHealthIssueSelect").val() == "1") {
                 var paramChildHealthIssue = { ControlName: "txtChildHealthIssue", OptionValue: $("#txtChildHealthIssue").val(), OtherOption: "" }
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramChildHealthIssue);
@@ -2964,18 +2967,21 @@
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramCM);
 
             }
+            var paramWeightSelection = "";
             //1 = KG  2 = Pounds
             if ($("#WeightSelect").val() == "1") {
-
+                paramWeightSelection = { ControlName: "WeightSelect", OptionValue: "KG", OtherOption: "" }
                 var paramKG = { ControlName: "ddlKilo", OptionValue: $("#ddlKilo").val(), OtherOption: "" }
                 var paramGrams = { ControlName: "ddlgrams", OptionValue: $("#ddlgrams").val(), OtherOption: "" }
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramKG);
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramGrams);
             }
             else {
+                paramWeightSelection = { ControlName: "WeightSelect", OptionValue: "POUNDS", OtherOption: "" }
                 var parampounds = { ControlName: "ddlpounds", OptionValue: $("#ddlpounds").val(), OtherOption: "" }
                 EnquiryModel.Instance_Enquiry_Transaction.push(parampounds);
             }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramWeightSelection);
 
             var paramchkAdbType = { ControlName: "chkAdbType", OptionValue: $("#chkAdbType").prop("checked"), OtherOption: "" }
             var paramchkAdbType2 = { ControlName: "chkAdbType2", OptionValue: $("#chkAdbType2").prop("checked"), OtherOption: "" }
@@ -3027,11 +3033,10 @@
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseDurationHour);
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseDurationMins);
             }
-    else
-    {
-     var paramExerciseSelect = { ControlName: "Exercise", OptionValue: "No", OtherOption: "" }
-    }
-     EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseSelect);
+            else {
+                var paramExerciseSelect = { ControlName: "Exercise", OptionValue: "No", OtherOption: "" }
+            }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseSelect);
 
             var paramddlSmoke = { ControlName: "ddlSmoke", OptionValue: $("#ddlSmoke").val(), OtherOption: "" }
             var paramddlAlcohol = { ControlName: "ddlAlcohol", OptionValue: $("#ddlAlcohol").val(), OtherOption: "" }
