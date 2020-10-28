@@ -181,10 +181,10 @@
                                     <p class="text-white"><span class="bold">Step 1 :</span> Personal Details and Anthropometry</p>
                                     <form>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="txtFName" placeholder="Name" />
+                                            <input type="text" class="form-control" id="txtFName" maxlength="49" placeholder="Name" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" class="form-control" id="txtAge" placeholder="Age" />
+                                            <input type="number" class="form-control" id="txtAge" maxlength="3" placeholder="Age" />
                                         </div>
                                         <div class="form-group">
                                             <select id="ddlGender" class="form-control">
@@ -1640,13 +1640,13 @@
                                     <form>
                                         <p class="text-white"><span class="bold">Step 4 :</span>Personal Details</p>
                                         <div class="form-group">
-                                            <input id="txtEmailID" type="text" class="form-control" placeholder="Email Adress" />
+                                            <input id="txtEmailID" type="text" class="form-control" maxlength="99" placeholder="Email Adress" />
                                         </div>
                                         <div class="form-group">
                                             <input id="contactNo" type="number" maxlength="10" class="form-control" placeholder="Phone No." />
                                         </div>
                                         <div class="form-group">
-                                            <input id="location" type="text" class="form-control" placeholder="Location" />
+                                            <input id="location" type="text" class="form-control" maxlength="49" placeholder="Location" />
                                         </div>
                                         <div class="nextStep d-flex justify-content-between mb-4">
                                             <a rel="adultSrcC" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 3</a>
@@ -1663,10 +1663,10 @@
                                     <p class="text-white"><span class="bold">Step 1 :</span> Personal Details and Anthropometry</p>
                                     <form>
                                         <div class="form-group">
-                                            <input type="text" id="txtChildName" class="form-control" placeholder="Name" />
+                                            <input type="text" id="txtChildName" class="form-control" maxlength="49" placeholder="Name" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" id="txtChildAge" class="form-control" placeholder="Age" />
+                                            <input type="number" id="txtChildAge" class="form-control" maxlength="2" placeholder="Age" />
                                         </div>
                                         <div class="form-group">
                                             <select id="ddlChildGender" class="form-control">
@@ -2553,16 +2553,16 @@
                                 <div class="childScrC">
                                     <form>
                                         <div class="form-group">
-                                            <input type="text" id="txtChildEmail" class="form-control" placeholder="Email Adress" />
+                                            <input type="text" id="txtChildEmail" class="form-control" maxlength="99" placeholder="Email Adress" />
                                         </div>
                                         <div class="form-group">
                                             <input type="number" id="txtChildContactNo" maxlength="10" class="form-control" placeholder="Phone No." />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" id="txtChildParentGurdian" class="form-control" placeholder="parent / Guardian Name" />
+                                            <input type="text" id="txtChildParentGurdian" class="form-control" maxlength="99" placeholder="parent / Guardian Name" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" id="txtChildLoacation" class="form-control" placeholder="Location" />
+                                            <input type="text" id="txtChildLoacation" class="form-control" maxlength="49" placeholder="Location" />
                                         </div>
                                         <div class="nextStep d-flex justify-content-between mb-4">
                                             <a rel="childScrB" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 2</a>
@@ -2763,6 +2763,14 @@
             isValidAdult = false;
             $("#txtAge").focus();
         }
+        if ($("#txtAge").val() != "" && isValidAdult == true) {
+            var chAge = parseInt($("#txtAge").val());
+            if (chAge <= 18) {
+                alert("Please enter the correct age.");
+                isValidAdult = false;
+                $("#txtAge").focus();
+            }
+        }
         if ($("#ddlGender").val() == "Gender" && isValidAdult==true)
         {
             alert("Please select gender.");
@@ -2800,11 +2808,18 @@
     }
 
     function heightChildSel(sel) {
-        $("#ChildheightSelect").val(sel);
+        $('#ddlChildFeet').prop('selectedIndex', 0);
+        $('#ddlChildInches').prop('selectedIndex', 0);
+        $('#ddlChildCentimeter').prop('selectedIndex', 0);
 
+        $("#ChildheightSelect").val(sel);
     }
 
     function weightChildSelect(sel) {
+        $('#ddlChildKilo').prop('selectedIndex', 0);
+        $('#ddlChildGaram').prop('selectedIndex', 0);
+        $('#ddlChildPounds').prop('selectedIndex', 0);
+
         $("#ChildWeightSelect").val(sel);
     }
     function childHealthIssue(sel) {
@@ -2820,7 +2835,7 @@
     }
 
     function SaveChildData(){
-        debugger;
+        //debugger;
         if (validateChild()) {
             var EnquiryModel = {
                 Instance_enquiry: {
@@ -2885,10 +2900,19 @@
     }
 
     function heightSelection(selectedval) {
+        //debugger;
+        $('#ddlAuditCentemer').prop('selectedIndex', 0);
+        $('#ddlAuditfeet').prop('selectedIndex', 0);
+        $('#ddlAuditInches').prop('selectedIndex', 0);
+
         $("#heightSelect").val(selectedval);
     }
     function WeightSelection(sel) {
         //debugger;
+        $('#ddlpounds').prop('selectedIndex', 0);
+        $('#ddlKilo').prop('selectedIndex', 0);
+        $('#ddlgrams').prop('selectedIndex', 0);
+
         $("#WeightSelect").val(sel);
     }
     function waterIntakeSelect(sel) {
