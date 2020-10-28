@@ -477,6 +477,7 @@
     <Content Include="Views\MasterTable\ManageMasterData.cshtml" />
     <Content Include="Views\UploadDocument\UploadMaster.cshtml" />
     <Content Include="Views\Enquiry\EnquiryTransaction.cshtml" />
+    <Content Include="Views\Home\ShowGraph.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -504,7 +505,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50025</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50025/</IISUrl>
+          <IISUrl>http://localhost:50026/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

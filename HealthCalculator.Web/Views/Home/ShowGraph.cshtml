@@ -1,0 +1,204 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowGraph</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/DevExtremeBundle")
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    @Scripts.Render("~/Scripts/DevExtremeBundle")
+
+
+</head>
+<body>
+    <div>
+        <div id="chart1"> </div>
+    </div>
+    
+    <script src="~/Scripts/bootstrap.js"></script>
+  
+    <script src="~/Scripts/respond.js"></script>
+
+
+
+
+</body>
+
+</html>
+<script type="text/javascript">
+    //Trend Wise Graph
+    $(document).ready(function () {
+        Bind_BarChart_TrendMain();
+    });
+
+    function Bind_BarChart_TrendMain()
+    {
+
+        var dataSource = [{            year: 1997,            smp: 263,            mmp: 226,            cnstl: 10,            cluster: 1        }, {            year: 1999,            smp: 169,            mmp: 256,            cnstl: 66,            cluster: 7        }, {            year: 2001,            smp: 57,            mmp: 257,            cnstl: 143,            cluster: 43        }, {            year: 2003,            smp: 0,            mmp: 163,            cnstl: 127,            cluster: 210        }, {            year: 2005,            smp: 0,            mmp: 103,            cnstl: 36,            cluster: 361        }, {            year: 2007,            smp: 0,            mmp: 91,            cnstl: 3,            cluster: 406        }];
+        //var model_data = {};
+
+        //model_data.Flag = 2;
+
+
+        //model_data.FromDate = $('#hdnFromDate').val();
+        //model_data.ToDate = $('#hdnToDate').val();
+        //model_data.WebFormName = $('#hdnwebform').val();
+        //model_data.VendorName = $('#hdnVendorName').val();
+
+        var Test = $("#chart1").data("dxChart");
+        if (Test != undefined) {
+            $('#chart1').dxChart('instance').dispose();
+        }
+
+        $("#chart1").dxChart({
+            dataSource: dataSource,
+            commonSeriesSettings: {
+                barPadding: 0.5,
+                argumentField: "year",
+                type: "spline",
+                point: {
+                    visible: false
+                }
+            },
+            argumentAxis: {
+                valueMarginsEnabled: false,
+                discreteAxisDivisionMode: "crossLabels",
+                grid: {
+                    visible: true
+                }
+            },
+            crosshair: {
+                enabled: true,
+                color: "#949494",
+                width: 3,
+                dashStyle: "dot",
+                label: {
+                    visible: true,
+                    backgroundColor: "#949494",
+                    font: {
+                        color: "#fff",
+                        size: 12,
+                    }
+                }
+            },
+            series: [                { valueField: "smp", name: "SMP" },                { valueField: "mmp", name: "MMP" },                { valueField: "cnstl", name: "Cnstl" },                { valueField: "cluster", name: "Cluster" }            ],
+            //series: [
+            //    {
+            //        valueField: "VentasBrutas", name: "Ventas Brutas", axis: "LineGraph",
+            //        label: {
+            //            visible: true,
+            //            format: {
+            //                type: "fixedPoint",
+            //                precision: 0
+            //            },
+            //            customizeText: function () {
+            //                return this.valueText;
+            //            },
+
+            //        }
+            //    },
+            //    {
+            //        valueField: "VentasExitosa", name: "Ventas Vendor", axis: "LineGraph",
+            //        label: {
+            //            visible: true,
+            //            format: {
+            //                type: "fixedPoint",
+            //                precision: 0
+            //            },
+            //            customizeText: function () {
+            //                return this.valueText;
+            //            },
+
+            //        }
+            //    },
+            //    {
+            //        valueField: "Entegrada", name: "Entegrada", axis: "LineGraph",
+            //        label: {
+            //            visible: true,
+            //            format: {
+            //                type: "fixedPoint",
+            //                precision: 0
+            //            },
+            //            customizeText: function () {
+            //                return this.valueText;
+            //            },
+
+            //        }
+            //    }
+            //],
+
+            valueAxis: [
+                {
+                    name: "LineGraph",
+                    position: "left",
+                    grid: {
+                        visible: true
+                    },
+                    title: {
+                        //text: "Contar",
+
+                    },
+                    label: {
+                        visible: true,
+                        format: {
+                            type: "fixedPoint",
+                            precision: 0
+                        },
+                    },
+                    //tickInterval: 1000,
+                    valueType: "numeric"
+                },
+
+            ],
+
+            legend: {
+                verticalAlignment: "bottom",
+                horizontalAlignment: "center",
+                itemTextPosition: "bottom",
+                equalColumnWidth: true,
+                font: {
+                    size: 13,
+                    color: "#06090c"
+
+                }
+            },
+            title: {
+                text: "Tendencia de Ventas por semana",
+                font: {
+                    size: 16,
+                }
+                //subtitle: {
+                //    text: "(Millions of Tons, Oil Equivalent)"
+                //}
+            },
+            "export": {
+                enabled: true
+            },
+            tooltip: {
+                enabled: true,
+                format: {
+                    type: "fixedPoint",
+                    precision: 2
+                },
+                customizeTooltip: function () {
+                    return this.valueText;
+                }
+            },
+            size: {
+                height: 400
+            }
+
+        });
+    }
+
+</script>

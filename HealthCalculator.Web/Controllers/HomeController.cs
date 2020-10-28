@@ -20,6 +20,11 @@ namespace HealthCalculator.Web.Controllers
             return View();
             // return RedirectToAction("Index", "User");
         }
+        public ActionResult ShowGraph()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
 
         public ActionResult About()
         {

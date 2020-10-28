@@ -17,7 +17,7 @@ namespace HealthCalculator.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //DevExtremeBundleConfig.RegisterBundles(BundleTable.Bundles);
+            DevExtremeBundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }
