@@ -139,20 +139,13 @@ namespace HealthCalculator.Web
       
         public static string GetChildSaveValue(EnquiryModel enqModel,string type)
         {
-            string retValue = string.Empty;
-            try
+            string retValue = 0;
+            foreach (Enquiry_Transaction tx in enqModel.Instance_Enquiry_Transaction)
             {
-                foreach (Enquiry_Transaction tx in enqModel.Instance_Enquiry_Transaction)
+                if (tx.ControlName == type)
                 {
-                    if (tx.ControlName == type)
-                    {
-                        retValue = Convert.ToString(tx.OptionValue);
-                    }
+                    retValue = Convert.ToString(tx.OptionValue);
                 }
-            }
-            catch (Exception ex)
-            {
-
             }
 
             return retValue;
