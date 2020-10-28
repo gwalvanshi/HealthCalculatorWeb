@@ -281,6 +281,8 @@
     <Content Include="img\certifications\6.jpg" />
     <Content Include="img\circle.png" />
     <Content Include="img\circleRight.png" />
+    <Content Include="img\EmailImages\BMI_Boys_02_05Years.JPG" />
+    <Content Include="img\EmailImages\BMI_Girls_02_05Years.JPG" />
     <Content Include="img\EmailImages\BodyMassIndexImage.jpg" />
     <Content Include="img\EmailImages\IAP-Boys-BMI-Chart-5-18-years new.jpg" />
     <Content Include="img\EmailImages\IAP-Girls-BMI-Chart-5-18-years new.jpg" />
