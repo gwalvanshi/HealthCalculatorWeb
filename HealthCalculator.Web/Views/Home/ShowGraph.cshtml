@@ -20,15 +20,17 @@
 
 
 </head>
-<body>
-    <div>
-        <div id="chart1"> </div>
-    </div>
-    
-    <script src="~/Scripts/bootstrap.js"></script>
-  
-    <script src="~/Scripts/respond.js"></script>
+<body  class="dx-viewport">
+    <div class="demo-container">
+        <div id="chart-demo">
+            <div id="chart1"> </div>
+        </div>
+    </div>    
 
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <script src="~/Scripts/respond.js"></script>
+    <script src="~/Scripts/DevScript/Common.js"></script>
 
 
 
@@ -37,15 +39,22 @@
 </html>
 <script type="text/javascript">
     //Trend Wise Graph
-    $(document).ready(function () {
-        Bind_BarChart_TrendMain();
+     var virtualPath = "@Url.Content("~/")";
+    $(document).ready(function ()
+    {
+      
+        CommonAjaxMethod('Home/GetWFLBoy/', null, false, 'GET', function (response) {
+            Bind_BarChart_TrendMain(response);
+        });   
+       
     });
 
-    function Bind_BarChart_TrendMain()
+    function Bind_BarChart_TrendMain(odata)
     {
-
-        var dataSource = [{            year: 45,            smp: 263,            mmp: 226,            cnstl: 10,            cluster: 0        }, {            year: 50,            smp: 169,            mmp: 256,            cnstl: 66,            cluster: 2        }, {            year: 55,            smp: 57,            mmp: 257,            cnstl: 143,            cluster: 4        }, {            year: 60,            smp: 0,            mmp: 163,            cnstl: 127,            cluster: 8        }, {            year: 65,            smp: 0,            mmp: 103,            cnstl: 36,            cluster: 10        }, {            year: 70,            smp: 0,            mmp: 91,            cnstl: 3,            cluster: 12            }, {                year: 75,                smp: 0,                mmp: 91,                cnstl: 3,                cluster: 14            }, {                year: 80,                smp: 0,                mmp: 91,                cnstl: 3,                cluster: 16            }, {                year: 85,                smp: 0,                mmp: 91,                cnstl: 3,                cluster: 18            }, {                year: 90,                smp: 0,                mmp: 91,                cnstl: 3,                cluster: 20            }, {                year: 100,                smp: 0,                mmp: 91,                cnstl: 3,                cluster: 22            },
-            {                year: 110,                smp: 0,                mmp: 91,                cnstl: 3,                cluster: 22            }];
+     
+        var dataSource = odata.dataCollection;
+        //var dataSource = [{        //    year: 45,        //    smp: 263,        //    mmp: 226,        //    cnstl: 10,        //    cluster: 0        //}, {        //    year: 50,        //    smp: 169,        //    mmp: 256,        //    cnstl: 66,        //    cluster: 2        //}, {        //    year: 55,        //    smp: 57,        //    mmp: 257,        //    cnstl: 143,        //    cluster: 4        //}, {        //    year: 60,        //    smp: 0,        //    mmp: 163,        //    cnstl: 127,        //    cluster: 8        //}, {        //    year: 65,        //    smp: 0,        //    mmp: 103,        //    cnstl: 36,        //    cluster: 10        //}, {        //    year: 70,        //    smp: 0,        //    mmp: 91,        //    cnstl: 3,        //    cluster: 12        //    }, {        //        year: 75,        //        smp: 0,        //        mmp: 91,        //        cnstl: 3,        //        cluster: 14        //    }, {        //        year: 80,        //        smp: 0,        //        mmp: 91,        //        cnstl: 3,        //        cluster: 16        //    }, {        //        year: 85,        //        smp: 0,        //        mmp: 91,        //        cnstl: 3,        //        cluster: 18        //    }, {        //        year: 90,        //        smp: 0,        //        mmp: 91,        //        cnstl: 3,        //        cluster: 20        //    }, {        //        year: 100,        //        smp: 0,        //        mmp: 91,        //        cnstl: 3,        //        cluster: 22        //    },
+        //    {        //        year: 110,        //        smp: 0,        //        mmp: 91,        //        cnstl: 3,        //        cluster: 22        //    }];
         //var model_data = {};
 
         //model_data.Flag = 2;
@@ -65,7 +74,7 @@
             dataSource: dataSource,
             commonSeriesSettings: {
                 barPadding: 0.5,
-                argumentField: "year",
+                argumentField: "Length_cm",
                 type: "spline",
                 point: {
                     visible: false
@@ -92,7 +101,7 @@
                     }
                 }
             },
-            series: [                { valueField: "smp", name: "SMP" },                { valueField: "mmp", name: "MMP" },                { valueField: "cnstl", name: "Cnstl" },                { valueField: "cluster", name: "Cluster" }            ],
+            series: [                { valueField: "Third", name: "Third" },                { valueField: "Fifteenth", name: "Fifteenth" },                { valueField: "Fifty", name: "Fifty" },                { valueField: "EightyFive", name: "EightyFive" },                { valueField: "NintySeven", name: "NintySeven" }                          ],
             //series: [
             //    {
             //        valueField: "VentasBrutas", name: "Ventas Brutas", axis: "LineGraph",
@@ -141,7 +150,7 @@
             valueAxis: [
                 {
                     name: "LineGraph",
-                    position: "left",
+                    position: "left",                   
                     grid: {
                         visible: true
                     },

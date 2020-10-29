@@ -39,6 +39,26 @@ namespace HealthCalculator.Web.Controllers
 
             return View();
         }
+        [HttpGet]
+        public async Task<JsonResult> GetWFLBoy()
+        {
+            try
+            {
+                int loggedIdUserID = 1;
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "103";
+                collection.UserId = loggedIdUserID;               
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<WFLBoy>(stringContent1);
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
         [HttpPost]
         public async Task<JsonResult> Save(EnquiryModel collection)
         {
