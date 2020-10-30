@@ -17,10 +17,10 @@ namespace HealthCalculator.Web
     {
 
         // Set server
-        ///public const string ServerPath = "../HealthWeb";
+        public const string ServerPath = "../HealthWeb";
         
         //To set local
-        public const string ServerPath = "";
+      ///  public const string ServerPath = "";
         public bool SendEmail(string toEmail, string Subject, string content, List<Datum> dt, EnquiryModel collection)
         {
             string emailbody = string.Empty;
@@ -45,16 +45,16 @@ namespace HealthCalculator.Web
                     smtp.Host = "mail.EATINGSMART.IN";
                     smtp.EnableSsl = false;
                     NetworkCredential NetworkCred = new NetworkCredential();
-                    //NetworkCred.UserName = "alerts@EATINGSMART.IN";
-                    //NetworkCred.Password = "d73Clh~9";
                     NetworkCred.UserName = "alerts@EATINGSMART.IN";
-                    NetworkCred.Password = "test@test";
+                    NetworkCred.Password = "d73Clh~9";
+                   // NetworkCred.UserName = "alerts@EATINGSMART.IN";
+                   //NetworkCred.Password = "test@test";
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = NetworkCred;
                     smtp.Port = 26;
                     isValid = true;
-                    smtp.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
-                    smtp.PickupDirectoryLocation = "C:\\Harish\\Projects\\email";
+                    //smtp.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+                    //smtp.PickupDirectoryLocation = "C:\\Harish\\Projects\\email";
                     smtp.Send(mm);
                     return isValid;
                 }

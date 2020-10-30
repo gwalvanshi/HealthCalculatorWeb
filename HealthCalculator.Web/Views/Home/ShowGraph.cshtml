@@ -86,14 +86,19 @@
                 grid: {
                     visible: true
                 }
+                ,
+                title: {
+                    text: "Length",
+
+                }
             },
             crosshair: {
-                enabled: true,
+                enabled: false,
                 color: "#949494",
                 width: 3,
                 dashStyle: "dot",
                 label: {
-                    visible: true,
+                    visible: false,
                     backgroundColor: "#949494",
                     font: {
                         color: "#fff",
@@ -101,7 +106,19 @@
                     }
                 }
             },
-            series: [                { valueField: "Third", name: "Third" },                { valueField: "Fifteenth", name: "Fifteenth" },                { valueField: "Fifty", name: "Fifty" },                { valueField: "EightyFive", name: "EightyFive" },                { valueField: "NintySeven", name: "NintySeven" }                          ],
+            series: [                { valueField: "Third", name: "3rd" },                { valueField: "Fifteenth", name: "15th" },                { valueField: "Fifty", name: "50th" },                { valueField: "EightyFive", name: "85th" },                { valueField: "NintySeven", name: "97th" },
+                {
+                    valueField: "NintyNine", name: "chlild", axis: "bubble",
+                    label: {
+                        visible: true,
+                        format: {
+                            type: "fixedPoint",
+                            precision: 0
+                        }
+
+                    }
+                }
+                                         ],
             //series: [
             //    {
             //        valueField: "VentasBrutas", name: "Ventas Brutas", axis: "LineGraph",
@@ -150,12 +167,13 @@
             valueAxis: [
                 {
                     name: "LineGraph",
-                    position: "left",                   
+                    position: "left",
+
                     grid: {
                         visible: true
                     },
                     title: {
-                        //text: "Contar",
+                        text: "Weigth",
 
                     },
                     label: {
@@ -163,9 +181,10 @@
                         format: {
                             type: "fixedPoint",
                             precision: 0
+                           
                         },
                     },
-                    //tickInterval: 1000,
+                    tickInterval: 5,
                     valueType: "numeric"
                 },
 
