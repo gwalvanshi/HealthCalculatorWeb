@@ -480,6 +480,9 @@
     <Content Include="Views\UploadDocument\UploadMaster.cshtml" />
     <Content Include="Views\Enquiry\EnquiryTransaction.cshtml" />
     <Content Include="Views\Home\ShowGraph.cshtml" />
+    <Content Include="Views\Home\ShowWFLGirl.cshtml" />
+    <Content Include="Views\Home\ShowBMI0205Boy.cshtml" />
+    <Content Include="Views\Home\ShowBMI0205Girl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

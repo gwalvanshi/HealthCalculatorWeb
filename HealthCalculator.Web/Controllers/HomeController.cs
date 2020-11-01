@@ -26,6 +26,24 @@ namespace HealthCalculator.Web.Controllers
             // return RedirectToAction("Index", "User");
         }
 
+        public ActionResult ShowWFLGirl()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
+        public ActionResult ShowBMI0205Boy()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
+        public ActionResult ShowBMI0205Girl()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -39,6 +57,67 @@ namespace HealthCalculator.Web.Controllers
 
             return View();
         }
+
+       
+        [HttpGet]
+        public async Task<JsonResult> GetBMI0205Boy()
+        {
+            try
+            {
+                int loggedIdUserID = 1;
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "105";
+                collection.UserId = loggedIdUserID;
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<BMI0205Boy>(stringContent1);
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+        [HttpGet]
+        public async Task<JsonResult> GetBMI0205Girl()
+        {
+            try
+            {
+                int loggedIdUserID = 1;
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "106";
+                collection.UserId = loggedIdUserID;
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<BMI0205Girl>(stringContent1);
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetWFLGirl()
+        {
+            try
+            {
+                int loggedIdUserID = 1;
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "104";
+                collection.UserId = loggedIdUserID;
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<WFLGirl>(stringContent1);
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
         [HttpGet]
         public async Task<JsonResult> GetWFLBoy()
         {

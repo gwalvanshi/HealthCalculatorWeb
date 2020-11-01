@@ -108,7 +108,69 @@ namespace HealthCalculator.Web.EntityModel
         public string NintyNine { get; set; }
 
     }
- 
+
+    public class WFLGirl
+    {
+        public string Id { get; set; }
+        public string Length_cm { get; set; }
+        public string L { get; set; }
+        public string M { get; set; }
+        public string S { get; set; }
+        public string First { get; set; }
+        public string Third { get; set; }
+        public string Fifth { get; set; }
+        public string Fifteenth { get; set; }
+        public string TwnetyFive { get; set; }
+        public string Fifty { get; set; }
+        public string SevenyFive { get; set; }
+        public string EightyFive { get; set; }
+        public string NintyFive { get; set; }
+        public string NintySeven { get; set; }
+        public string NintyNine { get; set; }
+
+    }
+    //BMI0205Girl
+    public class BMI0205Girl
+    {
+        public string Id { get; set; }
+        public string Length_cm { get; set; }
+        public string L { get; set; }
+        public string M { get; set; }
+        public string S { get; set; }
+        public string First { get; set; }
+        public string Third { get; set; }
+        public string Fifth { get; set; }
+        public string Fifteenth { get; set; }
+        public string TwnetyFive { get; set; }
+        public string Fifty { get; set; }
+        public string SevenyFive { get; set; }
+        public string EightyFive { get; set; }
+        public string NintyFive { get; set; }
+        public string NintySeven { get; set; }
+        public string NintyNine { get; set; }
+
+    }
+    //BMI0205Boy
+    public class BMI0205Boy
+    {
+        public string Id { get; set; }
+        public string Length_cm { get; set; }
+        public string L { get; set; }
+        public string M { get; set; }
+        public string S { get; set; }
+        public string First { get; set; }
+        public string Third { get; set; }
+        public string Fifth { get; set; }
+        public string Fifteenth { get; set; }
+        public string TwnetyFive { get; set; }
+        public string Fifty { get; set; }
+        public string SevenyFive { get; set; }
+        public string EightyFive { get; set; }
+        public string NintyFive { get; set; }
+        public string NintySeven { get; set; }
+        public string NintyNine { get; set; }
+
+    }
 
 }
 
