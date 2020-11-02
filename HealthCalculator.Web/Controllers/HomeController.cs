@@ -44,6 +44,18 @@ namespace HealthCalculator.Web.Controllers
             // return RedirectToAction("Index", "User");
         }
 
+        public ActionResult ShowBMI0518Boy()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
+        public ActionResult ShowBMI0518Girl()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -57,8 +69,45 @@ namespace HealthCalculator.Web.Controllers
 
             return View();
         }
+        [HttpGet]
+        public async Task<JsonResult> GetBMI0518Girl()
+        {
+            try
+            {
+                int loggedIdUserID = 1;
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "108";
+                collection.UserId = loggedIdUserID;
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<BMI0518Boy>(stringContent1);
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+        [HttpGet]
+        public async Task<JsonResult> GetBMI0518Boy()
+        {
+            try
+            {
+                int loggedIdUserID = 1;
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "107";
+                collection.UserId = loggedIdUserID;
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<BMI0518Boy>(stringContent1);
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
 
-       
         [HttpGet]
         public async Task<JsonResult> GetBMI0205Boy()
         {

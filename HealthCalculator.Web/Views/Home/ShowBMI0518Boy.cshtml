@@ -1,0 +1,197 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowGraph</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/DevExtremeBundle")
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    @Scripts.Render("~/Scripts/DevExtremeBundle")
+
+    <style>
+    </style>
+</head>
+
+
+<body class="dx-viewport">
+    <table style="width:100%">
+        <tr>
+            <td style="width:10%"></td>
+            <td style="width:80%">
+                <div class="demo-container">
+                    <div id="chart-demo">
+                        <div id="chart1"> </div>
+                    </div>
+                </div>
+
+            </td>
+            <td style="width:10%"></td>
+        </tr>
+    </table>
+
+
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <script src="~/Scripts/respond.js"></script>
+    <script src="~/Scripts/DevScript/Common.js"></script>
+
+
+
+</body>
+
+</html>
+<script type="text/javascript">
+    //Trend Wise Graph
+     var virtualPath = "@Url.Content("~/")";
+    $(document).ready(function ()
+    {
+
+        //Bind_BarChart_TrendMain();
+        CommonAjaxMethod('Home/GetBMI0518Boy/', null, false, 'GET', function (response) {
+            Bind_BarChart_TrendMain(response);
+        });
+
+    });
+
+    function Bind_BarChart_TrendMain(odata)
+    {
+        var dataSource = odata.dataCollection;
+        var Test = $("#chart1").data("dxChart");
+        if (Test != undefined) {
+            $('#chart1').dxChart('instance').dispose();
+        }
+
+        $("#chart1").dxChart({
+            dataSource: dataSource,
+            commonSeriesSettings: {
+                barPadding: 2.0,
+                argumentField: "Length_cm",
+                hoverMode: "includePoints",
+                point: {
+                    hoverMode: "allArgumentPoints"
+                },
+                type: "spline",
+              point: {
+                    visible: false
+                }
+
+            },
+            stickyHovering: false,
+            argumentAxis: {
+                valueMarginsEnabled: false,
+
+                discreteAxisDivisionMode: "crossLabels",
+                grid: {
+                    visible: true
+                }
+                ,
+                title: {
+                    text: "Years",
+
+                }
+            },
+            crosshair: {
+                enabled: false,
+                color: "#949494",
+                width: 3,
+                dashStyle: "dot",
+                label: {
+                    visible: false,
+                    backgroundColor: "#949494",
+                    font: {
+                        color: "#fff",
+                        size: 10,
+                    }
+                }
+            },
+            series: [
+                { valueField: "Third", name: "3rd" },
+                { valueField: "Fifty", name: "5th" },
+                { valueField: "Tenth", name: "10th" },
+                { valueField: "TwnetyFive", name: "25th" },
+                { valueField: "Fifty", name: "50th" },
+                { valueField: "TwnetyThree", name: "23th Adult Equivelent - Risk for Overweight" },
+                { valueField: "TwnetySeven", name: "27th Adult Equivelent - Risk for Obesity" },
+                {
+                    valueField: "NintyNine", name: "Child-Weighth-Length", point: {
+                        visible: true
+                    }}
+
+
+            ],
+            valueAxis: [
+                {
+                    name: "bubble",
+                    position: "left",
+                    tickInterval: 5,
+                    grid: {
+                        visible: true
+                    },
+                    title: {
+                        text: "Percentiles (BMI in kg/m2)",
+
+                    },
+                    label: {
+                        visible: true,
+                        format: {
+                            type: "fixedPoint",
+                            precision: 0
+
+                        },
+                    },
+                    valueType: "numeric"
+                },
+
+            ],
+
+            legend: {
+                verticalAlignment: "right",
+                horizontalAlignment: "top",
+                itemTextPosition: "right",
+                equalColumnWidth: true,
+                font: {
+                    size: 13,
+                    color: "#06090c"
+
+                }
+            },
+            title: {
+                text: "IAP Boys BMI chart 5- 18 years",
+                font: {
+                    size: 16,
+                }
+                //subtitle: {
+                //    text: "(Millions of Tons, Oil Equivalent)"
+                //}
+            },
+            "export": {
+                enabled: true
+            },
+            tooltip: {
+                enabled: true,
+                format: {
+                    type: "fixedPoint",
+                    precision: 2
+                },
+                customizeTooltip: function () {
+                    return this.valueText;
+                }
+            },
+            size: {
+                height: 600
+            }
+
+        });
+    }
+
+</script>

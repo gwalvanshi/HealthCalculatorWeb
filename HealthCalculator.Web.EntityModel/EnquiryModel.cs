@@ -172,5 +172,34 @@ namespace HealthCalculator.Web.EntityModel
 
     }
 
+    public class BMI0518Boy
+    {
+        public string Id { get; set; }
+        public string Length_cm { get; set; }
+        public string Third { get; set; }
+        public string Fifth { get; set; }
+        public string Tenth { get; set; }
+        public string TwnetyFive { get; set; }
+        public string Fifty { get; set; }
+        public string TwentyThree { get; set; }
+        public string TwentySeven { get; set; }
+        public string NintyNine { get; set; }
+
+    }
+    public class BMI0518Girl
+    {
+        public string Id { get; set; }
+        public string Length_cm { get; set; }
+        public string Third { get; set; }
+        public string Fifth { get; set; }
+        public string Tenth { get; set; }
+        public string TwnetyFive { get; set; }
+        public string Fifty { get; set; }
+        public string TwentyThree { get; set; }
+        public string TwentySeven { get; set; }
+        public string NintyNine { get; set; }
+
+    }
+
 }
 

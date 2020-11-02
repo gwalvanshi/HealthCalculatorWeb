@@ -483,6 +483,8 @@
     <Content Include="Views\Home\ShowWFLGirl.cshtml" />
     <Content Include="Views\Home\ShowBMI0205Boy.cshtml" />
     <Content Include="Views\Home\ShowBMI0205Girl.cshtml" />
+    <Content Include="Views\Home\ShowBMI0518Boy.cshtml" />
+    <Content Include="Views\Home\ShowBMI0518Girl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
