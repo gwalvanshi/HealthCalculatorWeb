@@ -1666,7 +1666,30 @@
                                             <input type="text" id="txtChildName" class="form-control" maxlength="49" placeholder="Name" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" id="txtChildAge" class="form-control" maxlength="2" placeholder="Age" />
+                                            @*<input type="number" id="txtChildAge" class="form-control" maxlength="2" placeholder="Age" />*@
+                                            <select id="txtChildAge" class="form-control">
+                                                <option>Age</option>
+                                                <option>Birth</option>
+                                                <option>3 months</option>
+                                                <option>6 months</option>
+                                                <option>9 months</option>
+                                                <option>1 year</option>
+                                                <option>2 years</option>
+                                                <option>3 years</option>
+                                                <option>4 years</option>
+                                                <option>5 years</option>
+                                                <option>6 years</option>
+                                                <option>7 years</option>
+                                                <option>8 years</option>
+                                                <option>9 years</option>
+                                                <option>10 years</option>
+                                                <option>11 years</option>
+                                                <option>12 years</option>
+                                                <option>13 years</option>
+                                                <option>14 years</option>
+                                                <option>15 years</option>
+                                                <option>16 years</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <select id="ddlChildGender" class="form-control">
@@ -2648,7 +2671,7 @@
             $("#txtChildName").focus();
             isValidChild = false;
         }
-        if ($("#txtChildAge").val() == "" && isValidChild == true) {
+        if ($("#txtChildAge").val() == "Age"  && isValidChild == true) {
             alert("Please enter child Age.");
             isValidChild = false;
             $("#txtChildAge").focus();
@@ -2859,15 +2882,17 @@
             var paramGender = { ControlName: "ddlChildGender", OptionValue: $("#ddlChildGender").val(), OtherOption: "" }
             EnquiryModel.Instance_Enquiry_Transaction.push(paramAge);
             EnquiryModel.Instance_Enquiry_Transaction.push(paramGender);
-
+            var heightselection = "";
             //1 = Centemer 2 = feet,Inches
             if ($("#ChildheightSelect").val() == "1") {
+                heightselection = { ControlName: "HeightSelection", OptionValue: "Feet", OtherOption: "" }
                 var paramfeet = { ControlName: "ddlChildFeet", OptionValue: $("#ddlChildFeet").val(), OtherOption: "" }
                 var paramInch = { ControlName: "ddlChildInches", OptionValue: $("#ddlChildInches").val(), OtherOption: "" }
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramfeet);
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramInch);
             }
             else {
+                heightselection = { ControlName: "HeightSelection", OptionValue: "Centimeter", OtherOption: "" }
                 var paramCM = { ControlName: "ddlChildCentimeter", OptionValue: $("#ddlChildCentimeter").val(), OtherOption: "" }
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramCM);
             }

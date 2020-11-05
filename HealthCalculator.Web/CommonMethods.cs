@@ -18,7 +18,7 @@ namespace HealthCalculator.Web
 
         // Set server
         public const string ServerPath = "../HealthWeb";
-        private const string V = @"D:\\Harish\\Projects\\eating\\email\";
+        private const string V = @"C:\\Harish\\Projects\\email\";
         private const string growthChart = " <p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><a href='http://localhost:50026/Home/{0}' target='_blank'>Growth chart</a></p>";
 
         //To set local
@@ -71,12 +71,25 @@ namespace HealthCalculator.Web
         public static string ChildEmailBody(List<Datum> dt, EnquiryModel collection)
         {
             string retVal = string.Empty;
-            retVal = retVal + "<p style='font-family: Verdana; font-size: 11pt; text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222;'>Hi Ms/ Mr <b>";
-            retVal = retVal + collection.Instance_enquiry.Address1+ "</b>, </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Greetings from our team Eating Smart.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Hope you and your little one are doing good.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>Congratulations on taking your first step towards a smart lifestyle &#128515 </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>We sincerely thank you for providing us this opportunity to assess your child’s health status and assist your little one to enjoy a smart lifestyle with Eating Smart.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>We believe in the modern concept 'Every natural produce has it’s benefits, we just need to channelize it the smart way”.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Please find herein below, your child’s health status report.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>According to the inputs weight and height for age should be as follows:</span></p>";
+            string ChildWeight = string.Empty;
+            string ChildHeight = string.Empty;
             int childAge = Convert.ToInt32(GetChildSaveValue(collection, "txtChildAge"));
             string gender = GetChildSaveValue(collection, "ddlChildGender");
-            string ChildWeight = GetChildSaveValue(collection, "ddlChildKilo")+"."+ GetChildSaveValue(collection, "ddlChildGaram");
-            string ChildHeight = GetChildSaveValue(collection, "ddlChildFeet") + "." + GetChildSaveValue(collection, "ddlChildInches");
+            string weightSel = GetChildSaveValue(collection, "WeightSelection");
+            if (weightSel == "KG")
+                ChildWeight = GetChildSaveValue(collection, "ddlChildKilo") + "." + GetChildSaveValue(collection, "ddlChildGaram") + " KG";
+            else
+                ChildWeight = GetChildSaveValue(collection, "ddlChildPounds") + " Pounds";
+
+            string heighsel = GetChildSaveValue(collection, "HeightSelection");
+            if (heighsel == "Feet")
+                ChildHeight = GetChildSaveValue(collection, "ddlChildFeet") + "." + GetChildSaveValue(collection, "ddlChildInches") + " feet Inches";
+            else
+                ChildHeight = GetChildSaveValue(collection, "ddlChildCentimeter") + " Centimeter";
+
+            retVal = retVal + "<p style='font-family: Verdana; font-size: 11pt; text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222;'>Hi Ms/ Mr <b>";
+            retVal = retVal + collection.Instance_enquiry.Address1+ "</b>, </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Greetings from our team Eating Smart.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Hope you and your little one are doing good.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>Congratulations on taking your first step towards a smart lifestyle &#128515 </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>We sincerely thank you for providing us this opportunity to assess your child’s health status and assist your little one to enjoy a smart lifestyle with Eating Smart.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>We believe in the modern concept 'Every natural produce has it’s benefits, we just need to channelize it the smart way”.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Please find herein below, your child’s health status report.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>According to the inputs weight and height for age should be as follows:</span></p>";
+
             if (childAge <=2)
             {
                 if (gender == "Female")
@@ -86,7 +99,7 @@ namespace HealthCalculator.Web
                     // retVal = retVal + "<img src='https://eatingsmart.in/HealthWeb/img/EmailImages/Weight_for_age_Boys_00_02Years.JPG' alt='Male 0-02' width='600' height ='300' />";
                     retVal = retVal + string.Format(growthChart, "ShowGraph");
 
-                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Your current weight in <b>"+ ChildWeight + "</b> kg and Height <b>" + ChildHeight + "</b> feet Inches</span></p>";
+                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Your current weight in <b>"+ ChildWeight + "</b> and Height <b>" + ChildHeight + "</b> </span></p>";
                 retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #ff0000; font-family: Verdana; font-size: 11pt;'>Growth chart</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Arial; font-size: 10.5pt;'>Growth charts help to assess how your child is growing compared with other kids of the same age and gender.&nbsp;</span></p><p style='text-align: left; margin: 12pt 0pt 18pt; line-height: 16.8pt;'><span style='font-family: Arial; font-size: 10.5pt;'>On the growth charts, the percentiles are shown as lines drawn in curved patterns.&nbsp;</span><span style='font-family: Verdana; font-size: 10.5pt;'>The higher the percentile number, the bigger a child is compared with other kids of the same age and gender, whether it's for height or weight.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 10.5pt;'>The lower the percentile number, the smaller the child is.</span></p>";
             }
             else if(childAge >2 && childAge <=5)
@@ -101,7 +114,7 @@ namespace HealthCalculator.Web
                     // retVal = retVal + "<img src='https://eatingsmart.in/HealthWeb/img/EmailImages/BMI_Girls_02_05Years.JPG' alt='Male 02-05' width='600' height ='300' />";
                     retVal = retVal + string.Format(growthChart, "ShowBMI0205Boy");
 
-                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Your current weight in <b>" + ChildWeight + "</b> kg and Height <b>" + ChildHeight + "</b> feet Inches</span></p>";
+                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Your current weight in <b>" + ChildWeight + "</b> and Height <b>" + ChildHeight + "</b> </span></p>";
             }
             else if(childAge >5 && childAge <=18)
             {
@@ -115,7 +128,7 @@ namespace HealthCalculator.Web
                     //retVal = retVal + "<img src='https://eatingsmart.in/HealthWeb/img/EmailImages/IAP-Boys-BMI-Chart-5-18-years new.jpg' alt='Male 02-05' width='600' height ='300' />";
                     retVal = retVal + string.Format(growthChart, "ShowBMI0518Boy");
 
-                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Your current weight in <b>" + ChildWeight + "</b> kg and Height <b>" + ChildHeight + "</b> feet Inches</span></p>";
+                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Your current weight in <b>" + ChildWeight + "</b> and Height <b>" + ChildHeight + "</b> </span></p>";
 
             }
             //Last intendation
@@ -158,6 +171,10 @@ namespace HealthCalculator.Web
                 if (tx.ControlName == type)
                 {
                     retValue = Convert.ToString(tx.OptionValue);
+                    if (retValue == "Birth" || retValue == "3 months" || retValue == "6 months" || retValue == "9 months")
+                        retValue = "0";
+                    else
+                        retValue = retValue.Split(' ')[0];
                 }
             }
 
