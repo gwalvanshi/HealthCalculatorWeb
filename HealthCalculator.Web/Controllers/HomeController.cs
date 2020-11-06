@@ -180,6 +180,7 @@ namespace HealthCalculator.Web.Controllers
                 var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
                 var objCommunication = await _genericService.GetRecords<WFLBoy>(stringContent1);
                 return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                
             }
             catch (Exception ex)
             {
