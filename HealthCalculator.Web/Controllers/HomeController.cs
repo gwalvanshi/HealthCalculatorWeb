@@ -204,12 +204,13 @@ namespace HealthCalculator.Web.Controllers
 
                 GenericService _genericService = new GenericService();
                 var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
-                var status = await _genericService.PerformDataOperationList<Root>(stringContent);
+                var status = await _genericService.PerformDataOperationDataList<Root>(stringContent);
+
 
                 CommonMethods cm = new CommonMethods();
                 if (!string.IsNullOrEmpty(collection.Instance_enquiry.Email_ID))
                 {
-                    cm.SendEmail(collection.Instance_enquiry.Email_ID, "Welcome to Eating india", "", status.data.Data, collection);
+                    cm.SendEmail(collection.Instance_enquiry.Email_ID, "Welcome to Eating india", "", status.data.Data.Table, collection, status.data.Data.Table1);
                 }
                 return new JsonResult { Data = status };
             }

@@ -17,13 +17,13 @@ namespace HealthCalculator.Web
     {
 
         // Set server
-        public const string ServerPath = "../HealthWeb";
+       // public const string ServerPath = "../HealthWeb";
         private const string V = @"C:\\Harish\\Projects\\email\";
         private const string growthChart = " <p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><a href='http://localhost:50026/Home/{0}' target='_blank'>Growth chart</a></p>";
 
         //To set local
-        ///  public const string ServerPath = "";
-        public bool SendEmail(string toEmail, string Subject, string content, List<Datum> dt, EnquiryModel collection)
+      public const string ServerPath = "";
+        public bool SendEmail(string toEmail, string Subject, string content, List<Table> dt, EnquiryModel collection, List<Table1> dtRange)
         {
             string emailbody = string.Empty;
             if (dt[0].AgeGroup == "Adult")
@@ -50,7 +50,7 @@ namespace HealthCalculator.Web
                     //NetworkCred.UserName = "alerts@EATINGSMART.IN";
                     //NetworkCred.Password = "d73Clh~9";
                     NetworkCred.UserName = "alerts@EATINGSMART.IN";
-                    NetworkCred.Password = "test@test";
+                    NetworkCred.Password = "d73Clh~9";
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = NetworkCred;
                     smtp.Port = 26;
@@ -68,7 +68,7 @@ namespace HealthCalculator.Web
             }           
         }
 
-        public static string ChildEmailBody(List<Datum> dt, EnquiryModel collection)
+        public static string ChildEmailBody(List<Table> dt, EnquiryModel collection)
         {
             string retVal = string.Empty;
             string ChildWeight = string.Empty;
@@ -136,7 +136,8 @@ namespace HealthCalculator.Web
             return retVal;
 
         }
-        public static string GetChildBMIstatus(List<Datum> dt)
+       
+        public static string GetChildBMIstatus( List<Table> dt)
         {
             string strBMI = string.Empty;
             double ChBMI = dt[0].BMI;
@@ -182,7 +183,7 @@ namespace HealthCalculator.Web
         }
 
 
-        public static string AdultEmailBody(List<Datum> dt, EnquiryModel collection)
+        public static string AdultEmailBody(List<Table> dt, EnquiryModel collection)
         {
             string retVal = string.Empty;
 
@@ -244,7 +245,7 @@ namespace HealthCalculator.Web
             return retVal;
         }
 
-        public static string BMIStatus(List<Datum> dt)
+        public static string BMIStatus( List<Table> dt)
         {
             string retBMI = string.Empty;
 
@@ -281,7 +282,7 @@ namespace HealthCalculator.Web
             return retBMI;
         }
 
-        public static string GetCurrentWeight(List<Datum> dt, EnquiryModel collection)
+        public static string GetCurrentWeight( List<Table> dt, EnquiryModel collection)
         {
             string stWeight = string.Empty;
             double idealbodyWeight = dt[0].IdealBodyWeight;
@@ -306,7 +307,7 @@ namespace HealthCalculator.Web
             return stWeight;
         }
 
-        public static string weightStatus(List<Datum> dt, EnquiryModel collection)
+        public static string weightStatus( List<Table> dt, EnquiryModel collection)
         {
             string stWeight = string.Empty;
             double idealbodyWeight = dt[0].IdealBodyWeight;
@@ -358,7 +359,7 @@ namespace HealthCalculator.Web
             return sw.ToString();
         }
 
-        public static string healthRating(List<Datum> dt, EnquiryModel collection)
+        public static string healthRating( List<Table> dt, EnquiryModel collection)
         {
             string heathRating = string.Empty;
             string stAlcohol = string.Empty;

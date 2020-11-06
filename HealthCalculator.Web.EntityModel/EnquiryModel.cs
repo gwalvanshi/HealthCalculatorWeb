@@ -29,6 +29,58 @@ namespace HealthCalculator.Web.EntityModel
         public string Emailid { get; set; } */
 
     }
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
+    public class Table
+    {
+        public int EnquiryId { get; set; }
+        public double BMI { get; set; }
+        public double WaterIntake { get; set; }
+        public double IdealBodyWeight { get; set; }
+        public double BMR { get; set; }
+        public string FirstName { get; set; }
+        public object LastName { get; set; }
+        public string ContactNumber { get; set; }
+        public string Email_ID { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string Pin_Code { get; set; }
+        public string Country { get; set; }
+        public string AgeGroup { get; set; }
+    }
+
+    public class Table1
+    {
+        public int ChartId { get; set; }
+        public string Type { get; set; }
+        public string Age { get; set; }
+        public string Weight { get; set; }
+        public string height { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public object ModifiledBy { get; set; }
+        public object ModifiledDate { get; set; }
+    }
+
+    public class Data
+    {
+        public List<Table> Table { get; set; }
+        public List<Table1> Table1 { get; set; }
+    }
+
+    public class Root
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public Data Data { get; set; }
+    }
+
+
     public class Enquiry
     {
         public int Enquiry_Id { get; set; }
@@ -76,19 +128,15 @@ namespace HealthCalculator.Web.EntityModel
         public string AgeGroup { get; set; }
     }
 
-    public class Root
+ 
+    public class AgeRange
     {
-        public string GUID { get; set; }
-        public int ReferenceID { get; set; }
-        public string FieldName { get; set; }
-        public bool IsValid { get; set; }
-        public bool UpdateRecord { get; set; }
-        public int ErrorCode { get; set; }
-        public string ErrorMessage { get; set; }
-        public List<Datum> Data { get; set; }
+        public string Age { get; set; }
+        public string Weigth { get; set; }
+        public string Heigth { get; set; }
     }
 
-    public class WFLBoy
+        public class WFLBoy
     {
         public string Id { get; set; }
         public string Length_cm { get; set; }

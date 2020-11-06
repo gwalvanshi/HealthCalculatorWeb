@@ -17,7 +17,8 @@ namespace HealthCalculator.Web.Common
         public const string GENERIC_CRUD_API_URL = "api/PerformDataOperation";
         public const string GENERIC_API_GETRECORDS = "api/GetRecords";
         public const int Default_UserId = 1;
-
+        public const string GENERIC_CRUD_DATASETRETURN_API_URL = "api/PerformDataOperationDataSet";
+        
         #region ScreenID Constant
         public const string MasterTable_ScreenID = "100";
         public const string MasterTableType_ScreenID = "101";
