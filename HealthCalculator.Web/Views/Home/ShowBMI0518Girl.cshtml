@@ -65,7 +65,7 @@
 
     function Bind_BarChart_TrendMain(odata)
     {
-        var dataSource = odata.dataCollection;
+        var dataSource =  odata.data.Data;
         var Test = $("#chart1").data("dxChart");
         if (Test != undefined) {
             $('#chart1').dxChart('instance').dispose();
