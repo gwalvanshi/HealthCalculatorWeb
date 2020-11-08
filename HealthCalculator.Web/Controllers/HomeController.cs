@@ -168,18 +168,27 @@ namespace HealthCalculator.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetWFLBoy()
+        public async Task<JsonResult> GetWFLBoy(string Enq)
         {
             try
             {
-                int loggedIdUserID = 1;
+                GraphType objGraphType = new GraphType();
+                objGraphType.EnquiryId = "2";
+                objGraphType.Type = "G02";
+            
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "109";
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;              ;
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+                SendObjData.XML = stringTOXml;
+
                 GenericService _genericService = new GenericService();
-                IndexScreenParameterModel collection = new IndexScreenParameterModel();
-                collection.ScreenID = "103";
-                collection.UserId = loggedIdUserID;               
-                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
-                var objCommunication = await _genericService.GetRecords<WFLBoy>(stringContent1);
-                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<WFLRoot>(stringContent);             
+                return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 
             }
             catch (Exception ex)

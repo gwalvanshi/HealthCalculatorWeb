@@ -29,6 +29,11 @@ namespace HealthCalculator.Web.EntityModel
         public string Emailid { get; set; } */
 
     }
+    public class GraphType
+    {
+        public string EnquiryId { get; set; }
+        public string Type { get; set; }
+    }
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
     public class Table
     {
@@ -78,6 +83,18 @@ namespace HealthCalculator.Web.EntityModel
         public int ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
         public Data Data { get; set; }
+    }
+
+    public class WFLRoot
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public List<WFLGirl> Data { get; set; }
     }
 
 
