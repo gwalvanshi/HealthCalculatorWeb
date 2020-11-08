@@ -70,18 +70,28 @@ namespace HealthCalculator.Web.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<JsonResult> GetBMI0518Girl()
+        public async Task<JsonResult> GetBMI0518Girl(string Enq)
         {
             try
             {
-                int loggedIdUserID = 1;
+                GraphType objGraphType = new GraphType();
+                objGraphType.EnquiryId = Enq;
+                objGraphType.Type = "G518";
+
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "109";
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId; ;
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+                SendObjData.XML = stringTOXml;
+
                 GenericService _genericService = new GenericService();
-                IndexScreenParameterModel collection = new IndexScreenParameterModel();
-                collection.ScreenID = "108";
-                collection.UserId = loggedIdUserID;
-                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
-                var objCommunication = await _genericService.GetRecords<BMI0518Boy>(stringContent1);
-                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<WFLRootGirl0518Girl>(stringContent);
+                return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
             }
             catch (Exception ex)
             {
@@ -89,18 +99,28 @@ namespace HealthCalculator.Web.Controllers
             }
         }
         [HttpGet]
-        public async Task<JsonResult> GetBMI0518Boy()
+        public async Task<JsonResult> GetBMI0518Boy(string Enq)
         {
             try
             {
-                int loggedIdUserID = 1;
+                GraphType objGraphType = new GraphType();
+                objGraphType.EnquiryId = Enq;
+                objGraphType.Type = "G518";
+
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "109";
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId; ;
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+                SendObjData.XML = stringTOXml;
+
                 GenericService _genericService = new GenericService();
-                IndexScreenParameterModel collection = new IndexScreenParameterModel();
-                collection.ScreenID = "107";
-                collection.UserId = loggedIdUserID;
-                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
-                var objCommunication = await _genericService.GetRecords<BMI0518Boy>(stringContent1);
-                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<WFLRootGirl0518Boy>(stringContent);
+                return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
             }
             catch (Exception ex)
             {
@@ -109,18 +129,28 @@ namespace HealthCalculator.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetBMI0205Boy()
+        public async Task<JsonResult> GetBMI0205Boy(string Enq)
         {
             try
             {
-                int loggedIdUserID = 1;
+                GraphType objGraphType = new GraphType();
+                objGraphType.EnquiryId = Enq;
+                objGraphType.Type = "G25";
+
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "109";
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId; ;
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+                SendObjData.XML = stringTOXml;
+
                 GenericService _genericService = new GenericService();
-                IndexScreenParameterModel collection = new IndexScreenParameterModel();
-                collection.ScreenID = "105";
-                collection.UserId = loggedIdUserID;
-                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
-                var objCommunication = await _genericService.GetRecords<BMI0205Boy>(stringContent1);
-                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<WFLRootGirl0205Boy>(stringContent);
+                return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
             }
             catch (Exception ex)
             {
@@ -128,18 +158,28 @@ namespace HealthCalculator.Web.Controllers
             }
         }
         [HttpGet]
-        public async Task<JsonResult> GetBMI0205Girl()
+        public async Task<JsonResult> GetBMI0205Girl(string Enq)
         {
             try
             {
-                int loggedIdUserID = 1;
+                GraphType objGraphType = new GraphType();
+                objGraphType.EnquiryId = Enq;
+                objGraphType.Type = "G25";
+
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "109";
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId; ;
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+                SendObjData.XML = stringTOXml;
+
                 GenericService _genericService = new GenericService();
-                IndexScreenParameterModel collection = new IndexScreenParameterModel();
-                collection.ScreenID = "106";
-                collection.UserId = loggedIdUserID;
-                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
-                var objCommunication = await _genericService.GetRecords<BMI0205Girl>(stringContent1);
-                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<WFLRootGirl0205Girl>(stringContent);
+                return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
             }
             catch (Exception ex)
             {
@@ -148,18 +188,28 @@ namespace HealthCalculator.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetWFLGirl()
+        public async Task<JsonResult> GetWFLGirl(string Enq)
         {
             try
             {
-                int loggedIdUserID = 1;
+                GraphType objGraphType = new GraphType();
+                objGraphType.EnquiryId = Enq;
+                objGraphType.Type = "G02";
+
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "109";
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId; ;
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+                SendObjData.XML = stringTOXml;
+
                 GenericService _genericService = new GenericService();
-                IndexScreenParameterModel collection = new IndexScreenParameterModel();
-                collection.ScreenID = "104";
-                collection.UserId = loggedIdUserID;
-                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
-                var objCommunication = await _genericService.GetRecords<WFLGirl>(stringContent1);
-                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<WFLRootGirl>(stringContent);
+                return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
             }
             catch (Exception ex)
             {
@@ -173,13 +223,13 @@ namespace HealthCalculator.Web.Controllers
             try
             {
                 GraphType objGraphType = new GraphType();
-                objGraphType.EnquiryId = "2";
+                objGraphType.EnquiryId = Enq;
                 objGraphType.Type = "G02";
             
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;              ;
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -187,7 +237,7 @@ namespace HealthCalculator.Web.Controllers
 
                 GenericService _genericService = new GenericService();
                 var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
-                var status = await _genericService.PerformDataOperationList<WFLRoot>(stringContent);             
+                var status = await _genericService.PerformDataOperationList<WFLRootBoy>(stringContent);             
                 return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 
             }

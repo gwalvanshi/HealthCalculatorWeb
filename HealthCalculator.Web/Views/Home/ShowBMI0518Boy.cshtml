@@ -55,9 +55,9 @@
      var virtualPath = "@Url.Content("~/")";
     $(document).ready(function ()
     {
-
+      var qData = "@Request.QueryString["Enq"].ToString()";
         //Bind_BarChart_TrendMain();
-        CommonAjaxMethod('Home/GetBMI0518Boy/', null, false, 'GET', function (response) {
+        CommonAjaxMethod('Home/GetBMI0518Boy/', { Enq: qData }, false, 'GET', function (response) {
             Bind_BarChart_TrendMain(response);
         });
 

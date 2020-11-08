@@ -55,9 +55,9 @@
      var virtualPath = "@Url.Content("~/")";
     $(document).ready(function ()
     {
-
+      var qData = "@Request.QueryString["Enq"].ToString()";
         //Bind_BarChart_TrendMain();
-        CommonAjaxMethod('Home/GetWFLBoy/', null, false, 'GET', function (response) {
+        CommonAjaxMethod('Home/GetWFLBoy/', { Enq: qData }, false, 'GET', function (response) {
             Bind_BarChart_TrendMain(response);
         });
 

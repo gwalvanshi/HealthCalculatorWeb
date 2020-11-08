@@ -85,7 +85,7 @@ namespace HealthCalculator.Web.EntityModel
         public Data Data { get; set; }
     }
 
-    public class WFLRoot
+    public class WFLRootGirl
     {
         public string GUID { get; set; }
         public int ReferenceID { get; set; }
@@ -95,6 +95,66 @@ namespace HealthCalculator.Web.EntityModel
         public int ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
         public List<WFLGirl> Data { get; set; }
+    }
+
+    public class WFLRootGirl0518Boy
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public List<BMI0518Boy> Data { get; set; }
+    }
+
+    public class WFLRootGirl0518Girl
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public List<BMI0518Girl> Data { get; set; }
+    }
+
+    public class WFLRootGirl0205Girl
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public List<BMI0205Girl> Data { get; set; }
+    }
+
+    public class WFLRootGirl0205Boy
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public List<BMI0205Boy> Data { get; set; }
+    }
+
+    public class WFLRootBoy
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public List<WFLBoy> Data { get; set; }
     }
 
 
