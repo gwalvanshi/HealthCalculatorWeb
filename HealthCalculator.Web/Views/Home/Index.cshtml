@@ -2526,15 +2526,16 @@
                                                         <div class="form-group pl-1">
                                                             <select id="ddlChildGaram" class="form-control">
                                                                 <option selected>Grams</option>
-                                                                <option>100</option>                                                           
-                                                                <option>200</option>                                                               
-                                                                <option>300</option>                                                               
-                                                                <option>400</option>                                                              
-                                                                <option>500</option>                                                               
-                                                                <option>600</option>                                                              
-                                                                <option>700</option>                                                              
-                                                                <option>800</option>                                                              
-                                                                <option>900</option>                                                              
+                                                                <option>0</option>
+                                                                <option>100</option>
+                                                                <option>200</option>
+                                                                <option>300</option>
+                                                                <option>400</option>
+                                                                <option>500</option>
+                                                                <option>600</option>
+                                                                <option>700</option>
+                                                                <option>800</option>
+                                                                <option>900</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -2912,6 +2913,7 @@
                 var paramCM = { ControlName: "ddlChildCentimeter", OptionValue: $("#ddlChildCentimeter").val(), OtherOption: "" }
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramCM);
             }
+            EnquiryModel.Instance_Enquiry_Transaction.push(heightselection);
             var paramWeightSelection = "";
             //1 = KG  2 = Pounds
             if ($("#ChildWeightSelect").val() == "1") {
