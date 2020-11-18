@@ -15,6 +15,8 @@ namespace HealthCalculator.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private const string Subject = "Eating Smart Health Rating";
+
         public ActionResult Index()
         {
             return View();
@@ -270,7 +272,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods cm = new CommonMethods();
                 if (!string.IsNullOrEmpty(collection.Instance_enquiry.Email_ID))
                 {
-                    cm.SendEmail(collection.Instance_enquiry.Email_ID, "Welcome to Eating india", "", status.data.Data.Table, collection, status.data.Data.Table1);
+                    cm.SendEmail(collection.Instance_enquiry.Email_ID, Subject, "", status.data.Data.Table, collection, status.data.Data.Table1);
                 }
                 return new JsonResult { Data = status };
             }
