@@ -61,10 +61,9 @@ namespace HealthCalculator.Web.EntityModel
         public string Type { get; set; }
         public string Age { get; set; }
         public string Weight { get; set; }
-        public string height { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public object ModifiledBy { get; set; }
-        public object ModifiledDate { get; set; }
+        public string height { get; set; }      
+        public string WeightLB { get; set; }
+        public string HeightFI { get; set; }
     }
 
     public class Data
@@ -231,6 +230,8 @@ namespace HealthCalculator.Web.EntityModel
         public string NintyFive { get; set; }
         public string NintySeven { get; set; }
         public string NintyNine { get; set; }
+        public string TwentyThree { get; set; }
+        public string TwentySeven { get; set; }
 
     }
 
@@ -252,6 +253,10 @@ namespace HealthCalculator.Web.EntityModel
         public string NintyFive { get; set; }
         public string NintySeven { get; set; }
         public string NintyNine { get; set; }
+        public string TwentyThree { get; set; }
+
+        public string TwentySeven { get; set; }
+
 
     }
     //BMI0205Girl
