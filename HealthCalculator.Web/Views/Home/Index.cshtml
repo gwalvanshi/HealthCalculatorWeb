@@ -185,8 +185,7 @@
                                         </div>
                                         <div class="form-group">
                                             <select id="txtAge" class="form-control">
-                                                <option>Age</option>
-                                                <option value="16">16</option>
+                                                <option>Age</option>                                              
                                                 <option value="17">17</option>
                                                 <option value="18">18</option>
                                                 <option value="19">19</option>
@@ -1501,75 +1500,99 @@
 
                                         <p class="semi mb-2">Do you suffer from any health issues?</p>
 
-                                        <ul style="list-style-type:none;">
-                                            <li>
-                                                <input type="checkbox" id="chkAdbType" />Diabetes Type1
+                                        <div class="form-group">
+                                            <p class="semi mb-2"><input type="checkbox" id="chkDiabetesType" onclick="Diabetic(1)" />Diabetes                                          
+                                        </div>   
+                                        <div class="tab-pane fade show" id="DYes" style="display:none;">
+                                            <div class="row no-gutters">
+                                                <div class="col-6">
+                                                    <div class="form-group pr-1">
+                                                        <select id="ddlDiabetic" class="form-control">
+                                                            <option>Type 1</option>
+                                                            <option>Type 2</option>                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
 
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="chkAdbType2" />Diabetes Type2
+                                            </div>
+                                            </div>
+                                        <div class="form-group">
+                                            <p class="semi mb-2"><input type="checkbox" id="chkThyroidType" onclick="ThyroidSelection(1)" />Thyroid
+                                        </div>
+                                        <div class="tab-pane fade show" id="DThyroid" style="display:none;">
+                                            <div class="row no-gutters">
+                                                <div class="col-6">
+                                                    <div class="form-group pr-1">
+                                                        <select id="ddlThyroid" class="form-control">
+                                                            <option>Hypothyroidism</option>
+                                                            <option>Hyperthyroidism</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
 
-                                            </li>
-                                            @*<li>
-                                                <input type="checkbox" id="chkAThyroid" />Thyroid
-                                            </li>*@
-                                            <li>
-                                                <input type="checkbox" id="chkAPCOS" />PCOS
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="chkAHypertension" />Hypothyroidism & Hypothyroidism @*Hypertension or any heart related diseases*@
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="chkAGastrointestinal" />Gastrointestinal disorders
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="chkANone" />None
-                                            </li>
-                                            <li>
+                                            </div>
+                                        </div>
+                                         
+                                        <div class="form-group">
+                                            <p class="semi mb-2"><input type="checkbox" id="chkAPcardiovascular" />Cardiovascular Disease
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="semi mb-2"><input type="checkbox" id="chkAPCOS" />PCOS
+</div>
+                                        <div class="form-group">
+                                            <p class="semi mb-2"><input type="checkbox" id="chkAGastrointestinal" />Gastrointestinal disorders
+</div>
+                                        <div class="form-group">
+                                            <p class="semi mb-2"> <input type="checkbox" id="chkANone" />None
+</div>
+                                        <div class="form-group">
+                                            <p class="semi mb-2">
                                                 <input type="checkbox" id="chkAOthers" />Any other
                                                 <textarea rows="5" id="otherHealthProblem" class="form-control" placeholder="Any other..."></textarea>
-                                            </li>
-                                        </ul>
-
-                                        <div class="nextStepA d-flex justify-content-between">
-                                            <a rel="adultSrcA" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 1</a>
-                                            <a rel="adultSrcC" id="AdultStep3" class="btn bg-sky hvr-sweep-to-top" onclick="return checkAdultStepTwo()">FILL STEP 3</a>
-                                        </div>
-                                    </form>
+</div>
+                                       
+                                            <div class="nextStepA d-flex justify-content-between">
+                                                <a rel="adultSrcA" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 1</a>
+                                                <a rel="adultSrcC" id="AdultStep3" class="btn bg-sky hvr-sweep-to-top" onclick="return checkAdultStepTwo()">FILL STEP 3</a>
+                                            </div>
+</form>
                                 </div>
                                 <div class="adultSrcC" style="display:none;">
                                     <form>
                                         <p class="text-white"><span class="bold">Step 3 :</span> Diet and Lifestyle</p>
+                                      
+                                        <div class="form-group">
+                                            <p class="semi mb-2">Activity level:</p>
+                                            <div class="row no-gutters">
+                                                <div class="col-6">
+                                                    <div class="form-group pr-1">
+                                                        <select id="ddlActivity" class="form-control">                                                           
+                                                            <option>Sedentary</option>
+                                                            <option>Light Physical activity level</option>
+                                                            <option>Moderate physical activity level</option>
+                                                            <option>Heavy Physical activity level</option>                                                          
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                              
+                                            </div>
+                                        </div>                                   
+                                     
+                                        <div class="form-group">
+                                            <p class="semi mb-2">Exercise:</p>                                           
 
+                                            <ul class="nav nav-tabs navDefaultType">
 
-                                        <p class="semi mb-2">Activity level:</p>
+                                                <li class="nav-item">
+                                                    <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="AYes-tab" data-toggle="tab" href="#AYes" aria-selected="true" onclick="exerciseSelection(1)"><span class="imgActive"></span> Yes</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="ANo-tab" data-toggle="tab" href="#ANo" aria-selected="false" onclick="exerciseSelection(2)"><span class="imgActive"></span> No</a>
+                                                </li>
+                                            </ul>
+                                        </div>               
 
-                                        <ul style="list-style-type:none;">
-                                            <li>
-                                                <input type="checkbox" id="chkAdSedentary" />Sedentary
-
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="chkAdLight" />Light Physical activity level
-
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="chkAdModerate" />Moderate physical activity level
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" id="chkAdHeavy" />Heavy Physical activity level
-                                            </li>
-                                        </ul>
-                                        <p class="semi mb-2">Exercise:</p>
-
-                                        <ul class="nav nav-tabs navDefaultType  justify-content-end">
-                                            <li class="nav-item">
-                                                <a class="nav-link active pt-0 pb-0 pr-0 pl-3" id="AYes-tab" data-toggle="tab" href="#AYes" aria-selected="true" onclick="exerciseSelection(1)"><span class="imgActive"></span> Yes</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link pt-0 pb-0  pr-0 pl-3" id="ANo-tab" data-toggle="tab" href="#ANo" aria-selected="false" onclick="exerciseSelection(2)"><span class="imgActive"></span> No</a>
-                                            </li>
-                                        </ul>
+                                     
                                         <div class="tab-content">
                                             <div class="tab-pane fade show active" id="AYes">
                                                 <div class="row no-gutters">
@@ -1589,55 +1612,56 @@
                                                     </div>
 
                                                 </div>
+                                                <div class="form-group">
+                                                    <p class="semi mb-2">Duration:</p>
+                                                    <div class="row no-gutters">
+                                                        <div class="col-6">
+                                                            <div class="form-group pr-1">
+                                                                <select id="ddlExerciseDurationHour" class="form-control">
+                                                                    <option selected>Hours</option>
+                                                                    <option>0</option>
+                                                                    <option>1</option>
+                                                                    <option>2</option>
+                                                                    <option>3</option>
+                                                                    <option>4</option>
+                                                                    <option>5</option>
+                                                                    <option>6</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group pl-1">
+                                                                <select id="ddlExerciseDurationMins" class="form-control">
+                                                                    <option selected>Mins</option>
+                                                                    <option>0</option>
+                                                                    <option>30</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <p class="semi mb-2">How Often:</p>
+                                                    <div class="row no-gutters">
+                                                        <div class="col-6">
+                                                            <div class="form-group pr-1">
+                                                                <select id="ddlHowOften" class="form-control">
+                                                                    <option>How Often</option>
+                                                                    <option>daily</option>
+                                                                    <option>thrice a week</option>
+                                                                    <option>twice a week</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="tab-pane fade" id="ANo">
 
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <p class="semi mb-2">Duration:</p>
-                                            <div class="row no-gutters">
-                                                <div class="col-6">
-                                                    <div class="form-group pr-1">
-                                                        <select id="ddlExerciseDurationHour" class="form-control">
-                                                            <option selected>Hours</option>
-                                                            <option>0</option>
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                            <option>6</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="form-group pl-1">
-                                                        <select id="ddlExerciseDurationMins" class="form-control">
-                                                            <option selected>Mins</option>
-                                                            <option>0</option>
-                                                            <option>30</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <p class="semi mb-2">How Often:</p>
-                                            <div class="row no-gutters">
-                                                <div class="col-6">
-                                                    <div class="form-group pr-1">
-                                                        <select id="ddlHowOften" class="form-control">
-                                                            <option>How Often</option>
-                                                            <option>daily</option>
-                                                            <option>thrice a week</option>
-                                                            <option>twice a week</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
 
-                                            </div>
-                                        </div>
 
                                         <p class="semi mb-2">Duration of sleep:</p>
                                         <select id="ddlSleepDuration" class="form-control">
@@ -3243,7 +3267,39 @@
             });
         }
     }
+    var globalData = 1;
+    function Diabetic(tt)
+    {
+        if (globalData == 1)
+        {
+            globalData = 0;
+            
+            $('#DYes').show();
+        }
+        else {
+            globalData = 1;           
+           
+            $('#DYes').hide();
+        }
+       
 
+    }
+    var globalTHData = 1;
+    function ThyroidSelection(tt) {
+        if (globalTHData == 1) {
+            globalTHData = 0;
+
+            $('#DThyroid').show();
+        }
+        else {
+            globalTHData = 1;
+            
+            $('#DThyroid').hide();
+        }
+
+
+    }
+    
     function heightSelection(selectedval) {
         //debugger;
         $('#ddlAuditCentemer').prop('selectedIndex', 0);

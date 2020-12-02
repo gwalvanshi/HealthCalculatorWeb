@@ -4,7 +4,6 @@ using HealthCalculator.Web.Service;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -20,7 +19,6 @@ namespace HealthCalculator.Web.Controllers
 
         public ActionResult Index()
         {
-           
             return View();
             // return RedirectToAction("Index", "User");
         }
