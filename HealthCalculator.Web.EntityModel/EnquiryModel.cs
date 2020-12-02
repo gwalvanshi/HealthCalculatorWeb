@@ -53,6 +53,8 @@ namespace HealthCalculator.Web.EntityModel
         public string Pin_Code { get; set; }
         public string Country { get; set; }
         public string AgeGroup { get; set; }
+        public string ChildCategory { get; set; }
+        
     }
 
     public class Table1
