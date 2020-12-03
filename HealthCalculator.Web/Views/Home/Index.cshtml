@@ -3354,7 +3354,7 @@
 
     function SaveAdultData() {
         if (validateAdult()) {
-    //debugger;
+   // debugger;
             var EnquiryModel = {
                 Instance_enquiry: {
                     Enquiry_Id: $("#hdnID").val(),
@@ -3408,35 +3408,66 @@
             }
             EnquiryModel.Instance_Enquiry_Transaction.push(paramWeightSelection);
 
-            var paramchkAdbType = { ControlName: "chkAdbType", OptionValue: $("#chkAdbType").prop("checked"), OtherOption: "" }
-            var paramchkAdbType2 = { ControlName: "chkAdbType2", OptionValue: $("#chkAdbType2").prop("checked"), OtherOption: "" }
+            var paramchkDiabetes="";
+            if ($("#chkDiabetesType").prop("checked") == true) {
+                paramchkDiabetes = { ControlName: "chkDiabetesType", OptionValue: "Yes", OtherOption: "" }
+                var paramddlDiabetic = { ControlName: "ddlDiabetic", OptionValue: $("#ddlDiabetic").val(), OtherOption: "" }
+                EnquiryModel.Instance_Enquiry_Transaction.push(paramchkDiabetes);
+                EnquiryModel.Instance_Enquiry_Transaction.push(paramddlDiabetic);
+            }
+            else {
+                paramchkDiabetes = { ControlName: "chkDiabetesType", OptionValue: "No", OtherOption: "" }
+                EnquiryModel.Instance_Enquiry_Transaction.push(paramchkDiabetes);
+            }
+
+            var paramchkThyroidType = "";
+            if ($("#chkThyroidType").prop("checked") == true) {
+                paramchkThyroidType = { ControlName: "chkThyroidType", OptionValue: "Yes", OtherOption: "" }
+                var paramddlThyroid = { ControlName: "ddlThyroid", OptionValue: $("#ddlThyroid").val(), OtherOption: "" }
+                EnquiryModel.Instance_Enquiry_Transaction.push(paramchkThyroidType);
+                EnquiryModel.Instance_Enquiry_Transaction.push(paramddlThyroid);
+            }
+            else {
+                paramchkThyroidType = { ControlName: "chkThyroidType", OptionValue: "No", OtherOption: "" }
+                EnquiryModel.Instance_Enquiry_Transaction.push(paramchkThyroidType);
+            }
+            
+            //var paramchkAdbType = { ControlName: "chkAdbType", OptionValue: $("#chkAdbType").prop("checked"), OtherOption: "" }
+            //var paramchkAdbType2 = { ControlName: "chkAdbType2", OptionValue: $("#chkAdbType2").prop("checked"), OtherOption: "" }
+
+            var paramchkAPcardiovascular = { ControlName: "chkAPcardiovascular", OptionValue: $("#chkAPcardiovascular").prop("checked"), OtherOption: "" }
+           
 
             //var paramchkAThyroid = { ControlName: "chkAThyroid", OptionValue: $("#chkAThyroid").prop("checked"), OtherOption: "" }
             var paramchkAPCOS = { ControlName: "chkAPCOS", OptionValue: $("#chkAPCOS").prop("checked"), OtherOption: "" }
-            var paramchkAHypertension = { ControlName: "chkAHypertension", OptionValue: $("#chkAHypertension").prop("checked"), OtherOption: "" }
+           // var paramchkAHypertension = { ControlName: "chkAHypertension", OptionValue: $("#chkAHypertension").prop("checked"), OtherOption: "" }
             var paramchkAGastrointestinal = { ControlName: "chkAGastrointestinal", OptionValue: $("#chkAGastrointestinal").prop("checked"), OtherOption: "" }
             var paramchkANone = { ControlName: "chkANone", OptionValue: $("#chkANone").prop("checked"), OtherOption: "" }
             var paramchkAOthers = { ControlName: "chkAOthers", OptionValue: $("#chkAOthers").prop("checked"), OtherOption: $("#otherHealthProblem").val() }
 
-            var paramchkAdSedentary = { ControlName: "chkAdSedentary", OptionValue: $("#chkAdSedentary").prop("checked"), OtherOption: "" }
-            var paramchkAdLight = { ControlName: "chkAdLight", OptionValue: $("#chkAdLight").prop("checked"), OtherOption: "" }
-            var paramchkAdModerate = { ControlName: "chkAdModerate", OptionValue: $("#chkAdModerate").prop("checked"), OtherOption: "" }
-            var paramchkAdHeavy = { ControlName: "chkAdHeavy", OptionValue: $("#chkAdHeavy").prop("checked"), OtherOption: "" }
+            //var paramchkAdSedentary = { ControlName: "chkAdSedentary", OptionValue: $("#chkAdSedentary").prop("checked"), OtherOption: "" }
+           // var paramchkAdLight = { ControlName: "chkAdLight", OptionValue: $("#chkAdLight").prop("checked"), OtherOption: "" }
+          //  var paramchkAdModerate = { ControlName: "chkAdModerate", OptionValue: $("#chkAdModerate").prop("checked"), OtherOption: "" }
+            
+            var paramddlActivity = { ControlName: "ddlActivity", OptionValue: $("#ddlActivity").val(), OtherOption: "" }
+
+           // var paramchkAdHeavy = { ControlName: "chkAdHeavy", OptionValue: $("#chkAdHeavy").prop("checked"), OtherOption: "" }
             var paramddlSleepDuration = { ControlName: "ddlSleepDuration", OptionValue: $("#ddlSleepDuration").val(), OtherOption: "" }
 
-            EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdbType);
-            EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdbType2);
+            //EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdbType);
+           //EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdbType2);
            // EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAThyroid);
-            EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAHypertension);
+           // EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAHypertension);
             EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAGastrointestinal);
             EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAPCOS);
             EnquiryModel.Instance_Enquiry_Transaction.push(paramchkANone); 
             EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAOthers);
 
-            EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdSedentary);
-            EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdLight);
-            EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdModerate);
-            EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdHeavy);
+           // EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdSedentary);
+          //  EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdLight);
+         //   EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdModerate);
+         //   EnquiryModel.Instance_Enquiry_Transaction.push(paramchkAdHeavy);
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramddlActivity);
             EnquiryModel.Instance_Enquiry_Transaction.push(paramddlSleepDuration);
             //1= Litter 2 = Glass
             if ($("#WaterIntakeGlassLitter").val() == "1") {
