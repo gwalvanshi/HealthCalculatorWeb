@@ -1,5 +1,40 @@
 
 
+$(document).ready(function() {
+	/* Homepage thumbnail slider */
+	$("#content-slider").lightSlider({
+		loop:true,
+		keyPress:true,
+		auto:true,
+		pauseOnHover: true,
+		slideMove:2,
+		item:3,
+		easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+		responsive : [
+            {
+                breakpoint:800,
+                settings: {
+                    item:1,
+                    slideMove:1,
+                    slideMargin:6,
+                  }
+            },
+            {
+                breakpoint:480,
+                settings: {
+                    item:1,
+                    slideMove:1
+                  }
+            }
+        ]
+
+	});
+	
+	/* Animation Effects */
+	$(".effects").smoove({offset:"30%"});
+});
+
+
 
 /* ***************** show / hide div ******************************** */
 $('.nextStep a').on('click', function ()

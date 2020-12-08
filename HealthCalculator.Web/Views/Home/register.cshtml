@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid bg-sky">
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
+            <h2 class="semi text-white text-shadow">MY ACCOUNT</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid flowerBg">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12 col-lg-8">
+            <div class="row justify-content-center align-items-center middleContent">
+                <div class="col-12 col-md-5 col-lg-5 d-flex align-items-center loginScreen">
+                    <div>
+                        <img src="@CommonMethods.ServerPath/img/briefcase.png" class="img-fluid mb-5" />
+                        <h2 class="semi">REGISTER</h2>
+                        <p>Be a part of Eating Smart and enjoy a healthy lifestyle!</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-7 col-lg-7 d-flex align-items-center loginForm">
+                    <form>
+                        <div class="form">
+                            <div class="col-12 col-md-12 form-group">
+                                <input type="text" class="form-control border mandotory" id="txtFristName" maxlength="50" placeholder="Enter First Name">
+                            </div>
+                            <div class="col-12 col-md-12 form-group">
+                                <input type="text" class="form-control border mandotory" id="txtLName" maxlength="50" placeholder="Enter Last Name">
+                            </div>
+                            <div class="col-12 col-md-12 form-group">
+                                <input type="text" class="form-control border mandotory" id="txtMobile" maxlength="12" placeholder="Enter Mobile No">
+                            </div>
+                            <div class="col-12 col-md-12 form-group">
+                                <input type="text" class="form-control border mandotory" id="txtEmail" maxlength="200" placeholder="Enter Email ID">
+                            </div>
+                            <div class="col-12 col-md-12 form-group">
+                                <input type="password" class="form-control border mandotory" id="txtPassword" maxlength="15" placeholder="Choose Your Password">
+                            </div>
+                            <div class="col-12 col-md-12 form-group">
+                                <input type="password" class="form-control border mandotory" id="txtConfirmPassword" maxlength="15" placeholder="Confirm Password">
+                            </div>
+                            <div class="col-12 col-md-12 form-group">
+                                <a class="btn btn-reg mb-2 hvr-sweep-to-top btn-block rounded-0" onclick="UserRegistration()">&nbsp; &nbsp; Register &nbsp; &nbsp; </a>
+                            </div>
+                            <div class="col-12 col-md-12 form-group">
+                                <p><a href="~/Home/login" class="text-dark"><small>Already have an account? <u>Sign in now!</u></small></a></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  
+    var isAllValid = true;
+    var isSaved = true;
+    var commonjsURL = '/Scripts/DevScripts/Common.js';
+
+    function UserRegistration()
+    {
+        if (ValidationOnSave())
+        {
+            if (ValidateRequiredField()) {
+                var data =
+                {
+                    FirstName: $("#txtFristName").val() == undefined ? '' : $("#txtFristName").val().trim(),
+                    LastName: $("#txtLName").val() == undefined ? '' : $("#txtLName").val().trim(),
+                    Email: $('#txtEmail').val() == undefined ? 0 : $('#txtEmail').val().trim(),
+                    Password: $('#txtPassword').val() == undefined ? 0 : $('#txtPassword').val().trim(),
+                    ConfirmPassword: $('#txtConfirmPassword').val() == undefined ? 0 : $('#txtConfirmPassword').val().trim(),
+                    PhoneNo: $("#txtMobile").val() == undefined ? 0 : $('#txtMobile').val().trim(),
+                    UserName: $('#txtEmail').val() == undefined ? 0 : $('#txtEmail').val().trim(),
+                    RoleId: 1,
+                    MobileNo: $("#txtMobile").val() == undefined ? 0 : $('#txtMobile').val().trim(),
+                }
+
+                CommonAjaxMethod('User/AddUserDetails', data, false, 'POST', function (response)
+                {                  
+                    if(response.data == 1)
+                    {
+                        alert('You have been registered with us.Kindly click on login.');
+                        FormControlValueClear();
+                    }
+                    else if(response.data == 2)
+                    {
+                        alert('This Mobile number and Email id  is already registered with us.Kindly choose different mobile number  and email id.');                       
+                    }
+
+                });
+            }
+            else
+            {
+                alert('Please fill all details to register.');
+            }
+
+        }
+
+    }
+    function ValidateRequiredField()
+    {
+      
+        var isRequired = true;
+        var x = document.getElementsByClassName("mandotory");
+        var i;
+        for (i = 0; i < x.length; i++)
+        {
+         
+            if(x[i].value=="")
+            {
+                isRequired = false;
+            }
+        }
+        return isRequired;
+   }
+ 
+    function ValidationOnSave() {
+    
+        if (!ValidateEmail(document.getElementById('txtEmail').value))
+        {
+            alert("Invalid email address.")
+            return false;
+        }
+        var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+        if (document.getElementById('txtPassword').value != document.getElementById('txtConfirmPassword').value) {
+            alert("Password and confirm password should be matached.")
+            return false;
+        }
+        else if (!document.getElementById('txtPassword').value.match(passw)) {
+            alert("Passwords must have minimum 6 char and at least one non letter or digit character.Passwords must have at least one lowercase('a' - 'z').Passwords must have at least one uppercase('A' - 'Z').");
+            return false;
+        }
+
+        return true;
+    }
+    //For control clear in case form submitted succesfuly.
+    function FormControlValueClear()
+    {
+        $('#txtEmail,#txtFristName,#txtLName,#txtMobile,#txtConfirmPassword,#txtPassword').val('');
+        
+    }
+   
+</script>
+

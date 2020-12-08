@@ -58,7 +58,7 @@ namespace HealthCalculator.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> AddUserDetails(LoginEntity collection)
         {
-            collection.Password = DataEncryption.Encrypt(collection.Password.Trim());
+            //collection.Password = DataEncryption.Encrypt(collection.Password.Trim());
             UserService objLoginServices = new UserService();      
             var stringContent = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
             var isAuth = await objLoginServices.SaveUserDetails(stringContent);
@@ -277,231 +277,29 @@ namespace HealthCalculator.Web.Controllers
                 string errorMessage = string.Empty;
 
 
-
                 string data = string.Empty;
 
-                if (!this.IsCaptchaValid("Validate"))
+                var stringContent3 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+
+                LoginServices objLoginServices = new LoginServices();
+
+                var status = await objLoginServices.GetToken(stringContent3);
+
+                if (status.IsSuccessStatusCode)
 
                 {
 
-                    errorMessage = "Invalid Captcha";
+                    errorMessage = string.Empty;
+
+                    Session["Access_Token"] = status.data.authToken;
+
+                    Session["UserId"] = status.data.EmployeeID;
+
+                    Session["UserName"] = status.data.EmployeeName;
 
                 }
 
-                else
-
-                {
-
-                    LoginServices objLoginServices = new LoginServices();
-
-                    if (collection.LoginType == 1)
-
-                    {
-
-                        //check if LDAP login.
-                        var pwd = DataEncryption.Decrypt("LVad7apil5gTwlACD29+7A==");
-                        collection.Password = DataEncryption.Encrypt(collection.Password.Trim());
-                        var stringContent3 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
-
-                        objLoginServices = new LoginServices();
-
-                        var status = await objLoginServices.GetToken(stringContent3);
-
-                        if (status.IsSuccessStatusCode)
-
-                        {
-
-                            errorMessage = string.Empty;
-
-                            Session["Access_Token"] = status.data.authToken;
-
-                            Session["UserId"] = status.data.userId;
-
-                            Session["UserName"] = status.data.EmployeeName;
-
-                        }
-
-                        else
-
-                        {
-
-                            errorMessage = status.ErrorMessage;
-
-                        }
-
-                    }
-
-                    else
-
-                    {
-
-
-
-                        collection.Password = DataEncryption.Encrypt(collection.Password);
-
-
-
-                        var days = ConfigurationManager.AppSettings["PasswordExpiredDays"].ToString();
-
-                        collection.Days = Convert.ToInt32(days);
-
-                        var stringContent = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
-
-                        var isValidUser = await objLoginServices.AuthenticateUserCredentials(stringContent);
-
-                        if (string.IsNullOrEmpty(isValidUser.ErrorMessage))
-
-                        {
-
-                            if (isValidUser.data == 0)
-
-                            {
-
-                                errorMessage = "Incorrect UserName/Password";
-
-                            }
-
-                            else if (isValidUser.data == -1)
-
-                            {
-
-                                errorMessage = "Account locked. Please contact admin.";
-
-                            }
-
-                        }
-
-                        else
-
-                        {
-
-                            errorMessage = isValidUser.ErrorMessage;
-
-                        }
-
-                        if (string.IsNullOrEmpty(errorMessage))
-
-                        {
-
-                            objLoginServices = new LoginServices();
-
-                            var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
-
-                            var isAuth = await objLoginServices.CheckIfFirstTimeLogin(stringContent1);
-
-                            if (string.IsNullOrEmpty(isAuth.ErrorMessage))
-
-                            {
-
-                                if (isAuth.data)
-
-                                {
-
-                                    // errorMessage = "First time login,Please change the password";
-
-                                }
-
-
-
-                            }
-
-                            else
-
-                            {
-
-                                errorMessage = isAuth.ErrorMessage;
-
-                            }
-
-                        }
-
-
-
-
-
-                        if (string.IsNullOrEmpty(errorMessage))
-
-                        {
-
-                            var stringContent2 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
-
-                            objLoginServices = new LoginServices();
-
-                            var isExpired = await objLoginServices.CheckIfPassExpired(stringContent2);
-
-
-
-                            if (string.IsNullOrEmpty(isExpired.ErrorMessage))
-
-                            {
-
-                                if (isExpired.data)
-
-                                {
-
-                                    /// errorMessage = "Password is expired, Please change the password";
-
-                                }
-
-
-
-                            }
-
-                            else
-
-                            {
-
-                                errorMessage = isExpired.ErrorMessage;
-
-                            }
-
-                        }
-
-                        if (string.IsNullOrEmpty(errorMessage))
-
-                        {
-
-                            var stringContent3 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
-
-                            objLoginServices = new LoginServices();
-
-                            var status = await objLoginServices.GetToken(stringContent3);
-
-                            if (status.IsSuccessStatusCode)
-
-                            {
-
-                                errorMessage = string.Empty;
-
-                                Session["Access_Token"] = status.data.authToken;
-
-                                Session["UserId"] = status.data.EmployeeID;
-
-                                Session["UserName"] = status.data.EmployeeName;
-
-                            }
-
-                            else
-
-                            {
-
-                                errorMessage = status.ErrorMessage;
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
-
-
-
-
-                return new JsonResult { Data = errorMessage };
-
-
+                return new JsonResult { Data = status,JsonRequestBehavior=JsonRequestBehavior.AllowGet };
 
             }
 

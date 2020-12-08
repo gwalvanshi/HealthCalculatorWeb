@@ -675,14 +675,11 @@ Created By / On DateTime    : Jiya / 21 Aug 2019
 Modified By / On DateTime   :
 Description                 : This function is check valid email id.
 */
-function ValidateEmail(email, emailErrMsg) {
+function ValidateEmail(email)
+{
     var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-    if (reg.test(email.value) == false && email.value.length != 0) {
-        var x = document.getElementById("toastmsg");
-        x.innerHTML = '<p class="green">' + emailErrMsg + '!</p>';
-        x.className = "show";
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-        email.focus();
+    if (reg.test(email) == false && email.length != 0)
+    {              
         return false;
     }
     return true;

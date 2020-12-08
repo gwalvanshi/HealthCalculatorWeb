@@ -17,8 +17,100 @@ namespace HealthCalculator.Web.Controllers
     {
         private const string Subject = "Eating Smart Health Rating";
 
-        public ActionResult Index()
+        #region Program
+        public ActionResult register()
         {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+       
+        public ActionResult contact()
+        {
+            return View();
+        }
+        public ActionResult faq()
+        {
+            return View();
+        }
+        public ActionResult privacyPolicy()
+        {
+            return View();
+        }
+        public ActionResult careers()
+        {
+            return View();
+        }
+        public ActionResult testimonials()
+        {
+            return View();
+        }
+        public ActionResult corporateWellness()
+        {
+            return View();
+        }
+        public ActionResult blogs()
+        {
+            return View();
+        }
+        public ActionResult smartWeightLoss()
+        {
+            return View();
+        }
+
+        public ActionResult smartWeightGain()
+        {
+            return View();
+        }
+        public ActionResult smartManagementForDisease()
+        {
+            return View();
+        }
+        public ActionResult smartBodyToningBuilding()
+        {
+            return View();
+        }
+        public ActionResult smartPsychologicalWellBeing()
+        {
+            return View();
+        }
+        public ActionResult smartEatingOut()
+        {
+            return View();
+        }
+        public ActionResult smartEnhancer()
+        {
+            return View();
+        }
+        public ActionResult smartChildNutrition()
+        {
+            return View();
+        }
+        public ActionResult smartEatingForSpecialChildren()
+        {
+            return View();
+        }
+        public ActionResult eatingSmartTools()
+        {
+            return View();
+        }
+        public ActionResult login()
+        {
+            return View();
+        }
+
+        #endregion
+        public ActionResult about()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+        public ActionResult howItWorks()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+        public ActionResult Index()
+        {           
             return View();
             // return RedirectToAction("Index", "User");
         }
@@ -56,21 +148,9 @@ namespace HealthCalculator.Web.Controllers
         {
             return View();
             // return RedirectToAction("Index", "User");
-        }
+        }       
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+       
         [HttpGet]
         public async Task<JsonResult> GetBMI0518Girl(string Enq)
         {
