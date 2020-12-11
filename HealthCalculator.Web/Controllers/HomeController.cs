@@ -18,6 +18,41 @@ namespace HealthCalculator.Web.Controllers
         private const string Subject = "Eating Smart Health Rating";
 
         #region Program
+
+        public ActionResult payments()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
+        public ActionResult helpDesk()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+        public ActionResult MyEatingPattern()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+        public ActionResult MyEatingSmartTools()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
+
+        public ActionResult tracker()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+        public ActionResult assessment()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
         public ActionResult register()
         {
             return View();

@@ -669,6 +669,12 @@
     <Content Include="Views\Home\smartWeightGain.cshtml" />
     <Content Include="Views\Home\smartWeightLoss.cshtml" />
     <Content Include="Views\Home\testimonials.cshtml" />
+    <Content Include="Views\Home\assessment.cshtml" />
+    <Content Include="Views\Home\tracker.cshtml" />
+    <Content Include="Views\Home\MyEatingSmartTools.cshtml" />
+    <Content Include="Views\Home\MyEatingPattern.cshtml" />
+    <Content Include="Views\Home\helpDesk.cshtml" />
+    <Content Include="Views\Home\payments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
