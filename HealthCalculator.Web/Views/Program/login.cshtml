@@ -36,13 +36,16 @@
                                 <a class="btn btn-reg mb-2 hvr-sweep-to-top btn-block rounded-0" onclick="Login()">&nbsp; &nbsp; Login &nbsp; &nbsp; </a>
                             </div>
                             <div class="col-12 col-md-12 form-group">
-                                <p><a href="~/Program/register" class="text-dark"><small>New to Eating Smart? <u>Create an account</u></small></a></p>
+                                <p><a href="~/Home/register" class="text-dark"><small>New to Eating Smart? <u>Create an account</u></small></a></p>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
+    <div style="display:none;">
+        <a id="SimulateOpenLink" href="#" target="_blank" rel="noopener noreferrer"></a>
     </div>
 </div>
 <script>
@@ -73,6 +76,9 @@
                         sessionStorage.setItem('authToken', response.data.authToken);
                         sessionStorage.setItem('userId', response.data.userId);
                         sessionStorage.setItem('EmployeeName', response.data.EmployeeName);
+                        document.getElementById("SimulateOpenLink").href = "~/Home/assessment";
+                        document.getElementById("SimulateOpenLink").click();                       
+                       
                     }
                     else
                     {

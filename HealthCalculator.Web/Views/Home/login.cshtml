@@ -11,7 +11,9 @@
         </div>
     </div>
 </div>
-
+<div style="display:none;">
+    <a id="SimulateOpenLink" href="#" target="_blank" rel="noopener noreferrer"></a>
+</div>
 <div class="container-fluid flowerBg">
     <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-8">
@@ -36,7 +38,7 @@
                                 <a class="btn btn-reg mb-2 hvr-sweep-to-top btn-block rounded-0" onclick="Login()">&nbsp; &nbsp; Login &nbsp; &nbsp; </a>
                             </div>
                             <div class="col-12 col-md-12 form-group">
-                                <p><a href="~/Program/register" class="text-dark"><small>New to Eating Smart? <u>Create an account</u></small></a></p>
+                                <p><a href="~/Home/register" class="text-dark"><small>New to Eating Smart? <u>Create an account</u></small></a></p>
                             </div>
                         </div>
                     </form>
@@ -52,39 +54,41 @@
         var password = $('#txtPassword').val();
         if (!email || email == '' || !password || password == '')
         {
-           alert("Please enter your email/Mobile and password.");         
+           alert("Please enter your email/Mobile and password.");
            return false;
         }
-      
+
         $.ajax({
             url: virtualPath + 'User/Token',
             method: 'POST',
             data: {
                 username: email,
-                password: password               
+                password: password
             },
             success: function (response)
             {
-                
+
                 if (response.ErrorMessage == null)
                 {
                     if (response.data.EmployeeName!= null)
                     {
+                        debugger;
                         sessionStorage.setItem('authToken', response.data.authToken);
                         sessionStorage.setItem('userId', response.data.userId);
-                        sessionStorage.setItem('EmployeeName', response.data.EmployeeName);
+                        sessionStorage.setItem('EmployeeName', response.data.EmployeeName);                      
+                        window.location.href="@Url.Action("assessment", "Home")";
                     }
                     else
                     {
                         alert("The user name or password is incorrect.");
                     }
-                   
-                   
+
+
                 }
-                else {                   
-                   
-                    alert(response.ErrorMessage);                    
-                                   
+                else {
+
+                    alert(response.ErrorMessage);
+
                 }
             },
             error: function (jqXHR)
@@ -93,5 +97,5 @@
             }
         });
     }
-    
+
 </script>
