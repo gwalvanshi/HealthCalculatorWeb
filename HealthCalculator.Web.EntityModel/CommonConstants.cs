@@ -12,5 +12,6 @@ namespace HealthCalculator.Web.Common
         public const string API_DROPDOWN = "api/GetDropdownData";
         
 
+
     }
 }
