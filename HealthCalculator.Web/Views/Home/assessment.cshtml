@@ -4,10 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-fluid bg-sky">
-    <div class="row">
-        <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
-            <h2 class="semi text-white text-shadow">ACCOUNT SETTINGS</h1>
+<div>
+    <div class="container-fluid bg-sky">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
+                <h2 class="semi text-white text-shadow">ACCOUNT SETTINGS</h2>
+            </div>
         </div>
     </div>
 </div>
@@ -44,13 +46,13 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Name <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                            <input type="text" class="form-control border mandotory" id="txtName" maxlength="100" placeholder="Enter Name" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Gender <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select mandotory" id="ddlGender">
                                 <option selected>Select</option>
                                 <option value="1">Male</option>
                                 <option value="2">Female</option>
@@ -60,49 +62,55 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Birth date <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                            <input type="text" class="form-control border mandotory" id="txtDOB" maxlength="100" placeholder="Enter Birth date">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Age <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                            <input type="text" class="form-control border mandotory" id="txtAge" maxlength="100" placeholder="Enter Age" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Country <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                            <input type="text" class="form-control border mandotory" id="txtCountry" maxlength="100" placeholder="Enter Country" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-12 col-sm-5 col-form-label semi">State <span class="float-right d-none d-md-block"> : </span></label>
+                        <div class="col-12 col-sm-7">
+                            <input type="text" class="form-control border mandotory" id="txtState" maxlength="100" placeholder="Enter State" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">City <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                            <input type="text" class="form-control border mandotory" id="txtCity" maxlength="100" placeholder="Enter City" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Email ID <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                            <input type="text" class="form-control border mandotory" id="txtEmail" maxlength="200" placeholder="Enter Email ID">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Phone Number <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                            <input type="text" class="form-control border mandotory" id="txtPhoneNumber" maxlength="100" placeholder="Enter Phone Number" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Caste [In order to evaluate food preference] <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                            <input type="text" class="form-control border " id="txtCaste" maxlength="100" placeholder="Enter Caste" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Marital Status <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlMaritalStatus">
                                 <option selected>Select</option>
                                 <option value="1">Single</option>
                                 <option value="2">Married</option>
@@ -113,7 +121,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Do you Have Children <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlDoYouHaveChildren">
                                 <option selected>Select</option>
                                 <option value="1">Yes</option>
                                 <option value="2">No</option>
@@ -123,18 +131,20 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Type of family <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
-                                <option selected>Select</option>
-                                <option value="1">Joint</option>
-                                <option value="2">Nuclear</option>
-                                <option value="2">Staying Alone</option>
-                            </select>
+                            <div>
+                                <select class="custom-select" id="ddlTypeOfFamily ">
+                                    <option selected>Select</option>
+                                    <option value="1">Joint</option>
+                                    <option value="2">Nuclear</option>
+                                    <option value="2">Staying Alone</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Currently Working <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlCurrentlyWorking">
                                 <option selected>Select</option>
                                 <option value="1">Yes</option>
                                 <option value="2">No</option>
@@ -144,12 +154,12 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Occupation <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                            <input type="text" class="form-control border mandotory" id="txtOccupation" maxlength="100" placeholder="Enter Occupation" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12 col-sm-12 text-right">
-                            <a class="btn btn-reg mb-4 hvr-sweep-to-top">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
+                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveGenralInfo" onclick="SaveGenralInfo()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
                         </div>
                     </div>
                     <div class="row">
@@ -169,7 +179,7 @@
                             </p>
                         </div>
                         <div class="col-12 col-sm-12 text-right">
-                            <a class="btn btn-reg mb-4 hvr-sweep-to-top">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
+                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserPhoto" onclick="SaveUserPhoto()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
                         </div>
                     </div>
                     <div class="row">
@@ -181,21 +191,21 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Weight <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-5 col-sm-2">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select mandotory" id="ddlWeightType">
                                 <option selected>Select Type</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
                             </select>
                         </div>
-                        <div class="col-7 col-sm-5 pl-0">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                        <div class="col-7 col-sm-5 pl-0">                            
+                            <input type="text" class="form-control border mandotory" id="txtWeight" maxlength="100" placeholder="Enter Weight" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Height <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-5 col-sm-2">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select mandotory" id="ddlHeightType">
                                 <option selected>Select Type</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -203,13 +213,13 @@
                             </select>
                         </div>
                         <div class="col-7 col-sm-5 pl-0">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                            <input type="text" class="form-control border mandotory" id="txtHeight" maxlength="100" placeholder="Enter Height" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Target Weight <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-5 col-sm-2">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select mandotory" id="ddlTargetWeightType">
                                 <option selected>Select Type</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -217,18 +227,18 @@
                             </select>
                         </div>
                         <div class="col-7 col-sm-5 pl-0">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                            <input type="text" class="form-control border mandotory" id="txtTargetWeight" maxlength="100" placeholder="Enter Target Weight" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Your Goals <span class="float-right d-none d-md-block"> : </span></label>
-                        <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Name" />
+                        <div class="col-12 col-sm-7">                            
+                            <input type="text" class="form-control border mandotory" id="txtYourGoals" maxlength="100" placeholder="Enter Your Goals" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12 col-sm-12 text-right">
-                            <a class="btn btn-reg mb-4 hvr-sweep-to-top">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
+                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserAnthropometry" onclick="SaveUserAnthropometry()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
                         </div>
                     </div>
                     <div class="row">
@@ -240,13 +250,13 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Health Issues <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtHealthIssues" maxlength="100" placeholder="Enter Health Issues" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Reports <span class="float-right d-none d-md-block"> : </span></label>
-                        <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Upload Reports" />
+                        <div class="col-12 col-sm-7">                           
+                            <input type="text" class="form-control border " id="txtReports" maxlength="100" placeholder="Enter Reports" />
                         </div>
                     </div>
                     <div class="form-group row justify-content-end">
@@ -256,7 +266,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-12 col-sm-12 text-right">
-                            <a class="btn btn-reg mb-4 hvr-sweep-to-top">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
+                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserMedicalHistory" onclick="SaveUserMedicalHistory()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
                         </div>
                     </div>
                     <div class="row">
@@ -269,31 +279,31 @@
                         <div class="col-12 col-sm-6">
                             <label class="col-form-label semi">Health Issues</label>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter Details" />
+                                <input type="text" class="form-control border " id="txtHealthIssues1" maxlength="100" placeholder="Enter Health Issues" />
+                            </div>
+                            @*<div class="form-group">
+                                <input type="text" class="form-control border " id="txtHealthIssues2" maxlength="100" placeholder="Enter Health Issues" />
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter Details" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter Details" />
-                            </div>
+                                <input type="text" class="form-control border " id="txtHealthIssues3" maxlength="100" placeholder="Enter Medication" />
+                            </div>*@
                         </div>
                         <div class="col-12 col-sm-6">
                             <label class="col-form-label semi">Medication</label>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter Details" />
+                                <input type="text" class="form-control border " id="txtMedication1" maxlength="100" placeholder="Enter Medication" />
+                            </div>
+                            @*<div class="form-group">
+                                <input type="text" class="form-control border " id="txtMedication2" maxlength="100" placeholder="Enter Medication" />
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter Details" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter Details" />
-                            </div>
+                                <input type="text" class="form-control border " id="txtMedication3" maxlength="100" placeholder="Enter Medication" />
+                            </div>*@
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12 col-sm-12 text-right">
-                            <a class="btn btn-reg mb-4 hvr-sweep-to-top">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
+                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserMedications" onclick="SaveUserMedications()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
                         </div>
                     </div>
                     <div class="row">
@@ -305,7 +315,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Lifestyle <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlLifestyle">
                                 <option selected>Select Lifestyle</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -316,7 +326,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Eating Habits <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlEatingHabits">
                                 <option selected>Select Eating Habits</option>
                                 <option value="1">Vegetarian</option>
                                 <option value="2">Non - vegetarian</option>
@@ -327,7 +337,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Frequency of smoking <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlFrequencyOfSmoking">
                                 <option selected>Select Details</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -338,7 +348,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Frequency of alcohol consumption <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlFrequencyOfAlcoholConsumption">
                                 <option selected>Select Details</option>
                                 <option value="1">Daily</option>
                                 <option value="2">Occasionally</option>
@@ -350,7 +360,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Water intake per day <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-5 col-sm-2">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlWaterIntakePerDayType">
                                 <option selected>Select Type</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -358,7 +368,7 @@
                             </select>
                         </div>
                         <div class="col-7 col-sm-5 pl-0">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlWaterIntakePerDayDetails">
                                 <option selected>Select Details</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -369,7 +379,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Frequency of restaurant visit <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlFrequencyOfRestaurantVisit">
                                 <option selected>Select Details</option>
                                 <option value="1">Daily</option>
                                 <option value="2">occasionally</option>
@@ -381,36 +391,36 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Preferred cuisine <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtPreferredCuisine" maxlength="100" placeholder="Enter Preferred cuisine" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Who cooks at home <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtWhoCooksAtHome" maxlength="100" placeholder="Enter Who Cooks At Home" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Food Aversions <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtFoodAversions" maxlength="100" placeholder="Enter Food Aversions" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Food Preferences <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtFoodPreferences" maxlength="100" placeholder="Enter Food Preferences" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Food Allergies <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtFoodAllergies" maxlength="100" placeholder="Enter Food Allergies" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12 col-sm-12 text-right">
-                            <a class="btn btn-reg mb-4 hvr-sweep-to-top">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
+                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserDietaryAndLifeStyleDetails" onclick="SaveUserDietaryAndLifeStyleDetails()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
                         </div>
                     </div>
                     <div class="row">
@@ -435,7 +445,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-3 col-form-label semi">On waking up</label>
                         <div class="col-12 col-sm">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlOnWakingUp">
                                 <option selected>Select</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -443,13 +453,13 @@
                             </select>
                         </div>
                         <div class="col-12 col-sm">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtOnWakingUp" maxlength="100" placeholder="Enter On Waking Up" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-3 col-form-label semi">Breakfast	</label>
                         <div class="col-12 col-sm">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlBreakfast">
                                 <option selected>Select</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -457,13 +467,13 @@
                             </select>
                         </div>
                         <div class="col-12 col-sm">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtBreakfast" maxlength="100" placeholder="Enter Breakfast" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-3 col-form-label semi">Mid morning</label>
                         <div class="col-12 col-sm">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlMidMorning">
                                 <option selected>Select</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -471,13 +481,13 @@
                             </select>
                         </div>
                         <div class="col-12 col-sm">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtMidMorning" maxlength="100" placeholder="Enter Mid Morning" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-3 col-form-label semi">Lunch</label>
                         <div class="col-12 col-sm">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlLunch">
                                 <option selected>Select</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -485,13 +495,13 @@
                             </select>
                         </div>
                         <div class="col-12 col-sm">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtLunch" maxlength="100" placeholder="Enter Lunch" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-3 col-form-label semi">Evening tea/ snack</label>
                         <div class="col-12 col-sm">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlEveningTeaSnack">
                                 <option selected>Select</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -499,13 +509,13 @@
                             </select>
                         </div>
                         <div class="col-12 col-sm">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtEveningTeaSnack" maxlength="100" placeholder="Enter Evening Tea/ Snack" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-3 col-form-label semi">Dinner	</label>
                         <div class="col-12 col-sm">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlDinner">
                                 <option selected>Select</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -513,13 +523,13 @@
                             </select>
                         </div>
                         <div class="col-12 col-sm">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtDinner" maxlength="100" placeholder="Enter Dinner" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-3 col-form-label semi">Bed time</label>
                         <div class="col-12 col-sm">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlBedTime">
                                 <option selected>Select</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -527,12 +537,12 @@
                             </select>
                         </div>
                         <div class="col-12 col-sm">
-                            <input type="text" class="form-control" placeholder="Enter Details" />
+                            <input type="text" class="form-control border " id="txtBedTime" maxlength="100" placeholder="Enter Bed Time" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-12 col-sm-12 text-right">
-                            <a class="btn btn-reg mb-4 hvr-sweep-to-top">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
+                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserDirectCall" onclick="SaveUserDirectCall()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
                         </div>
                     </div>
                     <div class="row">
@@ -544,7 +554,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Roti/ Chapati <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlRotiChapati">
                                 <option selected>Select</option>
                                 <option value="1">Never</option>
                                 <option value="2">Daily</option>
@@ -556,7 +566,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Rice <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlRice">
                                 <option selected>Select</option>
                                 <option value="1">Never</option>
                                 <option value="2">Daily</option>
@@ -568,7 +578,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Bread/ Pav <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlBreadPav">
                                 <option selected>Select</option>
                                 <option value="1">Never</option>
                                 <option value="2">Daily</option>
@@ -580,7 +590,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Chaat/ fast food/ fried snacks <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlChaatFastFoodFriedSnacks">
                                 <option selected>Select</option>
                                 <option value="1">Never</option>
                                 <option value="2">Daily</option>
@@ -592,7 +602,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Non veg <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlNonVeg">
                                 <option selected>Select</option>
                                 <option value="1">Never</option>
                                 <option value="2">Daily</option>
@@ -604,7 +614,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Eggs <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlEggs">
                                 <option selected>Select</option>
                                 <option value="1">Never</option>
                                 <option value="2">Daily</option>
@@ -616,7 +626,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Tea/ coffee <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlTeaCoffee">
                                 <option selected>Select</option>
                                 <option value="1">Never</option>
                                 <option value="2">Daily</option>
@@ -628,7 +638,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Desert <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlDesert">
                                 <option selected>Select</option>
                                 <option value="1">Never</option>
                                 <option value="2">Daily</option>
@@ -640,7 +650,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Fruits <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlFruits">
                                 <option selected>Select</option>
                                 <option value="1">Never</option>
                                 <option value="2">Daily</option>
@@ -652,7 +662,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Nuts <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" id="ddlNuts">
                                 <option selected>Select</option>
                                 <option value="1">Never</option>
                                 <option value="2">Daily</option>
@@ -663,7 +673,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-12 col-sm-12 text-right">
-                            <a class="btn btn-reg mb-4 hvr-sweep-to-top">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
+                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserFoodFequency" onclick="SaveUserFoodFequency()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
                         </div>
                     </div>
                     <div class="row">
@@ -672,10 +682,10 @@
                             <hr class="mt-0 mb-4 bg-dark" />
                             <form class="form-data">
                                 <div class="form-group">
-                                    <textarea rows="7" class="form-control" placeholder="Enter Details"></textarea>
+                                    <textarea rows="7"  class="form-control" id="txtAnyKeyInsight" placeholder="Enter Any Key Insights"></textarea>
                                 </div>
                                 <div class="text-right">
-                                    <a href="" class="btn btn-reg mb-2 hvr-sweep-to-top">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
+                                    <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserAnyKeyInSights" onclick="SaveUserAnyKeyInSights()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
                                 </div>
                             </form>
                         </div>
@@ -685,4 +695,332 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    var isAllValid = true;
+    var isSaved = true;
+    var commonjsURL = '/Scripts/DevScripts/Common.js';
+
+    function SaveGenralInfo() {
+        
+        if (ValidationOnSave()) {
+            if (ValidateRequiredField()) {
+                var UserInfodata =
+                {                  
+                    UserId: sessionStorage.getItem('userId'),
+                    Gender: $("#ddlGender").val() == undefined ? '' : $("#ddlGender").val().trim(),
+                    BirthDate: $('#txtDOB').val() == undefined ? 0 : $('#txtDOB').val().trim(),
+                    Age: $('#txtAge').val() == undefined ? 0 : $('#txtAge').val().trim(),                    
+                    Country: $("#txtCountry").val() == undefined ? 0 : $('#txtCountry').val().trim(),
+                    State: $('#txtState').val() == undefined ? 0 : $('#txtState').val().trim(),          
+                    City: $("#txtCity").val() == undefined ? 0 : $('#txtCity').val().trim(),
+                    EmailID: $("#txtEmail").val() == undefined ? '' : $("#txtEmail").val().trim(),
+                    PhoneNumber: $("#txtPhoneNumber").val() == undefined ? '' : $("#txtPhoneNumber").val().trim(),
+                    Caste: $('#txtCaste').val() == undefined ? 0 : $('#txtCaste').val().trim(),
+                    MaritalStatus: $('#ddlMaritalStatus').val() == undefined ? 0 : $('#ddlMaritalStatus').val().trim(),
+                    DoYouHaveChildren: $("#ddlDoYouHaveChildren").val() == undefined ? 0 : $('#ddlDoYouHaveChildren').val().trim(),
+                    TypeOfFamily: $('#ddlTypeOfFamily').val() == undefined ? 0 : $('#ddlTypeOfFamily').val().trim(),
+                    CurrentlyWorking: $("#ddlCurrentlyWorking").val() == undefined ? 0 : $('#ddlCurrentlyWorking').val().trim(),
+                    Occupation: $("#txtOccupation").val() == undefined ? '' : $("#txtOccupation").val().trim(),
+                                       
+                }
+                var assessment =
+                {
+                    TableType:"UserGeneralInfo",
+                    UserGeneralInfo:UserInfodata
+                }
+                CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response)
+                {
+                    alert('Record save successfully!!!');
+                });               
+
+            }
+            else
+            {
+                alert('Please fill all details to User General Info.');
+            }
+
+        }
+
+    }
+
+    function SaveUserPHOTO() { }
+
+    function SaveUserAnthropometry()
+    {
+       
+       // if (ValidationOnSave())
+      //  {
+           // alert('1');
+            //if (ValidateRequiredField())
+           // {
+             //   alert('2');
+                var UserAnthropometrydata =
+                {
+                    UserId: sessionStorage.getItem('userId'),
+                    Weight: $("#txtWeight").val() == undefined ? 0 : $("#txtWeight").val().trim(),
+                    WeightType: $('#ddlWeightType').val() == undefined ? 0 : $('#ddlWeightType').val().trim(),
+                    Height: $('#txtHeight').val() == undefined ? '' : $('#txtHeight').val().trim(),
+                    HeightType: $("#ddlHeightType").val() == undefined ? 0 : $('#ddlHeightType').val().trim(),
+                    TargetWeight: $('#txtTargetWeight').val() == undefined ? '' : $('#txtTargetWeight').val().trim(),
+                    TargetWeightType: $("#ddlTargetWeightType").val() == undefined ? 0 : $('#ddlTargetWeightType').val().trim(),
+                    YourGoals: $("#txtYourGoals").val() == undefined ? '' : $("#txtYourGoals").val().trim(),
+
+                }
+
+                var assessment =
+                {
+                    TableType: "UserAnthropometry",
+                    UserAnthropometry: UserAnthropometrydata
+                }
+
+                CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                    alert('Record save successfully!!!');
+
+                });
+         //   }
+           // else
+           // {
+                alert('Please fill all details to Anthropometry.');
+           // }
+       // }
+    }
+
+    function SaveUserMedicalHistory()
+    {
+        //if (ValidationOnSave()) {
+          //  if (ValidateRequiredField()) {
+                var UserMedicalHistorydata =
+                {
+                    UserId: sessionStorage.getItem('userId'),
+                    HealthIssues: $("#txtHealthIssues").val() == undefined ? '' : $("#txtHealthIssues").val().trim(),
+                    Reports: $('#txtReports').val() == undefined ? '' : $('#txtReports').val().trim(),
+                }
+
+                var assessment =
+                {
+                    TableType: "UserMedicalHistory",
+                    UserMedicalHistory: UserMedicalHistorydata
+                }
+
+                CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                    alert('Record save successfully!!!');
+
+                });
+         //   }
+          //  else {
+          //      alert('Please fill all details to  Medical History.');
+          //  }
+     //   }
+    }
+
+    function SaveUserMedications()
+    {
+       // if (ValidationOnSave()) {
+            //if (ValidateRequiredField()) {
+                var UserMedicationsdata =
+                {
+                    UserId: sessionStorage.getItem('userId'),
+                    HealthIssues: $("#txtHealthIssues1").val() == undefined ? '' : $("#txtHealthIssues1").val().trim(),
+                    Medication: $('#txtMedication1').val() == undefined ? 0 : $('#txtMedication1').val().trim(),
+                    //HealthIssues: $("#txtHealthIssues2").val() == undefined ? '' : $("#txtHealthIssues2").val().trim(),
+                    //Medication: $('#txtMedication2').val() == undefined ? 0 : $('#txtMedication2').val().trim(),
+                    //HealthIssues: $("#txtHealthIssues3").val() == undefined ? '' : $("#txtHealthIssues3").val().trim(),
+                    //Medication: $('#txtMedication3').val() == undefined ? 0 : $('#txtMedication3').val().trim(),                 
+
+                }
+
+                var assessment =
+                {
+                    TableType: "UserMedications",
+                    UserMedications: UserMedicationsdata
+                }
+
+                CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                    alert('Record save successfully!!!');
+
+                });
+           // }
+            //else {
+            //    alert('Please fill all details to Medications.');
+            //}
+        //}
+    }
+
+    function SaveUserDietaryAndLifeStyleDetails()
+    {
+        //if (ValidationOnSave()) {
+        //    if (ValidateRequiredField()) {
+                var UserDietaryAndLifeStyleDetailsdata =
+                {
+
+                    UserId: sessionStorage.getItem('userId'),
+                    Lifestyle: $("#ddlLifestyle").val() == undefined ? 0 : $("#ddlLifestyle").val().trim(),
+                    EatingHabits: $('#ddlEatingHabits').val() == undefined ? 0 : $('#ddlEatingHabits').val().trim(),
+                    Frequencyofsmoking: $('#ddlFrequencyOfSmoking').val() == undefined ? 0 : $('#ddlFrequencyOfSmoking').val().trim(),
+                    Frequencyofalcoholconsumption: $("#ddlFrequencyOfAlcoholConsumption").val() == undefined ? 0 : $('#ddlFrequencyOfAlcoholConsumption').val().trim(),
+                    WaterintakeperdayType: $('#ddlWaterIntakePerDayType').val() == undefined ? 0 : $('#ddlWaterIntakePerDayType').val().trim(),
+                    Waterintakeperday: $("#ddlWaterIntakePerDayDetails").val() == undefined ? '' : $('#ddlWaterIntakePerDayDetails').val().trim(),
+                    Frequencyofrestaurantvisit: $("#ddlFrequencyOfRestaurantVisit").val() == undefined ? 0 : $("#ddlFrequencyOfRestaurantVisit").val().trim(),
+                    Preferredcuisine: $("#txtPreferredCuisine").val() == undefined ? '' : $("#txtPreferredCuisine").val().trim(),
+                    Whocooksathome: $('#txtWhoCooksAtHome').val() == undefined ? '' : $('#txtWhoCooksAtHome').val().trim(),
+                    FoodAversions: $('#txtFoodAversions').val() == undefined ? '' : $('#txtFoodAversions').val().trim(),
+                    FoodPreferences: $("#txtFoodPreferences").val() == undefined ? '' : $('#txtFoodPreferences').val().trim(),
+                    FoodAllergies: $('#txtFoodAllergies').val() == undefined ? '' : $('#txtFoodAllergies').val().trim(),
+                }
+
+                var assessment =
+                {
+                    TableType: "UserDietaryAndLifeStyleDetails",
+                    UserDietaryAndLifeStyleDetails: UserDietaryAndLifeStyleDetailsdata
+                }
+
+                CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                    alert('Record save successfully!!!');
+
+                });
+        //    }
+        //    else {
+        //        alert('Please fill all details to Dietary And Life Style Details.');
+        //    }
+        //}
+    }
+
+    function SaveUserDirectCall()
+    {
+        //if (ValidationOnSave()) {
+        //    if (ValidateRequiredField()) {
+                var UserDirectCalldata =
+                {
+                    UserId: sessionStorage.getItem('userId'),
+                    OnwakingupTime: $("#ddlOnWakingUp").val() == undefined ? 0 : $("#ddlOnWakingUp").val().trim(),
+                    OnwakingupConsumption: $('#txtOnWakingUp').val() == undefined ? '' : $('#txtOnWakingUp').val().trim(),
+                    BreakfastTime: $('#ddlBreakfast').val() == undefined ? 0 : $('#ddlBreakfast').val().trim(),
+                    BreakfastConsumption: $("#txtBreakfast").val() == undefined ? '' : $('#txtBreakfast').val().trim(),
+                    MidmorningTime: $('#ddlMidMorning').val() == undefined ? 0 : $('#ddlMidMorning').val().trim(),
+                    MidmorningConsumption: $("#txtMidMorning").val() == undefined ? '' : $('#txtMidMorning').val().trim(),
+
+                    LunchTime: $("#ddlLunch").val() == undefined ? 0 : $("#ddlLunch").val().trim(),
+                    LunchConsumption: $("#txtLunch").val() == undefined ? '' : $("#txtLunch").val().trim(),
+                    SnackTime: $('#ddlEveningTeaSnack').val() == undefined ? 0 : $('#ddlEveningTeaSnack').val().trim(),
+                    SnackConsumption: $('#txtEveningTeaSnack').val() == undefined ? '' : $('#txtEveningTeaSnack').val().trim(),
+                    DinnerTime: $("#ddlDinner").val() == undefined ? 0 : $('#ddlDinner').val().trim(),
+                    DinnerConsumption: $('#txtDinner').val() == undefined ? '' : $('#txtDinner').val().trim(),
+                    Bedtime: $("#ddlBedTime").val() == undefined ? 0 : $('#ddlBedTime').val().trim(),
+                    BedConsumption: $("#txtBedTime").val() == undefined ? '' : $("#txtBedTime").val().trim(),
+
+                }
+
+                var assessment =
+                {
+                    TableType: "UserDirectCall",
+                    UserDirectCall: UserDirectCalldata
+                }
+
+                CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                    alert('Record save successfully!!!');
+
+                });
+        //    }
+        //    else {
+        //        alert('Please fill all details to Direct Call.');
+        //    }
+        //}
+    }
+
+    function SaveUserFoodFequency()
+    {
+        //if (ValidationOnSave()) {
+        //    if (ValidateRequiredField()) {
+                var UserFoodFequencydata =
+                {
+                    UserId: sessionStorage.getItem('userId'),
+                    Roti: $("#ddlRotiChapati").val() == undefined ? 0 : $("#ddlRotiChapati").val().trim(),
+                    Rice: $('#ddlRice').val() == undefined ? 0 : $('#ddlRice').val().trim(),
+                    BreadPav: $('#ddlBreadPav').val() == undefined ? 0 : $('#ddlBreadPav').val().trim(),
+                    ChaatSnacks: $("#ddlChaatFastFoodFriedSnacks").val() == undefined ? 0 : $('#ddlChaatFastFoodFriedSnacks').val().trim(),
+                    Nonveg: $('#ddlNonVeg').val() == undefined ? 0 : $('#ddlNonVeg').val().trim(),
+                    Eggs: $("#ddlEggs").val() == undefined ? 0 : $('#ddlEggs').val().trim(),
+                    Teacoffee: $("#ddlTeaCoffee").val() == undefined ? 0 : $("#ddlTeaCoffee").val().trim(),
+                    Desert: $("#ddlDesert").val() == undefined ? 0 : $('#ddlDesert').val().trim(),
+                    Fruits: $('#ddlFruits').val() == undefined ? 0 : $('#ddlFruits').val().trim(),
+                    Nuts: $("#ddlNuts").val() == undefined ? 0 : $('#ddlNuts').val().trim(),
+                }
+
+                var assessment =
+                {
+                    TableType: "UserFoodFequency",
+                    UserFoodFequency: UserFoodFequencydata
+                }
+
+                CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                    alert('Record save successfully!!!');
+
+                });
+        //    }
+        //    else {
+        //        alert('Please fill all details to Food Fequency.');
+        //    }
+        //}
+    }
+
+    function SaveUserAnyKeyInSights()
+    {
+        //if (ValidationOnSave()) {
+        //    if (ValidateRequiredField()) {
+             var UserAnyKeyInSightsdata =
+                {
+                    UserId: sessionStorage.getItem('userId'),
+                 Comments: $("#txtAnyKeyInsight").val() == undefined ? '' : $("#txtAnyKeyInsight").val().trim(),
+
+                }
+        debugger;
+                var assessment =
+                {
+                    TableType: "UserAnyKeyInSights",
+                    UserAnyKeyInSights: UserAnyKeyInSightsdata
+                }
+
+                CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                    alert('Record save successfully!!!');
+
+                });
+        
+            //}
+        //    else {
+        //        alert('Please fill all details to Any Key InSights.');
+        //    }
+        //}
+    }
+
+    
+
+    function ValidateRequiredField() {
+
+        var isRequired = true;
+        var x = document.getElementsByClassName("mandotory");
+        var i;
+        for (i = 0; i < x.length; i++) {
+
+            if (x[i].value == "") {
+                isRequired = false;
+            }
+        }
+        return isRequired;
+    }
+
+    function ValidationOnSave() {
+
+        if (!ValidateEmail(document.getElementById('txtEmail').value)) {
+            alert("Invalid email address.")
+            return false;
+        }
+              
+
+        return true;
+    }
+   
+
+</script>
 

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgeModel.cs" />
+    <Compile Include="Assessment.cs" />
     <Compile Include="CommonConstants.cs" />
     <Compile Include="DropdownRequestModel.cs" />
     <Compile Include="DropdownResponseModel.cs" />
