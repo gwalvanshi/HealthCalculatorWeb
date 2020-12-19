@@ -20,7 +20,7 @@ namespace HealthCalculator.Web.Controllers
                 int userID = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
                 if (userID == 0)
                 {
-                    filterContext.Result = new RedirectResult("~/Home/Index");
+                    filterContext.Result = new RedirectResult("~/Home/login");
                     return;
                 }
 

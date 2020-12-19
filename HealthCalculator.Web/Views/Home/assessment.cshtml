@@ -19,13 +19,13 @@
         <div class="row justify-content-center">
             <div class="col">
                 <ul class="list-inline menu-sec">
-                    <li class="list-inline-item"><a href="assessment.html">My Assessment Tool</a></li>
-                    <li class="list-inline-item"><a href="tracker.html">My Trackers</a></li>
+                    <li class="list-inline-item"><a href="~/Home/assessment">My Assessment Tool</a></li>
+                    <li class="list-inline-item"><a href="~/Home/tracker">My Trackers</a></li>
                     <li class="list-inline-item"><a href="">My Eating Smart Tool</a></li>
-                    <li class="list-inline-item"><a href="eatingPattern.html">My Eating Pattern</a></li>
-                    <li class="list-inline-item"><a href="helpDesk.html">Admin Messages</a></li>
-                    <li class="list-inline-item"><a href="payments.html">Payments</a></li>
-                    <li class="list-inline-item active"><a href="">Logout</a></li>
+                    <li class="list-inline-item"><a href="~/Home/eatingPattern">My Eating Pattern</a></li>
+                    <li class="list-inline-item"><a href="~/Home/helpDesk">Admin Messages</a></li>
+                    <li class="list-inline-item"><a href="#">Payments</a></li>
+                    <li class="list-inline-item active"><a href="~/Home/Logout">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -165,7 +165,7 @@
 
                     <div class="row">
                         <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">PHOTO uday</p>
+                            <p class="semi mb-2 text-yellow">PHOTO</p>
                             <hr class="mt-0 mb-4 bg-dark" />
                         </div>
                     </div>
@@ -177,16 +177,22 @@
                                     <input type="hidden" id="hdnProfilePhotoPath" />
                                 </div>
                                 <hr />
-                                <div id="imgPreview" class="thumbnail" style="display:none">
-                                    <img class="img-responsive" id="targetImg" style="width:100px;height:100px;" />
+                                <div id="imgPreview" class="thumbnail">
+
+                                    <div class="col-12 col-md-12 d-flex align-items-center">
+                                        <img id="targetImg" src="@CommonMethods.ServerPath/img/uploadPhoto.png" class="img-fluid dib mr-3 mb-3" width="200" />
+
+                                    </div>
                                     <div class="caption">
                                         <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
                                         <span id="description"></span>
                                     </div>
-                                    @*<a href="#" class="btn btn-default" onclick="Uploadimage()">Upload</a>*@
+
                                 </div>
 
                             </div>
+
+
                             <div class="col-md-2 thumbnail" id="uploadedImage">
                             </div>
 
@@ -196,55 +202,9 @@
                     </div>
                     <div class="col-12 col-sm-12 text-right">
                         <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserPhoto12" onclick="SaveUserPhoto12()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
-                       
-                    </div>
-                    @*<div class="row">
-                        <table style="padding-left:10px;">
-                            <tr>
-                                <td>
-                                    <label class="input-header">Select Photo </label>
-                                    <input type="file" name="UploadedFile" id="file-upload" />
-                                </td>
 
-                                <td>
-                                    <div class="form-group">
-                                        <label class="input-header" id="lblfileName"></label>
-
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <input type="hidden" id="hdnProfilePhotoPath" />
-                                        <button class="mybtndark" type="button" id="btnProfilePhoto" onclick="Uploadocument();"><i class="far fa-save"></i>Attach Photo</button>
-                                    </div>
-                                </td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </div>*@
-
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">PHOTO</p>
-                            <hr class="mt-0 mb-4 bg-dark" />
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12 col-md-12 d-flex align-items-center">
-                            <img src="@CommonMethods.ServerPath/img/uploadPhoto.png" class="img-fluid dib mr-3 mb-3" />
-                            <p>
-                                <small>
-                                    Please Upload JPEG / PNG<br />
-                                    Format in KB's Size
-                                </small>
-                            </p>
-                        </div>
-                        <div class="col-12 col-sm-12 text-right">
-                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserPhoto" onclick="SaveUserPhoto()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
-                        </div>
-                    </div>
+
 
                     <div class="row">
                         <div class="col-12 col-md-12">
@@ -322,12 +282,12 @@
                         <div class="col-12 col-sm-7">
                             <input type="text" class="form-control border " id="txtReports" maxlength="100" placeholder="Enter Reports" />
                             <input type="file" name="UploadedFileReport" id="fileuploadReport" />
-                            <input type="hidden" id="hdnfileuploadReportPath"/>
+                            <input type="hidden" id="hdnfileuploadReportPath" />
                         </div>
                     </div>
                     <div class="form-group row justify-content-end">
                         <div class="col-12 col-sm-7">
-                            <img src="@CommonMethods.ServerPath/img/pluse.png" class="img-fluid" onclick="UploadocumentReport()"/>
+                            <img src="@CommonMethods.ServerPath/img/pluse.png" class="img-fluid" onclick="UploadocumentReport()" />
                         </div>
                     </div>
                     <div class="form-group row">
@@ -348,11 +308,11 @@
                                 <input type="text" class="form-control border " id="txtHealthIssues1" maxlength="100" placeholder="Enter Health Issues" />
                             </div>
                             @*<div class="form-group">
-                    <input type="text" class="form-control border " id="txtHealthIssues2" maxlength="100" placeholder="Enter Health Issues" />
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control border " id="txtHealthIssues3" maxlength="100" placeholder="Enter Medication" />
-                </div>*@
+                                    <input type="text" class="form-control border " id="txtHealthIssues2" maxlength="100" placeholder="Enter Health Issues" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control border " id="txtHealthIssues3" maxlength="100" placeholder="Enter Medication" />
+                                </div>*@
                         </div>
                         <div class="col-12 col-sm-6">
                             <label class="col-form-label semi">Medication</label>
@@ -360,11 +320,11 @@
                                 <input type="text" class="form-control border " id="txtMedication1" maxlength="100" placeholder="Enter Medication" />
                             </div>
                             @*<div class="form-group">
-                    <input type="text" class="form-control border " id="txtMedication2" maxlength="100" placeholder="Enter Medication" />
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control border " id="txtMedication3" maxlength="100" placeholder="Enter Medication" />
-                </div>*@
+                                    <input type="text" class="form-control border " id="txtMedication2" maxlength="100" placeholder="Enter Medication" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control border " id="txtMedication3" maxlength="100" placeholder="Enter Medication" />
+                                </div>*@
                         </div>
                     </div>
                     <div class="form-group row">
@@ -813,26 +773,33 @@
 
         function SaveUserPhoto12()
         {
-           
+            if ($("#hdnProfilePhotoPath").val()!= '')
+            {
+                var UserPhotoData =
+                  {
+                      UserId: sessionStorage.getItem('userId'),
+                      PhotoURL: $("#hdnProfilePhotoPath").val() == undefined ? '' : $("#hdnProfilePhotoPath").val(),
+
+                  }
+                        var assessment =
+                        {
+                            TableType: "UserPhoto",
+                            UserPhoto: UserPhotoData
+                        }
+
+                        CommonAjaxMethod('Program/SavePoto', assessment, false, 'POST', function (response) {
+                            alert('Record save successfully!!!');
+
+                        });
+            }
+            else
+            {
+                alert("Please upload valid image.")
+            }
          //   data.append("PhotoURL", file[0]);
+
            
-             var UserPhotoData =
-            {
-                UserId: sessionStorage.getItem('userId'),
-                 PhotoURL: $("#hdnProfilePhotoPath").val() == undefined ? '' : $("#hdnProfilePhotoPath").val(),
-
-            }
-            var assessment =
-            {
-                TableType: "UserPhoto",
-                UserPhoto: UserPhotoData
-            }
-
-            CommonAjaxMethod('Program/SavePoto', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
-
-            });
-        }       
+        }
 
         function SaveUserAnthropometry() {
 
@@ -1109,9 +1076,10 @@
 
             var File = this.files;
 
-            if (File && File[0]) {
+            if (File && File[0])
+            {
                 ReadImage(File[0]);
-                Uploadocument();
+               
             }
 
         })
@@ -1125,21 +1093,35 @@
         var image = new Image;
 
         reader.readAsDataURL(file);
-       
-        reader.onload = function (_file) {
 
-            image.src = _file.target.result;           
+        reader.onload = function (_file)
+        {
 
-            image.onload = function () {
+            image.src = _file.target.result;
+
+            image.onload = function ()
+            {
+
                 
                 var height = this.height;
                 var width = this.width;
                 var type = file.type;
-                var size = ~~(file.size / 2024) + "KB";           
+                var size = ~~(file.size / 2024)+"KB";
+                var sizem = ~~(file.size / 2024);     
+             
+                if (type != "image/png" || type != "image/jpeg" || sizem <= 500)
+                {
+                    alert("invalid file type. please select jpeg/png image and size should less 500kb.");
+                }
+                else
+                {
+                    $("#targetImg").attr('src', _file.target.result);
+                    // $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+                    $("#imgPreview").show();
 
-                $("#targetImg").attr('src', _file.target.result);
-               // $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
-                $("#imgPreview").show();
+                    Uploadocument();
+                }
+               
 
             }
 
@@ -1156,7 +1138,7 @@
 
 
 
-    function Uploadocument() {       
+    function Uploadocument() {
         var folderDetails = "";
         folderDetails = "1";
         var fileUpload = $("#imageBrowes").get(0);
@@ -1188,7 +1170,7 @@
                     if (result.ErrorMessage == undefined) {
 
                         $("#hdnProfilePhotoPath").val(result);
-                                       
+
                     }
                     else {
                         alert(result.ErrorMessage);
@@ -1234,7 +1216,7 @@
 
                         $("#hdnfileuploadReportPath").val(result);
                         $("#txtReports").val(result);
-                        
+
 
                     }
                     else {
@@ -1244,9 +1226,10 @@
 
             });
         }
-      
-       
+
+
     }
+   
 
 </script>
 

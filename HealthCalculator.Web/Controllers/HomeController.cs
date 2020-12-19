@@ -20,34 +20,38 @@ namespace HealthCalculator.Web.Controllers
 
         #region Program
 
+        [SessionExpireFilterAttribute]
         public ActionResult payments()
         {
             return View();
             // return RedirectToAction("Index", "User");
         }
-
+        [SessionExpireFilterAttribute]
         public ActionResult helpDesk()
         {
             return View();
             // return RedirectToAction("Index", "User");
         }
+        [SessionExpireFilterAttribute]
         public ActionResult MyEatingPattern()
         {
             return View();
             // return RedirectToAction("Index", "User");
         }
+        [SessionExpireFilterAttribute]
         public ActionResult MyEatingSmartTools()
         {
             return View();
             // return RedirectToAction("Index", "User");
         }
 
-
+        [SessionExpireFilterAttribute]
         public ActionResult tracker()
         {
             return View();
             // return RedirectToAction("Index", "User");
         }
+        [SessionExpireFilterAttribute]
         public ActionResult assessment()
         {
             return View();
@@ -133,7 +137,12 @@ namespace HealthCalculator.Web.Controllers
         {
             return View();
         }
-
+        public ActionResult Logout()
+        {
+            Session.Abandon(); // it will clear the session at the end of request
+            return RedirectToAction("login", "Home");          
+        }
+        
         #endregion
         public ActionResult about()
         {
