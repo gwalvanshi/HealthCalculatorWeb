@@ -26,6 +26,14 @@
 
 
     </script>
+
+    @Html.DevExpress().GetStyleSheets(
+new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor }
+        )
+
+    @Html.DevExpress().GetScripts(
+new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
+        )
 </head>
 <body>
     <div class="notiBlock">
