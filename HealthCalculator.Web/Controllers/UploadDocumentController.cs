@@ -1,11 +1,21 @@
-﻿using HealthCalculator.Web.Service;
+﻿using HealthCalculator.Web.EntityModel;
+using HealthCalculator.Web.Service;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
+
+
+
+
+using System.Globalization;
+using System.Threading;
+
 
 namespace HealthCalculator.Web.Controllers
 {
@@ -99,5 +109,75 @@ namespace HealthCalculator.Web.Controllers
 
         }
 
+        //uday 
+        //public string ImageUpload121(UserPhoto model)
+        //{
+        //    int maxFileSize = Convert.ToInt32(ConfigurationManager.AppSettings["MaxFileSizeinKB"].ToString());
+        //    string AllowedFileFormat = ConfigurationManager.AppSettings["AllowedFileFormat"].ToString();
+        //    string RootFolder = ConfigurationManager.AppSettings["RootFolder"].ToString();
+
+        //    var file = model.PhotoURL;
+
+        //    if (file != null)
+        //    {
+
+        //        //------------------------------------
+        //        string fileName = System.IO.Path.GetFileName(file);
+        //        string newFile = "";//graphName;
+        //        string[] splString = fileName.Split('.');
+        //        string uploadNewFileName = newFile + "." + splString[1];
+        //        string filePathTobeSaved = "";
+        //        string createDir = string.Empty;
+        //        string digitalPathofDocument = string.Empty;
+
+        //        string baseurl = HttpContext.Server.MapPath(RootFolder);
+
+           
+
+        //        filePathTobeSaved = baseurl + "/" + uploadNewFileName;
+
+        //        Upload(filePathTobeSaved);
+
+        //       // returrMessage = "File Uploaded";
+        //        //-------------------------------------
+
+        //        //var fileName = Path.GetFileName(file.FileName);
+        //        //var extention = Path.GetExtension(file.FileName);
+        //        //var filenamewithoutextension = Path.GetFileNameWithoutExtension(file.FileName);
+
+        //        // file.SaveAs(Server.MapPath("/UploadedImage/" + file.FileName));
+
+
+        //    }
+
+        //    // return Json(file.FileName, JsonRequestBehavior.AllowGet);
+        //    return  "File Uploaded";
+            
+        //}
+
+        public JsonResult ImageUpload(UserPhoto model)
+        {
+
+            var file = model.PhotoURL;
+
+            //HttpFileCollectionBase files = model.PhotoURL;
+            //HttpPostedFileBase file = files[0];
+
+
+            //if (file != null)
+            //{
+            //    string fileName = System.IO.Path.GetFileName(file.FileName);
+            //    var fileName = Path.GetFileName(file.FileName);
+            //    var extention = Path.GetExtension(file.FileName);
+            //    var filenamewithoutextension = Path.GetFileNameWithoutExtension(file.FileName);
+
+            //    file.SaveAs(Server.MapPath("/UploadedImage/" + file.FileName));
+
+
+            //}
+
+            return Json("AAA", JsonRequestBehavior.AllowGet);
+
+        }
     }
 }

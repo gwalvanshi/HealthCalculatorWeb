@@ -747,6 +747,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ProfilePhoto\" />
+    <Folder Include="UploadReport\" />
     <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>
