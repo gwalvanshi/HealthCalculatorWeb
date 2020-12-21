@@ -131,7 +131,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID ="110";
-                SendObjData.UserID = 1;//Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
                 SendObjData.Operation = "Add";
                 string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
                 SendObjData.XML = stringTOXml;  
@@ -147,8 +147,33 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
+        [HttpPost]
+        public async Task<JsonResult> GetAsseeement(Assessment collection)
+        {
+            try
+            {
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "110";
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
+                SendObjData.Operation = "Add";
+                string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
+                SendObjData.XML = stringTOXml;
 
-        
+                GenericService _genericService = new GenericService();
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                 var status = await _genericService.PerformDataOperationList<ReturnAssessment>(stringContent);
+               
+
+                return new JsonResult { Data = status };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
+
 
         public ActionResult register()
         {

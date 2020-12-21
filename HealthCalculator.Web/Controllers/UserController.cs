@@ -293,7 +293,7 @@ namespace HealthCalculator.Web.Controllers
 
                     Session["Access_Token"] = status.data.authToken;
 
-                    Session["UserId"] = status.data.EmployeeID;
+                    Session["UserId"] = status.data.userId;
 
                     Session["UserName"] = status.data.EmployeeName;
 

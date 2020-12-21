@@ -9,6 +9,7 @@ namespace HealthCalculator.Web.EntityModel
     public class Assessment
     {
         public string TableType { get; set; }
+        public int UserId { get; set; }
         public UserGeneralInfo UserGeneralInfo { get; set; }
         public UserPhoto UserPhoto { get; set; }
         public UserAnthropometry UserAnthropometry { get; set; }
@@ -33,10 +34,10 @@ namespace HealthCalculator.Web.EntityModel
         public int PhoneNumber { get; set; }
         public string Caste { get; set; }
         public string MaritalStatus { get; set; }
-        public bool DoYouHaveChildren { get; set; }
+        public int DoYouHaveChildren { get; set; }
         public string TypeOfFamily { get; set; }
 
-        public bool CurrentlyWorking { get; set; }
+        public int CurrentlyWorking { get; set; }
         public string Occupation { get; set; }
         public string AddedBy { get; set; }
         public DateTime AddedWhen { get; set; }
@@ -169,4 +170,85 @@ namespace HealthCalculator.Web.EntityModel
         public DateTime UpdatedWhen { get; set; }
     }
 
+    public class ReturnAssessment
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public List<RspoonseAssessment> Data { get; set; }
+    }
+
+    public class RspoonseAssessment
+    {
+        public int UserId { get; set; }
+        public string Gender { get; set; }
+
+       
+        public DateTime BirthDate { get; set; }
+        public int Age { get; set; }
+        public string Country { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
+        public string EmailID { get; set; }
+        public int PhoneNumber { get; set; }
+        public string Caste { get; set; }
+        public string MaritalStatus { get; set; }
+        public int DoYouHaveChildren { get; set; }
+        public string TypeOfFamily { get; set; }
+        public int CurrentlyWorking { get; set; }
+        public string Occupation { get; set; }
+        public object PhotoURL { get; set; }
+        public string Weight { get; set; }
+        public string WeightType { get; set; }
+        public string Height { get; set; }
+        public string HeightType { get; set; }
+        public string TargetWeight { get; set; }
+        public string TargetWeightType { get; set; }
+        public string YourGoals { get; set; }
+        public object HealthIssues { get; set; }
+        public object Reports { get; set; }
+        public string UM_HealthIssues { get; set; }
+        public string Medication { get; set; }
+        public string Lifestyle { get; set; }
+        public string EatingHabits { get; set; }
+        public string Frequencyofsmoking { get; set; }
+        public string Frequencyofalcoholconsumption { get; set; }
+        public string WaterintakeperdayType { get; set; }
+        public string Waterintakeperday { get; set; }
+        public string Frequencyofrestaurantvisit { get; set; }
+        public string Preferredcuisine { get; set; }
+        public string Whocooksathome { get; set; }
+        public string FoodAversions { get; set; }
+        public string FoodPreferences { get; set; }
+        public string FoodAllergies { get; set; }
+        public string OnwakingupTime { get; set; }
+        public string OnwakingupConsumption { get; set; }
+        public string BreakfastTime { get; set; }
+        public string BreakfastConsumption { get; set; }
+        public string MidmorningTime { get; set; }
+        public string MidmorningConsumption { get; set; }
+        public string LunchTime { get; set; }
+        public string LunchConsumption { get; set; }
+        public string SnackTime { get; set; }
+        public string SnackConsumption { get; set; }
+        public string DinnerTime { get; set; }
+        public string DinnerConsumption { get; set; }
+        public string Bedtime { get; set; }
+        public string BedConsumption { get; set; }
+        public string Roti { get; set; }
+        public string Rice { get; set; }
+        public string BreadPav { get; set; }
+        public string ChaatSnacks { get; set; }
+        public string Nonveg { get; set; }
+        public string Eggs { get; set; }
+        public string Teacoffee { get; set; }
+        public string Desert { get; set; }
+        public string Fruits { get; set; }
+        public string Nuts { get; set; }
+        public string Comments { get; set; }
+    }
 }

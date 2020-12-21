@@ -51,8 +51,8 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Gender <span class="float-right d-none d-md-block"> : </span></label>
-                        <div class="col-12 col-sm-7">
-                            <select class="custom-select mandotory" id="ddlGender">
+                        <div class="col-12 col-sm-7">                           
+                            <select class="custom-select" id="ddlGenderp">
                                 <option selected>Select</option>
                                 <option value="1">Male</option>
                                 <option value="2">Female</option>
@@ -68,25 +68,30 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Age <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="txtAge" maxlength="100" placeholder="Enter Age" />
+                            <input type="text" class="form-control border mandotory" id="txtAgep" maxlength="100" placeholder="Enter Age" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Country <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="txtCountry" maxlength="100" placeholder="Enter Country" />
+                            @*<input type="text" class="form-control border mandotory" id="txtCountry" maxlength="100" placeholder="Enter Country" />*@
+                            <select class="custom-select" id="txtCountry" onchange="StateDD(this)">
+                              
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">State <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="txtState" maxlength="100" placeholder="Enter State" />
+                            <select class="custom-select" id="txtState" onchange="CityDD(this)">
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">City <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="txtCity" maxlength="100" placeholder="Enter City" />
+                            <select class="custom-select" id="txtCity" >
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -120,8 +125,8 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Do you Have Children <span class="float-right d-none d-md-block"> : </span></label>
-                        <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="ddlDoYouHaveChildren">
+                        <div class="col-12 col-sm-7">                           
+                            <select class="custom-select" id="ddlDoYouHaveChildrenp">
                                 <option selected>Select</option>
                                 <option value="1">Yes</option>
                                 <option value="2">No</option>
@@ -132,7 +137,7 @@
                         <label class="col-12 col-sm-5 col-form-label semi">Type of family <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
                             <div>
-                                <select class="custom-select" id="ddlTypeOfFamily ">
+                                <select class="custom-select" id="ddlTypeOfFamily">
                                     <option selected>Select</option>
                                     <option value="1">Joint</option>
                                     <option value="2">Nuclear</option>
@@ -144,7 +149,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Currently Working <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="ddlCurrentlyWorking">
+                            <select class="custom-select" id="ddlCurrentlyWorkingp">
                                 <option selected>Select</option>
                                 <option value="1">Yes</option>
                                 <option value="2">No</option>
@@ -732,24 +737,27 @@
 
         function SaveGenralInfo() {
 
+           
+            var aa = $("#ddlGenderp").val();
+            alert(aa);
             if (ValidationOnSave()) {
                 if (ValidateRequiredField()) {
                     var UserInfodata =
                     {
-                        UserId: sessionStorage.getItem('userId'),
-                        Gender: $("#ddlGender").val() == undefined ? '' : $("#ddlGender").val().trim(),
-                        BirthDate: $('#txtDOB').val() == undefined ? 0 : $('#txtDOB').val().trim(),
-                        Age: $('#txtAge').val() == undefined ? 0 : $('#txtAge').val().trim(),
-                        Country: $("#txtCountry").val() == undefined ? 0 : $('#txtCountry').val().trim(),
-                        State: $('#txtState').val() == undefined ? 0 : $('#txtState').val().trim(),
-                        City: $("#txtCity").val() == undefined ? 0 : $('#txtCity').val().trim(),
+                        UserId: sessionStorage.getItem("userId"),
+                        Gender: $("#ddlGenderp").val() == undefined ? '' : $("#ddlGenderp").val().trim(),
+                        BirthDate: $("#txtDOB").val().ToString("dd/MM/yyyy") == undefined ? 0 : $("#txtDOB").val().ToString("dd/MM/yyyy").trim(),
+                        Age: $("#txtAgep").val() == undefined ? '' : $("#txtAgep").val().trim(),
+                        Country: $("#txtCountry").val() == undefined ? 0 : $("#txtCountry").val().trim(),
+                        State: $("#txtState").val() == undefined ? 0 : $("#txtState").val().trim(),
+                        City: $("#txtCity").val() == undefined ? 0 : $("#txtCity").val().trim(),
                         EmailID: $("#txtEmail").val() == undefined ? '' : $("#txtEmail").val().trim(),
                         PhoneNumber: $("#txtPhoneNumber").val() == undefined ? '' : $("#txtPhoneNumber").val().trim(),
-                        Caste: $('#txtCaste').val() == undefined ? 0 : $('#txtCaste').val().trim(),
-                        MaritalStatus: $('#ddlMaritalStatus').val() == undefined ? 0 : $('#ddlMaritalStatus').val().trim(),
-                        DoYouHaveChildren: $("#ddlDoYouHaveChildren").val() == undefined ? 0 : $('#ddlDoYouHaveChildren').val().trim(),
-                        TypeOfFamily: $('#ddlTypeOfFamily').val() == undefined ? 0 : $('#ddlTypeOfFamily').val().trim(),
-                        CurrentlyWorking: $("#ddlCurrentlyWorking").val() == undefined ? 0 : $('#ddlCurrentlyWorking').val().trim(),
+                        Caste: $("#txtCaste").val() == undefined ? 0 : $("#txtCaste").val().trim(),
+                        MaritalStatus: $("#ddlMaritalStatus").val() == undefined ? 0 : $("#ddlMaritalStatus").val().trim(),
+                        DoYouHaveChildren: $("#ddlDoYouHaveChildrenp").val() == undefined ? 0 : $("#ddlDoYouHaveChildrenp").val().trim(),
+                        TypeOfFamily: $("#ddlTypeOfFamily").val() == undefined ? 0 : $("#ddlTypeOfFamily").val().trim(),
+                        CurrentlyWorking: $("#ddlCurrentlyWorkingp").val() == undefined ? 0 : $("#ddlCurrentlyWorkingp").val().trim(),
                         Occupation: $("#txtOccupation").val() == undefined ? '' : $("#txtOccupation").val().trim(),
 
                     }
@@ -813,11 +821,11 @@
             {
                 UserId: sessionStorage.getItem('userId'),
                 Weight: $("#txtWeight").val() == undefined ? 0 : $("#txtWeight").val().trim(),
-                WeightType: $('#ddlWeightType').val() == undefined ? 0 : $('#ddlWeightType').val().trim(),
-                Height: $('#txtHeight').val() == undefined ? '' : $('#txtHeight').val().trim(),
-                HeightType: $("#ddlHeightType").val() == undefined ? 0 : $('#ddlHeightType').val().trim(),
-                TargetWeight: $('#txtTargetWeight').val() == undefined ? '' : $('#txtTargetWeight').val().trim(),
-                TargetWeightType: $("#ddlTargetWeightType").val() == undefined ? 0 : $('#ddlTargetWeightType').val().trim(),
+                WeightType: $("#ddlWeightType").val() == undefined ? 0 : $("#ddlWeightType").val().trim(),
+                Height: $("#txtHeight").val() == undefined ? '' : $("#txtHeight").val().trim(),
+                HeightType: $("#ddlHeightType").val() == undefined ? 0 : $("#ddlHeightType").val().trim(),
+                TargetWeight: $("#txtTargetWeight").val() == undefined ? '' : $("#txtTargetWeight").val().trim(),
+                TargetWeightType: $("#ddlTargetWeightType").val() == undefined ? 0 : $("#ddlTargetWeightType").val().trim(),
                 YourGoals: $("#txtYourGoals").val() == undefined ? '' : $("#txtYourGoals").val().trim(),
 
             }
@@ -847,7 +855,7 @@
             {
                 UserId: sessionStorage.getItem('userId'),
                 HealthIssues: $("#txtHealthIssues").val() == undefined ? '' : $("#txtHealthIssues").val().trim(),
-                Reports: $('#txtReports').val() == undefined ? '' : $('#txtReports').val().trim(),
+                Reports: $("#txtReports").val() == undefined ? '' : $("#txtReports").val().trim(),
             }
 
             var assessment =
@@ -874,7 +882,7 @@
             {
                 UserId: sessionStorage.getItem('userId'),
                 HealthIssues: $("#txtHealthIssues1").val() == undefined ? '' : $("#txtHealthIssues1").val().trim(),
-                Medication: $('#txtMedication1').val() == undefined ? 0 : $('#txtMedication1').val().trim(),
+                Medication: $("#txtMedication1").val() == undefined ? 0 : $("#txtMedication1").val().trim(),
                 //HealthIssues: $("#txtHealthIssues2").val() == undefined ? '' : $("#txtHealthIssues2").val().trim(),
                 //Medication: $('#txtMedication2').val() == undefined ? 0 : $('#txtMedication2').val().trim(),
                 //HealthIssues: $("#txtHealthIssues3").val() == undefined ? '' : $("#txtHealthIssues3").val().trim(),
@@ -907,17 +915,17 @@
 
                 UserId: sessionStorage.getItem('userId'),
                 Lifestyle: $("#ddlLifestyle").val() == undefined ? 0 : $("#ddlLifestyle").val().trim(),
-                EatingHabits: $('#ddlEatingHabits').val() == undefined ? 0 : $('#ddlEatingHabits').val().trim(),
-                Frequencyofsmoking: $('#ddlFrequencyOfSmoking').val() == undefined ? 0 : $('#ddlFrequencyOfSmoking').val().trim(),
-                Frequencyofalcoholconsumption: $("#ddlFrequencyOfAlcoholConsumption").val() == undefined ? 0 : $('#ddlFrequencyOfAlcoholConsumption').val().trim(),
-                WaterintakeperdayType: $('#ddlWaterIntakePerDayType').val() == undefined ? 0 : $('#ddlWaterIntakePerDayType').val().trim(),
-                Waterintakeperday: $("#ddlWaterIntakePerDayDetails").val() == undefined ? '' : $('#ddlWaterIntakePerDayDetails').val().trim(),
+                EatingHabits: $("#ddlEatingHabits").val() == undefined ? 0 : $("#ddlEatingHabits").val().trim(),
+                Frequencyofsmoking: $("#ddlFrequencyOfSmoking").val() == undefined ? 0 : $("#ddlFrequencyOfSmoking").val().trim(),
+                Frequencyofalcoholconsumption: $("#ddlFrequencyOfAlcoholConsumption").val() == undefined ? 0 : $("#ddlFrequencyOfAlcoholConsumption").val().trim(),
+                WaterintakeperdayType: $("#ddlWaterIntakePerDayType").val() == undefined ? 0 : $("#ddlWaterIntakePerDayType").val().trim(),
+                Waterintakeperday: $("#ddlWaterIntakePerDayDetails").val() == undefined ? '' : $("#ddlWaterIntakePerDayDetails").val().trim(),
                 Frequencyofrestaurantvisit: $("#ddlFrequencyOfRestaurantVisit").val() == undefined ? 0 : $("#ddlFrequencyOfRestaurantVisit").val().trim(),
                 Preferredcuisine: $("#txtPreferredCuisine").val() == undefined ? '' : $("#txtPreferredCuisine").val().trim(),
-                Whocooksathome: $('#txtWhoCooksAtHome').val() == undefined ? '' : $('#txtWhoCooksAtHome').val().trim(),
-                FoodAversions: $('#txtFoodAversions').val() == undefined ? '' : $('#txtFoodAversions').val().trim(),
-                FoodPreferences: $("#txtFoodPreferences").val() == undefined ? '' : $('#txtFoodPreferences').val().trim(),
-                FoodAllergies: $('#txtFoodAllergies').val() == undefined ? '' : $('#txtFoodAllergies').val().trim(),
+                Whocooksathome: $("#txtWhoCooksAtHome").val() == undefined ? '' : $("#txtWhoCooksAtHome").val().trim(),
+                FoodAversions: $("#txtFoodAversions").val() == undefined ? '' : $("#txtFoodAversions").val().trim(),
+                FoodPreferences: $("#txtFoodPreferences").val() == undefined ? '' : $("#txtFoodPreferences").val().trim(),
+                FoodAllergies: $("#txtFoodAllergies").val() == undefined ? '' : $("#txtFoodAllergies").val().trim(),
             }
 
             var assessment =
@@ -944,18 +952,18 @@
             {
                 UserId: sessionStorage.getItem('userId'),
                 OnwakingupTime: $("#ddlOnWakingUp").val() == undefined ? 0 : $("#ddlOnWakingUp").val().trim(),
-                OnwakingupConsumption: $('#txtOnWakingUp').val() == undefined ? '' : $('#txtOnWakingUp').val().trim(),
-                BreakfastTime: $('#ddlBreakfast').val() == undefined ? 0 : $('#ddlBreakfast').val().trim(),
-                BreakfastConsumption: $("#txtBreakfast").val() == undefined ? '' : $('#txtBreakfast').val().trim(),
-                MidmorningTime: $('#ddlMidMorning').val() == undefined ? 0 : $('#ddlMidMorning').val().trim(),
-                MidmorningConsumption: $("#txtMidMorning").val() == undefined ? '' : $('#txtMidMorning').val().trim(),
+                OnwakingupConsumption: $("#txtOnWakingUp").val() == undefined ? '' : $("#txtOnWakingUp").val().trim(),
+                BreakfastTime: $("#ddlBreakfast").val() == undefined ? 0 : $("#ddlBreakfast").val().trim(),
+                BreakfastConsumption: $("#txtBreakfast").val() == undefined ? '' : $("#txtBreakfast").val().trim(),
+                MidmorningTime: $("#ddlMidMorning").val() == undefined ? 0 : $("#ddlMidMorning").val().trim(),
+                MidmorningConsumption: $("#txtMidMorning").val() == undefined ? '' : $("#txtMidMorning").val().trim(),
 
                 LunchTime: $("#ddlLunch").val() == undefined ? 0 : $("#ddlLunch").val().trim(),
                 LunchConsumption: $("#txtLunch").val() == undefined ? '' : $("#txtLunch").val().trim(),
-                SnackTime: $('#ddlEveningTeaSnack').val() == undefined ? 0 : $('#ddlEveningTeaSnack').val().trim(),
-                SnackConsumption: $('#txtEveningTeaSnack').val() == undefined ? '' : $('#txtEveningTeaSnack').val().trim(),
-                DinnerTime: $("#ddlDinner").val() == undefined ? 0 : $('#ddlDinner').val().trim(),
-                DinnerConsumption: $('#txtDinner').val() == undefined ? '' : $('#txtDinner').val().trim(),
+                SnackTime: $("#ddlEveningTeaSnack").val() == undefined ? 0 : $("#ddlEveningTeaSnack").val().trim(),
+                SnackConsumption: $("#txtEveningTeaSnack").val() == undefined ? '' : $("#txtEveningTeaSnack").val().trim(),
+                DinnerTime: $("#ddlDinner").val() == undefined ? 0 : $("#ddlDinner").val().trim(),
+                DinnerConsumption: $("#txtDinner").val() == undefined ? '' : $("#txtDinner").val().trim(),
                 Bedtime: $("#ddlBedTime").val() == undefined ? 0 : $('#ddlBedTime').val().trim(),
                 BedConsumption: $("#txtBedTime").val() == undefined ? '' : $("#txtBedTime").val().trim(),
 
@@ -985,15 +993,15 @@
             {
                 UserId: sessionStorage.getItem('userId'),
                 Roti: $("#ddlRotiChapati").val() == undefined ? 0 : $("#ddlRotiChapati").val().trim(),
-                Rice: $('#ddlRice').val() == undefined ? 0 : $('#ddlRice').val().trim(),
-                BreadPav: $('#ddlBreadPav').val() == undefined ? 0 : $('#ddlBreadPav').val().trim(),
-                ChaatSnacks: $("#ddlChaatFastFoodFriedSnacks").val() == undefined ? 0 : $('#ddlChaatFastFoodFriedSnacks').val().trim(),
-                Nonveg: $('#ddlNonVeg').val() == undefined ? 0 : $('#ddlNonVeg').val().trim(),
-                Eggs: $("#ddlEggs").val() == undefined ? 0 : $('#ddlEggs').val().trim(),
+                Rice: $("#ddlRice").val() == undefined ? 0 : $("#ddlRice").val().trim(),
+                BreadPav: $("#ddlBreadPav").val() == undefined ? 0 : $("#ddlBreadPav").val().trim(),
+                ChaatSnacks: $("#ddlChaatFastFoodFriedSnacks").val() == undefined ? 0 : $("#ddlChaatFastFoodFriedSnacks").val().trim(),
+                Nonveg: $("#ddlNonVeg").val() == undefined ? 0 : $("#ddlNonVeg").val().trim(),
+                Eggs: $("#ddlEggs").val() == undefined ? 0 : $("#ddlEggs").val().trim(),
                 Teacoffee: $("#ddlTeaCoffee").val() == undefined ? 0 : $("#ddlTeaCoffee").val().trim(),
-                Desert: $("#ddlDesert").val() == undefined ? 0 : $('#ddlDesert').val().trim(),
-                Fruits: $('#ddlFruits').val() == undefined ? 0 : $('#ddlFruits').val().trim(),
-                Nuts: $("#ddlNuts").val() == undefined ? 0 : $('#ddlNuts').val().trim(),
+                Desert: $("#ddlDesert").val() == undefined ? 0 : $("#ddlDesert").val().trim(),
+                Fruits: $("#ddlFruits").val() == undefined ? 0 : $("#ddlFruits").val().trim(),
+                Nuts: $("#ddlNuts").val() == undefined ? 0 : $("#ddlNuts").val().trim(),
             }
 
             var assessment =
@@ -1070,7 +1078,106 @@
 </script>
 <script src="~/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
+    var SystemdropdownMasterData = [];
+    function StateDD(ctrl) {
+         SystemdropdownMasterData = [];
+        LoadSystemMasterDropdown("txtState", 2, ctrl.value, "");
+    }
+    function CityDD(ctrl) {
+         SystemdropdownMasterData = [];
+        LoadSystemMasterDropdown("txtCity", 3, ctrl.value, "");
+    }
     $(document).ready(function () {
+
+         SystemdropdownMasterData = [];
+        LoadSystemMasterDropdown("txtCountry", 1, "", "");
+
+        var assessment =
+        {
+            TableType: "GetRecord" ,
+            UserId: sessionStorage.getItem('userId')
+        }
+
+        CommonAjaxMethod('Program/GetAsseeement', assessment, false, 'POST', function (response)
+        {
+            //-------------------GenralInfo-----------------------------------
+            $("#ddlGenderp").val(response.data.Data[0].Gender);
+            $("#txtDOB").val(JsonDateFormat(response.data.Data[0].BirthDate));
+            $("#txtAgep").val(response.data.Data[0].Age) ;
+            //$("#txtCountry").val(response.data.Data[0].Country) ;
+           // $("#txtState").val(response.data.Data[0].State);
+           // $("#txtCity").val(response.data.Data[0].City) ;
+            $("#txtEmail").val(response.data.Data[0].EmailID) ;
+            $("#txtPhoneNumber").val(response.data.Data[0].PhoneNumber);
+            $("#txtCaste").val(response.data.Data[0].Caste);
+            $("#ddlMaritalStatus").val(response.data.Data[0].MaritalStatus);
+            $("#ddlDoYouHaveChildrenp").val(response.data.Data[0].DoYouHaveChildren);
+            $("#ddlTypeOfFamily").val(response.data.Data[0].TypeOfFamily);
+            $("#ddlCurrentlyWorkingp").val(response.data.Data[0].CurrentlyWorking);
+            $("#txtOccupation").val(response.data.Data[0].Occupation);
+            //-------------------Photo------------------------------------
+            $("#hdnProfilePhotoPath").val(response.data.Data[0].PhotoURL);
+            //--------------------Anthropometry-----------------------------------
+            $("#txtWeight").val(response.data.Data[0].Weight);
+            $("#ddlWeightType").val(response.data.Data[0].WeightType);
+            $("#txtHeight").val(response.data.Data[0].Height);
+            $("#ddlHeightType").val(response.data.Data[0].HeightType); 
+            $("#txtTargetWeight").val(response.data.Data[0].TargetWeight);
+            $("#ddlTargetWeightType").val(response.data.Data[0].TargetWeightType);
+            $("#txtYourGoals").val(response.data.Data[0].YourGoals); 
+            //---------------------MedicalHistory----------------------------------
+            $("#txtHealthIssues").val(response.data.Data[0].HealthIssues);
+            $("#txtReports").val(response.data.Data[0].Reports); 
+            //--------------------Medications-----------------------------------
+            $("#txtHealthIssues1").val(response.data.Data[0].UM_HealthIssues);
+            $("#txtMedication1").val(response.data.Data[0].Medication);
+            //--------------------DietaryAndLifeStyleDetails-----------------------------------
+            $("#ddlLifestyle").val(response.data.Data[0].Lifestyle);
+            $("#ddlEatingHabits").val(response.data.Data[0].EatingHabits); 
+            $("#ddlFrequencyOfSmoking").val(response.data.Data[0].UM_HealthIssues);
+            $("#ddlFrequencyOfAlcoholConsumption").val(response.data.Data[0].Frequencyofalcoholconsumption);
+            $("#ddlWaterIntakePerDayType").val(response.data.Data[0].WaterintakeperdayType);
+            $("#ddlWaterIntakePerDayDetails").val(response.data.Data[0].Waterintakeperday);
+            $("#ddlFrequencyOfRestaurantVisit").val(response.data.Data[0].Frequencyofrestaurantvisit);
+             $("#txtPreferredCuisine").val(response.data.Data[0].Preferredcuisine); 
+            $("#txtWhoCooksAtHome").val(response.data.Data[0].Whocooksathome);
+            $("#txtFoodAversions").val(response.data.Data[0].FoodAversions);
+            $("#txtFoodPreferences").val(response.data.Data[0].FoodPreferences); 
+            $("#txtFoodAllergies").val(response.data.Data[0].FoodAllergies);
+            //------------------Direct Call-------------------------------------
+         
+            $("#ddlOnWakingUp").val(response.data.Data[0].OnwakingupTime); 
+            $("#txtOnWakingUp").val(response.data.Data[0].OnwakingupConsumption); 
+            $("#ddlBreakfast").val(response.data.Data[0].BreakfastTime); 
+            $("#txtBreakfast").val(response.data.Data[0].BreakfastConsumption);             
+            $("#ddlMidMorning").val(response.data.Data[0].MidmorningTime); 
+            $("#txtMidMorning").val(response.data.Data[0].MidmorningConsumption); 
+
+            $("#ddlLunch").val(response.data.Data[0].LunchTime); 
+            $("#txtLunch").val(response.data.Data[0].LunchConsumption); 
+            $("#ddlEveningTeaSnack").val(response.data.Data[0].SnackTime);
+            $("#txtEveningTeaSnack").val(response.data.Data[0].SnackConsumption);
+            $("#ddlDinner").val(response.data.Data[0].DinnerTime);
+            $("#txtDinner").val(response.data.Data[0].DinnerConsumption); 
+            $("#ddlBedTime").val(response.data.Data[0].Bedtime); 
+            $("#txtBedTime").val(response.data.Data[0].BedConsumption); 
+
+            //-------------------FoodFequency------------------------------------
+            $("#ddlRotiChapati").val(response.data.Data[0].Roti);
+            $("#ddlRice").val(response.data.Data[0].Rice);
+            $("#ddlBreadPav").val(response.data.Data[0].BreadPav);
+            $("#ddlChaatFastFoodFriedSnacks").val(response.data.Data[0].ChaatSnacks)
+            $("#ddlNonVeg").val(response.data.Data[0].Nonveg);
+            $("#ddlEggs").val(response.data.Data[0].Eggs);
+            $("#ddlTeaCoffee").val(response.data.Data[0].Teacoffee);
+            $("#ddlDesert").val(response.data.Data[0].Desert);
+            $("#ddlFruits").val(response.data.Data[0].Fruits);
+            $("#ddlNuts").val(response.data.Data[0].Nuts);
+
+            //------------------AnyKeyInSights-------------------------------------
+            $("#txtAnyKeyInsight").val(response.data.Data[0].Comments);
+
+        });
 
         $("#imageBrowes").change(function () {
 
@@ -1170,7 +1277,6 @@
                     if (result.ErrorMessage == undefined) {
 
                         $("#hdnProfilePhotoPath").val(result);
-
                     }
                     else {
                         alert(result.ErrorMessage);
