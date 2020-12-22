@@ -75,22 +75,21 @@
                         <label class="col-12 col-sm-5 col-form-label semi">Country <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
                             @*<input type="text" class="form-control border mandotory" id="txtCountry" maxlength="100" placeholder="Enter Country" />*@
-                            <select class="custom-select" id="txtCountry" onchange="StateDD(this)">
-                              
+                            <select class="custom-select" id="ddlCountry" onchange="StateDD(this)">
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">State <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="txtState" onchange="CityDD(this)">
+                            <select class="custom-select" id="ddlState" onchange="CityDD(this)">
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">City <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="txtCity" >
+                            <select class="custom-select" id="ddlCity" >
                             </select>
                         </div>
                     </div>
@@ -192,18 +191,11 @@
                                         <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
                                         <span id="description"></span>
                                     </div>
-
                                 </div>
-
                             </div>
-
-
                             <div class="col-md-2 thumbnail" id="uploadedImage">
                             </div>
-
-
                         </div>
-
                     </div>
                     <div class="col-12 col-sm-12 text-right">
                         <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserPhoto12" onclick="SaveUserPhoto12()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
@@ -736,21 +728,22 @@
         var commonjsURL = '/Scripts/DevScripts/Common.js';
 
         function SaveGenralInfo() {
-
-           
+          
             var aa = $("#ddlGenderp").val();
-            alert(aa);
+           
             if (ValidationOnSave()) {
                 if (ValidateRequiredField()) {
+                  
                     var UserInfodata =
-                    {
+                    {                      
+
                         UserId: sessionStorage.getItem("userId"),
                         Gender: $("#ddlGenderp").val() == undefined ? '' : $("#ddlGenderp").val().trim(),
-                        BirthDate: $("#txtDOB").val().ToString("dd/MM/yyyy") == undefined ? 0 : $("#txtDOB").val().ToString("dd/MM/yyyy").trim(),
+                        BirthDate: $("#txtDOB").val() == undefined ? 0 : $("#txtDOB").val().trim(),
                         Age: $("#txtAgep").val() == undefined ? '' : $("#txtAgep").val().trim(),
-                        Country: $("#txtCountry").val() == undefined ? 0 : $("#txtCountry").val().trim(),
-                        State: $("#txtState").val() == undefined ? 0 : $("#txtState").val().trim(),
-                        City: $("#txtCity").val() == undefined ? 0 : $("#txtCity").val().trim(),
+                        Country: $("#ddlCountry").val() == undefined ? ''  : $("#ddlCountry").val().trim(),
+                        State: $("#ddlState").val() == undefined ? ''  : $("#ddlState").val().trim(),
+                        City: $("#ddlCity").val() == undefined ? ''  : $("#ddlCity").val().trim(),
                         EmailID: $("#txtEmail").val() == undefined ? '' : $("#txtEmail").val().trim(),
                         PhoneNumber: $("#txtPhoneNumber").val() == undefined ? '' : $("#txtPhoneNumber").val().trim(),
                         Caste: $("#txtCaste").val() == undefined ? 0 : $("#txtCaste").val().trim(),
@@ -766,6 +759,7 @@
                         TableType: "UserGeneralInfo",
                         UserGeneralInfo: UserInfodata
                     }
+                  
                     CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
                         alert('Record save successfully!!!');
                     });
@@ -1030,7 +1024,7 @@
                 Comments: $("#txtAnyKeyInsight").val() == undefined ? '' : $("#txtAnyKeyInsight").val().trim(),
 
             }
-            debugger;
+           
             var assessment =
             {
                 TableType: "UserAnyKeyInSights",
@@ -1081,16 +1075,16 @@
     var SystemdropdownMasterData = [];
     function StateDD(ctrl) {
          SystemdropdownMasterData = [];
-        LoadSystemMasterDropdown("txtState", 2, ctrl.value, "");
+        LoadSystemMasterDropdown("ddlState", 2, ctrl.value, "");
     }
     function CityDD(ctrl) {
          SystemdropdownMasterData = [];
-        LoadSystemMasterDropdown("txtCity", 3, ctrl.value, "");
+        LoadSystemMasterDropdown("ddlCity", 3, ctrl.value, "");
     }
     $(document).ready(function () {
 
          SystemdropdownMasterData = [];
-        LoadSystemMasterDropdown("txtCountry", 1, "", "");
+        LoadSystemMasterDropdown("ddlCountry", 1, "", "");
 
         var assessment =
         {
@@ -1104,9 +1098,14 @@
             $("#ddlGenderp").val(response.data.Data[0].Gender);
             $("#txtDOB").val(JsonDateFormat(response.data.Data[0].BirthDate));
             $("#txtAgep").val(response.data.Data[0].Age) ;
-            //$("#txtCountry").val(response.data.Data[0].Country) ;
-           // $("#txtState").val(response.data.Data[0].State);
-           // $("#txtCity").val(response.data.Data[0].City) ;
+            $("#ddlCountry").val(response.data.Data[0].Country);
+            SystemdropdownMasterData = [];
+            
+            LoadSystemMasterDropdown("ddlState", 2, response.data.Data[0].Country, response.data.Data[0].State);
+            
+            SystemdropdownMasterData = [];
+            LoadSystemMasterDropdown("ddlCity", 3, response.data.Data[0].State, response.data.Data[0].City);
+
             $("#txtEmail").val(response.data.Data[0].EmailID) ;
             $("#txtPhoneNumber").val(response.data.Data[0].PhoneNumber);
             $("#txtCaste").val(response.data.Data[0].Caste);
@@ -1117,50 +1116,55 @@
             $("#txtOccupation").val(response.data.Data[0].Occupation);
             //-------------------Photo------------------------------------
             $("#hdnProfilePhotoPath").val(response.data.Data[0].PhotoURL);
+
+          
+            $("#targetImg").attr('src', "@CommonMethods.ServerPath"+response.data.Data[0].PhotoURL);
+
             //--------------------Anthropometry-----------------------------------
             $("#txtWeight").val(response.data.Data[0].Weight);
             $("#ddlWeightType").val(response.data.Data[0].WeightType);
             $("#txtHeight").val(response.data.Data[0].Height);
-            $("#ddlHeightType").val(response.data.Data[0].HeightType); 
+            $("#ddlHeightType").val(response.data.Data[0].HeightType);
             $("#txtTargetWeight").val(response.data.Data[0].TargetWeight);
             $("#ddlTargetWeightType").val(response.data.Data[0].TargetWeightType);
-            $("#txtYourGoals").val(response.data.Data[0].YourGoals); 
+            $("#txtYourGoals").val(response.data.Data[0].YourGoals);
             //---------------------MedicalHistory----------------------------------
             $("#txtHealthIssues").val(response.data.Data[0].HealthIssues);
-            $("#txtReports").val(response.data.Data[0].Reports); 
+            $("#txtReports").val(response.data.Data[0].Reports);
+            
             //--------------------Medications-----------------------------------
             $("#txtHealthIssues1").val(response.data.Data[0].UM_HealthIssues);
             $("#txtMedication1").val(response.data.Data[0].Medication);
             //--------------------DietaryAndLifeStyleDetails-----------------------------------
             $("#ddlLifestyle").val(response.data.Data[0].Lifestyle);
-            $("#ddlEatingHabits").val(response.data.Data[0].EatingHabits); 
+            $("#ddlEatingHabits").val(response.data.Data[0].EatingHabits);
             $("#ddlFrequencyOfSmoking").val(response.data.Data[0].UM_HealthIssues);
             $("#ddlFrequencyOfAlcoholConsumption").val(response.data.Data[0].Frequencyofalcoholconsumption);
             $("#ddlWaterIntakePerDayType").val(response.data.Data[0].WaterintakeperdayType);
             $("#ddlWaterIntakePerDayDetails").val(response.data.Data[0].Waterintakeperday);
             $("#ddlFrequencyOfRestaurantVisit").val(response.data.Data[0].Frequencyofrestaurantvisit);
-             $("#txtPreferredCuisine").val(response.data.Data[0].Preferredcuisine); 
+             $("#txtPreferredCuisine").val(response.data.Data[0].Preferredcuisine);
             $("#txtWhoCooksAtHome").val(response.data.Data[0].Whocooksathome);
             $("#txtFoodAversions").val(response.data.Data[0].FoodAversions);
-            $("#txtFoodPreferences").val(response.data.Data[0].FoodPreferences); 
+            $("#txtFoodPreferences").val(response.data.Data[0].FoodPreferences);
             $("#txtFoodAllergies").val(response.data.Data[0].FoodAllergies);
             //------------------Direct Call-------------------------------------
-         
-            $("#ddlOnWakingUp").val(response.data.Data[0].OnwakingupTime); 
-            $("#txtOnWakingUp").val(response.data.Data[0].OnwakingupConsumption); 
-            $("#ddlBreakfast").val(response.data.Data[0].BreakfastTime); 
-            $("#txtBreakfast").val(response.data.Data[0].BreakfastConsumption);             
-            $("#ddlMidMorning").val(response.data.Data[0].MidmorningTime); 
-            $("#txtMidMorning").val(response.data.Data[0].MidmorningConsumption); 
 
-            $("#ddlLunch").val(response.data.Data[0].LunchTime); 
-            $("#txtLunch").val(response.data.Data[0].LunchConsumption); 
+            $("#ddlOnWakingUp").val(response.data.Data[0].OnwakingupTime);
+            $("#txtOnWakingUp").val(response.data.Data[0].OnwakingupConsumption);
+            $("#ddlBreakfast").val(response.data.Data[0].BreakfastTime);
+            $("#txtBreakfast").val(response.data.Data[0].BreakfastConsumption);
+            $("#ddlMidMorning").val(response.data.Data[0].MidmorningTime);
+            $("#txtMidMorning").val(response.data.Data[0].MidmorningConsumption);
+
+            $("#ddlLunch").val(response.data.Data[0].LunchTime);
+            $("#txtLunch").val(response.data.Data[0].LunchConsumption);
             $("#ddlEveningTeaSnack").val(response.data.Data[0].SnackTime);
             $("#txtEveningTeaSnack").val(response.data.Data[0].SnackConsumption);
             $("#ddlDinner").val(response.data.Data[0].DinnerTime);
-            $("#txtDinner").val(response.data.Data[0].DinnerConsumption); 
-            $("#ddlBedTime").val(response.data.Data[0].Bedtime); 
-            $("#txtBedTime").val(response.data.Data[0].BedConsumption); 
+            $("#txtDinner").val(response.data.Data[0].DinnerConsumption);
+            $("#ddlBedTime").val(response.data.Data[0].Bedtime);
+            $("#txtBedTime").val(response.data.Data[0].BedConsumption);
 
             //-------------------FoodFequency------------------------------------
             $("#ddlRotiChapati").val(response.data.Data[0].Roti);
@@ -1182,11 +1186,11 @@
         $("#imageBrowes").change(function () {
 
             var File = this.files;
-
+          
             if (File && File[0])
             {
                 ReadImage(File[0]);
-               
+
             }
 
         })
@@ -1209,14 +1213,15 @@
             image.onload = function ()
             {
 
-                
+
                 var height = this.height;
                 var width = this.width;
                 var type = file.type;
                 var size = ~~(file.size / 2024)+"KB";
-                var sizem = ~~(file.size / 2024);     
-             
-                if (type != "image/png" || type != "image/jpeg" || sizem <= 500)
+                var sizem = ~~(file.size / 2024);
+
+
+                if ((type != "image/png" || type != "image/jpeg")  && sizem >= 500)
                 {
                     alert("invalid file type. please select jpeg/png image and size should less 500kb.");
                 }
@@ -1228,7 +1233,6 @@
 
                     Uploadocument();
                 }
-               
 
             }
 
@@ -1293,10 +1297,9 @@
         var folderDetails = "";
         folderDetails = "1";
         var fileUpload = $("#fileuploadReport").get(0);
-
         var files = fileUpload.files;
-        if (files.length > 0) {
-
+        if (files.length > 0)
+        {
             // Create FormData object
             var fileData = new FormData();
 
@@ -1335,7 +1338,7 @@
 
 
     }
-   
+
 
 </script>
 
