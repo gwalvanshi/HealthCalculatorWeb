@@ -46,7 +46,8 @@ namespace HealthCalculator.Web.Controllers
                 string fileName = fname;
                 string newFile = "UserID_" + userID;
                 string[] splString = fileName.Split('.');
-                string uploadNewFileName = newFile + "." + splString[1];
+                //string uploadNewFileName = newFile + "." + splString[1];
+                string uploadNewFileName = fileName;
                 string filePathTobeSaved = "";
                 string baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["ProfilePhotoFolder"]);
                 filePathTobeSaved = baseurl + "/" + uploadNewFileName;
@@ -82,7 +83,8 @@ namespace HealthCalculator.Web.Controllers
                 string fileName = fname;
                 string newFile = "UserID_" + userID;
                 string[] splString = fileName.Split('.');
-                string uploadNewFileName = newFile + "." + splString[1];
+                // string uploadNewFileName = newFile + "." + splString[1];
+                string uploadNewFileName = fileName;
                 string filePathTobeSaved = "";
                 string baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["UploadReportFolder"]);
                 filePathTobeSaved = baseurl + "/" + uploadNewFileName;

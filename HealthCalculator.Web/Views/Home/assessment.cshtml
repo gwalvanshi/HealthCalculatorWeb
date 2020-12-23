@@ -46,12 +46,12 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Name <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="txtName" maxlength="100" placeholder="Enter Name" />
+                            <input type="text" class="form-control border mandotory" id="txtName" maxlength="100" placeholder="Enter Name" readonly="readonly"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Gender <span class="float-right d-none d-md-block"> : </span></label>
-                        <div class="col-12 col-sm-7">                           
+                        <div class="col-12 col-sm-7">
                             <select class="custom-select" id="ddlGenderp">
                                 <option selected>Select</option>
                                 <option value="1">Male</option>
@@ -61,8 +61,8 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Birth date <span class="float-right d-none d-md-block"> : </span></label>
-                        <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="txtDOB" maxlength="100" placeholder="Enter Birth date">
+                        <div class="col-12 col-sm-7">                            
+                                <input type="text" class="form-control border mandotory" id="txtDOB" maxlength="100" placeholder="Enter Birth date">                        
                         </div>
                     </div>
                     <div class="form-group row">
@@ -89,7 +89,7 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">City <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="ddlCity" >
+                            <select class="custom-select" id="ddlCity">
                             </select>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Do you Have Children <span class="float-right d-none d-md-block"> : </span></label>
-                        <div class="col-12 col-sm-7">                           
+                        <div class="col-12 col-sm-7">
                             <select class="custom-select" id="ddlDoYouHaveChildrenp">
                                 <option selected>Select</option>
                                 <option value="1">Yes</option>
@@ -278,15 +278,17 @@
                         <label class="col-12 col-sm-5 col-form-label semi">Reports <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
                             <input type="text" class="form-control border " id="txtReports" maxlength="100" placeholder="Enter Reports" />
-                            <input type="file" name="UploadedFileReport" id="fileuploadReport" />
-                            <input type="hidden" id="hdnfileuploadReportPath" />
+                            <div class="btn btn-primary">
+                                <input type="file" name="UploadedFileReport" id="fileuploadReport" />
+                                <input type="hidden" id="hdnfileuploadReportPath" />
+                            </div>
+                            <div class="btn btn-primary" style="display:none;" id="dvDownloadReport">
+                                @*<a  id="btnDownloadReport" onclick="downloadDocument()">&nbsp; &nbsp; Download Report &nbsp; &nbsp; </a>*@
+                                <a id="btnDownloadReport">&nbsp; &nbsp; Download Report &nbsp; &nbsp; </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row justify-content-end">
-                        <div class="col-12 col-sm-7">
-                            <img src="@CommonMethods.ServerPath/img/pluse.png" class="img-fluid" onclick="UploadocumentReport()" />
-                        </div>
-                    </div>
+
                     <div class="form-group row">
                         <div class="col-12 col-sm-12 text-right">
                             <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserMedicalHistory" onclick="SaveUserMedicalHistory()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
@@ -723,353 +725,353 @@
 
 <script>
 
-        var isAllValid = true;
-        var isSaved = true;
-        var commonjsURL = '/Scripts/DevScripts/Common.js';
+    var isAllValid = true;
+    var isSaved = true;
+    var commonjsURL = '/Scripts/DevScripts/Common.js';
 
-        function SaveGenralInfo() {
-          
-            var aa = $("#ddlGenderp").val();
-           
-            if (ValidationOnSave()) {
-                if (ValidateRequiredField()) {
-                  
-                    var UserInfodata =
-                    {                      
+    function SaveGenralInfo() {
 
-                        UserId: sessionStorage.getItem("userId"),
-                        Gender: $("#ddlGenderp").val() == undefined ? '' : $("#ddlGenderp").val().trim(),
-                        BirthDate: $("#txtDOB").val() == undefined ? 0 : $("#txtDOB").val().trim(),
-                        Age: $("#txtAgep").val() == undefined ? '' : $("#txtAgep").val().trim(),
-                        Country: $("#ddlCountry").val() == undefined ? ''  : $("#ddlCountry").val().trim(),
-                        State: $("#ddlState").val() == undefined ? ''  : $("#ddlState").val().trim(),
-                        City: $("#ddlCity").val() == undefined ? ''  : $("#ddlCity").val().trim(),
-                        EmailID: $("#txtEmail").val() == undefined ? '' : $("#txtEmail").val().trim(),
-                        PhoneNumber: $("#txtPhoneNumber").val() == undefined ? '' : $("#txtPhoneNumber").val().trim(),
-                        Caste: $("#txtCaste").val() == undefined ? 0 : $("#txtCaste").val().trim(),
-                        MaritalStatus: $("#ddlMaritalStatus").val() == undefined ? 0 : $("#ddlMaritalStatus").val().trim(),
-                        DoYouHaveChildren: $("#ddlDoYouHaveChildrenp").val() == undefined ? 0 : $("#ddlDoYouHaveChildrenp").val().trim(),
-                        TypeOfFamily: $("#ddlTypeOfFamily").val() == undefined ? 0 : $("#ddlTypeOfFamily").val().trim(),
-                        CurrentlyWorking: $("#ddlCurrentlyWorkingp").val() == undefined ? 0 : $("#ddlCurrentlyWorkingp").val().trim(),
-                        Occupation: $("#txtOccupation").val() == undefined ? '' : $("#txtOccupation").val().trim(),
+        var aa = $("#ddlGenderp").val();
 
-                    }
-                    var assessment =
-                    {
-                        TableType: "UserGeneralInfo",
-                        UserGeneralInfo: UserInfodata
-                    }
-                  
-                    CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                        alert('Record save successfully!!!');
-                    });
+        if (ValidationOnSave()) {
+            if (ValidateRequiredField()) {
+
+                var UserInfodata =
+                {
+
+                    UserId: sessionStorage.getItem("userId"),
+                    Gender: $("#ddlGenderp").val() == undefined ? '' : $("#ddlGenderp").val().trim(),
+                    BirthDate: $("#txtDOB").val() == undefined ? 0 : $("#txtDOB").val().trim(),
+                    Age: $("#txtAgep").val() == undefined ? '' : $("#txtAgep").val().trim(),
+                    Country: $("#ddlCountry").val() == undefined ? '' : $("#ddlCountry").val().trim(),
+                    State: $("#ddlState").val() == undefined ? '' : $("#ddlState").val().trim(),
+                    City: $("#ddlCity").val() == undefined ? '' : $("#ddlCity").val().trim(),
+                    EmailID: $("#txtEmail").val() == undefined ? '' : $("#txtEmail").val().trim(),
+                    PhoneNumber: $("#txtPhoneNumber").val() == undefined ? '' : $("#txtPhoneNumber").val().trim(),
+                    Caste: $("#txtCaste").val() == undefined ? 0 : $("#txtCaste").val().trim(),
+                    MaritalStatus: $("#ddlMaritalStatus").val() == undefined ? 0 : $("#ddlMaritalStatus").val().trim(),
+                    DoYouHaveChildren: $("#ddlDoYouHaveChildrenp").val() == undefined ? 0 : $("#ddlDoYouHaveChildrenp").val().trim(),
+                    TypeOfFamily: $("#ddlTypeOfFamily").val() == undefined ? 0 : $("#ddlTypeOfFamily").val().trim(),
+                    CurrentlyWorking: $("#ddlCurrentlyWorkingp").val() == undefined ? 0 : $("#ddlCurrentlyWorkingp").val().trim(),
+                    Occupation: $("#txtOccupation").val() == undefined ? '' : $("#txtOccupation").val().trim(),
 
                 }
-                else {
-                    alert('Please fill all details to User General Info.');
+                var assessment =
+                {
+                    TableType: "UserGeneralInfo",
+                    UserGeneralInfo: UserInfodata
                 }
 
+                CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                    alert('Record save successfully!!!');
+                });
+
+            }
+            else {
+                alert('Please fill all details to User General Info.');
             }
 
         }
 
-        function SaveUserPhoto12()
+    }
+
+    function SaveUserPhoto12() {
+        if ($("#hdnProfilePhotoPath").val() != '') {
+            var UserPhotoData =
+            {
+                UserId: sessionStorage.getItem('userId'),
+                PhotoURL: $("#hdnProfilePhotoPath").val() == undefined ? '' : $("#hdnProfilePhotoPath").val(),
+
+            }
+            var assessment =
+            {
+                TableType: "UserPhoto",
+                UserPhoto: UserPhotoData
+            }
+
+            CommonAjaxMethod('Program/SavePoto', assessment, false, 'POST', function (response) {
+                alert('Record save successfully!!!');
+
+            });
+        }
+        else {
+            alert("Please upload valid image.")
+        }
+        //   data.append("PhotoURL", file[0]);
+
+
+    }
+
+    function SaveUserAnthropometry() {
+
+        // if (ValidationOnSave())
+        //  {
+        // alert('1');
+        //if (ValidateRequiredField())
+        // {
+        //   alert('2');
+        var UserAnthropometrydata =
         {
-            if ($("#hdnProfilePhotoPath").val()!= '')
-            {
-                var UserPhotoData =
-                  {
-                      UserId: sessionStorage.getItem('userId'),
-                      PhotoURL: $("#hdnProfilePhotoPath").val() == undefined ? '' : $("#hdnProfilePhotoPath").val(),
+            UserId: sessionStorage.getItem('userId'),
+            Weight: $("#txtWeight").val() == undefined ? 0 : $("#txtWeight").val().trim(),
+            WeightType: $("#ddlWeightType").val() == undefined ? 0 : $("#ddlWeightType").val().trim(),
+            Height: $("#txtHeight").val() == undefined ? '' : $("#txtHeight").val().trim(),
+            HeightType: $("#ddlHeightType").val() == undefined ? 0 : $("#ddlHeightType").val().trim(),
+            TargetWeight: $("#txtTargetWeight").val() == undefined ? '' : $("#txtTargetWeight").val().trim(),
+            TargetWeightType: $("#ddlTargetWeightType").val() == undefined ? 0 : $("#ddlTargetWeightType").val().trim(),
+            YourGoals: $("#txtYourGoals").val() == undefined ? '' : $("#txtYourGoals").val().trim(),
 
-                  }
-                        var assessment =
-                        {
-                            TableType: "UserPhoto",
-                            UserPhoto: UserPhotoData
-                        }
-
-                        CommonAjaxMethod('Program/SavePoto', assessment, false, 'POST', function (response) {
-                            alert('Record save successfully!!!');
-
-                        });
-            }
-            else
-            {
-                alert("Please upload valid image.")
-            }
-         //   data.append("PhotoURL", file[0]);
-
-           
         }
 
-        function SaveUserAnthropometry() {
-
-            // if (ValidationOnSave())
-            //  {
-            // alert('1');
-            //if (ValidateRequiredField())
-            // {
-            //   alert('2');
-            var UserAnthropometrydata =
-            {
-                UserId: sessionStorage.getItem('userId'),
-                Weight: $("#txtWeight").val() == undefined ? 0 : $("#txtWeight").val().trim(),
-                WeightType: $("#ddlWeightType").val() == undefined ? 0 : $("#ddlWeightType").val().trim(),
-                Height: $("#txtHeight").val() == undefined ? '' : $("#txtHeight").val().trim(),
-                HeightType: $("#ddlHeightType").val() == undefined ? 0 : $("#ddlHeightType").val().trim(),
-                TargetWeight: $("#txtTargetWeight").val() == undefined ? '' : $("#txtTargetWeight").val().trim(),
-                TargetWeightType: $("#ddlTargetWeightType").val() == undefined ? 0 : $("#ddlTargetWeightType").val().trim(),
-                YourGoals: $("#txtYourGoals").val() == undefined ? '' : $("#txtYourGoals").val().trim(),
-
-            }
-
-            var assessment =
-            {
-                TableType: "UserAnthropometry",
-                UserAnthropometry: UserAnthropometrydata
-            }
-
-            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
-
-            });
-            //   }
-            // else
-            // {
-            alert('Please fill all details to Anthropometry.');
-            // }
-            // }
+        var assessment =
+        {
+            TableType: "UserAnthropometry",
+            UserAnthropometry: UserAnthropometrydata
         }
 
-        function SaveUserMedicalHistory() {
-            //if (ValidationOnSave()) {
-            //  if (ValidateRequiredField()) {
-            var UserMedicalHistorydata =
-            {
-                UserId: sessionStorage.getItem('userId'),
-                HealthIssues: $("#txtHealthIssues").val() == undefined ? '' : $("#txtHealthIssues").val().trim(),
-                Reports: $("#txtReports").val() == undefined ? '' : $("#txtReports").val().trim(),
-            }
+        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+            alert('Record save successfully!!!');
 
-            var assessment =
-            {
-                TableType: "UserMedicalHistory",
-                UserMedicalHistory: UserMedicalHistorydata
-            }
+        });
+        //   }
+        // else
+        // {
+        alert('Please fill all details to Anthropometry.');
+        // }
+        // }
+    }
 
-            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
-
-            });
-            //   }
-            //  else {
-            //      alert('Please fill all details to  Medical History.');
-            //  }
-            //   }
+    function SaveUserMedicalHistory() {
+        //if (ValidationOnSave()) {
+        //  if (ValidateRequiredField()) {
+        var UserMedicalHistorydata =
+        {
+            UserId: sessionStorage.getItem('userId'),
+            HealthIssues: $("#txtHealthIssues").val() == undefined ? '' : $("#txtHealthIssues").val().trim(),
+            Reports: $("#txtReports").val() == undefined ? '' : $("#txtReports").val().trim(),
         }
 
-        function SaveUserMedications() {
-            // if (ValidationOnSave()) {
-            //if (ValidateRequiredField()) {
-            var UserMedicationsdata =
-            {
-                UserId: sessionStorage.getItem('userId'),
-                HealthIssues: $("#txtHealthIssues1").val() == undefined ? '' : $("#txtHealthIssues1").val().trim(),
-                Medication: $("#txtMedication1").val() == undefined ? 0 : $("#txtMedication1").val().trim(),
-                //HealthIssues: $("#txtHealthIssues2").val() == undefined ? '' : $("#txtHealthIssues2").val().trim(),
-                //Medication: $('#txtMedication2').val() == undefined ? 0 : $('#txtMedication2').val().trim(),
-                //HealthIssues: $("#txtHealthIssues3").val() == undefined ? '' : $("#txtHealthIssues3").val().trim(),
-                //Medication: $('#txtMedication3').val() == undefined ? 0 : $('#txtMedication3').val().trim(),
-
-            }
-
-            var assessment =
-            {
-                TableType: "UserMedications",
-                UserMedications: UserMedicationsdata
-            }
-
-            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
-
-            });
-            // }
-            //else {
-            //    alert('Please fill all details to Medications.');
-            //}
-            //}
+        var assessment =
+        {
+            TableType: "UserMedicalHistory",
+            UserMedicalHistory: UserMedicalHistorydata
         }
 
-        function SaveUserDietaryAndLifeStyleDetails() {
-            //if (ValidationOnSave()) {
-            //    if (ValidateRequiredField()) {
-            var UserDietaryAndLifeStyleDetailsdata =
-            {
+        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+            alert('Record save successfully!!!');
 
-                UserId: sessionStorage.getItem('userId'),
-                Lifestyle: $("#ddlLifestyle").val() == undefined ? 0 : $("#ddlLifestyle").val().trim(),
-                EatingHabits: $("#ddlEatingHabits").val() == undefined ? 0 : $("#ddlEatingHabits").val().trim(),
-                Frequencyofsmoking: $("#ddlFrequencyOfSmoking").val() == undefined ? 0 : $("#ddlFrequencyOfSmoking").val().trim(),
-                Frequencyofalcoholconsumption: $("#ddlFrequencyOfAlcoholConsumption").val() == undefined ? 0 : $("#ddlFrequencyOfAlcoholConsumption").val().trim(),
-                WaterintakeperdayType: $("#ddlWaterIntakePerDayType").val() == undefined ? 0 : $("#ddlWaterIntakePerDayType").val().trim(),
-                Waterintakeperday: $("#ddlWaterIntakePerDayDetails").val() == undefined ? '' : $("#ddlWaterIntakePerDayDetails").val().trim(),
-                Frequencyofrestaurantvisit: $("#ddlFrequencyOfRestaurantVisit").val() == undefined ? 0 : $("#ddlFrequencyOfRestaurantVisit").val().trim(),
-                Preferredcuisine: $("#txtPreferredCuisine").val() == undefined ? '' : $("#txtPreferredCuisine").val().trim(),
-                Whocooksathome: $("#txtWhoCooksAtHome").val() == undefined ? '' : $("#txtWhoCooksAtHome").val().trim(),
-                FoodAversions: $("#txtFoodAversions").val() == undefined ? '' : $("#txtFoodAversions").val().trim(),
-                FoodPreferences: $("#txtFoodPreferences").val() == undefined ? '' : $("#txtFoodPreferences").val().trim(),
-                FoodAllergies: $("#txtFoodAllergies").val() == undefined ? '' : $("#txtFoodAllergies").val().trim(),
-            }
+        });
+        //   }
+        //  else {
+        //      alert('Please fill all details to  Medical History.');
+        //  }
+        //   }
+    }
 
-            var assessment =
-            {
-                TableType: "UserDietaryAndLifeStyleDetails",
-                UserDietaryAndLifeStyleDetails: UserDietaryAndLifeStyleDetailsdata
-            }
+    function SaveUserMedications() {
+        // if (ValidationOnSave()) {
+        //if (ValidateRequiredField()) {
+        var UserMedicationsdata =
+        {
+            UserId: sessionStorage.getItem('userId'),
+            HealthIssues: $("#txtHealthIssues1").val() == undefined ? '' : $("#txtHealthIssues1").val().trim(),
+            Medication: $("#txtMedication1").val() == undefined ? 0 : $("#txtMedication1").val().trim(),
+            //HealthIssues: $("#txtHealthIssues2").val() == undefined ? '' : $("#txtHealthIssues2").val().trim(),
+            //Medication: $('#txtMedication2').val() == undefined ? 0 : $('#txtMedication2').val().trim(),
+            //HealthIssues: $("#txtHealthIssues3").val() == undefined ? '' : $("#txtHealthIssues3").val().trim(),
+            //Medication: $('#txtMedication3').val() == undefined ? 0 : $('#txtMedication3').val().trim(),
 
-            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
-
-            });
-            //    }
-            //    else {
-            //        alert('Please fill all details to Dietary And Life Style Details.');
-            //    }
-            //}
         }
 
-        function SaveUserDirectCall() {
-            //if (ValidationOnSave()) {
-            //    if (ValidateRequiredField()) {
-            var UserDirectCalldata =
-            {
-                UserId: sessionStorage.getItem('userId'),
-                OnwakingupTime: $("#ddlOnWakingUp").val() == undefined ? 0 : $("#ddlOnWakingUp").val().trim(),
-                OnwakingupConsumption: $("#txtOnWakingUp").val() == undefined ? '' : $("#txtOnWakingUp").val().trim(),
-                BreakfastTime: $("#ddlBreakfast").val() == undefined ? 0 : $("#ddlBreakfast").val().trim(),
-                BreakfastConsumption: $("#txtBreakfast").val() == undefined ? '' : $("#txtBreakfast").val().trim(),
-                MidmorningTime: $("#ddlMidMorning").val() == undefined ? 0 : $("#ddlMidMorning").val().trim(),
-                MidmorningConsumption: $("#txtMidMorning").val() == undefined ? '' : $("#txtMidMorning").val().trim(),
-
-                LunchTime: $("#ddlLunch").val() == undefined ? 0 : $("#ddlLunch").val().trim(),
-                LunchConsumption: $("#txtLunch").val() == undefined ? '' : $("#txtLunch").val().trim(),
-                SnackTime: $("#ddlEveningTeaSnack").val() == undefined ? 0 : $("#ddlEveningTeaSnack").val().trim(),
-                SnackConsumption: $("#txtEveningTeaSnack").val() == undefined ? '' : $("#txtEveningTeaSnack").val().trim(),
-                DinnerTime: $("#ddlDinner").val() == undefined ? 0 : $("#ddlDinner").val().trim(),
-                DinnerConsumption: $("#txtDinner").val() == undefined ? '' : $("#txtDinner").val().trim(),
-                Bedtime: $("#ddlBedTime").val() == undefined ? 0 : $('#ddlBedTime').val().trim(),
-                BedConsumption: $("#txtBedTime").val() == undefined ? '' : $("#txtBedTime").val().trim(),
-
-            }
-
-            var assessment =
-            {
-                TableType: "UserDirectCall",
-                UserDirectCall: UserDirectCalldata
-            }
-
-            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
-
-            });
-            //    }
-            //    else {
-            //        alert('Please fill all details to Direct Call.');
-            //    }
-            //}
+        var assessment =
+        {
+            TableType: "UserMedications",
+            UserMedications: UserMedicationsdata
         }
 
-        function SaveUserFoodFequency() {
-            //if (ValidationOnSave()) {
-            //    if (ValidateRequiredField()) {
-            var UserFoodFequencydata =
-            {
-                UserId: sessionStorage.getItem('userId'),
-                Roti: $("#ddlRotiChapati").val() == undefined ? 0 : $("#ddlRotiChapati").val().trim(),
-                Rice: $("#ddlRice").val() == undefined ? 0 : $("#ddlRice").val().trim(),
-                BreadPav: $("#ddlBreadPav").val() == undefined ? 0 : $("#ddlBreadPav").val().trim(),
-                ChaatSnacks: $("#ddlChaatFastFoodFriedSnacks").val() == undefined ? 0 : $("#ddlChaatFastFoodFriedSnacks").val().trim(),
-                Nonveg: $("#ddlNonVeg").val() == undefined ? 0 : $("#ddlNonVeg").val().trim(),
-                Eggs: $("#ddlEggs").val() == undefined ? 0 : $("#ddlEggs").val().trim(),
-                Teacoffee: $("#ddlTeaCoffee").val() == undefined ? 0 : $("#ddlTeaCoffee").val().trim(),
-                Desert: $("#ddlDesert").val() == undefined ? 0 : $("#ddlDesert").val().trim(),
-                Fruits: $("#ddlFruits").val() == undefined ? 0 : $("#ddlFruits").val().trim(),
-                Nuts: $("#ddlNuts").val() == undefined ? 0 : $("#ddlNuts").val().trim(),
-            }
+        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+            alert('Record save successfully!!!');
 
-            var assessment =
-            {
-                TableType: "UserFoodFequency",
-                UserFoodFequency: UserFoodFequencydata
-            }
+        });
+        // }
+        //else {
+        //    alert('Please fill all details to Medications.');
+        //}
+        //}
+    }
 
-            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
+    function SaveUserDietaryAndLifeStyleDetails() {
+        //if (ValidationOnSave()) {
+        //    if (ValidateRequiredField()) {
+        var UserDietaryAndLifeStyleDetailsdata =
+        {
 
-            });
-            //    }
-            //    else {
-            //        alert('Please fill all details to Food Fequency.');
-            //    }
-            //}
+            UserId: sessionStorage.getItem('userId'),
+            Lifestyle: $("#ddlLifestyle").val() == undefined ? 0 : $("#ddlLifestyle").val().trim(),
+            EatingHabits: $("#ddlEatingHabits").val() == undefined ? 0 : $("#ddlEatingHabits").val().trim(),
+            Frequencyofsmoking: $("#ddlFrequencyOfSmoking").val() == undefined ? 0 : $("#ddlFrequencyOfSmoking").val().trim(),
+            Frequencyofalcoholconsumption: $("#ddlFrequencyOfAlcoholConsumption").val() == undefined ? 0 : $("#ddlFrequencyOfAlcoholConsumption").val().trim(),
+            WaterintakeperdayType: $("#ddlWaterIntakePerDayType").val() == undefined ? 0 : $("#ddlWaterIntakePerDayType").val().trim(),
+            Waterintakeperday: $("#ddlWaterIntakePerDayDetails").val() == undefined ? '' : $("#ddlWaterIntakePerDayDetails").val().trim(),
+            Frequencyofrestaurantvisit: $("#ddlFrequencyOfRestaurantVisit").val() == undefined ? 0 : $("#ddlFrequencyOfRestaurantVisit").val().trim(),
+            Preferredcuisine: $("#txtPreferredCuisine").val() == undefined ? '' : $("#txtPreferredCuisine").val().trim(),
+            Whocooksathome: $("#txtWhoCooksAtHome").val() == undefined ? '' : $("#txtWhoCooksAtHome").val().trim(),
+            FoodAversions: $("#txtFoodAversions").val() == undefined ? '' : $("#txtFoodAversions").val().trim(),
+            FoodPreferences: $("#txtFoodPreferences").val() == undefined ? '' : $("#txtFoodPreferences").val().trim(),
+            FoodAllergies: $("#txtFoodAllergies").val() == undefined ? '' : $("#txtFoodAllergies").val().trim(),
         }
 
-        function SaveUserAnyKeyInSights() {
-            //if (ValidationOnSave()) {
-            //    if (ValidateRequiredField()) {
-            var UserAnyKeyInSightsdata =
-            {
-                UserId: sessionStorage.getItem('userId'),
-                Comments: $("#txtAnyKeyInsight").val() == undefined ? '' : $("#txtAnyKeyInsight").val().trim(),
-
-            }
-           
-            var assessment =
-            {
-                TableType: "UserAnyKeyInSights",
-                UserAnyKeyInSights: UserAnyKeyInSightsdata
-            }
-
-            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
-
-            });
-
-            //}
-            //    else {
-            //        alert('Please fill all details to Any Key InSights.');
-            //    }
-            //}
+        var assessment =
+        {
+            TableType: "UserDietaryAndLifeStyleDetails",
+            UserDietaryAndLifeStyleDetails: UserDietaryAndLifeStyleDetailsdata
         }
 
-        function ValidateRequiredField() {
+        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+            alert('Record save successfully!!!');
 
-            var isRequired = true;
-            var x = document.getElementsByClassName("mandotory");
-            var i;
-            for (i = 0; i < x.length; i++) {
+        });
+        //    }
+        //    else {
+        //        alert('Please fill all details to Dietary And Life Style Details.');
+        //    }
+        //}
+    }
 
-                if (x[i].value == "") {
-                    isRequired = false;
-                }
-            }
-            return isRequired;
+    function SaveUserDirectCall() {
+        //if (ValidationOnSave()) {
+        //    if (ValidateRequiredField()) {
+        var UserDirectCalldata =
+        {
+            UserId: sessionStorage.getItem('userId'),
+            OnwakingupTime: $("#ddlOnWakingUp").val() == undefined ? 0 : $("#ddlOnWakingUp").val().trim(),
+            OnwakingupConsumption: $("#txtOnWakingUp").val() == undefined ? '' : $("#txtOnWakingUp").val().trim(),
+            BreakfastTime: $("#ddlBreakfast").val() == undefined ? 0 : $("#ddlBreakfast").val().trim(),
+            BreakfastConsumption: $("#txtBreakfast").val() == undefined ? '' : $("#txtBreakfast").val().trim(),
+            MidmorningTime: $("#ddlMidMorning").val() == undefined ? 0 : $("#ddlMidMorning").val().trim(),
+            MidmorningConsumption: $("#txtMidMorning").val() == undefined ? '' : $("#txtMidMorning").val().trim(),
+
+            LunchTime: $("#ddlLunch").val() == undefined ? 0 : $("#ddlLunch").val().trim(),
+            LunchConsumption: $("#txtLunch").val() == undefined ? '' : $("#txtLunch").val().trim(),
+            SnackTime: $("#ddlEveningTeaSnack").val() == undefined ? 0 : $("#ddlEveningTeaSnack").val().trim(),
+            SnackConsumption: $("#txtEveningTeaSnack").val() == undefined ? '' : $("#txtEveningTeaSnack").val().trim(),
+            DinnerTime: $("#ddlDinner").val() == undefined ? 0 : $("#ddlDinner").val().trim(),
+            DinnerConsumption: $("#txtDinner").val() == undefined ? '' : $("#txtDinner").val().trim(),
+            Bedtime: $("#ddlBedTime").val() == undefined ? 0 : $('#ddlBedTime').val().trim(),
+            BedConsumption: $("#txtBedTime").val() == undefined ? '' : $("#txtBedTime").val().trim(),
+
         }
 
-        function ValidationOnSave() {
-
-            if (!ValidateEmail(document.getElementById('txtEmail').value)) {
-                alert("Invalid email address.")
-                return false;
-            }
-
-
-            return true;
+        var assessment =
+        {
+            TableType: "UserDirectCall",
+            UserDirectCall: UserDirectCalldata
         }
+
+        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+            alert('Record save successfully!!!');
+
+        });
+        //    }
+        //    else {
+        //        alert('Please fill all details to Direct Call.');
+        //    }
+        //}
+    }
+
+    function SaveUserFoodFequency() {
+        //if (ValidationOnSave()) {
+        //    if (ValidateRequiredField()) {
+        var UserFoodFequencydata =
+        {
+            UserId: sessionStorage.getItem('userId'),
+            Roti: $("#ddlRotiChapati").val() == undefined ? 0 : $("#ddlRotiChapati").val().trim(),
+            Rice: $("#ddlRice").val() == undefined ? 0 : $("#ddlRice").val().trim(),
+            BreadPav: $("#ddlBreadPav").val() == undefined ? 0 : $("#ddlBreadPav").val().trim(),
+            ChaatSnacks: $("#ddlChaatFastFoodFriedSnacks").val() == undefined ? 0 : $("#ddlChaatFastFoodFriedSnacks").val().trim(),
+            Nonveg: $("#ddlNonVeg").val() == undefined ? 0 : $("#ddlNonVeg").val().trim(),
+            Eggs: $("#ddlEggs").val() == undefined ? 0 : $("#ddlEggs").val().trim(),
+            Teacoffee: $("#ddlTeaCoffee").val() == undefined ? 0 : $("#ddlTeaCoffee").val().trim(),
+            Desert: $("#ddlDesert").val() == undefined ? 0 : $("#ddlDesert").val().trim(),
+            Fruits: $("#ddlFruits").val() == undefined ? 0 : $("#ddlFruits").val().trim(),
+            Nuts: $("#ddlNuts").val() == undefined ? 0 : $("#ddlNuts").val().trim(),
+        }
+
+        var assessment =
+        {
+            TableType: "UserFoodFequency",
+            UserFoodFequency: UserFoodFequencydata
+        }
+
+        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+            alert('Record save successfully!!!');
+
+        });
+        //    }
+        //    else {
+        //        alert('Please fill all details to Food Fequency.');
+        //    }
+        //}
+    }
+
+    function SaveUserAnyKeyInSights() {
+        //if (ValidationOnSave()) {
+        //    if (ValidateRequiredField()) {
+        var UserAnyKeyInSightsdata =
+        {
+            UserId: sessionStorage.getItem('userId'),
+            Comments: $("#txtAnyKeyInsight").val() == undefined ? '' : $("#txtAnyKeyInsight").val().trim(),
+
+        }
+
+        var assessment =
+        {
+            TableType: "UserAnyKeyInSights",
+            UserAnyKeyInSights: UserAnyKeyInSightsdata
+        }
+
+        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+            alert('Record save successfully!!!');
+
+        });
+
+        //}
+        //    else {
+        //        alert('Please fill all details to Any Key InSights.');
+        //    }
+        //}
+    }
+
+    function ValidateRequiredField() {
+
+        var isRequired = true;
+        var x = document.getElementsByClassName("mandotory");
+        var i;
+        for (i = 0; i < x.length; i++) {
+
+            if (x[i].value == "") {
+                isRequired = false;
+            }
+        }
+        return isRequired;
+    }
+
+    function ValidationOnSave() {
+
+        if (!ValidateEmail(document.getElementById('txtEmail').value)) {
+            alert("Invalid email address.")
+            return false;
+        }
+
+
+        return true;
+    }
 
 
 </script>
+
+
+
 <script src="~/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     var SystemdropdownMasterData = [];
@@ -1095,14 +1097,16 @@
         CommonAjaxMethod('Program/GetAsseeement', assessment, false, 'POST', function (response)
         {
             //-------------------GenralInfo-----------------------------------
+            
+            $("#txtName").val(sessionStorage.getItem('EmployeeName'));
             $("#ddlGenderp").val(response.data.Data[0].Gender);
             $("#txtDOB").val(JsonDateFormat(response.data.Data[0].BirthDate));
             $("#txtAgep").val(response.data.Data[0].Age) ;
             $("#ddlCountry").val(response.data.Data[0].Country);
+
             SystemdropdownMasterData = [];
-            
             LoadSystemMasterDropdown("ddlState", 2, response.data.Data[0].Country, response.data.Data[0].State);
-            
+
             SystemdropdownMasterData = [];
             LoadSystemMasterDropdown("ddlCity", 3, response.data.Data[0].State, response.data.Data[0].City);
 
@@ -1117,7 +1121,7 @@
             //-------------------Photo------------------------------------
             $("#hdnProfilePhotoPath").val(response.data.Data[0].PhotoURL);
 
-          
+
             $("#targetImg").attr('src', "@CommonMethods.ServerPath"+response.data.Data[0].PhotoURL);
 
             //--------------------Anthropometry-----------------------------------
@@ -1131,7 +1135,15 @@
             //---------------------MedicalHistory----------------------------------
             $("#txtHealthIssues").val(response.data.Data[0].HealthIssues);
             $("#txtReports").val(response.data.Data[0].Reports);
-            
+            if (response.data.Data[0].Reports != "" || response.data.Data[0].Reports != undefined) {
+                $("#dvDownloadReport").show();
+            }
+            else {
+                $("#dvDownloadReport").hide();
+            }
+
+            $("#hdnfileuploadReportPath").val(response.data.Data[0].Reports);
+
             //--------------------Medications-----------------------------------
             $("#txtHealthIssues1").val(response.data.Data[0].UM_HealthIssues);
             $("#txtMedication1").val(response.data.Data[0].Medication);
@@ -1186,13 +1198,17 @@
         $("#imageBrowes").change(function () {
 
             var File = this.files;
-          
+
             if (File && File[0])
             {
                 ReadImage(File[0]);
 
             }
 
+        })
+
+        $("#fileuploadReport").change(function () {
+            UploadocumentReport();
         })
 
     })
@@ -1247,8 +1263,6 @@
 
     }
 
-
-
     function Uploadocument() {
         var folderDetails = "";
         folderDetails = "1";
@@ -1290,7 +1304,6 @@
             });
         }
     }
-
 
     function UploadocumentReport() {
 
@@ -1339,6 +1352,17 @@
 
     }
 
+    $(document).ready(function () {
+
+        $("#btnDownloadReport").click(function (e) {
+            e.preventDefault();
+             var uri = "@CommonMethods.ServerPath";
+            var fullname = $("#hdnfileuploadReportPath").val();
+
+            window.location.href = uri + fullname;
+        });
+    });
+
+   
 
 </script>
-
