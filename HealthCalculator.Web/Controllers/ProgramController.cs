@@ -43,11 +43,11 @@ namespace HealthCalculator.Web.Controllers
                 {
                     fname = file.FileName;
                 }
+                
                 string fileName = fname;
                 string newFile = "UserID_" + userID;
                 string[] splString = fileName.Split('.');
-                //string uploadNewFileName = newFile + "." + splString[1];
-                string uploadNewFileName = fileName;
+                string uploadNewFileName = newFile + "." + splString[1];
                 string filePathTobeSaved = "";
                 string baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["ProfilePhotoFolder"]);
                 filePathTobeSaved = baseurl + "/" + uploadNewFileName;
@@ -83,8 +83,7 @@ namespace HealthCalculator.Web.Controllers
                 string fileName = fname;
                 string newFile = "UserID_" + userID;
                 string[] splString = fileName.Split('.');
-                // string uploadNewFileName = newFile + "." + splString[1];
-                string uploadNewFileName = fileName;
+                string uploadNewFileName = newFile + "." + splString[1];
                 string filePathTobeSaved = "";
                 string baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["UploadReportFolder"]);
                 filePathTobeSaved = baseurl + "/" + uploadNewFileName;
@@ -260,8 +259,89 @@ namespace HealthCalculator.Web.Controllers
         {
             return View();
         }
-    
+        [HttpPost]
+        public async Task<JsonResult> SaveMessage(MessageMaster collection)
+        {
+            try
+            {
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "111";
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
+                SendObjData.Operation = "Add";
+                string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
+                SendObjData.XML = stringTOXml;
 
-         
+                GenericService _genericService = new GenericService();
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<MessageMaster>(stringContent);
+
+                return new JsonResult { Data = status };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+        [HttpGet]
+        public async Task<JsonResult> GetMessage(int MessageId)
+        {
+            try
+            {
+                int loggedIdUserID = Convert.ToInt32(Session["UserID"]);
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "112";
+                collection.UserId = loggedIdUserID;
+                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "MessageId",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue = MessageId.ToString()
+                    }
+                };
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<MessageMaster>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+        [HttpGet]
+        public async Task<JsonResult> GetProduct(int Program_Id)
+        {
+            try
+            {
+                int loggedIdUserID = 1;
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "112";
+                collection.UserId = loggedIdUserID;
+                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "Program_Id",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue = Program_Id.ToString()
+                    }
+                };
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<ProductModel>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
+
     }
 }

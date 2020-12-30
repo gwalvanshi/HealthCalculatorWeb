@@ -26,10 +26,60 @@ namespace HealthCalculator.Web.Controllers
             return View();
             // return RedirectToAction("Index", "User");
         }
-        [SessionExpireFilterAttribute]
+       // [SessionExpireFilterAttribute]
         public ActionResult helpDesk()
         {
-            return View();
+            List<MessageMasterData> objMessageMasterDataList = new List<MessageMasterData>();
+            MessageMasterData objMessageMasterData = new MessageMasterData();
+            MessageMasterDataList objMessageMasterDataChild= new MessageMasterDataList();
+            List<MessageMasterDataList> MessageMasterDataListChild = new List<EntityModel.MessageMasterDataList>();
+
+            int loggedIdUserID = 16;
+            GenericService _genericService = new GenericService();
+            IndexScreenParameterModel collection = new IndexScreenParameterModel();
+            collection.ScreenID = "112";
+            collection.UserId = loggedIdUserID;
+            collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "UserID",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue = loggedIdUserID.ToString()
+                    }
+                };
+            var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+            var objCommunication =  _genericService.GetRecordsResult<MessageMaster>(stringContent1);
+            if (objCommunication.ErrorMessage == null)
+            {
+               
+                var distinctData = objCommunication.dataCollection.Select(x => x.MessageId).Distinct().ToList();
+                for (int i = 0; i < distinctData.Count; i++)
+                {
+                   
+                    MessageMasterDataListChild = new List<EntityModel.MessageMasterDataList>();
+                    var masterDataMain = objCommunication.dataCollection.Where(x => x.MessageId == distinctData[i]).FirstOrDefault();
+                    objMessageMasterData = new MessageMasterData();
+                    objMessageMasterData.MessageId = masterDataMain.MessageId;
+                    objMessageMasterData.Subject = masterDataMain.Subject;
+                    objMessageMasterData.Addedwhen = masterDataMain.Addedwhen;
+                    var masterData = objCommunication.dataCollection.Where(x => x.MessageId == distinctData[i]).ToList();
+
+                    foreach (var item in masterData)
+                    {
+                        objMessageMasterDataChild = new MessageMasterDataList();
+                        objMessageMasterDataChild.RoleID = item.RoleID;
+                        objMessageMasterDataChild.Message = item.Message;
+                        objMessageMasterDataChild.ConID = item.ConID;
+                        MessageMasterDataListChild.Add(objMessageMasterDataChild);
+
+                    }
+                    objMessageMasterData.MessageMasterDataList = MessageMasterDataListChild;
+                    objMessageMasterDataList.Add(objMessageMasterData);
+                }
+                
+            }
+            return View(objMessageMasterDataList);
             // return RedirectToAction("Index", "User");
         }
         [SessionExpireFilterAttribute]
@@ -421,7 +471,34 @@ namespace HealthCalculator.Web.Controllers
             HtmlEditorExtension.SaveUploadedFile("HtmlEditor", HomeControllerHtmlEditorSettings.ImageUploadValidationSettings, HomeControllerHtmlEditorSettings.ImageUploadDirectory);
             return null;
         }
+
+        [ValidateInput(false)]
+        public ActionResult FileManagerPartial()
+        {
+            return PartialView("_FileManagerPartial", HomeControllerFileManagerSettings.Model);
+        }
+
+        public FileStreamResult FileManagerPartialDownload()
+        {
+            return FileManagerExtension.DownloadFiles(HomeControllerFileManagerSettings.DownloadSettings, HomeControllerFileManagerSettings.Model);
+        }
     }
+    public class HomeControllerFileManagerSettings
+    {
+        public const string RootFolder = @"~\";
+
+        public static string Model { get { return RootFolder; } }
+        public static DevExpress.Web.Mvc.FileManagerSettings DownloadSettings
+        {
+            get
+            {
+                var settings = new DevExpress.Web.Mvc.FileManagerSettings { Name = "FileManager" };
+                settings.SettingsEditing.AllowDownload = true;
+                return settings;
+            }
+        }
+    }
+
     public class HomeControllerHtmlEditorSettings
     {
         public const string ImageUploadDirectory = "~/Content/UploadImages/";
