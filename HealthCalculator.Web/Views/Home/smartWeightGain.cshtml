@@ -208,7 +208,7 @@
                 var CartProgram = sessionStorage.getItem("CartProgramID");
                 CartProgramID = $('#hdnSWG1Mid').val();
                 
-                if (CartProgram.includes(CartProgramID)==false) {
+                if (CartProgram.indexOf(CartProgramID)<0) {
                    
                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
                     sessionStorage.setItem("CartSession", cartSessionID);
@@ -237,7 +237,7 @@
                 var CartProgram = sessionStorage.getItem("CartProgramID");
                 CartProgramID = $('#hdnSWG2Mid').val();
 
-                if (CartProgram.includes(CartProgramID) == false) {
+                if (CartProgram.indexOf(CartProgramID)<0) {
                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
                     sessionStorage.setItem("CartSession", cartSessionID);
                     CartProgramID = CartProgram + "~" + CartProgramID;
@@ -265,7 +265,7 @@
                 var CartProgram = sessionStorage.getItem("CartProgramID");
                 CartProgramID = $('#hdnSWG3Mid').val();
 
-                if (CartProgram.includes(CartProgramID)==false) {
+                if (CartProgram.indexOf(CartProgramID)<0) {
                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
                     sessionStorage.setItem("CartSession", cartSessionID);
                     CartProgramID = CartProgram + "~" + CartProgramID;
@@ -291,7 +291,7 @@
                 var CartProgram = sessionStorage.getItem("CartProgramID");
                 CartProgramID = $('#hdnSWG6Mid').val();
 
-                if (CartProgram.includes(CartProgramID) == false) {
+                if (CartProgram.indexOf(CartProgramID)<0) {
                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
                     sessionStorage.setItem("CartSession", cartSessionID);
                     CartProgramID = CartProgram + "~" + CartProgramID;

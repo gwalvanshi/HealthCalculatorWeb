@@ -179,6 +179,7 @@
 <script src="~/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 
+    
     $(document).ready(function () {
         var CartProgramID;
         var cartSessionID;
@@ -198,7 +199,7 @@
                 var CartProgram = sessionStorage.getItem("CartProgramID");
                 CartProgramID = $('#hdnSWL1M').val();
 
-                if (CartProgram.includes(CartProgramID) == false) {
+                if (CartProgram.indexOf(CartProgramID)<0) {
 
                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
                     sessionStorage.setItem("CartSession", cartSessionID);
@@ -224,8 +225,12 @@
             else {
                 var CartProgram = sessionStorage.getItem("CartProgramID");
                 CartProgramID = $('#hdnSWL2M').val();
-
-                if (CartProgram.includes(CartProgramID) == false) {
+            
+               // if (CartProgram.indexOf(CartProgramID)<0)
+               
+                if (CartProgram.indexOf(CartProgramID)<0)
+                {
+                    
                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
                     sessionStorage.setItem("CartSession", cartSessionID);
                     CartProgramID = CartProgram + "~" + CartProgramID;
@@ -253,7 +258,7 @@
                 var CartProgram = sessionStorage.getItem("CartProgramID");
                 CartProgramID = $('#hdnSWL3M').val();
 
-                if (CartProgram.includes(CartProgramID) == false) {
+                if (CartProgram.indexOf(CartProgramID)<0) {
                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
                     sessionStorage.setItem("CartSession", cartSessionID);
                     CartProgramID = CartProgram + "~" + CartProgramID;
@@ -279,7 +284,7 @@
                 var CartProgram = sessionStorage.getItem("CartProgramID");
                 CartProgramID = $('#hdnSWL6M').val();
 
-                if (CartProgram.includes(CartProgramID) == false) {
+                if (CartProgram.indexOf(CartProgramID)<0) {
                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
                     sessionStorage.setItem("CartSession", cartSessionID);
                     CartProgramID = CartProgram + "~" + CartProgramID;

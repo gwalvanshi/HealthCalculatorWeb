@@ -219,7 +219,7 @@
                 var CartProgram = sessionStorage.getItem("CartProgramID");
                 CartProgramID = $('#hdnSWL1M').val();
 
-                if (CartProgram.includes(CartProgramID) == false) {
+                if (CartProgram.indexOf(CartProgramID)<0) {
 
                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
                     sessionStorage.setItem("CartSession", cartSessionID);
@@ -246,7 +246,7 @@
                 var CartProgram = sessionStorage.getItem("CartProgramID");
                 CartProgramID = $('#hdnSWL2M').val();
 
-                if (CartProgram.includes(CartProgramID) == false) {
+                if (CartProgram.indexOf(CartProgramID)<0) {
                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
                     sessionStorage.setItem("CartSession", cartSessionID);
                     CartProgramID = CartProgram + "~" + CartProgramID;
@@ -274,7 +274,7 @@
                 var CartProgram = sessionStorage.getItem("CartProgramID");
                 CartProgramID = $('#hdnSWL3M').val();
 
-                if (CartProgram.includes(CartProgramID) == false) {
+                if (CartProgram.indexOf(CartProgramID)<0) {
                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
                     sessionStorage.setItem("CartSession", cartSessionID);
                     CartProgramID = CartProgram + "~" + CartProgramID;
@@ -300,7 +300,7 @@
                 var CartProgram = sessionStorage.getItem("CartProgramID");
                 CartProgramID = $('#hdnSWL6M').val();
 
-                if (CartProgram.includes(CartProgramID) == false) {
+                if (CartProgram.indexOf(CartProgramID)<0) {
                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
                     sessionStorage.setItem("CartSession", cartSessionID);
                     CartProgramID = CartProgram + "~" + CartProgramID;
