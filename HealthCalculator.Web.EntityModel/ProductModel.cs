@@ -20,4 +20,22 @@ namespace HealthCalculator.Web.EntityModel
 
        public string Program { get; set; }
     }
+  
+    public class ProductId
+    {
+       
+        public int UserId { get; set; }
+        public string ProductIds { get; set; }
+    }
+    public class ProductRoot
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }        
+        public List<ProductModel> Data { get; set; }
+    }
 }

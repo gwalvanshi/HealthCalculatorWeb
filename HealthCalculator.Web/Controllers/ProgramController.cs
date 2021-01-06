@@ -318,9 +318,11 @@ namespace HealthCalculator.Web.Controllers
             try
             {
                 int loggedIdUserID = 1;
+             
+
                 GenericService _genericService = new GenericService();
                 IndexScreenParameterModel collection = new IndexScreenParameterModel();
-                collection.ScreenID = "112";
+                collection.ScreenID = "113";
                 collection.UserId = loggedIdUserID;
                 collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
                 {
@@ -340,6 +342,38 @@ namespace HealthCalculator.Web.Controllers
             {
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
+        }
+
+        public async Task<JsonResult> GetCartProduct(string Id)
+        {
+
+            try
+            {
+                ProductId objGraphType = new ProductId();
+                objGraphType.ProductIds = Id;
+                objGraphType.UserId = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
+
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "113";
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+                SendObjData.XML = stringTOXml;
+
+                GenericService _genericService = new GenericService();
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<ProductRoot>(stringContent);
+                return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
+               
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+
         }
 
 

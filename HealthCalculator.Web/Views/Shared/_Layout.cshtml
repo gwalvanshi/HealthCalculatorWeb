@@ -20,11 +20,11 @@
     <style>
         .Mandtory {
         }
+
+       
     </style>
     <script>
         var virtualPath = "@Url.Content("~/")";
-
-
     </script>
 
     @Html.DevExpress().GetStyleSheets(
@@ -46,11 +46,30 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item"><a href="~/Home/faq">FAQs</a></li>
                         <li class="list-group-item"><a href="~/Home/contact">Contact Us</a></li>
+                        <li class="list-group-item"><a href="#" id="lnkcart"><img src="@CommonMethods.ServerPath/img/cart2.png" class="cartIcon" /> <span class="qnt" id="spQuantity">0</span></a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+    @*-------------------uday----------------------*@
+    <div id="tablez"></div>
+    <div id='myModal' class='modal'>
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+                </br>
+                <div class="form-group row" style="bottom:auto">
+                    <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnCancell" onclick="SaveUserPhoto12()">&nbsp; &nbsp; Cancell &nbsp; &nbsp; </a>
+                    &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                    <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnProceed" onclick="SaveUserPhoto12()">&nbsp; &nbsp; Proceed &nbsp; &nbsp; </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @*-------------------uday----------------------*@
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <a class="navbar-brand" href="index"><img src="@CommonMethods.ServerPath/img/logo.png" class="img-fluid" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -1685,7 +1704,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                       
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -2925,6 +2944,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
 
 
         </div>
+
     </div>
     <div class="container body-content">
         @RenderBody()
@@ -2990,18 +3010,18 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
             </div>
         </div>
     </footer>
- 
 
 
-    
 
-    
-  
+
+
+
+
     <script src="~/js/jquery-3.5.1.slim.min.js"></script>
     <script src="~/js/jquery-3.3.1.js"></script>
     <script src="~/js/jquery-3.5.1.min.js"></script>
 
-   
+
     <script src="~/img/src/js/lightslider.js"></script>
     <script src="~/js/custom.js"></script>
 
@@ -3011,12 +3031,12 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
 
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
-    <script src="~/js/popper.min.js"></script> 
+    <script src="~/js/popper.min.js"></script>
 
 
-  
 
-    
+
+
 
     <script src="~/Scripts/DevScript/Common.js"></script>
     <script type="text/javascript">
@@ -3564,8 +3584,122 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
             });
 
         }
-    }
+        }
 
+
+        @* ------------uday----------*@
+        $(document).ready(function () {
+
+            if (sessionStorage.getItem("CartSession") != null) {
+                $("#spQuantity").text(sessionStorage.getItem("CartSession"));
+               // deleteRows();
+                $("#btnCancell").click(function () {
+                    alert("Canncel");
+                });
+
+            }
+
+            $("#lnkcart").click(function (e) {
+               // alert("a");
+                if (sessionStorage.getItem("CartProgramID") != null) {
+                    var cartdetails = sessionStorage.getItem("CartProgramID");
+                    //alert(cartdetails);
+                    var array = cartdetails.split("~");
+                    //alert(array.length);
+                    var arrayinner;
+                    //alert("a1");
+                    var table = document.createElement('table');
+                    var tr = document.createElement('tr');
+                    var td4 = document.createElement('td');
+                    var td1 = document.createElement('td');
+                    var td2 = document.createElement('td');
+                    var td3 = document.createElement('td');
+                   // alert("a2");
+                    //td1.style.width = '60%';
+                    //td1.style.width = '15%';
+                    //td1.style.width = '15%';
+                    td4.textContent = "Program Name";
+                    td1.textContent = "Duration";
+                    td2.textContent = "Rate in Rupee";
+                    td3.textContent = "Rate in Dollar";
+                    tr.appendChild(td4);
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+                    table.appendChild(tr);
+
+                    var strinnerid = null;
+                    var strid = null;
+
+                    //alert(array.length)
+                    for (var i = 0; i < array.length; i++) {
+                        arrayinner = array[i].split(",");
+                        //alert("B");
+                        //alert(arrayinner.length);
+                        var tr = document.createElement('tr');
+                        var td4 = document.createElement('td');
+                        var td1 = document.createElement('td');
+                        var td2 = document.createElement('td');
+                        var td3 = document.createElement('td');
+
+                        //td1.style.width = '60%';
+                        //td1.style.width = '15%';
+                        //td1.style.width = '15%';
+                       /// alert(arrayinner.length);
+                        strinnerid = null;
+                        for (var j = 0; j < arrayinner.length; j++)
+                        {
+                            td1.textContent = arrayinner[1];
+                            td2.textContent = arrayinner[2];
+                            td3.textContent = arrayinner[3];
+                            td4.textContent = arrayinner[4];
+                            strinnerid = arrayinner[0];
+                        }
+                        tr.appendChild(td4);
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        table.appendChild(tr);
+
+                        if (strid == null)
+                        {
+                            strid = strinnerid;
+                        }
+                        else {
+                            strid = strid + "," + strinnerid;
+                        }
+                    }
+                }
+               // alert(strid);
+                sessionStorage.setItem("CProgramID", strid);
+                document.getElementById("myModalContent").appendChild(table);
+                $('#myModal').modal('show');
+
+            });
+
+
+
+            $("#btnCancell").click(function () {
+                $('#myModal').modal('hide');
+            });
+
+
+            $("#btnProceed").click(function () {
+              
+                if (sessionStorage.getItem("userId") == null) {
+                    window.location.href = "@Url.Action("login", "Home")";
+                }
+                else {
+
+                    window.location.href = '@Url.Action("payments", "Home")';
+                }
+                  
+
+               });
+
+        })
+
+    @* ------------uday----------*@
     </script>
     @RenderSection("scripts", required: false)
 </body>

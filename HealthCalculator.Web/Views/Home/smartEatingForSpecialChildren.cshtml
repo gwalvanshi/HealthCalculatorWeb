@@ -163,56 +163,200 @@
         <div class="col-12 col-md-6 col-lg-3">
             <div class="sevicePackage">
                 <div class="datePrice">
-                    <p class="mb-0">1 Month</p>
+                    <p class="mb-0"><label id="lbl1monthheader"></label><input type="hidden" id="hdnSWL1M" /></p>
                     <h4 class="mb-0 bold">
-                        <img src="@CommonMethods.ServerPath/img/rupees.png" /> 3999/-
+                        <img src="@CommonMethods.ServerPath/img/rupees.png" /> <label id="lbl1monthrupee"></label>
                         <hr />
-                        $54.09/-
+                        <label id="lbl1monthdoller"></label>
                     </h4>
                 </div>
-                <p class="cart"><a href="cart.html"><img src="@CommonMethods.ServerPath/img/cart.png" /> ADD TO CART</a></p>
+                <p class="cart"><a href="#" id="lnkSWL1M"><img src="@CommonMethods.ServerPath/img/cart.png" /> ADD TO CART</a></p>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-3">
             <div class="sevicePackage">
                 <div class="datePrice">
-                    <p class="mb-0">2 Month</p>
+                    <p class="mb-0"><label id="lbl2monthheader"></label><input type="hidden" id="hdnSWL2M" /></p>
                     <h4 class="mb-0 bold">
-                        <img src="@CommonMethods.ServerPath/img/rupees.png" /> 7499/-
+                        <img src="@CommonMethods.ServerPath/img/rupees.png" /> <label id="lbl2monthrupee"></label>
                         <hr />
-                        $101.43/-
+                        <label id="lbl2monthdoller"></label>
                     </h4>
                 </div>
-                <p class="cart"><a href="cart.html"><img src="@CommonMethods.ServerPath/img/cart.png" /> ADD TO CART</a></p>
+                <p class="cart"><a href="#" id="lnkSWL2M"><img src="@CommonMethods.ServerPath/img/cart.png" /> ADD TO CART</a></p>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-3">
             <div class="sevicePackage">
                 <div class="datePrice">
-                    <p class="mb-0">3 Month</p>
+                    <p class="mb-0"><label id="lbl3monthheader"></label><input type="hidden" id="hdnSWL3M" /></p>
                     <h4 class="mb-0 bold">
-                        <img src="@CommonMethods.ServerPath/img/rupees.png" /> 10499/-
+                        <img src="@CommonMethods.ServerPath/img/rupees.png" /> <label id="lbl3monthrupee"></label>
                         <hr />
-                        $142.00/-
+                        <label id="lbl3monthdoller"></label>
                     </h4>
                 </div>
-                <p class="cart"><a href="cart.html"><img src="@CommonMethods.ServerPath/img/cart.png" /> ADD TO CART</a></p>
+                <p class="cart"><a href="#" id="lnkSWL3M"><img src="@CommonMethods.ServerPath/img/cart.png" /> ADD TO CART</a></p>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-3">
             <div class="sevicePackage">
                 <div class="datePrice">
-                    <p class="mb-0">6 Month</p>
+                    <p class="mb-0"><label id="lbl6monthheader"></label><input type="hidden" id="hdnSWL6M" /></p>
                     <h4 class="mb-0 bold">
-                        <img src="@CommonMethods.ServerPath/img/rupees.png" /> 18499/-
+                        <img src="@CommonMethods.ServerPath/img/rupees.png" /> <label id="lbl6monthrupee"></label>
                         <hr />
-                        $250.21/-
+                        <label id="lbl6monthdoller"></label>
                     </h4>
                 </div>
-                <p class="cart"><a href="cart.html"><img src="@CommonMethods.ServerPath/img/cart.png" /> ADD TO CART</a></p>
+                <p class="cart"><a href="#" id="lnkSWL6M"><img src="@CommonMethods.ServerPath/img/cart.png" /> ADD TO CART</a></p>
             </div>
         </div>
     </div>
 </div>
 
+<script src="~/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var CartProgramID;
+        var cartSessionID;
+        $("#lnkSWL1M").click(function (e) {
+            //do what ever you want...
+
+            if (sessionStorage.getItem("CartSession") == null && sessionStorage.getItem("CartProgramID") == null) {
+                cartSessionID = 1;
+                CartProgramID = $('#hdnSWL1M').val();
+                sessionStorage.setItem("CartSession", cartSessionID);
+                sessionStorage.setItem("CartProgramID", CartProgramID);
+                $("#spQuantity").text(sessionStorage.getItem("CartSession"));
+            }
+            else {
+
+                var id = sessionStorage.getItem("CartSession");
+                var CartProgram = sessionStorage.getItem("CartProgramID");
+                CartProgramID = $('#hdnSWL1M').val();
+
+                if (CartProgram.includes(CartProgramID) == false) {
+
+                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
+                    sessionStorage.setItem("CartSession", cartSessionID);
+                    CartProgramID = CartProgram + "~" + CartProgramID;
+                    sessionStorage.setItem("CartProgramID", CartProgramID);
+
+                    $("#spQuantity").text(sessionStorage.getItem("CartSession"));
+                }
+            }
+
+        });
+
+        $("#lnkSWL2M").click(function (e) {
+            //do what ever you want...
+            if (sessionStorage.getItem("CartSession") == null && sessionStorage.getItem("CartProgramID") == null) {
+                cartSessionID = 1;
+                CartProgramID = $('#hdnSWL2M').val();
+                sessionStorage.setItem("CartSession", cartSessionID);
+                sessionStorage.setItem("CartProgramID", CartProgramID);
+
+                $("#spQuantity").text(sessionStorage.getItem("CartSession"));
+            }
+            else {
+                var CartProgram = sessionStorage.getItem("CartProgramID");
+                CartProgramID = $('#hdnSWL2M').val();
+
+                if (CartProgram.includes(CartProgramID) == false) {
+                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
+                    sessionStorage.setItem("CartSession", cartSessionID);
+                    CartProgramID = CartProgram + "~" + CartProgramID;
+                    sessionStorage.setItem("CartProgramID", CartProgramID);
+                    $("#spQuantity").text(sessionStorage.getItem("CartSession"));
+
+                }
+            }
+
+        });
+
+        $("#lnkSWL3M").click(function (e) {
+            //do what ever you want...
+
+            if (sessionStorage.getItem("CartSession") == null && sessionStorage.getItem("CartProgramID") == null) {
+                cartSessionID = 1;
+                CartProgramID = $('#hdnSWL3M').val();
+                sessionStorage.setItem("CartSession", cartSessionID);
+                sessionStorage.setItem("CartProgramID", CartProgramID);
+                $("#spQuantity").text(sessionStorage.getItem("CartSession"));
+
+            }
+            else {
+
+                var CartProgram = sessionStorage.getItem("CartProgramID");
+                CartProgramID = $('#hdnSWL3M').val();
+
+                if (CartProgram.includes(CartProgramID) == false) {
+                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
+                    sessionStorage.setItem("CartSession", cartSessionID);
+                    CartProgramID = CartProgram + "~" + CartProgramID;
+                    sessionStorage.setItem("CartProgramID", CartProgramID);
+                    $("#spQuantity").text(sessionStorage.getItem("CartSession"));
+                }
+            }
+
+        });
+
+        $("#lnkSWL6M").click(function (e) {
+            //do what ever you want...
+
+            if (sessionStorage.getItem("CartSession") == null && sessionStorage.getItem("CartProgramID") == null) {
+                cartSessionID = 1;
+                CartProgramID = $('#hdnSWL6M').val();
+                sessionStorage.setItem("CartSession", cartSessionID);
+                sessionStorage.setItem("CartProgramID", CartProgramID);
+
+                $("#spQuantity").text(sessionStorage.getItem("CartSession"));
+            }
+            else {
+                var CartProgram = sessionStorage.getItem("CartProgramID");
+                CartProgramID = $('#hdnSWL6M').val();
+
+                if (CartProgram.includes(CartProgramID) == false) {
+                     cartSessionID = parseInt(sessionStorage.getItem("CartSession")) + 1;
+                    sessionStorage.setItem("CartSession", cartSessionID);
+                    CartProgramID = CartProgram + "~" + CartProgramID;
+                    sessionStorage.setItem("CartProgramID", CartProgramID);
+                    $("#spQuantity").text(sessionStorage.getItem("CartSession"));
+                }
+            }
+        });
+
+
+        var programId = 9;
+
+        CommonAjaxMethod('Program/GetProduct', { Program_Id: programId }, false, 'GET',
+            function (response) {
+
+                $("#hdnSWL1M").val(response.dataCollection[0].Id + "," + response.dataCollection[0].ProductName + "," + response.dataCollection[0].INRRate + "," + response.dataCollection[0].DollerRate + "," + response.dataCollection[0].Program);
+                $("#lbl1monthheader").text(response.dataCollection[0].ProductName);
+                $("#lbl1monthrupee").text(response.dataCollection[0].INRRate);
+                $("#lbl1monthdoller").text("$ " + response.dataCollection[0].DollerRate);
+
+                $("#hdnSWL2M").val(response.dataCollection[1].Id + "," + response.dataCollection[1].ProductName + "," + response.dataCollection[1].INRRate + "," + response.dataCollection[1].DollerRate);
+                $("#lbl2monthheader").text(response.dataCollection[1].ProductName);
+                $("#lbl2monthrupee").text(response.dataCollection[1].INRRate);
+                $("#lbl2monthdoller").text("$ " + response.dataCollection[1].DollerRate);
+
+                $("#hdnSWL3M").val(response.dataCollection[2].Id + "," + response.dataCollection[2].ProductName + "," + response.dataCollection[2].INRRate + "," + response.dataCollection[2].DollerRate);
+                $("#lbl3monthheader").text(response.dataCollection[2].ProductName);
+                $("#lbl3monthrupee").text(response.dataCollection[2].INRRate);
+                $("#lbl3monthdoller").text("$ " + response.dataCollection[2].DollerRate);
+
+                $("#hdnSWL6M").val(response.dataCollection[3].Id + "," + response.dataCollection[3].ProductName + "," + response.dataCollection[3].INRRate + "," + response.dataCollection[3].DollerRate);
+                $("#lbl6monthheader").text(response.dataCollection[3].ProductName);
+                $("#lbl6monthrupee").text(response.dataCollection[3].INRRate);
+                $("#lbl6monthdoller").text("$ " + response.dataCollection[3].DollerRate);
+            }
+        );
+
+    })
+
+</script>
 

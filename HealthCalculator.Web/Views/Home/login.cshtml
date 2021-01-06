@@ -72,11 +72,18 @@
                 {
                     if (response.data.EmployeeName!= null)
                     {
-                       
+
                         sessionStorage.setItem('authToken', response.data.authToken);
                         sessionStorage.setItem('userId', response.data.userId);
-                        sessionStorage.setItem('EmployeeName', response.data.EmployeeName);                      
-                        window.location.href="@Url.Action("assessment", "Home")";
+                        sessionStorage.setItem('EmployeeName', response.data.EmployeeName);
+                        if (sessionStorage.getItem("CartProgramID") != null)
+                        {
+                             window.location.href = "@Url.Action("Payments", "Home")";
+                        }
+                        else
+                        {
+                            window.location.href = "@Url.Action("assessment", "Home")";
+                        }
                     }
                     else
                     {
