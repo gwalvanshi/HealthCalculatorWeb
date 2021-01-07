@@ -422,6 +422,7 @@
     <Content Include="img\calc.png" />
     <Content Include="img\capsule.jpg" />
     <Content Include="img\cart.png" />
+    <Content Include="img\cart2.png" />
     <Content Include="img\certifications\1.jpg" />
     <Content Include="img\certifications\2.jpg" />
     <Content Include="img\certifications\3.jpg" />
@@ -518,6 +519,7 @@
     <Content Include="img\pizza.png" />
     <Content Include="img\plate.png" />
     <Content Include="img\plus.png" />
+    <Content Include="img\pluse.png" />
     <Content Include="img\restaurant.png" />
     <Content Include="img\right.png" />
     <Content Include="img\rupees.png" />
@@ -757,6 +759,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="MessageDocuments\" />
     <Folder Include="ProfilePhoto\" />
     <Folder Include="UploadReport\" />
     <Folder Include="Upload\" />

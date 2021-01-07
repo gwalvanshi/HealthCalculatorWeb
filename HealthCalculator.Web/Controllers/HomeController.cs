@@ -5,6 +5,7 @@ using HealthCalculator.Web.Service;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -61,16 +62,15 @@ namespace HealthCalculator.Web.Controllers
                     var masterDataMain = objCommunication.dataCollection.Where(x => x.MessageId == distinctData[i]).FirstOrDefault();
                     objMessageMasterData = new MessageMasterData();
                     objMessageMasterData.MessageId = masterDataMain.MessageId;
-                    objMessageMasterData.Subject = masterDataMain.Subject;
+                    objMessageMasterData.Message = masterDataMain.Message;
                     objMessageMasterData.Addedwhen = masterDataMain.Addedwhen;
+                    objMessageMasterData.UserName = masterDataMain.UserName;
                     var masterData = objCommunication.dataCollection.Where(x => x.MessageId == distinctData[i]).ToList();
 
                     foreach (var item in masterData)
                     {
                         objMessageMasterDataChild = new MessageMasterDataList();
-                        objMessageMasterDataChild.RoleID = item.RoleID;
-                        objMessageMasterDataChild.Message = item.Message;
-                        objMessageMasterDataChild.ConID = item.ConID;
+                        objMessageMasterDataChild.Attachement =CommonMethods.ServerPath+ item.Attachement;                      
                         MessageMasterDataListChild.Add(objMessageMasterDataChild);
 
                     }
@@ -82,6 +82,7 @@ namespace HealthCalculator.Web.Controllers
             return View(objMessageMasterDataList);
             // return RedirectToAction("Index", "User");
         }
+       
         [SessionExpireFilterAttribute]
         public ActionResult MyEatingPattern()
         {
@@ -456,6 +457,7 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
+
 
         public ActionResult HtmlEditorPartial()
         {

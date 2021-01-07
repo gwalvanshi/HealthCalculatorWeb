@@ -57,12 +57,41 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
     <div id='myModal' class='modal'>
         <div class="modal-dialog" >
             <div class="modal-content">
-                <div id='myModalContent'></div>
-                </br>
+                <div id='myModalContent'>
+                    <div class="container-fluid flowerBg">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-12 col-lg-11">
+                                <div class="middleContent bg-gray shadow">
+                                    <div class="row">
+                                        <div class="col-12 col-md-12">
+                                            <p class="semi mb-2 text-yellow">CART</p>
+                                            <table class="table" id="tblCart">
+                                                <thead>
+                                                    <tr class="semi">
+                                                        <td class="text-center" style="width: 50px;">#</td>
+                                                        <td>Program</td>
+                                                        <td>Duration</td>
+                                                        <td class="text-center">₹</td>
+                                                        <td class="text-center">$</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                                                                
+                                                </tbody>
+                                            </table>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>             
                 <div class="form-group row" style="bottom:auto">
-                    <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnCancell" onclick="SaveUserPhoto12()">&nbsp; &nbsp; Cancell &nbsp; &nbsp; </a>
-                    &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-                    <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnProceed" onclick="SaveUserPhoto12()">&nbsp; &nbsp; Proceed &nbsp; &nbsp; </a>
+                    &nbsp; &nbsp; 
+                    <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnProceed" >&nbsp; &nbsp; Proceed &nbsp; &nbsp; </a>
 
                 </div>
             </div>
@@ -3045,7 +3074,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
     var isValidChild = true;
 
     function validateChild() {
-        //debugger;
+        // 
         isValidChild = true;
         if ($("#txtChildEmail").val() == "" && isValidChild == true) {
             alert("Please enter email address");
@@ -3078,7 +3107,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
 
     function checkChildStepOne() {
         isValidChild = true;
-        //debugger;
+        // 
         if ($("#txtChildName").val() == "") {
             alert("Please enter child Name.");
             $("#txtChildName").focus();
@@ -3135,7 +3164,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
     }
 
     function checkAdultStepTwo() {
-        //debugger;
+        // 
         isValidAdult = true;
         if (($("#chkAOthers").prop("checked") == true && $("#otherHealthProblem").val() == "")) {
             alert("Please enter health issues other in below textbox.");
@@ -3146,7 +3175,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
     }
 
     function checkAdultStepFour() {
-        //debugger;
+        // 
         isValidAdult = true;
         if ($("#WaterIntakeGlassLitter").val() == "1" && isValidAdult == true) {
             if ($("#waterIntakeLitter").val() == "Liter" && isValidAdult == true) {
@@ -3186,7 +3215,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
     }
 
     function checkAdultStepOne() {
-        //debugger;
+        // 
         isValidAdult = true;
         if ($("#txtFName").val() == "")
         {
@@ -3271,7 +3300,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
     }
 
     function SaveChildData(){
-        //debugger;
+        // 
         if (validateChild()) {
             var EnquiryModel = {
                 Instance_enquiry: {
@@ -3371,7 +3400,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
     }
 
     function heightSelection(selectedval) {
-        //debugger;
+        // 
         $('#ddlAuditCentemer').prop('selectedIndex', 0);
         $('#ddlAuditfeet').prop('selectedIndex', 0);
         $('#ddlAuditInches').prop('selectedIndex', 0);
@@ -3379,7 +3408,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
         $("#heightSelect").val(selectedval);
     }
     function WeightSelection(sel) {
-        //debugger;
+        // 
         $('#ddlpounds').prop('selectedIndex', 0);
         $('#ddlKilo').prop('selectedIndex', 0);
         $('#ddlgrams').prop('selectedIndex', 0);
@@ -3396,7 +3425,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
     var SystemdropdownMasterData = [];
 
     function validateAdult() {
-        //debugger;
+        // 
         //isValidAdult = true;
         if ($("#txtEmailID").val() == "" && isValidAdult == true) {
             alert("Please enter email address");
@@ -3424,7 +3453,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
 
     function SaveAdultData() {
         if (validateAdult()) {
-   // debugger;
+   //  
             var EnquiryModel = {
                 Instance_enquiry: {
                     Enquiry_Id: $("#hdnID").val(),
@@ -3578,7 +3607,7 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
     EnquiryModel.Instance_Enquiry_Transaction.push(parddlFruitsVegi);
 
             CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response) {
-                //debugger;
+                // 
                 alert('You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX.');
 
             });
@@ -3586,20 +3615,19 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
         }
         }
 
-
+        
         @* ------------uday----------*@
         $(document).ready(function () {
 
             if (sessionStorage.getItem("CartSession") != null) {
                 $("#spQuantity").text(sessionStorage.getItem("CartSession"));
                // deleteRows();
-                $("#btnCancell").click(function () {
-                    alert("Canncel");
-                });
+               
 
             }
 
-            $("#lnkcart").click(function (e) {
+            $("#lnkcart").click(function (e)
+            {
                // alert("a");
                 if (sessionStorage.getItem("CartProgramID") != null) {
                     var cartdetails = sessionStorage.getItem("CartProgramID");
@@ -3608,39 +3636,21 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
                     //alert(array.length);
                     var arrayinner;
                     //alert("a1");
-                    var table = document.createElement('table');
-                    var tr = document.createElement('tr');
-                    var td4 = document.createElement('td');
-                    var td1 = document.createElement('td');
-                    var td2 = document.createElement('td');
-                    var td3 = document.createElement('td');
-                   // alert("a2");
-                    //td1.style.width = '60%';
-                    //td1.style.width = '15%';
-                    //td1.style.width = '15%';
-                    td4.textContent = "Program Name";
-                    td1.textContent = "Duration";
-                    td2.textContent = "Rate in Rupee";
-                    td3.textContent = "Rate in Dollar";
-                    tr.appendChild(td4);
-                    tr.appendChild(td1);
-                    tr.appendChild(td2);
-                    tr.appendChild(td3);
-                    table.appendChild(tr);
+                   // $("tblCart").html("");
+                   
+                                                                                             
+                     
 
                     var strinnerid = null;
                     var strid = null;
-
+                    var newtbblData = "";
                     //alert(array.length)
-                    for (var i = 0; i < array.length; i++) {
+                    for (var i = 0; i < array.length; i++)
+                    {
                         arrayinner = array[i].split(",");
                         //alert("B");
                         //alert(arrayinner.length);
-                        var tr = document.createElement('tr');
-                        var td4 = document.createElement('td');
-                        var td1 = document.createElement('td');
-                        var td2 = document.createElement('td');
-                        var td3 = document.createElement('td');
+                         
 
                         //td1.style.width = '60%';
                         //td1.style.width = '15%';
@@ -3648,18 +3658,14 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
                        /// alert(arrayinner.length);
                         strinnerid = null;
                         for (var j = 0; j < arrayinner.length; j++)
-                        {
-                            td1.textContent = arrayinner[1];
-                            td2.textContent = arrayinner[2];
-                            td3.textContent = arrayinner[3];
-                            td4.textContent = arrayinner[4];
+                        {                           
+
                             strinnerid = arrayinner[0];
                         }
-                        tr.appendChild(td4);
-                        tr.appendChild(td1);
-                        tr.appendChild(td2);
-                        tr.appendChild(td3);
-                        table.appendChild(tr);
+                       
+                        newtbblData='<tr><td class="/"text-center"/">'+(i+1)+'</td><td>'+ arrayinner[4]+'</td><td>'+arrayinner[1]+' </td><td class="/"text-center"/">'+ arrayinner[2]+'</td><td class="/"text-center"/">'+arrayinner[3]+'</td></tr>';
+
+                        $("#tblCart").find('tbody').append(newtbblData);
 
                         if (strid == null)
                         {
@@ -3669,10 +3675,13 @@ new Script { ExtensionSuite = ExtensionSuite.HtmlEditor }
                             strid = strid + "," + strinnerid;
                         }
                     }
+
+                   
+                   
                 }
                // alert(strid);
                 sessionStorage.setItem("CProgramID", strid);
-                document.getElementById("myModalContent").appendChild(table);
+            
                 $('#myModal').modal('show');
 
             });
