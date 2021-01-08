@@ -556,6 +556,26 @@ function JsonDateFormat(dateValue) {
     return strDate;
 
 }
+function JsonDateFormaddmmyyy(dateValue) {
+
+    var strDate = "";
+    if (dateValue != null) {
+        var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
+        var dd = dateData.getDate();
+        var mm = dateData.getMonth() + 1; //January is 0! 
+        var yyyy = dateData.getFullYear();
+        if (dd < 10) { dd = '0' + dd }
+        if (mm < 10) { mm = '0' + mm }
+        //if (format == 'dd/mm/yyyy')
+        //    strDate = mm + ' / ' + dd + ' / ' + yyyy;
+        //else if (format == 'mm/dd/yyyy')
+        //    strDate = mm + ' / ' + dd + ' / ' + yyyy;
+        //else
+        strDate = mm + '/' + dd + '/' + yyyy;
+    }
+    return strDate;
+
+}
 function time_format(dateValue) {
     var strtDate = "";
     if (dateValue != null) {

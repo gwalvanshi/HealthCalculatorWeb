@@ -14,7 +14,8 @@ namespace HealthCalculator.Web.EntityModel
         public UserPhoto UserPhoto { get; set; }
         public UserAnthropometry UserAnthropometry { get; set; }
         public UserMedicalHistory UserMedicalHistory { get; set; }
-        public UserMedications UserMedications { get; set; }
+
+        public List<UserMedications> UserMedications { get; set; }
         public UserDietaryAndLifeStyleDetails UserDietaryAndLifeStyleDetails { get; set; }
         public UserDirectCall UserDirectCall { get; set; }
         public UserFoodFequency UserFoodFequency { get; set; }
@@ -45,15 +46,16 @@ namespace HealthCalculator.Web.EntityModel
         public DateTime UpdatedWhen { get; set; }
 
     }
-   
+
     public class UserPhoto
     {
         public Int64 UserId { get; set; }
-        public string PhotoURL { get; set; }        
+        public string PhotoURL { get; set; }
         public string AddedBy { get; set; }
         public DateTime AddedWhen { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime UpdatedWhen { get; set; }
+        public string PhotoURLAfter { get; set; }
     }
     public class UserAnthropometry
     {
@@ -161,7 +163,7 @@ namespace HealthCalculator.Web.EntityModel
     }
     public class UserAnyKeyInSights
     {
-                public Int64 UserId { get; set; }
+        public Int64 UserId { get; set; }
         public string Comments { get; set; }
 
         public string AddedBy { get; set; }
@@ -179,7 +181,12 @@ namespace HealthCalculator.Web.EntityModel
         public bool UpdateRecord { get; set; }
         public int ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
-        public List<RspoonseAssessment> Data { get; set; }
+        public AssementData Data { get; set; }
+    }
+    public class AssementData
+    {
+        public List<RspoonseAssessment> Table { get; set; }
+        public List<UserMedications> Table1 { get; set; }
     }
 
     public class RspoonseAssessment
@@ -187,7 +194,7 @@ namespace HealthCalculator.Web.EntityModel
         public int UserId { get; set; }
         public string Gender { get; set; }
 
-       
+
         public DateTime BirthDate { get; set; }
         public int Age { get; set; }
         public string Country { get; set; }
@@ -202,6 +209,7 @@ namespace HealthCalculator.Web.EntityModel
         public int CurrentlyWorking { get; set; }
         public string Occupation { get; set; }
         public object PhotoURL { get; set; }
+        public object PhotoURLAfter { get; set; }
         public string Weight { get; set; }
         public string WeightType { get; set; }
         public string Height { get; set; }

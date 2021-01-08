@@ -3,7 +3,7 @@
     ViewBag.Title = "helpDesk";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/js/tinymce.min.js"></script>
 <div class="container-fluid bg-sky">
     <div class="row">
         <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
@@ -42,12 +42,10 @@
                         <input type="hidden" id="hdnMessageID" />
                         <form class="form-data">
                             <div class="form-group">
-                                @using (Html.BeginForm())
-                                {
-                                    @Html.Action("HtmlEditorPartial")
 
-                                }
-
+                                
+                                    <textarea rows="10" class="form-control" id="editormessage"></textarea>
+                             
 
 
                             </div>
@@ -131,7 +129,8 @@
         </div>
     </div>
 </div>
-
+<script>tinymce.init({ selector: "textarea" });
+ </script>
 <script type="text/javascript">
 
   
@@ -269,8 +268,9 @@
 
 
     }
-    function Clear() {
-        location.reload();
+    function Clear()
+    {
+        tinyMCE.activeEditor.setContent('');
     }
 
     function SaveMessage() {
@@ -280,10 +280,11 @@
             {
                 MessageId: $("#hdnMessageID").val() == '' ? '0' : $("#hdnMessageID").val().trim(),
                 UserID: sessionStorage.getItem('userId'),
-                Message: HtmlEditor.GetHtml(),
+                Message: tinyMCE.activeEditor.getContent(),
                 MessageConversationList: []
 
             }
+            debugger;
             var strFileData = $("#hdnfileName").val().split(",");
 
             for (var i = 0; i < strFileData.length; i++) {
@@ -302,7 +303,8 @@
         var isValidReturn = true;
 
         if (isValidReturn) {
-            if (HtmlEditor.GetHtml() == '') {
+            debugger;
+            if (tinyMCE.activeEditor.getContent() == '') {
                 alert("Please enter the message.")
                 isValidReturn = false
             }

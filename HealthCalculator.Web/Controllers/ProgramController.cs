@@ -24,7 +24,7 @@ namespace HealthCalculator.Web.Controllers
         {
             HttpContext.Request.Files[0].SaveAs(filePathTobeSaved);
         }
-       
+
         public JsonResult UploadDocument(string userID)
         {
             try
@@ -43,16 +43,27 @@ namespace HealthCalculator.Web.Controllers
                 {
                     fname = file.FileName;
                 }
-                
+
                 string fileName = fname;
-                string newFile = "UserID_" + userID;
+                string newFile = userID + "_" + fileName;
                 string[] splString = fileName.Split('.');
                 string uploadNewFileName = newFile + "." + splString[1];
                 string filePathTobeSaved = "";
-                string baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["ProfilePhotoFolder"]);
+                string baseurl = "";
+                if (userID == "1")
+                {
+                    baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["ProfilePhotoFolderBefore"]);
+                    returrMessage = ConfigurationManager.AppSettings["ProfilePhotoFolderBefore"].ToString().Replace("~", "") + "/" + uploadNewFileName;
+                }
+                else
+                {
+                    baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["ProfilePhotoFolderAfter"]);
+                    returrMessage = ConfigurationManager.AppSettings["ProfilePhotoFolderAfter"].ToString().Replace("~", "") + "/" + uploadNewFileName;
+                }
+
                 filePathTobeSaved = baseurl + "/" + uploadNewFileName;
                 Upload(filePathTobeSaved);
-                returrMessage = ConfigurationManager.AppSettings["ProfilePhotoFolder"].ToString().Replace("~", "") + "/" + uploadNewFileName;
+
                 return new JsonResult { Data = returrMessage, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
             catch (Exception ex)
@@ -107,7 +118,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "110";
-                SendObjData.UserID = 1;//Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
                 SendObjData.Operation = "Add";
                 string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
                 SendObjData.XML = stringTOXml;
@@ -124,23 +135,22 @@ namespace HealthCalculator.Web.Controllers
             }
         }
 
-            [HttpPost]
+        [HttpPost]
         public async Task<JsonResult> SaveAsseeement(Assessment collection)
         {
             try
             {
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
-                SendObjData.ScreenID ="110";
+                SendObjData.ScreenID = "110";
                 SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
                 SendObjData.Operation = "Add";
                 string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
-                SendObjData.XML = stringTOXml;  
+                SendObjData.XML = stringTOXml;
 
                 GenericService _genericService = new GenericService();
                 var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
                 var status = await _genericService.PerformDataOperationList<Assessment>(stringContent);
-
                 return new JsonResult { Data = status };
             }
             catch (Exception ex)
@@ -163,8 +173,8 @@ namespace HealthCalculator.Web.Controllers
 
                 GenericService _genericService = new GenericService();
                 var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
-                 var status = await _genericService.PerformDataOperationList<ReturnAssessment>(stringContent);
-               
+                var status = await _genericService.PerformDataOperationDataList<ReturnAssessment>(stringContent);
+
 
                 return new JsonResult { Data = status };
             }
@@ -173,8 +183,6 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
-
-
 
         public ActionResult register()
         {
@@ -218,7 +226,7 @@ namespace HealthCalculator.Web.Controllers
         {
             return View();
         }
-        
+
         public ActionResult smartWeightGain()
         {
             return View();
@@ -318,7 +326,7 @@ namespace HealthCalculator.Web.Controllers
             try
             {
                 int loggedIdUserID = 1;
-             
+
 
                 GenericService _genericService = new GenericService();
                 IndexScreenParameterModel collection = new IndexScreenParameterModel();
@@ -367,7 +375,7 @@ namespace HealthCalculator.Web.Controllers
                 var status = await _genericService.PerformDataOperationList<ProductRoot>(stringContent);
                 return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
-               
+
             }
             catch (Exception ex)
             {
