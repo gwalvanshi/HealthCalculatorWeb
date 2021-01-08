@@ -193,8 +193,13 @@ namespace HealthCalculator.Web.Controllers
             Session.Abandon(); // it will clear the session at the end of request
             return RedirectToAction("login", "Home");          
         }
-        
+
         #endregion
+        public ActionResult AdminView()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
         public ActionResult about()
         {
             return View();

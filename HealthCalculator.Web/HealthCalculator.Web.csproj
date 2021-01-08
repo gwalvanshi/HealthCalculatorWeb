@@ -688,6 +688,7 @@
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Payment\PaymentPage.cshtml" />
     <Content Include="Views\Home\_FileManagerPartial.cshtml" />
+    <Content Include="Views\Home\AdminView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
