@@ -9,6 +9,7 @@
 /// <reference path="../js/jquery-3.5.1.min.js" />
 /// <reference path="../js/jquery-3.5.1.slim.min.js" />
 /// <reference path="../js/popper.min.js" />
+/// <reference path="../js/tinymce.min.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="cldr.js" />
 /// <reference path="cldr/event.js" />
