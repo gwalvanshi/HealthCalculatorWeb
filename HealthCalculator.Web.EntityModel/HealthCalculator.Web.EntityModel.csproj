@@ -56,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysMasterTableModel.cs" />
     <Compile Include="TokenEntity.cs" />
+    <Compile Include="TrackerModel.cs" />
     <Compile Include="vSysMasttablewithfilter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
