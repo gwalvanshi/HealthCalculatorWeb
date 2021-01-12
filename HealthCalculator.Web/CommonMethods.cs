@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
 using System.Xml.Serialization;
@@ -17,19 +18,22 @@ namespace HealthCalculator.Web
     {
 
         // Set server
-       // public const string ServerPath = "../HealthWeb";
+        public const string ServerPath = "https://eatingsmart.in/HealthWeb/";
         private const string V = @"C:\\Harish\\Projects\\email\";
-        private const string growthChart = " <p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><a href='http://localhost:50026/Home/{0}' target='_blank'>Growth chart</a></p>";
+        //Server
+        public string growthChart = "https://eatingsmart.in/HealthWeb/Home/{0}";
+        //Local
+        // public string growthChart = "http://localhost:50026/Home/{0}";
 
         //To set local
-      public const string ServerPath = "";
+        // public const string ServerPath = "http://localhost:50026/";
         public bool SendEmail(string toEmail, string Subject, string content, List<Table> dt, EnquiryModel collection, List<Table1> dtRange)
         {
             string emailbody = string.Empty;
             if (dt[0].AgeGroup == "Adult")
-                emailbody = CommonMethods.AdultEmailBody(dt, collection);
-            else if(dt[0].AgeGroup == "Child")
-                emailbody = CommonMethods.ChildEmailBody(dt, collection,dtRange);
+                emailbody = AdultEmailBody(dt, collection);
+            else if (dt[0].AgeGroup == "Child")
+                emailbody = ChildEmailBody(dt, collection, dtRange);
 
             content = emailbody;
 
@@ -55,8 +59,8 @@ namespace HealthCalculator.Web
                     smtp.Credentials = NetworkCred;
                     smtp.Port = 26;
                     isValid = true;
-                    smtp.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
-                    smtp.PickupDirectoryLocation = V;
+                    //smtp.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+                    //smtp.PickupDirectoryLocation = V;
                     smtp.Send(mm);
                     return isValid;
                 }
@@ -65,11 +69,36 @@ namespace HealthCalculator.Web
             catch (Exception ex)
             {
                 throw ex;
-            }           
+            }
         }
-
-        public static string ChildEmailBody(List<Table> dt, EnquiryModel collection, List<Table1> dtRange)
+        public string ChildEmailBody(List<Table> dt, EnquiryModel collection, List<Table1> dtRange)
         {
+            string filePath = string.Empty;
+            string groathChart = string.Empty;
+            string TableHeight = string.Empty;
+            string TableWiegth = string.Empty;
+            string Age1 = string.Empty;
+            string Weight1 = string.Empty;
+            string Height1 = string.Empty;
+
+            string Age2 = string.Empty;
+            string Weight2 = string.Empty;
+            string Height2 = string.Empty;
+
+            string Age3 = string.Empty;
+            string Weight3 = string.Empty;
+            string Height3 = string.Empty;
+
+            string Age4 = string.Empty;
+            string Weight4 = string.Empty;
+            string Height4 = string.Empty;
+
+            string Age5 = string.Empty;
+            string Weight5 = string.Empty;
+            string Height5 = string.Empty;
+            string BMIStatus = string.Empty;
+            /// return content;
+
             string retVal = string.Empty;
             string ChildWeight = string.Empty;
             string ChildHeight = string.Empty;
@@ -77,65 +106,181 @@ namespace HealthCalculator.Web
             string gender = GetChildSaveValue(collection, "ddlChildGender");
             string weightSel = GetChildSaveValue(collection, "WeightSelection");
             if (weightSel == "KG")
+            {
+                TableWiegth = "KG";
                 ChildWeight = GetChildSaveValue(collection, "ddlChildKilo") + "." + GetChildSaveValue(collection, "ddlChildGaram") + " KG";
+            }
             else
+            {
+                TableWiegth = "Pounds";
                 ChildWeight = GetChildSaveValue(collection, "ddlChildPounds") + " Pounds";
+            }
 
             string heighsel = GetChildSaveValue(collection, "HeightSelection");
             if (heighsel == "Feet")
+            {
+                TableHeight = "Feet& Inch";
                 ChildHeight = GetChildSaveValue(collection, "ddlChildFeet") + " feet " + GetChildSaveValue(collection, "ddlChildInches") + " inches.";
+            }
             else
+            {
+                TableHeight = "CM";
                 ChildHeight = GetChildSaveValue(collection, "ddlChildCentimeter") + " Centimeter";
+            }
 
-            retVal = retVal + "<p style='font-family: Verdana; font-size: 11pt; text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222;'>Hi Ms/ Mr <b>";
-            retVal = retVal + collection.Instance_enquiry.State+ "</b>, </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Greetings from our team Eating Smart.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Hope you and your little one are doing good.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>Congratulations on taking your first step towards a smart lifestyle &#128515 </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>We sincerely thank you for providing us this opportunity to assess your child’s health status and assist your little one to enjoy a smart lifestyle with Eating Smart.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>We believe in the modern concept 'Every natural produce has it's benefits, we just need to channelize it the smart way”.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Please find herein below, your child’s health status report.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>According to the inputs weight and height for age should be as follows:</span></p>";
             retVal = retVal + GetRangTable(dtRange);
-            if (childAge <=2)
+            for (int i = 0; i < dtRange.Count; i++)
             {
+                if (i == 0)
+                {
+                    Age1 = dtRange[i].Age;
+                    if (weightSel == "KG")
+                        Weight1 = dtRange[i].Weight;
+                    else
+                        Weight1 = dtRange[i].WeightLB;
+                    if (heighsel == "Feet")
+                        Height1 = dtRange[i].HeightFI;
+                    else
+                        Height1 = dtRange[i].height;
+                }
+                if (i == 1)
+                {
+                    Age2 = dtRange[i].Age;
+                    if (weightSel == "KG")
+                        Weight2 = dtRange[i].Weight;
+                    else
+                        Weight2 = dtRange[i].WeightLB;
+                    if (heighsel == "Feet")
+                        Height2 = dtRange[i].HeightFI;
+                    else
+                        Height2 = dtRange[i].height;
+                }
+                if (i == 2)
+                {
+                    Age3 = dtRange[i].Age;
+                    if (weightSel == "KG")
+                        Weight3 = dtRange[i].Weight;
+                    else
+                        Weight3 = dtRange[i].WeightLB;
+                    if (heighsel == "Feet")
+                        Height3 = dtRange[i].HeightFI;
+                    else
+                        Height3 = dtRange[i].height;
+                }
+                if (i == 3)
+                {
+                    Age4 = dtRange[i].Age;
+                    if (weightSel == "KG")
+                        Weight4 = dtRange[i].Weight;
+                    else
+                        Weight4 = dtRange[i].WeightLB;
+                    if (heighsel == "Feet")
+                        Height4 = dtRange[i].HeightFI;
+                    else
+                        Height4 = dtRange[i].height;
+                }
+                if (i == 4)
+                {
+                    Age5 = dtRange[i].Age;
+                    if (weightSel == "KG")
+                        Weight5 = dtRange[i].Weight;
+                    else
+                        Weight5 = dtRange[i].WeightLB;
+                    if (heighsel == "Feet")
+                        Height5 = dtRange[i].HeightFI;
+                    else
+                        Height5 = dtRange[i].height;
+                }
+            }
+
+
+
+            if (childAge <= 2)
+            {
+                // Server
+                // filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/child02.html");
+                filePath = HttpContext.Current.Server.MapPath("~/emailer/child02.html");
                 if (gender == "Female")
-                    retVal = retVal + string.Format(growthChart, "ShowWFLGirl?Enq=" + dt[0].EnquiryId);
+                    groathChart = string.Format(growthChart, "ShowWFLGirl?Enq=" + dt[0].EnquiryId);
                 else if (gender == "Male")
-                    retVal = retVal + string.Format(growthChart, "ShowGraph?Enq=" + dt[0].EnquiryId);
+                    groathChart = string.Format(growthChart, "ShowGraph?Enq=" + dt[0].EnquiryId);
 
-                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Your child's current weight is <b>"+ ChildWeight + "</b> and Height is <b>" + ChildHeight + "</b> </span></p>";
-                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #ff0000; font-family: Verdana; font-size: 11pt;'>Growth chart</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Arial; font-size: 10.5pt;'>Growth charts help to assess how your child is growing compared with other kids of the same age and gender.&nbsp;</span></p><p style='text-align: left; margin: 12pt 0pt 18pt; line-height: 16.8pt;'><span style='font-family: Arial; font-size: 10.5pt;'>On the growth charts, the percentiles are shown as lines drawn in curved patterns.&nbsp;</span><span style='font-family: Verdana; font-size: 10.5pt;'>The higher the percentile number, the bigger a child is compared with other kids of the same age and gender, whether it's for height or weight.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 10.5pt;'>The lower the percentile number, the smaller the child is.</span></p>";
             }
-            else if(childAge >2 && childAge <=5)
+            else if (childAge > 2 && childAge <= 5)
             {
-                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Arial; font-size: 11pt;'>Body mass&nbsp;index (BMI) is weight relative to height which is a measure used to determine&nbsp;childhood overweight&nbsp;and&nbsp;obesity</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #ff0000; font-family: Verdana; font-size: 11pt;'>";
-                //retVal = retVal + "Accordingly mention saying: ";
-                retVal = retVal + "Your child falls under the <b>(" + GetChildBMIstatus(dt) + ")</b> category</span></p>";
-                //retVal = retVal + "<table border='0' cellspacing='0' cellpadding='0' style='border-collapse: collapse;'><tbody><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>Percentile</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>BMI for age status</span></p></td></tr><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>99</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>Obese</span></p></td></tr><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>97</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>Overweight</span></p></td></tr><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>85</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>Risk of overweight</span></p></td></tr><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>50</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>Normal</span></p></td></tr><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>15</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size:11pt;'>Normal</span></p></td></tr><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>3</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size:11pt;'>Wasted</span></p></td></tr></tbody></table>";
-                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Calibri; font-size: 11pt;'>&nbsp;</span></p>";
-              
-                if (gender == "Female")
-                    retVal = retVal + string.Format(growthChart, "ShowBMI0205Girl?Enq=" + dt[0].EnquiryId);
-                else if(gender == "Male")
-                    retVal = retVal + string.Format(growthChart, "ShowBMI0205Boy?Enq=" + dt[0].EnquiryId);
+                // Server
+                // filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/child.html");
+                filePath = HttpContext.Current.Server.MapPath("~/emailer/child.html");
 
-                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Your child's current weight is <b>" + ChildWeight + "</b> and Height is <b>" + ChildHeight + "</b> </span></p>";
-            }
-            else if(childAge >5 && childAge <=18)
-            {
-                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Arial; font-size: 11pt;'>Body mass&nbsp;index (BMI) is weight relative to height which is a measure used to determine&nbsp;childhood overweight&nbsp;and&nbsp;obesity</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #ff0000; font-family: Verdana; font-size: 11pt;'>";
-                //retVal = retVal + "Accordingly mention saying:";
-                retVal = retVal + "Your child falls under the  <b>(" + GetChildBMIstatus(dt) + ")</b> category</span></p>";
-                //retVal = retVal + "<table border='0' cellspacing='0' cellpadding='0' style='border-collapse: collapse;'><tbody><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>Percentile</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>BMI for age status</span></p></td></tr><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>99</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>Obese</span></p></td></tr><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>97</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>Overweight</span></p></td></tr><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>85</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>Risk of overweight</span></p></td></tr><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>50</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>Normal</span></p></td></tr><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>15</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size:11pt;'>Normal</span></p></td></tr><tr><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size: 11pt;'>3</span></p></td><td valign='top' width='301' style='width: 225.4pt; padding: 0pt 5.4pt; border-width: 1pt; border-style: solid; border-color: #000000;'><p style='text-align: left; margin: 0pt;'><span style='color: #526173; font-family: &quot;Microsoft Sans Serif&quot;; font-size:11pt;'>Wasted</span></p></td></tr></tbody></table>";
-                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Calibri; font-size: 11pt;'>&nbsp;</span></p>";
-             
+                BMIStatus = GetChildBMIstatus(dt);
                 if (gender == "Female")
-                    retVal = retVal + string.Format(growthChart, "ShowBMI0518Girl?Enq=" + +dt[0].EnquiryId);
+                    groathChart = string.Format(growthChart, "ShowBMI0205Girl?Enq=" + dt[0].EnquiryId);
                 else if (gender == "Male")
-                    retVal = retVal + string.Format(growthChart, "ShowBMI0518Boy?Enq=" + +dt[0].EnquiryId);
-
-                retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Your Child's current weight is <b>" + ChildWeight + "</b> and Height is <b>" + ChildHeight + "</b> </span></p>";
+                    groathChart = string.Format(growthChart, "ShowBMI0205Boy?Enq=" + dt[0].EnquiryId);
 
             }
-            //Last intendation
-            retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>If you wish to improve your child’s health status &amp; opt for a smart lifestyle please feel free to get in touch with team Eating Smart. Our nutrition experts shall be happy to assist your little one.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Smart lifestyle is just a call away: +91 8452 811506</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Do you want your child to start Eating Smart?</span></p>";
-            return retVal;
+            else if (childAge > 5 && childAge <= 18)
+            {
+                // Server
+                //filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/child.html");
+                filePath = HttpContext.Current.Server.MapPath("~/emailer/child.html");
+                BMIStatus = GetChildBMIstatus(dt);
+                if (gender == "Female")
+                    groathChart = string.Format(growthChart, "ShowBMI0518Girl?Enq=" + +dt[0].EnquiryId);
+                else if (gender == "Male")
+                    groathChart = string.Format(growthChart, "ShowBMI0518Boy?Enq=" + +dt[0].EnquiryId);
+
+
+            }
+
+            System.IO.StreamReader objReader;
+            objReader = new System.IO.StreamReader(filePath);
+            string content = objReader.ReadToEnd();
+            objReader.Close();
+
+            content = Regex.Replace(content, "@ClientName", collection.Instance_enquiry.State);
+
+
+            content = Regex.Replace(content, "@TableWeight", TableWiegth);
+
+            content = Regex.Replace(content, "@TableHeight", TableHeight);
+
+
+            content = Regex.Replace(content, "@ClientWieght", ChildWeight);
+
+            content = Regex.Replace(content, "@ClientCM", ChildHeight);
+
+            content = Regex.Replace(content, "@Age1", Age1);
+            content = Regex.Replace(content, "@Weight1", Weight1);
+            content = Regex.Replace(content, "@Height1", Height1);
+
+            content = Regex.Replace(content, "@Age2", Age2);
+            content = Regex.Replace(content, "@Weight2", Weight2);
+            content = Regex.Replace(content, "@Height2", Height2);
+
+            content = Regex.Replace(content, "@Age3", Age3);
+            content = Regex.Replace(content, "@Weight3", Weight3);
+            content = Regex.Replace(content, "@Height3", Height3);
+
+            content = Regex.Replace(content, "@Age4", Age4);
+            content = Regex.Replace(content, "@Weight4", Weight4);
+            content = Regex.Replace(content, "@Height4", Height4);
+
+            content = Regex.Replace(content, "@Age5", Age5);
+            content = Regex.Replace(content, "@Weight5", Weight5);
+            content = Regex.Replace(content, "@Height5", Height5);
+            content = Regex.Replace(content, "@GraphURL", groathChart);
+
+            if ((childAge > 2 && childAge <= 5) || (childAge > 5 && childAge <= 18))
+            {
+                content = Regex.Replace(content, "@ClientCategory", BMIStatus);
+            }
+
+
+            return content;
 
         }
+
 
         public static string GetRangTable(List<Table1> dtRange)
         {
@@ -147,37 +292,17 @@ namespace HealthCalculator.Web
                 body += "<td>" + item.Weight + "</td>";
                 body += "<td>" + item.height + "</td></tr>";
             }
-            return body +"</table></br>";
+            return body + "</table></br>";
         }
-       
-        public static string GetChildBMIstatus( List<Table> dt)
+
+        public static string GetChildBMIstatus(List<Table> dt)
         {
-            string strBMI = string.Empty;
-            double ChBMI = dt[0].BMI;
-            if (ChBMI <= 3)
-            {
-                strBMI = "Wasted";
-            }
-            else if (ChBMI > 3 && ChBMI <= 50)
-            {
-                strBMI = "Normal";
-            }
-            else if (ChBMI > 50 && ChBMI <= 85)
-            {
-                strBMI = "Risk of overweight";
-            }
-            else if (ChBMI > 85 && ChBMI <= 97)
-            {
-                strBMI = "Overweight";
-            }
-            else if (ChBMI > 97)
-            {
-                strBMI = "Obese";
-            }
+            string strBMI = dt[0].ChildCategory;
             return strBMI;
         }
-      
-        public static string GetChildSaveValue(EnquiryModel enqModel,string type)
+
+
+        public static string GetChildSaveValue(EnquiryModel enqModel, string type)
         {
             string retValue = "0";
             foreach (Enquiry_Transaction tx in enqModel.Instance_Enquiry_Transaction)
@@ -208,70 +333,148 @@ namespace HealthCalculator.Web
 
             return retValue;
         }
-
-        public static string AdultEmailBody(List<Table> dt, EnquiryModel collection)
+        public string GetHTMLData()
         {
-            string retVal = string.Empty;
-            string Gender = GetCollectionValue(collection, "ddlGender");
-            retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Hi "+ FirstCharToUpper(collection.Instance_enquiry.FirstName, Gender);
-            retVal = retVal + ",</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Greetings from our team Eating Smart.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Hope you’re doing good.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>Congratulations on taking your first step towards a smart lifestyle &#128515 </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>We sincerely thank you for providing us this opportunity to assess your health status and assist you to enjoy a smart lifestyle with Eating Smart.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>This health rating is curated by Sidra Patel which will help evaluate where you stand in terms of weight and health.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>We believe in the modern concept 'Every natural produce has it's benefits, we just need to channelize it the smart way'.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>please find herein......health status report.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt; text-decoration: underline;'>Weight status</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
-            retVal = retVal + "Your current weight is &nbsp;<b>" + GetCurrentWeight(dt, collection) + "</b> kg (" + weightStatus(dt, collection) + ")</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
-            retVal = retVal + "Your ideal body weight is &nbsp;<b>(" + (dt[0].IdealBodyWeight-2)+"-"+(dt[0].IdealBodyWeight + 2) + ")</b> kg.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt; text-decoration: underline;'>";
-            retVal = retVal + "Body mass index  status </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>BMI is measure of weight relative to height which is an indicator of total body fat and related health risks.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
-            //retVal = retVal + "Your BMI is &nbsp;<b>" + dt[0].BMI + "</b> kg/m</span><span style='color: #525252; font-family: Arial; font-size: 10.5pt;'>²</span><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>,";
-            retVal = retVal + "Your BMI = &nbsp;<b>" + dt[0].BMI + "</b></span><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>,";
-            retVal = retVal + " which indicates that you fall under the <b>(" + BMIStatus(dt) + ")</b></span>";
-            //retVal = retVal + "<span style='color: #222222; font-family: Verdana; font-size: 11pt; font-weight: bold;'>[whichever status according to calculation]</span><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>category.</span></p>";
-            retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Overweight and obese individuals are at high risks for Type 2 Diabetes, cardiovascular and other serious diseases.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
-            retVal = retVal + "<img src='https://eatingsmart.in/HealthWeb/img/EmailImages/BodyMassIndexImage.jpg' width='300' height ='200' /></span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt; text-decoration: underline;'>Basal Metabolic Rate [BMR] status</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #555555; background-color: #fbfbfb; font-family: Arial; font-size: 11.5pt;'>BMR, is a measure of the rate at which a person's body 'burns' energy, in the form of calories, when at rest.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
-            retVal = retVal + "Your BMR is &nbsp;<b>" + dt[0].BMR + "</b> kcal/day</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'><br /></span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt; text-decoration: underline;'>Hydration status</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Hydration is one of the most neglected aspect of a healthy lifestyle.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
-            retVal = retVal + "Keeping in mind your health status you need to consume &nbsp;<b>" + dt[0].WaterIntake + "</b> L/ day.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>*Exceptional if suffering from renal diseases.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'><br /></span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
-            retVal = retVal + "Your health rating.</span></p> <b>" + healthRating(dt, collection)+ "</b>";
-            retVal = retVal + "<img src='https://eatingsmart.in/HealthWeb/img/EmailImages/RatingImage.jpg' width='200' height ='100' /></br>";
-            //Interpretation
-            retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Interpretation:</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 1 star: Alarming health deficit</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Focusing on your health is very crucial at this stage</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>A smart lifestyle coupled with a positive state of mind will help you attain good health</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Taking small steps, will lay the foundation for a happy &amp; healthy life</span></li></ul><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Believe you can and you’re half way through &#128515 </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 2 stars: At the fringe, high time we improve</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Our health status is on the verge of deteriorating, taking proactive steps at this stage will help you get back on track</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>This is the right time we strive hard in order to live a healthy and safe life ahead</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>A smart lifestyle coupled with a positive state of mind will help you attain good health</span></li></ul><p style='text-align: left; margin: 0pt 0pt 0pt 36pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 3 stars: Needs improvement</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Focusing on a smart lifestyle coupled with a positive state of mind will help you reduce the risks of many diseases in near future</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Evaluating each aspect of our health and taking proactive steps would be the best way to move forward</span></li></ul><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 4 stars</span><span style='color: #222222; font-family: Calibri; font-size: 14pt;'>: </span><span style='font-family: Verdana; font-size: 11pt;'>Little emphasis on eating &amp; lifestyle will get you 5 stars</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Good health is a state of physical as well as mental wellbeing, monitoring every aspect can help you stay in good health</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Many a times we tend to neglect the very crucial but least weighed aspects of health like water intake, stress, sleep. It’s all a vicious cycle of health and well being</span></li></ul><p style='text-align: left; margin: 0pt 0pt 0pt 36pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 0pt 36pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>You are what you eat &#128515</span></p>";
+            // Server
+            // string filePath = Server.MapPath("~/HealthWeb/emailer/adult.html");
+            //Local
+            string filePath = HttpContext.Current.Server.MapPath("~/emailer/adult.html");
 
-            //retVal = retVal + "Hi Ms/ Mr "+ collection.Instance_enquiry.FirstName +",</br>";
-            //retVal = retVal + "Greetings from our team Eating Smart.</br>";
-            //retVal = retVal + "Hope you’re doing good.</br>";
-            //retVal = retVal + "Congratulations on taking your first step towards a smart lifestyle 😊 </br>";
-            //retVal = retVal + "We sincerely thank you for providing us this opportunity to assess your health </br>";
-            //retVal = retVal + "status and assist you to enjoy a smart lifestyle with Eating Smart.</br>";
+            System.IO.StreamReader objReader;
+            objReader = new System.IO.StreamReader(filePath);
+            string content = objReader.ReadToEnd();
+            objReader.Close();
+            return content;
 
-            //retVal = retVal + "This health rating is curated by Sidra Patel which will help evaluate where you </br>";
-            //retVal = retVal + "stand in terms of weight and health.</br>";
-            //retVal = retVal + "We believe in the modern concept 'Every natural produce has it’s benefits, we </br>";
-            //retVal = retVal + "just need to channelize it the smart way'.";
-            //retVal = retVal + "Please find herein below, your health status report:</br></br>";
+        }
+        public string GetHTMLChildData()
+        {
+            // Server
 
-            //retVal = retVal + "<u>Weight status</u></br>";
-            //retVal = retVal + "Your current weight is "+ GetCurrentWeight(dt,collection )+" kg</br>";
-            //retVal = retVal + "which indicates that you are "+weightStatus(dt,collection) +" kg </br>";
-            //retVal = retVal + "Your ideal body weight is "+dt[0].IdealBodyWeight +" kg</br>";
+            string filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/adult.html");
+            //Local
+            // string filePath = HttpContext.Current.Server.MapPath("~/emailer/child.html");
 
-            //retVal = retVal + "Body mass index [BMI] status</br>";
-            //retVal = retVal + "BMI is measure of weight relative to height which is an indicator of total body fat </br>";
-            //retVal = retVal + "and related health risks.</br>";
-            //retVal = retVal + "Your BMI is "+dt[0].BMI +"  kg/m², which indicates that you fall under the"+ BMIStatus(dt) +" category.</br>";
+            System.IO.StreamReader objReader;
+            objReader = new System.IO.StreamReader(filePath);
+            string content = objReader.ReadToEnd();
+            objReader.Close();
+            return content;
 
-            //retVal = retVal + "Basal Metabolic Rate [BMR] status</br>";
-            //retVal = retVal + "BMR, is a measure of the rate at which a person's body 'burns' energy, in the form of calories, when at rest</br>";
-            //retVal = retVal + "Your BMR is"+ dt[0].BMR +" kcal/day</br>";
-            //retVal = retVal + "Basal Metabolic Rate [BMR] status</br>";
+        }
+        public string GetHTMLChild02Data()
+        {
+            // Server
+            // string filePath = Server.MapPath("~/HealthWeb/emailer/adult.html");
+            //Local
+            string filePath = HttpContext.Current.Server.MapPath("~/emailer/child02.html");
 
+            System.IO.StreamReader objReader;
+            objReader = new System.IO.StreamReader(filePath);
+            string content = objReader.ReadToEnd();
+            objReader.Close();
+            return content;
 
-            //retVal = retVal + "Hydration status";
-            //retVal = retVal + "Hydration is one of the most neglected aspect of a healthy lifestyle.";
-            //retVal = retVal + "Keeping in mind your health status you need to consume "+dt[0].WaterIntake +" L/ day.";
-            //retVal = retVal + "*Exceptional if suffering from renal diseases.";
-
-            //retVal = retVal + "Your health rating :"+ healthRating(dt,collection);
-
-
-            return retVal;
         }
 
-        public static string FirstCharToUpper(string s,string gender)
+        public string AdultEmailBody(List<Table> dt, EnquiryModel collection)
+        {
+            string retVal = string.Empty;
+            string rating = string.Empty;
+            string indicate = string.Empty;
+            string Gender = GetCollectionValue(collection, "ddlGender");
+            //retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Hi "+ FirstCharToUpper(collection.Instance_enquiry.FirstName, Gender);
+            //retVal = retVal + ",</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Greetings from our team Eating Smart.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Hope you’re doing good.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>Congratulations on taking your first step towards a smart lifestyle &#128515 </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>We sincerely thank you for providing us this opportunity to assess your health status and assist you to enjoy a smart lifestyle with Eating Smart.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>This health rating is curated by Sidra Patel which will help evaluate where you stand in terms of weight and health.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='font-family: Verdana; font-size: 11pt;'>We believe in the modern concept 'Every natural produce has it's benefits, we just need to channelize it the smart way'.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>please find herein......health status report.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt; text-decoration: underline;'>Weight status</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
+            //retVal = retVal + "Your current weight is &nbsp;<b>" + GetCurrentWeight(dt, collection) + "</b> kg (" + weightStatus(dt, collection) + ")</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
+            //retVal = retVal + "Your ideal body weight is &nbsp;<b>(" + (dt[0].IdealBodyWeight-2)+"-"+(dt[0].IdealBodyWeight + 2) + ")</b> kg.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt; text-decoration: underline;'>";
+            //retVal = retVal + "Body mass index  status </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>BMI is measure of weight relative to height which is an indicator of total body fat and related health risks.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
+            ////retVal = retVal + "Your BMI is &nbsp;<b>" + dt[0].BMI + "</b> kg/m</span><span style='color: #525252; font-family: Arial; font-size: 10.5pt;'>²</span><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>,";
+            //retVal = retVal + "Your BMI = &nbsp;<b>" + dt[0].BMI + "</b></span><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>,";
+            //retVal = retVal + " which indicates that you fall under the <b>(" + BMIStatus(dt) + ")</b></span>";
+            ////retVal = retVal + "<span style='color: #222222; font-family: Verdana; font-size: 11pt; font-weight: bold;'>[whichever status according to calculation]</span><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>category.</span></p>";
+            //retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Overweight and obese individuals are at high risks for Type 2 Diabetes, cardiovascular and other serious diseases.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
+            //retVal = retVal + "<img src='https://eatingsmart.in/HealthWeb/img/EmailImages/BodyMassIndexImage.jpg' width='300' height ='200' /></span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt; text-decoration: underline;'>Basal Metabolic Rate [BMR] status</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #555555; background-color: #fbfbfb; font-family: Arial; font-size: 11.5pt;'>BMR, is a measure of the rate at which a person's body 'burns' energy, in the form of calories, when at rest.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
+            //retVal = retVal + "Your BMR is &nbsp;<b>" + dt[0].BMR + "</b> kcal/day</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'><br /></span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt; text-decoration: underline;'>Hydration status</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Hydration is one of the most neglected aspect of a healthy lifestyle.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
+            //retVal = retVal + "Keeping in mind your health status you need to consume &nbsp;<b>" + dt[0].WaterIntake + "</b> L/ day.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>*Exceptional if suffering from renal diseases.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'><br /></span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
+            //retVal = retVal + "Your health rating.</span></p> <b>" + healthRating(dt, collection)+ "</b>";
+            //retVal = retVal + "<img src='https://eatingsmart.in/HealthWeb/img/EmailImages/RatingImage.jpg' width='200' height ='100' /></br>";
+            ////Interpretation
+            //retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Interpretation:</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 1 star: Alarming health deficit</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Focusing on your health is very crucial at this stage</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>A smart lifestyle coupled with a positive state of mind will help you attain good health</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Taking small steps, will lay the foundation for a happy &amp; healthy life</span></li></ul><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Believe you can and you’re half way through &#128515 </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 2 stars: At the fringe, high time we improve</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Our health status is on the verge of deteriorating, taking proactive steps at this stage will help you get back on track</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>This is the right time we strive hard in order to live a healthy and safe life ahead</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>A smart lifestyle coupled with a positive state of mind will help you attain good health</span></li></ul><p style='text-align: left; margin: 0pt 0pt 0pt 36pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 3 stars: Needs improvement</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Focusing on a smart lifestyle coupled with a positive state of mind will help you reduce the risks of many diseases in near future</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Evaluating each aspect of our health and taking proactive steps would be the best way to move forward</span></li></ul><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 4 stars</span><span style='color: #222222; font-family: Calibri; font-size: 14pt;'>: </span><span style='font-family: Verdana; font-size: 11pt;'>Little emphasis on eating &amp; lifestyle will get you 5 stars</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Good health is a state of physical as well as mental wellbeing, monitoring every aspect can help you stay in good health</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Many a times we tend to neglect the very crucial but least weighed aspects of health like water intake, stress, sleep. It’s all a vicious cycle of health and well being</span></li></ul><p style='text-align: left; margin: 0pt 0pt 0pt 36pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 0pt 36pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>You are what you eat &#128515</span></p>";
+            //rating = healthRating(dt, collection);
+            //indicate = weightStatus(dt, collection);
+            // Server
+            // string filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/adult.html");
+            //Local
+            string filePath = HttpContext.Current.Server.MapPath("~/emailer/adult.html");
+
+            System.IO.StreamReader objReader;
+            objReader = new System.IO.StreamReader(filePath);
+            string content = objReader.ReadToEnd();
+            objReader.Close();
+            content = Regex.Replace(content, "@ClientName", FirstCharToUpper(collection.Instance_enquiry.FirstName, Gender));
+
+            content = Regex.Replace(content, "@FromRage ", (dt[0].IdealBodyWeight - 2).ToString());
+
+            content = Regex.Replace(content, "@ToRange ", (dt[0].IdealBodyWeight + 2).ToString());
+
+            content = Regex.Replace(content, "@CurrentWeigth", GetCurrentWeight(dt, collection));
+
+            content = Regex.Replace(content, "@indicates", indicate);
+
+            content = Regex.Replace(content, "@YourBMR", dt[0].BMR.ToString());
+            content = Regex.Replace(content, "@consumeL", dt[0].WaterIntake.ToString());
+
+            content = Regex.Replace(content, "@ClientBMI", dt[0].BMI.ToString());
+            content = Regex.Replace(content, "@BMICategory", weightStatus(dt, collection));
+            if (rating == "1")
+            {
+                rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating1.png";
+            }
+            else if (rating == "2")
+            {
+                rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating2.png";
+            }
+            else if (rating == "3")
+            {
+                rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating3.png";
+            }
+            else if (rating == "4")
+            {
+                rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating4.png";
+            }
+            else
+            {
+                rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating5.png";
+            }
+
+            if (indicate == "Under weight")
+            {
+                indicate = "https://eatingsmart.in/Healthweb/emailer/images/W2.png";
+            }
+            else if (indicate == "Overweight")
+            {
+                indicate = "https://eatingsmart.in/Healthweb/emailer/images/W1.png";
+            }
+            else
+            {
+                indicate = "https://eatingsmart.in/Healthweb/emailer/images/W2.png";
+            }
+
+
+            content = Regex.Replace(content, "@HealthRating", rating);
+
+            content = Regex.Replace(content, "@WeigthScale", indicate);
+
+
+
+
+
+
+            return content;
+
+        }
+
+        public static string FirstCharToUpper(string s, string gender)
         {
             string retVal = string.Empty;
             // Check for empty string.  
@@ -282,36 +485,36 @@ namespace HealthCalculator.Web
             // Return char and concat substring.  
             retVal = char.ToUpper(s[0]) + s.Substring(1);
             if (gender == "Male")
-                retVal = "Mr. "+ retVal;
-            else if(gender == "Female")
+                retVal = "Mr. " + retVal;
+            else if (gender == "Female")
                 retVal = "Ms. " + retVal;
 
             return retVal;
         }
 
-        public static string BMIStatus( List<Table> dt)
+        public static string BMIStatus(List<Table> dt)
         {
             string retBMI = string.Empty;
 
             double dBMI = dt[0].BMI;
 
-            if(dBMI <= 18.5)
+            if (dBMI <= 18.5)
             {
                 retBMI = "Underweight";
             }
-            else if(dBMI > 18.5 && dBMI <= 22.9)
+            else if (dBMI > 18.5 && dBMI <= 22.9)
             {
                 retBMI = "Normal";
             }
-            else if(dBMI >23 && dBMI <= 24.9 )
+            else if (dBMI > 23 && dBMI <= 24.9)
             {
                 retBMI = "Overweight";
             }
-            else if(dBMI > 25 && dBMI <= 29.9)
+            else if (dBMI > 25 && dBMI <= 29.9)
             {
                 retBMI = "Pre – Obese";
             }
-            else if(dBMI > 30 && dBMI <= 40)
+            else if (dBMI > 30 && dBMI <= 40)
             {
                 retBMI = "Obese types 1 [obese]";
             }
@@ -326,7 +529,7 @@ namespace HealthCalculator.Web
             return retBMI;
         }
 
-        public static string GetCurrentWeight( List<Table> dt, EnquiryModel collection)
+        public static string GetCurrentWeight(List<Table> dt, EnquiryModel collection)
         {
             string stWeight = string.Empty;
             double idealbodyWeight = dt[0].IdealBodyWeight;
@@ -351,28 +554,29 @@ namespace HealthCalculator.Web
             return stWeight;
         }
 
-        public static string weightStatus( List<Table> dt, EnquiryModel collection)
+        public static string weightStatus(List<Table> dt, EnquiryModel collection)
         {
             string stWeight = string.Empty;
             double idealbodyWeight = dt[0].IdealBodyWeight;
-            
-            foreach( Enquiry_Transaction tx in collection.Instance_Enquiry_Transaction)
+
+            foreach (Enquiry_Transaction tx in collection.Instance_Enquiry_Transaction)
             {
-                if(tx.ControlName == "ddlKilo")
+                if (tx.ControlName == "ddlKilo")
                 {
-                    if(idealbodyWeight >= Convert.ToSingle(tx.OptionValue))
+                    if (idealbodyWeight >= Convert.ToSingle(tx.OptionValue))
                     {
                         stWeight = "Under weight";
                     }
-                    else if(idealbodyWeight <= Convert.ToSingle(tx.OptionValue))
+                    else if (idealbodyWeight <= Convert.ToSingle(tx.OptionValue))
                     {
                         stWeight = "Overweight";
                     }
-                    else if(idealbodyWeight == Convert.ToSingle(tx.OptionValue))
+                    else if (idealbodyWeight == Convert.ToSingle(tx.OptionValue))
                     {
                         stWeight = "Normal";
                     }
-        }
+                }
+
             }
 
             return stWeight;
@@ -403,7 +607,7 @@ namespace HealthCalculator.Web
             return sw.ToString();
         }
 
-        public static string healthRating( List<Table> dt, EnquiryModel collection)
+        public static string healthRating(List<Table> dt, EnquiryModel collection)
         {
             string heathRating = string.Empty;
             string stAlcohol = string.Empty;
@@ -422,18 +626,18 @@ namespace HealthCalculator.Web
             string ddlExerciseDurationHour = string.Empty;
             string ddlExerciseDurationMins = string.Empty;
             string ddlHowOften = string.Empty;
-            
+
             foreach (Enquiry_Transaction tx in collection.Instance_Enquiry_Transaction)
             {
                 if (tx.ControlName == "ddlSmoke")
                 {
-                    stsmoking = tx.OptionValue; 
+                    stsmoking = tx.OptionValue;
                 }
-                else if(tx.ControlName == "ddlAlcohol")
+                else if (tx.ControlName == "ddlAlcohol")
                 {
                     stAlcohol = tx.OptionValue;
                 }
-                else if(tx.ControlName== "chkAdbType")
+                else if (tx.ControlName == "chkAdbType")
                 {
                     diabiticType1 = tx.OptionValue;
                 }
@@ -441,7 +645,7 @@ namespace HealthCalculator.Web
                 {
                     diabiticType2 = tx.OptionValue;
                 }
-                else if(tx.ControlName == "chkAdSedentary")
+                else if (tx.ControlName == "chkAdSedentary")
                 {
                     stActivitylevelchkAdSedentary = tx.OptionValue;
                 }
@@ -473,19 +677,19 @@ namespace HealthCalculator.Web
                 {
                     chkStrenghtTarining = tx.OptionValue;
                 }
-                else if(tx.ControlName== "ddlExerciseDurationHour")
+                else if (tx.ControlName == "ddlExerciseDurationHour")
                 {
                     ddlExerciseDurationHour = tx.OptionValue;
                 }
-                else if(tx.ControlName== "ddlExerciseDurationMins")
+                else if (tx.ControlName == "ddlExerciseDurationMins")
                 {
                     ddlExerciseDurationMins = tx.OptionValue;
                 }
-                else if(tx.ControlName == "ddlHowOften")
+                else if (tx.ControlName == "ddlHowOften")
                 {
                     ddlHowOften = tx.OptionValue;
                 }
-                else if(tx.ControlName== "Exercise")
+                else if (tx.ControlName == "Exercise")
                 {
                     Exercise = tx.OptionValue;
                 }
@@ -496,54 +700,54 @@ namespace HealthCalculator.Web
             if (dt[0].BMI > 30.0) //  heathRating = "1 star";
             {
                 if (rateInc)
-                    heathRating = "2 star";
+                    heathRating = "2";
                 else
-                    heathRating = "1 star";//decrease rating
+                    heathRating = "1";//decrease rating
             }
             if (dt[0].BMI > 23 && dt[0].BMI <= 30.9) //heathRating = "2 star";
             {
-              
+
                 if (rateInc && rateDec) //if both are true than no change
-                    heathRating = "2 star";
-                else if(rateInc && !rateDec) // if increase and no smoking no alcohol increate 
-                    heathRating = "3 star";
+                    heathRating = "2";
+                else if (rateInc && !rateDec) // if increase and no smoking no alcohol increate 
+                    heathRating = "3";
                 else
-                    heathRating = "1 star";//decrease rating
+                    heathRating = "1";//decrease rating
             }
             if (dt[0].BMI <= 18.5) //heathRating = "3 star";
             {
                 if (rateInc && rateDec) //if both are true than no change
-                    heathRating = "3 star";
+                    heathRating = "3";
                 else if (rateInc && !rateDec) // if increase and no smoking no alcohol increate 
-                    heathRating = "4 star";
+                    heathRating = "4";
                 else
-                    heathRating = "2 star";//decrease rating
+                    heathRating = "2";//decrease rating
             }
             if (dt[0].BMI > 18.5 && dt[0].BMI <= 22.9) //heathRating = "4 or 5 star";
             {
                 if (rateInc && rateDec) //if both are true than no change
-                    heathRating = "4 star";
+                    heathRating = "4";
                 else if (rateInc && !rateDec) // if increase and no smoking no alcohol increate 
-                    heathRating = "5 star";
+                    heathRating = "5";
                 else
-                    heathRating = "3 star"; //decrease rating
+                    heathRating = "3"; //decrease rating
             }
-                return heathRating;
+            return heathRating;
         }
-        public static bool increaseRating(string SleepDuration,double WaterintakeConsume,double idealWaterInke,string Exercise)
+        public static bool increaseRating(string SleepDuration, double WaterintakeConsume, double idealWaterInke, string Exercise)
         {
             bool inFlag = false;
-            if((SleepDuration == "7–8 hours" || SleepDuration== "10 > hours") && WaterintakeConsume >= idealWaterInke && Exercise =="Yes")
+            if ((SleepDuration == "7–8 hours" || SleepDuration == "10 > hours") && WaterintakeConsume >= idealWaterInke && Exercise == "Yes")
             {
                 inFlag = true;
             }
             return inFlag;
         }
 
-        public static bool decreaseRating(string smoking,string alcohol)
+        public static bool decreaseRating(string smoking, string alcohol)
         {
             bool deFlag = false;
-            if(smoking =="Yes" || alcohol =="Yes")
+            if (smoking == "Yes" || alcohol == "Yes")
             {
                 deFlag = true;
             }
