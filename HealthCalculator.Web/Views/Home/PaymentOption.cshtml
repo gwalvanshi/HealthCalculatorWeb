@@ -45,11 +45,12 @@
 <script>
     function RedirectToPayment(ctrl, strVar) {
         if (strVar == "R") {
-            ctrl.href = '@Url.Content("~/Payment/Index?Id=")' + "100";
+            debugger;
+            ctrl.href = '@Url.Content("~/Payment/Index?Id=")' + sessionStorage.getItem("TotalINR");
         }
         else
         {
-            ctrl.href = '@Url.Content("~/Payment/PaymentWithPaypal?Id=")' + "100";
+            ctrl.href = '@Url.Content("~/Payment/PaymentWithPaypal?Id=")' + sessionStorage.getItem("TotalDoller");
 
         }
         ctrl.click();
