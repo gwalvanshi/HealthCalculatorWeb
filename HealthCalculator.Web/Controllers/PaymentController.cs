@@ -38,7 +38,7 @@ namespace HealthCalculator.Web.Controllers
         {
             return View();
         }
-        public ActionResult PaymentWithPaypal(string Cancel = null)
+        public ActionResult PaymentWithPaypal(string Cancel = null, string  Id=null)
         {
             //getting the apiContext  
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
@@ -59,7 +59,7 @@ namespace HealthCalculator.Web.Controllers
                     var guid = Convert.ToString((new Random()).Next(100000));
                     //CreatePayment function gives us the payment approval url  
                     //on which payer is redirected for paypal account payment  
-                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid);
+                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, Id);
                     //get links returned from paypal in response to Create function call  
                     var links = createdPayment.links.GetEnumerator();
                     string paypalRedirectUrl = null;
@@ -108,7 +108,7 @@ namespace HealthCalculator.Web.Controllers
             };
             return this.payment.Execute(apiContext, paymentExecution);
         }
-        private Payment CreatePayment(APIContext apiContext, string redirectUrl)
+        private Payment CreatePayment(APIContext apiContext, string redirectUrl, string Id)
         {
             //create itemlist and add item objects to it  
             var itemList = new ItemList()
@@ -118,11 +118,11 @@ namespace HealthCalculator.Web.Controllers
             //Adding Item Details like name, currency, price etc  
             itemList.items.Add(new Item()
             {
-                name = "Item Name comes here",
+                name = "ServiceCharge ",
                 currency = "USD",
-                price = "1",
+                price = Id.ToString(),
                 quantity = "1",
-                sku = "sku"
+                sku = "1"
             });
             var payer = new Payer()
             {
@@ -137,23 +137,23 @@ namespace HealthCalculator.Web.Controllers
             // Adding Tax, shipping and Subtotal details  
             var details = new Details()
             {
-                tax = "1",
-                shipping = "1",
-                subtotal = "1"
+                tax = "0",
+                shipping = "0",
+                subtotal = Id.ToString()
             };
             //Final amount with details  
             var amount = new Amount()
             {
                 currency = "USD",
-                total = "3", // Total must be equal to sum of tax, shipping and subtotal.  
+                total = Id.ToString(), // Total must be equal to sum of tax, shipping and subtotal.  
                 details = details
             };
             var transactionList = new List<Transaction>();
             // Adding description about the transaction  
             transactionList.Add(new Transaction()
             {
-                description = "Transaction description",
-                invoice_number = "your generated invoice number", //Generate an Invoice No  
+                description = "Service Charges",
+                invoice_number = Guid.NewGuid().ToString(), //Generate an Invoice No  
                 amount = amount,
                 item_list = itemList
             });
@@ -167,12 +167,15 @@ namespace HealthCalculator.Web.Controllers
             // Create a payment using a APIContext  
             return this.payment.Create(apiContext);
         }
-        public ActionResult Index()
+        public ActionResult Index(int Id)
         {
-            return View();
+            PaymentInitiateModel _requestData = new PaymentInitiateModel();
+            _requestData.amount = 1000;
+            return View(_requestData);
         }
         public ActionResult PaymentPage()
         {
+           
             return View();
         }
         

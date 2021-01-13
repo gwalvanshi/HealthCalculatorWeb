@@ -250,9 +250,14 @@ namespace HealthCalculator.Web.Controllers
         {
             return View();
             // return RedirectToAction("Index", "User");
-        }       
+        }
 
-       
+        public ActionResult PaymentOption()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
         [HttpGet]
         public async Task<JsonResult> GetBMI0518Girl(string Enq)
         {

@@ -451,10 +451,12 @@
     <Content Include="img\menu.png" />
     <Content Include="img\minus.png" />
     <Content Include="img\orangeBg.png" />
+    <Content Include="img\Paypal.PNG" />
     <Content Include="img\pizza.png" />
     <Content Include="img\plate.png" />
     <Content Include="img\plus.png" />
     <Content Include="img\pluse.png" />
+    <Content Include="img\RazorPay.PNG" />
     <Content Include="img\restaurant.png" />
     <Content Include="img\right.png" />
     <Content Include="img\rupees.png" />
@@ -697,6 +699,7 @@
     <Content Include="Views\Payment\PaymentWithPaypal.cshtml" />
     <Content Include="Views\Payment\FailureView.cshtml" />
     <Content Include="Views\Payment\SuccessView.cshtml" />
+    <Content Include="Views\Home\PaymentOption.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

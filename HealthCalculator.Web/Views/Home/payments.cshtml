@@ -44,6 +44,8 @@
                         <div class="col-12 col-md-12">
                             <p class="semi mb-2 text-yellow">Payment</p>
                             <hr class="mt-0 mb-3 bg-dark" />
+                            <input type="hidden" id="hdnTotalDoller" />
+                            <input type="hidden" id="hdnTotalINR" />
                         </div>
                     </div>
                     <div>
@@ -54,7 +56,7 @@
                                 <hr class="mt-0 mb-3 bg-dark" />
                             </div>*@
                         <div class="col-12 col-sm-12 text-right">
-                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnPayment" onclick="SaveUserDirectCall()">&nbsp; &nbsp; Paymnet &nbsp; &nbsp; </a>
+                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnPayment"  href="~/Home/Payementoption"  target="_blank">&nbsp; &nbsp; Payment &nbsp; &nbsp; </a>
                         </div>
                     </div>
                 </form>
@@ -97,6 +99,7 @@
                         intDoller = parseFloat(intDoller) + parseFloat(response.data.Data[i].DollerRate);
 
                     }
+
                     $('#tblPayment').append("<tr>");
                     $('#tblPayment').append("<td><b>" + "Total" + "</b></td>");
                     $('#tblPayment').append("<td><b>" + "" + "</b></td>");
@@ -104,6 +107,9 @@
                     $('#tblPayment').append("<td><b>" + intDoller + "</b></td>");
                     $('#tblPayment').append("</tbody>");
                     $('#tblPayment').append("</tr>");
+                    $('#hdnTotalDoller').val(intDoller);
+                    $('#hdnTotalINR').val(intINR);
+                    
 
 
                 }
