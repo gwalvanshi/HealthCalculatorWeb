@@ -25,7 +25,7 @@
                     <li class="list-inline-item"><a href="~/Home/eatingPattern">My Eating Pattern</a></li>
                     <li class="list-inline-item"><a href="~/Home/helpDesk">Admin Messages</a></li>
                     <li class="list-inline-item"><a href="#">Payments</a></li>
-                    <li class="list-inline-item active"><a href="~/Home/Logout">Logout</a></li>
+                    <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -770,7 +770,11 @@
     var isAllValid = true;
     var isSaved = true;
     var commonjsURL = '/Scripts/DevScripts/Common.js';
-
+    function Logout(ctrl) {
+        sessionStorage.clear();
+        ctrl.href = '@Url.Content("~/Home/Logout")';
+        ctrl.click();
+    }
     function SaveGenralInfo() {
 
         var aa = $("#ddlGenderp").val();

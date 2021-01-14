@@ -349,7 +349,7 @@ namespace HealthCalculator.Web.Controllers
             catch (Exception ex)
             {
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
-            }
+            }r
         }
 
         public async Task<JsonResult> GetCartProduct(string Id)

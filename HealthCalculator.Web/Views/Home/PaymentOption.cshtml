@@ -120,10 +120,10 @@
 
         function RedirectToPayment(ctrl, strVar) {
             if (strVar == "R") {
-                ctrl.href = '@Url.Content("~/Payment/Index?Id=")' + sessionStorage.getItem("TotalINR");
+                ctrl.href = '@Url.Content("~/Payment/Index?Id=")' + sessionStorage.getItem("TotalINR") + '&OrderId=' +sessionStorage.getItem("OrderId");
             }
             else {
-                ctrl.href = '@Url.Content("~/Payment/PaymentWithPaypal?Id=")' + sessionStorage.getItem("TotalDoller");
+                ctrl.href = '@Url.Content("~/Payment/PaymentWithPaypal?Id=")' + sessionStorage.getItem("TotalDoller") + '&OrderId=' + sessionStorage.getItem("OrderId");
 
             }
             ctrl.click();

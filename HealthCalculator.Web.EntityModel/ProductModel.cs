@@ -19,6 +19,7 @@ namespace HealthCalculator.Web.EntityModel
       public bool Status{get;set;}
 
        public string Program { get; set; }
+        public int OrderId { get; set; }
     }
   
     public class ProductId

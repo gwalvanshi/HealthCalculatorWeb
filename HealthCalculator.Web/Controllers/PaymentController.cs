@@ -29,6 +29,8 @@ namespace HealthCalculator.Web.Controllers
         public string contactNumber { get; set; }
         public string address { get; set; }
         public int amount { get; set; }
+        public int OrderId { get; set; }
+       
     }
     public class PaymentController : BaseController
     {
@@ -40,7 +42,7 @@ namespace HealthCalculator.Web.Controllers
         {
             return View();
         }
-        public ActionResult PaymentWithPaypal(string Cancel = null, string  Id=null)
+        public ActionResult PaymentWithPaypal(string Cancel = null, string  Id=null, string OrderId=null)
         {
             //getting the apiContext  
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
@@ -58,7 +60,7 @@ namespace HealthCalculator.Web.Controllers
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/Payment/PaymentWithPayPal?";
                     //here we are generating guid for storing the paymentID received in session  
                     //which will be used in the payment execution  
-                    var guid = Convert.ToString((new Random()).Next(100000));
+                    var guid = OrderId;
                     //CreatePayment function gives us the payment approval url  
                     //on which payer is redirected for paypal account payment  
                     var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, Id);
@@ -169,10 +171,11 @@ namespace HealthCalculator.Web.Controllers
             // Create a payment using a APIContext  
             return this.payment.Create(apiContext);
         }
-        public ActionResult Index(string Id)
+        public ActionResult Index(string Id=null, string OrderId = null)
         {
             PaymentInitiateModel _requestData = new PaymentInitiateModel();
             _requestData.amount = Convert.ToInt32(Id);
+            _requestData.OrderId = Convert.ToInt32(OrderId);
             return View(_requestData);
         }
         public ActionResult PaymentPage()
@@ -261,13 +264,18 @@ namespace HealthCalculator.Web.Controllers
             string paymentId = Request.Params["rzp_paymentid"];
             // This is orderId
             string orderId = Request.Params["rzp_orderid"];
+          
             Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_dcqe3aqpMbfHdP", "f20iAuCr0Rz9ZE2dSvccDesd");
             Razorpay.Api.Payment payment = client.Payment.Fetch(paymentId);
             // This code is for capture the payment 
             Dictionary<string, object> options = new Dictionary<string, object>();
             options.Add("amount", payment.Attributes["amount"]);
+            options.Add("receipt", payment.Attributes["receipt"]);
+
             Razorpay.Api.Payment paymentCaptured = payment.Capture(options);
             string amt = paymentCaptured.Attributes["amount"];
+            string receipt = paymentCaptured.Attributes["receipt"];
+
             //// Check payment made successfully
             if (paymentCaptured.Attributes["status"] == "captured")
             {
