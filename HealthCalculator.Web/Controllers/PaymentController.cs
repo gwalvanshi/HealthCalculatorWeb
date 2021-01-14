@@ -1,8 +1,10 @@
-﻿using PayPal.Api;
+﻿using HealthCalculator.Web.Service;
+using PayPal.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -167,10 +169,10 @@ namespace HealthCalculator.Web.Controllers
             // Create a payment using a APIContext  
             return this.payment.Create(apiContext);
         }
-        public ActionResult Index(int Id)
+        public ActionResult Index(string Id)
         {
             PaymentInitiateModel _requestData = new PaymentInitiateModel();
-            _requestData.amount = 1000;
+            _requestData.amount = Convert.ToInt32(Id);
             return View(_requestData);
         }
         public ActionResult PaymentPage()
@@ -178,7 +180,46 @@ namespace HealthCalculator.Web.Controllers
            
             return View();
         }
-        
+        [HttpPost]
+        public JsonResult RazorOrder(PaymentInitiateModel _requestData)
+        {
+            try
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                // Generate random receipt number for order
+                Random randomObj = new Random();
+                string transactionId = randomObj.Next(10000000, 100000000).ToString();
+                Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_dcqe3aqpMbfHdP", "f20iAuCr0Rz9ZE2dSvccDesd");
+                Dictionary<string, object> options = new Dictionary<string, object>();
+                options.Add("amount", _requestData.amount * 100);  // Amount will in paise
+                options.Add("receipt", transactionId);
+                options.Add("currency", "INR");
+                options.Add("payment_capture", "0"); // 1 - automatic  , 0 - manual
+                                                     //options.Add("notes", "-- You can put any notes here --");
+                Razorpay.Api.Order orderResponse = client.Order.Create(options);
+                string orderId = orderResponse["id"].ToString();
+                // Create order model for return on view
+                OrderModel orderModel = new OrderModel
+                {
+                    orderId = orderResponse.Attributes["id"],
+                    razorpayKey = "rzp_test_dcqe3aqpMbfHdP",
+                    amount = _requestData.amount * 100,
+                    currency = "INR",
+                    name = _requestData.name,
+                    email = _requestData.email,
+                    contactNumber = _requestData.contactNumber,
+                    address = _requestData.address,
+                    description = "Testing description"
+                };
+                return new JsonResult { Data = orderModel };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
+
         [HttpPost]
         public ActionResult CreateOrder(PaymentInitiateModel _requestData)
         {
@@ -231,18 +272,20 @@ namespace HealthCalculator.Web.Controllers
             if (paymentCaptured.Attributes["status"] == "captured")
             {
                 // Create these action method
-                return RedirectToAction("Success");
+                ///return RedirectToAction("Success");
+                return RedirectToAction("Success", "Payment", new { Trans = orderId });
             }
             else
             {
-                return RedirectToAction("Failed");
+              
+                return RedirectToAction("Failed", "Payment", new { Trans = orderId });
             }
         }
-        public ActionResult Success()
+        public ActionResult Success(string Trans= null)
         {
             return View();
         }
-        public ActionResult Failed()
+        public ActionResult Failed(string Trans=null)
         {
             return View();
         }

@@ -18,7 +18,7 @@ namespace HealthCalculator.Web
     {
 
         // Set server
-        public const string ServerPath = "https://eatingsmart.in/HealthWeb/";
+        //public const string ServerPath = "https://eatingsmart.in/HealthWeb/";
         private const string V = @"C:\\Harish\\Projects\\email\";
         //Server
         public string growthChart = "https://eatingsmart.in/HealthWeb/Home/{0}";
@@ -26,7 +26,7 @@ namespace HealthCalculator.Web
         // public string growthChart = "http://localhost:50026/Home/{0}";
 
         //To set local
-        // public const string ServerPath = "http://localhost:50026/";
+         public const string ServerPath = "http://localhost:50026/";
         public bool SendEmail(string toEmail, string Subject, string content, List<Table> dt, EnquiryModel collection, List<Table1> dtRange)
         {
             string emailbody = string.Empty;

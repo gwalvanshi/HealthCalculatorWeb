@@ -26,10 +26,10 @@
                                 <table>
                                     <tr>
                                         <td>
-                                            <a  onclick="RedirectToPayment(this,'P')" target="_blank"><img src="/img/Paypal.png" /></a>
+                                            <a  onclick="RedirectToPayment(this,'P')" target="_blank"><img src="@CommonMethods.ServerPath/img/Paypal.png" /></a>
                                         </td>
                                         <td>
-                                            <a  onclick="RedirectToPayment(this,'R')" target="_blank"><img src="/img/RazorPay.png" /></a>
+                                            <a  onclick="RedirectToPayment(this,'R')" target="_blank"><img src="@CommonMethods.ServerPath/img/RazorPay.png" /></a>
                                         </td>
                                     </tr>
                                 </table>
@@ -42,10 +42,63 @@
         </div>
     </div>
 </div>
+@*<div id="paypal-button"></div>
+<button id="rzp-button1">Pay</button>*@
+@*<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>*@
+@*<script>
+    var orderId = "";
+    var accountId = "";
+var options = {
+    "key": "rzp_test_dcqe3aqpMbfHdP", // Enter the Key ID generated from the Dashboard
+    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://eatingsmart.in/HealthWeb//img/cart2.png",
+    "order_id": orderId, //Pass the `id` obtained in the previous step
+    //"account_id": "acc_Ef7ArAsdU5t0XL",
+    "handler": function (response)
+    {
+        debugger;
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function (e)
+{
+      $.ajax({
+          url:'/Payment/RazorOrder',
+        method: 'POST',
+        data: {
+            name: "gwalvanshi@gmail.com",
+            email: "gwalvanshi@gmail.com",
+            contactNumber: "9930016598",
+            address:"test",
+            amount:"100"
+        },
+        success: function (response)
+        {
+            debugger;
+            orderId = response.orderId;
+            rzp1.open();
+            e.preventDefault();
+        },
+        error: function (jqXHR)
+        {
+            debugger;
+            alert(jqXHR);
+        }
+    });
+   
+}
+</script>*@
 <script>
+    
     function RedirectToPayment(ctrl, strVar) {
         if (strVar == "R") {
-            debugger;
             ctrl.href = '@Url.Content("~/Payment/Index?Id=")' + sessionStorage.getItem("TotalINR");
         }
         else
@@ -55,5 +108,47 @@
         }
         ctrl.click();
     }
+
+
+  //paypal.Button.render({
+  //  // Configure environment
+  //  env: 'sandbox',
+  //  client: {
+  //      sandbox: 'AQLwmegUd0MQ0Gz6XPU54XoBFgNH8xB0dKhnOiYzGaVGs9V8oC1i4PxZsvNlBqpX-VTk8waIMJYLhZnv',
+  //      production: 'EGeUSBTdsd5Bp46pKw0GvBAskPe55rcTH3Tn62Im6U9bKdkr78o2yzsMHe_KBpk9VgFqJO9xOLDlepIo'
+  //  },
+  //  // Customize button (optional)
+  //  locale: 'en_US',
+  //  style: {
+  //    size: 'small',
+  //    color: 'gold',
+  //    shape: 'pill',
+  //  },
+
+  //  // Enable Pay Now checkout flow (optional)
+  //  commit: true,
+
+  //  // Set up a payment
+  //  payment: function(data, actions) {
+  //    return actions.payment.create({
+  //      transactions: [{
+  //        amount: {
+  //            total: sessionStorage.getItem("TotalDoller"),
+  //          currency: 'USD'
+  //        }
+  //      }]
+  //    });
+  //  },
+  //  // Execute the payment
+  //  onAuthorize: function(data, actions) {
+  //      return actions.payment.execute().then(function ()
+  //      {
+  //      // Show a confirmation message to the buyer
+  //      window.alert('Thank you for your purchase!');
+  //    });
+  //  }
+  //}, '#paypal-button');
+
 </script>
+
 
