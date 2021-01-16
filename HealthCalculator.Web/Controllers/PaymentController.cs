@@ -1,9 +1,13 @@
-﻿using HealthCalculator.Web.Service;
+﻿using HealthCalculator.Web.EntityModel;
+using HealthCalculator.Web.Service;
+using Newtonsoft.Json;
 using PayPal.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -30,10 +34,24 @@ namespace HealthCalculator.Web.Controllers
         public string address { get; set; }
         public int amount { get; set; }
         public int OrderId { get; set; }
-       
+        public int UserId { get; set; }
+        
+
     }
     public class PaymentController : BaseController
     {
+        public ActionResult PaymentView(string Id = null, string OrderId = null, string UserId = null, string Type=null)
+        {
+            Session["PaypalData"] = Id + "-" +OrderId + "-" + UserId;
+            if (Type == "P")
+            {
+                return RedirectToAction("PaymentWithPaypal", "Payment");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Payment");
+            }
+        }
         public ActionResult FailureView()
         {
             return View();
@@ -42,12 +60,24 @@ namespace HealthCalculator.Web.Controllers
         {
             return View();
         }
-        public ActionResult PaymentWithPaypal(string Cancel = null, string  Id=null, string OrderId=null)
+
+        public ActionResult PaymentWithPaypal(string Cancel = null)
         {
+            string guid = string.Empty;
+            if (Session["PaypalData"] != null)
+            {
+                guid = Convert.ToString(Session["PaypalData"]);
+            }
             //getting the apiContext  
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
+            OrderViewModel objGraphType = new OrderViewModel();
+            CommonMethods objCommonMethods = new CommonMethods();
+            GenericOperationModel SendObjData = new GenericOperationModel();
+            GenericService _genericService = new GenericService();
+          //  var guid = orderData;
             try
             {
+
                 //A resource representing a Payer that funds a payment Payment Method as paypal  
                 //Payer Id will be returned when payment proceeds or click to pay  
                 string payerId = Request.Params["PayerID"];
@@ -60,10 +90,10 @@ namespace HealthCalculator.Web.Controllers
                     string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/Payment/PaymentWithPayPal?";
                     //here we are generating guid for storing the paymentID received in session  
                     //which will be used in the payment execution  
-                    var guid = OrderId;
+                  
                     //CreatePayment function gives us the payment approval url  
                     //on which payer is redirected for paypal account payment  
-                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, Id);
+                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid, guid.Split('-')[0].ToString());
                     //get links returned from paypal in response to Create function call  
                     var links = createdPayment.links.GetEnumerator();
                     string paypalRedirectUrl = null;
@@ -83,19 +113,67 @@ namespace HealthCalculator.Web.Controllers
                 else
                 {
                     // This function exectues after receving all parameters for the payment  
-                    var guid = Request.Params["guid"];
+                    guid = Request.Params["guid"];
                     var executedPayment = ExecutePayment(apiContext, payerId, Session[guid] as string);
                     //If executed payment failed then we will show payment failure message to user  
                     if (executedPayment.state.ToLower() != "approved")
                     {
+                        objGraphType.OrderId = Convert.ToInt32(guid.Split('-')[1].ToString());
+                        objGraphType.UserId = Convert.ToInt32(guid.Split('-')[2].ToString());
+                        objGraphType.IsPaymentDone = false;
+                        objGraphType.PaymentorderId = guid;
+                        objGraphType.PaymentType = "PayPal";
+
+                        SendObjData.ScreenID = "116";
+                        SendObjData.UserID = objGraphType.UserId;
+                        SendObjData.Operation = "ADD";
+
+                        string stringTOXml1 = objCommonMethods.GetXMLFromObject(objGraphType);
+                        SendObjData.XML = stringTOXml1;
+
+
+                        var stringContent1 = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                        var status1 = _genericService.GetRecordsResult<OrderViewModel>(stringContent1);
                         return View("FailureView");
                     }
                 }
             }
             catch (Exception ex)
             {
+                objGraphType.OrderId = Convert.ToInt32(guid.Split('-')[1].ToString());
+                objGraphType.UserId = Convert.ToInt32(guid.Split('-')[2].ToString());
+                objGraphType.IsPaymentDone = true;
+                objGraphType.PaymentorderId = guid;
+                objGraphType.PaymentType = "PayPal";
+
+                SendObjData.ScreenID = "116";
+                SendObjData.UserID = objGraphType.UserId;
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml2 = objCommonMethods.GetXMLFromObject(objGraphType);
+                SendObjData.XML = stringTOXml2;
+
+
+                var stringContent2 = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status2 = _genericService.GetRecordsResult<OrderViewModel>(stringContent2);
                 return View("FailureView");
             }
+            objGraphType.OrderId = Convert.ToInt32(guid.Split('-')[1].ToString());
+            objGraphType.UserId = Convert.ToInt32(guid.Split('-')[2].ToString());
+            objGraphType.IsPaymentDone = true;
+            objGraphType.PaymentorderId = guid;
+            objGraphType.PaymentType = "PayPal";
+
+            SendObjData.ScreenID = "116";
+            SendObjData.UserID = objGraphType.UserId;
+            SendObjData.Operation = "ADD";
+
+            string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+            SendObjData.XML = stringTOXml;
+
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+            var status = _genericService.GetRecordsResult<OrderViewModel>(stringContent);
             //on successful payment, show success page to user.  
             return View("SuccessView");
         }
@@ -171,11 +249,17 @@ namespace HealthCalculator.Web.Controllers
             // Create a payment using a APIContext  
             return this.payment.Create(apiContext);
         }
-        public ActionResult Index(string Id=null, string OrderId = null)
+        public ActionResult Index()
         {
+            string guid = string.Empty;
+            if (Session["PaypalData"] != null)
+            {
+                guid = Convert.ToString(Session["PaypalData"]);
+            }
             PaymentInitiateModel _requestData = new PaymentInitiateModel();
-            _requestData.amount = Convert.ToInt32(Id);
-            _requestData.OrderId = Convert.ToInt32(OrderId);
+            _requestData.amount = Convert.ToInt32(guid.Split('-')[0].ToString());
+            _requestData.OrderId = Convert.ToInt32(guid.Split('-')[1].ToString());
+            _requestData.UserId= Convert.ToInt32(guid.Split('-')[2].ToString());
             return View(_requestData);
         }
         public ActionResult PaymentPage()
@@ -183,49 +267,54 @@ namespace HealthCalculator.Web.Controllers
            
             return View();
         }
-        [HttpPost]
-        public JsonResult RazorOrder(PaymentInitiateModel _requestData)
-        {
-            try
-            {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                // Generate random receipt number for order
-                Random randomObj = new Random();
-                string transactionId = randomObj.Next(10000000, 100000000).ToString();
-                Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_dcqe3aqpMbfHdP", "f20iAuCr0Rz9ZE2dSvccDesd");
-                Dictionary<string, object> options = new Dictionary<string, object>();
-                options.Add("amount", _requestData.amount * 100);  // Amount will in paise
-                options.Add("receipt", transactionId);
-                options.Add("currency", "INR");
-                options.Add("payment_capture", "0"); // 1 - automatic  , 0 - manual
-                                                     //options.Add("notes", "-- You can put any notes here --");
-                Razorpay.Api.Order orderResponse = client.Order.Create(options);
-                string orderId = orderResponse["id"].ToString();
-                // Create order model for return on view
-                OrderModel orderModel = new OrderModel
-                {
-                    orderId = orderResponse.Attributes["id"],
-                    razorpayKey = "rzp_test_dcqe3aqpMbfHdP",
-                    amount = _requestData.amount * 100,
-                    currency = "INR",
-                    name = _requestData.name,
-                    email = _requestData.email,
-                    contactNumber = _requestData.contactNumber,
-                    address = _requestData.address,
-                    description = "Testing description"
-                };
-                return new JsonResult { Data = orderModel };
-            }
-            catch (Exception ex)
-            {
-                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
-            }
-        }
+        //[HttpPost]
+        //public JsonResult RazorOrder(PaymentInitiateModel _requestData)
+        //{
+        //    try
+        //    {
+        //        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+        //        // Generate random receipt number for order
+        //        Random randomObj = new Random();
+        //        string transactionId = randomObj.Next(10000000, 100000000).ToString();
+        //        Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_dcqe3aqpMbfHdP", "f20iAuCr0Rz9ZE2dSvccDesd");
+        //        Dictionary<string, object> options = new Dictionary<string, object>();
+        //        options.Add("amount", _requestData.amount * 100);  // Amount will in paise
+        //        options.Add("receipt", transactionId);
+        //        options.Add("currency", "INR");
+        //        options.Add("payment_capture", "0"); // 1 - automatic  , 0 - manual
+        //                                             //options.Add("notes", "-- You can put any notes here --");
+        //        Razorpay.Api.Order orderResponse = client.Order.Create(options);
+        //        string orderId = orderResponse["id"].ToString();
+        //        // Create order model for return on view
+        //        OrderModel orderModel = new OrderModel
+        //        {
+        //            orderId = orderResponse.Attributes["id"],
+        //            razorpayKey = "rzp_test_dcqe3aqpMbfHdP",
+        //            amount = _requestData.amount * 100,
+        //            currency = "INR",
+        //            name = _requestData.name,
+        //            email = _requestData.email,
+        //            contactNumber = _requestData.contactNumber,
+        //            address = _requestData.address,
+        //            description = "Testing description"
+        //        };
+        //        return new JsonResult { Data = orderModel };
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+        //    }
+        //}
 
 
         [HttpPost]
         public ActionResult CreateOrder(PaymentInitiateModel _requestData)
         {
+            OrderViewModel objGraphType = new OrderViewModel();
+            CommonMethods objCommonMethods = new CommonMethods();
+            GenericOperationModel SendObjData = new GenericOperationModel();
+            GenericService _genericService = new GenericService();
+
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             // Generate random receipt number for order
             Random randomObj = new Random();
@@ -233,7 +322,7 @@ namespace HealthCalculator.Web.Controllers
             Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_dcqe3aqpMbfHdP", "f20iAuCr0Rz9ZE2dSvccDesd");
             Dictionary<string, object> options = new Dictionary<string, object>();
             options.Add("amount", _requestData.amount * 100);  // Amount will in paise
-            options.Add("receipt", transactionId);
+            options.Add("receipt", transactionId);           
             options.Add("currency", "INR");
             options.Add("payment_capture", "0"); // 1 - automatic  , 0 - manual
                                                  //options.Add("notes", "-- You can put any notes here --");
@@ -252,6 +341,22 @@ namespace HealthCalculator.Web.Controllers
                 address = _requestData.address,
                 description = "Testing description"
             };
+            objGraphType.OrderId = Convert.ToInt32(_requestData.OrderId);
+            objGraphType.UserId = Convert.ToInt32(_requestData.UserId);
+            objGraphType.IsPaymentDone = false;
+            objGraphType.PaymentorderId = orderId;
+            objGraphType.PaymentType = "RazorPayTemp";
+
+            SendObjData.ScreenID = "116";
+            SendObjData.UserID = objGraphType.UserId;
+            SendObjData.Operation = "ADD";
+
+            string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+            SendObjData.XML = stringTOXml;
+
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+            var status = _genericService.GetRecordsResult<OrderViewModel>(stringContent);
             // Return on PaymentPage with Order data
             return View("PaymentPage", orderModel);
         }
@@ -270,22 +375,59 @@ namespace HealthCalculator.Web.Controllers
             // This code is for capture the payment 
             Dictionary<string, object> options = new Dictionary<string, object>();
             options.Add("amount", payment.Attributes["amount"]);
-            options.Add("receipt", payment.Attributes["receipt"]);
-
+           
             Razorpay.Api.Payment paymentCaptured = payment.Capture(options);
             string amt = paymentCaptured.Attributes["amount"];
-            string receipt = paymentCaptured.Attributes["receipt"];
-
+               
+            OrderViewModel objGraphType = new OrderViewModel();
+            CommonMethods objCommonMethods = new CommonMethods();
+            GenericOperationModel SendObjData = new GenericOperationModel();
+            GenericService _genericService = new GenericService();
             //// Check payment made successfully
+          
             if (paymentCaptured.Attributes["status"] == "captured")
             {
+               
+                objGraphType.OrderId = Convert.ToInt32(0);
+                objGraphType.UserId = Convert.ToInt32(0);
+                objGraphType.IsPaymentDone = true;
+                objGraphType.PaymentorderId = orderId;
+                objGraphType.PaymentType = "RazorPay";
+               
+                SendObjData.ScreenID = "116";
+                SendObjData.UserID = objGraphType.UserId;
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+                SendObjData.XML = stringTOXml;
+
+              
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status =  _genericService.GetRecordsResult<OrderViewModel>(stringContent);
+                //return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
                 // Create these action method
                 ///return RedirectToAction("Success");
                 return RedirectToAction("Success", "Payment", new { Trans = orderId });
             }
             else
             {
-              
+                objGraphType.OrderId = Convert.ToInt32(0);
+                objGraphType.UserId = Convert.ToInt32(0);
+                objGraphType.IsPaymentDone = false;
+                objGraphType.PaymentorderId = orderId;
+                objGraphType.PaymentType = "RazorPay";
+
+                SendObjData.ScreenID = "116";
+                SendObjData.UserID = objGraphType.UserId;
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+                SendObjData.XML = stringTOXml;
+
+
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = _genericService.GetRecordsResult<OrderViewModel>(stringContent);
                 return RedirectToAction("Failed", "Payment", new { Trans = orderId });
             }
         }

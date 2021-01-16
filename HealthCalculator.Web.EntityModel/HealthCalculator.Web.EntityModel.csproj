@@ -52,6 +52,7 @@
     <Compile Include="GridViewRequestModel.cs" />
     <Compile Include="LoginEntity.cs" />
     <Compile Include="MessageMaster.cs" />
+    <Compile Include="OrderViewModel.cs" />
     <Compile Include="ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysMasterTableModel.cs" />

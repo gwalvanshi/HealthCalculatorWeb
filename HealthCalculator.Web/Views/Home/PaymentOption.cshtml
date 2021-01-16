@@ -120,10 +120,10 @@
 
         function RedirectToPayment(ctrl, strVar) {
             if (strVar == "R") {
-                ctrl.href = '@Url.Content("~/Payment/Index?Id=")' + sessionStorage.getItem("TotalINR") + '&OrderId=' +sessionStorage.getItem("OrderId");
+                ctrl.href = '@Url.Content("~/Payment/PaymentView?Id=")' + sessionStorage.getItem("TotalINR") + '&OrderId=' + sessionStorage.getItem("OrderId") + '&UserId=' + sessionStorage.getItem("userId") + '&Type=R';
             }
             else {
-                ctrl.href = '@Url.Content("~/Payment/PaymentWithPaypal?Id=")' + sessionStorage.getItem("TotalDoller") + '&OrderId=' + sessionStorage.getItem("OrderId");
+                ctrl.href = '@Url.Content("~/Payment/PaymentView?Id=")' + sessionStorage.getItem("TotalDoller") + '&OrderId=' + sessionStorage.getItem("OrderId") + '&UserId=' + sessionStorage.getItem("userId") + '&Type=P';
 
             }
             ctrl.click();
