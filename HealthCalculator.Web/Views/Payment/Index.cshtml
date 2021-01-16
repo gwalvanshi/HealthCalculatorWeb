@@ -1,26 +1,29 @@
 ﻿
 @model  HealthCalculator.Web.Controllers.PaymentInitiateModel
+
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
+
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Payment Initiate</title>
-    @*Link this css*@
-
+    <meta name="viewport" content="width=device-width" />
+    <title>Payment detail</title>
+    <link href="~/css/hover-min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
     <div class="container login-container">
-        <h1>Creat an Order</h1>
+        <h1>Order</h1>
         <div class="login-card">
             <div class="login-card-body">
                 @using (Html.BeginForm("CreateOrder", "Payment", FormMethod.Post))
-                {
+            {
                     @Html.AntiForgeryToken()
 
                     <div class="form-group row">
@@ -31,21 +34,25 @@
                         <label for="email">Email ID</label>
                         @Html.TextBoxFor(x => x.email, new { @class = "form-control border" })
                     </div>
-                                    <div class="form-group row">
-                                        <label for="contactNumber">Contact Number</label>
-                                        @Html.TextBoxFor(x => x.contactNumber, new { @class = "form-control border" })
-                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="address">Address</label>
-                                                        @Html.TextBoxFor(x => x.address, new { @class = "form-control border" })
-                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label for="amount">Amount (INR)</label>
-                                                                        @Html.TextBoxFor(x => x.amount, new { @class = "form-control border" })
-                                                                    </div>
-                                                                                    <button type="submit" class="btn btn-primary">Submit</button>}
+                    <div class="form-group row">
+                        <label for="contactNumber">Contact Number</label>
+                        @Html.TextBoxFor(x => x.contactNumber, new { @class = "form-control border" })
+                    </div>
+                    <div class="form-group row">
+                        <label for="address">Address</label>
+                        @Html.TextBoxFor(x => x.address, new { @class = "form-control border" })
+                        @Html.HiddenFor(x => x.OrderId)
+                        @Html.HiddenFor(x => x.UserId)
+                        
+                    </div>
+                    <div class="form-group row">
+                        <label for="amount">Amount (INR)</label>
+                        @Html.TextBoxFor(x => x.amount, new { @class = "form-control border", @readonly = "readonly" })
+                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>}
             </div>
         </div>
     </div>
 </body>
 </html>
+
