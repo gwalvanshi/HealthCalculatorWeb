@@ -183,7 +183,6 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
-
         public ActionResult register()
         {
             return View();
@@ -226,7 +225,6 @@ namespace HealthCalculator.Web.Controllers
         {
             return View();
         }
-
         public ActionResult smartWeightGain()
         {
             return View();
@@ -351,7 +349,6 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
-
         public async Task<JsonResult> GetCartProduct(string Id)
         {
 
@@ -383,7 +380,6 @@ namespace HealthCalculator.Web.Controllers
             }
 
         }
-
         public async Task<JsonResult> GetTracker(int userId)
         {
             try
@@ -407,6 +403,31 @@ namespace HealthCalculator.Web.Controllers
 
                 return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<JsonResult> SaveTracker(Trackerdata collection)
+        {
+            try
+            {
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "115";
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
+                SendObjData.Operation = "Add";
+                string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
+                SendObjData.XML = stringTOXml;
+
+                GenericService _genericService = new GenericService();
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<Trackerdata>(stringContent);
+                return new JsonResult { Data = status };
             }
             catch (Exception ex)
             {

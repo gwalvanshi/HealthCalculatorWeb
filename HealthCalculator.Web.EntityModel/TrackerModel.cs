@@ -19,6 +19,31 @@ namespace HealthCalculator.Web.EntityModel
         public Int64 Totaldays { get; set; }
         public bool IsActive { get; set; }
         public Int64 GivenDays { get; set; }
+        public string ProductName { get; set; }
+        public string Program { get; set; }
+    }
+    public class Trackerdata
+    {
+        public string TableType { get; set; }
+        public int UserId { get; set; }
+        public int ProductId { get; set; }
+        public Int64 OrderId { get; set; }
+        public List<UserTracker> UserTracker { get; set; }
+    }
+    public class UserTracker
+    {
+        public Int64 UserId { get; set; }
+        public int ProductId { get; set; }
+        public Int64 OrderId { get; set; }
+        public decimal Weight { get; set; }
+        public decimal WeightDifference { get; set; }
+        public DateTime? TrackerDate { get; set; }
+        public Int64 AddedBy { get; set; }
+        public DateTime? AddedWhen { get; set; }
+        public Int64 UpdatedBy { get; set; }
+        public DateTime? UpdatedWhen { get; set; }
+
+
     }
 
     public class Order
