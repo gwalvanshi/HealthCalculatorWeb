@@ -1,58 +1,36 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "AdminView";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ShowGraph</title>
-
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Styles.Render("~/Content/DevExtremeBundle")
-
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-
-    @Scripts.Render("~/Scripts/DevExtremeBundle")
-
-    <style>
-    </style>
-</head>
-
-
-<body class="dx-viewport">
-    <div class="container-fluid flowerBg">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-12 col-lg-11">
-                <div class="middleContent bg-gray shadow">
-                    <div class="row">
-                        <div class="demo-container">
-                            <div id="gridContainer"></div>
-                        </div>
+<div class="container-fluid flowerBg">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12 col-lg-11">
+            <div class="middleContent bg-gray shadow">
+                <div class="row">
+                    <div class="demo-container">
+                        <div id="gridContainer"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-</body>
-
-</html>
 <script>
 
-    $(document).ready(function () {
+    window.onload = function ()
+    {
 
         CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response) {
             $("#gridContainer").dxDataGrid(
                 {
                     dataSource: response.dataCollection,
                     columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
-                    showBorders: true
-                });
+                showBorders: true
+            });
         });
-    });
-
+    }
+ 
 </script>
+
