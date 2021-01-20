@@ -1,104 +1,58 @@
 ﻿
 @{
-    ViewBag.Title = "AdminView";
+    Layout = null;
 }
 
-<div class="container-fluid flowerBg">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-12 col-lg-11">
-            <div class="middleContent bg-gray shadow">
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">CART</p>
-                        <table class="table ">
-                            <thead>
-                                <tr class="semi">
-                                    <td class="text-center" style="width: 50px;">#</td>
-                                    <td>Product</td>
-                                    <td>Price</td>
-                                    <td class="text-center">Quantity</td>
-                                    <td class="text-center">Amount</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-center">1</td>
-                                    <td>Smart Managemnet of Diseases  & Disorders (1 Month)</td>
-                                    <td>
-                                        <del>&nbsp;Rs. 4,999&nbsp;</del><br />
-                                        &nbsp;Rs. 3,999&nbsp;
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <button class="btn bg-sky plus">+</button>
-                                            <input class="form-control btn bg-sky qnt h-100" value="1" />
-                                            <button class="btn bg-sky minus">-</button>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">3,999</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">2</td>
-                                    <td>boAt Rockerz 450 Bluetooth On-Ear Headphone with Mic(Luscious Black)</td>
-                                    <td>
-                                        <del>&nbsp;Rs. 2,541&nbsp;</del><br />
-                                        &nbsp;Rs. 1,449&nbsp;
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <button class="btn bg-sky plus">+</button>
-                                            <input class="form-control btn bg-sky qnt h-100" value="1" />
-                                            <button class="btn bg-sky minus">-</button>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">1,499</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">3</td>
-                                    <td>Smart Psychological Well-Being (3 Month)</td>
-                                    <td>
-                                        <del>&nbsp;Rs. 11,499&nbsp;</del><br />
-                                        &nbsp;Rs.&nbsp;10,499&nbsp;
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <button class="btn bg-sky plus">+</button>
-                                            <input class="form-control btn bg-sky qnt h-100" value="1" />
-                                            <button class="btn bg-sky minus">-</button>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">10,499</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">4</td>
-                                    <td>Mi Smart Band 5-1.1” AMOLED Color Display, 2 Weeks Battery Life, 5ATM Water Resistant</td>
-                                    <td>
-                                        <del>&nbsp;Rs. 3,499&nbsp;</del><br />
-                                        &nbsp;Rs. 2,449&nbsp;
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <button class="btn bg-sky plus">+</button>
-                                            <input class="form-control btn bg-sky qnt h-100" value="1" />
-                                            <button class="btn bg-sky minus">-</button>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">2,499</td>
-                                </tr>
-                                <tr class="bold">
-                                    <td>3</td>
-                                    <td colspan="3">Total</td>
-                                    <td class="text-center">18,496</td>
-                                </tr>
-                            </tbody>
-                        </table>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowGraph</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/DevExtremeBundle")
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    @Scripts.Render("~/Scripts/DevExtremeBundle")
+
+    <style>
+    </style>
+</head>
 
 
-
+<body class="dx-viewport">
+    <div class="container-fluid flowerBg">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-12 col-lg-11">
+                <div class="middleContent bg-gray shadow">
+                    <div class="row">
+                        <div class="demo-container">
+                            <div id="gridContainer"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+</body>
+
+</html>
+<script>
+
+    $(document).ready(function () {
+
+        CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response) {
+            $("#gridContainer").dxDataGrid(
+                {
+                    dataSource: response.dataCollection,
+                    columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
+                    showBorders: true
+                });
+        });
+    });
+
+</script>

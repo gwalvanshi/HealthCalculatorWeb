@@ -27,15 +27,18 @@ namespace HealthCalculator.Web.Controllers
             return View();
             // return RedirectToAction("Index", "User");
         }
-       // [SessionExpireFilterAttribute]
-        public ActionResult helpDesk()
+        [SessionExpireFilterAttribute]
+        public ActionResult helpDesk(string userId=null)
         {
             List<MessageMasterData> objMessageMasterDataList = new List<MessageMasterData>();
             MessageMasterData objMessageMasterData = new MessageMasterData();
             MessageMasterDataList objMessageMasterDataChild= new MessageMasterDataList();
             List<MessageMasterDataList> MessageMasterDataListChild = new List<EntityModel.MessageMasterDataList>();
-
-            int loggedIdUserID = 16;
+            int loggedIdUserID = 0;
+            if (userId == null)
+                loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
+            else
+                loggedIdUserID = Convert.ToInt32(userId);
             GenericService _genericService = new GenericService();
             IndexScreenParameterModel collection = new IndexScreenParameterModel();
             collection.ScreenID = "112";
@@ -84,26 +87,26 @@ namespace HealthCalculator.Web.Controllers
         }
        
         [SessionExpireFilterAttribute]
-        public ActionResult MyEatingPattern()
+        public ActionResult MyEatingPattern(string userId = null)
         {
             return View();
             // return RedirectToAction("Index", "User");
         }
         [SessionExpireFilterAttribute]
-        public ActionResult MyEatingSmartTools()
+        public ActionResult MyEatingSmartTools(string userId = null)
         {
             return View();
             // return RedirectToAction("Index", "User");
         }
 
         [SessionExpireFilterAttribute]
-        public ActionResult tracker()
+        public ActionResult tracker(string userId = null)
         {
             return View();
             // return RedirectToAction("Index", "User");
         }
         [SessionExpireFilterAttribute]
-        public ActionResult assessment()
+        public ActionResult assessment(string userId = null)
         {
             return View();
             // return RedirectToAction("Index", "User");
@@ -270,7 +273,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId; ;
+                SendObjData.UserID =  Constants.Default_UserId; ;
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -299,7 +302,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId; ;
+                SendObjData.UserID = Constants.Default_UserId; ;
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -329,7 +332,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId; ;
+                SendObjData.UserID = Constants.Default_UserId; ;
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -358,7 +361,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId; ;
+                SendObjData.UserID = Constants.Default_UserId; ;
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -388,7 +391,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId; ;
+                SendObjData.UserID =  Constants.Default_UserId; ;
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -418,7 +421,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
+                SendObjData.UserID = Constants.Default_UserId;
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -468,9 +471,30 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
+        [HttpGet]
+        public async Task<JsonResult> GetUserDetails()
+        {
+            try
+            {
+                int loggedIdUserID = 1;
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "114";
+                collection.UserId = loggedIdUserID;
+               
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<LoginEntity>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
 
 
-       
+
     }
     
   

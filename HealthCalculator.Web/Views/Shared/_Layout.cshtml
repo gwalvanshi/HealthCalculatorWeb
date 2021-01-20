@@ -3622,7 +3622,8 @@
 
             $("#lnkcart").click(function (e)
             {
-               // alert("a");
+                // alert("a");
+                $("#tblCart").find('tbody').html("");
                 if (sessionStorage.getItem("CartProgramID") != null) {
                     var cartdetails = sessionStorage.getItem("CartProgramID");
                     //alert(cartdetails);

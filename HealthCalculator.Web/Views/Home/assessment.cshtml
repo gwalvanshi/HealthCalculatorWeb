@@ -8,7 +8,7 @@
     <div class="container-fluid bg-sky">
         <div class="row">
             <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
-                <h2 class="semi text-white text-shadow">ACCOUNT SETTINGS</h2>
+                <h2 class="semi text-white text-shadow" id="HeaderValue"></h2>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
                     <li class="list-inline-item"><a href="~/Home/tracker">My Trackers</a></li>
                     <li class="list-inline-item"><a href="">My Eating Smart Tool</a></li>
                     <li class="list-inline-item"><a href="~/Home/eatingPattern">My Eating Pattern</a></li>
-                    <li class="list-inline-item"><a href="~/Home/helpDesk">Admin Messages</a></li>
+                    <li class="list-inline-item"><a href="~/Home/helpDesk">Admin Messages <span class="float-right d-none d-md-block" id="spMessage"></span></a></li>
                     <li class="list-inline-item"><a href="#">Payments</a></li>
                     <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
                 </ul>
@@ -1157,10 +1157,9 @@
         LoadSystemMasterDropdown("ddlCity", 3, ctrl.value, "");
     }
     $(document).ready(function () {
-
-         SystemdropdownMasterData = [];
-        LoadSystemMasterDropdown("ddlCountry", 1, "", "");
-
+      
+        $("#HeaderValue").text("ACCOUNT SETTINGS | "+sessionStorage.getItem('EmployeeName'));
+       
         var assessment =
         {
             TableType: "GetRecord" ,
@@ -1181,8 +1180,8 @@
             //-------------------GenralInfo-----------------------------------
             $("#txtName").val(sessionStorage.getItem('EmployeeName'));
             $("#ddlGenderp").val(response.data.Data.Table[0].Gender);
-
-           
+            $("#spMessage").text(" ("+response.data.Data.Table[0].MessageCount+")");
+            
             var strDate = "";
             var dateValue = response.data.Data.Table[0].BirthDate;
             if (dateValue != null) {
@@ -1207,7 +1206,8 @@
            // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', response.data.Data.Table[0].BirthDate);
             $("#txtAgep").val(response.data.Data.Table[0].Age) ;
             $("#ddlCountry").val(response.data.Data.Table[0].Country);
-
+            SystemdropdownMasterData = [];
+            LoadSystemMasterDropdown("ddlCountry", 1, "", response.data.Data.Table[0].Country);
             SystemdropdownMasterData = [];
             LoadSystemMasterDropdown("ddlState", 2, response.data.Data.Table[0].Country, response.data.Data.Table[0].State);
 
