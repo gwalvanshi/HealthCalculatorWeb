@@ -19,35 +19,42 @@
             <div class="col-12 col-md-12 col-lg-11">
                 <div class="middleContent bg-gray shadow">
                     <form class="form-data">
+                        <input type="hidden" id="hdnTotalDoller" />
+                        <input type="hidden" id="hdnTotalINR" />
+                        <br /><hr /><br />
 
-                        <div class="row">
-                            <div class="col-12 col-md-12">
-                                <p class="semi mb-2 text-yellow">Payment Option</p>
-                                <hr class="mt-0 mb-3 bg-dark" />
-                                <input type="hidden" id="hdnTotalDoller" />
-                                <input type="hidden" id="hdnTotalINR" />
+                        <div class="row flex-row-reverse justify-content-between">
+                            <div class="col-12 col-md-12 col-lg-12">
+                                <h2 class="text-sky bold mb-4">Payment Page</h2>
+                                <h4 class="text-sky bold mb-0 p-2 pl-3" style="background: #32c6c6; color: #fff;">
+                                    Payment Type</h2>
+                                    <ul class="list-group list-group-flush border">
+                                        <li class="list-group-item">
+                                            <div class="form-check d-flex align-items-center">
+                                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                <label class="form-check-label w-100" style="cursor: pointer;" for="exampleRadios1"> <img src="@CommonMethods.ServerPath/img/razorpay.jpg"   class="img-fluid" style="max-height: 50px;" /> </label>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="form-check d-flex align-items-center">
+                                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" >
+                                                <label class="form-check-label w-100" style="cursor: pointer;" for="exampleRadios2"> <img  src="@CommonMethods.ServerPath/img/paypal.jpg" class="img-fluid" style="max-height: 50px;" /> </label>
+                                            </div>
+                                        </li>
+                                    </ul>
                             </div>
                         </div>
+                        <br />
                         <div class="form-group row">
                             @*<div class="col-12 col-md-12">
-                                    <hr class="mt-0 mb-3 bg-dark" />
-                                </div>*@
-                            <div class="col-12 col-sm-12 text-right">
-                                <div class="col-12 col-md-2">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <a onclick="RedirectToPayment(this,'P')" target="_blank"><img src="@CommonMethods.ServerPath/img/Paypal.png" /></a>
-                                            </td>
-                                            <td>
-                                                <a onclick="RedirectToPayment(this,'R')" target="_blank"><img src="@CommonMethods.ServerPath/img/RazorPay.png" /></a>
-                                            </td>
-                                        </tr>
-                                    </table>
-
-                                </div>
+                <hr class="mt-0 mb-3 bg-dark" />
+            </div>*@
+                            <div class="col-12 col-sm-12 text-left">
+                                <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnPayment"  target="_blank" onclick="RedirectToPayment(this)" >&nbsp; &nbsp; Pay &nbsp; &nbsp; </a>
                             </div>
                         </div>
+                                      
+                        
                     </form>
                 </div>
             </div>
@@ -118,8 +125,11 @@
     </script>*@
     <script>
 
-        function RedirectToPayment(ctrl, strVar) {
-            if (strVar == "R") {
+        function RedirectToPayment(ctrl)
+        {
+          
+            var strVar=  document.getElementById("exampleRadios1").checked
+            if (strVar == true) {
                 ctrl.href = '@Url.Content("~/Payment/PaymentView?Id=")' + sessionStorage.getItem("TotalINR") + '&OrderId=' + sessionStorage.getItem("OrderId") + '&UserId=' + sessionStorage.getItem("userId") + '&Type=R';
             }
             else {

@@ -147,7 +147,7 @@ namespace HealthCalculator.Web.EntityModel
 
         }
 
-        public Int64 ModifiedBy
+        public Int64 ? ModifiedBy
 
         {
 

@@ -89,7 +89,7 @@
 
                     OrderId = response.data.Data[0].OrderId;
                     totalCartDetailsLength = response.data.Data.length;
-                    $('#tblPayment').append("<tbody><tr bgcolor='#f4a800'><th >Program Name   </th><th >Duration   </th><th>₹    </th><th>$     </th></tr></tbody>");
+                    $('#tblPayment').append("<tbody><tr bgcolor='#f4a800'><th class='semi mb-2 text-white' >Program Name   </th><th class='semi mb-2 text-white' >Duration   </th><th class='semi mb-2 text-white'>₹    </th><th class='semi mb-2 text-white'>$     </th></tr></tbody>");
                     // $('#tblPayment').append("<tbody>");
 
                     for (var i = 0; i < response.data.Data.length; i++)

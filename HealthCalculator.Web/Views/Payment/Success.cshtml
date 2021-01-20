@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -8,11 +7,28 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Success</title>
+    <title>Payment detail</title>
+    <link href="~/css/hover-min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div>
-        Payment Done Sucessfully.
+    <div class="container-fluid flowerBg">
+        <div class="row flex-row-reverse justify-content-between">
+            <div class="col-12 col-md-12 col-lg-12 text-center">
+                <br /><br /><br />
+                <img src="@CommonMethods.ServerPath/img/success.png" class="img-fluid mb-5" />
+                <h2 class="text-sky bold mb-3">Thank You</h2>
+                <h5 class="semi text-muted mb-3">
+                    Thank you being awesome, <br />
+                    We hope you enjoyed your purchase!
+                </h5>
+                <a  href="~/Home/index" class="btn bg-sky text-white"> <img src="@CommonMethods.ServerPath/img/arrow-left.png" class="img-fluid pr-2" style="max-height: 14px;" /> HOME </a>
+                <br /><br /><br /><br /><br />
+            </div>
+        </div>
     </div>
+
 </body>
 </html>
