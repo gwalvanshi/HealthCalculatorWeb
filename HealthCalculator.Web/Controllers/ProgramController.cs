@@ -435,5 +435,36 @@ namespace HealthCalculator.Web.Controllers
             }
         }
 
+        public async Task<JsonResult> GetTrackerData(int id)
+        {
+            try
+            {
+                int loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId; ;
+
+
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "119";
+                collection.UserId = loggedIdUserID;
+                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "UserId",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue = loggedIdUserID.ToString()
+                    }
+                };
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<UserTracker>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
     }
 }

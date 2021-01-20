@@ -46,7 +46,21 @@ namespace HealthCalculator.Web.EntityModel
 
     }
 
-    public class Order
+    public class ReturnTracker
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public Trackerdata Data { get; set; }
+
+        
+    }
+
+        public class Order
     {
         public Int64 OrderId { get; set; }
         public Int64 UserId { get; set; }
