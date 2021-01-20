@@ -463,7 +463,7 @@ namespace HealthCalculator.Web.Controllers
         {
             try
             {
-                int loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId; ;
+                int loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
 
 
                 GenericService _genericService = new GenericService();
