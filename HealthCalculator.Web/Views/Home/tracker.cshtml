@@ -176,6 +176,105 @@
             }          
             
         });
+
+        function  getdate(strdate)    
+        {
+            var strRetrunDate;
+            if (strdate != null)
+            {
+                var dateData = new Date(parseInt(strdate.replace("/Date(", "").replace(")/")));
+                var dd = dateData.getDate();
+                var mm = dateData.getMonth() + 1; //January is 0! 
+                var yyyy = dateData.getFullYear();
+                if (dd < 10) { dd = '0' + dd }
+                if (mm < 10) { mm = '0' + mm }
+                strRetrunDate = yyyy + '-' + mm + '-' + dd;
+            }
+            return strDate;
+        }
+        var id = 1;
+        CommonAjaxMethod('Program/GetTrackerData', { Id: id }, false, 'GET',
+            function (response) {               
+                
+                if (response.dataCollection.length > 0)
+                {
+
+                    var varlenth = response.dataCollection.length / 3;
+                   // var b = 0;
+                    var strDate = ""; //var dateValue;
+                    var strDate1 = ""; //var dateValue1;
+                    var strDate2 = ""; //var dateValue2;
+                    for (var i = 0; i < varlenth; i++)
+                    {
+                        //dateValue = response.dataCollection[i].TrackerDate;
+                        //if (dateValue != null) {
+                        //    var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
+                        //    var dd = dateData.getDate();
+                        //    var mm = dateData.getMonth() + 1; //January is 0! 
+                        //    var yyyy = dateData.getFullYear();
+                        //    if (dd < 10) { dd = '0' + dd }
+                        //    if (mm < 10) { mm = '0' + mm }
+                        //    strDate = yyyy + '-' + mm + '-' + dd;                         
+                        //}
+                        if (response.dataCollection[i].TrackerDate != null)
+                        {
+
+                            strDate = getdate(response.dataCollection[i].TrackerDate);
+                        }
+                        if (response.dataCollection[i + 1].TrackerDate != null)
+                        {
+                            strDate1 = getdate(response.dataCollection[i+1].TrackerDate);
+                        }
+                        if (response.dataCollection[i + 2].TrackerDate != null)
+                        {
+                            strDate2 = getdate(response.dataCollection[i+2].TrackerDate);
+                        }
+
+
+                        
+                        $("#txtWeight1" + (i + 1)).val(response.dataCollection[i].Weight);
+                        $("#txtWeight2" + (i + 1)).val(response.dataCollection[i+1].Weight);
+                        $("#txtWeight3" + (i + 1)).val(response.dataCollection[i + 2].Weight);
+
+
+                        $("#txtDifference1" + (i + 1)).val(response.dataCollection[i].WeightDifference);
+                        $("#txtDifference2" + (i + 1)).val(response.dataCollection[i+1].WeightDifference);
+                        $("#txtDifference3" + (i + 1)).val(response.dataCollection[i+2].WeightDifference);
+                        $("#txtDate1" + (i + 1)).val(strDate);  
+                        $("#txtDate2" + (i + 1)).val(strDate1);  
+                        $("#txtDate3" + (i + 1)).val(strDate2);  
+
+                        //if (b == 0)
+                        //{
+
+                        //    $("#txtWeight1" + (i + 1)).val(response.dataCollection[i].Weight);
+                        //    $("#txtDifference1" + (i + 1)).val(response.dataCollection[i].WeightDifference);
+                        //    $("#txtDate1" + (i + 1)).val(strDate);                            
+                        //    b = 1;
+                        //    alert("a");
+                        //}
+                        //else if (b == 1)
+                        //{
+                        //    $("#txtWeight2" + (i + 1)).val(response.dataCollection[i].Weight);
+                        //    $("#txtDifference2" + (i + 1)).val(response.dataCollection[i].WeightDifference);
+                        //    $("#txtDate2" + (i + 1)).val(strDate);  
+                        //    b = 2;
+                        //    alert("a2");
+                        //}
+                        //else if (b == 2)
+                        //{
+                        //    $("#txtWeight3" + (i + 1)).val(response.dataCollection[i].Weight);
+                        //    $("#txtDifference3" + (i + 1)).val(response.dataCollection[i].WeightDifference);
+                        //    $("#txtDate3" + (i + 1)).val(strDate);  
+                        //    b = 0;
+                        //    alert("a3");
+                        //}
+
+                    }
+                }
+            }
+        );
+
       
     })
 
