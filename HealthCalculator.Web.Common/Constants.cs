@@ -8,7 +8,7 @@ namespace HealthCalculator.Web.Common
 {
    public class Constants
     {
-      //  public const string BASE_URL = ConfigurationManager.AppSettings["BaseURL"].ToString();
+        //public const string Default_UserId =; ConfigurationManager.AppSettings["DefaultUser"]
         public const string API_DROPDOWN = "api/GetDropdownData";
         public const string API_SAVEMASTERTABLE = "api/SaveMasterTable";
         public const string API_GETSYSTEMMASTERTABLEDATA = "api/GetSystemMasterTableData";
@@ -16,7 +16,7 @@ namespace HealthCalculator.Web.Common
         public const string API_GETGRIDDATA = "api/GetGridData";
         public const string GENERIC_CRUD_API_URL = "api/PerformDataOperation";
         public const string GENERIC_API_GETRECORDS = "api/GetRecords";
-        public const int Default_UserId = 1;
+      
         public const string GENERIC_CRUD_DATASETRETURN_API_URL = "api/PerformDataOperationDataSet";
         
         #region ScreenID Constant

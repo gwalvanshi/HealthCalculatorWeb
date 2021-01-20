@@ -4,6 +4,7 @@ using HealthCalculator.Web.Service;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -27,7 +28,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel collection = new GenericOperationModel();
                 collection.ScreenID = Constants.Enquiry_ScreenID;
-                collection.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
+                collection.UserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
                 collection.Operation = "ADD";
                 collection.XML = objCommonMethods.GetXMLFromObject(collection1);
                  GenericService _genericService = new GenericService();

@@ -76,13 +76,22 @@
                         sessionStorage.setItem('authToken', response.data.authToken);
                         sessionStorage.setItem('userId', response.data.userId);
                         sessionStorage.setItem('EmployeeName', response.data.EmployeeName);
-                        if (sessionStorage.getItem("CartProgramID") != null)
+                        sessionStorage.setItem('RoleID', response.data.RoleID);
+
+                        if (response.data.RoleID == "3" || response.data.RoleID == "2")
                         {
-                             window.location.href = "@Url.Action("Payments", "Home")";
+                            window.location.href = "@Url.Action("AdminView", "Home")";
                         }
                         else
-                        {
-                            window.location.href = "@Url.Action("assessment", "Home")";
+                            {
+                                if (sessionStorage.getItem("CartProgramID") != null)
+                                {
+                                     window.location.href = "@Url.Action("Payments", "Home")";
+                                }
+                                else
+                                {
+                                    window.location.href = "@Url.Action("assessment", "Home")";
+                                }
                         }
                     }
                     else

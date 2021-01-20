@@ -296,6 +296,8 @@ namespace HealthCalculator.Web.Controllers
                     Session["UserId"] = status.data.userId;
 
                     Session["UserName"] = status.data.EmployeeName;
+                    Session["RoleID"] = status.data.RoleID;
+                    
 
                 }
 

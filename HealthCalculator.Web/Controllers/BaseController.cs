@@ -18,13 +18,39 @@ namespace HealthCalculator.Web.Controllers
             if (HttpContext.Current.Session["UserID"] == null)
             {
                 int userID = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
+                int RoleID = Convert.ToInt32(HttpContext.Current.Session["RoleID"]);
+                if (userID == 0)
+                {
+                    filterContext.Result = new RedirectResult("~/Home/login");
+                    return;
+                }              
+
+            }           
+            base.OnActionExecuting(filterContext);
+        }
+    }
+    public class SessionExpireFilterAttributeAdmin : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            HttpContext ctx = HttpContext.Current;
+
+            if (HttpContext.Current.Session["UserID"] == null)
+            {
+                int userID = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
+                int RoleID = Convert.ToInt32(HttpContext.Current.Session["RoleID"]);
                 if (userID == 0)
                 {
                     filterContext.Result = new RedirectResult("~/Home/login");
                     return;
                 }
+                else if(RoleID!=3|| RoleID != 2)
+                {
+                    filterContext.Result = new RedirectResult("~/Home/login");
+                    return;
+                }
 
-            }           
+            }
             base.OnActionExecuting(filterContext);
         }
     }

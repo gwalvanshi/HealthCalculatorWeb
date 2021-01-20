@@ -5,6 +5,7 @@ using HealthCalculator.Web.Service;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -36,7 +37,7 @@ namespace HealthCalculator.Web.Controllers
             List<MessageMasterDataList> MessageMasterDataListChild = new List<EntityModel.MessageMasterDataList>();
             int loggedIdUserID = 0;
             if (userId == null)
-                loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
+                loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString()); 
             else
                 loggedIdUserID = Convert.ToInt32(userId);
             GenericService _genericService = new GenericService();
@@ -197,6 +198,7 @@ namespace HealthCalculator.Web.Controllers
             return RedirectToAction("login", "Home");          
         }
 
+        [SessionExpireFilterAttributeAdmin]
         #endregion
         public ActionResult AdminView()
         {
@@ -273,7 +275,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID =  Constants.Default_UserId; ;
+                SendObjData.UserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -302,7 +304,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID = Constants.Default_UserId; ;
+                SendObjData.UserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -332,7 +334,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID = Constants.Default_UserId; ;
+                SendObjData.UserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -361,7 +363,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID = Constants.Default_UserId; ;
+                SendObjData.UserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -391,7 +393,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID =  Constants.Default_UserId; ;
+                SendObjData.UserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -421,7 +423,7 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = "109";
-                SendObjData.UserID = Constants.Default_UserId;
+                SendObjData.UserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
                 SendObjData.Operation = "ADD";
 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
@@ -447,8 +449,8 @@ namespace HealthCalculator.Web.Controllers
                 CommonMethods objCommonMethods = new CommonMethods();
                 GenericOperationModel SendObjData = new GenericOperationModel();
                 SendObjData.ScreenID = Constants.Enquiry_ScreenID;
-                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Constants.Default_UserId;
-                collection.Instance_enquiry.UserId = Session["UserID"] != null ? Convert.ToString(Session["UserID"]) : Convert.ToString(Constants.Default_UserId);
+                SendObjData.UserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                collection.Instance_enquiry.UserId =ConfigurationManager.AppSettings["DefaultUser"].ToString();
                 SendObjData.Operation = "ADD";
                 
                 string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
@@ -476,7 +478,7 @@ namespace HealthCalculator.Web.Controllers
         {
             try
             {
-                int loggedIdUserID = 1;
+                int loggedIdUserID = Convert.ToInt32(Session["UserID"]);
                 GenericService _genericService = new GenericService();
                 IndexScreenParameterModel collection = new IndexScreenParameterModel();
                 collection.ScreenID = "114";
