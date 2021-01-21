@@ -195,7 +195,7 @@ namespace HealthCalculator.Web.EntityModel
         public int UserId { get; set; }
         public string Gender { get; set; }
 
-
+        public string UserName { get; set; }
         public DateTime BirthDate { get; set; }
         public int Age { get; set; }
         public string Country { get; set; }

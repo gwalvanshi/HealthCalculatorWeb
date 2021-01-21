@@ -81,7 +81,7 @@
     }
     $(document).ready(function () {       
         $("#HeaderValue").text("ACCOUNT SETTINGS | " + sessionStorage.getItem('EmployeeName'));
-        var selectedUserId = sessionStorge.getItem('SelectedUserId');
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
         }

@@ -36,7 +36,7 @@ namespace HealthCalculator.Web.Controllers
             MessageMasterDataList objMessageMasterDataChild= new MessageMasterDataList();
             List<MessageMasterDataList> MessageMasterDataListChild = new List<EntityModel.MessageMasterDataList>();
             int loggedIdUserID = 0;
-            if (userId == null)
+            if (string.IsNullOrEmpty(userId))
                 loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString()); 
             else
                 loggedIdUserID = Convert.ToInt32(userId);

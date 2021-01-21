@@ -67,8 +67,9 @@
                             $('<a />').addClass('dx-link')
                                 .text('View')
                                 .on('dxclick', function () {
-                                    editedRow = options.data.UserID;
-                                    sessionStorage.setItem('SelectedUserId', options.data.UserID);
+                                    debugger;                                 
+                                  
+                                    sessionStorage.setItem('SelectedUserId', options.data.userId);
                                     window.location.href = "assessment";
                                 }).appendTo(container);
                         }
