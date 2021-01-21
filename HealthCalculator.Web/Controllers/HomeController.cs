@@ -198,7 +198,7 @@ namespace HealthCalculator.Web.Controllers
             return RedirectToAction("login", "Home");          
         }
 
-        [SessionExpireFilterAttributeAdmin]
+       //// [SessionExpireFilterAttributeAdmin]
         #endregion
         public ActionResult AdminView()
         {
@@ -478,7 +478,7 @@ namespace HealthCalculator.Web.Controllers
         {
             try
             {
-                int loggedIdUserID = Convert.ToInt32(Session["UserID"]);
+                int loggedIdUserID = 1;
                 GenericService _genericService = new GenericService();
                 IndexScreenParameterModel collection = new IndexScreenParameterModel();
                 collection.ScreenID = "114";

@@ -7,7 +7,7 @@
 <div class="container-fluid bg-sky">
     <div class="row">
         <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
-            <h2 class="semi text-white text-shadow">ACCOUNT SETTINGS</h1>
+            <h2 class="semi text-white text-shadow" id="HeaderValue"></h2>
         </div>
     </div>
 </div>
@@ -17,13 +17,13 @@
         <div class="row justify-content-center">
             <div class="col">
                 <ul class="list-inline menu-sec">
-                    <li class="list-inline-item"><a href="assessment.html">My Assessment Tool</a></li>
-                    <li class="list-inline-item"><a href="tracker.html">My Trackers</a></li>
+                    <li class="list-inline-item"><a href="~/Home/assessment">My Assessment Tool</a></li>
+                    <li class="list-inline-item"><a href="~/Home/tracker">My Trackers</a></li>
                     <li class="list-inline-item"><a href="">My Eating Smart Tool</a></li>
-                    <li class="list-inline-item"><a href="eatingPattern.html">My Eating Pattern</a></li>
-                    <li class="list-inline-item"><a href="helpDesk.html">Admin Messages</a></li>
-                    <li class="list-inline-item"><a href="payments.html">Payments</a></li>
-                    <li class="list-inline-item active"><a href="">Logout</a></li>
+                    <li class="list-inline-item"><a href="~/Home/eatingPattern">My Eating Pattern</a></li>
+                    <li class="list-inline-item"><a href="~/Home/helpDesk">Admin Messages</a></li>
+                    <li class="list-inline-item"><a href="#">Payments</a></li>
+                    <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -74,14 +74,23 @@
 <script src="~/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     
+    function Logout(ctrl) {
+        sessionStorage.clear();
+        ctrl.href = '@Url.Content("~/Home/Logout")';
+        ctrl.click();
+    }
     $(document).ready(function () {       
-
+        $("#HeaderValue").text("ACCOUNT SETTINGS | " + sessionStorage.getItem('EmployeeName'));
+        var selectedUserId = sessionStorge.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
         var tracker =
         {
             TableType: "GetRecord",
             UserId: sessionStorage.getItem('userId')
         }
-        CommonAjaxMethod('Program/GetTracker', tracker, false, 'POST', function (response) {
+        CommonAjaxMethod('Program/GetTracker', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
         
             if (response.dataCollection.length> 0)
             {

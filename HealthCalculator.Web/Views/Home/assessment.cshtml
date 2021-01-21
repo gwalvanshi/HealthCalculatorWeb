@@ -23,7 +23,7 @@
                     <li class="list-inline-item"><a href="~/Home/tracker">My Trackers</a></li>
                     <li class="list-inline-item"><a href="">My Eating Smart Tool</a></li>
                     <li class="list-inline-item"><a href="~/Home/eatingPattern">My Eating Pattern</a></li>
-                    <li class="list-inline-item"><a href="~/Home/helpDesk">Admin Messages <span class="float-right d-none d-md-block" id="spMessage"></span></a></li>
+                    <li class="list-inline-item"> <a onclick="MessageHelp(this)">Admin Messages <span class="float-right d-none d-md-block" id="spMessage"></span></a></li>
                     <li class="list-inline-item"><a href="#">Payments</a></li>
                     <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
                 </ul>
@@ -1156,10 +1156,27 @@
          SystemdropdownMasterData = [];
         LoadSystemMasterDropdown("ddlCity", 3, ctrl.value, "");
     }
+  
+   
+    function MessageHelp(ctrl)
+    {
+        var selectedUserId = sessionStorge.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
+        ctrl.click();
+    }
     $(document).ready(function () {
-      
+
+        var selectedUserId = sessionStorge.getItem('SelectedUserId');
+        if (selectedUserId!="")
+        {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+
         $("#HeaderValue").text("ACCOUNT SETTINGS | "+sessionStorage.getItem('EmployeeName'));
-       
+
         var assessment =
         {
             TableType: "GetRecord" ,
@@ -1175,19 +1192,19 @@
             //var d1 = new Date(d)
             //alert(d);
             //alert(d1);
-        
+
            // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);
             //-------------------GenralInfo-----------------------------------
             $("#txtName").val(sessionStorage.getItem('EmployeeName'));
             $("#ddlGenderp").val(response.data.Data.Table[0].Gender);
             $("#spMessage").text(" ("+response.data.Data.Table[0].MessageCount+")");
-            
+
             var strDate = "";
             var dateValue = response.data.Data.Table[0].BirthDate;
             if (dateValue != null) {
                 var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
                 var dd = dateData.getDate();
-                var mm = dateData.getMonth() + 1; //January is 0! 
+                var mm = dateData.getMonth() + 1; //January is 0!
                 var yyyy = dateData.getFullYear();
                 if (dd < 10) { dd = '0' + dd }
                 if (mm < 10) { mm = '0' + mm }
@@ -1196,12 +1213,12 @@
                 //else if (format == 'mm/dd/yyyy')
                 //    strDate = mm + ' / ' + dd + ' / ' + yyyy;
                 //else
-               
+
                 strDate = yyyy + '-' + mm + '-' + dd;
                 $("#txtDOB").val(strDate);
             }
             //debugger;
-           
+
            // alert(response.data.Data.Table[0].BirthDate);
            // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', response.data.Data.Table[0].BirthDate);
             $("#txtAgep").val(response.data.Data.Table[0].Age) ;
@@ -1522,7 +1539,7 @@
 
             window.location.href = uri + fullname;
         });
-       
+
     });
 
 

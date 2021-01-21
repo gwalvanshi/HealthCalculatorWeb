@@ -23,14 +23,59 @@
     {
 
         CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response) {
-            $("#gridContainer").dxDataGrid(
-                {
-                    dataSource: response.dataCollection,
-                    columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
-                showBorders: true
-            });
+            Load(response.dataCollection);
+            //$("#gridContainer").dxDataGrid(
+            //    {
+            //        dataSource: response.dataCollection,
+            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
+            //    showBorders: true
+            //});
         });
     }
- 
+
+    function Load(ctr)
+    {
+        
+             $("#gridContainer").dxDataGrid({
+                 dataSource: ctr,
+                allowColumnReordering: true,
+                showBorders: true,
+              
+                searchPanel: {
+                    visible: true
+                },
+                paging: {
+                    pageSize: 10
+                },
+                groupPanel: {
+                    visible: true
+                },
+                editing: {
+                    mode: "form",
+                    allowUpdating: false
+                },
+                columns: [
+                    "FirstName",
+                    "LastName",
+                    "Email",
+                     "UserName",
+                    "MobileNo",                  
+                    {
+                        caption: "View User Details",
+                        alignment: 'center',
+                        cellTemplate: function (container, options) {
+                            $('<a />').addClass('dx-link')
+                                .text('View')
+                                .on('dxclick', function () {
+                                    editedRow = options.data.UserID;
+                                    sessionStorage.setItem('SelectedUserId', options.data.UserID);
+                                    window.location.href = "assessment";
+                                }).appendTo(container);
+                        }
+                    }
+                       
+                ]
+             });        
+    } 
 </script>
 

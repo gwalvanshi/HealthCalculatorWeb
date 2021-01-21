@@ -77,7 +77,7 @@
                         sessionStorage.setItem('userId', response.data.userId);
                         sessionStorage.setItem('EmployeeName', response.data.EmployeeName);
                         sessionStorage.setItem('RoleID', response.data.RoleID);
-
+                        sessionStorge.setItem('SelectedUserId', "");
                         if (response.data.RoleID == "3" || response.data.RoleID == "2")
                         {
                             window.location.href = "@Url.Action("AdminView", "Home")";

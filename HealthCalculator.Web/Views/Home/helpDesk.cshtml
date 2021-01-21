@@ -147,6 +147,10 @@
     {
         $("#HeaderValue").text("ACCOUNT SETTINGS | " + sessionStorage.getItem('EmployeeName'));
 
+        var selectedUserId = sessionStorge.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
         var MessageMaster =
         {
             MessageId: $("#hdnMessageID").val() == '' ? '0' : $("#hdnMessageID").val().trim(),

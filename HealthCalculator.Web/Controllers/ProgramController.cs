@@ -419,7 +419,7 @@ namespace HealthCalculator.Web.Controllers
                     {
                         SearchParameter = "userId",
                         SearchParameterDataType = "int",
-                        SearchParameterValue = loggedIdUserID.ToString()
+                        SearchParameterValue = userId.ToString()
                     }
                 };
                 var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
