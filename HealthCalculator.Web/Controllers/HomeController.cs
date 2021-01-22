@@ -198,7 +198,22 @@ namespace HealthCalculator.Web.Controllers
             return RedirectToAction("login", "Home");          
         }
 
-       //// [SessionExpireFilterAttributeAdmin]
+        [SessionExpireFilterAttribute]
+        
+        public ActionResult ViewPlan()
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+       // [SessionExpireFilterAttributeAdmin]
+
+        public ActionResult EditPlan(int orderId)
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
+        [SessionExpireFilterAttributeAdmin]
         #endregion
         public ActionResult AdminView()
         {
@@ -478,7 +493,7 @@ namespace HealthCalculator.Web.Controllers
         {
             try
             {
-                int loggedIdUserID = 1;
+                int loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
                 GenericService _genericService = new GenericService();
                 IndexScreenParameterModel collection = new IndexScreenParameterModel();
                 collection.ScreenID = "114";
@@ -494,11 +509,100 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
+        [HttpGet]
+        public async Task<JsonResult> GetUserPlanDetails(int userId)
+        {
+            try
+            {
+                int loggedIdUserID = userId;
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "116";
+                collection.UserId = loggedIdUserID;
+                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "UserId",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue = loggedIdUserID.ToString()
+                    }
+                };
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<UserOrderViewModel>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+        public async Task<JsonResult> GetUserPlanOrderDetails(int OrderdetailID, int userId)
+        {
+            try
+            {
+                int loggedIdUserID = userId;
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "116";
+                collection.UserId = loggedIdUserID;
+                var objList = new List<IndexScreenSearchParameterModel>();
+                var obj1 = new IndexScreenSearchParameterModel
+                {
+                    SearchParameter = "UserId",
+                    SearchParameterDataType = "int",
+                    SearchParameterValue = loggedIdUserID.ToString()
+                };
+                objList.Add(obj1);
+                var obj2 = new IndexScreenSearchParameterModel
+                {
+                    SearchParameter = "OrderDetail_Id",
+                    SearchParameterDataType = "int",
+                    SearchParameterValue = OrderdetailID.ToString()
+                };
+                objList.Add(obj2);
+                collection.IndexScreenSearchParameterModel = objList;
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<UserOrderViewModel>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
 
 
+        [HttpPost]
+        public async Task<JsonResult> SaveOrderDetails(UserOrderViewModel collection)
+        {
+            try
+            {
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "120";
+                SendObjData.UserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());               
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
+                SendObjData.XML = stringTOXml;
+
+                GenericService _genericService = new GenericService();
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<UserOrderViewModel>(stringContent);
+              
+                return new JsonResult { Data = status };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
 
     }
-    
-  
+
+
 
 }

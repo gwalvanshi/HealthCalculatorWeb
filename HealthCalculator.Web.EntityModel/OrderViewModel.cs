@@ -17,4 +17,26 @@ namespace HealthCalculator.Web.EntityModel
           
         
     }
+    public class UserOrderViewModel
+    {
+        public string UserId { get; set; }
+        public string OrderDetail_Id { get; set; }
+        public string Order_Id { get; set; }
+        public string ProductId { get; set; }
+        public string INRRate { get; set; }
+        public string DollerRate { get; set; }
+        public string Discount { get; set; }
+        public DateTime? StartActiveDate { get; set; }
+        public DateTime? EndActiveDate { get; set; }
+        public int ? Totaldays { get; set; }
+        public bool IsActive { get; set; }
+
+        public string ActivePlan { get; set; }
+        public string ProductName { get; set; }
+        public string Program { get; set; }
+        public string IsPaymentDone { get; set; }
+        public string PaymentType { get; set; }
+
+
+    }
 }

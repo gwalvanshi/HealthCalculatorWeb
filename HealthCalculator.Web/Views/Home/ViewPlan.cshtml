@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "AdminView";
+    ViewBag.Title = "Plan";
 }
 
 <div class="container-fluid flowerBg">
@@ -21,8 +21,11 @@
 
     window.onload = function ()
     {
-
-        CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response) {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        CommonAjaxMethod('Home/GetUserPlanDetails', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
             Load(response.dataCollection);
             //$("#gridContainer").dxDataGrid(
             //    {
@@ -35,12 +38,12 @@
 
     function Load(ctr)
     {
-        
+
              $("#gridContainer").dxDataGrid({
                  dataSource: ctr,
                 allowColumnReordering: true,
                 showBorders: true,
-              
+
                 searchPanel: {
                     visible: true
                 },
@@ -54,29 +57,47 @@
                     mode: "form",
                     allowUpdating: false
                 },
+                columnMinWidth: 100,
                 columns: [
-                    "FirstName",
-                    "LastName",
-                    "Email",
-                     "UserName",
-                    "MobileNo",                  
+                    "Program",
+                    "ProductName",
+                    "StartActiveDate",
+                     "EndActiveDate",
+                    "Totaldays",
+
+                     "INRRate",
+                    "DollerRate",
+                     "ActivePlan",
+                "IsPaymentDone",
+                "PaymentType",
+
                     {
-                        caption: "View User Details",
+                        caption: "Edit",
                         alignment: 'center',
                         cellTemplate: function (container, options) {
                             $('<a />').addClass('dx-link')
-                                .text('View Detail')
-                                .on('dxclick', function () {
-                                    debugger;                                 
-                                  
-                                    sessionStorage.setItem('SelectedUserId', options.data.userId);
-                                    window.location.href = "assessment";
+                                .text('Edit Plan')
+                                .on('dxclick', function ()
+                                {
+                                   
+                                   var roleId= sessionStorage.getItem('RoleID');
+                                    sessionStorage.setItem('SelectedUserId', "");
+                                    if (roleId == "3" || roleId == "2")
+                                    {
+                                        window.location.href = "EditPlan?orderId=" + options.data.OrderDetail_Id;
+                                    }
+                                    else
+                                    {
+                                       alert("You dont have sufficient perpmission on it.")
+                                    }
+
+                                   
                                 }).appendTo(container);
                         }
                     }
-                       
+
                 ]
-             });        
-    } 
+             });
+    }
 </script>
 
