@@ -89,9 +89,9 @@
         var tracker =
         {
             TableType: "GetRecord",
-            UserId: sessionStorage.setItem('userId'
+            UserId: sessionStorage.getItem('userId')
         }
-        CommonAjaxMethod('Program/GetUserTrackerDetails', { userId:sessionStorage.setItem('userId')}, false, 'GET', function (response) {
+        CommonAjaxMethod('Program/GetUserTrackerDetails', { userId:sessionStorage.getItem('userId')}, false, 'GET', function (response) {
         
             if (response.data.Data.length> 0)
             {
@@ -211,7 +211,7 @@
     }
     function GetTrackerData()
     {
-        CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: sessionStorage.setItem('userId') }, false, 'GET',
+        CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: sessionStorage.getItem('userId') }, false, 'GET',
           function (response) {
 
               if (response.data.Data.length > 0) {
@@ -233,7 +233,7 @@
                       //    strDate = yyyy + '-' + mm + '-' + dd;                         
                       //}
                       if (response.data.Data[i].TrackerDate != null) {
-
+                          
                           strDate = getdate(response.data.Data[i].TrackerDate);
                       }
                       if (response.data.Data[i + 1].TrackerDate != null) {
