@@ -459,6 +459,35 @@ namespace HealthCalculator.Web.Controllers
             }
         }
 
+        
+        public async Task<JsonResult> GetUserTrackerDetails(int userId)
+        {
+            try
+            { 
+              Trackerdata collection = new Trackerdata();
+                collection.UserId = userId;
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "121";
+                SendObjData.UserID = userId;// Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                SendObjData.Operation = "Add";
+                string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
+                SendObjData.XML = stringTOXml;
+
+                GenericService _genericService = new GenericService();
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<ReturnUserTrackerDetails>(stringContent);
+               // return new JsonResult { Data = status };
+                return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
+        
+
         public async Task<JsonResult> GetTrackerData(int id)
         {
             try
@@ -474,9 +503,9 @@ namespace HealthCalculator.Web.Controllers
                 {
                     new IndexScreenSearchParameterModel
                     {
-                        SearchParameter = "UserId",
+                        SearchParameter = "OrderId",
                         SearchParameterDataType = "int",
-                        SearchParameterValue = loggedIdUserID.ToString()
+                        SearchParameterValue = id.ToString()
                     }
                 };
                 var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");

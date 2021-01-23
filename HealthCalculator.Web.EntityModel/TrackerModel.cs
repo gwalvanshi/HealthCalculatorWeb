@@ -45,6 +45,41 @@ namespace HealthCalculator.Web.EntityModel
 
 
     }
+    public class ReturnUserTrackerDetails
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public List<UserTrackerDetails> Data { get; set; }
+
+
+    }
+    public class UserTrackerDetails
+    {
+        public Int64 UserId { get; set; }
+        public int ProductId { get; set; }
+        public Int64 OrderId { get; set; }
+        public decimal Weight { get; set; }
+        public decimal WeightDifference { get; set; }
+        public DateTime? TrackerDate { get; set; }
+      
+        public string OrderAmountINR { get; set; }
+        public string OrderAmountDoller { get; set; }
+        public string CoupenId { get; set; }
+        
+        public DateTime? StartActiveDate { get; set; }
+        public DateTime? EndActiveDate { get; set; }
+        public Int64 Totaldays { get; set; }
+        public bool IsActive { get; set; }
+        public Int64 GivenDays { get; set; }
+        public string ProductName { get; set; }
+        public string Program { get; set; }
+
+    }
 
     public class ReturnTracker
     {

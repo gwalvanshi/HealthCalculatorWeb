@@ -79,6 +79,7 @@
         ctrl.href = '@Url.Content("~/Home/Logout")';
         ctrl.click();
     }
+    
     $(document).ready(function () {       
         $("#HeaderValue").text("ACCOUNT SETTINGS | " + sessionStorage.getItem('EmployeeName'));
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
@@ -88,12 +89,14 @@
         var tracker =
         {
             TableType: "GetRecord",
-            UserId: sessionStorage.getItem('userId')
+            UserId: sessionStorage.setItem('userId'
         }
-        CommonAjaxMethod('Program/GetTracker', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
+        CommonAjaxMethod('Program/GetUserTrackerDetails', { userId:sessionStorage.setItem('userId')}, false, 'GET', function (response) {
         
-            if (response.dataCollection.length> 0)
+            if (response.data.Data.length> 0)
             {
+               
+              
                // var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
                 var dateData = new Date();
                 var dd = dateData.getDate();
@@ -104,20 +107,20 @@
                 strDate = yyyy + '-' + mm + '-' + dd;
                 
 
-               // var varsession = response.dataCollection[0].GivenDays / 3;
+               // var varsession = response.data.Data[0].GivenDays / 3;
                 //alert(varsession);
                 var vara = 0;
                 var varb = 1;
 
-                $("#hdnProductId").val(response.dataCollection[0].ProductId);
-                $("#hdnOrderId").val(response.dataCollection[0].OrderId);
-                $("#hdnlenght").val(response.dataCollection[0].GivenDays);
-                
-                $("#lbllable").text(response.dataCollection[0].Program + " :: " + response.dataCollection[0].ProductName);
+                $("#hdnProductId").val(response.data.Data[0].ProductId);
+                $("#hdnOrderId").val(response.data.Data[0].OrderId);
+                $("#hdnlenght").val(response.data.Data[0].GivenDays);
+                orderID = response.data.Data[0].OrderId;
+                $("#lbllable").text(response.data.Data[0].Program + " :: " + response.data.Data[0].ProductName);
                 $('#DivDynamicSession').html("");
                 var divHTML = "";
-                varlenght = response.dataCollection[0].GivenDays;
-                for (var i = 0; i <response.dataCollection[0].GivenDays; i++)
+                varlenght = response.data.Data[0].GivenDays;
+                for (var i = 0; i <response.data.Data[0].GivenDays; i++)
                 {
                         divHTML += '<div class="row form-data pt-2">' +
                         '<div class="col-12 col-md-12 col-lg">' +
@@ -181,113 +184,110 @@
                 
                 }
                 $('#DivDynamicSession').html(divHTML);          
-                                         
+                GetTrackerData();
             }          
             
         });
 
-        function  getdate(strdate)    
-        {
-            var strRetrunDate;
-            if (strdate != null)
-            {
-                var dateData = new Date(parseInt(strdate.replace("/Date(", "").replace(")/")));
-                var dd = dateData.getDate();
-                var mm = dateData.getMonth() + 1; //January is 0! 
-                var yyyy = dateData.getFullYear();
-                if (dd < 10) { dd = '0' + dd }
-                if (mm < 10) { mm = '0' + mm }
-                strRetrunDate = yyyy + '-' + mm + '-' + dd;
-            }
-            return strDate;
-        }
-        var id = 1;
-        CommonAjaxMethod('Program/GetTrackerData', { Id: id }, false, 'GET',
-            function (response) {               
-                
-                if (response.dataCollection.length > 0)
-                {
-
-                    var varlenth = response.dataCollection.length / 3;
-                   // var b = 0;
-                    var strDate = ""; //var dateValue;
-                    var strDate1 = ""; //var dateValue1;
-                    var strDate2 = ""; //var dateValue2;
-                    for (var i = 0; i < varlenth; i++)
-                    {
-                        //dateValue = response.dataCollection[i].TrackerDate;
-                        //if (dateValue != null) {
-                        //    var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
-                        //    var dd = dateData.getDate();
-                        //    var mm = dateData.getMonth() + 1; //January is 0! 
-                        //    var yyyy = dateData.getFullYear();
-                        //    if (dd < 10) { dd = '0' + dd }
-                        //    if (mm < 10) { mm = '0' + mm }
-                        //    strDate = yyyy + '-' + mm + '-' + dd;                         
-                        //}
-                        if (response.dataCollection[i].TrackerDate != null)
-                        {
-
-                            strDate = getdate(response.dataCollection[i].TrackerDate);
-                        }
-                        if (response.dataCollection[i + 1].TrackerDate != null)
-                        {
-                            strDate1 = getdate(response.dataCollection[i+1].TrackerDate);
-                        }
-                        if (response.dataCollection[i + 2].TrackerDate != null)
-                        {
-                            strDate2 = getdate(response.dataCollection[i+2].TrackerDate);
-                        }
-
-
-                        
-                        $("#txtWeight1" + (i + 1)).val(response.dataCollection[i].Weight);
-                        $("#txtWeight2" + (i + 1)).val(response.dataCollection[i+1].Weight);
-                        $("#txtWeight3" + (i + 1)).val(response.dataCollection[i + 2].Weight);
-
-
-                        $("#txtDifference1" + (i + 1)).val(response.dataCollection[i].WeightDifference);
-                        $("#txtDifference2" + (i + 1)).val(response.dataCollection[i+1].WeightDifference);
-                        $("#txtDifference3" + (i + 1)).val(response.dataCollection[i+2].WeightDifference);
-                        $("#txtDate1" + (i + 1)).val(strDate);  
-                        $("#txtDate2" + (i + 1)).val(strDate1);  
-                        $("#txtDate3" + (i + 1)).val(strDate2);  
-
-                        //if (b == 0)
-                        //{
-
-                        //    $("#txtWeight1" + (i + 1)).val(response.dataCollection[i].Weight);
-                        //    $("#txtDifference1" + (i + 1)).val(response.dataCollection[i].WeightDifference);
-                        //    $("#txtDate1" + (i + 1)).val(strDate);                            
-                        //    b = 1;
-                        //    alert("a");
-                        //}
-                        //else if (b == 1)
-                        //{
-                        //    $("#txtWeight2" + (i + 1)).val(response.dataCollection[i].Weight);
-                        //    $("#txtDifference2" + (i + 1)).val(response.dataCollection[i].WeightDifference);
-                        //    $("#txtDate2" + (i + 1)).val(strDate);  
-                        //    b = 2;
-                        //    alert("a2");
-                        //}
-                        //else if (b == 2)
-                        //{
-                        //    $("#txtWeight3" + (i + 1)).val(response.dataCollection[i].Weight);
-                        //    $("#txtDifference3" + (i + 1)).val(response.dataCollection[i].WeightDifference);
-                        //    $("#txtDate3" + (i + 1)).val(strDate);  
-                        //    b = 0;
-                        //    alert("a3");
-                        //}
-
-                    }
-                }
-            }
-        );
+      
+      
 
       
     })
 
 
+    function getdate(strdate) {
+        var strRetrunDate;
+        if (strdate != null) {
+            var dateData = new Date(parseInt(strdate.replace("/Date(", "").replace(")/")));
+            var dd = dateData.getDate();
+            var mm = dateData.getMonth() + 1; //January is 0! 
+            var yyyy = dateData.getFullYear();
+            if (dd < 10) { dd = '0' + dd }
+            if (mm < 10) { mm = '0' + mm }
+            strRetrunDate = yyyy + '-' + mm + '-' + dd;
+        }
+        return strDate;
+    }
+    function GetTrackerData()
+    {
+        CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: sessionStorage.setItem('userId') }, false, 'GET',
+          function (response) {
+
+              if (response.data.Data.length > 0) {
+                  
+                  var varlenth = response.data.Data.length / 3;
+                  // var b = 0;
+                  var strDate = ""; //var dateValue;
+                  var strDate1 = ""; //var dateValue1;
+                  var strDate2 = ""; //var dateValue2;
+                  for (var i = 0; i < varlenth; i++) {
+                      //dateValue = response.data.Data[i].TrackerDate;
+                      //if (dateValue != null) {
+                      //    var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
+                      //    var dd = dateData.getDate();
+                      //    var mm = dateData.getMonth() + 1; //January is 0! 
+                      //    var yyyy = dateData.getFullYear();
+                      //    if (dd < 10) { dd = '0' + dd }
+                      //    if (mm < 10) { mm = '0' + mm }
+                      //    strDate = yyyy + '-' + mm + '-' + dd;                         
+                      //}
+                      if (response.data.Data[i].TrackerDate != null) {
+
+                          strDate = getdate(response.data.Data[i].TrackerDate);
+                      }
+                      if (response.data.Data[i + 1].TrackerDate != null) {
+                          strDate1 = getdate(response.data.Data[i + 1].TrackerDate);
+                      }
+                      if (response.data.Data[i + 2].TrackerDate != null) {
+                          strDate2 = getdate(response.data.Data[i + 2].TrackerDate);
+                      }
+
+
+
+                      $("#txtWeight1" + (i + 1)).val(response.data.Data[i].Weight);
+                      $("#txtWeight2" + (i + 1)).val(response.data.Data[i + 1].Weight);
+                      $("#txtWeight3" + (i + 1)).val(response.data.Data[i + 2].Weight);
+
+
+                      $("#txtDifference1" + (i + 1)).val(response.data.Data[i].WeightDifference);
+                      $("#txtDifference2" + (i + 1)).val(response.data.Data[i + 1].WeightDifference);
+                      $("#txtDifference3" + (i + 1)).val(response.data.Data[i + 2].WeightDifference);
+                      $("#txtDate1" + (i + 1)).val(strDate);
+                      $("#txtDate2" + (i + 1)).val(strDate1);
+                      $("#txtDate3" + (i + 1)).val(strDate2);
+
+                      //if (b == 0)
+                      //{
+
+                      //    $("#txtWeight1" + (i + 1)).val(response.data.Data[i].Weight);
+                      //    $("#txtDifference1" + (i + 1)).val(response.data.Data[i].WeightDifference);
+                      //    $("#txtDate1" + (i + 1)).val(strDate);                            
+                      //    b = 1;
+                      //    alert("a");
+                      //}
+                      //else if (b == 1)
+                      //{
+                      //    $("#txtWeight2" + (i + 1)).val(response.data.Data[i].Weight);
+                      //    $("#txtDifference2" + (i + 1)).val(response.data.Data[i].WeightDifference);
+                      //    $("#txtDate2" + (i + 1)).val(strDate);  
+                      //    b = 2;
+                      //    alert("a2");
+                      //}
+                      //else if (b == 2)
+                      //{
+                      //    $("#txtWeight3" + (i + 1)).val(response.data.Data[i].Weight);
+                      //    $("#txtDifference3" + (i + 1)).val(response.data.Data[i].WeightDifference);
+                      //    $("#txtDate3" + (i + 1)).val(strDate);  
+                      //    b = 0;
+                      //    alert("a3");
+                      //}
+
+                  }
+              }
+          }
+      );
+    }
     function SaveTracker() {
 
 
