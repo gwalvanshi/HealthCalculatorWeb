@@ -36,20 +36,43 @@
             <div class="middleContent bg-gray shadow">
                 <div class="row">
                     <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">WEIGHT TRACKER : - <label class="col-12 col-sm-5 col-form-label semi" id="lbllable"></label></p>
-                        <hr class="mt-0 mb-2 bg-dark" />
+                        <p class="semi mb-2 text-yellow">WEIGHT TRACKER : - <label class="col-12 col-sm-5 col-form-label semi" id="lbllable"></label></p>                    
+                       
                     </div>
+                 
+               
+                  
                 </div>
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <div class="form-group row">
+                            <label class="semi mb-2 text-yellow">WEIGHT <span class="float-right d-none d-md-block"> : </span></label>
+                            <div class="col-12 col-sm-7">
+                                <select class="custom-select" id="ddlWeight">
+                                    <option selected>Select</option>
+                                    <option value="KG">KG</option>
+                                    <option value="LB">LB</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                    <hr class="mt-0 mb-2 bg-dark" />
+                </div>
+
+                  
                 <div class="bg-yellow container-minus mb-4 pt-2 pb-2">
                     <div class="row pt-2">
                         <div class="col-12 col-md-12 col-lg-6">
                             <p class="semi mb-2 text-white">Date</p>
                         </div>
                         <div class="col-12 col-md-12 col-lg-3">
-                            <p class="semi mb-2 text-white">Weight [kg/lb]</p>
+                            <p class="semi mb-2 text-white">Weight</p>  
                         </div>
                         <div class="col-12 col-md-12 col-lg-3">
-                            <p class="semi mb-2 text-white">Difference [kg/lb]</p>                            
+                            <p class="semi mb-2 text-white">Difference</p>                      
                         </div>
                     </div>
                 </div>
@@ -115,6 +138,8 @@
                 $("#hdnProductId").val(response.data.Data[0].ProductId);
                 $("#hdnOrderId").val(response.data.Data[0].OrderId);
                 $("#hdnlenght").val(response.data.Data[0].GivenDays);
+                $("#ddlWeight").val(response.data.Data[0].WeightIn);
+                
                 orderID = response.data.Data[0].OrderId;
                 $("#lbllable").text(response.data.Data[0].Program + " :: " + response.data.Data[0].ProductName);
                 $('#DivDynamicSession').html("");
@@ -282,6 +307,7 @@
                     UserId: sessionStorage.getItem('userId'),
                     ProductId: $("#hdnProductId").val() == undefined ? '' : $("#hdnProductId").val().trim(),
                     OrderId: $("#hdnOrderId").val() == undefined ? 0 : $("#hdnOrderId").val().trim(),
+                    WeightIn: $("#ddlWeight").val() == undefined ? 0 : $("#ddlWeight").val().trim(),
                     Weight: $("#txtWeight1" + (i + 1)).val() == undefined ? 0 : $("#txtWeight1" + (i + 1)).val().trim(),
                     WeightDifference: $("#txtDifference1" + (i + 1)).val() == undefined ? 0 : $("#txtDifference1" + (i + 1)).val().trim(),
                     TrackerDate: $("#txtDate1" + (i + 1)).val() == undefined ? 0 : $("#txtDate1" + (i + 1)).val().trim(),
@@ -291,6 +317,7 @@
                     UserId: sessionStorage.getItem('userId'),
                     ProductId: $("#hdnProductId").val() == undefined ? '' : $("#hdnProductId").val().trim(),
                     OrderId: $("#hdnOrderId").val() == undefined ? 0 : $("#hdnOrderId").val().trim(),
+                    WeightIn: $("#ddlWeight").val() == undefined ? 0 : $("#ddlWeight").val().trim(),
                     Weight: $("#txtWeight2" + (i + 1)).val() == undefined ? 0 : $("#txtWeight2" + (i + 1)).val().trim(),
                     WeightDifference: $("#txtDifference2" + (i + 1)).val() == undefined ? 0 : $("#txtDifference2" + (i + 1)).val().trim(),
                     TrackerDate: $("#txtDate2" + (i + 1)).val() == undefined ? 0 : $("#txtDate2" + (i + 1)).val().trim(),
@@ -300,6 +327,7 @@
                     UserId: sessionStorage.getItem('userId'),
                     ProductId: $("#hdnProductId").val() == undefined ? '' : $("#hdnProductId").val().trim(),
                     OrderId: $("#hdnOrderId").val() == undefined ? 0 : $("#hdnOrderId").val().trim(),
+                    WeightIn: $("#ddlWeight").val() == undefined ? 0 : $("#ddlWeight").val().trim(),
                     Weight: $("#txtWeight3" + (i + 1)).val() == undefined ? 0 : $("#txtWeight3" + (i + 1)).val().trim(),
                     WeightDifference: $("#txtDifference3" + (i + 1)).val() == undefined ? 0 : $("#txtDifference3" + (i + 1)).val().trim(),
                     TrackerDate: $("#txtDate3" + (i + 1)).val() == undefined ? 0 : $("#txtDate3" + (i + 1)).val().trim(),

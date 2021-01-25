@@ -42,7 +42,8 @@ namespace HealthCalculator.Web.EntityModel
         public DateTime? AddedWhen { get; set; }
         public Int64 UpdatedBy { get; set; }
         public DateTime? UpdatedWhen { get; set; }
-
+        public string WeightIn { get; set; }
+        
 
     }
     public class ReturnUserTrackerDetails
@@ -78,6 +79,7 @@ namespace HealthCalculator.Web.EntityModel
         public Int64 GivenDays { get; set; }
         public string ProductName { get; set; }
         public string Program { get; set; }
+        public string WeightIn { get; set; }
 
     }
 
