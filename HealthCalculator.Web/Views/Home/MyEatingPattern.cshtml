@@ -310,8 +310,8 @@
             BedTime: tinymce.get('txtBedTime').getContent(),            
             Recipes: tinymce.get('txtRecipes').getContent() ,            
             Notes: tinymce.get('txtNotes').getContent() ,
-            IsSubmit: 0,
-            IsActive: 0,
+            IsSubmit: varsubmit,
+            IsActive: 1,
 
 
         //OnRising: "1",
@@ -344,7 +344,7 @@
         {
             TableType: "EatingPattern",
             UserId: sessionStorage.getItem('userId'),
-           // IsSubmit: varsubmit,
+            IsSubmit: varsubmit,
             UserEatingPattern: UserEatingPattern
         }
 
