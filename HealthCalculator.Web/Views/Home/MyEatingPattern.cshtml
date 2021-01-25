@@ -3,5 +3,359 @@
     ViewBag.Title = "MyEatingPattern";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/js/tinymce.min.js"></script>
+@*<div class="container-fluid pl-0 pr-0">
+    <div class="row no-gutters banner eatingSmartToolsBanner align-items-center">
+        <div class="col-12 text-center">
+            <h2 class="bold mb-0 text-white">MY EATING PATTERN </h2>
+        </div>
+    </div>
+</div>*@
+<div class="bg-yellow">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+                <ul class="list-inline menu-sec">
+                    <li class="list-inline-item"><a href="~/Home/assessment">My Assessment Tool</a></li>
+                    <li class="list-inline-item"><a href="~/Home/tracker">My Trackers</a></li>
+                    <li class="list-inline-item"><a href="">My Eating Smart Tool</a></li>
+                    <li class="list-inline-item"><a href="~/Home/MyEatingPattern">My Eating Pattern</a></li>
+                    <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" id="spMessage"></span></a></li>
 
+                    <li class="list-inline-item"><a href="~/Home/ViewPlan">View Plans</a></li>
+                    <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid flowerBg">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12 col-lg-11">
+            <div class="middleContent bg-gray shadow">
+                @*<div class="row">*@
+                    @*<div class="col-12 col-md-12">
+            <p class="semi mb-2 text-yellow">Date :-           Session No. :-   </p>
+            <hr class="mt-0 mb-4 bg-dark" />
+        </div>*@
+                    <div class="bg-yellow container-minus mb-4 pt-2 pb-2">
+                        <div class="row pt-2">
+                            <div class="col-12 col-md-12 col-lg-6">
+                                <p class="semi mb-2 text-white">Date</p>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-3">
+                                <p class="semi mb-2 text-white">Weight [kg/lb]</p>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-3">
+                                <p class="semi mb-2 text-white">Difference [kg/lb]</p>
+                            </div>
+                        </div>
+                    </div>
+                @*</div>*@
+                @*<div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Draft</p>
+                        <hr class="mt-0 mb-4 bg-dark" />
+                    </div>
+                </div>*@
+            <form class="form-data">
+                @*<div class="form-group">
+            <textarea rows="10" class="form-control" id="txtDraft"></textarea>
+        </div>
+        <div class="text-right">
+            <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" onclick="Clear()">&nbsp; &nbsp; Clear &nbsp; &nbsp; </a>
+            <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSaveDraft">&nbsp; &nbsp; Save Draft &nbsp; &nbsp; </a>
+            <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSubmitDraft">&nbsp; &nbsp; Submit &nbsp; &nbsp; </a>
+
+        </div>*@
+
+
+
+                @*-------------uday Start---------------------*@
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">On Rising</p>
+                        <hr class="mt-0 mb-4 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtOnRising"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Pre Break Fast</p>
+                        <hr class="mt-0 mb-4 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtPreBreak"></textarea>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Break Fast</p>
+                        <hr class="mt-0 mb-4 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtBreak"></textarea>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Mid Morning</p>
+                        <hr class="mt-0 mb-4 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtMidMorning"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Pre Workout</p>
+                        <hr class="mt-0 mb-4 bg-dark" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtPreWorkout"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">During Workout</p>
+                        <hr class="mt-0 mb-3 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtDuringWorkout"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Pre Lunch</p>
+                        <hr class="mt-0 mb-4 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtPreLunch"></textarea>
+                </div>
+
+
+
+                @*<%-- uday-->*@
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Lunch</p>
+                        <hr class="mt-0 mb-3 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtLunch"></textarea>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Tea Evening</p>
+                        <hr class="mt-0 mb-3 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtTeaEvening"></textarea>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Late Evening</p>
+                        <hr class="mt-0 mb-3 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtLateEvening"></textarea>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Pre Dinner</p>
+                        <hr class="mt-0 mb-3 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtPreDinner"></textarea>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Dinner</p>
+                        <hr class="mt-0 mb-3 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtDinner"></textarea>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Post Dinner</p>
+                        <hr class="mt-0 mb-3 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtPostDinner"></textarea>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Bed Time</p>
+                        <hr class="mt-0 mb-3 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtBedTime"></textarea>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Recipes</p>
+                        <hr class="mt-0 mb-3 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtRecipes"></textarea>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Notes</p>
+                        <hr class="mt-0 mb-3 bg-dark" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea rows="10" class="form-control" id="txtNotes"></textarea>
+                </div>
+                <div class="text-right">
+                    <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" onclick="Clear()">&nbsp; &nbsp; Clear &nbsp; &nbsp; </a>
+                    <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSaveOnRising" onclick="SaveEatingPattern(0)">&nbsp; &nbsp; Save Draft&nbsp; &nbsp; </a>
+                    <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSubmitOnRising" onclick="SaveEatingPattern(1)">&nbsp; &nbsp; Submit &nbsp; &nbsp; </a>
+
+                </div>
+
+                @*--------------------*@
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    tinymce.init({ selector: "textarea" });
+</script>
+
+<script>
+    function SaveEatingPattern(varsubmit) {
+
+        alert(varsubmit);
+        //alert("uday");   
+        //alert(tinymce.get('txtOnRising').getContent());
+        //alert(tinymce.get('txtPreBreak').getContent());
+        //alert(tinymce.get('txtBreak').getContent());
+        //alert(tinymce.get('txtDuringWorkout').getContent());
+        //alert(tinymce.get('txtPreLunch').getContent());
+        //alert(tinymce.get('txtLunch').getContent());
+        //alert(tinymce.get('txtTeaEvening').getContent());
+        //alert(tinymce.get('txtLateEvening').getContent());
+        //alert(tinymce.get('txtPreDinner').getContent());
+        //alert(tinymce.get('txtDinner').getContent());
+        //alert(tinymce.get('txtPostDinner').getContent());
+        //alert(tinymce.get('txtBedTime').getContent());
+        //alert(tinymce.get('txtRecipes').getContent());
+        //alert(tinymce.get('txtNotes').getContent());
+        //alert("aaa");
+        debugger;
+       
+    var UserEatingPattern =
+    {
+            UserId: sessionStorage.getItem("userId"),
+            ProductId: "1",
+            OrderId: "1",
+            OnRising: tinymce.get('txtOnRising').getContent() ,            
+            PreBreakfast: tinymce.get('txtPreBreak').getContent() ,            
+            Breakfast: tinymce.get('txtBreak').getContent(),           
+            //PreBreakfast: "2",
+            //Breakfast:"3",
+            MidMorning: tinymce.get('txtMidMorning').getContent() ,            
+            PreWorkout: tinymce.get('txtPreWorkout').getContent(),            
+            DuringWorkout: tinymce.get('txtDuringWorkout').getContent() ,
+            
+            PreLunch: tinymce.get('txtPreLunch').getContent() ,            
+            Lunch: tinymce.get('txtLunch').getContent() ,            
+            TeaEvening: tinymce.get('txtTeaEvening').getContent() ,            
+            LateEvening: tinymce.get('txtLateEvening').getContent(),           
+            PreDinner: tinymce.get('txtPreDinner').getContent() ,         
+            Dinner: tinymce.get('txtDinner').getContent() ,            
+            PostDinner: tinymce.get('txtPostDinner').getContent(),           
+            BedTime: tinymce.get('txtBedTime').getContent(),            
+            Recipes: tinymce.get('txtRecipes').getContent() ,            
+            Notes: tinymce.get('txtNotes').getContent() ,
+            IsSubmit: 0,
+            IsActive: 0,
+
+
+        //OnRising: "1",
+        //PreBreakfast: "2",
+        //Breakfast: "3",
+        //MidMorning: "4",
+        //PreWorkout:"5",
+        //DuringWorkout: "6",
+
+        //PreLunch: "7",
+        //Lunch: "8",
+        //TeaEvening: "9",
+        //LateEvening: "10",
+        //PreDinner: "10",
+        //Dinner: "11",
+        //PostDinner: "12",
+        //BedTime: "13",
+        //Recipes: "14",
+        //Notes: "15",
+        //IsSubmit: 0,
+        //IsActive: 0,
+
+
+        }
+       // alert("bbb");
+       // eatingpattern.UserEatingPattern.push(list1);
+
+        alert("AA");
+        var eatingpattern =
+        {
+            TableType: "EatingPattern",
+            UserId: sessionStorage.getItem('userId'),
+           // IsSubmit: varsubmit,
+            UserEatingPattern: UserEatingPattern
+        }
+
+        CommonAjaxMethod('Program/SaveEatingPattern', eatingpattern, false, 'POST', function (response) {
+        alert('Record save successfully!!!');
+    });
+
+    }
+
+    function SubmitEatingPattern()
+    {
+    }
+</script>
 
