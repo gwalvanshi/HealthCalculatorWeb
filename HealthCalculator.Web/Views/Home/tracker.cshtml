@@ -36,20 +36,43 @@
             <div class="middleContent bg-gray shadow">
                 <div class="row">
                     <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">WEIGHT TRACKER : - <label class="col-12 col-sm-5 col-form-label semi" id="lbllable"></label></p>
-                        <hr class="mt-0 mb-2 bg-dark" />
+                        <p class="semi mb-2 text-yellow">WEIGHT TRACKER : - <label class="col-12 col-sm-5 col-form-label semi" id="lbllable"></label></p>                    
+                       
                     </div>
+                 
+               
+                  
                 </div>
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <div class="form-group row">
+                            <label class="semi mb-2 text-yellow">WEIGHT <span class="float-right d-none d-md-block"> : </span></label>
+                            <div class="col-12 col-sm-7">
+                                <select class="custom-select" id="ddlWeight">
+                                    <option selected>Select</option>
+                                    <option value="KG">KG</option>
+                                    <option value="LB">LB</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                    <hr class="mt-0 mb-2 bg-dark" />
+                </div>
+
+                  
                 <div class="bg-yellow container-minus mb-4 pt-2 pb-2">
                     <div class="row pt-2">
                         <div class="col-12 col-md-12 col-lg-6">
                             <p class="semi mb-2 text-white">Date</p>
                         </div>
                         <div class="col-12 col-md-12 col-lg-3">
-                            <p class="semi mb-2 text-white">Weight [kg/lb]</p>
+                            <p class="semi mb-2 text-white">Weight</p>  
                         </div>
                         <div class="col-12 col-md-12 col-lg-3">
-                            <p class="semi mb-2 text-white">Difference [kg/lb]</p>                            
+                            <p class="semi mb-2 text-white">Difference</p>                      
                         </div>
                     </div>
                 </div>
@@ -79,6 +102,7 @@
         ctrl.href = '@Url.Content("~/Home/Logout")';
         ctrl.click();
     }
+    
     $(document).ready(function () {       
         $("#HeaderValue").text("ACCOUNT SETTINGS | " + sessionStorage.getItem('EmployeeName'));
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
@@ -90,10 +114,12 @@
             TableType: "GetRecord",
             UserId: sessionStorage.getItem('userId')
         }
-        CommonAjaxMethod('Program/GetTracker', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
+        CommonAjaxMethod('Program/GetUserTrackerDetails', { userId:sessionStorage.getItem('userId')}, false, 'GET', function (response) {
         
-            if (response.dataCollection.length> 0)
+            if (response.data.Data.length> 0)
             {
+               
+              
                // var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
                 var dateData = new Date();
                 var dd = dateData.getDate();
@@ -104,20 +130,22 @@
                 strDate = yyyy + '-' + mm + '-' + dd;
                 
 
-               // var varsession = response.dataCollection[0].GivenDays / 3;
+               // var varsession = response.data.Data[0].GivenDays / 3;
                 //alert(varsession);
                 var vara = 0;
                 var varb = 1;
-
-                $("#hdnProductId").val(response.dataCollection[0].ProductId);
-                $("#hdnOrderId").val(response.dataCollection[0].OrderId);
-                $("#hdnlenght").val(response.dataCollection[0].GivenDays);
+                debugger;
+                $("#hdnProductId").val(response.data.Data[0].ProductId);
+                $("#hdnOrderId").val(response.data.Data[0].OrderId);
+                $("#hdnlenght").val(response.data.Data[0].GivenDays);
+                $("#ddlWeight").val(response.data.Data[0].WeightIn);
                 
-                $("#lbllable").text(response.dataCollection[0].Program + " :: " + response.dataCollection[0].ProductName);
+                orderID = response.data.Data[0].OrderId;
+                $("#lbllable").text(response.data.Data[0].Program + " :: " + response.data.Data[0].ProductName);
                 $('#DivDynamicSession').html("");
                 var divHTML = "";
-                varlenght = response.dataCollection[0].GivenDays;
-                for (var i = 0; i <response.dataCollection[0].GivenDays; i++)
+                varlenght = response.data.Data[0].GivenDays;
+                for (var i = 0; i <response.data.Data[0].GivenDays; i++)
                 {
                         divHTML += '<div class="row form-data pt-2">' +
                         '<div class="col-12 col-md-12 col-lg">' +
@@ -181,113 +209,77 @@
                 
                 }
                 $('#DivDynamicSession').html(divHTML);          
-                                         
+                GetTrackerData();
             }          
             
         });
 
-        function  getdate(strdate)    
-        {
-            var strRetrunDate;
-            if (strdate != null)
-            {
-                var dateData = new Date(parseInt(strdate.replace("/Date(", "").replace(")/")));
-                var dd = dateData.getDate();
-                var mm = dateData.getMonth() + 1; //January is 0! 
-                var yyyy = dateData.getFullYear();
-                if (dd < 10) { dd = '0' + dd }
-                if (mm < 10) { mm = '0' + mm }
-                strRetrunDate = yyyy + '-' + mm + '-' + dd;
-            }
-            return strDate;
-        }
-        var id = 1;
-        CommonAjaxMethod('Program/GetTrackerData', { Id: id }, false, 'GET',
-            function (response) {               
-                
-                if (response.dataCollection.length > 0)
-                {
-
-                    var varlenth = response.dataCollection.length / 3;
-                   // var b = 0;
-                    var strDate = ""; //var dateValue;
-                    var strDate1 = ""; //var dateValue1;
-                    var strDate2 = ""; //var dateValue2;
-                    for (var i = 0; i < varlenth; i++)
-                    {
-                        //dateValue = response.dataCollection[i].TrackerDate;
-                        //if (dateValue != null) {
-                        //    var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
-                        //    var dd = dateData.getDate();
-                        //    var mm = dateData.getMonth() + 1; //January is 0! 
-                        //    var yyyy = dateData.getFullYear();
-                        //    if (dd < 10) { dd = '0' + dd }
-                        //    if (mm < 10) { mm = '0' + mm }
-                        //    strDate = yyyy + '-' + mm + '-' + dd;                         
-                        //}
-                        if (response.dataCollection[i].TrackerDate != null)
-                        {
-
-                            strDate = getdate(response.dataCollection[i].TrackerDate);
-                        }
-                        if (response.dataCollection[i + 1].TrackerDate != null)
-                        {
-                            strDate1 = getdate(response.dataCollection[i+1].TrackerDate);
-                        }
-                        if (response.dataCollection[i + 2].TrackerDate != null)
-                        {
-                            strDate2 = getdate(response.dataCollection[i+2].TrackerDate);
-                        }
-
-
-                        
-                        $("#txtWeight1" + (i + 1)).val(response.dataCollection[i].Weight);
-                        $("#txtWeight2" + (i + 1)).val(response.dataCollection[i+1].Weight);
-                        $("#txtWeight3" + (i + 1)).val(response.dataCollection[i + 2].Weight);
-
-
-                        $("#txtDifference1" + (i + 1)).val(response.dataCollection[i].WeightDifference);
-                        $("#txtDifference2" + (i + 1)).val(response.dataCollection[i+1].WeightDifference);
-                        $("#txtDifference3" + (i + 1)).val(response.dataCollection[i+2].WeightDifference);
-                        $("#txtDate1" + (i + 1)).val(strDate);  
-                        $("#txtDate2" + (i + 1)).val(strDate1);  
-                        $("#txtDate3" + (i + 1)).val(strDate2);  
-
-                        //if (b == 0)
-                        //{
-
-                        //    $("#txtWeight1" + (i + 1)).val(response.dataCollection[i].Weight);
-                        //    $("#txtDifference1" + (i + 1)).val(response.dataCollection[i].WeightDifference);
-                        //    $("#txtDate1" + (i + 1)).val(strDate);                            
-                        //    b = 1;
-                        //    alert("a");
-                        //}
-                        //else if (b == 1)
-                        //{
-                        //    $("#txtWeight2" + (i + 1)).val(response.dataCollection[i].Weight);
-                        //    $("#txtDifference2" + (i + 1)).val(response.dataCollection[i].WeightDifference);
-                        //    $("#txtDate2" + (i + 1)).val(strDate);  
-                        //    b = 2;
-                        //    alert("a2");
-                        //}
-                        //else if (b == 2)
-                        //{
-                        //    $("#txtWeight3" + (i + 1)).val(response.dataCollection[i].Weight);
-                        //    $("#txtDifference3" + (i + 1)).val(response.dataCollection[i].WeightDifference);
-                        //    $("#txtDate3" + (i + 1)).val(strDate);  
-                        //    b = 0;
-                        //    alert("a3");
-                        //}
-
-                    }
-                }
-            }
-        );
+      
+      
 
       
     })
 
 
+    function getdate(strdate) {
+        var strRetrunDate;
+        if (strdate != null) {
+            var dateData = new Date(parseInt(strdate.replace("/Date(", "").replace(")/")));
+            var dd = dateData.getDate();
+            var mm = dateData.getMonth() + 1; //January is 0! 
+            var yyyy = dateData.getFullYear();
+            if (dd < 10) { dd = '0' + dd }
+            if (mm < 10) { mm = '0' + mm }
+            strRetrunDate = yyyy + '-' + mm + '-' + dd;
+        }
+        return strRetrunDate;
+    }
+    function GetTrackerData()
+    {
+        CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: sessionStorage.getItem('userId') }, false, 'GET',
+          function (response) {
+
+              if (response.data.Data.length > 0) {
+                  
+                  var varlength = response.data.Data.length / 3;
+                 
+                  var midCounter = 0;
+                  var midcounterSet = 0;
+                  var midcounterStart = 0;
+                  var ModeCounter = 1;
+                  for (var i = 0; i < response.data.Data.length; i++)
+                  {
+                     
+
+                      var strDate = ""; //var dateValue;
+                      var strDate1 = ""; //var dateValue1;
+                      var strDate2 = ""; //var dateValue2;
+                      if (response.data.Data[i].TrackerDate != null)
+                      {
+
+                          strDate = getdate(response.data.Data[i].TrackerDate);
+                      }
+                     
+                        midCounter = (i % 3);
+                        if (midCounter == 0)
+                        {
+                            midcounterStart++;
+                        }
+                        midcounterSet++;
+                    
+                        $("#txtWeight"+midcounterSet + midcounterStart).val(response.data.Data[i].Weight);
+                        $("#txtDifference" + midcounterSet + midcounterStart).val(response.data.Data[i].WeightDifference);
+                        $("#txtDate" + midcounterSet + midcounterStart).val(strDate);
+                        if(midcounterSet==3)
+                        {
+                            midcounterSet = 0;
+                        }
+                      
+                  }
+              }
+          }
+      );
+    }
     function SaveTracker() {
 
 
@@ -315,6 +307,7 @@
                     UserId: sessionStorage.getItem('userId'),
                     ProductId: $("#hdnProductId").val() == undefined ? '' : $("#hdnProductId").val().trim(),
                     OrderId: $("#hdnOrderId").val() == undefined ? 0 : $("#hdnOrderId").val().trim(),
+                    WeightIn: $("#ddlWeight").val() == undefined ? 0 : $("#ddlWeight").val().trim(),
                     Weight: $("#txtWeight1" + (i + 1)).val() == undefined ? 0 : $("#txtWeight1" + (i + 1)).val().trim(),
                     WeightDifference: $("#txtDifference1" + (i + 1)).val() == undefined ? 0 : $("#txtDifference1" + (i + 1)).val().trim(),
                     TrackerDate: $("#txtDate1" + (i + 1)).val() == undefined ? 0 : $("#txtDate1" + (i + 1)).val().trim(),
@@ -324,6 +317,7 @@
                     UserId: sessionStorage.getItem('userId'),
                     ProductId: $("#hdnProductId").val() == undefined ? '' : $("#hdnProductId").val().trim(),
                     OrderId: $("#hdnOrderId").val() == undefined ? 0 : $("#hdnOrderId").val().trim(),
+                    WeightIn: $("#ddlWeight").val() == undefined ? 0 : $("#ddlWeight").val().trim(),
                     Weight: $("#txtWeight2" + (i + 1)).val() == undefined ? 0 : $("#txtWeight2" + (i + 1)).val().trim(),
                     WeightDifference: $("#txtDifference2" + (i + 1)).val() == undefined ? 0 : $("#txtDifference2" + (i + 1)).val().trim(),
                     TrackerDate: $("#txtDate2" + (i + 1)).val() == undefined ? 0 : $("#txtDate2" + (i + 1)).val().trim(),
@@ -333,6 +327,7 @@
                     UserId: sessionStorage.getItem('userId'),
                     ProductId: $("#hdnProductId").val() == undefined ? '' : $("#hdnProductId").val().trim(),
                     OrderId: $("#hdnOrderId").val() == undefined ? 0 : $("#hdnOrderId").val().trim(),
+                    WeightIn: $("#ddlWeight").val() == undefined ? 0 : $("#ddlWeight").val().trim(),
                     Weight: $("#txtWeight3" + (i + 1)).val() == undefined ? 0 : $("#txtWeight3" + (i + 1)).val().trim(),
                     WeightDifference: $("#txtDifference3" + (i + 1)).val() == undefined ? 0 : $("#txtDifference3" + (i + 1)).val().trim(),
                     TrackerDate: $("#txtDate3" + (i + 1)).val() == undefined ? 0 : $("#txtDate3" + (i + 1)).val().trim(),
