@@ -347,13 +347,11 @@ namespace HealthCalculator.Web.Controllers
         {
             try
             {
-                int loggedIdUserID = 1;
-
-
+             
                 GenericService _genericService = new GenericService();
                 IndexScreenParameterModel collection = new IndexScreenParameterModel();
                 collection.ScreenID = "113";
-                collection.UserId = loggedIdUserID;
+                collection.UserId =  Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString()); 
                 collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
                 {
                     new IndexScreenSearchParameterModel
