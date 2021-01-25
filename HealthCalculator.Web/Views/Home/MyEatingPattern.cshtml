@@ -34,41 +34,9 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-11">
             <div class="middleContent bg-gray shadow">
-                @*<div class="row">*@
-                    @*<div class="col-12 col-md-12">
-            <p class="semi mb-2 text-yellow">Date :-           Session No. :-   </p>
-            <hr class="mt-0 mb-4 bg-dark" />
-        </div>*@
-                    <div class="bg-yellow container-minus mb-4 pt-2 pb-2">
-                        <div class="row pt-2">
-                            <div class="col-12 col-md-12 col-lg-6">
-                                <p class="semi mb-2 text-white">Date</p>
-                            </div>
-                            <div class="col-12 col-md-12 col-lg-3">
-                                <p class="semi mb-2 text-white">Weight [kg/lb]</p>
-                            </div>
-                            <div class="col-12 col-md-12 col-lg-3">
-                                <p class="semi mb-2 text-white">Difference [kg/lb]</p>
-                            </div>
-                        </div>
-                    </div>
-                @*</div>*@
-                @*<div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Draft</p>
-                        <hr class="mt-0 mb-4 bg-dark" />
-                    </div>
-                </div>*@
-            <form class="form-data">
-                @*<div class="form-group">
-            <textarea rows="10" class="form-control" id="txtDraft"></textarea>
-        </div>
-        <div class="text-right">
-            <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" onclick="Clear()">&nbsp; &nbsp; Clear &nbsp; &nbsp; </a>
-            <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSaveDraft">&nbsp; &nbsp; Save Draft &nbsp; &nbsp; </a>
-            <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSubmitDraft">&nbsp; &nbsp; Submit &nbsp; &nbsp; </a>
-
-        </div>*@
+       
+            <form class="form-data" id="adminform"  style="display:none;">
+             
 
 
 
@@ -245,7 +213,7 @@
                 <div class="form-group">
                     <textarea rows="10" class="form-control" id="txtNotes"></textarea>
                 </div>
-                <div class="text-right">
+                <div class="text-right" id="divButtonShowHide">
                     <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" onclick="Clear()">&nbsp; &nbsp; Clear &nbsp; &nbsp; </a>
                     <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSaveOnRising" onclick="SaveEatingPattern(0)">&nbsp; &nbsp; Save Draft&nbsp; &nbsp; </a>
                     <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSubmitOnRising" onclick="SaveEatingPattern(1)">&nbsp; &nbsp; Submit &nbsp; &nbsp; </a>
@@ -254,7 +222,182 @@
 
                 @*--------------------*@
             </form>
-            </div>
+                <form class="form-data" id="userform" style="display:none;">
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">On Rising</p>
+                            <hr class="mt-0 mb-4 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    
+                        <div rows="10" class="form-control" id="divOnRising"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Pre Break Fast</p>
+                            <hr class="mt-0 mb-4 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divPreBreak"></div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Break Fast</p>
+                            <hr class="mt-0 mb-4 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divBreak"></div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Mid Morning</p>
+                            <hr class="mt-0 mb-4 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divMidMorning"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Pre Workout</p>
+                            <hr class="mt-0 mb-4 bg-dark" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divPreWorkout"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">During Workout</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divDuringWorkout"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Pre Lunch</p>
+                            <hr class="mt-0 mb-4 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divPreLunch"></div>
+                    </div>
+
+
+
+                    @*<%-- uday-->*@
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Lunch</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divLunch"></div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Tea Evening</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divTeaEvening"></div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Late Evening</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divLateEvening"></div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Pre Dinner</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divPreDinner"></div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Dinner</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divDinner"></div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Post Dinner</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divPostDinner"></div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Bed Time</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divBedTime"></div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Recipes</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divRecipes"></div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Notes</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div rows="10" class="form-control" id="divNotes"></div>
+                    </div>
+                </form>
+</div>
         </div>
     </div>
 </div>
@@ -265,32 +408,112 @@
 </script>
 
 <script>
-    function SaveEatingPattern(varsubmit) {
 
-        alert(varsubmit);
-        //alert("uday");   
-        //alert(tinymce.get('txtOnRising').getContent());
-        //alert(tinymce.get('txtPreBreak').getContent());
-        //alert(tinymce.get('txtBreak').getContent());
-        //alert(tinymce.get('txtDuringWorkout').getContent());
-        //alert(tinymce.get('txtPreLunch').getContent());
-        //alert(tinymce.get('txtLunch').getContent());
-        //alert(tinymce.get('txtTeaEvening').getContent());
-        //alert(tinymce.get('txtLateEvening').getContent());
-        //alert(tinymce.get('txtPreDinner').getContent());
-        //alert(tinymce.get('txtDinner').getContent());
-        //alert(tinymce.get('txtPostDinner').getContent());
-        //alert(tinymce.get('txtBedTime').getContent());
-        //alert(tinymce.get('txtRecipes').getContent());
-        //alert(tinymce.get('txtNotes').getContent());
-        //alert("aaa");
-        debugger;
+    
+   
+    window.onload = function ()
+    {        
+        
+        if (sessionStorage.getItem('RoleID') == "1")
+        {            
+            $("#userform").show();
+            $("#adminform").hide();
+        }
+        if (sessionStorage.getItem('RoleID') == "3" || sessionStorage.getItem('RoleID') == "2") {
+
+            $("#userform").hide();
+            $("#adminform").show();
+        }
+        if (sessionStorage.getItem('ProductId') == "0")
+        {
+            $("#divButtonShowHide").hide();
+        }
+        else
+        {
+           
+
+            CommonAjaxMethod('Program/GetEatingPattern', {userId:sessionStorage.getItem("userId"),orderId: sessionStorage.getItem('OrderId'),productId:sessionStorage.getItem('ProductId')}, false, 'GET', function (response) 
+            {
+
+                if (sessionStorage.getItem('RoleID') == "1")
+                {
+                    $("#userform").show();
+                    $("#adminform").hide();
+
+                    if (response.dataCollection.length > 0) 
+                    {
+                        $('#divOnRising').html(response.dataCollection[0].OnRising);
+                        $('#divOnRising').html(response.dataCollection[0].OnRising);
+                        $('#divPreBreak').html(response.dataCollection[0].PreBreakfast);
+                        $('#divBreak').html(response.dataCollection[0].Breakfast);
+                        $('#divMidMorning').html(response.dataCollection[0].MidMorning);
+                        $('#divPreWorkout').html(response.dataCollection[0].PreWorkout);
+                        $('#divDuringWorkout').html(response.dataCollection[0].DuringWorkout);
+                        $('#divPreLunch').html(response.dataCollection[0].PreLunch);
+                        $('#divLunch').html(response.dataCollection[0].Lunch);
+                        $('#divTeaEvening').html(response.dataCollection[0].TeaEvening);
+                        $('#divLateEvening').html(response.dataCollection[0].LateEvening);
+                        $('#divPreDinner').html(response.dataCollection[0].PreDinner);
+                        $('#divDinner').html(response.dataCollection[0].Dinner);
+                        $('#divPostDinner').html(response.dataCollection[0].PostDinner);
+                        $('#divBedTime').html(response.dataCollection[0].BedTime);
+                        $('#divRecipes').html(response.dataCollection[0].Recipes);
+                        $('#divNotes').html(response.dataCollection[0].Notes);
+                    }
+                }
+                if (sessionStorage.getItem('RoleID') == "3" || sessionStorage.getItem('RoleID') == "2")
+                {
+
+                    $("#userform").hide();
+                    $("#adminform").show();
+
+                    if (response.dataCollection.length > 0) {
+                        tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
+                        tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
+                        tinymce.get('txtPreBreak').setContent(response.dataCollection[0].PreBreakfast);
+                        tinymce.get('txtBreak').setContent(response.dataCollection[0].Breakfast);
+                        tinymce.get('txtMidMorning').setContent(response.dataCollection[0].MidMorning);
+                        tinymce.get('txtPreWorkout').setContent(response.dataCollection[0].PreWorkout);
+                        tinymce.get('txtDuringWorkout').setContent(response.dataCollection[0].DuringWorkout);
+                        tinymce.get('txtPreLunch').setContent(response.dataCollection[0].PreLunch);
+                        tinymce.get('txtLunch').setContent(response.dataCollection[0].Lunch);
+                        tinymce.get('txtTeaEvening').setContent(response.dataCollection[0].TeaEvening);
+                        tinymce.get('txtLateEvening').setContent(response.dataCollection[0].LateEvening);
+                        tinymce.get('txtPreDinner').setContent(response.dataCollection[0].PreDinner);
+                        tinymce.get('txtDinner').setContent(response.dataCollection[0].Dinner);
+                        tinymce.get('txtPostDinner').setContent(response.dataCollection[0].PostDinner);
+                        tinymce.get('txtBedTime').setContent(response.dataCollection[0].BedTime);
+                        tinymce.get('txtRecipes').setContent(response.dataCollection[0].Recipes);
+                        tinymce.get('txtNotes').setContent(response.dataCollection[0].Notes);
+                    }
+                }
+               
+
+            });
+        }
+    };
+
+    function Logout(ctrl) {
+        sessionStorage.clear();
+        ctrl.href = '@Url.Content("~/Home/Logout")';
+        ctrl.click();
+    }
+    function MessageHelp(ctrl) {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
+        ctrl.click();
+    }   
+    function SaveEatingPattern(varsubmit) {       
        
     var UserEatingPattern =
     {
+       
             UserId: sessionStorage.getItem("userId"),
-            ProductId: "1",
-            OrderId: "1",
+            ProductId:sessionStorage.getItem('ProductId'),
+            OrderId: sessionStorage.getItem('OrderId'),
             OnRising: tinymce.get('txtOnRising').getContent() ,            
             PreBreakfast: tinymce.get('txtPreBreak').getContent() ,            
             Breakfast: tinymce.get('txtBreak').getContent(),           
@@ -313,33 +536,8 @@
             IsSubmit: varsubmit,
             IsActive: 1,
 
-
-        //OnRising: "1",
-        //PreBreakfast: "2",
-        //Breakfast: "3",
-        //MidMorning: "4",
-        //PreWorkout:"5",
-        //DuringWorkout: "6",
-
-        //PreLunch: "7",
-        //Lunch: "8",
-        //TeaEvening: "9",
-        //LateEvening: "10",
-        //PreDinner: "10",
-        //Dinner: "11",
-        //PostDinner: "12",
-        //BedTime: "13",
-        //Recipes: "14",
-        //Notes: "15",
-        //IsSubmit: 0,
-        //IsActive: 0,
-
-
         }
-       // alert("bbb");
-       // eatingpattern.UserEatingPattern.push(list1);
-
-        alert("AA");
+      
         var eatingpattern =
         {
             TableType: "EatingPattern",

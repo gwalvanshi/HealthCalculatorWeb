@@ -1201,7 +1201,9 @@
             $("#txtName").val(response.data.Data.Table[0].UserName);
             $("#ddlGenderp").val(response.data.Data.Table[0].Gender);
             $("#spMessage").text(" ("+response.data.Data.Table[0].MessageCount+")");
-
+            sessionStorage.setItem('ProductId', response.data.Data.Table[0].ProductId);
+            sessionStorage.setItem('OrderId', response.data.Data.Table[0].OrderId);           
+            
             var strDate = "";
             var dateValue = response.data.Data.Table[0].BirthDate;
             if (dateValue != null) {

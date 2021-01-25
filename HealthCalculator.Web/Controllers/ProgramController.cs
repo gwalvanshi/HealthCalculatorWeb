@@ -539,5 +539,50 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
+        public async Task<JsonResult> GetEatingPattern(int userId,int orderId,int productId)
+        {
+            try
+            {
+                int loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+
+
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "122";
+                collection.UserId = loggedIdUserID;
+                var IndexScreenSearchParameterModelList = new List<IndexScreenSearchParameterModel>();
+                  var obj1 = new IndexScreenSearchParameterModel
+                  {
+                      SearchParameter = "UserId",
+                      SearchParameterDataType = "int",
+                      SearchParameterValue = userId.ToString()
+                  };
+                IndexScreenSearchParameterModelList.Add(obj1);
+                var obj2 = new IndexScreenSearchParameterModel
+                {
+                    SearchParameter = "orderId",
+                    SearchParameterDataType = "int",
+                    SearchParameterValue = orderId.ToString()
+                };
+                IndexScreenSearchParameterModelList.Add(obj2);
+                var obj3 = new IndexScreenSearchParameterModel
+                {
+                    SearchParameter = "productId",
+                    SearchParameterDataType = "int",
+                    SearchParameterValue = productId.ToString()
+                };
+                IndexScreenSearchParameterModelList.Add(obj3);
+                collection.IndexScreenSearchParameterModel = IndexScreenSearchParameterModelList;
+
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<UserEatingPattern>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
     }
 }

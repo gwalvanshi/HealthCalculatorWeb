@@ -21,7 +21,8 @@
                     <li class="list-inline-item"><a href="~/Home/tracker">My Trackers</a></li>
                     <li class="list-inline-item"><a href="">My Eating Smart Tool</a></li>
                     <li class="list-inline-item"><a href="~/Home/MyEatingPattern">My Eating Pattern</a></li>
-                    <li class="list-inline-item"><a href="~/Home/helpDesk">Admin Messages</a></li>                  
+                    <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" id="spMessage"></span></a></li>
+
                     <li class="list-inline-item"><a href="~/Home/ViewPlan">View Plans</a></li>
                     <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
                 </ul>
@@ -96,14 +97,22 @@
 </div>
 <script src="~/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-    
+
     function Logout(ctrl) {
         sessionStorage.clear();
         ctrl.href = '@Url.Content("~/Home/Logout")';
         ctrl.click();
     }
-    
-    $(document).ready(function () {       
+    function MessageHelp(ctrl) {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+
+    $(document).ready(function () {
         $("#HeaderValue").text("ACCOUNT SETTINGS | " + sessionStorage.getItem('EmployeeName'));
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
         if (selectedUserId != "") {
@@ -115,20 +124,20 @@
             UserId: sessionStorage.getItem('userId')
         }
         CommonAjaxMethod('Program/GetUserTrackerDetails', { userId:sessionStorage.getItem('userId')}, false, 'GET', function (response) {
-        
+
             if (response.data.Data.length> 0)
             {
-               
-              
+
+
                // var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
                 var dateData = new Date();
                 var dd = dateData.getDate();
-                var mm = dateData.getMonth() + 1; //January is 0! 
+                var mm = dateData.getMonth() + 1; //January is 0!
                 var yyyy = dateData.getFullYear();
                 if (dd < 10) { dd = '0' + dd }
-                if (mm < 10) { mm = '0' + mm } 
+                if (mm < 10) { mm = '0' + mm }
                 strDate = yyyy + '-' + mm + '-' + dd;
-                
+
 
                // var varsession = response.data.Data[0].GivenDays / 3;
                 //alert(varsession);
@@ -139,7 +148,7 @@
                 $("#hdnOrderId").val(response.data.Data[0].OrderId);
                 $("#hdnlenght").val(response.data.Data[0].GivenDays);
                 $("#ddlWeight").val(response.data.Data[0].WeightIn);
-                
+
                 orderID = response.data.Data[0].OrderId;
                 $("#lbllable").text(response.data.Data[0].Program + " :: " + response.data.Data[0].ProductName);
                 $('#DivDynamicSession').html("");
@@ -205,19 +214,19 @@
                         '</div>' +
                         '</div>' +
                         '</div>' +
-                        '</div>';                        
-                
+                        '</div>';
+
                 }
-                $('#DivDynamicSession').html(divHTML);          
+                $('#DivDynamicSession').html(divHTML);
                 GetTrackerData();
-            }          
-            
+            }
+
         });
 
-      
-      
 
-      
+
+
+
     })
 
 
@@ -226,7 +235,7 @@
         if (strdate != null) {
             var dateData = new Date(parseInt(strdate.replace("/Date(", "").replace(")/")));
             var dd = dateData.getDate();
-            var mm = dateData.getMonth() + 1; //January is 0! 
+            var mm = dateData.getMonth() + 1; //January is 0!
             var yyyy = dateData.getFullYear();
             if (dd < 10) { dd = '0' + dd }
             if (mm < 10) { mm = '0' + mm }
@@ -240,16 +249,16 @@
           function (response) {
 
               if (response.data.Data.length > 0) {
-                  
+
                   var varlength = response.data.Data.length / 3;
-                 
+
                   var midCounter = 0;
                   var midcounterSet = 0;
                   var midcounterStart = 0;
                   var ModeCounter = 1;
                   for (var i = 0; i < response.data.Data.length; i++)
                   {
-                     
+
 
                       var strDate = ""; //var dateValue;
                       var strDate1 = ""; //var dateValue1;
@@ -259,14 +268,14 @@
 
                           strDate = getdate(response.data.Data[i].TrackerDate);
                       }
-                     
+
                         midCounter = (i % 3);
                         if (midCounter == 0)
                         {
                             midcounterStart++;
                         }
                         midcounterSet++;
-                    
+
                         $("#txtWeight"+midcounterSet + midcounterStart).val(response.data.Data[i].Weight);
                         $("#txtDifference" + midcounterSet + midcounterStart).val(response.data.Data[i].WeightDifference);
                         $("#txtDate" + midcounterSet + midcounterStart).val(strDate);
@@ -274,7 +283,7 @@
                         {
                             midcounterSet = 0;
                         }
-                      
+
                   }
               }
           }
@@ -336,7 +345,7 @@
 
             }
 
-           
+
            // alert("aa");
             //debugger;
             CommonAjaxMethod('Program/SaveTracker', mytracker, false, 'POST', function (response) {
