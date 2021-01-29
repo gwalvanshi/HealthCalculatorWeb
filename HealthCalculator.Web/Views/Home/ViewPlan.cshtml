@@ -19,6 +19,20 @@
 
 <script>
 
+    function getdate(strdate) {
+        var strRetrunDate;
+        if (strdate != null) {
+            var dateData = new Date(parseInt(strdate.replace("/Date(", "").replace(")/")));
+            var dd = dateData.getDate();
+            var mm = dateData.getMonth() + 1; //January is 0!
+            var yyyy = dateData.getFullYear();
+            if (dd < 10) { dd = '0' + dd }
+            if (mm < 10) { mm = '0' + mm }
+            strRetrunDate = yyyy + '-' + mm + '-' + dd;
+        }
+        return strRetrunDate;
+    }
+
     window.onload = function ()
     {
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
@@ -61,8 +75,24 @@
                 columns: [
                     "Program",
                     "ProductName",
-                    "StartActiveDate",
-                     "EndActiveDate",
+                    {
+                        caption: "StartActiveDate",
+                             
+                        allowEditing: false,
+                        calculateCellValue: function(data) {
+                            return getdate(data.StartActiveDate);
+                        }
+                    },
+                     {
+                         caption: "EndActiveDate",
+                             
+                         allowEditing: false,
+                         calculateCellValue: function(data) {
+                             return getdate(data.EndActiveDate);
+                         }
+                     }
+                 ,
+                    
                     "Totaldays",
 
                      "INRRate",
