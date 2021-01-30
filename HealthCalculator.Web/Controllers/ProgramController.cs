@@ -539,7 +539,7 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
-        public async Task<JsonResult> GetEatingPattern(int userId,int orderId,int productId)
+        public async Task<JsonResult> GetEatingPattern(int userId,int orderId,int productId,int SessionID)
         {
             try
             {
@@ -572,6 +572,15 @@ namespace HealthCalculator.Web.Controllers
                     SearchParameterValue = productId.ToString()
                 };
                 IndexScreenSearchParameterModelList.Add(obj3);
+
+                var obj4 = new IndexScreenSearchParameterModel
+                {
+                    SearchParameter = "SessionId",
+                    SearchParameterDataType = "int",
+                    SearchParameterValue = SessionID.ToString()
+                };
+                IndexScreenSearchParameterModelList.Add(obj4);
+
                 collection.IndexScreenSearchParameterModel = IndexScreenSearchParameterModelList;
 
                 var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");

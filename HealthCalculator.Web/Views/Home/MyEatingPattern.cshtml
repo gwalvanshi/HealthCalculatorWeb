@@ -34,194 +34,218 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-11">
             <div class="middleContent bg-gray shadow">
-       
-            <form class="form-data" id="adminform"  style="display:none;">
-             
-
-
-
-                @*-------------uday Start---------------------*@
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">On Rising</p>
-                        <hr class="mt-0 mb-4 bg-dark" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtOnRising"></textarea>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Pre Break Fast</p>
-                        <hr class="mt-0 mb-4 bg-dark" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtPreBreak"></textarea>
-                </div>
-
 
                 <div class="row">
                     <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Break Fast</p>
-                        <hr class="mt-0 mb-4 bg-dark" />
+                        <p class="semi mb-2 text-yellow">WEIGHT TRACKER : - <label class="col-12 col-sm-5 col-form-label semi" id="lbllable"></label></p>
                     </div>
                 </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtBreak"></textarea>
-                </div>
-
-
                 <div class="row">
                     <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Mid Morning</p>
-                        <hr class="mt-0 mb-4 bg-dark" />
+                        <div class="form-group row">
+                            <label class="semi mb-2 text-yellow">Session <span class="float-right d-none d-md-block"> : </span></label>
+                            <div class="col-12 col-sm-7">
+                                <select class="custom-select" id="ddlSessionID2" onchange="bindData(this)">
+                                    <option selected>Select</option>
+                                    <option value="1">Session 1</option>
+                                    <option value="2">Session 2</option>
+                                    <option value="3">Session 3</option>
+                                    <option value="4">Session 4</option>
+                                    <option value="5">Session 5</option>
+                                    <option value="6">Session 6</option>
+                                    <option value="7">Session 7</option>
+                                    <option value="8">Session 8</option>
+                                    <option value="9">Session 9</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtMidMorning"></textarea>
+                    <hr class="mt-0 mb-2 bg-dark" />
                 </div>
 
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Pre Workout</p>
-                        <hr class="mt-0 mb-4 bg-dark" />
+
+                <form class="form-data" id="adminform" style="display:none;">
+                    @*-------------uday Start---------------------*@
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">On Rising</p>
+                            <hr class="mt-0 mb-4 bg-dark" />
+                        </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtPreWorkout"></textarea>
-                </div>
-
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">During Workout</p>
-                        <hr class="mt-0 mb-3 bg-dark" />
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtOnRising"></textarea>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtDuringWorkout"></textarea>
-                </div>
-
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Pre Lunch</p>
-                        <hr class="mt-0 mb-4 bg-dark" />
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Pre Break Fast</p>
+                            <hr class="mt-0 mb-4 bg-dark" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtPreLunch"></textarea>
-                </div>
-
-
-
-                @*<%-- uday-->*@
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Lunch</p>
-                        <hr class="mt-0 mb-3 bg-dark" />
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtPreBreak"></textarea>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtLunch"></textarea>
-                </div>
 
 
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Tea Evening</p>
-                        <hr class="mt-0 mb-3 bg-dark" />
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Break Fast</p>
+                            <hr class="mt-0 mb-4 bg-dark" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtTeaEvening"></textarea>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Late Evening</p>
-                        <hr class="mt-0 mb-3 bg-dark" />
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtBreak"></textarea>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtLateEvening"></textarea>
-                </div>
 
 
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Pre Dinner</p>
-                        <hr class="mt-0 mb-3 bg-dark" />
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Mid Morning</p>
+                            <hr class="mt-0 mb-4 bg-dark" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtPreDinner"></textarea>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Dinner</p>
-                        <hr class="mt-0 mb-3 bg-dark" />
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtMidMorning"></textarea>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtDinner"></textarea>
-                </div>
 
-
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Post Dinner</p>
-                        <hr class="mt-0 mb-3 bg-dark" />
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Pre Workout</p>
+                            <hr class="mt-0 mb-4 bg-dark" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtPostDinner"></textarea>
-                </div>
 
-
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Bed Time</p>
-                        <hr class="mt-0 mb-3 bg-dark" />
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtPreWorkout"></textarea>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtBedTime"></textarea>
-                </div>
 
-
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Recipes</p>
-                        <hr class="mt-0 mb-3 bg-dark" />
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">During Workout</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtRecipes"></textarea>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Notes</p>
-                        <hr class="mt-0 mb-3 bg-dark" />
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtDuringWorkout"></textarea>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea rows="10" class="form-control" id="txtNotes"></textarea>
-                </div>
-                <div class="text-right" id="divButtonShowHide">
-                    <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" onclick="Clear()">&nbsp; &nbsp; Clear &nbsp; &nbsp; </a>
-                    <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSaveOnRising" onclick="SaveEatingPattern(0)">&nbsp; &nbsp; Save Draft&nbsp; &nbsp; </a>
-                    <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSubmitOnRising" onclick="SaveEatingPattern(1)">&nbsp; &nbsp; Submit &nbsp; &nbsp; </a>
 
-                </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Pre Lunch</p>
+                            <hr class="mt-0 mb-4 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtPreLunch"></textarea>
+                    </div>
 
-                @*--------------------*@
-            </form>
+
+
+                    @*<%-- uday-->*@
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Lunch</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtLunch"></textarea>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Tea Evening</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtTeaEvening"></textarea>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Late Evening</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtLateEvening"></textarea>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Pre Dinner</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtPreDinner"></textarea>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Dinner</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtDinner"></textarea>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Post Dinner</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtPostDinner"></textarea>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Bed Time</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtBedTime"></textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Recipes</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtRecipes"></textarea>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">Notes</p>
+                            <hr class="mt-0 mb-3 bg-dark" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="10" class="form-control" id="txtNotes"></textarea>
+                    </div>
+                    <div class="text-right" id="divButtonShowHide">
+                        <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" onclick="Clear()">&nbsp; &nbsp; Clear &nbsp; &nbsp; </a>
+                        <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSaveOnRising" onclick="SaveEatingPattern(0)">&nbsp; &nbsp; Save Draft&nbsp; &nbsp; </a>
+                        <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSubmitOnRising" onclick="SaveEatingPattern(1)">&nbsp; &nbsp; Submit &nbsp; &nbsp; </a>
+
+                    </div>
+
+                    @*--------------------*@
+                </form>
                 <form class="form-data" id="userform" style="display:none;">
                     <div class="row">
                         <div class="col-12 col-md-12">
@@ -230,7 +254,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                    
+
                         <div rows="10" class="form-control" id="divOnRising"></div>
                     </div>
                     <div class="row">
@@ -397,7 +421,7 @@
                         <div rows="10" class="form-control" id="divNotes"></div>
                     </div>
                 </form>
-</div>
+            </div>
         </div>
     </div>
 </div>
@@ -430,66 +454,114 @@
         }
         else
         {
-           
+            $("#userform").hide();
+            $("#adminform").hide();
 
-            CommonAjaxMethod('Program/GetEatingPattern', {userId:sessionStorage.getItem("userId"),orderId: sessionStorage.getItem('OrderId'),productId:sessionStorage.getItem('ProductId')}, false, 'GET', function (response) 
-            {
-
-                if (sessionStorage.getItem('RoleID') == "1")
-                {
-                    $("#userform").show();
-                    $("#adminform").hide();
-
-                    if (response.dataCollection.length > 0) 
+            //var mySession =
+            //{                
+            //    UserSession: []
+            //}
+            //var varddl = document.getElementById("ddlSessionID");
+            //alert("aa");
+            //debugger;
+        
+            CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: sessionStorage.getItem('userId') }, false, 'GET',
+                function (response) {
+                
+                    if (response.data.Data.length > 0)
                     {
-                        $('#divOnRising').html(response.dataCollection[0].OnRising);
-                        $('#divOnRising').html(response.dataCollection[0].OnRising);
-                        $('#divPreBreak').html(response.dataCollection[0].PreBreakfast);
-                        $('#divBreak').html(response.dataCollection[0].Breakfast);
-                        $('#divMidMorning').html(response.dataCollection[0].MidMorning);
-                        $('#divPreWorkout').html(response.dataCollection[0].PreWorkout);
-                        $('#divDuringWorkout').html(response.dataCollection[0].DuringWorkout);
-                        $('#divPreLunch').html(response.dataCollection[0].PreLunch);
-                        $('#divLunch').html(response.dataCollection[0].Lunch);
-                        $('#divTeaEvening').html(response.dataCollection[0].TeaEvening);
-                        $('#divLateEvening').html(response.dataCollection[0].LateEvening);
-                        $('#divPreDinner').html(response.dataCollection[0].PreDinner);
-                        $('#divDinner').html(response.dataCollection[0].Dinner);
-                        $('#divPostDinner').html(response.dataCollection[0].PostDinner);
-                        $('#divBedTime').html(response.dataCollection[0].BedTime);
-                        $('#divRecipes').html(response.dataCollection[0].Recipes);
-                        $('#divNotes').html(response.dataCollection[0].Notes);
+                       
+                        $("#lbllable").text(response.data.Data[0].Program + " :: " + response.data.Data[0].ProductName);
+                       
+                        var varlength = response.data.Data.length / 3;
+                        for (var i = 0; i < response.data.Data.length; i++)
+                        {
+                           // var list1 =
+                           // {
+                           //     ID: (i+1),
+                           //     Name: "Session " + (i+1),
+                           // }
+                           //mySession.UserSession.push(list1);
+
+                            //varddl.innerHTML = varddl.innerHTML +
+                            //    '<option value="' + list1[i]['ID'] + '">' + list1[i]['Name'] + '</option>';
+
+                        }
                     }
                 }
-                if (sessionStorage.getItem('RoleID') == "3" || sessionStorage.getItem('RoleID') == "2")
-                {
+            );
 
-                    $("#userform").hide();
-                    $("#adminform").show();
+            //alert("ddd");
+            //debugger;
+            //for (var i = 0; i < mySession.length; i++) {
 
-                    if (response.dataCollection.length > 0) {
-                        tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
-                        tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
-                        tinymce.get('txtPreBreak').setContent(response.dataCollection[0].PreBreakfast);
-                        tinymce.get('txtBreak').setContent(response.dataCollection[0].Breakfast);
-                        tinymce.get('txtMidMorning').setContent(response.dataCollection[0].MidMorning);
-                        tinymce.get('txtPreWorkout').setContent(response.dataCollection[0].PreWorkout);
-                        tinymce.get('txtDuringWorkout').setContent(response.dataCollection[0].DuringWorkout);
-                        tinymce.get('txtPreLunch').setContent(response.dataCollection[0].PreLunch);
-                        tinymce.get('txtLunch').setContent(response.dataCollection[0].Lunch);
-                        tinymce.get('txtTeaEvening').setContent(response.dataCollection[0].TeaEvening);
-                        tinymce.get('txtLateEvening').setContent(response.dataCollection[0].LateEvening);
-                        tinymce.get('txtPreDinner').setContent(response.dataCollection[0].PreDinner);
-                        tinymce.get('txtDinner').setContent(response.dataCollection[0].Dinner);
-                        tinymce.get('txtPostDinner').setContent(response.dataCollection[0].PostDinner);
-                        tinymce.get('txtBedTime').setContent(response.dataCollection[0].BedTime);
-                        tinymce.get('txtRecipes').setContent(response.dataCollection[0].Recipes);
-                        tinymce.get('txtNotes').setContent(response.dataCollection[0].Notes);
-                    }
-                }
+            //     varddl.innerHTML = varddl.innerHTML +
+            //                    '<option value="' + list1[i]['ID'] + '">' + list1[i]['Name'] + '</option>';
+
+            //}
+
+            //-----UDAY----
+
+            //CommonAjaxMethod('Program/GetEatingPattern', { userId: sessionStorage.getItem("userId"), orderId: sessionStorage.getItem('OrderId'), productId: sessionStorage.getItem('ProductId'), SessionId: DDlValue}, false, 'GET', function (response) 
+            //{
+
+            //    if (sessionStorage.getItem('RoleID') == "1")
+            //    {
+            //        $("#userform").show();
+            //        $("#adminform").hide();
+
+            //        if (response.dataCollection.length > 0) 
+            //        {
+            //            $('#divOnRising').html(response.dataCollection[0].OnRising);
+            //            $('#divOnRising').html(response.dataCollection[0].OnRising);
+            //            $('#divPreBreak').html(response.dataCollection[0].PreBreakfast);
+            //            $('#divBreak').html(response.dataCollection[0].Breakfast);
+            //            $('#divMidMorning').html(response.dataCollection[0].MidMorning);
+            //            $('#divPreWorkout').html(response.dataCollection[0].PreWorkout);
+            //            $('#divDuringWorkout').html(response.dataCollection[0].DuringWorkout);
+            //            $('#divPreLunch').html(response.dataCollection[0].PreLunch);
+            //            $('#divLunch').html(response.dataCollection[0].Lunch);
+            //            $('#divTeaEvening').html(response.dataCollection[0].TeaEvening);
+            //            $('#divLateEvening').html(response.dataCollection[0].LateEvening);
+            //            $('#divPreDinner').html(response.dataCollection[0].PreDinner);
+            //            $('#divDinner').html(response.dataCollection[0].Dinner);
+            //            $('#divPostDinner').html(response.dataCollection[0].PostDinner);
+            //            $('#divBedTime').html(response.dataCollection[0].BedTime);
+            //            $('#divRecipes').html(response.dataCollection[0].Recipes);
+            //            $('#divNotes').html(response.dataCollection[0].Notes);
+            //        }
+            //    }
+            //    if (sessionStorage.getItem('RoleID') == "3" || sessionStorage.getItem('RoleID') == "2")
+            //    {
+
+            //        $("#userform").hide();
+            //        $("#adminform").show();
+
+            //        if (response.dataCollection.length > 0) {
+            //            tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
+            //            tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
+            //            tinymce.get('txtPreBreak').setContent(response.dataCollection[0].PreBreakfast);
+            //            tinymce.get('txtBreak').setContent(response.dataCollection[0].Breakfast);
+            //            tinymce.get('txtMidMorning').setContent(response.dataCollection[0].MidMorning);
+            //            tinymce.get('txtPreWorkout').setContent(response.dataCollection[0].PreWorkout);
+            //            tinymce.get('txtDuringWorkout').setContent(response.dataCollection[0].DuringWorkout);
+            //            tinymce.get('txtPreLunch').setContent(response.dataCollection[0].PreLunch);
+            //            tinymce.get('txtLunch').setContent(response.dataCollection[0].Lunch);
+            //            tinymce.get('txtTeaEvening').setContent(response.dataCollection[0].TeaEvening);
+            //            tinymce.get('txtLateEvening').setContent(response.dataCollection[0].LateEvening);
+            //            tinymce.get('txtPreDinner').setContent(response.dataCollection[0].PreDinner);
+            //            tinymce.get('txtDinner').setContent(response.dataCollection[0].Dinner);
+            //            tinymce.get('txtPostDinner').setContent(response.dataCollection[0].PostDinner);
+            //            tinymce.get('txtBedTime').setContent(response.dataCollection[0].BedTime);
+            //            tinymce.get('txtRecipes').setContent(response.dataCollection[0].Recipes);
+            //            tinymce.get('txtNotes').setContent(response.dataCollection[0].Notes);
+            //        }
+            //    }
                
 
-            });
+            //});
+
+            //-----UDAY----
         }
     };
 
@@ -506,7 +578,7 @@
         ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
         ctrl.click();
     }   
-    function SaveEatingPattern(varsubmit) {       
+    function SaveEatingPattern(varsubmit) {   
        
     var UserEatingPattern =
     {
@@ -535,6 +607,7 @@
             Notes: tinymce.get('txtNotes').getContent() ,
             IsSubmit: varsubmit,
             IsActive: 1,
+            SessionId: $("#ddlSessionID").val(),
 
         }
       
@@ -555,5 +628,81 @@
     function SubmitEatingPattern()
     {
     }
+
+    function bindData(varselectedID) {
+        alert(varselectedID.value);
+        debugger;
+
+        if (sessionStorage.getItem('RoleID') == "1") {
+            $("#userform").show();
+            $("#adminform").hide();
+        }
+        if (sessionStorage.getItem('RoleID') == "3" || sessionStorage.getItem('RoleID') == "2") {
+
+            $("#userform").hide();
+            $("#adminform").show();
+        }
+        if (sessionStorage.getItem('ProductId') == "0") {
+            $("#divButtonShowHide").hide();
+        }
+        else {
+            CommonAjaxMethod('Program/GetEatingPattern', { userId: sessionStorage.getItem("userId"), orderId: sessionStorage.getItem('OrderId'), productId: sessionStorage.getItem('ProductId'), SessionId: varselectedID.value }, false, 'GET', function (response) {
+
+                if (sessionStorage.getItem('RoleID') == "1") {
+                    $("#userform").show();
+                    $("#adminform").hide();
+
+                    if (response.dataCollection.length > 0) {
+                        $('#divOnRising').html(response.dataCollection[0].OnRising);
+                        $('#divOnRising').html(response.dataCollection[0].OnRising);
+                        $('#divPreBreak').html(response.dataCollection[0].PreBreakfast);
+                        $('#divBreak').html(response.dataCollection[0].Breakfast);
+                        $('#divMidMorning').html(response.dataCollection[0].MidMorning);
+                        $('#divPreWorkout').html(response.dataCollection[0].PreWorkout);
+                        $('#divDuringWorkout').html(response.dataCollection[0].DuringWorkout);
+                        $('#divPreLunch').html(response.dataCollection[0].PreLunch);
+                        $('#divLunch').html(response.dataCollection[0].Lunch);
+                        $('#divTeaEvening').html(response.dataCollection[0].TeaEvening);
+                        $('#divLateEvening').html(response.dataCollection[0].LateEvening);
+                        $('#divPreDinner').html(response.dataCollection[0].PreDinner);
+                        $('#divDinner').html(response.dataCollection[0].Dinner);
+                        $('#divPostDinner').html(response.dataCollection[0].PostDinner);
+                        $('#divBedTime').html(response.dataCollection[0].BedTime);
+                        $('#divRecipes').html(response.dataCollection[0].Recipes);
+                        $('#divNotes').html(response.dataCollection[0].Notes);
+                    }
+                }
+                if (sessionStorage.getItem('RoleID') == "3" || sessionStorage.getItem('RoleID') == "2") {
+
+                    $("#userform").hide();
+                    $("#adminform").show();
+
+                    if (response.dataCollection.length > 0) {
+                        tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
+                        tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
+                        tinymce.get('txtPreBreak').setContent(response.dataCollection[0].PreBreakfast);
+                        tinymce.get('txtBreak').setContent(response.dataCollection[0].Breakfast);
+                        tinymce.get('txtMidMorning').setContent(response.dataCollection[0].MidMorning);
+                        tinymce.get('txtPreWorkout').setContent(response.dataCollection[0].PreWorkout);
+                        tinymce.get('txtDuringWorkout').setContent(response.dataCollection[0].DuringWorkout);
+                        tinymce.get('txtPreLunch').setContent(response.dataCollection[0].PreLunch);
+                        tinymce.get('txtLunch').setContent(response.dataCollection[0].Lunch);
+                        tinymce.get('txtTeaEvening').setContent(response.dataCollection[0].TeaEvening);
+                        tinymce.get('txtLateEvening').setContent(response.dataCollection[0].LateEvening);
+                        tinymce.get('txtPreDinner').setContent(response.dataCollection[0].PreDinner);
+                        tinymce.get('txtDinner').setContent(response.dataCollection[0].Dinner);
+                        tinymce.get('txtPostDinner').setContent(response.dataCollection[0].PostDinner);
+                        tinymce.get('txtBedTime').setContent(response.dataCollection[0].BedTime);
+                        tinymce.get('txtRecipes').setContent(response.dataCollection[0].Recipes);
+                        tinymce.get('txtNotes').setContent(response.dataCollection[0].Notes);
+                    }
+                }
+
+
+            });
+        }
+    }
+
+    
 </script>
 
