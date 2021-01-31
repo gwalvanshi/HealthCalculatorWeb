@@ -143,7 +143,7 @@
                 //alert(varsession);
                 var vara = 0;
                 var varb = 1;
-                debugger;
+                
                 $("#hdnProductId").val(response.data.Data[0].ProductId);
                 $("#hdnOrderId").val(response.data.Data[0].OrderId);
                 $("#hdnlenght").val(response.data.Data[0].GivenDays);
@@ -307,10 +307,10 @@
         var varlenght = $("#hdnlenght").val();
         if ($("#hdnlenght").val() != '' || $("#hdnlenght").val()) {
             // alert($("#hdnlenght").val());
-            // debugger;
+            // 
             for (var i = 0; i < parseInt($("#hdnlenght").val()); i++) {
                // alert("a");
-               //   debugger;
+               //   
                 var list1 =
                 {
                     UserId: sessionStorage.getItem('userId'),

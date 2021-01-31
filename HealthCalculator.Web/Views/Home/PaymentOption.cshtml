@@ -84,7 +84,7 @@
             "callback_url":  '@Url.Content("~/Payment/SuccessView")',
             "handler": function (response)
              {
-                debugger;
+                
                 if (typeof response.razorpay_payment_id == 'undefined' || response.razorpay_payment_id < 1) {
                     redirect_url = '@Url.Content("~/Payment/SuccessView")';
                 } else {
@@ -110,13 +110,13 @@
                     amount: "100"
                 },
                 success: function (response) {
-                    debugger;
+                    
                     orderId = response.orderId;
                     rzp1.open();
                     e.preventDefault();
                 },
                 error: function (jqXHR) {
-                    debugger;
+                    
                     alert(jqXHR);
                 }
             });
@@ -173,7 +173,7 @@
         //    onAuthorize: function (data, actions) {
         //        return actions.payment.execute().then(function ()
         //        {
-        //            debugger;
+        //            
         //            // Show a confirmation message to the buyer
         //            window.alert('Thank you for your purchase!');
         //        });
