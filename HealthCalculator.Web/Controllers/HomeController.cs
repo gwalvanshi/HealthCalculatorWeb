@@ -22,6 +22,13 @@ namespace HealthCalculator.Web.Controllers
 
         #region Program
 
+        [SessionExpireFilterAttributeAdmin]
+        public ActionResult AddFreeSession(int userId)
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
         [SessionExpireFilterAttribute]
         public ActionResult payments()
         {
@@ -601,7 +608,47 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
+        [HttpPost]
+        public async Task<JsonResult> SaveOrderDetailsForUser(UserOrderViewModel collection)
+        {
+            try
+            {
+                if(collection.PaymentDone== "Yes")
+                {
+                    collection.IsPaymentDone = true;
+                }
+                else
+                {
+                    collection.IsPaymentDone = false;
+                }
+                if (collection.ActivePlan == "Yes")
+                {
+                    collection.IsActive = true;
+                }
+                else
+                {
+                    collection.IsActive = false;
+                }
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "116";
+                SendObjData.UserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                SendObjData.Operation = "UPDATE";
 
+                string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
+                SendObjData.XML = stringTOXml;
+
+                GenericService _genericService = new GenericService();
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<UserOrderViewModel>(stringContent);
+
+                return new JsonResult { Data = status };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
 
         [HttpPost]
         public async Task<JsonResult> SaveOrderDetails(UserOrderViewModel collection)

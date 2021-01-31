@@ -183,6 +183,19 @@
                                 }).appendTo(container);
                         }
                     }
+                    ,
+                    {
+                        caption: "Add Free Session",
+                        alignment: 'center',
+                        cellTemplate: function (container, options) {
+                            $('<a />').addClass('dx-link')
+                                .text('Free Session')
+                                .on('dxclick', function () {
+
+                                    window.location.href = "AddFreeSession?userId=" + options.data.userId;
+                                }).appendTo(container);
+                        }
+                    }
                        
                 ]
              });        

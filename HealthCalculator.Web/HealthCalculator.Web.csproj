@@ -702,6 +702,7 @@
     <Content Include="Views\Home\PaymentOption.cshtml" />
     <Content Include="Views\Home\ViewPlan.cshtml" />
     <Content Include="Views\Home\EditPlan.cshtml" />
+    <Content Include="Views\Home\AddFreeSession.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
