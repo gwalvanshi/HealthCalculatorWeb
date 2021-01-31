@@ -6,6 +6,28 @@ using System.Threading.Tasks;
 
 namespace HealthCalculator.Web.EntityModel
 {
+    public class VEnquiryModelView
+    {
+     
+
+       public int Enquiry_Id{ get; set; }
+       public string FirstName{ get; set; }
+       public string LastName{ get; set; }
+       public string ContactNumber{ get; set; }
+       public string Email_ID{ get; set; }
+       public string City{ get; set; }
+       public string State{ get; set; }
+       public string Address1{ get; set; }
+       public string Address2{ get; set; }
+       public string Pin_Code{ get; set; }
+       public string Country{ get; set; }
+       public string AgeGroup{ get; set; }
+       public string UserId{ get; set; }
+       public bool ? CheckedByAdmin{ get; set; }
+       public decimal ? BMI { get; set; }
+       public decimal? WaterIntake { get; set; }
+       public decimal? IdealBodyWeight { get; set; }
+    }
    public class EnquiryModel
     {
        

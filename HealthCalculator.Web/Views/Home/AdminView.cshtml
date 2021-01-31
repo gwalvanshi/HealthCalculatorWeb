@@ -5,16 +5,16 @@
 
 <div class="container-fluid flowerBg">
     <div style="padding-top:10px;" class="row justify-content-center">
-        <a href="index3.php" target="_blank" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Eating Smart Pattern(4)</a>
-        <a href="index4.php" target="_blank" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">User Message(6)</a>
-        <a href="index.php" target="_blank" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Health Rating(1)</a>
-        <a href="index2.php" target="_blank" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Assessment Filled(12)</a>
-        <a href="blogs.php" target="_blank" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker Filled(5)</a>
-        <a href="blogs.php" target="_blank" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker(5) 6th and 11th day falls today</a>
-        <a href="blogs.php" target="_blank" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Users(4)</a>
-        <a href="blogs.php" target="_blank" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Orders(6)</a>
+        @*<a href="index3.php" target="_blank" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Eating Smart Pattern<span class="float-right d-none d-md-block" id="spEatingPattern"></span></a>*@
+        <a href="#"  onclick="LoadGrid(1)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">User Message<span class="float-right d-none d-md-block" id="spMessage"></span></a>  
+        <a href="#"  onclick="LoadRatingGrid()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Health Rating<span class="float-right d-none d-md-block" id="spRating"></span></a>
+        <a href="#"  onclick="LoadGrid(2)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Assessment Filled<span class="float-right d-none d-md-block" id="spAssessment"></span></a>
+        <a href="#"  onclick="LoadGrid(3)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker Filled<span class="float-right d-none d-md-block" id="spTF"></span></a>
+        <a href="#"  onclick="LoadGrid(4)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker 6th and 11th day falls today<span class="float-right d-none d-md-block" id="spTFF"></span></a>
+        <a href="#"  onclick="LoadGrid(5)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Users <span class="float-right d-none d-md-block" id="spUsers"></span></a>
+        <a href="#"  onclick="LoadGrid(6)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Orders<span class="float-right d-none d-md-block" id="spOrder"></span></a>
+        <a href="#" onclick="LoadAll()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">All Users</a>  
     </div>
-   
     <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-11">
             <div class="middleContent bg-gray shadow">
@@ -29,11 +29,109 @@
 </div>
 
 <script>
+    function LoadAll()
+    {
+        CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response) {
+         
+            Load(response.dataCollection);
+            //$("#gridContainer").dxDataGrid(
+            //    {
+            //        dataSource: response.dataCollection,
+            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
+            //    showBorders: true
+            //});
+        });
+    }
+    function LoadRatingGrid()
+    {       
+        CommonAjaxMethod('Home/GetEnquiryRatingView', null, false, 'GET', function (response) {
+         
+            LoadEnquiry(response.dataCollection);
+            //$("#gridContainer").dxDataGrid(
+            //    {
+            //        dataSource: response.dataCollection,
+            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
+            //    showBorders: true
+            //});
+        });
+        
+    }
+    function LoadGrid(strVar)
+    {
+        var vType = 0;
+        if (strVar==1)
+        {
+            vType="7"
+        }
+        else if (strVar==2)
+        {
+            vType = "2"
+        }
+        else if (strVar == 3) {
+            vType = "3"
+        }
+        else if (strVar == 4) {
+            vType = "6"
+        }
+        else if (strVar == 5) {
+            vType = "5"
+        }
+        else if (strVar == 6) {
+            vType = "4"
+        }
+        var obj1 = {
 
+            Type: vType,
+            OperationType: "GET",
+            UserId: 1
+        }
+        CommonAjaxMethod('Home/AdminNotificationEnquiryMessage', obj1, false, 'POST', function (response) {
+           
+            Load(response.data.Data);
+            //$("#gridContainer").dxDataGrid(
+            //    {
+            //        dataSource: response.dataCollection,
+            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
+            //    showBorders: true
+            //});
+        });
+
+    }
     window.onload = function ()
     {
+        var obj = {
 
-        CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response) {
+           Type:"",
+           OperationType:"",
+            UserId:1
+        }
+
+
+        CommonAjaxMethod('Home/GetAdminNotification', obj, false, 'POST', function (response)
+        {
+                   
+            $("#spMessage").text(" ("+response.data.Data[0].MessageCount+")");
+            $("#spRating").text(" ("+response.data.Data[0].EnquiryCount+")");
+            $("#spAssessment").text(" ("+response.data.Data[0].AssessmentCount+")");
+            $("#spTF").text(" ("+response.data.Data[0].TrackerFilled+")");
+            $("#spTFF").text(" ("+response.data.Data[0].Trackerfalldays+")");
+            $("#spUsers").text(" ("+response.data.Data[0].NewUserCount+")");
+            $("#spOrder").text(" ("+response.data.Data[0].NewOrder+")");
+
+         
+           
+           // Load(response.dataCollection);
+            //$("#gridContainer").dxDataGrid(
+            //    {
+            //        dataSource: response.dataCollection,
+            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
+            //    showBorders: true
+            //});
+        });
+      
+        CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response)
+        {
+            
             Load(response.dataCollection);
             //$("#gridContainer").dxDataGrid(
             //    {
@@ -88,6 +186,71 @@
                        
                 ]
              });        
-    } 
+    }
+
+
+    function LoadEnquiry(ctr) {
+
+        //public int Enquiry_Id{ get; set; }
+        //public string FirstName{ get; set; }
+        //public string LastName{ get; set; }
+        //public string ContactNumber{ get; set; }
+        //public string Email_ID{ get; set; }
+        //public string City{ get; set; }
+        //public string State{ get; set; }
+        //public string Address1{ get; set; }
+        //public string Address2{ get; set; }
+        //public string Pin_Code{ get; set; }
+        //public string Country{ get; set; }
+        //public string AgeGroup{ get; set; }
+        //public string UserId{ get; set; }
+        //public bool CheckedByAdmin{ get; set; }
+        //public decimal ? BMI { get; set; }
+        //public decimal? WaterIntake { get; set; }
+        //public decimal? IdealBodyWeight { get; set; }
+        $("#gridContainer").dxDataGrid({
+            dataSource: ctr,
+            allowColumnReordering: true,
+            showBorders: true,
+
+            searchPanel: {
+                visible: true
+            },
+            paging: {
+                pageSize: 10
+            },
+            groupPanel: {
+                visible: true
+            },
+            editing: {
+                mode: "form",
+                allowUpdating: false
+            },
+            columns: [
+                "FirstName",            
+                "Email_ID",
+                "AgeGroup",
+                "ContactNumber",
+                 "BMI",
+                "WaterIntake",
+                "IdealBodyWeight"
+                //,{
+                //    caption: "View User Details",
+                //    alignment: 'center',
+                //    cellTemplate: function (container, options) {
+                //        $('<a />').addClass('dx-link')
+                //            .text('View Detail')
+                //            .on('dxclick', function () {
+                //                debugger;
+
+                //               /// sessionStorage.setItem('SelectedUserId', options.data.Enquiry_Id);
+                //                window.location.href = "assessment";
+                //            }).appendTo(container);
+                //    }
+               //   }
+
+            ]
+        });
+    }
 </script>
 
