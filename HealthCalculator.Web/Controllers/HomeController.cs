@@ -37,7 +37,7 @@ namespace HealthCalculator.Web.Controllers
             List<MessageMasterDataList> MessageMasterDataListChild = new List<EntityModel.MessageMasterDataList>();
             int loggedIdUserID = 0;
             if (string.IsNullOrEmpty(userId))
-                loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString()); 
+                loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
             else
                 loggedIdUserID = Convert.ToInt32(userId);
             GenericService _genericService = new GenericService();

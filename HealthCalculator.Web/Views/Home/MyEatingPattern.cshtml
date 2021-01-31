@@ -37,7 +37,7 @@
 
                 <div class="row">
                     <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">WEIGHT TRACKER : - <label class="col-12 col-sm-5 col-form-label semi" id="lbllable"></label></p>
+                        <p class="semi mb-2 text-yellow">Current Active Plan : - <label class="col-12 col-sm-5 col-form-label semi" id="lbllable"></label></p>
                     </div>
                 </div>
                 <div class="row">
@@ -257,181 +257,185 @@
 
                     @*--------------------*@
                 </form>
-                <form class="form-data" id="userform" style="display:none;">
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">On Rising</p>
-                            <hr class="mt-0 mb-4 bg-dark" />
+                <div id="print-content">
+                    <form class="form-data" id="userform" style="display:none;">
+                        <input type="button" onclick="printDiv('print-content')" value="Print!" />
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">On Rising</p>
+                                <hr class="mt-0 mb-4 bg-dark" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
+                        <div class="form-group">
 
-                        <div rows="10" class="form-control" id="divOnRising"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Pre Break Fast</p>
-                            <hr class="mt-0 mb-4 bg-dark" />
+                            <div rows="10" class="form-control" id="divOnRising"></div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divPreBreak"></div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Break Fast</p>
-                            <hr class="mt-0 mb-4 bg-dark" />
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Pre Break Fast</p>
+                                <hr class="mt-0 mb-4 bg-dark" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divBreak"></div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Mid Morning</p>
-                            <hr class="mt-0 mb-4 bg-dark" />
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divPreBreak"></div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divMidMorning"></div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Pre Workout</p>
-                            <hr class="mt-0 mb-4 bg-dark" />
+
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Break Fast</p>
+                                <hr class="mt-0 mb-4 bg-dark" />
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divPreWorkout"></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">During Workout</p>
-                            <hr class="mt-0 mb-3 bg-dark" />
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divBreak"></div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divDuringWorkout"></div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Pre Lunch</p>
-                            <hr class="mt-0 mb-4 bg-dark" />
+
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Mid Morning</p>
+                                <hr class="mt-0 mb-4 bg-dark" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divPreLunch"></div>
-                    </div>
-
-
-
-                    @*<%-- uday-->*@
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Lunch</p>
-                            <hr class="mt-0 mb-3 bg-dark" />
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divMidMorning"></div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divLunch"></div>
-                    </div>
 
-
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Tea Evening</p>
-                            <hr class="mt-0 mb-3 bg-dark" />
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Pre Workout</p>
+                                <hr class="mt-0 mb-4 bg-dark" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divTeaEvening"></div>
-                    </div>
 
-
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Late Evening</p>
-                            <hr class="mt-0 mb-3 bg-dark" />
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divPreWorkout"></div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divLateEvening"></div>
-                    </div>
 
-
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Pre Dinner</p>
-                            <hr class="mt-0 mb-3 bg-dark" />
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">During Workout</p>
+                                <hr class="mt-0 mb-3 bg-dark" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divPreDinner"></div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Dinner</p>
-                            <hr class="mt-0 mb-3 bg-dark" />
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divDuringWorkout"></div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divDinner"></div>
-                    </div>
 
-
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Post Dinner</p>
-                            <hr class="mt-0 mb-3 bg-dark" />
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Pre Lunch</p>
+                                <hr class="mt-0 mb-4 bg-dark" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divPostDinner"></div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Bed Time</p>
-                            <hr class="mt-0 mb-3 bg-dark" />
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divPreLunch"></div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divBedTime"></div>
-                    </div>
 
 
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Recipes</p>
-                            <hr class="mt-0 mb-3 bg-dark" />
+
+                        @*<%-- uday-->*@
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Lunch</p>
+                                <hr class="mt-0 mb-3 bg-dark" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divRecipes"></div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Notes</p>
-                            <hr class="mt-0 mb-3 bg-dark" />
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divLunch"></div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div rows="10" class="form-control" id="divNotes"></div>
-                    </div>
-                </form>
+
+
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Tea Evening</p>
+                                <hr class="mt-0 mb-3 bg-dark" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divTeaEvening"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Late Evening</p>
+                                <hr class="mt-0 mb-3 bg-dark" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divLateEvening"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Pre Dinner</p>
+                                <hr class="mt-0 mb-3 bg-dark" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divPreDinner"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Dinner</p>
+                                <hr class="mt-0 mb-3 bg-dark" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divDinner"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Post Dinner</p>
+                                <hr class="mt-0 mb-3 bg-dark" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divPostDinner"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Bed Time</p>
+                                <hr class="mt-0 mb-3 bg-dark" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divBedTime"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Recipes</p>
+                                <hr class="mt-0 mb-3 bg-dark" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divRecipes"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <p class="semi mb-2 text-yellow">Notes</p>
+                                <hr class="mt-0 mb-3 bg-dark" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div rows="10" class="form-control" id="divNotes"></div>
+                        </div>
+                    </form>
+                </div>
+             
             </div>
         </div>
     </div>
@@ -445,7 +449,13 @@
 <script>
 
     
-   
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        w = window.open();
+        w.document.write(printContents);
+        w.print();
+        w.close();
+    }
     window.onload = function ()
     {        
         
@@ -641,8 +651,7 @@
     }
 
     function bindData(varselectedID) {
-        alert(varselectedID.value);
-        
+       
 
         if (sessionStorage.getItem('RoleID') == "1") {
             $("#userform").show();
