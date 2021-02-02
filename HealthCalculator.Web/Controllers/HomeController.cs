@@ -103,10 +103,62 @@ namespace HealthCalculator.Web.Controllers
         [SessionExpireFilterAttribute]
         public ActionResult MyEatingSmartTools(string userId = null)
         {
-            return View();
+            List<UserOrderViewModel> objModelList = new List<UserOrderViewModel>();
+            EatingToolModel objEatingToolModel = new EatingToolModel();
+            try
+            {
+
+             
+                int loggedIdUserID = 0;
+                if (string.IsNullOrEmpty(userId))
+                    loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                else
+                    loggedIdUserID = Convert.ToInt32(userId);
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "116";
+                collection.UserId = loggedIdUserID;
+                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "UserId",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue = loggedIdUserID.ToString()
+                    }
+                };
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication =  _genericService.GetRecordsResult<UserOrderViewModel>(stringContent1);
+                objModelList = objCommunication.dataCollection;
+                if (string.IsNullOrEmpty(objCommunication.ErrorMessage))
+                {
+                    bool isValidTool = false;
+
+                    if (objCommunication.dataCollection.Count > 0)
+                    {
+                        foreach (var item in objCommunication.dataCollection)
+                        {
+                            if (item.ProgramId != 9 || item.ProgramId != 8 || item.ProgramId != 2)
+                            {
+                                isValidTool = true;
+                            }
+                        }
+                    }
+                   
+                    objEatingToolModel.IsValid = isValidTool;
+                }
+
+                       
+
+                }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return View(objEatingToolModel);
             // return RedirectToAction("Index", "User");
         }
-
+      
         [SessionExpireFilterAttribute]
         public ActionResult tracker(string userId = null)
         {
@@ -615,11 +667,11 @@ namespace HealthCalculator.Web.Controllers
             {
                 if(collection.PaymentDone== "Yes")
                 {
-                    collection.IsPaymentDone = true;
+                    collection.IsPaymentDone = "Yes";
                 }
                 else
                 {
-                    collection.IsPaymentDone = false;
+                    collection.IsPaymentDone = "No";
                 }
                 if (collection.ActivePlan == "Yes")
                 {
