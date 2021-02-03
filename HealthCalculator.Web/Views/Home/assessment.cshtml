@@ -1116,7 +1116,8 @@
         //}
     }
 
-    function ValidateRequiredField() {
+    function ValidateRequiredField() 
+    {
 
         var isRequired = true;
         var x = document.getElementsByClassName("mandotory");
@@ -1170,7 +1171,8 @@
     }
     $(document).ready(function () {
 
-       
+        SystemdropdownMasterData = [];
+        LoadSystemMasterDropdown("ddlCountry", 1, "", "");
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
        
         if (selectedUserId!="")
@@ -1198,7 +1200,7 @@
             // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);
             //-------------------GenralInfo-----------------------------------
             $("#txtName").val(sessionStorage.getItem('EmployeeName'));          
-            if (response.data.Data.Table.length > 0) {
+            if (response.data.Data.Table[0].length > 0) {
                 $("#txtName").val(response.data.Data.Table[0].UserName);
             $("#ddlGenderp").val(response.data.Data.Table[0].Gender);
             $("#spMessage").text(" (" + response.data.Data.Table[0].MessageCount + ")");
@@ -1228,7 +1230,7 @@
             // alert(response.data.Data.Table[0].BirthDate);
             // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', response.data.Data.Table[0].BirthDate);
             $("#txtAgep").val(response.data.Data.Table[0].Age);
-            $("#ddlCountry").val(response.data.Data.Table[0].Country);
+          
             SystemdropdownMasterData = [];
             LoadSystemMasterDropdown("ddlCountry", 1, "", response.data.Data.Table[0].Country);
             SystemdropdownMasterData = [];
@@ -1485,13 +1487,21 @@
                 },
                 success: function (result) {
 
-                    if (result.ErrorMessage == undefined) {
-                        if (folderDetails == 1) { $("#hdnProfilePhotoPath").val(result); }
-                        else { $("#hdnProfilePhotoPathAfter").val(result);}
+                    if (result.ErrorMessage == undefined)
+                    {
+                        if (folderDetails == 1)
+                        {
+                            $("#hdnProfilePhotoPath").val(result);
+                        }
+                        else
+                        {
+                            $("#hdnProfilePhotoPathAfter").val(result);
+                        }
 
 
                     }
-                    else {
+                    else
+                    {
                         alert(result.ErrorMessage);
                     }
                 }
