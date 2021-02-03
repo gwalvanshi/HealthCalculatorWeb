@@ -45,8 +45,9 @@ namespace HealthCalculator.Web.Controllers
                 }
 
                 string fileName = fname;
-                string newFile = userID + "_" + fileName;
                 string[] splString = fileName.Split('.');
+                string newFile = userID + "_" + splString[0]; 
+               
                 string uploadNewFileName = newFile + "." + splString[1];
                 string filePathTobeSaved = "";
                 string baseurl = "";

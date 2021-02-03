@@ -188,7 +188,7 @@
         $("#btnupload").click(function () {
 
             $.ajax({
-                url: '/CommonMethods/UploadFiles?userID='+sessionStorage.getItem('userId'),
+                url: virtualPath+'/CommonMethods/UploadFiles?userID='+sessionStorage.getItem('userId'),
                 type: "POST",
                 contentType: false, // Not to set any content header
                 processData: false, // Not to process data
