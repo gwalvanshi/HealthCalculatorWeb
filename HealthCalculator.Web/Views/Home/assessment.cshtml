@@ -1187,8 +1187,7 @@
         }
 
         //-------------------------------------------------------------------------------------
-        CommonAjaxMethod('Program/GetAsseeement', assessment, false, 'POST', function (response)
-        {
+        CommonAjaxMethod('Program/GetAsseeement', assessment, false, 'POST', function (response) {
             //var a = new Date("2015-03-25T12:00:00Z","dd-mm-yyyy");
             //alert(a);
             //var d = Date(response.data.Data.Table[0].BirthDate);
@@ -1196,14 +1195,16 @@
             //alert(d);
             //alert(d1);
 
-           // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);
+            // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);
             //-------------------GenralInfo-----------------------------------
-            $("#txtName").val(response.data.Data.Table[0].UserName);
+            $("#txtName").val(sessionStorage.getItem('EmployeeName'));          
+            if (response.data.Data.Table.length > 0) {
+                $("#txtName").val(response.data.Data.Table[0].UserName);
             $("#ddlGenderp").val(response.data.Data.Table[0].Gender);
-            $("#spMessage").text(" ("+response.data.Data.Table[0].MessageCount+")");
+            $("#spMessage").text(" (" + response.data.Data.Table[0].MessageCount + ")");
             sessionStorage.setItem('ProductId', response.data.Data.Table[0].ProductId);
-            sessionStorage.setItem('OrderId', response.data.Data.Table[0].OrderId);           
-            
+            sessionStorage.setItem('OrderId', response.data.Data.Table[0].OrderId);
+
             var strDate = "";
             var dateValue = response.data.Data.Table[0].BirthDate;
             if (dateValue != null) {
@@ -1224,9 +1225,9 @@
             }
             //debugger;
 
-           // alert(response.data.Data.Table[0].BirthDate);
-           // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', response.data.Data.Table[0].BirthDate);
-            $("#txtAgep").val(response.data.Data.Table[0].Age) ;
+            // alert(response.data.Data.Table[0].BirthDate);
+            // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', response.data.Data.Table[0].BirthDate);
+            $("#txtAgep").val(response.data.Data.Table[0].Age);
             $("#ddlCountry").val(response.data.Data.Table[0].Country);
             SystemdropdownMasterData = [];
             LoadSystemMasterDropdown("ddlCountry", 1, "", response.data.Data.Table[0].Country);
@@ -1236,7 +1237,7 @@
             SystemdropdownMasterData = [];
             LoadSystemMasterDropdown("ddlCity", 3, response.data.Data.Table[0].State, response.data.Data.Table[0].City);
 
-            $("#txtEmail").val(response.data.Data.Table[0].EmailID) ;
+            $("#txtEmail").val(response.data.Data.Table[0].EmailID);
             $("#txtPhoneNumber").val(response.data.Data.Table[0].PhoneNumber);
             $("#txtCaste").val(response.data.Data.Table[0].Caste);
             $("#ddlMaritalStatus").val(response.data.Data.Table[0].MaritalStatus);
@@ -1271,67 +1272,73 @@
             }
 
             $("#hdnfileuploadReportPath").val(response.data.Data.Table[0].Reports);
-
+            }
+          
             //--------------------Medications-----------------------------------
-            $("#txtHealthIssues1").val(response.data.Data.Table1[0].HealthIssues);
-            $("#txtMedication1").val(response.data.Data.Table1[0].Medication);
+            if (response.data.Data.Table.length > 0) {
+                $("#txtHealthIssues1").val(response.data.Data.Table1[0].HealthIssues);
+                $("#txtMedication1").val(response.data.Data.Table1[0].Medication);
 
-            $("#txtHealthIssues2").val(response.data.Data.Table1[1].HealthIssues);
-            $("#txtMedication2").val(response.data.Data.Table1[1].Medication);
+                $("#txtHealthIssues2").val(response.data.Data.Table1[1].HealthIssues);
+                $("#txtMedication2").val(response.data.Data.Table1[1].Medication);
 
-            $("#txtHealthIssues3").val(response.data.Data.Table1[2].HealthIssues);
-            $("#txtMedication3").val(response.data.Data.Table1[2].Medication);
+                $("#txtHealthIssues3").val(response.data.Data.Table1[2].HealthIssues);
+                $("#txtMedication3").val(response.data.Data.Table1[2].Medication);
 
-            $("#txtHealthIssues4").val(response.data.Data.Table1[3].HealthIssues);
-            $("#txtMedication4").val(response.data.Data.Table1[3].Medication);
+                $("#txtHealthIssues4").val(response.data.Data.Table1[3].HealthIssues);
+                $("#txtMedication4").val(response.data.Data.Table1[3].Medication);
 
-            $("#txtHealthIssues5").val(response.data.Data.Table1[4].HealthIssues);
-            $("#txtMedication5").val(response.data.Data.Table1[4].Medication);
-            //--------------------DietaryAndLifeStyleDetails-----------------------------------
-            $("#ddlLifestyle").val(response.data.Data.Table[0].Lifestyle);
-            $("#ddlEatingHabits").val(response.data.Data.Table[0].EatingHabits);
-            $("#ddlFrequencyOfSmoking").val(response.data.Data.Table[0].UM_HealthIssues);
-            $("#ddlFrequencyOfAlcoholConsumption").val(response.data.Data.Table[0].Frequencyofalcoholconsumption);
-            $("#ddlWaterIntakePerDayType").val(response.data.Data.Table[0].WaterintakeperdayType);
-            $("#ddlWaterIntakePerDayDetails").val(response.data.Data.Table[0].Waterintakeperday);
-            $("#ddlFrequencyOfRestaurantVisit").val(response.data.Data.Table[0].Frequencyofrestaurantvisit);
-             $("#txtPreferredCuisine").val(response.data.Data.Table[0].Preferredcuisine);
-            $("#txtWhoCooksAtHome").val(response.data.Data.Table[0].Whocooksathome);
-            $("#txtFoodAversions").val(response.data.Data.Table[0].FoodAversions);
-            $("#txtFoodPreferences").val(response.data.Data.Table[0].FoodPreferences);
-            $("#txtFoodAllergies").val(response.data.Data.Table[0].FoodAllergies);
-            //------------------Direct Call-------------------------------------
+                $("#txtHealthIssues5").val(response.data.Data.Table1[4].HealthIssues);
+                $("#txtMedication5").val(response.data.Data.Table1[4].Medication);
+            }
+            if (response.data.Data.Table.length > 0) {
+                //--------------------DietaryAndLifeStyleDetails-----------------------------------
 
-            $("#ddlOnWakingUp").val(response.data.Data.Table[0].OnwakingupTime);
-            $("#txtOnWakingUp").val(response.data.Data.Table[0].OnwakingupConsumption);
-            $("#ddlBreakfast").val(response.data.Data.Table[0].BreakfastTime);
-            $("#txtBreakfast").val(response.data.Data.Table[0].BreakfastConsumption);
-            $("#ddlMidMorning").val(response.data.Data.Table[0].MidmorningTime);
-            $("#txtMidMorning").val(response.data.Data.Table[0].MidmorningConsumption);
+                $("#ddlLifestyle").val(response.data.Data.Table[0].Lifestyle);
+                $("#ddlEatingHabits").val(response.data.Data.Table[0].EatingHabits);
+                $("#ddlFrequencyOfSmoking").val(response.data.Data.Table[0].UM_HealthIssues);
+                $("#ddlFrequencyOfAlcoholConsumption").val(response.data.Data.Table[0].Frequencyofalcoholconsumption);
+                $("#ddlWaterIntakePerDayType").val(response.data.Data.Table[0].WaterintakeperdayType);
+                $("#ddlWaterIntakePerDayDetails").val(response.data.Data.Table[0].Waterintakeperday);
+                $("#ddlFrequencyOfRestaurantVisit").val(response.data.Data.Table[0].Frequencyofrestaurantvisit);
+                $("#txtPreferredCuisine").val(response.data.Data.Table[0].Preferredcuisine);
+                $("#txtWhoCooksAtHome").val(response.data.Data.Table[0].Whocooksathome);
+                $("#txtFoodAversions").val(response.data.Data.Table[0].FoodAversions);
+                $("#txtFoodPreferences").val(response.data.Data.Table[0].FoodPreferences);
+                $("#txtFoodAllergies").val(response.data.Data.Table[0].FoodAllergies);
+                //------------------Direct Call-------------------------------------
 
-            $("#ddlLunch").val(response.data.Data.Table[0].LunchTime);
-            $("#txtLunch").val(response.data.Data.Table[0].LunchConsumption);
-            $("#ddlEveningTeaSnack").val(response.data.Data.Table[0].SnackTime);
-            $("#txtEveningTeaSnack").val(response.data.Data.Table[0].SnackConsumption);
-            $("#ddlDinner").val(response.data.Data.Table[0].DinnerTime);
-            $("#txtDinner").val(response.data.Data.Table[0].DinnerConsumption);
-            $("#ddlBedTime").val(response.data.Data.Table[0].Bedtime);
-            $("#txtBedTime").val(response.data.Data.Table[0].BedConsumption);
+                $("#ddlOnWakingUp").val(response.data.Data.Table[0].OnwakingupTime);
+                $("#txtOnWakingUp").val(response.data.Data.Table[0].OnwakingupConsumption);
+                $("#ddlBreakfast").val(response.data.Data.Table[0].BreakfastTime);
+                $("#txtBreakfast").val(response.data.Data.Table[0].BreakfastConsumption);
+                $("#ddlMidMorning").val(response.data.Data.Table[0].MidmorningTime);
+                $("#txtMidMorning").val(response.data.Data.Table[0].MidmorningConsumption);
 
-            //-------------------FoodFequency------------------------------------
-            $("#ddlRotiChapati").val(response.data.Data.Table[0].Roti);
-            $("#ddlRice").val(response.data.Data.Table[0].Rice);
-            $("#ddlBreadPav").val(response.data.Data.Table[0].BreadPav);
-            $("#ddlChaatFastFoodFriedSnacks").val(response.data.Data.Table[0].ChaatSnacks)
-            $("#ddlNonVeg").val(response.data.Data.Table[0].Nonveg);
-            $("#ddlEggs").val(response.data.Data.Table[0].Eggs);
-            $("#ddlTeaCoffee").val(response.data.Data.Table[0].Teacoffee);
-            $("#ddlDesert").val(response.data.Data.Table[0].Desert);
-            $("#ddlFruits").val(response.data.Data.Table[0].Fruits);
-            $("#ddlNuts").val(response.data.Data.Table[0].Nuts);
+                $("#ddlLunch").val(response.data.Data.Table[0].LunchTime);
+                $("#txtLunch").val(response.data.Data.Table[0].LunchConsumption);
+                $("#ddlEveningTeaSnack").val(response.data.Data.Table[0].SnackTime);
+                $("#txtEveningTeaSnack").val(response.data.Data.Table[0].SnackConsumption);
+                $("#ddlDinner").val(response.data.Data.Table[0].DinnerTime);
+                $("#txtDinner").val(response.data.Data.Table[0].DinnerConsumption);
+                $("#ddlBedTime").val(response.data.Data.Table[0].Bedtime);
+                $("#txtBedTime").val(response.data.Data.Table[0].BedConsumption);
 
-            //------------------AnyKeyInSights-------------------------------------
-            $("#txtAnyKeyInsight").val(response.data.Data.Table[0].Comments);
+                //-------------------FoodFequency------------------------------------
+                $("#ddlRotiChapati").val(response.data.Data.Table[0].Roti);
+                $("#ddlRice").val(response.data.Data.Table[0].Rice);
+                $("#ddlBreadPav").val(response.data.Data.Table[0].BreadPav);
+                $("#ddlChaatFastFoodFriedSnacks").val(response.data.Data.Table[0].ChaatSnacks)
+                $("#ddlNonVeg").val(response.data.Data.Table[0].Nonveg);
+                $("#ddlEggs").val(response.data.Data.Table[0].Eggs);
+                $("#ddlTeaCoffee").val(response.data.Data.Table[0].Teacoffee);
+                $("#ddlDesert").val(response.data.Data.Table[0].Desert);
+                $("#ddlFruits").val(response.data.Data.Table[0].Fruits);
+                $("#ddlNuts").val(response.data.Data.Table[0].Nuts);
+
+                //------------------AnyKeyInSights-------------------------------------
+                $("#txtAnyKeyInsight").val(response.data.Data.Table[0].Comments);
+            }
 
         });
         //----------------------------------------------------------------------------------------
