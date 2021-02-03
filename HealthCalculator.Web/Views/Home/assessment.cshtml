@@ -827,8 +827,7 @@
 
 
         if ($("#hdnProfilePhotoPath").val() != '' || $("#hdnProfilePhotoPathAfter").val()) {
-            alert($("#hdnProfilePhotoPath").val());
-            alert($("#hdnProfilePhotoPathAfter").val());
+           
             var UserPhotoData =
             {
                 UserId: sessionStorage.getItem('userId'),
@@ -1200,7 +1199,7 @@
             // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);
             //-------------------GenralInfo-----------------------------------
             $("#txtName").val(sessionStorage.getItem('EmployeeName'));          
-            if (response.data.Data.Table[0].length > 0) {
+            if (response.data.Data.Table.length > 0) {
                 $("#txtName").val(response.data.Data.Table[0].UserName);
             $("#ddlGenderp").val(response.data.Data.Table[0].Gender);
             $("#spMessage").text(" (" + response.data.Data.Table[0].MessageCount + ")");
@@ -1345,7 +1344,7 @@
         });
         //----------------------------------------------------------------------------------------
         $("#imageBrowes").change(function () {
-            alert("imageBrowes");
+          
             var File = this.files;
             if (File && File[0])
             {
