@@ -35,9 +35,10 @@ namespace HealthCalculator.Web.Controllers
             return View();
             // return RedirectToAction("Index", "User");
         }
-        [SessionExpireFilterAttribute]
+       // [SessionExpireFilterAttribute]
         public ActionResult helpDesk(string userId=null)
         {
+             userId = "2";
             List<MessageMasterData> objMessageMasterDataList = new List<MessageMasterData>();
             MessageMasterData objMessageMasterData = new MessageMasterData();
             MessageMasterDataList objMessageMasterDataChild= new MessageMasterDataList();
@@ -249,6 +250,7 @@ namespace HealthCalculator.Web.Controllers
         }
         public ActionResult login()
         {
+          
             return View();
         }
         public ActionResult Logout()
@@ -557,7 +559,16 @@ namespace HealthCalculator.Web.Controllers
                 IndexScreenParameterModel collection = new IndexScreenParameterModel();
                 collection.ScreenID = "114";
                 collection.UserId = loggedIdUserID;
-               
+                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "RoleId",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue = "1"
+                    }
+                };
+
                 var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
                 var objCommunication = await _genericService.GetRecords<LoginEntity>(stringContent1);
 

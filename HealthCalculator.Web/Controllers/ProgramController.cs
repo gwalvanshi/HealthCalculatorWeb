@@ -51,8 +51,12 @@ namespace HealthCalculator.Web.Controllers
                 string uploadNewFileName = newFile + "." + splString[1];
                 string filePathTobeSaved = "";
                 string baseurl = "";
+               
                 if (userID == "1")
                 {
+                   
+
+                    
                     baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["ProfilePhotoFolderBefore"]);
                     returrMessage = ConfigurationManager.AppSettings["ProfilePhotoFolderBefore"].ToString().Replace("~", "") + "/" + uploadNewFileName;
                 }

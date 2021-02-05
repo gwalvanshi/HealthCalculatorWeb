@@ -281,9 +281,8 @@
                         <div class="col-5 col-sm-2">
                             <select class="custom-select mandotory" id="ddlWeightType">
                                 <option selected>Select Type</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="KG">KG</option>
+                                <option value="LB">LB</option>                               
                             </select>
                         </div>
                         <div class="col-7 col-sm-5 pl-0">
@@ -295,9 +294,8 @@
                         <div class="col-5 col-sm-2">
                             <select class="custom-select mandotory" id="ddlHeightType">
                                 <option selected>Select Type</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="Feet-Inches">Feet-Inches</option>
+                                <option value="CM">CM</option>                               
                             </select>
                         </div>
                         <div class="col-7 col-sm-5 pl-0">
@@ -309,9 +307,8 @@
                         <div class="col-5 col-sm-2">
                             <select class="custom-select mandotory" id="ddlTargetWeightType">
                                 <option selected>Select Type</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="KG">KG</option>
+                                <option value="LB">LB</option>    
                             </select>
                         </div>
                         <div class="col-7 col-sm-5 pl-0">
@@ -1150,17 +1147,16 @@
 <script type="text/javascript">
     var SystemdropdownMasterData = [];
     function StateDD(ctrl) {
-         SystemdropdownMasterData = [];
+        SystemdropdownMasterData = [];
         LoadSystemMasterDropdown("ddlState", 2, ctrl.value, "");
     }
     function CityDD(ctrl) {
-         SystemdropdownMasterData = [];
+        SystemdropdownMasterData = [];
         LoadSystemMasterDropdown("ddlCity", 3, ctrl.value, "");
     }
-  
-   
-    function MessageHelp(ctrl)
-    {
+
+
+    function MessageHelp(ctrl) {
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
@@ -1173,17 +1169,16 @@
         SystemdropdownMasterData = [];
         LoadSystemMasterDropdown("ddlCountry", 1, "", "");
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
-       
-        if (selectedUserId!="")
-        {           
+
+        if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
         }
 
-        $("#HeaderValue").text("ACCOUNT SETTINGS | "+sessionStorage.getItem('EmployeeName'));
+        $("#HeaderValue").text("ACCOUNT SETTINGS | " + sessionStorage.getItem('EmployeeName'));
 
         var assessment =
         {
-            TableType: "GetRecord" ,
+            TableType: "GetRecord",
             UserId: sessionStorage.getItem('userId')
         }
 
@@ -1198,83 +1193,83 @@
 
             // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);
             //-------------------GenralInfo-----------------------------------
-            $("#txtName").val(sessionStorage.getItem('EmployeeName'));          
+            $("#txtName").val(sessionStorage.getItem('EmployeeName'));
             if (response.data.Data.Table.length > 0) {
                 $("#txtName").val(response.data.Data.Table[0].UserName);
-            $("#ddlGenderp").val(response.data.Data.Table[0].Gender);
-            $("#spMessage").text(" (" + response.data.Data.Table[0].MessageCount + ")");
-            sessionStorage.setItem('ProductId', response.data.Data.Table[0].ProductId);
-            sessionStorage.setItem('OrderId', response.data.Data.Table[0].OrderId);
+                $("#ddlGenderp").val(response.data.Data.Table[0].Gender);
+                $("#spMessage").text(" (" + response.data.Data.Table[0].MessageCount + ")");
+                sessionStorage.setItem('ProductId', response.data.Data.Table[0].ProductId);
+                sessionStorage.setItem('OrderId', response.data.Data.Table[0].OrderId);
 
-            var strDate = "";
-            var dateValue = response.data.Data.Table[0].BirthDate;
-            if (dateValue != null) {
-                var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
-                var dd = dateData.getDate();
-                var mm = dateData.getMonth() + 1; //January is 0!
-                var yyyy = dateData.getFullYear();
-                if (dd < 10) { dd = '0' + dd }
-                if (mm < 10) { mm = '0' + mm }
-                //if (format == 'dd/mm/yyyy')
-                //    strDate = mm + ' / ' + dd + ' / ' + yyyy;
-                //else if (format == 'mm/dd/yyyy')
-                //    strDate = mm + ' / ' + dd + ' / ' + yyyy;
-                //else
+                var strDate = "";
+                var dateValue = response.data.Data.Table[0].BirthDate;
+                if (dateValue != null) {
+                    var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
+                    var dd = dateData.getDate();
+                    var mm = dateData.getMonth() + 1; //January is 0!
+                    var yyyy = dateData.getFullYear();
+                    if (dd < 10) { dd = '0' + dd }
+                    if (mm < 10) { mm = '0' + mm }
+                    //if (format == 'dd/mm/yyyy')
+                    //    strDate = mm + ' / ' + dd + ' / ' + yyyy;
+                    //else if (format == 'mm/dd/yyyy')
+                    //    strDate = mm + ' / ' + dd + ' / ' + yyyy;
+                    //else
 
-                strDate = yyyy + '-' + mm + '-' + dd;
-                $("#txtDOB").val(strDate);
+                    strDate = yyyy + '-' + mm + '-' + dd;
+                    $("#txtDOB").val(strDate);
+                }
+                //debugger;
+
+                // alert(response.data.Data.Table[0].BirthDate);
+                // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', response.data.Data.Table[0].BirthDate);
+                $("#txtAgep").val(response.data.Data.Table[0].Age);
+
+                SystemdropdownMasterData = [];
+                LoadSystemMasterDropdown("ddlCountry", 1, "", response.data.Data.Table[0].Country);
+                SystemdropdownMasterData = [];
+                LoadSystemMasterDropdown("ddlState", 2, response.data.Data.Table[0].Country, response.data.Data.Table[0].State);
+
+                SystemdropdownMasterData = [];
+                LoadSystemMasterDropdown("ddlCity", 3, response.data.Data.Table[0].State, response.data.Data.Table[0].City);
+
+                $("#txtEmail").val(response.data.Data.Table[0].EmailID);
+                $("#txtPhoneNumber").val(response.data.Data.Table[0].PhoneNumber);
+                $("#txtCaste").val(response.data.Data.Table[0].Caste);
+                $("#ddlMaritalStatus").val(response.data.Data.Table[0].MaritalStatus);
+                $("#ddlDoYouHaveChildrenp").val(response.data.Data.Table[0].DoYouHaveChildren);
+                $("#ddlTypeOfFamily").val(response.data.Data.Table[0].TypeOfFamily);
+                $("#ddlCurrentlyWorkingp").val(response.data.Data.Table[0].CurrentlyWorking);
+                $("#txtOccupation").val(response.data.Data.Table[0].Occupation);
+                //-------------------Photo------------------------------------
+
+                $("#hdnProfilePhotoPath").val(response.data.Data.Table[0].PhotoURL);
+                $("#targetImg").attr('src', "@CommonMethods.ServerPathDocs" + response.data.Data.Table[0].PhotoURL);
+
+                $("#hdnProfilePhotoPathAfter").val(response.data.Data.Table[0].PhotoURLAfter);
+                $("#targetImgAfter").attr('src', "@CommonMethods.ServerPathDocs" + response.data.Data.Table[0].PhotoURLAfter);
+
+                //--------------------Anthropometry-----------------------------------
+                $("#txtWeight").val(response.data.Data.Table[0].Weight);
+                $("#ddlWeightType").val(response.data.Data.Table[0].WeightType);
+                $("#txtHeight").val(response.data.Data.Table[0].Height);
+                $("#ddlHeightType").val(response.data.Data.Table[0].HeightType);
+                $("#txtTargetWeight").val(response.data.Data.Table[0].TargetWeight);
+                $("#ddlTargetWeightType").val(response.data.Data.Table[0].TargetWeightType);
+                $("#txtYourGoals").val(response.data.Data.Table[0].YourGoals);
+                //---------------------MedicalHistory----------------------------------
+                $("#txtHealthIssues").val(response.data.Data.Table[0].HealthIssues);
+                $("#txtReports").val(response.data.Data.Table[0].Reports);
+                if (response.data.Data.Table[0].Reports != "" || response.data.Data.Table[0].Reports != undefined) {
+                    $("#dvDownloadReport").show();
+                }
+                else {
+                    $("#dvDownloadReport").hide();
+                }
+
+                $("#hdnfileuploadReportPath").val(response.data.Data.Table[0].Reports);
             }
-            //debugger;
 
-            // alert(response.data.Data.Table[0].BirthDate);
-            // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', response.data.Data.Table[0].BirthDate);
-            $("#txtAgep").val(response.data.Data.Table[0].Age);
-          
-            SystemdropdownMasterData = [];
-            LoadSystemMasterDropdown("ddlCountry", 1, "", response.data.Data.Table[0].Country);
-            SystemdropdownMasterData = [];
-            LoadSystemMasterDropdown("ddlState", 2, response.data.Data.Table[0].Country, response.data.Data.Table[0].State);
-
-            SystemdropdownMasterData = [];
-            LoadSystemMasterDropdown("ddlCity", 3, response.data.Data.Table[0].State, response.data.Data.Table[0].City);
-
-            $("#txtEmail").val(response.data.Data.Table[0].EmailID);
-            $("#txtPhoneNumber").val(response.data.Data.Table[0].PhoneNumber);
-            $("#txtCaste").val(response.data.Data.Table[0].Caste);
-            $("#ddlMaritalStatus").val(response.data.Data.Table[0].MaritalStatus);
-            $("#ddlDoYouHaveChildrenp").val(response.data.Data.Table[0].DoYouHaveChildren);
-            $("#ddlTypeOfFamily").val(response.data.Data.Table[0].TypeOfFamily);
-            $("#ddlCurrentlyWorkingp").val(response.data.Data.Table[0].CurrentlyWorking);
-            $("#txtOccupation").val(response.data.Data.Table[0].Occupation);
-            //-------------------Photo------------------------------------
-
-            $("#hdnProfilePhotoPath").val(response.data.Data.Table[0].PhotoURL);
-            $("#targetImg").attr('src', "@CommonMethods.ServerPath" + response.data.Data.Table[0].PhotoURL);
-
-            $("#hdnProfilePhotoPathAfter").val(response.data.Data.Table[0].PhotoURLAfter);
-            $("#targetImgAfter").attr('src', "@CommonMethods.ServerPath" + response.data.Data.Table[0].PhotoURLAfter);
-
-            //--------------------Anthropometry-----------------------------------
-            $("#txtWeight").val(response.data.Data.Table[0].Weight);
-            $("#ddlWeightType").val(response.data.Data.Table[0].WeightType);
-            $("#txtHeight").val(response.data.Data.Table[0].Height);
-            $("#ddlHeightType").val(response.data.Data.Table[0].HeightType);
-            $("#txtTargetWeight").val(response.data.Data.Table[0].TargetWeight);
-            $("#ddlTargetWeightType").val(response.data.Data.Table[0].TargetWeightType);
-            $("#txtYourGoals").val(response.data.Data.Table[0].YourGoals);
-            //---------------------MedicalHistory----------------------------------
-            $("#txtHealthIssues").val(response.data.Data.Table[0].HealthIssues);
-            $("#txtReports").val(response.data.Data.Table[0].Reports);
-            if (response.data.Data.Table[0].Reports != "" || response.data.Data.Table[0].Reports != undefined) {
-                $("#dvDownloadReport").show();
-            }
-            else {
-                $("#dvDownloadReport").hide();
-            }
-
-            $("#hdnfileuploadReportPath").val(response.data.Data.Table[0].Reports);
-            }
-          
             //--------------------Medications-----------------------------------
             if (response.data.Data.Table.length > 0) {
                 $("#txtHealthIssues1").val(response.data.Data.Table1[0].HealthIssues);
@@ -1344,10 +1339,9 @@
         });
         //----------------------------------------------------------------------------------------
         $("#imageBrowes").change(function () {
-          
+
             var File = this.files;
-            if (File && File[0])
-            {
+            if (File && File[0]) {
                 ReadImage(File[0]);
             }
         })
@@ -1357,8 +1351,7 @@
             //var File = this.files;
             var fileUpload = $("#imageBrowesAfter").get(0);
             var File = fileUpload.files;
-            if (File && File[0])
-            {
+            if (File && File[0]) {
                 ReadImage1(File[0], 2);
             }
         })
@@ -1375,24 +1368,20 @@
         var reader = new FileReader;
         var image = new Image;
         reader.readAsDataURL(file);
-        reader.onload = function (_file)
-        {
+        reader.onload = function (_file) {
             image.src = _file.target.result;
 
-            image.onload = function ()
-            {
+            image.onload = function () {
                 var height = this.height;
                 var width = this.width;
                 var type = file.type;
-                var size = ~~(file.size / 2024)+"KB";
+                var size = ~~(file.size / 2024) + "KB";
                 var sizem = ~~(file.size / 2024);
 
-                if ((type != "image/png" || type != "image/jpeg")  && sizem >= 500)
-                {
+                if ((type != "image/png" || type != "image/jpeg") && sizem >= 500) {
                     alert("invalid file type. please select jpeg/png image and size should less 500kb.");
                 }
-                else
-                {
+                else {
                     $("#targetImg").attr('src', _file.target.result);
                     // $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
                     $("#imgPreview").show();
@@ -1429,7 +1418,7 @@
                     // $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
                     $("#imgPreviewAfter").show();
 
-                    
+
                     Uploadocument(imagetype);
                 }
             }
@@ -1450,8 +1439,8 @@
 
 
     function Uploadocument(folderDetails) {
-       // var folderDetails = "";
-       // folderDetails = "1";
+        // var folderDetails = "";
+        // folderDetails = "1";
 
         var fileUpload = null;
         //var fileUpload = $("#imageBrowes").get(0);
@@ -1475,7 +1464,7 @@
 
             //We will change the below logic later error handling
             $.ajax({
-                url: virtualPath+'/Program/UploadDocument?userID=' + folderDetails,
+                url: virtualPath + '/Program/UploadDocument?userID=' + folderDetails,
                 type: "POST",
                 contentType: false, // Not to set any content header
                 processData: false, // Not to process data
@@ -1485,22 +1474,18 @@
                     // request.setRequestHeader('ID', sessionStorage.getItem('Id'));
                 },
                 success: function (result) {
-                    debugger;
-                    if (result.ErrorMessage == undefined)
-                    {
-                        if (folderDetails == 1)
-                        {
+
+                    if (result.ErrorMessage == undefined) {
+                        if (folderDetails == 1) {
                             $("#hdnProfilePhotoPath").val(result);
                         }
-                        else
-                        {
+                        else {
                             $("#hdnProfilePhotoPathAfter").val(result);
                         }
 
 
                     }
-                    else
-                    {
+                    else {
                         alert(result.ErrorMessage);
                     }
                 }
@@ -1516,8 +1501,7 @@
         folderDetails = "1";
         var fileUpload = $("#fileuploadReport").get(0);
         var files = fileUpload.files;
-        if (files.length > 0)
-        {
+        if (files.length > 0) {
             // Create FormData object
             var fileData = new FormData();
 
@@ -1528,7 +1512,7 @@
 
             //We will change the below logic later error handling
             $.ajax({
-                url: virtualPath+'/Program/UploadDocumentReport?userID=' + folderDetails,
+                url: virtualPath + '/Program/UploadDocumentReport?userID=' + folderDetails,
                 type: "POST",
                 contentType: false, // Not to set any content header
                 processData: false, // Not to process data
@@ -1555,7 +1539,7 @@
 
         $("#btnDownloadReport").click(function (e) {
             e.preventDefault();
-             var uri = "@CommonMethods.ServerPath";
+            var uri = "@CommonMethods.ServerPath";
             var fullname = $("#hdnfileuploadReportPath").val();
 
             window.location.href = uri + fullname;

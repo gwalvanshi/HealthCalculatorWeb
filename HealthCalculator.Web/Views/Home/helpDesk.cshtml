@@ -166,6 +166,8 @@
 
         $("#fileInput").on("change", function () {
             var fileInput = document.getElementById('fileInput');
+            formdata = new FormData();
+            $("#FilesList tbody").html("");
             //Iterating through each files selected in fileInput
             for (i = 0; i < fileInput.files.length; i++) {
 
