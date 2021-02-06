@@ -35,8 +35,8 @@ namespace HealthCalculator.Web.EntityModel
         public Int64 UserId { get; set; }
         public int ProductId { get; set; }
         public Int64 OrderId { get; set; }
-        public decimal Weight { get; set; }
-        public decimal WeightDifference { get; set; }
+        public decimal ? Weight { get; set; }
+        public decimal ? WeightDifference { get; set; }
         public DateTime? TrackerDate { get; set; }
         public Int64 AddedBy { get; set; }
         public DateTime? AddedWhen { get; set; }
@@ -64,8 +64,8 @@ namespace HealthCalculator.Web.EntityModel
         public Int64 UserId { get; set; }
         public int ProductId { get; set; }
         public Int64 OrderId { get; set; }
-        public decimal Weight { get; set; }
-        public decimal WeightDifference { get; set; }
+        public decimal ? Weight { get; set; }
+        public decimal ? WeightDifference { get; set; }
         public DateTime? TrackerDate { get; set; }
       
         public string OrderAmountINR { get; set; }
