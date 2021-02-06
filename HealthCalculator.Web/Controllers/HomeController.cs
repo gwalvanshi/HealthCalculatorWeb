@@ -38,7 +38,7 @@ namespace HealthCalculator.Web.Controllers
        // [SessionExpireFilterAttribute]
         public ActionResult helpDesk(string userId=null)
         {
-             userId = "2";
+            
             List<MessageMasterData> objMessageMasterDataList = new List<MessageMasterData>();
             MessageMasterData objMessageMasterData = new MessageMasterData();
             MessageMasterDataList objMessageMasterDataChild= new MessageMasterDataList();
