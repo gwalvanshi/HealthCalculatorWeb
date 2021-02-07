@@ -3618,7 +3618,8 @@
         @* ------------uday----------*@
         $(document).ready(function () {
 
-            if (sessionStorage.getItem("CartSession") != null) {
+            if (sessionStorage.getItem("CartSession") != "") {
+             
                 $("#spQuantity").text(sessionStorage.getItem("CartSession"));
                // deleteRows();
                
@@ -3629,7 +3630,7 @@
             {
                 // alert("a");
                 $("#tblCart").find('tbody').html("");
-                if (sessionStorage.getItem("CartProgramID") != null) {
+                if (sessionStorage.getItem("CartProgramID") != "") {
                     var cartdetails = sessionStorage.getItem("CartProgramID");
                     //alert(cartdetails);
                     var array = cartdetails.split("~");

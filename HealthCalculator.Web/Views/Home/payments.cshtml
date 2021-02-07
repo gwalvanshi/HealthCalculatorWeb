@@ -76,6 +76,7 @@
     }
     $(document).ready(function () {
 
+       
         var strProductId = sessionStorage.getItem("CProgramID");
         var orderId = "";
         var totalCartDetailsLength = 0;
@@ -118,6 +119,9 @@
                     sessionStorage.setItem("TotalDoller", intDoller.toFixed(2));
                     sessionStorage.setItem("TotalINR", intINR);
                     sessionStorage.setItem("OrderId", OrderId); 
+                    sessionStorage.setItem("CartSession", "");
+                    sessionStorage.setItem("CartProgramID", "");
+
                 }
             }
         );
