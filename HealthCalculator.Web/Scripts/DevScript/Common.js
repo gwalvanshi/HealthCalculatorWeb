@@ -251,7 +251,7 @@ function handleErrorResponse(response) {
 }
 function CommonAjaxMethod(actionMethodUrl, data, optional, methodType, successCallBack) {
 
-    
+    $(".Progressloading").show();
     var isSuccess = false;
     var dataObj;
     if (methodType == "GET") {
@@ -277,7 +277,7 @@ function CommonAjaxMethod(actionMethodUrl, data, optional, methodType, successCa
         },
         success: function (response) {
 
-
+            $(".Progressloading").hide();
             if (response.IsSuccessStatusCode != undefined) // New implementation 
             {
                 if (response.IsSuccessStatusCode) {
@@ -348,6 +348,7 @@ function CommonAjaxMethod(actionMethodUrl, data, optional, methodType, successCa
             //alert("Hi");
             //alert(error);
             isSuccess = false;
+            $(".Progressloading").hide();
         }
     });
     return isSuccess;

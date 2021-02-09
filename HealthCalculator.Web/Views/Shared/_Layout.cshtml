@@ -10,29 +10,44 @@
 
 
 
-    
+
     <link href="@CommonMethods.ServerPath/img/src/css/lightslider.css" rel="stylesheet" />
     <link href="~/css/hover-min.css" rel="stylesheet" type="text/css" />
     <link href="~/css/animate.min.css" rel="stylesheet" type="text/css" />
     <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
     @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+        @Scripts.Render("~/bundles/modernizr")*@
     @Styles.Render("~/Content/DevExtremeBundle")
 
     <style>
         .Mandtory {
         }
-
-       
     </style>
     <script>
         var virtualPath = "@Url.Content("~/")";
     </script>
 
+    <style>
 
+        .Progressloading {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            background-color: white;
+            height: 400px;
+            margin-top: -200px;
+            width: 600px;
+            margin-left: -300px;
+            text-align: center;
+            background: url('../../img/loading.gif') no-repeat center 50%;
+            z-index: 101
+        }
+    </style>
 </head>
 <body>
+    <div class="Progressloading"></div>
     <div class="notiBlock">
         <div class="container-fluid">
             <div class="row align-items-center justify-content-center">
@@ -52,7 +67,7 @@
     @*-------------------uday----------------------*@
     <div id="tablez"></div>
     <div id='myModal' class='modal'>
-        <div class="modal-dialog" >
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div id='myModalContent'>
                     <div class="container-fluid flowerBg">
@@ -73,7 +88,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                                                                
                                                 </tbody>
                                             </table>
 
@@ -85,10 +99,10 @@
                             </div>
                         </div>
                     </div>
-                </div>             
+                </div>
                 <div class="form-group row" style="bottom:auto">
-                    &nbsp; &nbsp; 
-                    <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnProceed" >&nbsp; &nbsp; Proceed &nbsp; &nbsp; </a>
+                    &nbsp; &nbsp;
+                    <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnProceed">&nbsp; &nbsp; Proceed &nbsp; &nbsp; </a>
 
                 </div>
             </div>
@@ -3066,14 +3080,14 @@
 
 
 
- 
+
     <script type="text/javascript">
     var isValidAdult = true;
 
     var isValidChild = true;
 
     function validateChild() {
-        // 
+        //
         isValidChild = true;
         if ($("#txtChildEmail").val() == "" && isValidChild == true) {
             alert("Please enter email address");
@@ -3106,7 +3120,7 @@
 
     function checkChildStepOne() {
         isValidChild = true;
-        // 
+        //
         if ($("#txtChildName").val() == "") {
             alert("Please enter child Name.");
             $("#txtChildName").focus();
@@ -3163,7 +3177,7 @@
     }
 
     function checkAdultStepTwo() {
-        // 
+        //
         isValidAdult = true;
         if (($("#chkAOthers").prop("checked") == true && $("#otherHealthProblem").val() == "")) {
             alert("Please enter health issues other in below textbox.");
@@ -3174,7 +3188,7 @@
     }
 
     function checkAdultStepFour() {
-        // 
+        //
         isValidAdult = true;
         if ($("#WaterIntakeGlassLitter").val() == "1" && isValidAdult == true) {
             if ($("#waterIntakeLitter").val() == "Liter" && isValidAdult == true) {
@@ -3214,7 +3228,7 @@
     }
 
     function checkAdultStepOne() {
-        // 
+        //
         isValidAdult = true;
         if ($("#txtFName").val() == "")
         {
@@ -3299,7 +3313,7 @@
     }
 
     function SaveChildData(){
-        // 
+        //
         if (validateChild()) {
             var EnquiryModel = {
                 Instance_enquiry: {
@@ -3399,7 +3413,7 @@
     }
 
     function heightSelection(selectedval) {
-        // 
+        //
         $('#ddlAuditCentemer').prop('selectedIndex', 0);
         $('#ddlAuditfeet').prop('selectedIndex', 0);
         $('#ddlAuditInches').prop('selectedIndex', 0);
@@ -3407,7 +3421,7 @@
         $("#heightSelect").val(selectedval);
     }
     function WeightSelection(sel) {
-        // 
+        //
         $('#ddlpounds').prop('selectedIndex', 0);
         $('#ddlKilo').prop('selectedIndex', 0);
         $('#ddlgrams').prop('selectedIndex', 0);
@@ -3424,7 +3438,7 @@
     var SystemdropdownMasterData = [];
 
     function validateAdult() {
-        // 
+        //
         //isValidAdult = true;
         if ($("#txtEmailID").val() == "" && isValidAdult == true) {
             alert("Please enter email address");
@@ -3452,7 +3466,7 @@
 
     function SaveAdultData() {
         if (validateAdult()) {
-   //  
+   //
             var EnquiryModel = {
                 Instance_enquiry: {
                     Enquiry_Id: $("#hdnID").val(),
@@ -3606,7 +3620,7 @@
     EnquiryModel.Instance_Enquiry_Transaction.push(parddlFruitsVegi);
 
             CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response) {
-                // 
+                //
                 alert('You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX.');
 
             });
@@ -3614,15 +3628,15 @@
         }
         }
 
-        
+
         @* ------------uday----------*@
         $(document).ready(function () {
 
             if (sessionStorage.getItem("CartSession") != "") {
-             
+
                 $("#spQuantity").text(sessionStorage.getItem("CartSession"));
                // deleteRows();
-               
+
 
             }
 
@@ -3638,9 +3652,9 @@
                     var arrayinner;
                     //alert("a1");
                    // $("tblCart").html("");
-                   
-                                                                                             
-                     
+
+
+
 
                     var strinnerid = null;
                     var strid = null;
@@ -3651,7 +3665,7 @@
                         arrayinner = array[i].split(",");
                         //alert("B");
                         //alert(arrayinner.length);
-                         
+
 
                         //td1.style.width = '60%';
                         //td1.style.width = '15%';
@@ -3659,11 +3673,11 @@
                        /// alert(arrayinner.length);
                         strinnerid = null;
                         for (var j = 0; j < arrayinner.length; j++)
-                        {                           
+                        {
 
                             strinnerid = arrayinner[0];
                         }
-                       
+
                         newtbblData='<tr><td class="/"text-center"/">'+(i+1)+'</td><td>'+ arrayinner[4]+'</td><td>'+arrayinner[1]+' </td><td class="/"text-center"/">'+ arrayinner[2]+'</td><td class="/"text-center"/">'+arrayinner[3]+'</td></tr>';
 
                         $("#tblCart").find('tbody').append(newtbblData);
@@ -3677,12 +3691,12 @@
                         }
                     }
 
-                   
-                   
+
+
                 }
                // alert(strid);
                 sessionStorage.setItem("CProgramID", strid);
-            
+
                 $('#myModal').modal('show');
 
             });
@@ -3695,7 +3709,7 @@
 
 
             $("#btnProceed").click(function () {
-              
+
                 if (sessionStorage.getItem("userId") == null) {
                     window.location.href = "@Url.Action("login", "Home")";
                 }
@@ -3703,7 +3717,7 @@
 
                     window.location.href = '@Url.Action("payments", "Home")';
                 }
-                  
+
 
                });
 
