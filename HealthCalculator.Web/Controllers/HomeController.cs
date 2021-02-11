@@ -21,7 +21,12 @@ namespace HealthCalculator.Web.Controllers
         private const string Subject = "Eating Smart Health Rating";
 
         #region Program
-
+        [SessionExpireFilterAttributeAdmin]
+        public ActionResult ViewEnquiryDetails(int Enquiry_Id)
+        {
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
         [SessionExpireFilterAttributeAdmin]
         public ActionResult AddFreeSession(int userId)
         {

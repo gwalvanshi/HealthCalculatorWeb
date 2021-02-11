@@ -247,20 +247,20 @@
                  "BMI",
                 "WaterIntake",
                 "IdealBodyWeight"
-                //,{
-                //    caption: "View User Details",
-                //    alignment: 'center',
-                //    cellTemplate: function (container, options) {
-                //        $('<a />').addClass('dx-link')
-                //            .text('View Detail')
-                //            .on('dxclick', function () {
-                //                
-
-                //               /// sessionStorage.setItem('SelectedUserId', options.data.Enquiry_Id);
-                //                window.location.href = "assessment";
-                //            }).appendTo(container);
-                //    }
-               //   }
+                ,
+                {
+                    caption: "Details",
+                    alignment: 'center',
+                    cellTemplate: function (container, options) {
+                        $('<a />').addClass('dx-link')
+                            .text('View Detail')
+                            .on('dxclick', function () {
+                                                            
+                                window.location.href = "AddFreeSession?Enquiry_Id=" + options.data.Enquiry_Id;
+                               
+                            }).appendTo(container);
+                    }
+                }
 
             ]
         });

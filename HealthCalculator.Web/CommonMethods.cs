@@ -42,7 +42,7 @@ namespace HealthCalculator.Web
             {
 
                 bool isValid = false;
-                using (MailMessage mm = new MailMessage("alerts@EATINGSMART.IN", toEmail))
+                using (MailMessage mm = new MailMessage("enquiry@EATINGSMART.IN", toEmail))
                 // using (MailMessage mm = new MailMessage("emailus @d2digitalservices.com", ToEmail))
                 {
                     mm.Subject = Subject;
@@ -54,8 +54,8 @@ namespace HealthCalculator.Web
                     NetworkCredential NetworkCred = new NetworkCredential();
                     //NetworkCred.UserName = "alerts@EATINGSMART.IN";
                     //NetworkCred.Password = "d73Clh~9";
-                    NetworkCred.UserName = "alerts@EATINGSMART.IN";
-                    NetworkCred.Password = "d73Clh~9";
+                    NetworkCred.UserName = "enquiry@EATINGSMART.IN";
+                    NetworkCred.Password = "M3w1#sk9";
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = NetworkCred;
                     smtp.Port = 26;
