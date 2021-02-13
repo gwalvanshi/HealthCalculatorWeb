@@ -281,11 +281,17 @@ namespace HealthCalculator.Web.Controllers
 
         [SessionExpireFilterAttributeAdmin]
         #endregion
+
+        public ActionResult ProgramView()
+        {
+            return View();          
+        }
         public ActionResult AdminView()
         {
             return View();
             // return RedirectToAction("Index", "User");
         }
+
         public ActionResult about()
         {
             return View();

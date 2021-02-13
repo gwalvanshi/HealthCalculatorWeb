@@ -67,7 +67,7 @@
 <script>
     function Login()
     {
-     
+
         var email = $('#txtEmail').val();
         var password = $('#txtPassword').val();
         if (!email || email == '' || !password || password == '') {
@@ -111,7 +111,27 @@
                                 }
                                 else
                                 {
-                                    window.location.href = "@Url.Action("assessment", "Home")";
+
+                                    CommonAjaxMethod('Program/GetProductProgram', null, false, 'GET', function (response) {
+
+                                        var test = response.dataCollection;
+
+                                        if (response.dataCollection.length > 0)
+                                        {
+                                            sessionStorage.setItem('ProductId', response.dataCollection[0].productId);
+                                            sessionStorage.setItem('OrderId', response.dataCollection[0].Order_id);
+
+                                        }
+                                        //else
+                                       // {
+                                            // window.location.href = "@Url.Action("smartWeightLoss", "Home")";
+                                           // alert("Kindly purchase the product ");
+                                        //}
+                                         window.location.href = "@Url.Action("assessment", "Home")";
+                                    });
+
+
+
                                 }
                         }
                     }
