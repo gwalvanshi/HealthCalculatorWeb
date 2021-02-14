@@ -810,75 +810,83 @@
     }
     function SaveGenralInfo() {
 
-        var aa = $("#ddlGenderp").val();
-
-        if (ValidationOnSave()) {
-            if (ValidateRequiredField()) {
-
-                var UserInfodata =
-                {
-
-                    UserId: sessionStorage.getItem("userId"),
-                    Gender: $("#ddlGenderp").val() == undefined ? '' : $("#ddlGenderp").val().trim(),
-                    BirthDate: $("#txtDOB").val() == undefined ? 0 : $("#txtDOB").val().trim(),
-                    Age: $("#txtAgep").val() == undefined ? '' : $("#txtAgep").val().trim(),
-                    Country: $("#ddlCountry").val() == undefined ? '' : $("#ddlCountry").val().trim(),
-                    State: $("#ddlState").val() == undefined ? '' : $("#ddlState").val().trim(),
-                    City: $("#ddlCity").val() == undefined ? '' : $("#ddlCity").val().trim(),
-                    EmailID: $("#txtEmail").val() == undefined ? '' : $("#txtEmail").val().trim(),
-                    PhoneNumber: $("#txtPhoneNumber").val() == undefined ? '' : $("#txtPhoneNumber").val().trim(),
-                    Caste: $("#txtCaste").val() == undefined ? 0 : $("#txtCaste").val().trim(),
-                    MaritalStatus: $("#ddlMaritalStatus").val() == undefined ? 0 : $("#ddlMaritalStatus").val().trim(),
-                    DoYouHaveChildren: $("#ddlDoYouHaveChildrenp").val() == undefined ? 0 : $("#ddlDoYouHaveChildrenp").val().trim(),
-                    TypeOfFamily: $("#ddlTypeOfFamily").val() == undefined ? 0 : $("#ddlTypeOfFamily").val().trim(),
-                    CurrentlyWorking: $("#ddlCurrentlyWorkingp").val() == undefined ? 0 : $("#ddlCurrentlyWorkingp").val().trim(),
-                    Occupation: $("#txtOccupation").val() == undefined ? '' : $("#txtOccupation").val().trim(),
-
-                }
-                var assessment =
-                {
-                    TableType: "UserGeneralInfo",
-                    UserGeneralInfo: UserInfodata
-                }
-
-                CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                    alert('Record save successfully!!!');
-                });
-
-            }
-            else {
-                alert('Please fill all details to User General Info.');
-            }
-
+        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+            alert("Kindly first purchase the product .");
         }
+        else
+        {
+            var aa = $("#ddlGenderp").val();
+            if (ValidationOnSave()) {
+                if (ValidateRequiredField()) {
 
+                    var UserInfodata =
+                    {
+
+                        UserId: sessionStorage.getItem("userId"),
+                        Gender: $("#ddlGenderp").val() == undefined ? '' : $("#ddlGenderp").val().trim(),
+                        BirthDate: $("#txtDOB").val() == undefined ? 0 : $("#txtDOB").val().trim(),
+                        Age: $("#txtAgep").val() == undefined ? '' : $("#txtAgep").val().trim(),
+                        Country: $("#ddlCountry").val() == undefined ? '' : $("#ddlCountry").val().trim(),
+                        State: $("#ddlState").val() == undefined ? '' : $("#ddlState").val().trim(),
+                        City: $("#ddlCity").val() == undefined ? '' : $("#ddlCity").val().trim(),
+                        EmailID: $("#txtEmail").val() == undefined ? '' : $("#txtEmail").val().trim(),
+                        PhoneNumber: $("#txtPhoneNumber").val() == undefined ? '' : $("#txtPhoneNumber").val().trim(),
+                        Caste: $("#txtCaste").val() == undefined ? 0 : $("#txtCaste").val().trim(),
+                        MaritalStatus: $("#ddlMaritalStatus").val() == undefined ? 0 : $("#ddlMaritalStatus").val().trim(),
+                        DoYouHaveChildren: $("#ddlDoYouHaveChildrenp").val() == undefined ? 0 : $("#ddlDoYouHaveChildrenp").val().trim(),
+                        TypeOfFamily: $("#ddlTypeOfFamily").val() == undefined ? 0 : $("#ddlTypeOfFamily").val().trim(),
+                        CurrentlyWorking: $("#ddlCurrentlyWorkingp").val() == undefined ? 0 : $("#ddlCurrentlyWorkingp").val().trim(),
+                        Occupation: $("#txtOccupation").val() == undefined ? '' : $("#txtOccupation").val().trim(),
+
+                    }
+                    var assessment =
+                    {
+                        TableType: "UserGeneralInfo",
+                        UserGeneralInfo: UserInfodata
+                    }
+
+                    CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                        alert('Record save successfully!!!');
+                    });
+
+                }
+                else {
+                    alert('Please fill all details to User General Info.');
+                }
+
+            }
+        }
     }
 
     function SaveUserPhoto12() {
 
-
-
-        if ($("#hdnProfilePhotoPath").val() != '' || $("#hdnProfilePhotoPathAfter").val()) {
-           
-            var UserPhotoData =
-            {
-                UserId: sessionStorage.getItem('userId'),
-                PhotoURL: $("#hdnProfilePhotoPath").val() == undefined ? '' : $("#hdnProfilePhotoPath").val(),
-                PhotoURLAfter: $("#hdnProfilePhotoPathAfter").val() == undefined ? '' : $("#hdnProfilePhotoPathAfter").val(),
-            }
-            var assessment =
-            {
-                TableType: "UserPhoto",
-                UserPhoto: UserPhotoData
-            }
-
-            CommonAjaxMethod('Program/SavePoto', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
-
-            });
+        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+            alert("Kindly first purchase the product .");
         }
-        else {
-            alert("Please upload valid image.")
+        else
+        {
+            if ($("#hdnProfilePhotoPath").val() != '' || $("#hdnProfilePhotoPathAfter").val()) {
+
+                var UserPhotoData =
+                {
+                    UserId: sessionStorage.getItem('userId'),
+                    PhotoURL: $("#hdnProfilePhotoPath").val() == undefined ? '' : $("#hdnProfilePhotoPath").val(),
+                    PhotoURLAfter: $("#hdnProfilePhotoPathAfter").val() == undefined ? '' : $("#hdnProfilePhotoPathAfter").val(),
+                }
+                var assessment =
+                {
+                    TableType: "UserPhoto",
+                    UserPhoto: UserPhotoData
+                }
+
+                CommonAjaxMethod('Program/SavePoto', assessment, false, 'POST', function (response) {
+                    alert('Record save successfully!!!');
+
+                });
+            }
+            else {
+                alert("Please upload valid image.")
+            }
         }
 
 
@@ -887,264 +895,300 @@
 
     function SaveUserAnthropometry() {
 
-        // if (ValidationOnSave())
-        //  {
-        // alert('1');
-        //if (ValidateRequiredField())
-        // {
-        //   alert('2');
-        var UserAnthropometrydata =
-        {
-            UserId: sessionStorage.getItem('userId'),
-            Weight: $("#txtWeight").val() == undefined ? 0 : $("#txtWeight").val().trim(),
-            WeightType: $("#ddlWeightType").val() == undefined ? 0 : $("#ddlWeightType").val().trim(),
-            Height: $("#txtHeight").val() == undefined ? '' : $("#txtHeight").val().trim(),
-            HeightType: $("#ddlHeightType").val() == undefined ? 0 : $("#ddlHeightType").val().trim(),
-            TargetWeight: $("#txtTargetWeight").val() == undefined ? '' : $("#txtTargetWeight").val().trim(),
-            TargetWeightType: $("#ddlTargetWeightType").val() == undefined ? 0 : $("#ddlTargetWeightType").val().trim(),
-            YourGoals: $("#txtYourGoals").val() == undefined ? '' : $("#txtYourGoals").val().trim(),
-
+        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+            alert("Kindly first purchase the product .");
         }
+        else {
 
-        var assessment =
-        {
-            TableType: "UserAnthropometry",
-            UserAnthropometry: UserAnthropometrydata
+            // if (ValidationOnSave())
+            //  {
+            // alert('1');
+            //if (ValidateRequiredField())
+            // {
+            //   alert('2');
+
+            var UserAnthropometrydata =
+            {
+                UserId: sessionStorage.getItem('userId'),
+                Weight: $("#txtWeight").val() == undefined ? 0 : $("#txtWeight").val().trim(),
+                WeightType: $("#ddlWeightType").val() == undefined ? 0 : $("#ddlWeightType").val().trim(),
+                Height: $("#txtHeight").val() == undefined ? '' : $("#txtHeight").val().trim(),
+                HeightType: $("#ddlHeightType").val() == undefined ? 0 : $("#ddlHeightType").val().trim(),
+                TargetWeight: $("#txtTargetWeight").val() == undefined ? '' : $("#txtTargetWeight").val().trim(),
+                TargetWeightType: $("#ddlTargetWeightType").val() == undefined ? 0 : $("#ddlTargetWeightType").val().trim(),
+                YourGoals: $("#txtYourGoals").val() == undefined ? '' : $("#txtYourGoals").val().trim(),
+
+            }
+
+            var assessment =
+            {
+                TableType: "UserAnthropometry",
+                UserAnthropometry: UserAnthropometrydata
+            }
+
+            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                alert('Record save successfully!!!');
+
+            });
+            //   }
+            // else
+            // {
+            // alert('Please fill all details to Anthropometry.');
+            // }
+            // }
         }
-
-        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-            alert('Record save successfully!!!');
-
-        });
-        //   }
-        // else
-        // {
-        alert('Please fill all details to Anthropometry.');
-        // }
-        // }
     }
 
     function SaveUserMedicalHistory() {
-        //if (ValidationOnSave()) {
-        //  if (ValidateRequiredField()) {
-        var UserMedicalHistorydata =
-        {
-            UserId: sessionStorage.getItem('userId'),
-            HealthIssues: $("#txtHealthIssues").val() == undefined ? '' : $("#txtHealthIssues").val().trim(),
-            Reports: $("#txtReports").val() == undefined ? '' : $("#txtReports").val().trim(),
+        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+            alert("Kindly first purchase the product .");
         }
+        else {
+            //if (ValidationOnSave()) {
+            //  if (ValidateRequiredField()) {
+            var UserMedicalHistorydata =
+            {
+                UserId: sessionStorage.getItem('userId'),
+                HealthIssues: $("#txtHealthIssues").val() == undefined ? '' : $("#txtHealthIssues").val().trim(),
+                Reports: $("#txtReports").val() == undefined ? '' : $("#txtReports").val().trim(),
+            }
 
-        var assessment =
-        {
-            TableType: "UserMedicalHistory",
-            UserMedicalHistory: UserMedicalHistorydata
+            var assessment =
+            {
+                TableType: "UserMedicalHistory",
+                UserMedicalHistory: UserMedicalHistorydata
+            }
+
+            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                alert('Record save successfully!!!');
+
+            });
+            //   }
+            //  else {
+            //      alert('Please fill all details to  Medical History.');
+            //  }
+            //   }
         }
-
-        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-            alert('Record save successfully!!!');
-
-        });
-        //   }
-        //  else {
-        //      alert('Please fill all details to  Medical History.');
-        //  }
-        //   }
     }
 
     function SaveUserMedications() {
-        // if (ValidationOnSave()) {
-        //if (ValidateRequiredField()) {
-       /// var UserMedicationsdata = null;
-        var UserMedicationsdata =
-            [
-                {
-                UserId: sessionStorage.getItem('userId'),
-                HealthIssues: $("#txtHealthIssues1").val() == undefined ? '' : $("#txtHealthIssues1").val().trim(),
-                Medication: $("#txtMedication1").val() == undefined ? 0 : $("#txtMedication1").val().trim(),
-            },
-                {
-                    UserId: sessionStorage.getItem('userId'),
-                    HealthIssues: $("#txtHealthIssues2").val() == undefined ? '' : $("#txtHealthIssues2").val().trim(),
-                    Medication: $('#txtMedication2').val() == undefined ? 0 : $('#txtMedication2').val().trim(),
-                },
-                {
-                    UserId: sessionStorage.getItem('userId'),
-                    HealthIssues: $("#txtHealthIssues3").val() == undefined ? '' : $("#txtHealthIssues3").val().trim(),
-                    Medication: $('#txtMedication3').val() == undefined ? 0 : $('#txtMedication3').val().trim(),
-                },
-                {
-                    UserId: sessionStorage.getItem('userId'),
-                    HealthIssues: $("#txtHealthIssues4").val() == undefined ? '' : $("#txtHealthIssues4").val().trim(),
-                    Medication: $('#txtMedication4').val() == undefined ? 0 : $('#txtMedication4').val().trim(),
-                },
-                {
-                    UserId: sessionStorage.getItem('userId'),
-                    HealthIssues: $("#txtHealthIssues5").val() == undefined ? '' : $("#txtHealthIssues5").val().trim(),
-                    Medication: $('#txtMedication5').val() == undefined ? 0 : $('#txtMedication5').val().trim(),
-                }
-            ];
-
-        var assessment =
-        {
-            TableType: "UserMedications",
-            UserMedications: UserMedicationsdata,
-            UserId: sessionStorage.getItem('userId'),
+        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+            alert("Kindly first purchase the product .");
         }
+        else {
+            // if (ValidationOnSave()) {
+            //if (ValidateRequiredField()) {
+            /// var UserMedicationsdata = null;
+            var UserMedicationsdata =
+                [
+                    {
+                        UserId: sessionStorage.getItem('userId'),
+                        HealthIssues: $("#txtHealthIssues1").val() == undefined ? '' : $("#txtHealthIssues1").val().trim(),
+                        Medication: $("#txtMedication1").val() == undefined ? 0 : $("#txtMedication1").val().trim(),
+                    },
+                    {
+                        UserId: sessionStorage.getItem('userId'),
+                        HealthIssues: $("#txtHealthIssues2").val() == undefined ? '' : $("#txtHealthIssues2").val().trim(),
+                        Medication: $('#txtMedication2').val() == undefined ? 0 : $('#txtMedication2').val().trim(),
+                    },
+                    {
+                        UserId: sessionStorage.getItem('userId'),
+                        HealthIssues: $("#txtHealthIssues3").val() == undefined ? '' : $("#txtHealthIssues3").val().trim(),
+                        Medication: $('#txtMedication3').val() == undefined ? 0 : $('#txtMedication3').val().trim(),
+                    },
+                    {
+                        UserId: sessionStorage.getItem('userId'),
+                        HealthIssues: $("#txtHealthIssues4").val() == undefined ? '' : $("#txtHealthIssues4").val().trim(),
+                        Medication: $('#txtMedication4').val() == undefined ? 0 : $('#txtMedication4').val().trim(),
+                    },
+                    {
+                        UserId: sessionStorage.getItem('userId'),
+                        HealthIssues: $("#txtHealthIssues5").val() == undefined ? '' : $("#txtHealthIssues5").val().trim(),
+                        Medication: $('#txtMedication5').val() == undefined ? 0 : $('#txtMedication5').val().trim(),
+                    }
+                ];
 
-        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-            alert('Record save successfully!!!');
+            var assessment =
+            {
+                TableType: "UserMedications",
+                UserMedications: UserMedicationsdata,
+                UserId: sessionStorage.getItem('userId'),
+            }
 
-        });
-        //------------------------------
+            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                alert('Record save successfully!!!');
 
-
-        // }
-        //else {
-        //    alert('Please fill all details to Medications.');
-        //}
-        //}
+            });
+            //------------------------------
+            // }
+            //else {
+            //    alert('Please fill all details to Medications.');
+            //}
+            //}
+        }
     }
 
-    function SaveUserDietaryAndLifeStyleDetails() {
-        //if (ValidationOnSave()) {
-        //    if (ValidateRequiredField()) {
-        var UserDietaryAndLifeStyleDetailsdata =
-        {
-
-            UserId: sessionStorage.getItem('userId'),
-            Lifestyle: $("#ddlLifestyle").val() == undefined ? 0 : $("#ddlLifestyle").val().trim(),
-            EatingHabits: $("#ddlEatingHabits").val() == undefined ? 0 : $("#ddlEatingHabits").val().trim(),
-            Frequencyofsmoking: $("#ddlFrequencyOfSmoking").val() == undefined ? 0 : $("#ddlFrequencyOfSmoking").val().trim(),
-            Frequencyofalcoholconsumption: $("#ddlFrequencyOfAlcoholConsumption").val() == undefined ? 0 : $("#ddlFrequencyOfAlcoholConsumption").val().trim(),
-            WaterintakeperdayType: $("#ddlWaterIntakePerDayType").val() == undefined ? 0 : $("#ddlWaterIntakePerDayType").val().trim(),
-            Waterintakeperday: $("#ddlWaterIntakePerDayDetails").val() == undefined ? '' : $("#ddlWaterIntakePerDayDetails").val().trim(),
-            Frequencyofrestaurantvisit: $("#ddlFrequencyOfRestaurantVisit").val() == undefined ? 0 : $("#ddlFrequencyOfRestaurantVisit").val().trim(),
-            Preferredcuisine: $("#txtPreferredCuisine").val() == undefined ? '' : $("#txtPreferredCuisine").val().trim(),
-            Whocooksathome: $("#txtWhoCooksAtHome").val() == undefined ? '' : $("#txtWhoCooksAtHome").val().trim(),
-            FoodAversions: $("#txtFoodAversions").val() == undefined ? '' : $("#txtFoodAversions").val().trim(),
-            FoodPreferences: $("#txtFoodPreferences").val() == undefined ? '' : $("#txtFoodPreferences").val().trim(),
-            FoodAllergies: $("#txtFoodAllergies").val() == undefined ? '' : $("#txtFoodAllergies").val().trim(),
+    function SaveUserDietaryAndLifeStyleDetails()
+    {
+        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+            alert("Kindly first purchase the product .");
         }
+        else {
+            //if (ValidationOnSave()) {
+            //    if (ValidateRequiredField()) {
+            var UserDietaryAndLifeStyleDetailsdata =
+            {
 
-        var assessment =
-        {
-            TableType: "UserDietaryAndLifeStyleDetails",
-            UserDietaryAndLifeStyleDetails: UserDietaryAndLifeStyleDetailsdata
+                UserId: sessionStorage.getItem('userId'),
+                Lifestyle: $("#ddlLifestyle").val() == undefined ? 0 : $("#ddlLifestyle").val().trim(),
+                EatingHabits: $("#ddlEatingHabits").val() == undefined ? 0 : $("#ddlEatingHabits").val().trim(),
+                Frequencyofsmoking: $("#ddlFrequencyOfSmoking").val() == undefined ? 0 : $("#ddlFrequencyOfSmoking").val().trim(),
+                Frequencyofalcoholconsumption: $("#ddlFrequencyOfAlcoholConsumption").val() == undefined ? 0 : $("#ddlFrequencyOfAlcoholConsumption").val().trim(),
+                WaterintakeperdayType: $("#ddlWaterIntakePerDayType").val() == undefined ? 0 : $("#ddlWaterIntakePerDayType").val().trim(),
+                Waterintakeperday: $("#ddlWaterIntakePerDayDetails").val() == undefined ? '' : $("#ddlWaterIntakePerDayDetails").val().trim(),
+                Frequencyofrestaurantvisit: $("#ddlFrequencyOfRestaurantVisit").val() == undefined ? 0 : $("#ddlFrequencyOfRestaurantVisit").val().trim(),
+                Preferredcuisine: $("#txtPreferredCuisine").val() == undefined ? '' : $("#txtPreferredCuisine").val().trim(),
+                Whocooksathome: $("#txtWhoCooksAtHome").val() == undefined ? '' : $("#txtWhoCooksAtHome").val().trim(),
+                FoodAversions: $("#txtFoodAversions").val() == undefined ? '' : $("#txtFoodAversions").val().trim(),
+                FoodPreferences: $("#txtFoodPreferences").val() == undefined ? '' : $("#txtFoodPreferences").val().trim(),
+                FoodAllergies: $("#txtFoodAllergies").val() == undefined ? '' : $("#txtFoodAllergies").val().trim(),
+            }
+
+            var assessment =
+            {
+                TableType: "UserDietaryAndLifeStyleDetails",
+                UserDietaryAndLifeStyleDetails: UserDietaryAndLifeStyleDetailsdata
+            }
+
+            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                alert('Record save successfully!!!');
+
+            });
+            //    }
+            //    else {
+            //        alert('Please fill all details to Dietary And Life Style Details.');
+            //    }
+            //}
         }
-
-        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-            alert('Record save successfully!!!');
-
-        });
-        //    }
-        //    else {
-        //        alert('Please fill all details to Dietary And Life Style Details.');
-        //    }
-        //}
     }
 
     function SaveUserDirectCall() {
-        //if (ValidationOnSave()) {
-        //    if (ValidateRequiredField()) {
-        var UserDirectCalldata =
-        {
-            UserId: sessionStorage.getItem('userId'),
-            OnwakingupTime: $("#ddlOnWakingUp").val() == undefined ? 0 : $("#ddlOnWakingUp").val().trim(),
-            OnwakingupConsumption: $("#txtOnWakingUp").val() == undefined ? '' : $("#txtOnWakingUp").val().trim(),
-            BreakfastTime: $("#ddlBreakfast").val() == undefined ? 0 : $("#ddlBreakfast").val().trim(),
-            BreakfastConsumption: $("#txtBreakfast").val() == undefined ? '' : $("#txtBreakfast").val().trim(),
-            MidmorningTime: $("#ddlMidMorning").val() == undefined ? 0 : $("#ddlMidMorning").val().trim(),
-            MidmorningConsumption: $("#txtMidMorning").val() == undefined ? '' : $("#txtMidMorning").val().trim(),
-
-            LunchTime: $("#ddlLunch").val() == undefined ? 0 : $("#ddlLunch").val().trim(),
-            LunchConsumption: $("#txtLunch").val() == undefined ? '' : $("#txtLunch").val().trim(),
-            SnackTime: $("#ddlEveningTeaSnack").val() == undefined ? 0 : $("#ddlEveningTeaSnack").val().trim(),
-            SnackConsumption: $("#txtEveningTeaSnack").val() == undefined ? '' : $("#txtEveningTeaSnack").val().trim(),
-            DinnerTime: $("#ddlDinner").val() == undefined ? 0 : $("#ddlDinner").val().trim(),
-            DinnerConsumption: $("#txtDinner").val() == undefined ? '' : $("#txtDinner").val().trim(),
-            Bedtime: $("#ddlBedTime").val() == undefined ? 0 : $('#ddlBedTime').val().trim(),
-            BedConsumption: $("#txtBedTime").val() == undefined ? '' : $("#txtBedTime").val().trim(),
-
+        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+            alert("Kindly first purchase the product .");
         }
+        else {
+            //if (ValidationOnSave()) {
+            //    if (ValidateRequiredField()) {
+            var UserDirectCalldata =
+            {
+                UserId: sessionStorage.getItem('userId'),
+                OnwakingupTime: $("#ddlOnWakingUp").val() == undefined ? 0 : $("#ddlOnWakingUp").val().trim(),
+                OnwakingupConsumption: $("#txtOnWakingUp").val() == undefined ? '' : $("#txtOnWakingUp").val().trim(),
+                BreakfastTime: $("#ddlBreakfast").val() == undefined ? 0 : $("#ddlBreakfast").val().trim(),
+                BreakfastConsumption: $("#txtBreakfast").val() == undefined ? '' : $("#txtBreakfast").val().trim(),
+                MidmorningTime: $("#ddlMidMorning").val() == undefined ? 0 : $("#ddlMidMorning").val().trim(),
+                MidmorningConsumption: $("#txtMidMorning").val() == undefined ? '' : $("#txtMidMorning").val().trim(),
 
-        var assessment =
-        {
-            TableType: "UserDirectCall",
-            UserDirectCall: UserDirectCalldata
+                LunchTime: $("#ddlLunch").val() == undefined ? 0 : $("#ddlLunch").val().trim(),
+                LunchConsumption: $("#txtLunch").val() == undefined ? '' : $("#txtLunch").val().trim(),
+                SnackTime: $("#ddlEveningTeaSnack").val() == undefined ? 0 : $("#ddlEveningTeaSnack").val().trim(),
+                SnackConsumption: $("#txtEveningTeaSnack").val() == undefined ? '' : $("#txtEveningTeaSnack").val().trim(),
+                DinnerTime: $("#ddlDinner").val() == undefined ? 0 : $("#ddlDinner").val().trim(),
+                DinnerConsumption: $("#txtDinner").val() == undefined ? '' : $("#txtDinner").val().trim(),
+                Bedtime: $("#ddlBedTime").val() == undefined ? 0 : $('#ddlBedTime').val().trim(),
+                BedConsumption: $("#txtBedTime").val() == undefined ? '' : $("#txtBedTime").val().trim(),
+
+            }
+
+            var assessment =
+            {
+                TableType: "UserDirectCall",
+                UserDirectCall: UserDirectCalldata
+            }
+
+            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                alert('Record save successfully!!!');
+
+            });
+            //    }
+            //    else {
+            //        alert('Please fill all details to Direct Call.');
+            //    }
+            //}
         }
-
-        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-            alert('Record save successfully!!!');
-
-        });
-        //    }
-        //    else {
-        //        alert('Please fill all details to Direct Call.');
-        //    }
-        //}
     }
 
     function SaveUserFoodFequency() {
-        //if (ValidationOnSave()) {
-        //    if (ValidateRequiredField()) {
-        var UserFoodFequencydata =
-        {
-            UserId: sessionStorage.getItem('userId'),
-            Roti: $("#ddlRotiChapati").val() == undefined ? 0 : $("#ddlRotiChapati").val().trim(),
-            Rice: $("#ddlRice").val() == undefined ? 0 : $("#ddlRice").val().trim(),
-            BreadPav: $("#ddlBreadPav").val() == undefined ? 0 : $("#ddlBreadPav").val().trim(),
-            ChaatSnacks: $("#ddlChaatFastFoodFriedSnacks").val() == undefined ? 0 : $("#ddlChaatFastFoodFriedSnacks").val().trim(),
-            Nonveg: $("#ddlNonVeg").val() == undefined ? 0 : $("#ddlNonVeg").val().trim(),
-            Eggs: $("#ddlEggs").val() == undefined ? 0 : $("#ddlEggs").val().trim(),
-            Teacoffee: $("#ddlTeaCoffee").val() == undefined ? 0 : $("#ddlTeaCoffee").val().trim(),
-            Desert: $("#ddlDesert").val() == undefined ? 0 : $("#ddlDesert").val().trim(),
-            Fruits: $("#ddlFruits").val() == undefined ? 0 : $("#ddlFruits").val().trim(),
-            Nuts: $("#ddlNuts").val() == undefined ? 0 : $("#ddlNuts").val().trim(),
+        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+            alert("Kindly first purchase the product .");
         }
+        else {
+            //if (ValidationOnSave()) {
+            //    if (ValidateRequiredField()) {
+            var UserFoodFequencydata =
+            {
+                UserId: sessionStorage.getItem('userId'),
+                Roti: $("#ddlRotiChapati").val() == undefined ? 0 : $("#ddlRotiChapati").val().trim(),
+                Rice: $("#ddlRice").val() == undefined ? 0 : $("#ddlRice").val().trim(),
+                BreadPav: $("#ddlBreadPav").val() == undefined ? 0 : $("#ddlBreadPav").val().trim(),
+                ChaatSnacks: $("#ddlChaatFastFoodFriedSnacks").val() == undefined ? 0 : $("#ddlChaatFastFoodFriedSnacks").val().trim(),
+                Nonveg: $("#ddlNonVeg").val() == undefined ? 0 : $("#ddlNonVeg").val().trim(),
+                Eggs: $("#ddlEggs").val() == undefined ? 0 : $("#ddlEggs").val().trim(),
+                Teacoffee: $("#ddlTeaCoffee").val() == undefined ? 0 : $("#ddlTeaCoffee").val().trim(),
+                Desert: $("#ddlDesert").val() == undefined ? 0 : $("#ddlDesert").val().trim(),
+                Fruits: $("#ddlFruits").val() == undefined ? 0 : $("#ddlFruits").val().trim(),
+                Nuts: $("#ddlNuts").val() == undefined ? 0 : $("#ddlNuts").val().trim(),
+            }
 
-        var assessment =
-        {
-            TableType: "UserFoodFequency",
-            UserFoodFequency: UserFoodFequencydata
+            var assessment =
+            {
+                TableType: "UserFoodFequency",
+                UserFoodFequency: UserFoodFequencydata
+            }
+
+            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                alert('Record save successfully!!!');
+
+            });
+            //    }
+            //    else {
+            //        alert('Please fill all details to Food Fequency.');
+            //    }
+            //}
         }
-
-        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-            alert('Record save successfully!!!');
-
-        });
-        //    }
-        //    else {
-        //        alert('Please fill all details to Food Fequency.');
-        //    }
-        //}
     }
 
     function SaveUserAnyKeyInSights() {
-        //if (ValidationOnSave()) {
-        //    if (ValidateRequiredField()) {
-        var UserAnyKeyInSightsdata =
-        {
-            UserId: sessionStorage.getItem('userId'),
-            Comments: $("#txtAnyKeyInsight").val() == undefined ? '' : $("#txtAnyKeyInsight").val().trim(),
-
+        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+            alert("Kindly first purchase the product .");
         }
+        else {
+            //if (ValidationOnSave()) {
+            //    if (ValidateRequiredField()) {
+            var UserAnyKeyInSightsdata =
+            {
+                UserId: sessionStorage.getItem('userId'),
+                Comments: $("#txtAnyKeyInsight").val() == undefined ? '' : $("#txtAnyKeyInsight").val().trim(),
 
-        var assessment =
-        {
-            TableType: "UserAnyKeyInSights",
-            UserAnyKeyInSights: UserAnyKeyInSightsdata
+            }
+
+            var assessment =
+            {
+                TableType: "UserAnyKeyInSights",
+                UserAnyKeyInSights: UserAnyKeyInSightsdata
+            }
+
+            CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
+                alert('Record save successfully!!!');
+
+            });
+
+            //}
+            //    else {
+            //        alert('Please fill all details to Any Key InSights.');
+            //    }
+            //}
         }
-
-        CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-            alert('Record save successfully!!!');
-
-        });
-
-        //}
-        //    else {
-        //        alert('Please fill all details to Any Key InSights.');
-        //    }
-        //}
     }
 
     function ValidateRequiredField() 

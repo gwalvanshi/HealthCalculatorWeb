@@ -348,6 +348,54 @@ namespace HealthCalculator.Web.Controllers
             }
         }
         [HttpGet]
+        public async Task<JsonResult> GetProductProgram()
+        {
+            try
+            {
+
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "125";
+                collection.UserId = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "UserId",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue = Session["UserID"].ToString()
+                    }
+                };
+
+
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<ProgramProductModel>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
+
+                //GenericService _genericService = new GenericService();
+                //IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                //collection.ScreenID = "113";
+                //collection.UserId = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+
+                //var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                //var objCommunication = await _genericService.GetRecords<ProductModel>(stringContent1);
+
+                //return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
+
+        [HttpGet]
         public async Task<JsonResult> GetProduct(int Program_Id)
         {
             try

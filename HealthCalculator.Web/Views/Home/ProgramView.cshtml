@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "ProgramView";
+}
+
+<div class="container-fluid flowerBg">
+   
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12 col-lg-11">
+            <div class="middleContent bg-gray shadow">
+                <div class="row">
+                    <div class="demo-container">
+                        <div id="gridContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  
+   
+    window.onload = function ()
+    {
+        var obj = {
+           Type:"",
+           OperationType:"",
+           UserId:1
+        }
+       
+        CommonAjaxMethod('Program/GetProgram', null, false, 'GET', function (response)
+        {  
+            Load(response.dataCollection);           
+        });
+    }
+
+    function Load(ctr)
+    {
+        
+             $("#gridContainer").dxDataGrid({
+                 dataSource: ctr,
+                allowColumnReordering: true,
+                showBorders: true,
+              
+                searchPanel: {
+                    visible: true
+                },
+                paging: {
+                    pageSize: 10
+                },
+                groupPanel: {
+                    visible: true
+                },
+                editing: {
+                    mode: "form",
+                    allowUpdating: false
+                },
+                 columns: [
+                     "Id",
+                    "Program_Id",
+                    "Program",
+                     "ProductName",
+                     "INRRate",
+                     "DollerRate",
+                     "DiscountInValue",
+                     "DiscountInPer",
+                     "IsDscount",
+                     "Status",
+                    {
+                        caption: "View Program Details",
+                        alignment: 'center',
+                        cellTemplate: function (container, options) {
+                            $('<a />').addClass('dx-link')
+                                .text('View Detail')
+                                .on('dxclick', function () {                                                                   
+                                  
+                                    sessionStorage.setItem('SelectedProgramId', options.data.Id);
+                                    window.location.href = "smartWeightLoss";
+                                }).appendTo(container);
+                        }
+                    }
+                                      
+                       
+                ]
+             });        
+    }
+
+
+   
+</script>
+

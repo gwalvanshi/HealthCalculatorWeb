@@ -730,6 +730,7 @@
     <Content Include="Views\Home\EditPlan.cshtml" />
     <Content Include="Views\Home\AddFreeSession.cshtml" />
     <Content Include="Views\Home\ViewEnquiryDetails.cshtml" />
+    <Content Include="Views\Home\ProgramView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

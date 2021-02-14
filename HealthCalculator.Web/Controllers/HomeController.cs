@@ -484,6 +484,11 @@ namespace HealthCalculator.Web.Controllers
 
         [SessionExpireFilterAttributeAdmin]
         #endregion
+
+        public ActionResult ProgramView()
+        {
+            return View();          
+        }
         public ActionResult AdminView()
         {
             var chkTimeOut = Session.Timeout;
@@ -496,6 +501,7 @@ namespace HealthCalculator.Web.Controllers
             return View();
             // return RedirectToAction("Index", "User");
         }
+
         public ActionResult about()
         {
             var chkTimeOut = Session.Timeout;

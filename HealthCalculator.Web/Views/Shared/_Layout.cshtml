@@ -3639,7 +3639,9 @@
             {
                 // alert("a");
                 $("#tblCart").find('tbody').html("");
-                if (sessionStorage.getItem("CartProgramID") != "") {
+                if (sessionStorage.getItem("CartProgramID") != "" && sessionStorage.getItem("CartProgramID") != null)
+                {
+
                     var cartdetails = sessionStorage.getItem("CartProgramID");
                     //alert(cartdetails);
                     var array = cartdetails.split("~");
@@ -3649,7 +3651,7 @@
                    // $("tblCart").html("");
 
 
-
+                   
 
                     var strinnerid = null;
                     var strid = null;
@@ -3688,11 +3690,13 @@
 
 
 
-                }
-               // alert(strid);
-                sessionStorage.setItem("CProgramID", strid);
+                    // alert(strid);
+                    sessionStorage.setItem("CProgramID", strid);
 
-                $('#myModal').modal('show');
+                    $('#myModal').modal('show');
+
+                }
+              
 
             });
 
