@@ -115,7 +115,7 @@ namespace HealthCalculator.Web.Controllers
                     foreach (var item in masterData)
                     {
                         objMessageMasterDataChild = new MessageMasterDataList();
-                        objMessageMasterDataChild.Attachement =CommonMethods.ServerPath+ item.Attachement;                      
+                        objMessageMasterDataChild.Attachement = string.IsNullOrEmpty(item.Attachement)==true?"": CommonMethods.ServerPath+ item.Attachement;                      
                         MessageMasterDataListChild.Add(objMessageMasterDataChild);
 
                     }
