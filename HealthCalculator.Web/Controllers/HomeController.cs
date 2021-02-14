@@ -24,12 +24,27 @@ namespace HealthCalculator.Web.Controllers
         [SessionExpireFilterAttributeAdmin]
         public ActionResult ViewEnquiryDetails(int Enquiry_Id)
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+               
+            }           
+
             return View();
             // return RedirectToAction("Index", "User");
         }
         [SessionExpireFilterAttributeAdmin]
         public ActionResult AddFreeSession(int userId)
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
@@ -37,13 +52,26 @@ namespace HealthCalculator.Web.Controllers
         [SessionExpireFilterAttribute]
         public ActionResult payments()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
-       // [SessionExpireFilterAttribute]
+        [SessionExpireFilterAttribute]
         public ActionResult helpDesk(string userId=null)
         {
-            
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             List<MessageMasterData> objMessageMasterDataList = new List<MessageMasterData>();
             MessageMasterData objMessageMasterData = new MessageMasterData();
             MessageMasterDataList objMessageMasterDataChild= new MessageMasterDataList();
@@ -103,12 +131,26 @@ namespace HealthCalculator.Web.Controllers
         [SessionExpireFilterAttribute]
         public ActionResult MyEatingPattern(string userId = null)
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
         [SessionExpireFilterAttribute]
         public ActionResult MyEatingSmartTools(string userId = null)
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             List<UserOrderViewModel> objModelList = new List<UserOrderViewModel>();
             EatingToolModel objEatingToolModel = new EatingToolModel();
             try
@@ -168,94 +210,241 @@ namespace HealthCalculator.Web.Controllers
         [SessionExpireFilterAttribute]
         public ActionResult tracker(string userId = null)
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
         [SessionExpireFilterAttribute]
         public ActionResult assessment(string userId = null)
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
 
         public ActionResult register()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
        
         public ActionResult contact()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult faq()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult privacyPolicy()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult careers()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult testimonials()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult corporateWellness()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult blogs()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult smartWeightLoss()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
 
         public ActionResult smartWeightGain()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult smartManagementForDisease()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult smartBodyToningBuilding()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult smartPsychologicalWellBeing()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult smartEatingOut()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult smartEnhancer()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult smartChildNutrition()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult smartEatingForSpecialChildren()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult eatingSmartTools()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
         }
         public ActionResult login()
         {
-          
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
+
             return View();
         }
         public ActionResult Logout()
@@ -268,13 +457,27 @@ namespace HealthCalculator.Web.Controllers
         
         public ActionResult ViewPlan()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
-       // [SessionExpireFilterAttributeAdmin]
+        [SessionExpireFilterAttributeAdmin]
 
         public ActionResult EditPlan(int orderId)
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
@@ -283,63 +486,140 @@ namespace HealthCalculator.Web.Controllers
         #endregion
         public ActionResult AdminView()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
         public ActionResult about()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
         public ActionResult howItWorks()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
         public ActionResult Index()
-        {           
+        {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
 
             // return RedirectToAction("Index", "User");
         }
         public ActionResult ShowGraph()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
 
         public ActionResult ShowWFLGirl()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
 
         public ActionResult ShowBMI0205Boy()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
 
         public ActionResult ShowBMI0205Girl()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
 
         public ActionResult ShowBMI0518Boy()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
 
         public ActionResult ShowBMI0518Girl()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }
 
         public ActionResult PaymentOption()
         {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
             return View();
             // return RedirectToAction("Index", "User");
         }

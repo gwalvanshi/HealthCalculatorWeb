@@ -57,9 +57,9 @@ namespace HealthCalculator.Web.EntityModel
         public bool? IsSubmit { get; set; }
         public bool? IsActive { get; set; }
         public Int64 SessionId { get; set; }
-        public Int64 AddedBy { get; set; }
+        public Int64 ? AddedBy { get; set; }
         public DateTime? AddedWhen { get; set; }
-        public Int64 UpdatedBy { get; set; }
+        public Int64 ? UpdatedBy { get; set; }
         public DateTime? UpdatedWhen { get; set; }
 
 

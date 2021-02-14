@@ -191,8 +191,9 @@ namespace HealthCalculator.Web.EntityModel
 
     public class RspoonseAssessment
     {
-        
-         public int ProductId { get; set; }
+        public int Trackerfalldays { get; set; }
+        public int PatternCount { get; set; }
+        public int ProductId { get; set; }
         public int OrderId { get; set; }
         public int MessageCount { get; set; }
         public int UserId { get; set; }

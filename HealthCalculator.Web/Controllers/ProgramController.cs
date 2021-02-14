@@ -479,7 +479,7 @@ namespace HealthCalculator.Web.Controllers
 
                 GenericService _genericService = new GenericService();
                 var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
-                var status = await _genericService.PerformDataOperationList<ReturnUserTrackerDetails>(stringContent);
+                var status = await _genericService.PerformDataOperationDataList<ReturnUserTrackerDetails>(stringContent);
                // return new JsonResult { Data = status };
                 return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
@@ -491,36 +491,36 @@ namespace HealthCalculator.Web.Controllers
 
         
 
-        public async Task<JsonResult> GetTrackerData(int id)
-        {
-            try
-            {
-                int loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+        //public async Task<JsonResult> GetTrackerData(int id)
+        //{
+        //    try
+        //    {
+        //        int loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
 
 
-                GenericService _genericService = new GenericService();
-                IndexScreenParameterModel collection = new IndexScreenParameterModel();
-                collection.ScreenID = "119";
-                collection.UserId = loggedIdUserID;
-                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
-                {
-                    new IndexScreenSearchParameterModel
-                    {
-                        SearchParameter = "OrderId",
-                        SearchParameterDataType = "int",
-                        SearchParameterValue = id.ToString()
-                    }
-                };
-                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
-                var objCommunication = await _genericService.GetRecords<UserTracker>(stringContent1);
+        //        GenericService _genericService = new GenericService();
+        //        IndexScreenParameterModel collection = new IndexScreenParameterModel();
+        //        collection.ScreenID = "119";
+        //        collection.UserId = loggedIdUserID;
+        //        collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+        //        {
+        //            new IndexScreenSearchParameterModel
+        //            {
+        //                SearchParameter = "OrderId",
+        //                SearchParameterDataType = "int",
+        //                SearchParameterValue = id.ToString()
+        //            }
+        //        };
+        //        var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+        //        var objCommunication = await _genericService.GetRecords<UserTracker>(stringContent1);
 
-                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-            }
-            catch (Exception ex)
-            {
-                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
-            }
-        }
+        //        return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+        //    }
+        //}
 
         public async Task<JsonResult> SaveEatingPattern(EatingPatterndata collection)
         {

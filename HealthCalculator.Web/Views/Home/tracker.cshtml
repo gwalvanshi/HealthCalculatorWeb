@@ -37,12 +37,12 @@
             <div class="middleContent bg-gray shadow">
                 <div class="row">
                     <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">WEIGHT TRACKER : - <label class="col-12 col-sm-5 col-form-label semi" id="lbllable"></label></p>                    
-                       
+                        <p class="semi mb-2 text-yellow">WEIGHT TRACKER : - <label class="col-12 col-sm-5 col-form-label semi" id="lbllable"></label></p>
+
                     </div>
-                 
-               
-                  
+
+
+
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-12">
@@ -58,37 +58,73 @@
                         </div>
                     </div>
 
-                   
+
 
                     <hr class="mt-0 mb-2 bg-dark" />
                 </div>
 
-                  
+
                 <div class="bg-yellow container-minus mb-4 pt-2 pb-2">
                     <div class="row pt-2">
                         <div class="col-12 col-md-12 col-lg-6">
                             <p class="semi mb-2 text-white">Date</p>
                         </div>
                         <div class="col-12 col-md-12 col-lg-3">
-                            <p class="semi mb-2 text-white">Weight</p>  
+                            <p class="semi mb-2 text-white">Weight</p>
                         </div>
                         <div class="col-12 col-md-12 col-lg-3">
-                            <p class="semi mb-2 text-white">Difference</p>                      
+                            <p class="semi mb-2 text-white">Difference</p>
                         </div>
                     </div>
                 </div>
                 <div id="DivDynamicSession">
-                   
-                </div>                               
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <div class="form-group row">
+                            <label class="semi mb-2 text-yellow">Inch Tracker <span class="float-right d-none d-md-block"> : </span></label>
+                            <div class="col-12 col-sm-7">
+                                <select class="custom-select" id="ddlInch">
+                                    <option selected>Select</option>
+                                    <option value="Inch">Inch</option>
+                                    <option value="CM">CM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mt-0 mb-2 bg-dark" />
+                </div>
+
+                <div class="bg-yellow container-minus mb-4 pt-2 pb-2">
+                    <div class="row pt-2">
+                        <div class="col-12 col-md-12 col-lg-6">
+                            <p class="semi mb-2 text-white">Date</p>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-3">
+                            <p class="semi mb-2 text-white">Chest</p>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-3">
+                            <p class="semi mb-2 text-white">Waist</p>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-3">
+                            <p class="semi mb-2 text-white">Hip</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="InchDivDynamicSession">
+
+                </div>
                 <div class="row">
                     <div class="col-12 text-right">
                         <a class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnSubmit" onclick="SaveTracker()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
                     </div>
 
-                    <div>                    
-                        <input type = "hidden" id = "hdnProductId" />
+                    <div>
+                        <input type="hidden" id="hdnProductId" />
                         <input type="hidden" id="hdnOrderId" />
-                        <input type = "hidden" id = "hdnlenght" />
+                        <input type="hidden" id="hdnlenght" />
                     </div>
                 </div>
             </div>
@@ -124,11 +160,11 @@
             UserId: sessionStorage.getItem('userId')
         }
         CommonAjaxMethod('Program/GetUserTrackerDetails', { userId:sessionStorage.getItem('userId')}, false, 'GET', function (response) {
-
-            if (response.data.Data.length> 0)
+            debugger;
+            if (response.data.Data.Table.length> 0)
             {
 
-
+                debugger;
                // var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
                 var dateData = new Date();
                 var dd = dateData.getDate();
@@ -144,17 +180,147 @@
                 var vara = 0;
                 var varb = 1;
                 
-                $("#hdnProductId").val(response.data.Data[0].ProductId);
-                $("#hdnOrderId").val(response.data.Data[0].OrderId);
-                $("#hdnlenght").val(response.data.Data[0].GivenDays);
-                $("#ddlWeight").val(response.data.Data[0].WeightIn);
+                $("#hdnProductId").val(response.data.Data.Table[0].ProductId);
+                $("#hdnOrderId").val(response.data.Data.Table[0].OrderId);
+                $("#hdnlenght").val(response.data.Data.Table[0].GivenDays);
+                $("#ddlWeight").val(response.data.Data.Table[0].WeightIn);
+                $("#ddlInch").val(response.data.Data.Table[1].WeightIn);
 
-                orderID = response.data.Data[0].OrderId;
-                $("#lbllable").text(response.data.Data[0].Program + " :: " + response.data.Data[0].ProductName);
+                orderID = response.data.Data.Table[0].OrderId;
+                $("#lbllable").text(response.data.Data.Table[0].Program + " :: " + response.data.Data.Table[0].ProductName);
                 $('#DivDynamicSession').html("");
                 var divHTML = "";
-                varlenght = response.data.Data[0].GivenDays;
-                for (var i = 0; i <response.data.Data[0].GivenDays; i++)
+
+                $('#InchDivDynamicSession').html("");
+                var InchdivHTML = "";
+                for (var i = 0; i < response.data.Data.Table[1].GivenDays; i++)
+                {
+                    if (sessionStorage.getItem('RoleID') == "1") {
+                        InchdivHTML += '<div class="row form-data pt-2">' +
+                            '<div class="col-12 col-md-12 col-lg">' +
+                            '<div class="row align-items-center h-100">' +
+                            '<div class=" col-12 col-md-7">' +
+                            '<div class="form-group">' +
+                            '<input type="date" class="form-control" readOnly="true" placeholder="Enter Date" id="txtTrackerDate1' + (i + 1) + '" />' +
+                            '</div>' +
+                            '<div class=" form-group">' +
+                            '<input type="date" class="form-control" readOnly="true" placeholder = "Enter Date"  id ="txtTrackerDate2' + (i + 1) + '" />' +
+                            '</div>' +
+                           
+                            '</div>' +
+                            '<div class="col-12 col-md-5 h-100">' +
+                            '<div class="form-group h-100">' +
+                            '<div class="bg-sky text-white sessionButton h-100">Session ' + (i + 1) + '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-12 col-md-12 col-lg-1 text-center">' +
+                            '<div class="form - group">' +
+                            '<p class=" mb-0 semi" style="line-height:39px; font-size:14px;"> Start</p>' +
+                            '</div>' +
+                            '<div class=" form-group">' +
+                            '<p class=" mb-0 semi" style="line-height:39px; font-size:14px;"> End</p>' +
+                            '</div>' +                            
+                            '</div>' +
+                            '<div class="col-12 col-md-12 col-lg">' +
+                            '<div class="row align-items-center">' +
+                            '<div class="col-6 col-md-6">' +
+                            '<div class="form-group">' +
+                            '<input type="text" class="form-control" placeholder = "Enter Chest" id = "txtChest1' + (i + 1) + '" />' +
+                            '</div>' +
+                            '<div class="form-group">' +
+                            '<input type="text" class="form-control" placeholder = "Enter Chest" id = "txtChest2' + (i + 1) + '" />' +
+                            '</div>' +                           
+                            '</div>' +
+                            '<div class="col-6 col-md-6">' +
+                            '<div class="form-group">' +
+                            '<input type="text" class="form-control"  placeholder="Enter Waist" id="txtWaist1' + (i + 1) + '" />' +
+                            '</div>' +
+                            '<div class="form-group">' +
+                            '<input type="text" class="form-control"   placeholder="Enter Waist" id="txtWaist2' + (i + 1) + '"/>' +
+                            '</div>' +
+                           
+                            '</div>' +
+
+                            '<div class="col-6 col-md-6">' +
+                            '<div class="form-group">' +
+                            '<input type="text" class="form-control"  placeholder="Enter hip" id="txthip1' + (i + 1) + '" />' +
+                            '</div>' +
+                            '<div class="form-group">' +
+                            '<input type="text" class="form-control"   placeholder="Enter hip" id="txthip2' + (i + 1) + '"/>' +
+                            '</div>' +
+
+                            '</div>' +
+
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                    }
+                    else {
+                        InchdivHTML += '<div class="row form-data pt-2">' +
+                            '<div class="col-12 col-md-12 col-lg">' +
+                            '<div class="row align-items-center h-100">' +
+                            '<div class=" col-12 col-md-7">' +
+                            '<div class="form-group">' +
+                            '<input type="date" class="form-control" readOnly="true" placeholder="Enter Date" id="txtTrackerDate1' + (i + 1) + '" />' +
+                            '</div>' +
+                            '<div class=" form-group">' +
+                            '<input type="date" class="form-control" readOnly="true" placeholder = "Enter Date"  id ="txtTrackerDate2' + (i + 1) + '" />' +
+                            '</div>' +
+
+                            '</div>' +
+                            '<div class="col-12 col-md-5 h-100">' +
+                            '<div class="form-group h-100">' +
+                            '<div class="bg-sky text-white sessionButton h-100">Session ' + (i + 1) + '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-12 col-md-12 col-lg-1 text-center">' +
+                            '<div class="form - group">' +
+                            '<p class=" mb-0 semi" style="line-height:39px; font-size:14px;"> Start</p>' +
+                            '</div>' +
+                            '<div class=" form-group">' +
+                            '<p class=" mb-0 semi" style="line-height:39px; font-size:14px;"> End</p>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-12 col-md-12 col-lg">' +
+                            '<div class="row align-items-center">' +
+                            '<div class="col-6 col-md-6">' +
+                            '<div class="form-group">' +
+                            '<input type="text" class="form-control" placeholder = "Enter Weight" id = "txtChest1' + (i + 1) + '" />' +
+                            '</div>' +
+                            '<div class="form-group">' +
+                            '<input type="text" class="form-control" placeholder = "Enter Weight" id = "txtChest2' + (i + 1) + '" />' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-6 col-md-6">' +
+                            '<div class="form-group">' +
+                            '<input type="text" class="form-control"  placeholder="Enter Weight Difference" id="txtWaist1' + (i + 1) + '" />' +
+                            '</div>' +
+                            '<div class="form-group">' +
+                            '<input type="text" class="form-control"  placeholder="Enter Weight Difference" id="txtWaist2' + (i + 1) + '"/>' +
+                            '</div>' +
+
+                            '</div>' +
+
+                            '<div class="col-6 col-md-6">' +
+                            '<div class="form-group">' +
+                            '<input type="text" class="form-control"  placeholder="Enter Weight Difference" id="txthip1' + (i + 1) + '" />' +
+                            '</div>' +
+                            '<div class="form-group">' +
+                            '<input type="text" class="form-control"  placeholder="Enter Weight Difference" id="txthip2' + (i + 1) + '"/>' +
+                            '</div>' +
+
+                            '</div>' +
+
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                    }
+                }
+                for (var i = 0; i < response.data.Data.Table[0].GivenDays; i++)
                 {
                     if (sessionStorage.getItem('RoleID') == "1") {
                         divHTML += '<div class="row form-data pt-2">' +
@@ -281,6 +447,7 @@
                        
 
                 }
+                $('#InchDivDynamicSession').html(InchdivHTML);               
                 $('#DivDynamicSession').html(divHTML);
                 GetTrackerData();
             }
@@ -311,26 +478,26 @@
     {
         CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: sessionStorage.getItem('userId') }, false, 'GET',
           function (response) {
+              debugger;
+              if (response.data.Data.Table.length > 0)
+              {
 
-              if (response.data.Data.length > 0) {
-
-                  var varlength = response.data.Data.length / 3;
+                //  var varlength = response.data.Data.length / 3;
 
                   var midCounter = 0;
                   var midcounterSet = 0;
                   var midcounterStart = 0;
-                  var ModeCounter = 1;
-                  for (var i = 0; i < response.data.Data.length; i++)
+                
+                  for (var i = 0; i < response.data.Data.Table.length; i++)
                   {
 
 
                       var strDate = ""; //var dateValue;
-                      var strDate1 = ""; //var dateValue1;
-                      var strDate2 = ""; //var dateValue2;
-                      if (response.data.Data[i].TrackerDate != null)
+                   
+                      if (response.data.Data.Table[i].TrackerDate != null)
                       {
 
-                          strDate = getdate(response.data.Data[i].TrackerDate);
+                          strDate = getdate(response.data.Data.Table[i].TrackerDate);
                       }
 
                         midCounter = (i % 3);
@@ -340,14 +507,45 @@
                         }
                         midcounterSet++;
 
-                        $("#txtWeight"+midcounterSet + midcounterStart).val(response.data.Data[i].Weight);
-                        $("#txtDifference" + midcounterSet + midcounterStart).val(response.data.Data[i].WeightDifference);
+                      $("#txtWeight" + midcounterSet + midcounterStart).val(response.data.Data.Table[i].Weight);
+                      $("#txtDifference" + midcounterSet + midcounterStart).val(response.data.Data.Table[i].WeightDifference);
                         $("#txtDate" + midcounterSet + midcounterStart).val(strDate);
                         if(midcounterSet==3)
                         {
                             midcounterSet = 0;
                         }
 
+                  }
+
+
+                   midCounter = 0;
+                   midcounterSet = 0;
+                   midcounterStart = 0;
+
+                  for (var i = 0; i < response.data.Data.Table1.length; i++)
+                  {
+
+
+                      var strDate = ""; //var dateValue;
+                 
+                      if (response.data.Data.Table1[i].InchTrackerDate != null) {
+
+                          strDate = getdate(response.data.Data.Table1[i].InchTrackerDate);
+                      }
+
+                      midCounter = (i % 2);
+                      if (midCounter == 0) {
+                          midcounterStart++;
+                      }
+                      midcounterSet++;
+
+                      $("#txtChest" + midcounterSet + midcounterStart).val(response.data.Data.Table1[i].Chest);
+                      $("#txtWaist" + midcounterSet + midcounterStart).val(response.data.Data.Table1[i].Waist);
+                      $("#txthip" + midcounterSet + midcounterStart).val(response.data.Data.Table1[i].Hip);
+                      $("#txtTrackerDate" + midcounterSet + midcounterStart).val(strDate);
+                      if (midcounterSet == 2) {
+                          midcounterSet = 0;
+                      }
                   }
               }
           }
@@ -362,17 +560,20 @@
             UserId: sessionStorage.getItem('userId'),
             ProductId: $("#hdnProductId").val() == undefined ? '' : $("#hdnProductId").val().trim(),
             OrderId: $("#hdnOrderId").val() == undefined ? 0 : $("#hdnOrderId").val().trim(),
-            UserTracker: []
+            UserTrackerWeigth: [],
+            UserTrackerInch: []
 
         }
 
 
 
         var varlenght = $("#hdnlenght").val();
-        if ($("#hdnlenght").val() != '' || $("#hdnlenght").val()) {
+        if ($("#hdnlenght").val() != '' || $("#hdnlenght").val())
+        {
             // alert($("#hdnlenght").val());
             // 
-            for (var i = 0; i < parseInt($("#hdnlenght").val()); i++) {
+            for (var i = 0; i < parseInt($("#hdnlenght").val()); i++)
+            {
                // alert("a");
                //   
                 var list1 =
@@ -385,7 +586,7 @@
                     WeightDifference: $("#txtDifference1" + (i + 1)).val() == undefined ? 0 : $("#txtDifference1" + (i + 1)).val().trim(),
                     TrackerDate: $("#txtDate1" + (i + 1)).val() == undefined ? 0 : $("#txtDate1" + (i + 1)).val().trim(),
                 }
-                mytracker.UserTracker.push(list1);
+                mytracker.UserTrackerWeigth.push(list1);
                 var list2 = {
                     UserId: sessionStorage.getItem('userId'),
                     ProductId: $("#hdnProductId").val() == undefined ? '' : $("#hdnProductId").val().trim(),
@@ -395,7 +596,7 @@
                     WeightDifference: $("#txtDifference2" + (i + 1)).val() == undefined ? 0 : $("#txtDifference2" + (i + 1)).val().trim(),
                     TrackerDate: $("#txtDate2" + (i + 1)).val() == undefined ? 0 : $("#txtDate2" + (i + 1)).val().trim(),
                 }
-                mytracker.UserTracker.push(list2);
+                mytracker.UserTrackerWeigth.push(list2);
                 var list3 = {
                     UserId: sessionStorage.getItem('userId'),
                     ProductId: $("#hdnProductId").val() == undefined ? '' : $("#hdnProductId").val().trim(),
@@ -405,7 +606,38 @@
                     WeightDifference: $("#txtDifference3" + (i + 1)).val() == undefined ? 0 : $("#txtDifference3" + (i + 1)).val().trim(),
                     TrackerDate: $("#txtDate3" + (i + 1)).val() == undefined ? 0 : $("#txtDate3" + (i + 1)).val().trim(),
                 }
-                mytracker.UserTracker.push(list3);
+                mytracker.UserTrackerWeigth.push(list3);
+
+            }
+              
+            for (var k = 0; k < parseInt($("#hdnlenght").val()); k++) {
+                // alert("a");
+                //   
+                   
+                var list1 =
+                {
+                    UserId: sessionStorage.getItem('userId'),
+                    ProductId: $("#hdnProductId").val() == undefined ? '' : $("#hdnProductId").val().trim(),
+                    OrderId: $("#hdnOrderId").val() == undefined ? 0 : $("#hdnOrderId").val().trim(),
+                    WeightIn: $("#ddlInch").val() == undefined ? 0 : $("#ddlInch").val().trim(),
+                    Chest: $("#txtChest1" + (k + 1)).val() == undefined ? 0 : $("#txtChest1" + (k + 1)).val().trim(),
+                    Waist: $("#txtWaist1" + (k + 1)).val() == undefined ? 0 : $("#txtWaist1" + (k + 1)).val().trim(),
+                    Hip: $("#txthip1" + (k + 1)).val() == undefined ? 0 : $("#txthip1" + (k + 1)).val().trim(),
+                    InchTrackerDate: $("#txtTrackerDate1" + (k + 1)).val() == undefined ? 0 : $("#txtTrackerDate1" + (k + 1)).val().trim(),
+                }
+                mytracker.UserTrackerInch.push(list1);
+                var list2 = {
+                    UserId: sessionStorage.getItem('userId'),
+                    ProductId: $("#hdnProductId").val() == undefined ? '' : $("#hdnProductId").val().trim(),
+                    OrderId: $("#hdnOrderId").val() == undefined ? 0 : $("#hdnOrderId").val().trim(),
+                    WeightIn: $("#ddlInch").val() == undefined ? 0 : $("#ddlInch").val().trim(),
+                    Chest: $("#txtChest2" + (k + 1)).val() == undefined ? 0 : $("#txtChest2" + (k + 1)).val().trim(),
+                    Waist: $("#txtWaist2" + (k + 1)).val() == undefined ? 0 : $("#txtWaist2" + (k + 1)).val().trim(),
+                    Hip: $("#txthip2" + (k + 1)).val() == undefined ? 0 : $("#txthip2" + (k + 1)).val().trim(),
+                    InchTrackerDate: $("#txtTrackerDate2" + (k + 1)).val() == undefined ? 0 : $("#txtTrackerDate2" + (k + 1)).val().trim(),
+                }
+                mytracker.UserTrackerInch.push(list2);
+              
 
             }
 

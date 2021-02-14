@@ -14,7 +14,8 @@ namespace HealthCalculator.Web.Controllers
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             HttpContext ctx = HttpContext.Current;
-          
+
+           
             if (HttpContext.Current.Session["UserID"] == null)
             {
                 int userID = Convert.ToInt32(HttpContext.Current.Session["UserID"]);

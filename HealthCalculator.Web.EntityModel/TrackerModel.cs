@@ -28,9 +28,10 @@ namespace HealthCalculator.Web.EntityModel
         public int UserId { get; set; }
         public int ProductId { get; set; }
         public Int64 OrderId { get; set; }
-        public List<UserTracker> UserTracker { get; set; }
+        public List<UserTrackerWeigth> UserTrackerWeigth { get; set; }
+        public List<UserTrackerInch> UserTrackerInch { get; set; }
     }
-    public class UserTracker
+    public class UserTrackerWeigth
     {
         public Int64 UserId { get; set; }
         public int ProductId { get; set; }
@@ -46,6 +47,23 @@ namespace HealthCalculator.Web.EntityModel
         
 
     }
+    public class UserTrackerInch
+    {
+        public Int64 UserId { get; set; }
+        public int ProductId { get; set; }
+        public Int64 OrderId { get; set; }
+        public decimal? Chest { get; set; }
+        public decimal? Waist { get; set; }
+        public decimal? Hip { get; set; }
+        public DateTime? InchTrackerDate { get; set; }
+        public Int64 AddedBy { get; set; }
+        public DateTime? AddedWhen { get; set; }
+        public Int64 UpdatedBy { get; set; }
+        public DateTime? UpdatedWhen { get; set; }
+        public string WeightIn { get; set; }
+
+
+    }
     public class ReturnUserTrackerDetails
     {
         public string GUID { get; set; }
@@ -55,10 +73,16 @@ namespace HealthCalculator.Web.EntityModel
         public bool UpdateRecord { get; set; }
         public int ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
-        public List<UserTrackerDetails> Data { get; set; }
+        public UserDetailsTrackerData Data { get; set; }
 
 
     }
+    public class UserDetailsTrackerData
+    {
+        public List<UserTrackerDetails> Table { get; set; }
+        public List<UserInchTrackerDetails> Table1 { get; set; }
+    }
+
     public class UserTrackerDetails
     {
         public Int64 UserId { get; set; }
@@ -72,6 +96,31 @@ namespace HealthCalculator.Web.EntityModel
         public string OrderAmountDoller { get; set; }
         public string CoupenId { get; set; }
         
+        public DateTime? StartActiveDate { get; set; }
+        public DateTime? EndActiveDate { get; set; }
+        public Int64 Totaldays { get; set; }
+        public bool IsActive { get; set; }
+        public Int64 GivenDays { get; set; }
+        public string ProductName { get; set; }
+        public string Program { get; set; }
+        public string WeightIn { get; set; }
+
+    }
+
+    public class UserInchTrackerDetails
+    {
+        public Int64 UserId { get; set; }
+        public int ProductId { get; set; }
+        public Int64 OrderId { get; set; }
+        public decimal? Chest { get; set; }
+        public decimal? Waist { get; set; }
+        public decimal? Hip { get; set; }
+        public DateTime? InchTrackerDate { get; set; }
+
+        public string OrderAmountINR { get; set; }
+        public string OrderAmountDoller { get; set; }
+        public string CoupenId { get; set; }
+
         public DateTime? StartActiveDate { get; set; }
         public DateTime? EndActiveDate { get; set; }
         public Int64 Totaldays { get; set; }
