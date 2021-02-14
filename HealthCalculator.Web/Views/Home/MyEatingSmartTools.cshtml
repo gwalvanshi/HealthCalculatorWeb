@@ -4,14 +4,30 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-fluid pl-0 pr-0">
-    <div class="row no-gutters banner eatingSmartToolsBanner align-items-center">
-        <div class="col-12 text-center">
-            <h2 class="bold mb-0 text-white">MY EATING SMART TOOLS </h2>
+<div class="bg-yellow">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+                <ul class="list-inline menu-sec">
+
+                    <li class="list-inline-item"><a href="~/Home/assessment">My Assessment Tool</a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right d-none d-md-block font" style="color: red;" id="spTrackers"></span></a></li>
+
+                    <li class="list-inline-item"><a href="~/Home/MyEatingSmartTools">My Eating Smart Tool</a></li>
+
+
+                    <li class="list-inline-item"> <a href="#" onclick="PatternHelp(this)">My Eating Pattern<span class="float-right d-none d-md-block" style="color: red;" id="spPattern"></span></a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" style="color: red;" id="spMessage"></span></a></li>
+
+                    <li class="list-inline-item"><a href="~/Home/ViewPlan">View Plans</a></li>
+                    <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
-
 <div class="container">   
     <div class="row justify-content-center">
         <div class="col-11 col-lg-9 bg-gray p-5 mb-5">
@@ -168,5 +184,44 @@
         $('img').bind('contextmenu', function (e) {
             return false;
         });
+
+        $("#spMessage").text(" (" + sessionStorage.getItem('MessageCount') + ")");
+        $("#spTrackers").text(" (" + sessionStorage.getItem('Trackerfalldays')  + ")");
+        $("#spPattern").text(" (" + sessionStorage.getItem('PatternCount')  + ")");
+
+
     };
+     function MessageHelp(ctrl) {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+    function TrackersHelp(ctrl)
+    {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/tracker?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+    function PatternHelp(ctrl)
+    {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/MyEatingPattern?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+
+       function Logout(ctrl) {
+        sessionStorage.clear();
+        ctrl.href = '@Url.Content("~/Home/Logout")';
+        ctrl.click();
+    }
+
 </script>

@@ -1747,6 +1747,8 @@
                                             <div class="form-group">
                                                 <p class="semi mb-2">Smoking:</p>
 
+                                              
+
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" id="SmokingYes" name="Smoking" class="custom-control-input">
                                                     <label class="custom-control-label" for="SmokingYes">Yes</label>
@@ -3603,8 +3605,11 @@
             }
             EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseSelect);
 
-            var paramddlSmoke = { ControlName: "ddlSmoke", OptionValue: $("#ddlSmoke").val(), OtherOption: "" }
-            var paramddlAlcohol = { ControlName: "ddlAlcohol", OptionValue: $("#ddlAlcohol").val(), OtherOption: "" }
+          
+
+
+            var paramddlSmoke = { ControlName: "ddlSmoke", OptionValue: document.getElementById("SmokingYes").checked, OtherOption: "" }
+            var paramddlAlcohol = { ControlName: "ddlAlcohol", OptionValue: document.getElementById("AlcoholYes").checked, OtherOption: "" }
 
             EnquiryModel.Instance_Enquiry_Transaction.push(paramddlHowOften);
             EnquiryModel.Instance_Enquiry_Transaction.push(paramddlSmoke);

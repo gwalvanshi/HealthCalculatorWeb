@@ -19,13 +19,19 @@
         <div class="row justify-content-center">
             <div class="col">
                 <ul class="list-inline menu-sec">
+         
                     <li class="list-inline-item"><a href="~/Home/assessment">My Assessment Tool</a></li>
-                    <li class="list-inline-item"><a href="~/Home/tracker">My Trackers</a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right d-none d-md-block font"  style="color: red;" id="spTrackers"></span></a></li>
+
                     <li class="list-inline-item"><a href="~/Home/MyEatingSmartTools">My Eating Smart Tool</a></li>
-                    <li class="list-inline-item"><a href="~/Home/MyEatingPattern">My Eating Pattern</a></li>
-                    <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" id="spMessage"></span></a></li>
-                  
-                    <li class="list-inline-item"><a href="~/Home/ViewPlan">View Plans</a></li>                
+            
+
+                    <li class="list-inline-item"> <a href="#" onclick="PatternHelp(this)">My Eating Pattern<span class="float-right d-none d-md-block"   style="color: red;"  id="spPattern"></span></a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block"   style="color: red;"  id="spMessage"></span></a></li>
+
+                    <li class="list-inline-item"><a href="~/Home/ViewPlan">View Plans</a></li>
                     <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
                 </ul>
             </div>
@@ -810,7 +816,7 @@
     }
     function SaveGenralInfo() {
 
-        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+        if (sessionStorage.getItem('ProductId') == "0") {
             alert("Kindly first purchase the product .");
         }
         else
@@ -860,7 +866,7 @@
 
     function SaveUserPhoto12() {
 
-        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+        if (sessionStorage.getItem('ProductId') == "0") {
             alert("Kindly first purchase the product .");
         }
         else
@@ -895,7 +901,7 @@
 
     function SaveUserAnthropometry() {
 
-        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+        if (sessionStorage.getItem('ProductId') == "0") {
             alert("Kindly first purchase the product .");
         }
         else {
@@ -940,7 +946,7 @@
     }
 
     function SaveUserMedicalHistory() {
-        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+        if (sessionStorage.getItem('ProductId') == "0") {
             alert("Kindly first purchase the product .");
         }
         else {
@@ -972,7 +978,7 @@
     }
 
     function SaveUserMedications() {
-        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+        if (sessionStorage.getItem('ProductId') == "0") {
             alert("Kindly first purchase the product .");
         }
         else {
@@ -1030,7 +1036,7 @@
 
     function SaveUserDietaryAndLifeStyleDetails()
     {
-        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+        if (sessionStorage.getItem('ProductId') == "0") {
             alert("Kindly first purchase the product .");
         }
         else {
@@ -1073,7 +1079,7 @@
     }
 
     function SaveUserDirectCall() {
-        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+        if (sessionStorage.getItem('ProductId') == "0") {
             alert("Kindly first purchase the product .");
         }
         else {
@@ -1119,7 +1125,7 @@
     }
 
     function SaveUserFoodFequency() {
-        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+        if (sessionStorage.getItem('ProductId') == "0") {
             alert("Kindly first purchase the product .");
         }
         else {
@@ -1159,7 +1165,7 @@
     }
 
     function SaveUserAnyKeyInSights() {
-        if (sessionStorage.getItem('ProductId') == null || sessionStorage.getItem('ProductId') == undefined) {
+        if (sessionStorage.getItem('ProductId') == "0") {
             alert("Kindly first purchase the product .");
         }
         else {
@@ -1243,6 +1249,27 @@
         ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
         ctrl.click();
     }
+    function TrackersHelp(ctrl)
+    {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/tracker?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+    function PatternHelp(ctrl)
+    {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/MyEatingPattern?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+       
+
+
     $(document).ready(function () {
 
         SystemdropdownMasterData = [];
@@ -1273,10 +1300,20 @@
             // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);
             //-------------------GenralInfo-----------------------------------
             $("#txtName").val(sessionStorage.getItem('EmployeeName'));
-            if (response.data.Data.Table.length > 0) {
+            if (response.data.Data.Table.length > 0)
+            {
                 $("#txtName").val(response.data.Data.Table[0].UserName);
                 $("#ddlGenderp").val(response.data.Data.Table[0].Gender);
+
                 $("#spMessage").text(" (" + response.data.Data.Table[0].MessageCount + ")");
+                $("#spTrackers").text(" (" + response.data.Data.Table[0].Trackerfalldays + ")");
+                $("#spPattern").text(" (" + response.data.Data.Table[0].PatternCount + ")");
+
+                sessionStorage.setItem('MessageCount', response.data.Data.Table[0].MessageCount);
+                sessionStorage.setItem('Trackerfalldays', response.data.Data.Table[0].Trackerfalldays);
+                sessionStorage.setItem('PatternCount', response.data.Data.Table[0].PatternCount);
+
+
                 sessionStorage.setItem('ProductId', response.data.Data.Table[0].ProductId);
                 sessionStorage.setItem('OrderId', response.data.Data.Table[0].OrderId);
 

@@ -17,12 +17,18 @@
         <div class="row justify-content-center">
             <div class="col">
                 <ul class="list-inline menu-sec">
+
                     <li class="list-inline-item"><a href="~/Home/assessment">My Assessment Tool</a></li>
-                    <li class="list-inline-item"><a href="~/Home/tracker">My Trackers</a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right d-none d-md-block font" style="color: red;" id="spTrackers"></span></a></li>
+
                     <li class="list-inline-item"><a href="~/Home/MyEatingSmartTools">My Eating Smart Tool</a></li>
-                    <li class="list-inline-item"><a href="~/Home/MyEatingPattern">My Eating Pattern</a></li>
-                    <li class="list-inline-item"><a href="~/Home/helpDesk">Admin Messages</a></li>
-                  
+
+
+                    <li class="list-inline-item"> <a href="#" onclick="PatternHelp(this)">My Eating Pattern<span class="float-right d-none d-md-block" style="color: red;" id="spPattern"></span></a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" style="color: red;" id="spMessage"></span></a></li>
+
                     <li class="list-inline-item"><a href="~/Home/ViewPlan">View Plans</a></li>
                     <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
                 </ul>
@@ -44,17 +50,17 @@
                         <form class="form-data">
                             <div class="form-group">
 
-                                
-                                    <textarea rows="10" class="form-control" id="editormessage"></textarea>
-                             
+
+                                <textarea rows="10" class="form-control" id="editormessage"></textarea>
+
 
 
                             </div>
                             <div class="text-right">
-                                <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" onclick="SaveMessage()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
-                                <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" onclick="Clear()">&nbsp; &nbsp; New Message &nbsp; &nbsp; </a>
                             </div>
                         </form>
+                        <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" onclick="SaveMessage()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
+                        <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" onclick="Clear()">&nbsp; &nbsp; New Message &nbsp; &nbsp; </a>
                     </div>
                 </div>
                 <div class="row">
@@ -136,8 +142,34 @@
 <script>tinymce.init({ selector: "textarea" });
  </script>
 <script type="text/javascript">
-     function Logout(ctrl)
+    function MessageHelp(ctrl) {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+    function TrackersHelp(ctrl)
     {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/tracker?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+    function PatternHelp(ctrl)
+    {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/MyEatingPattern?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+
+       function Logout(ctrl) {
         sessionStorage.clear();
         ctrl.href = '@Url.Content("~/Home/Logout")';
         ctrl.click();
@@ -146,6 +178,10 @@
     var formdata = new FormData(); //FormData object
     window.onload = function ()
     {
+        $("#spMessage").text(" (" + sessionStorage.getItem('MessageCount') + ")");
+        $("#spTrackers").text(" (" + sessionStorage.getItem('Trackerfalldays') + ")");
+        $("#spPattern").text(" (" + sessionStorage.getItem('PatternCount') + ")");
+
         $("#HeaderValue").text("ACCOUNT SETTINGS | " + sessionStorage.getItem('EmployeeName'));
 
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
@@ -183,7 +219,7 @@
             }
             chkatchtbl();
 
-          
+
 
         });
 
@@ -318,7 +354,7 @@
                 MessageConversationList: []
 
             }
-          
+
             var strFileData = $("#hdnfileName").val().split(",");
 
             for (var i = 0; i < strFileData.length; i++) {
@@ -337,7 +373,7 @@
         var isValidReturn = true;
 
         if (isValidReturn) {
-            
+
             if (tinyMCE.activeEditor.getContent() == '') {
                 alert("Please enter the message.")
                 isValidReturn = false

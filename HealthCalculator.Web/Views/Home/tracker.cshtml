@@ -11,17 +11,22 @@
         </div>
     </div>
 </div>
-
 <div class="bg-yellow">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col">
                 <ul class="list-inline menu-sec">
+
                     <li class="list-inline-item"><a href="~/Home/assessment">My Assessment Tool</a></li>
-                    <li class="list-inline-item"><a href="~/Home/tracker">My Trackers</a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right d-none d-md-block font" style="color: red;" id="spTrackers"></span></a></li>
+
                     <li class="list-inline-item"><a href="~/Home/MyEatingSmartTools">My Eating Smart Tool</a></li>
-                    <li class="list-inline-item"><a href="~/Home/MyEatingPattern">My Eating Pattern</a></li>
-                    <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" id="spMessage"></span></a></li>
+
+
+                    <li class="list-inline-item"> <a href="#" onclick="PatternHelp(this)">My Eating Pattern<span class="float-right d-none d-md-block" style="color: red;" id="spPattern"></span></a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" style="color: red;" id="spMessage"></span></a></li>
 
                     <li class="list-inline-item"><a href="~/Home/ViewPlan">View Plans</a></li>
                     <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
@@ -134,12 +139,7 @@
 <script src="~/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 
-    function Logout(ctrl) {
-        sessionStorage.clear();
-        ctrl.href = '@Url.Content("~/Home/Logout")';
-        ctrl.click();
-    }
-    function MessageHelp(ctrl) {
+   function MessageHelp(ctrl) {
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
@@ -147,8 +147,36 @@
         ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
         ctrl.click();
     }
+    function TrackersHelp(ctrl)
+    {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/tracker?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+    function PatternHelp(ctrl)
+    {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/MyEatingPattern?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+
+       function Logout(ctrl) {
+        sessionStorage.clear();
+        ctrl.href = '@Url.Content("~/Home/Logout")';
+        ctrl.click();
+    }
 
     $(document).ready(function () {
+        $("#spMessage").text(" (" + sessionStorage.getItem('MessageCount') + ")");
+        $("#spTrackers").text(" (" + sessionStorage.getItem('Trackerfalldays') + ")");
+        $("#spPattern").text(" (" + sessionStorage.getItem('PatternCount') + ")");
+
         $("#HeaderValue").text("ACCOUNT SETTINGS | " + sessionStorage.getItem('EmployeeName'));
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
         if (selectedUserId != "") {
@@ -160,11 +188,11 @@
             UserId: sessionStorage.getItem('userId')
         }
         CommonAjaxMethod('Program/GetUserTrackerDetails', { userId:sessionStorage.getItem('userId')}, false, 'GET', function (response) {
-            
+
             if (response.data.Data.Table.length> 0)
             {
 
-                
+
                // var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
                 var dateData = new Date();
                 var dd = dateData.getDate();
@@ -179,7 +207,7 @@
                 //alert(varsession);
                 var vara = 0;
                 var varb = 1;
-                
+
                 $("#hdnProductId").val(response.data.Data.Table[0].ProductId);
                 $("#hdnOrderId").val(response.data.Data.Table[0].OrderId);
                 $("#hdnlenght").val(response.data.Data.Table[0].GivenDays);
@@ -206,7 +234,7 @@
                             '<div class=" form-group">' +
                             '<input type="date" class="form-control" readOnly="true" placeholder = "Enter Date"  id ="txtTrackerDate2' + (i + 1) + '" />' +
                             '</div>' +
-                           
+
                             '</div>' +
                             '<div class="col-12 col-md-5 h-100">' +
                             '<div class="form-group h-100">' +
@@ -221,7 +249,7 @@
                             '</div>' +
                             '<div class=" form-group">' +
                             '<p class=" mb-0 semi" style="line-height:39px; font-size:14px;"> End</p>' +
-                            '</div>' +                            
+                            '</div>' +
                             '</div>' +
                             '<div class="col-12 col-md-12 col-lg">' +
                             '<div class="row align-items-center">' +
@@ -231,7 +259,7 @@
                             '</div>' +
                             '<div class="form-group">' +
                             '<input type="text" class="form-control" placeholder = "Enter Chest" id = "txtChest2' + (i + 1) + '" />' +
-                            '</div>' +                           
+                            '</div>' +
                             '</div>' +
                             '<div class="col-6 col-md-6">' +
                             '<div class="form-group">' +
@@ -240,7 +268,7 @@
                             '<div class="form-group">' +
                             '<input type="text" class="form-control"   placeholder="Enter Waist" id="txtWaist2' + (i + 1) + '"/>' +
                             '</div>' +
-                           
+
                             '</div>' +
 
                             '<div class="col-6 col-md-6">' +
@@ -370,13 +398,13 @@
                             '</div>' +
                             '<div class="col-6 col-md-6">' +
                             '<div class="form-group">' +
-                            '<input type="text" class="form-control" readonly="readonly" placeholder="Enter Weight Difference" id="txtDifference1' + (i + 1) + '" />' +
+                            '<input type="text" class="form-control" readonly="readonly"  id="txtDifference1' + (i + 1) + '" />' +
                             '</div>' +
                             '<div class="form-group">' +
-                            '<input type="text" class="form-control"  readonly="readonly" placeholder="Enter Weight Difference" id="txtDifference2' + (i + 1) + '"/>' +
+                            '<input type="text" class="form-control"  readonly="readonly" id="txtDifference2' + (i + 1) + '"/>' +
                             '</div>' +
                             '<div class="form-group">' +
-                            '<input type="text" class="form-control"  readonly="readonly" placeholder="Enter Weight Difference" id="txtDifference3' + (i + 1) + '"/>' +
+                            '<input type="text" class="form-control"  readonly="readonly"  id="txtDifference3' + (i + 1) + '"/>' +
                             '</div>' +
                             '</div>' +
                             '</div>' +
@@ -431,23 +459,23 @@
                             '</div>' +
                             '<div class="col-6 col-md-6">' +
                             '<div class="form-group">' +
-                            '<input type="text" class="form-control" readonly="readonly" placeholder="Enter Weight Difference" id="txtDifference1' + (i + 1) + '" />' +
+                            '<input type="text" class="form-control" readonly="readonly"  id="txtDifference1' + (i + 1) + '" />' +
                             '</div>' +
                             '<div class="form-group">' +
-                            '<input type="text" class="form-control"  readonly="readonly" placeholder="Enter Weight Difference" id="txtDifference2' + (i + 1) + '"/>' +
+                            '<input type="text" class="form-control"  readonly="readonly"  id="txtDifference2' + (i + 1) + '"/>' +
                             '</div>' +
                             '<div class="form-group">' +
-                            '<input type="text" class="form-control"  readonly="readonly" placeholder="Enter Weight Difference" id="txtDifference3' + (i + 1) + '"/>' +
+                            '<input type="text" class="form-control"  readonly="readonly"  id="txtDifference3' + (i + 1) + '"/>' +
                             '</div>' +
                             '</div>' +
                             '</div>' +
                             '</div>' +
                             '</div>';
                     }
-                       
+
 
                 }
-                $('#InchDivDynamicSession').html(InchdivHTML);               
+                $('#InchDivDynamicSession').html(InchdivHTML);
                 $('#DivDynamicSession').html(divHTML);
                 GetTrackerData();
             }
@@ -478,7 +506,7 @@
     {
         CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: sessionStorage.getItem('userId') }, false, 'GET',
           function (response) {
-              
+
               if (response.data.Data.Table.length > 0)
               {
 
@@ -487,13 +515,13 @@
                   var midCounter = 0;
                   var midcounterSet = 0;
                   var midcounterStart = 0;
-                
+
                   for (var i = 0; i < response.data.Data.Table.length; i++)
                   {
 
 
                       var strDate = ""; //var dateValue;
-                   
+
                       if (response.data.Data.Table[i].TrackerDate != null)
                       {
 
@@ -527,7 +555,7 @@
 
 
                       var strDate = ""; //var dateValue;
-                 
+
                       if (response.data.Data.Table1[i].InchTrackerDate != null) {
 
                           strDate = getdate(response.data.Data.Table1[i].InchTrackerDate);
@@ -571,11 +599,11 @@
         if ($("#hdnlenght").val() != '' || $("#hdnlenght").val())
         {
             // alert($("#hdnlenght").val());
-            // 
+            //
             for (var i = 0; i < parseInt($("#hdnlenght").val()); i++)
             {
                // alert("a");
-               //   
+               //
                 var list1 =
                 {
                     UserId: sessionStorage.getItem('userId'),
@@ -609,11 +637,11 @@
                 mytracker.UserTrackerWeigth.push(list3);
 
             }
-              
+
             for (var k = 0; k < parseInt($("#hdnlenght").val()); k++) {
                 // alert("a");
-                //   
-                   
+                //
+
                 var list1 =
                 {
                     UserId: sessionStorage.getItem('userId'),
@@ -637,7 +665,7 @@
                     InchTrackerDate: $("#txtTrackerDate2" + (k + 1)).val() == undefined ? 0 : $("#txtTrackerDate2" + (k + 1)).val().trim(),
                 }
                 mytracker.UserTrackerInch.push(list2);
-              
+
 
             }
 

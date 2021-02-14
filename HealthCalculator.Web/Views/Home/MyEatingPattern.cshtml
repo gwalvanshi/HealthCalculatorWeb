@@ -16,11 +16,17 @@
         <div class="row justify-content-center">
             <div class="col">
                 <ul class="list-inline menu-sec">
+
                     <li class="list-inline-item"><a href="~/Home/assessment">My Assessment Tool</a></li>
-                    <li class="list-inline-item"><a href="~/Home/tracker">My Trackers</a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right d-none d-md-block font" style="color: red;" id="spTrackers"></span></a></li>
+
                     <li class="list-inline-item"><a href="~/Home/MyEatingSmartTools">My Eating Smart Tool</a></li>
-                    <li class="list-inline-item"><a href="~/Home/MyEatingPattern">My Eating Pattern</a></li>
-                    <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" id="spMessage"></span></a></li>
+
+
+                    <li class="list-inline-item"> <a href="#" onclick="PatternHelp(this)">My Eating Pattern<span class="float-right d-none d-md-block" style="color: red;" id="spPattern"></span></a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" style="color: red;" id="spMessage"></span></a></li>
 
                     <li class="list-inline-item"><a href="~/Home/ViewPlan">View Plans</a></li>
                     <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
@@ -441,7 +447,38 @@
 
 <script>
 
-    
+    function MessageHelp(ctrl) {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+    function TrackersHelp(ctrl)
+    {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/tracker?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+    function PatternHelp(ctrl)
+    {
+        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/MyEatingPattern?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+
+       function Logout(ctrl) {
+        sessionStorage.clear();
+        ctrl.href = '@Url.Content("~/Home/Logout")';
+        ctrl.click();
+    }
     function printDiv(divName) {
         var printContents = document.getElementById(divName).innerHTML;
         w = window.open();
@@ -450,10 +487,13 @@
         w.close();
     }
     window.onload = function ()
-    {        
-        
+    {
+        $("#spMessage").text(" (" + sessionStorage.getItem('MessageCount') + ")");
+        $("#spTrackers").text(" (" + sessionStorage.getItem('Trackerfalldays') + ")");
+        $("#spPattern").text(" (" + sessionStorage.getItem('PatternCount') + ")");
+
         if (sessionStorage.getItem('RoleID') == "1")
-        {            
+        {
             $("#userform").show();
             $("#adminform").hide();
         }
@@ -472,7 +512,7 @@
             $("#adminform").hide();
 
             //var mySession =
-            //{                
+            //{
             //    UserSession: []
             //}
             //var varddl = document.getElementById("ddlSessionID");
@@ -484,30 +524,29 @@
 
             CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: sessionStorage.getItem('userId') }, false, 'GET',
                 function (response) {
-                
-                    if (response.data.Data.length > 0)
-                    {
-                       
-                        $("#lbllable").text(response.data.Data[0].Program + " :: " + response.data.Data[0].ProductName);
 
-                      
+                    if (response.data.Data.Table.length > 0) {
 
-                        for (var i = 0; i < response.data.Data[0].GivenDays; i++)
+                        $("#lbllable").text(response.data.Data.Table[0].Program + " :: " + response.data.Data.Table[0].ProductName);
+
+
+
+                        for (var i = 0; i < response.data.Data.Table[0].GivenDays; i++)
                         {
-                            
+
                             var ID =(i + 1);
                             var Name = "Session " + (i + 1);
-                            
+
                            //mySession.UserSession.push(list1);
 
                             //varddl.innerHTML = varddl.innerHTML +
-                            //    '<option value="' + list1[i]['ID'] + '">' + list1[i]['Name'] + '</option>';                         
-                         
+                            //    '<option value="' + list1[i]['ID'] + '">' + list1[i]['Name'] + '</option>';
+
                             $ele.append($('<option/>').val(ID).text(Name));
 
                         }
 
-                       
+
 
                     }
                 }
@@ -524,7 +563,7 @@
 
             //-----UDAY----
 
-            //CommonAjaxMethod('Program/GetEatingPattern', { userId: sessionStorage.getItem("userId"), orderId: sessionStorage.getItem('OrderId'), productId: sessionStorage.getItem('ProductId'), SessionId: DDlValue}, false, 'GET', function (response) 
+            //CommonAjaxMethod('Program/GetEatingPattern', { userId: sessionStorage.getItem("userId"), orderId: sessionStorage.getItem('OrderId'), productId: sessionStorage.getItem('ProductId'), SessionId: DDlValue}, false, 'GET', function (response)
             //{
 
             //    if (sessionStorage.getItem('RoleID') == "1")
@@ -532,7 +571,7 @@
             //        $("#userform").show();
             //        $("#adminform").hide();
 
-            //        if (response.dataCollection.length > 0) 
+            //        if (response.dataCollection.length > 0)
             //        {
             //            $('#divOnRising').html(response.dataCollection[0].OnRising);
             //            $('#divOnRising').html(response.dataCollection[0].OnRising);
@@ -579,7 +618,7 @@
             //            tinymce.get('txtNotes').setContent(response.dataCollection[0].Notes);
             //        }
             //    }
-               
+
 
             //});
 
@@ -599,40 +638,40 @@
         }
         ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
         ctrl.click();
-    }   
-    function SaveEatingPattern(varsubmit) {   
-       
+    }
+    function SaveEatingPattern(varsubmit) {
+
     var UserEatingPattern =
     {
-       
+
             UserId: sessionStorage.getItem("userId"),
             ProductId:sessionStorage.getItem('ProductId'),
             OrderId: sessionStorage.getItem('OrderId'),
-            OnRising: tinymce.get('txtOnRising').getContent() ,            
-            PreBreakfast: tinymce.get('txtPreBreak').getContent() ,            
-            Breakfast: tinymce.get('txtBreak').getContent(),           
+            OnRising: tinymce.get('txtOnRising').getContent() ,
+            PreBreakfast: tinymce.get('txtPreBreak').getContent() ,
+            Breakfast: tinymce.get('txtBreak').getContent(),
             //PreBreakfast: "2",
             //Breakfast:"3",
-            MidMorning: tinymce.get('txtMidMorning').getContent() ,            
-            PreWorkout: tinymce.get('txtPreWorkout').getContent(),            
+            MidMorning: tinymce.get('txtMidMorning').getContent() ,
+            PreWorkout: tinymce.get('txtPreWorkout').getContent(),
             DuringWorkout: tinymce.get('txtDuringWorkout').getContent() ,
-            
-            PreLunch: tinymce.get('txtPreLunch').getContent() ,            
-            Lunch: tinymce.get('txtLunch').getContent() ,            
-            TeaEvening: tinymce.get('txtTeaEvening').getContent() ,            
-            LateEvening: tinymce.get('txtLateEvening').getContent(),           
-            PreDinner: tinymce.get('txtPreDinner').getContent() ,         
-            Dinner: tinymce.get('txtDinner').getContent() ,            
-            PostDinner: tinymce.get('txtPostDinner').getContent(),           
-            BedTime: tinymce.get('txtBedTime').getContent(),            
-            Recipes: tinymce.get('txtRecipes').getContent() ,            
+
+            PreLunch: tinymce.get('txtPreLunch').getContent() ,
+            Lunch: tinymce.get('txtLunch').getContent() ,
+            TeaEvening: tinymce.get('txtTeaEvening').getContent() ,
+            LateEvening: tinymce.get('txtLateEvening').getContent(),
+            PreDinner: tinymce.get('txtPreDinner').getContent() ,
+            Dinner: tinymce.get('txtDinner').getContent() ,
+            PostDinner: tinymce.get('txtPostDinner').getContent(),
+            BedTime: tinymce.get('txtBedTime').getContent(),
+            Recipes: tinymce.get('txtRecipes').getContent() ,
             Notes: tinymce.get('txtNotes').getContent() ,
             IsSubmit: varsubmit,
             IsActive: 1,
             SessionId: $("#ddlSessionID2").val(),
 
         }
-      
+
         var eatingpattern =
         {
             TableType: "EatingPattern",
@@ -640,7 +679,7 @@
             IsSubmit: varsubmit,
             UserEatingPattern: UserEatingPattern
         }
-  
+
 
         CommonAjaxMethod('Program/SaveEatingPattern', eatingpattern, false, 'POST', function (response) {
         alert('Record save successfully!!!');
@@ -654,7 +693,7 @@
 
     function bindData(varselectedID) {
 
-      
+
         if (sessionStorage.getItem('RoleID') == "3" || sessionStorage.getItem('RoleID') == "2") {
 
             $("#userform").hide();
@@ -690,7 +729,7 @@
 
                     if (response.dataCollection.length > 0)
                     {
-                      
+
 
                         if (response.dataCollection[0].OnRising.length > 0)
                         {
@@ -706,92 +745,92 @@
                         if (response.dataCollection[0].Breakfast.length > 0) {
                             $('#divBreak').html(response.dataCollection[0].Breakfast);
                             $('#ShowHideBreak').show();
-                        }                      
+                        }
 
                         if (response.dataCollection[0].MidMorning.length > 0) {
                             $('#divMidMorning').html(response.dataCollection[0].MidMorning);
                             $('#ShowHideMidMorning').show();
 
-                        }     
+                        }
 
                         if (response.dataCollection[0].PreWorkout.length > 0) {
                             $('#divPreWorkout').html(response.dataCollection[0].PreWorkout);
                             $('#ShowHidePreWorkOut').show();
 
-                        }    
+                        }
 
                         if (response.dataCollection[0].DuringWorkout.length > 0) {
                             $('#divDuringWorkout').html(response.dataCollection[0].DuringWorkout);
                             $('#ShowHideDuringWorkOut').show();
 
 
-                        }  
+                        }
 
                         if (response.dataCollection[0].PreLunch.length > 0) {
                             $('#divPreLunch').html(response.dataCollection[0].PreLunch);
                             $('#ShowHidePrelunch').show();
 
 
-                        }  
+                        }
                         if (response.dataCollection[0].Lunch.length > 0) {
                             $('#divLunch').html(response.dataCollection[0].Lunch);
                             $('#ShowHidelunch').show();
 
 
-                        }  
+                        }
 
                         if (response.dataCollection[0].TeaEvening.length > 0) {
                             $('#divTeaEvening').html(response.dataCollection[0].TeaEvening);
                             $('#ShowHideTeaEvening').show();
 
 
-                        }  
+                        }
 
                         if (response.dataCollection[0].LateEvening.length > 0) {
                             $('#divLateEvening').html(response.dataCollection[0].LateEvening);
                             $('#ShowHideLateEvening').show();
 
 
-                        }  
+                        }
                         if (response.dataCollection[0].PreDinner.length > 0) {
                             $('#divPreDinner').html(response.dataCollection[0].PreDinner);
                             $('#ShowHidePreDinner').show();
 
 
-                        }  
+                        }
                         if (response.dataCollection[0].Dinner.length > 0) {
                             $('#divDinner').html(response.dataCollection[0].Dinner);
                             $('#ShowHideDinner').show();
 
 
-                        }  
+                        }
                         if (response.dataCollection[0].PostDinner.length > 0) {
                             $('#divPostDinner').html(response.dataCollection[0].PostDinner);
                             $('#ShowHidePostDinner').show();
 
 
-                        }  
+                        }
                         if (response.dataCollection[0].BedTime.length > 0) {
                             $('#divBedTime').html(response.dataCollection[0].BedTime);
                             $('#ShowHideBedTime').show();
 
 
-                        }  
-                   
+                        }
+
                         if (response.dataCollection[0].Recipes.length > 0) {
                             $('#divRecipes').html(response.dataCollection[0].Recipes);
                             $('#ShowHideRecipes').show();
 
 
-                        }    
+                        }
 
                         if (response.dataCollection[0].Notes.length > 0) {
                             $('#divNotes').html(response.dataCollection[0].Notes);
                             $('#ShowHideNotes').show();
 
 
-                        }                     
-                      
+                        }
+
                     }
                 }
                 if (sessionStorage.getItem('RoleID') == "3" || sessionStorage.getItem('RoleID') == "2") {
@@ -801,7 +840,7 @@
 
                     if (response.dataCollection.length > 0) {
                         tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
-                      
+
                         tinymce.get('txtPreBreak').setContent(response.dataCollection[0].PreBreakfast);
                         tinymce.get('txtBreak').setContent(response.dataCollection[0].Breakfast);
                         tinymce.get('txtMidMorning').setContent(response.dataCollection[0].MidMorning);
@@ -825,6 +864,6 @@
         }
     }
 
-    
+
 </script>
 
