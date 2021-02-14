@@ -160,11 +160,11 @@
             UserId: sessionStorage.getItem('userId')
         }
         CommonAjaxMethod('Program/GetUserTrackerDetails', { userId:sessionStorage.getItem('userId')}, false, 'GET', function (response) {
-            debugger;
+            
             if (response.data.Data.Table.length> 0)
             {
 
-                debugger;
+                
                // var dateData = new Date(parseInt(dateValue.replace("/Date(", "").replace(")/")));
                 var dateData = new Date();
                 var dd = dateData.getDate();
@@ -184,7 +184,7 @@
                 $("#hdnOrderId").val(response.data.Data.Table[0].OrderId);
                 $("#hdnlenght").val(response.data.Data.Table[0].GivenDays);
                 $("#ddlWeight").val(response.data.Data.Table[0].WeightIn);
-                $("#ddlInch").val(response.data.Data.Table[1].WeightIn);
+                $("#ddlInch").val(response.data.Data.Table1[0].WeightIn);
 
                 orderID = response.data.Data.Table[0].OrderId;
                 $("#lbllable").text(response.data.Data.Table[0].Program + " :: " + response.data.Data.Table[0].ProductName);
@@ -478,7 +478,7 @@
     {
         CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: sessionStorage.getItem('userId') }, false, 'GET',
           function (response) {
-              debugger;
+              
               if (response.data.Data.Table.length > 0)
               {
 
@@ -643,9 +643,9 @@
 
 
            // alert("aa");
-            //debugger;
+            //
             CommonAjaxMethod('Program/SaveTracker', mytracker, false, 'POST', function (response) {
-                //debugger;
+                //
                 alert('Record save successfully!!!');
 
             });
