@@ -10,7 +10,19 @@
             <div class="middleContent bg-gray shadow">
                 <div class="row">
                     <div class="demo-container">
-                        <div id="gridContainer"></div>
+                        <div id="gridContainer1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12 col-lg-11">
+            <div class="middleContent bg-gray shadow">
+                <div class="row">
+                    <div class="demo-container">
+                        <div id="gridContainer2"></div>
                     </div>
                 </div>
             </div>
@@ -19,123 +31,23 @@
 </div>
 
 <script>
-    function LoadAll()
-    {
-        CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response) {
-
-            Load(response.dataCollection);
-            //$("#gridContainer").dxDataGrid(
-            //    {
-            //        dataSource: response.dataCollection,
-            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
-            //    showBorders: true
-            //});
-        });
-    }
-    function LoadRatingGrid()
-    {
-        CommonAjaxMethod('Home/GetEnquiryRatingView', null, false, 'GET', function (response) {
-
-            LoadEnquiry(response.dataCollection);
-            //$("#gridContainer").dxDataGrid(
-            //    {
-            //        dataSource: response.dataCollection,
-            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
-            //    showBorders: true
-            //});
-        });
-
-    }
-    function LoadGrid(strVar)
-    {
-        var vType = 0;
-        if (strVar==1)
-        {
-            vType="7"
-        }
-        else if (strVar==2)
-        {
-            vType = "2"
-        }
-        else if (strVar == 3) {
-            vType = "3"
-        }
-        else if (strVar == 4) {
-            vType = "6"
-        }
-        else if (strVar == 5) {
-            vType = "5"
-        }
-        else if (strVar == 6) {
-            vType = "4"
-        }
-        var obj1 = {
-
-            Type: vType,
-            OperationType: "GET",
-            UserId: 1
-        }
-        CommonAjaxMethod('Home/AdminNotificationEnquiryMessage', obj1, false, 'POST', function (response) {
-
-            Load(response.data.Data);
-            //$("#gridContainer").dxDataGrid(
-            //    {
-            //        dataSource: response.dataCollection,
-            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
-            //    showBorders: true
-            //});
-        });
-
-    }
     window.onload = function ()
     {
-        var obj = {
-
-           Type:"",
-           OperationType:"",
-            UserId:1
-        }
-
-
-        CommonAjaxMethod('Home/GetAdminNotification', obj, false, 'POST', function (response)
+          var qData = "@Request.QueryString["Enquiry_Id"].ToString()";
+        CommonAjaxMethod('Program/GetUserEnquiryDetails', { userId: qData }, false, 'POST', function (response)
         {
 
-            $("#spMessage").text(" ("+response.data.Data[0].MessageCount+")");
-            $("#spRating").text(" ("+response.data.Data[0].EnquiryCount+")");
-            $("#spAssessment").text(" ("+response.data.Data[0].AssessmentCount+")");
-            $("#spTF").text(" ("+response.data.Data[0].TrackerFilled+")");
-            $("#spTFF").text(" ("+response.data.Data[0].Trackerfalldays+")");
-            $("#spUsers").text(" ("+response.data.Data[0].NewUserCount+")");
-            $("#spOrder").text(" ("+response.data.Data[0].NewOrder+")");
-
-
-
-           // Load(response.dataCollection);
-            //$("#gridContainer").dxDataGrid(
-            //    {
-            //        dataSource: response.dataCollection,
-            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
-            //    showBorders: true
-            //});
+            Load(response.data.Data.Table1);
+            LoadEnquiry(response.data.Data.Table);
+          
         });
+    };
 
-        CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response)
-        {
-
-            Load(response.dataCollection);
-            //$("#gridContainer").dxDataGrid(
-            //    {
-            //        dataSource: response.dataCollection,
-            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
-            //    showBorders: true
-            //});
-        });
-    }
 
     function Load(ctr)
     {
 
-             $("#gridContainer").dxDataGrid({
+        $("#gridContainer2").dxDataGrid({
                  dataSource: ctr,
                 allowColumnReordering: true,
                 showBorders: true,
@@ -144,7 +56,7 @@
                     visible: true
                 },
                 paging: {
-                    pageSize: 10
+                    pageSize: 100
                 },
                 groupPanel: {
                     visible: true
@@ -154,39 +66,9 @@
                     allowUpdating: false
                 },
                 columns: [
-                    "FirstName",
-                    "LastName",
-                    "Email",
-                     "UserName",
-                    "MobileNo",
-                    {
-                        caption: "View User Details",
-                        alignment: 'center',
-                        cellTemplate: function (container, options) {
-                            $('<a />').addClass('dx-link')
-                                .text('View Detail')
-                                .on('dxclick', function () {
-
-
-                                    sessionStorage.setItem('SelectedUserId', options.data.userId);
-                                    window.location.href = "assessment";
-                                }).appendTo(container);
-                        }
-                    }
-                    ,
-                    {
-                        caption: "Add Free Session",
-                        alignment: 'center',
-                        cellTemplate: function (container, options) {
-                            $('<a />').addClass('dx-link')
-                                .text('Free Session')
-                                .on('dxclick', function () {
-
-                                    window.location.href = "AddFreeSession?userId=" + options.data.userId;
-                                }).appendTo(container);
-                        }
-                    }
-
+                    "ExactText",
+                    "OptionValue"                 
+                  
                 ]
              });
     }
@@ -194,24 +76,7 @@
 
     function LoadEnquiry(ctr) {
 
-        //public int Enquiry_Id{ get; set; }
-        //public string FirstName{ get; set; }
-        //public string LastName{ get; set; }
-        //public string ContactNumber{ get; set; }
-        //public string Email_ID{ get; set; }
-        //public string City{ get; set; }
-        //public string State{ get; set; }
-        //public string Address1{ get; set; }
-        //public string Address2{ get; set; }
-        //public string Pin_Code{ get; set; }
-        //public string Country{ get; set; }
-        //public string AgeGroup{ get; set; }
-        //public string UserId{ get; set; }
-        //public bool CheckedByAdmin{ get; set; }
-        //public decimal ? BMI { get; set; }
-        //public decimal? WaterIntake { get; set; }
-        //public decimal? IdealBodyWeight { get; set; }
-        $("#gridContainer").dxDataGrid({
+        $("#gridContainer1").dxDataGrid({
             dataSource: ctr,
             allowColumnReordering: true,
             showBorders: true,
@@ -237,20 +102,7 @@
                 "BMI",
                 "WaterIntake",
                 "IdealBodyWeight"
-                ,
-                {
-                    caption: "Details",
-                    alignment: 'center',
-                    cellTemplate: function (container, options) {
-                        $('<a />').addClass('dx-link')
-                            .text('View Detail')
-                            .on('dxclick', function () {
-
-                                window.location.href = "ViewEnquiryDetails?Enquiry_Id=" + options.data.Enquiry_Id;
-
-                            }).appendTo(container);
-                    }
-                }
+              
 
             ]
         });

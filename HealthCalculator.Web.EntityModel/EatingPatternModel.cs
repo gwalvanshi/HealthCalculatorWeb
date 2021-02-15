@@ -13,7 +13,7 @@ namespace HealthCalculator.Web.EntityModel
     public class EatingPatterndata
     {
         public Int64 UserId { get; set; }
-      //  public bool? IsSubmit { get; set; }
+        public int RoleId { get; set; }
         public string TableType { get; set; }       
         public UserEatingPattern UserEatingPattern { get; set; }
     

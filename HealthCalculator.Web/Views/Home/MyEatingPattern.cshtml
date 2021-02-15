@@ -488,6 +488,8 @@
     }
     window.onload = function ()
     {
+        
+
         $("#spMessage").text(" (" + sessionStorage.getItem('MessageCount') + ")");
         $("#spTrackers").text(" (" + sessionStorage.getItem('Trackerfalldays') + ")");
         $("#spPattern").text(" (" + sessionStorage.getItem('PatternCount') + ")");
@@ -677,6 +679,7 @@
             TableType: "EatingPattern",
             UserId: sessionStorage.getItem('userId'),
             IsSubmit: varsubmit,
+            RoleId: sessionStorage.getItem('RoleID'),
             UserEatingPattern: UserEatingPattern
         }
 
@@ -691,22 +694,40 @@
     {
     }
 
-    function bindData(varselectedID) {
+    function bindData(varselectedID)
+    {
 
 
-        if (sessionStorage.getItem('RoleID') == "3" || sessionStorage.getItem('RoleID') == "2") {
+        if (sessionStorage.getItem('RoleID') == "3" || sessionStorage.getItem('RoleID') == "2")
+        {
 
             $("#userform").hide();
             $("#adminform").show();
         }
-        if (sessionStorage.getItem('ProductId') == "0") {
+        if (sessionStorage.getItem('ProductId') == "0")
+        {
             $("#divButtonShowHide").hide();
         }
-        else {
+        else
+        {
             CommonAjaxMethod('Program/GetEatingPattern', { userId: sessionStorage.getItem("userId"), orderId: sessionStorage.getItem('OrderId'), productId: sessionStorage.getItem('ProductId'), SessionId: varselectedID.value }, false, 'GET', function (response) {
 
                 if (sessionStorage.getItem('RoleID') == "1")
                 {
+                    var eatingpattern =
+                    {
+                        TableType: "EatingPattern",
+                        UserId: sessionStorage.getItem('userId'),
+                        IsSubmit: varsubmit,
+                        RoleId: sessionStorage.getItem('RoleID'),
+                        UserEatingPattern: UserEatingPattern
+                    }
+
+
+                    CommonAjaxMethod('Program/SaveEatingPattern', eatingpattern, false, 'POST', function (response) {
+
+                    });
+
                     $("#userform").show();
                     $("#adminform").hide();
 

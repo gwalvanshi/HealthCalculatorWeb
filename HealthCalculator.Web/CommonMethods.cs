@@ -308,13 +308,16 @@ namespace HealthCalculator.Web
             string retValue = "0";
             foreach (Enquiry_Transaction tx in enqModel.Instance_Enquiry_Transaction)
             {
-                if (tx.ControlName == type)
+                if (tx != null)
                 {
-                    retValue = Convert.ToString(tx.OptionValue);
-                    if (retValue == "Birth" || retValue == "3 months" || retValue == "6 months" || retValue == "9 months")
-                        retValue = "0";
-                    else
-                        retValue = retValue.Split(' ')[0];
+                    if (tx.ControlName == type)
+                    {
+                        retValue = Convert.ToString(tx.OptionValue);
+                        if (retValue == "Birth" || retValue == "3 months" || retValue == "6 months" || retValue == "9 months")
+                            retValue = "0";
+                        else
+                            retValue = retValue.Split(' ')[0];
+                    }
                 }
             }
 
@@ -326,9 +329,12 @@ namespace HealthCalculator.Web
             string retValue = string.Empty;
             foreach (Enquiry_Transaction tx in enqModel.Instance_Enquiry_Transaction)
             {
-                if (tx.ControlName == type)
+                if (tx != null)
                 {
-                    retValue = Convert.ToString(tx.OptionValue);
+                    if (tx.ControlName == type)
+                    {
+                        retValue = Convert.ToString(tx.OptionValue);
+                    }
                 }
             }
 
@@ -538,13 +544,21 @@ namespace HealthCalculator.Web
             {
                 foreach (Enquiry_Transaction tx in collection.Instance_Enquiry_Transaction)
                 {
-                    if (tx.ControlName == "ddlKilo")
+                    if (tx != null)
                     {
-                        stWeight = tx.OptionValue;
-                    }
-                    else if (tx.ControlName == "ddlgrams")
-                    {
-                        stWeight = stWeight + "." + tx.OptionValue;
+                        if (tx.ControlName == "ddlKilo")
+                        {
+                            stWeight = tx.OptionValue;
+                        }
+                        else if (tx.ControlName == "ddlgrams")
+                        {
+                            stWeight = stWeight + "." + tx.OptionValue +" KG";
+                        }
+                        if (tx.ControlName == "ddlpounds")
+                        {
+                            stWeight = tx.OptionValue + " LB";
+                        }
+                       
                     }
                 }
             }
@@ -562,19 +576,22 @@ namespace HealthCalculator.Web
 
             foreach (Enquiry_Transaction tx in collection.Instance_Enquiry_Transaction)
             {
-                if (tx.ControlName == "ddlKilo")
+                if (tx != null)
                 {
-                    if (idealbodyWeight >= Convert.ToSingle(tx.OptionValue))
+                    if (tx.ControlName == "ddlKilo")
                     {
-                        stWeight = "Under weight";
-                    }
-                    else if (idealbodyWeight <= Convert.ToSingle(tx.OptionValue))
-                    {
-                        stWeight = "Overweight";
-                    }
-                    else if (idealbodyWeight == Convert.ToSingle(tx.OptionValue))
-                    {
-                        stWeight = "Normal";
+                        if (idealbodyWeight >= Convert.ToSingle(tx.OptionValue))
+                        {
+                            stWeight = "Under weight";
+                        }
+                        else if (idealbodyWeight <= Convert.ToSingle(tx.OptionValue))
+                        {
+                            stWeight = "Overweight";
+                        }
+                        else if (idealbodyWeight == Convert.ToSingle(tx.OptionValue))
+                        {
+                            stWeight = "Normal";
+                        }
                     }
                 }
 
@@ -630,69 +647,72 @@ namespace HealthCalculator.Web
 
             foreach (Enquiry_Transaction tx in collection.Instance_Enquiry_Transaction)
             {
-                if (tx.ControlName == "ddlSmoke")
+                if (tx != null)
                 {
-                    stsmoking = tx.OptionValue;
-                }
-                else if (tx.ControlName == "ddlAlcohol")
-                {
-                    stAlcohol = tx.OptionValue;
-                }
-                else if (tx.ControlName == "chkAdbType")
-                {
-                    diabiticType1 = tx.OptionValue;
-                }
-                else if (tx.ControlName == "chkAdbType2")
-                {
-                    diabiticType2 = tx.OptionValue;
-                }
-                else if (tx.ControlName == "chkAdSedentary")
-                {
-                    stActivitylevelchkAdSedentary = tx.OptionValue;
-                }
-                else if (tx.ControlName == "chkAdLight")
-                {
-                    stActivitylevelchkAdLight = tx.OptionValue;
-                }
-                else if (tx.ControlName == "chkAdModerate")
-                {
-                    stActivitylevelchkAdModerate = tx.OptionValue;
-                }
-                else if (tx.ControlName == "chkAdHeavy")
-                {
-                    stActivitylevelchkAdHeavy = tx.OptionValue;
-                }
-                else if (tx.ControlName == "ddlSleepDuration")
-                {
-                    Durationofsleep = tx.OptionValue;
-                }
-                else if (tx.ControlName == "waterIntakeLitter")
-                {
-                    Waterintake = Convert.ToSingle(tx.OptionValue);
-                }
-                else if (tx.ControlName == "chkACardio")
-                {
-                    chkACardio = tx.OptionValue;
-                }
-                else if (tx.ControlName == "chkStrenghtTarining")
-                {
-                    chkStrenghtTarining = tx.OptionValue;
-                }
-                else if (tx.ControlName == "ddlExerciseDurationHour")
-                {
-                    ddlExerciseDurationHour = tx.OptionValue;
-                }
-                else if (tx.ControlName == "ddlExerciseDurationMins")
-                {
-                    ddlExerciseDurationMins = tx.OptionValue;
-                }
-                else if (tx.ControlName == "ddlHowOften")
-                {
-                    ddlHowOften = tx.OptionValue;
-                }
-                else if (tx.ControlName == "Exercise")
-                {
-                    Exercise = tx.OptionValue;
+                    if (tx.ControlName == "ddlSmoke")
+                    {
+                        stsmoking = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "ddlAlcohol")
+                    {
+                        stAlcohol = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "chkAdbType")
+                    {
+                        diabiticType1 = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "chkAdbType2")
+                    {
+                        diabiticType2 = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "chkAdSedentary")
+                    {
+                        stActivitylevelchkAdSedentary = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "chkAdLight")
+                    {
+                        stActivitylevelchkAdLight = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "chkAdModerate")
+                    {
+                        stActivitylevelchkAdModerate = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "chkAdHeavy")
+                    {
+                        stActivitylevelchkAdHeavy = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "ddlSleepDuration")
+                    {
+                        Durationofsleep = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "waterIntakeLitter")
+                    {
+                        Waterintake = Convert.ToSingle(tx.OptionValue);
+                    }
+                    else if (tx.ControlName == "chkACardio")
+                    {
+                        chkACardio = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "chkStrenghtTarining")
+                    {
+                        chkStrenghtTarining = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "ddlExerciseDurationHour")
+                    {
+                        ddlExerciseDurationHour = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "ddlExerciseDurationMins")
+                    {
+                        ddlExerciseDurationMins = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "ddlHowOften")
+                    {
+                        ddlHowOften = tx.OptionValue;
+                    }
+                    else if (tx.ControlName == "Exercise")
+                    {
+                        Exercise = tx.OptionValue;
+                    }
                 }
             }
             bool rateInc = increaseRating(Durationofsleep, Waterintake, dt[0].WaterIntake, Exercise);

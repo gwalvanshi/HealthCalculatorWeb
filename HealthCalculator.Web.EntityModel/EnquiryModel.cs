@@ -28,7 +28,30 @@ namespace HealthCalculator.Web.EntityModel
        public decimal? WaterIntake { get; set; }
        public decimal? IdealBodyWeight { get; set; }
     }
-   public class EnquiryModel
+    public class VEnquiryModelControleView
+    {
+        public string ExactText { get; set; }
+        public string OptionValue { get; set; }
+    }
+    public class VEnquiryModelControleViewData
+    {
+        public List<VEnquiryModelView> Table { get; set; }
+        public List<VEnquiryModelControleView> Table1 { get; set; }
+    }
+    public class VEnquiryModelControleViewRoot
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public VEnquiryModelControleViewData Data { get; set; }
+    }
+
+
+    public class EnquiryModel
     {
        
         public Enquiry Instance_enquiry { get; set; }

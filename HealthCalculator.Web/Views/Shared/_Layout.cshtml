@@ -30,24 +30,43 @@
 
     <style>
 
-         .Progressloading {
-             display: none;
-             position: fixed;
-             left: 50%;
-             top: 50%;
-             background-color: white;
-             height: 400px;
-             margin-top: -200px;
-             width: 600px;
-             margin-left: -300px;
-             text-align: center;
-             background: url('../../loading.gif') no-repeat center 50%;
-             z-index: 101
-         }
+        .Progressloading {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            background-color: white;
+            height: 400px;
+            margin-top: -200px;
+            width: 600px;
+            margin-left: -300px;
+            text-align: center;
+            background: url('../../loading.gif') no-repeat center 50%;
+            z-index: 101
+        }
+    </style>
+
+    <style>
+
+        .Progressloading1 {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            background-color: white;
+            height: 400px;
+            margin-top: -200px;
+            width: 600px;
+            margin-left: -300px;
+            text-align: center;
+            background: url('../../loading.gif') no-repeat center 50%;
+            z-index: 101
+        }
     </style>
 </head>
 <body>
     <div class="Progressloading"></div>
+   
     <div class="notiBlock">
         <div class="container-fluid">
             <div class="row align-items-center justify-content-center">
@@ -148,6 +167,7 @@
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-body">
+                    <div class="Progressloading1"></div>
                     <div class="row">
                         <div class="col-12 col-md-12 col-lg-6 bg-sky healthRating">
                             <img src="@CommonMethods.ServerPath/img/healthRating.png" class="healthRatingImg" />
@@ -309,7 +329,7 @@
                                                         <div class="col-6">
                                                             <div class="form-group pr-1">
                                                                 <select id="ddlAuditfeet" class="form-control">
-                                                                    <option value="0" selected>Feet</option>                                                                  
+                                                                    <option value="0" selected>Feet</option>
                                                                     <option>1</option>
                                                                     <option>2</option>
                                                                     <option>3</option>
@@ -328,7 +348,7 @@
                                                         <div class="col-6">
                                                             <div class="form-group pl-1">
                                                                 <select id="ddlAuditInches" class="form-control">
-                                                                    <option value="0" selected>Inches</option>                                                                
+                                                                    <option value="0" selected>Inches</option>
                                                                     <option>1</option>
                                                                     <option>2</option>
                                                                     <option>3</option>
@@ -350,7 +370,7 @@
                                                         <div class="col-12">
                                                             <div class="form-group pr-1">
                                                                 <select id="ddlAuditCentemer" class="form-control">
-                                                                    <option  value="0"  selected>Centimeter</option>
+                                                                    <option value="0" selected>Centimeter</option>
                                                                     <option>30</option>
                                                                     <option>31</option>
                                                                     <option>32</option>
@@ -844,7 +864,7 @@
                                                         <div class="col-6">
                                                             <div class="form-group pr-1">
                                                                 <select id="ddlKilo" class="form-control">
-                                                                    <option  value="0" selected>Kilo</option>                                                               
+                                                                    <option value="0" selected>Kilo</option>
                                                                     <option>1</option>
                                                                     <option>2</option>
                                                                     <option>3</option>
@@ -1101,7 +1121,7 @@
                                                         <div class="col-6">
                                                             <div class="form-group pl-1">
                                                                 <select id="ddlgrams" class="form-control">
-                                                                    <option  value="0"  selected>Grams</option>                                                                   
+                                                                    <option value="0" selected>Grams</option>
                                                                     <option>100</option>
                                                                     <option>200</option>
                                                                     <option>300</option>
@@ -1121,7 +1141,7 @@
                                                         <div class="col-12">
                                                             <div class="form-group pr-1">
                                                                 <select id="ddlpounds" class="form-control">
-                                                                    <option  value="0"  selected>Pounds</option>                                                                  
+                                                                    <option value="0" selected>Pounds</option>
                                                                     <option>1</option>
                                                                     <option>2</option>
                                                                     <option>3</option>
@@ -1608,7 +1628,7 @@
                                                             <div class="col-6">
                                                                 <div class="form-group pr-1">
                                                                     <select id="ddlExerciseDurationHour" class="form-control">
-                                                                        <option  value="0"  selected>Hours</option>
+                                                                        <option value="0" selected>Hours</option>
                                                                         <option>0</option>
                                                                         <option>1</option>
                                                                         <option>2</option>
@@ -1622,7 +1642,7 @@
                                                             <div class="col-6">
                                                                 <div class="form-group pl-1">
                                                                     <select id="ddlExerciseDurationMins" class="form-control">
-                                                                        <option  value="0"  selected>Mins</option>
+                                                                        <option value="0" selected>Mins</option>
                                                                         <option>0</option>
                                                                         <option>30</option>
                                                                     </select>
@@ -1685,7 +1705,7 @@
                                                             <div class="col-6">
                                                                 <div class="form-group pr-1">
                                                                     <select id="waterIntakeLitter" class="form-control">
-                                                                        <option  value="0"  selected>Liter</option>
+                                                                        <option value="0" selected>Liter</option>
                                                                         <option>0</option>
                                                                         <option>1</option>
                                                                         <option>2</option>
@@ -1715,7 +1735,7 @@
                                                             <div class="col">
                                                                 <div class="form-group pl-1">
                                                                     <select id="waterIntakeGlass" class="form-control">
-                                                                        <option   value="0"  selected>Glass</option>
+                                                                        <option value="0" selected>Glass</option>
                                                                         <option>1</option>
                                                                         <option>2</option>
                                                                         <option>3</option>
@@ -1747,7 +1767,7 @@
                                             <div class="form-group">
                                                 <p class="semi mb-2">Smoking:</p>
 
-                                              
+
 
                                                 <div class="custom-control custom-radio custom-control-inline">
                                                     <input type="radio" id="SmokingYes" name="Smoking" class="custom-control-input">
@@ -1826,7 +1846,7 @@
                                                     <tr>
                                                         <td>
                                                             <select id="txtChildAge" class="form-control">
-                                                                <option  value="0" >Age Year</option>
+                                                                <option value="0">Age Year</option>
                                                                 <option value="0">0</option>
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
@@ -1848,7 +1868,7 @@
                                                         </td>
                                                         <td>
                                                             <select id="txtChildMonth" class="form-control">
-                                                                <option  value="0" >Age Month</option>
+                                                                <option value="0">Age Month</option>
                                                                 <option value="0">0</option>
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
@@ -1889,7 +1909,7 @@
                                                         <div class="col-6">
                                                             <div class="form-group pr-1">
                                                                 <select id="ddlChildFeet" class="form-control">
-                                                                    <option  value="0"  selected>Feet</option>
+                                                                    <option value="0" selected>Feet</option>
                                                                     <option>0</option>
                                                                     <option>1</option>
                                                                     <option>2</option>
@@ -1905,7 +1925,7 @@
                                                         <div class="col-6">
                                                             <div class="form-group pl-1">
                                                                 <select id="ddlChildInches" class="form-control">
-                                                                    <option  value="0"  selected>Inches</option>
+                                                                    <option value="0" selected>Inches</option>
                                                                     <option>0</option>
                                                                     <option>1</option>
                                                                     <option>2</option>
@@ -1928,7 +1948,7 @@
                                                         <div class="col-12">
                                                             <div class="form-group pr-1">
                                                                 <select id="ddlChildCentimeter" class="form-control">
-                                                                    <option  value="0"  selected>Centimeter</option>
+                                                                    <option value="0" selected>Centimeter</option>
                                                                     <option>30</option>
                                                                     <option>31</option>
                                                                     <option>32</option>
@@ -2421,7 +2441,7 @@
                                                         <div class="col-6">
                                                             <div class="form-group pr-1">
                                                                 <select id="ddlChildKilo" class="form-control">
-                                                                    <option  value="0"  selected>Kilo</option>
+                                                                    <option value="0" selected>Kilo</option>
                                                                     <option>0</option>
                                                                     <option>1</option>
                                                                     <option>2</option>
@@ -2679,7 +2699,7 @@
                                                         <div class="col-6">
                                                             <div class="form-group pl-1">
                                                                 <select id="ddlChildGaram" class="form-control">
-                                                                    <option  value="0"  selected>Grams</option>
+                                                                    <option value="0" selected>Grams</option>
                                                                     <option>0</option>
                                                                     <option>100</option>
                                                                     <option>200</option>
@@ -2700,7 +2720,7 @@
                                                         <div class="col-12">
                                                             <div class="form-group pr-1">
                                                                 <select id="ddlChildPounds" class="form-control">
-                                                                    <option  value="0"  selected>Pounds</option>
+                                                                    <option value="0" selected>Pounds</option>
                                                                     <option>1</option>
                                                                     <option>2</option>
                                                                     <option>3</option>
@@ -3588,7 +3608,8 @@
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramGlass);
             }
             //1= Exercise yes 2 = no
-            if ($("#ExerciseSelect").val() == "1") {
+            if ($("#ExerciseSelect").val() == "1")
+            {
                 var paramExerciseSelect = { ControlName: "Exercise", OptionValue: "Yes", OtherOption: "" }
                 var paramchkACardio = { ControlName: "chkACardio", OptionValue: $("#chkACardio").prop("checked"), OtherOption: "" }
                 var paramchkStrenghtTarining = { ControlName: "chkStrenghtTarining", OptionValue: $("#chkStrenghtTarining").prop("checked"), OtherOption: "" }
@@ -3600,12 +3621,13 @@
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseDurationHour);
                 EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseDurationMins);
             }
-            else {
+            else
+            {
                 var paramExerciseSelect = { ControlName: "Exercise", OptionValue: "No", OtherOption: "" }
             }
             EnquiryModel.Instance_Enquiry_Transaction.push(paramExerciseSelect);
 
-          
+
 
 
             var paramddlSmoke = { ControlName: "ddlSmoke", OptionValue: document.getElementById("SmokingYes").checked, OtherOption: "" }
@@ -3618,8 +3640,10 @@
     var parddlFruitsVegi = { ControlName: "ddlFruitsVegi", OptionValue: $("#ddlFruitsVegi").val(), OtherOption: "" }
 
     EnquiryModel.Instance_Enquiry_Transaction.push(parddlFruitsVegi);
-
-            CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response) {
+            $(".Progressloading1").show();
+            CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response)
+            {
+                $(".Progressloading1").hide();
                 //
                 alert('You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX.');
 
@@ -3656,7 +3680,7 @@
                    // $("tblCart").html("");
 
 
-                   
+
 
                     var strinnerid = null;
                     var strid = null;
@@ -3701,7 +3725,7 @@
                     $('#myModal').modal('show');
 
                 }
-              
+
 
             });
 
