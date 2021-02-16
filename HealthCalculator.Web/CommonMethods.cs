@@ -34,7 +34,10 @@ namespace HealthCalculator.Web
             if (dt[0].AgeGroup == "Adult")
                 emailbody = AdultEmailBody(dt, collection);
             else if (dt[0].AgeGroup == "Child")
+            {
+                Subject = "Eating Smart health status report";
                 emailbody = ChildEmailBody(dt, collection, dtRange);
+            }
 
             content = emailbody;
 
@@ -416,7 +419,7 @@ namespace HealthCalculator.Web
             ////Interpretation
             //retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Interpretation:</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 1 star: Alarming health deficit</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Focusing on your health is very crucial at this stage</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>A smart lifestyle coupled with a positive state of mind will help you attain good health</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Taking small steps, will lay the foundation for a happy &amp; healthy life</span></li></ul><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Believe you can and you’re half way through &#128515 </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 2 stars: At the fringe, high time we improve</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Our health status is on the verge of deteriorating, taking proactive steps at this stage will help you get back on track</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>This is the right time we strive hard in order to live a healthy and safe life ahead</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>A smart lifestyle coupled with a positive state of mind will help you attain good health</span></li></ul><p style='text-align: left; margin: 0pt 0pt 0pt 36pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 3 stars: Needs improvement</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Focusing on a smart lifestyle coupled with a positive state of mind will help you reduce the risks of many diseases in near future</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Evaluating each aspect of our health and taking proactive steps would be the best way to move forward</span></li></ul><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 4 stars</span><span style='color: #222222; font-family: Calibri; font-size: 14pt;'>: </span><span style='font-family: Verdana; font-size: 11pt;'>Little emphasis on eating &amp; lifestyle will get you 5 stars</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Good health is a state of physical as well as mental wellbeing, monitoring every aspect can help you stay in good health</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Many a times we tend to neglect the very crucial but least weighed aspects of health like water intake, stress, sleep. It’s all a vicious cycle of health and well being</span></li></ul><p style='text-align: left; margin: 0pt 0pt 0pt 36pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 0pt 36pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>You are what you eat &#128515</span></p>";
             //rating = healthRating(dt, collection);
-            //indicate = weightStatus(dt, collection);
+             
             // Server
             // string filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/adult.html");
             //Local
@@ -428,7 +431,7 @@ namespace HealthCalculator.Web
             objReader = new System.IO.StreamReader(filePath);
             string content = objReader.ReadToEnd();
             objReader.Close();
-
+            indicate = weightStatus(dt, collection);
             content = Regex.Replace(content, "@ClientName", FirstCharToUpper(collection.Instance_enquiry.FirstName, Gender));
 
             content = Regex.Replace(content, "@FromRage ", (dt[0].IdealBodyWeight - 2).ToString());
@@ -453,7 +456,7 @@ namespace HealthCalculator.Web
             {
                 ratingPath = HttpContext.Current.Server.MapPath("~/emailer/Rating1.html");
                 objReader1 = new System.IO.StreamReader(ratingPath);
-                ratingContent = objReader.ReadToEnd();
+                ratingContent = objReader1.ReadToEnd();
                 objReader.Close();
 
 
@@ -464,7 +467,7 @@ namespace HealthCalculator.Web
             {
                 ratingPath = HttpContext.Current.Server.MapPath("~/emailer/Rating2.html");
                 objReader1 = new System.IO.StreamReader(ratingPath);
-                ratingContent = objReader.ReadToEnd();
+                ratingContent = objReader1.ReadToEnd();
                 objReader.Close();
 
                 rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating2.png";
@@ -473,7 +476,7 @@ namespace HealthCalculator.Web
             {
                 ratingPath = HttpContext.Current.Server.MapPath("~/emailer/Rating3.html");
                 objReader1 = new System.IO.StreamReader(ratingPath);
-                ratingContent = objReader.ReadToEnd();
+                ratingContent = objReader1.ReadToEnd();
                 objReader.Close();
                 rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating3.png";
             }
@@ -481,7 +484,7 @@ namespace HealthCalculator.Web
             {
                 ratingPath = HttpContext.Current.Server.MapPath("~/emailer/Rating4.html");
                 objReader1 = new System.IO.StreamReader(ratingPath);
-                ratingContent = objReader.ReadToEnd();
+                ratingContent = objReader1.ReadToEnd();
                 objReader.Close();
                 rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating4.png";
             }
@@ -489,7 +492,7 @@ namespace HealthCalculator.Web
             {
                 ratingPath = HttpContext.Current.Server.MapPath("~/emailer/Rating5.html");
                 objReader1 = new System.IO.StreamReader(ratingPath);
-                ratingContent = objReader.ReadToEnd();
+                ratingContent = objReader1.ReadToEnd();
                 objReader.Close();
                 rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating5.png";
             }
