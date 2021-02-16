@@ -81,6 +81,7 @@ namespace HealthCalculator.Web.EntityModel
         public DateTime AddedWhen { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime UpdatedWhen { get; set; }
+        public string ReportPath { get; set; }
     }
     public class UserMedications
     {

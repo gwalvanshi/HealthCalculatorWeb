@@ -345,7 +345,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-12 col-sm-5 col-form-label semi">Reports <span class="float-right d-none d-md-block"> : </span></label>
+                        <label class="col-12 col-sm-5 col-form-label semi">Reports(upload zip in case multiple) <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
                             <input type="text" class="form-control border " id="txtReports" maxlength="100" placeholder="Enter Reports" />
                             <div class="btn btn-primary">
@@ -957,6 +957,7 @@
                 UserId: sessionStorage.getItem('userId'),
                 HealthIssues: $("#txtHealthIssues").val() == undefined ? '' : $("#txtHealthIssues").val().trim(),
                 Reports: $("#txtReports").val() == undefined ? '' : $("#txtReports").val().trim(),
+                ReportPath: $("#hdnfileuploadReportPath").val() == undefined ? '' : $("#hdnfileuploadReportPath").val().trim()
             }
 
             var assessment =
@@ -1267,7 +1268,7 @@
         ctrl.href = '@Url.Content("~/Home/MyEatingPattern?userId=")' + selectedUserId;
         ctrl.click();
     }
-       
+
 
 
     $(document).ready(function () {
@@ -1376,14 +1377,16 @@
                 //---------------------MedicalHistory----------------------------------
                 $("#txtHealthIssues").val(response.data.Data.Table[0].HealthIssues);
                 $("#txtReports").val(response.data.Data.Table[0].Reports);
-                if (response.data.Data.Table[0].Reports != "" || response.data.Data.Table[0].Reports != undefined) {
+                if (response.data.Data.Table[0].ReportPath!= "")
+                {
                     $("#dvDownloadReport").show();
                 }
-                else {
+                else
+                {
                     $("#dvDownloadReport").hide();
                 }
 
-                $("#hdnfileuploadReportPath").val(response.data.Data.Table[0].Reports);
+                $("#hdnfileuploadReportPath").val("@CommonMethods.ServerPathDocs"+response.data.Data.Table[0].Reports);
             }
 
             //--------------------Medications-----------------------------------
@@ -1650,7 +1653,7 @@
             });
         }
     }
-
+     
     $(document).ready(function () {
 
         $("#btnDownloadReport").click(function (e) {
@@ -1658,7 +1661,7 @@
             var uri = "@CommonMethods.ServerPath";
             var fullname = $("#hdnfileuploadReportPath").val();
 
-            window.location.href = uri + fullname;
+            window.location.href =fullname;
         });
 
     });

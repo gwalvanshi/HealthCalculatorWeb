@@ -113,20 +113,20 @@ namespace HealthCalculator.Web
             }
             else
             {
-                TableWiegth = "Pounds";
-                ChildWeight = GetChildSaveValue(collection, "ddlChildPounds") + " Pounds";
+                TableWiegth = "lb";
+                ChildWeight = GetChildSaveValue(collection, "ddlChildPounds") + " lb";
             }
 
             string heighsel = GetChildSaveValue(collection, "HeightSelection");
             if (heighsel == "Feet")
             {
-                TableHeight = "Feet& Inch";
+                TableHeight = "Feet & Inch";
                 ChildHeight = GetChildSaveValue(collection, "ddlChildFeet") + " feet " + GetChildSaveValue(collection, "ddlChildInches") + " inches.";
             }
             else
             {
                 TableHeight = "CM";
-                ChildHeight = GetChildSaveValue(collection, "ddlChildCentimeter") + " Centimeter";
+                ChildHeight = GetChildSaveValue(collection, "ddlChildCentimeter") + " CM";
             }
 
             retVal = retVal + GetRangTable(dtRange);
@@ -239,7 +239,7 @@ namespace HealthCalculator.Web
             string content = objReader.ReadToEnd();
             objReader.Close();
 
-            content = Regex.Replace(content, "@ClientName", collection.Instance_enquiry.State);
+            content = Regex.Replace(content, "@ClientName", FirstCharToUpper(collection.Instance_enquiry.State, gender));
 
 
             content = Regex.Replace(content, "@TableWeight", TableWiegth);
@@ -313,10 +313,18 @@ namespace HealthCalculator.Web
                     if (tx.ControlName == type)
                     {
                         retValue = Convert.ToString(tx.OptionValue);
-                        if (retValue == "Birth" || retValue == "3 months" || retValue == "6 months" || retValue == "9 months")
-                            retValue = "0";
+                        if (type == "ddlChildGaram")
+                        {
+                            retValue = retValue.Substring(0, 1);
+                        }
                         else
-                            retValue = retValue.Split(' ')[0];
+                        {
+
+                            if (retValue == "Birth" || retValue == "3 months" || retValue == "6 months" || retValue == "9 months")
+                                retValue = "0";
+                            else
+                                retValue = retValue.Split(' ')[0];
+                        }
                     }
                 }
             }
@@ -414,10 +422,13 @@ namespace HealthCalculator.Web
             //Local
             string filePath = HttpContext.Current.Server.MapPath("~/emailer/adult.html");
 
+            string ratingPath = string.Empty;
+            string ratingContent = string.Empty;
             System.IO.StreamReader objReader;
             objReader = new System.IO.StreamReader(filePath);
             string content = objReader.ReadToEnd();
             objReader.Close();
+
             content = Regex.Replace(content, "@ClientName", FirstCharToUpper(collection.Instance_enquiry.FirstName, Gender));
 
             content = Regex.Replace(content, "@FromRage ", (dt[0].IdealBodyWeight - 2).ToString());
@@ -433,24 +444,53 @@ namespace HealthCalculator.Web
 
             content = Regex.Replace(content, "@ClientBMI", dt[0].BMI.ToString());
             content = Regex.Replace(content, "@BMICategory", weightStatus(dt, collection));
+
+            rating = healthRating(dt, collection);
+
+            System.IO.StreamReader objReader1;
+          
             if (rating == "1")
             {
+                ratingPath = HttpContext.Current.Server.MapPath("~/emailer/Rating1.html");
+                objReader1 = new System.IO.StreamReader(ratingPath);
+                ratingContent = objReader.ReadToEnd();
+                objReader.Close();
+
+
                 rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating1.png";
+
             }
             else if (rating == "2")
             {
+                ratingPath = HttpContext.Current.Server.MapPath("~/emailer/Rating2.html");
+                objReader1 = new System.IO.StreamReader(ratingPath);
+                ratingContent = objReader.ReadToEnd();
+                objReader.Close();
+
                 rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating2.png";
             }
             else if (rating == "3")
             {
+                ratingPath = HttpContext.Current.Server.MapPath("~/emailer/Rating3.html");
+                objReader1 = new System.IO.StreamReader(ratingPath);
+                ratingContent = objReader.ReadToEnd();
+                objReader.Close();
                 rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating3.png";
             }
             else if (rating == "4")
             {
+                ratingPath = HttpContext.Current.Server.MapPath("~/emailer/Rating4.html");
+                objReader1 = new System.IO.StreamReader(ratingPath);
+                ratingContent = objReader.ReadToEnd();
+                objReader.Close();
                 rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating4.png";
             }
             else
             {
+                ratingPath = HttpContext.Current.Server.MapPath("~/emailer/Rating5.html");
+                objReader1 = new System.IO.StreamReader(ratingPath);
+                ratingContent = objReader.ReadToEnd();
+                objReader.Close();
                 rating = "https://eatingsmart.in/Healthweb/emailer/images/Rating5.png";
             }
 
@@ -471,11 +511,8 @@ namespace HealthCalculator.Web
             content = Regex.Replace(content, "@HealthRating", rating);
 
             content = Regex.Replace(content, "@WeigthScale", indicate);
-
-
-
-
-
+            content = Regex.Replace(content, "@RatingContent", ratingContent);
+            
 
             return content;
 
@@ -552,11 +589,12 @@ namespace HealthCalculator.Web
                         }
                         else if (tx.ControlName == "ddlgrams")
                         {
-                            stWeight = stWeight + "." + tx.OptionValue +" KG";
+                            string grm = tx.OptionValue.Substring(0, 1);
+                            stWeight = stWeight + "." + grm;
                         }
                         if (tx.ControlName == "ddlpounds")
                         {
-                            stWeight = tx.OptionValue + " LB";
+                            stWeight = tx.OptionValue;
                         }
                        
                     }
@@ -593,6 +631,7 @@ namespace HealthCalculator.Web
                             stWeight = "Normal";
                         }
                     }
+
                 }
 
             }

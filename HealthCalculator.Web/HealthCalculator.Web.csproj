@@ -260,6 +260,11 @@
     <Content Include="Content\dx.material.teal.light.css" />
     <Content Include="Content\dx.softblue.compact.css" />
     <Content Include="Content\dx.softblue.css" />
+    <Content Include="emailer\Rating2.html" />
+    <Content Include="emailer\Rating3.html" />
+    <Content Include="emailer\Rating4.html" />
+    <Content Include="emailer\Rating5.html" />
+    <Content Include="emailer\Rating1.html" />
     <Content Include="htmleditor.css" />
     <Content Include="css\animate.min.css" />
     <Content Include="css\bootstrap.min.css" />
@@ -731,6 +736,7 @@
     <Content Include="Views\Home\AddFreeSession.cshtml" />
     <Content Include="Views\Home\ViewEnquiryDetails.cshtml" />
     <Content Include="Views\Home\ProgramView.cshtml" />
+    <Content Include="Views\Home\PrintSession.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
