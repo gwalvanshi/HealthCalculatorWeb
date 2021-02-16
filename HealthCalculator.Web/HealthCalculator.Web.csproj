@@ -429,6 +429,7 @@
     <Content Include="img\exclusive\smartWeightGain.jpg" />
     <Content Include="img\exclusive\smartWeightLoss.jpg" />
     <Content Include="img\face.png" />
+    <Content Include="img\failed.png" />
     <Content Include="img\fb.png" />
     <Content Include="img\food.png" />
     <Content Include="img\fruits.png" />
@@ -493,6 +494,7 @@
     <Content Include="img\src\img\controls - Copy.png" />
     <Content Include="img\src\img\controls.png" />
     <Content Include="img\src\js\lightslider.js" />
+    <Content Include="img\success.png" />
     <Content Include="img\tw.png" />
     <Content Include="img\uploadPhoto.png" />
     <Content Include="img\user.png" />
