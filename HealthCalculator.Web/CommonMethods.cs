@@ -491,7 +491,7 @@ namespace HealthCalculator.Web
             content = Regex.Replace(content, "@consumeL", dt[0].WaterIntake.ToString());
 
             content = Regex.Replace(content, "@ClientBMI", dt[0].BMI.ToString());
-            content = Regex.Replace(content, "@BMICategory", weightStatus(dt, collection));
+            content = Regex.Replace(content, "@BMICategory", BMIStatus(dt));
 
             rating = healthRating(dt, collection);
 
