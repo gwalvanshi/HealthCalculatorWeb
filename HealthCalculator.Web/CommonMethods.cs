@@ -395,6 +395,34 @@ namespace HealthCalculator.Web
 
         }
 
+        public string GetWeightType(List<Table> dt, EnquiryModel collection)
+        {
+            string returnWiegth = string.Empty;
+            try
+            {
+                foreach (Enquiry_Transaction tx in collection.Instance_Enquiry_Transaction)
+                {
+                    if (tx != null)
+                    {
+                        if (tx.ControlName == "ddlKilo")
+                        {
+                            returnWiegth = "KG";
+                        }
+                       
+                        if (tx.ControlName == "ddlpounds")
+                        {
+                            returnWiegth = "LB";
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //ex.Message;
+            }
+            return returnWiegth;
+        }
         public string AdultEmailBody(List<Table> dt, EnquiryModel collection)
         {
             string retVal = string.Empty;
@@ -433,10 +461,27 @@ namespace HealthCalculator.Web
             objReader.Close();
             indicate = weightStatus(dt, collection);
             content = Regex.Replace(content, "@ClientName", FirstCharToUpper(collection.Instance_enquiry.FirstName, Gender));
+            string WType = GetWeightType(dt, collection);
+            if (WType == "KG")
+            {
+               
+                string idealbodyweight = (dt[0].IdealBodyWeight - 2).ToString() + "-" + (dt[0].IdealBodyWeight + 2).ToString() + " KG";
+                content = Regex.Replace(content, "@idealbodyweight", idealbodyweight);
 
-            content = Regex.Replace(content, "@FromRage ", (dt[0].IdealBodyWeight - 2).ToString());
+               // content = Regex.Replace(content, "@ToRange ", (dt[0].IdealBodyWeight + 2).ToString() + " KG");
+            }
+            else
+            {
+                double pounds = (dt[0].IdealBodyWeight) * 2.20462d;
+              //  double value = 1.1;
+                int roundedValue = (int)(pounds + 0.5);
+          
+                string idealbodyweightLb = (roundedValue - 4).ToString() + "-" + (roundedValue + 4).ToString() + " lb";
 
-            content = Regex.Replace(content, "@ToRange ", (dt[0].IdealBodyWeight + 2).ToString());
+                content = Regex.Replace(content, "@idealbodyweight", idealbodyweightLb);
+            }
+
+           
 
             content = Regex.Replace(content, "@CurrentWeigth", GetCurrentWeight(dt, collection));
 
@@ -593,11 +638,11 @@ namespace HealthCalculator.Web
                         else if (tx.ControlName == "ddlgrams")
                         {
                             string grm = tx.OptionValue.Substring(0, 1);
-                            stWeight = stWeight + "." + grm;
+                            stWeight = stWeight + "." + grm +" KG";
                         }
                         if (tx.ControlName == "ddlpounds")
                         {
-                            stWeight = tx.OptionValue;
+                            stWeight = tx.OptionValue +" lb";
                         }
                        
                     }
@@ -614,7 +659,7 @@ namespace HealthCalculator.Web
         {
             string stWeight = string.Empty;
             double idealbodyWeight = dt[0].IdealBodyWeight;
-
+                       
             foreach (Enquiry_Transaction tx in collection.Instance_Enquiry_Transaction)
             {
                 if (tx != null)
@@ -630,6 +675,22 @@ namespace HealthCalculator.Web
                             stWeight = "Overweight";
                         }
                         else if (idealbodyWeight == Convert.ToSingle(tx.OptionValue))
+                        {
+                            stWeight = "Normal";
+                        }
+                    }
+                    if (tx.ControlName == "ddlpounds")
+                    {
+                        double calPound = (Convert.ToDouble(tx.OptionValue) * 0.454);
+                        if (idealbodyWeight >= Convert.ToSingle(calPound))
+                        {
+                            stWeight = "Under weight";
+                        }
+                        else if (idealbodyWeight <= Convert.ToSingle(calPound))
+                        {
+                            stWeight = "Overweight";
+                        }
+                        else if (idealbodyWeight == Convert.ToSingle(calPound))
                         {
                             stWeight = "Normal";
                         }

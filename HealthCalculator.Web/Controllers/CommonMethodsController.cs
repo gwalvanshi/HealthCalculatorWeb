@@ -49,7 +49,16 @@ namespace HealthCalculator.Web.Controllers
 
                     string uploadNewFileName = newFile + "." + splString[1];
                     string filePathTobeSaved = "";
-                    string baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["MessageDocuments"]);
+                   // string filePathTobeSaved = "";
+                    string baseurl = "";
+
+                    baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["MessageDocuments"]);
+                   // returrMessage = ConfigurationManager.AppSettings["MessageDocuments"].ToString().Replace("~", "") + "/" + uploadNewFileName;
+
+                    filePathTobeSaved = baseurl + "/" + uploadNewFileName;
+                    Upload(filePathTobeSaved);
+
+                   // string baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["MessageDocuments"]);
                     filePathTobeSaved = baseurl + "/" + uploadNewFileName;
                     Upload(filePathTobeSaved);
                     if (files.Count == i + 1)
