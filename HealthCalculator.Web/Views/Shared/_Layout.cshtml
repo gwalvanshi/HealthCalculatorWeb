@@ -3350,9 +3350,17 @@
                 Instance_Enquiry_Transaction: []
             }
             var paramAge = { ControlName: "txtChildAge", OptionValue: $("#txtChildAge").val(), OtherOption: "" }
+
+            var paramAgeMonth = { ControlName: "txtChildMonth", OptionValue: $("#txtChildMonth").val(), OtherOption: "" }
+
             var paramGender = { ControlName: "ddlChildGender", OptionValue: $("#ddlChildGender").val(), OtherOption: "" }
             EnquiryModel.Instance_Enquiry_Transaction.push(paramAge);
             EnquiryModel.Instance_Enquiry_Transaction.push(paramGender);
+            var txtChildParentGurdian = { ControlName: "Parents", OptionValue: $("#txtChildParentGurdian").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(txtChildParentGurdian);
+
+
+            
             var heightselection = "";
             //1 = Centemer 2 = feet,Inches
             if ($("#ChildheightSelect").val() == "1") {
@@ -3383,10 +3391,8 @@
                 EnquiryModel.Instance_Enquiry_Transaction.push(parampounds);
             }
             EnquiryModel.Instance_Enquiry_Transaction.push(paramWeightSelection);
-            if ($("#ChildHealthIssueSelect").val() == "1") {
-                var paramChildHealthIssue = { ControlName: "txtChildHealthIssue", OptionValue: $("#txtChildHealthIssue").val(), OtherOption: "" }
-                EnquiryModel.Instance_Enquiry_Transaction.push(paramChildHealthIssue);
-            }
+            var paramChildHealthIssue = { ControlName: "txtChildHealthIssue", OptionValue: $("#txtChildHealthIssue").val(), OtherOption: "" }
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramChildHealthIssue);
 
 
             //if ($("#txtChildEmail").val() != "") {

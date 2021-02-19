@@ -486,8 +486,9 @@ namespace HealthCalculator.Web
             content = Regex.Replace(content, "@CurrentWeigth", GetCurrentWeight(dt, collection));
 
             content = Regex.Replace(content, "@indicates", indicate);
-
-            content = Regex.Replace(content, "@YourBMR", dt[0].BMR.ToString());
+          
+            int newBMR = (int)(Convert.ToDecimal(dt[0].BMR)+0.5m);
+            content = Regex.Replace(content, "@YourBMR", newBMR.ToString());
             content = Regex.Replace(content, "@consumeL", dt[0].WaterIntake.ToString());
 
             content = Regex.Replace(content, "@ClientBMI", dt[0].BMI.ToString());
@@ -544,15 +545,15 @@ namespace HealthCalculator.Web
 
             if (indicate == "Under weight")
             {
-                indicate = "https://eatingsmart.in/Healthweb/emailer/images/W2.png";
+                indicate = "https://eatingsmart.in/Healthweb/emailer/images/giphy.gif";
             }
             else if (indicate == "Overweight")
             {
-                indicate = "https://eatingsmart.in/Healthweb/emailer/images/W1.png";
+                indicate = "https://eatingsmart.in/Healthweb/emailer/images/giphy.gif";
             }
             else
             {
-                indicate = "https://eatingsmart.in/Healthweb/emailer/images/W2.png";
+                indicate = "https://eatingsmart.in/Healthweb/emailer/images/giphy.gif";
             }
 
 
@@ -583,40 +584,86 @@ namespace HealthCalculator.Web
 
             return retVal;
         }
+      
 
         public static string BMIStatus(List<Table> dt)
         {
+            bool isValid = true;
             string retBMI = string.Empty;
+             
 
             double dBMI = dt[0].BMI;
-
-            if (dBMI <= 18.5)
+           
+            if (dBMI<18.5)
             {
                 retBMI = "Underweight";
+                isValid = false;
             }
-            else if (dBMI > 18.5 && dBMI <= 22.9)
+
+            if(isValid)
             {
-                retBMI = "Normal";
+                if (dBMI>=18.5&&dBMI< 23)
+                {
+                    retBMI = "Normal";
+                    isValid = false;
+                }
             }
-            else if (dBMI > 23 && dBMI <= 24.9)
+
+            if (isValid)
             {
-                retBMI = "Overweight";
+                if (dBMI>=23 && dBMI<25)
+                {
+                    retBMI = "Overweight";
+                    isValid = false;
+                }
             }
-            else if (dBMI > 25 && dBMI <= 29.9)
+
+            if (isValid)
             {
-                retBMI = "Pre – Obese";
+                if (dBMI >= 25 && dBMI < 30)
+                {
+                    retBMI = "Pre – Obese";
+                    isValid = false;
+                }
+
             }
-            else if (dBMI > 30 && dBMI <= 40)
+
+            if (isValid)
             {
-                retBMI = "Obese types 1 [obese]";
+                if (dBMI >= 25 && dBMI < 30)
+                {
+                    retBMI = "Pre–Obese";
+                    isValid = false;
+                }
+
             }
-            else if (dBMI > 40 && dBMI <= 50)
+            if (isValid)
             {
-                retBMI = "Obese types 2 [morbid obese]";
+                if (dBMI >= 30 && dBMI < 40)
+                {
+                    retBMI = "Obese types 1 [obese]";
+                    isValid = false;
+                }
+
             }
-            else if (dBMI > 50)
+            if (isValid)
             {
-                retBMI = "Obese types 3 [super obese]";
+                if (dBMI >= 40 && dBMI < 50)
+                {
+                    retBMI = "Obese types 2 [morbid obese]";
+                    isValid = false;
+                }
+
+            }
+
+            if (isValid)
+            {
+                if (dBMI >=50)
+                {
+                    retBMI = "Obese types 3 [super obese]";
+                    isValid = false;
+                }
+
             }
             return retBMI;
         }
@@ -792,6 +839,11 @@ namespace HealthCalculator.Web
                     {
                         Waterintake = Convert.ToSingle(tx.OptionValue);
                     }
+                    else if (tx.ControlName == "waterIntakeGlass")
+                    {
+                       // Waterintake = Convert.ToSingle(tx.OptionValue);
+                        Waterintake = Convert.ToDouble(tx.OptionValue)/250;
+                    }
                     else if (tx.ControlName == "chkACardio")
                     {
                         chkACardio = tx.OptionValue;
@@ -821,46 +873,60 @@ namespace HealthCalculator.Web
             bool rateInc = increaseRating(Durationofsleep, Waterintake, dt[0].WaterIntake, Exercise);
             bool rateDec = decreaseRating(stsmoking, stAlcohol);
             string obesetype = BMIStatus(dt);
+            bool isValidRating = true;
             if (dt[0].BMI > 30.0) //  heathRating = "1 star";
             {
                 if (rateInc)
                     heathRating = "2";
                 else
                     heathRating = "1";//decrease rating
+                isValidRating = false;
             }
-            if (dt[0].BMI > 23 && dt[0].BMI <= 30.9) //heathRating = "2 star";
+            if (isValidRating)
             {
+                if (dt[0].BMI > 23 && dt[0].BMI <= 30.9) //heathRating = "2 star";
+                {
 
-                if (rateInc && rateDec) //if both are true than no change
-                    heathRating = "2";
-                else if (rateInc && !rateDec) // if increase and no smoking no alcohol increate 
-                    heathRating = "3";
-                else
-                    heathRating = "1";//decrease rating
+                    if (rateInc && rateDec) //if both are true than no change
+                        heathRating = "2";
+                    else if (rateInc && !rateDec) // if increase and no smoking no alcohol increate 
+                        heathRating = "3";
+                    else
+                        heathRating = "1";//decrease rating
+                }
+                isValidRating = false;
             }
-            if (dt[0].BMI <= 18.5) //heathRating = "3 star";
+            if (isValidRating)
             {
-                if (rateInc && rateDec) //if both are true than no change
-                    heathRating = "3";
-                else if (rateInc && !rateDec) // if increase and no smoking no alcohol increate 
-                    heathRating = "4";
-                else
-                    heathRating = "2";//decrease rating
+                if (dt[0].BMI <= 18.5) //heathRating = "3 star";
+                {
+                    if (rateInc && rateDec) //if both are true than no change
+                        heathRating = "3";
+                    else if (rateInc && !rateDec) // if increase and no smoking no alcohol increate 
+                        heathRating = "4";
+                    else
+                        heathRating = "2";//decrease rating
+                }
+                isValidRating = false;
             }
-            if (dt[0].BMI > 18.5 && dt[0].BMI <= 22.9) //heathRating = "4 or 5 star";
+            if (isValidRating)
             {
-                if (rateInc && rateDec) //if both are true than no change
-                    heathRating = "4";
-                else if (rateInc && !rateDec) // if increase and no smoking no alcohol increate 
-                    heathRating = "5";
-                else
-                    heathRating = "3"; //decrease rating
+                if (dt[0].BMI > 18.5 && dt[0].BMI <= 22.9) //heathRating = "4 or 5 star";
+                {
+                    if (rateInc && rateDec) //if both are true than no change
+                        heathRating = "4";
+                    else if (rateInc && !rateDec) // if increase and no smoking no alcohol increate 
+                        heathRating = "5";
+                    else
+                        heathRating = "3"; //decrease rating
+                }               
             }
             return heathRating;
         }
         public static bool increaseRating(string SleepDuration, double WaterintakeConsume, double idealWaterInke, string Exercise)
         {
             bool inFlag = false;
+            double newWaterConsumeinL = (WaterintakeConsume / 200);
             if ((SleepDuration == "7–8 hours" || SleepDuration == "10 > hours") && WaterintakeConsume >= idealWaterInke && Exercise == "Yes")
             {
                 inFlag = true;

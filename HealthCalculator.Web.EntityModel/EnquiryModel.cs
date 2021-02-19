@@ -279,6 +279,7 @@ namespace HealthCalculator.Web.EntityModel
         public string NintyNine { get; set; }
         public string TwentyThree { get; set; }
         public string TwentySeven { get; set; }
+        public string ChildData { get; set; }
 
     }
 
@@ -303,6 +304,7 @@ namespace HealthCalculator.Web.EntityModel
         public string TwentyThree { get; set; }
 
         public string TwentySeven { get; set; }
+        public string ChildData { get; set; }
 
 
     }
@@ -325,6 +327,7 @@ namespace HealthCalculator.Web.EntityModel
         public string NintyFive { get; set; }
         public string NintySeven { get; set; }
         public string NintyNine { get; set; }
+        public string ChildData { get; set; }
 
     }
     //BMI0205Boy
@@ -346,6 +349,7 @@ namespace HealthCalculator.Web.EntityModel
         public string NintyFive { get; set; }
         public string NintySeven { get; set; }
         public string NintyNine { get; set; }
+        public string ChildData { get; set; }
 
     }
 
@@ -361,6 +365,7 @@ namespace HealthCalculator.Web.EntityModel
         public string TwentyThree { get; set; }
         public string TwentySeven { get; set; }
         public string NintyNine { get; set; }
+        public string ChildData { get; set; }
 
     }
     public class BMI0518Girl
@@ -375,6 +380,7 @@ namespace HealthCalculator.Web.EntityModel
         public string TwentyThree { get; set; }
         public string TwentySeven { get; set; }
         public string NintyNine { get; set; }
+        public string ChildData { get; set; }
 
     }
 
