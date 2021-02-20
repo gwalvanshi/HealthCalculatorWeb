@@ -3354,8 +3354,12 @@
             var paramAgeMonth = { ControlName: "txtChildMonth", OptionValue: $("#txtChildMonth").val(), OtherOption: "" }
 
             var paramGender = { ControlName: "ddlChildGender", OptionValue: $("#ddlChildGender").val(), OtherOption: "" }
+
+
             EnquiryModel.Instance_Enquiry_Transaction.push(paramAge);
             EnquiryModel.Instance_Enquiry_Transaction.push(paramGender);
+            EnquiryModel.Instance_Enquiry_Transaction.push(paramAgeMonth);
+
             var txtChildParentGurdian = { ControlName: "Parents", OptionValue: $("#txtChildParentGurdian").val(), OtherOption: "" }
             EnquiryModel.Instance_Enquiry_Transaction.push(txtChildParentGurdian);
 
@@ -3528,6 +3532,7 @@
             }
             var paramWeightSelection = "";
             //1 = KG  2 = Pounds
+           
             if ($("#WeightSelect").val() == "1") {
                 paramWeightSelection = { ControlName: "WeightSelect", OptionValue: "KG", OtherOption: "" }
                 var paramKG = { ControlName: "ddlKilo", OptionValue: $("#ddlKilo").val(), OtherOption: "" }

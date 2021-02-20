@@ -503,6 +503,7 @@ namespace HealthCalculator.Web.Controllers
         {
             return View();          
         }
+        [SessionExpireFilterAttributeAdmin]
         public ActionResult AdminView()
         {
             var chkTimeOut = Session.Timeout;

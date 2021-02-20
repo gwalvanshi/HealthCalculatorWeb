@@ -112,7 +112,7 @@ namespace HealthCalculator.Web
             if (weightSel == "KG")
             {
                 TableWiegth = "KG";
-                ChildWeight = GetChildSaveValue(collection, "ddlChildKilo") + "." + GetChildSaveValue(collection, "ddlChildGaram") + " KG";
+                ChildWeight = GetChildSaveValue(collection, "ddlChildKilo") + "." + GetChildSaveValue(collection, "ddlChildGaram") + " kg";
             }
             else
             {
@@ -129,7 +129,7 @@ namespace HealthCalculator.Web
             else
             {
                 TableHeight = "CM";
-                ChildHeight = GetChildSaveValue(collection, "ddlChildCentimeter") + " CM";
+                ChildHeight = GetChildSaveValue(collection, "ddlChildCentimeter") + " cm";
             }
 
             retVal = retVal + GetRangTable(dtRange);
@@ -462,37 +462,51 @@ namespace HealthCalculator.Web
             indicate = weightStatus(dt, collection);
             content = Regex.Replace(content, "@ClientName", FirstCharToUpper(collection.Instance_enquiry.FirstName, Gender));
             string WType = GetWeightType(dt, collection);
+            string weightStatusCandidate = BMIStatus(dt);
+            if (weightStatusCandidate != "Normal")
+            {
+                string WInde = " , which indicates that you are " + indicate;
+                content = Regex.Replace(content, "@indicates", WInde);
+                content = Regex.Replace(content, "@NormalCategory", "");
+            }
+            else
+            {
+                content = Regex.Replace(content, "@indicates", "");
+                content = Regex.Replace(content, "@NormalCategory", "*Ideal body weight formula takes into consideration the gender");
+
+            }
+
             if (WType == "KG")
             {
-               
-                string idealbodyweight = (dt[0].IdealBodyWeight - 2).ToString() + "-" + (dt[0].IdealBodyWeight + 2).ToString() + " KG";
+                int FromRange = (int)(dt[0].IdealBodyWeight + 0.5);
+
+                string idealbodyweight = (FromRange - 2).ToString() + "-" + (FromRange + 2).ToString() + " kg";
                 content = Regex.Replace(content, "@idealbodyweight", idealbodyweight);
 
-               // content = Regex.Replace(content, "@ToRange ", (dt[0].IdealBodyWeight + 2).ToString() + " KG");
+                // content = Regex.Replace(content, "@ToRange ", (dt[0].IdealBodyWeight + 2).ToString() + " KG");
             }
             else
             {
                 double pounds = (dt[0].IdealBodyWeight) * 2.20462d;
-              //  double value = 1.1;
+                //  double value = 1.1;
                 int roundedValue = (int)(pounds + 0.5);
-          
+
                 string idealbodyweightLb = (roundedValue - 4).ToString() + "-" + (roundedValue + 4).ToString() + " lb";
 
                 content = Regex.Replace(content, "@idealbodyweight", idealbodyweightLb);
             }
-
            
 
             content = Regex.Replace(content, "@CurrentWeigth", GetCurrentWeight(dt, collection));
 
-            content = Regex.Replace(content, "@indicates", indicate);
+           
           
             int newBMR = (int)(Convert.ToDecimal(dt[0].BMR)+0.5m);
             content = Regex.Replace(content, "@YourBMR", newBMR.ToString());
             content = Regex.Replace(content, "@consumeL", dt[0].WaterIntake.ToString());
 
             content = Regex.Replace(content, "@ClientBMI", dt[0].BMI.ToString());
-            content = Regex.Replace(content, "@BMICategory", BMIStatus(dt));
+            content = Regex.Replace(content, "@BMICategory", weightStatusCandidate);
 
             rating = healthRating(dt, collection);
 
@@ -602,7 +616,7 @@ namespace HealthCalculator.Web
 
             if(isValid)
             {
-                if (dBMI>=18.5&&dBMI< 23)
+                if (dBMI>=18.5&&dBMI<=24.9)
                 {
                     retBMI = "Normal";
                     isValid = false;
@@ -611,35 +625,17 @@ namespace HealthCalculator.Web
 
             if (isValid)
             {
-                if (dBMI>=23 && dBMI<25)
+                if (dBMI>=25 && dBMI<=29.9)
                 {
                     retBMI = "Overweight";
                     isValid = false;
                 }
             }
 
+          
             if (isValid)
             {
-                if (dBMI >= 25 && dBMI < 30)
-                {
-                    retBMI = "Pre – Obese";
-                    isValid = false;
-                }
-
-            }
-
-            if (isValid)
-            {
-                if (dBMI >= 25 && dBMI < 30)
-                {
-                    retBMI = "Pre–Obese";
-                    isValid = false;
-                }
-
-            }
-            if (isValid)
-            {
-                if (dBMI >= 30 && dBMI < 40)
+                if (dBMI >=30 && dBMI <=40)
                 {
                     retBMI = "Obese types 1 [obese]";
                     isValid = false;
@@ -648,7 +644,7 @@ namespace HealthCalculator.Web
             }
             if (isValid)
             {
-                if (dBMI >= 40 && dBMI < 50)
+                if (dBMI >40 && dBMI <=50)
                 {
                     retBMI = "Obese types 2 [morbid obese]";
                     isValid = false;
@@ -658,7 +654,7 @@ namespace HealthCalculator.Web
 
             if (isValid)
             {
-                if (dBMI >=50)
+                if (dBMI >50)
                 {
                     retBMI = "Obese types 3 [super obese]";
                     isValid = false;
@@ -685,7 +681,7 @@ namespace HealthCalculator.Web
                         else if (tx.ControlName == "ddlgrams")
                         {
                             string grm = tx.OptionValue.Substring(0, 1);
-                            stWeight = stWeight + "." + grm +" KG";
+                            stWeight = stWeight + "." + grm +" kg";
                         }
                         if (tx.ControlName == "ddlpounds")
                         {
@@ -777,6 +773,7 @@ namespace HealthCalculator.Web
 
         public static string healthRating(List<Table> dt, EnquiryModel collection)
         {
+           
             string heathRating = string.Empty;
             string stAlcohol = string.Empty;
             string stsmoking = string.Empty;
@@ -795,10 +792,36 @@ namespace HealthCalculator.Web
             string ddlExerciseDurationMins = string.Empty;
             string ddlHowOften = string.Empty;
 
+            string chkThyroidType = string.Empty;
+            string chkDiabetesType = string.Empty;
+            string chkAPcardiovascular = string.Empty;
+            string chkAPCOS = string.Empty;
+            string chkAGastrointestinal = string.Empty;
             foreach (Enquiry_Transaction tx in collection.Instance_Enquiry_Transaction)
             {
                 if (tx != null)
                 {
+                    if (tx.ControlName == "chkAGastrointestinal")
+                    {
+                        chkAGastrointestinal = tx.OptionValue;
+                    }
+                    if (tx.ControlName == "chkThyroidType")
+                    {
+                        chkThyroidType = tx.OptionValue;
+                    }
+                    if (tx.ControlName == "chkDiabetesType")
+                    {
+                        chkDiabetesType = tx.OptionValue;
+                    }
+                    if (tx.ControlName == "chkAPcardiovascular")
+                    {
+                        chkAPcardiovascular = tx.OptionValue;
+                    }
+                    if (tx.ControlName == "chkAPCOS")
+                    {
+                        chkAPCOS = tx.OptionValue;
+                    }
+
                     if (tx.ControlName == "ddlSmoke")
                     {
                         stsmoking = tx.OptionValue;
@@ -884,43 +907,50 @@ namespace HealthCalculator.Web
             }
             if (isValidRating)
             {
-                if (dt[0].BMI > 23 && dt[0].BMI <= 30.9) //heathRating = "2 star";
+                if (dt[0].BMI > 25 && dt[0].BMI <= 29.9) //heathRating = "2 star";
                 {
-
-                    if (rateInc && rateDec) //if both are true than no change
-                        heathRating = "2";
-                    else if (rateInc && !rateDec) // if increase and no smoking no alcohol increate 
+                    heathRating = "2";
+                    if (rateInc && !rateDec) // if increase and no smoking no alcohol increate
                         heathRating = "3";
-                    else
+                    else if (rateInc && rateDec)
                         heathRating = "1";//decrease rating
+                    isValidRating = false;
                 }
-                isValidRating = false;
             }
             if (isValidRating)
             {
                 if (dt[0].BMI <= 18.5) //heathRating = "3 star";
                 {
-                    if (rateInc && rateDec) //if both are true than no change
                         heathRating = "3";
-                    else if (rateInc && !rateDec) // if increase and no smoking no alcohol increate 
-                        heathRating = "4";
-                    else
-                        heathRating = "2";//decrease rating
-                }
+                        if (rateInc && !rateDec) // if increase and no smoking no alcohol increate
+                            heathRating = "4";
+                        else if (rateInc && rateDec) // if increase and smoking alcohol decr
+                            heathRating = "2";
+
+                        if(chkThyroidType=="True"|| chkDiabetesType == "True"|| chkAPcardiovascular == "True"|| chkAPCOS == "True"|| chkAGastrointestinal == "True")
+                        {
+                            heathRating = "2";
+                        }
+                     
+                    }
                 isValidRating = false;
             }
-            if (isValidRating)
-            {
-                if (dt[0].BMI > 18.5 && dt[0].BMI <= 22.9) //heathRating = "4 or 5 star";
+                if (isValidRating)
                 {
-                    if (rateInc && rateDec) //if both are true than no change
+                    if (dt[0].BMI >= 18.5 && dt[0].BMI <= 24.9) //heathRating = "4 or 5 star";
+                    {
                         heathRating = "4";
-                    else if (rateInc && !rateDec) // if increase and no smoking no alcohol increate 
-                        heathRating = "5";
-                    else
-                        heathRating = "3"; //decrease rating
-                }               
-            }
+                        if (rateInc && !rateDec) // if increase and no smoking no alcohol increate
+                            heathRating = "5";
+                        else if (rateInc&&rateDec) // if increase and smoking alcohol decr
+                           heathRating = "3";
+
+                    if (chkThyroidType == "True" || chkDiabetesType == "True" || chkAPcardiovascular == "True" || chkAPCOS == "True" || chkAGastrointestinal == "True")
+                        {
+                            heathRating = "4";
+                        }
+                    }
+                }
             return heathRating;
         }
         public static bool increaseRating(string SleepDuration, double WaterintakeConsume, double idealWaterInke, string Exercise)
