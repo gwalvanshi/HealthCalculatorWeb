@@ -771,7 +771,7 @@ namespace HealthCalculator.Web
             return sw.ToString();
         }
 
-        public static string healthRating(List<Table> dt, EnquiryModel collection)
+        public  string healthRating(List<Table> dt, EnquiryModel collection)
         {
            
             string heathRating = string.Empty;
@@ -931,9 +931,9 @@ namespace HealthCalculator.Web
                         {
                             heathRating = "2";
                         }
-                     
-                    }
-                isValidRating = false;
+                    isValidRating = false;
+                }
+               
             }
                 if (isValidRating)
                 {
@@ -953,18 +953,18 @@ namespace HealthCalculator.Web
                 }
             return heathRating;
         }
-        public static bool increaseRating(string SleepDuration, double WaterintakeConsume, double idealWaterInke, string Exercise)
+        public  bool increaseRating(string SleepDuration, double WaterintakeConsume, double idealWaterInke, string Exercise)
         {
             bool inFlag = false;
-            double newWaterConsumeinL = (WaterintakeConsume / 200);
-            if ((SleepDuration == "7–8 hours" || SleepDuration == "10 > hours") && WaterintakeConsume >= idealWaterInke && Exercise == "Yes")
+            double newWaterConsumeinL = (WaterintakeConsume/250);
+            if ((SleepDuration == "7–8 hours" || SleepDuration == "10 > hours") && WaterintakeConsume >= idealWaterInke && Exercise!= "No")
             {
                 inFlag = true;
             }
             return inFlag;
         }
 
-        public static bool decreaseRating(string smoking, string alcohol)
+        public  bool decreaseRating(string smoking, string alcohol)
         {
             bool deFlag = false;
             if (smoking == "Yes" || alcohol == "Yes")
