@@ -127,7 +127,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-12 col-sm-5 col-form-label semi">Do you Have Children <span class="float-right d-none d-md-block"> : </span></label>
+                        <label class="col-12 col-sm-5 col-form-label semi">Do you have children <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
                             <select class="custom-select" id="ddlDoYouHaveChildrenp">
                                 <option selected>Select</option>
@@ -174,7 +174,7 @@
                     @*-------------uday Start---------------------*@
                     <div class="row">
                         <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Photo</p>
+                            <p class="semi mb-2 text-yellow">Photo[Full length photo]</p>
                             <hr class="mt-0 mb-4 bg-dark" />
                         </div>
                     </div>
@@ -243,36 +243,36 @@
                     @*-------------------uday start Comment ---------------*@
 
                     @*<div class="row">
-                            <div class="col-12 col-md-12">
-                                <p class="semi mb-2 text-yellow">PHOTO</p>
-                                <hr class="mt-0 mb-4 bg-dark" />
-                            </div>
+            <div class="col-12 col-md-12">
+                <p class="semi mb-2 text-yellow">PHOTO</p>
+                <hr class="mt-0 mb-4 bg-dark" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-12 d-flex align-items-center">
+                <div class="col-md-4">
+                    <div class="btn btn-primary">
+                        <input type="file" id="imageBrowes" />
+                        <input type="hidden" id="hdnProfilePhotoPath" />
+                    </div>
+                    <hr />
+                    <div id="imgPreview" class="thumbnail">
+                        <div class="col-12 col-md-12 d-flex align-items-center">
+                            <img id="targetImg" src="@CommonMethods.ServerPath/img/uploadPhoto.png" class="img-fluid dib mr-3 mb-3" width="200" />
                         </div>
-                        <div class="row">
-                            <div class="col-12 col-md-12 d-flex align-items-center">
-                                <div class="col-md-4">
-                                    <div class="btn btn-primary">
-                                        <input type="file" id="imageBrowes" />
-                                        <input type="hidden" id="hdnProfilePhotoPath" />
-                                    </div>
-                                    <hr />
-                                    <div id="imgPreview" class="thumbnail">
-                                        <div class="col-12 col-md-12 d-flex align-items-center">
-                                            <img id="targetImg" src="@CommonMethods.ServerPath/img/uploadPhoto.png" class="img-fluid dib mr-3 mb-3" width="200" />
-                                        </div>
-                                        <div class="caption">
-                                            <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
-                                            <span id="description"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 thumbnail" id="uploadedImage">
-                                </div>
-                            </div>
+                        <div class="caption">
+                            <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                            <span id="description"></span>
                         </div>
-                        <div class="col-12 col-sm-12 text-right">
-                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserPhoto12" onclick="SaveUserPhoto12()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
-                        </div>*@
+                    </div>
+                </div>
+                <div class="col-md-2 thumbnail" id="uploadedImage">
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 text-right">
+            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserPhoto12" onclick="SaveUserPhoto12()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
+        </div>*@
 
                     @*-------------------uday End Comment ---------------*@
 
@@ -288,7 +288,7 @@
                             <select class="custom-select mandotory" id="ddlWeightType">
                                 <option selected>Select Type</option>
                                 <option value="KG">KG</option>
-                                <option value="LB">LB</option>                               
+                                <option value="LB">LB</option>
                             </select>
                         </div>
                         <div class="col-7 col-sm-5 pl-0">
@@ -301,7 +301,7 @@
                             <select class="custom-select mandotory" id="ddlHeightType">
                                 <option selected>Select Type</option>
                                 <option value="Feet-Inches">Feet-Inches</option>
-                                <option value="CM">CM</option>                               
+                                <option value="CM">CM</option>
                             </select>
                         </div>
                         <div class="col-7 col-sm-5 pl-0">
@@ -314,7 +314,7 @@
                             <select class="custom-select mandotory" id="ddlTargetWeightType">
                                 <option selected>Select Type</option>
                                 <option value="KG">KG</option>
-                                <option value="LB">LB</option>    
+                                <option value="LB">LB</option>
                             </select>
                         </div>
                         <div class="col-7 col-sm-5 pl-0">
@@ -489,10 +489,10 @@
                             <select class="custom-select" id="ddlWaterIntakePerDayType">
                                 <option selected>Select Type</option>
                                 <option value="Litre">Litre</option>
-                                <option value="Glass">Glass</option>                              
+                                <option value="Glass">Glass</option>
                             </select>
                         </div>
-                        <div class="col-7 col-sm-5 pl-0">                         
+                        <div class="col-7 col-sm-5 pl-0">
                             <select class="custom-select" id="ddlWaterIntakePerDayDetails">
                                 <option selected>Select Details</option>
                                 <option>1</option>
@@ -648,6 +648,16 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-12 col-sm-3 col-form-label semi">Midnight munching</label>
+                        <div class="col-12 col-sm">
+                            <input type="time" class="form-control border " id="ddlMidnightMunching" maxlength="100" placeholder="Enter On Waking Up" />
+                        </div>
+                        <div class="col-12 col-sm">
+                            <input type="text" class="form-control border " id="txtMidnightMunching" maxlength="100" placeholder="Enter Bed Time" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <div class="col-12 col-sm-12 text-right">
                             <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSaveUserDirectCall" onclick="SaveUserDirectCall()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
                         </div>
@@ -663,10 +673,12 @@
                         <div class="col-12 col-sm-7">
                             <select class="custom-select" id="ddlRotiChapati">
                                 <option selected>Select</option>
-                                <option value="None">None</option>
-                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">Daily</option>
+                                <option value="Occasionally">Once a week</option>
                                 <option value="Twice a week">Twice a week</option>
                                 <option value="Thrice a week">Thrice a week</option>
+                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">None</option>
                             </select>
                         </div>
                     </div>
@@ -675,10 +687,12 @@
                         <div class="col-12 col-sm-7">
                             <select class="custom-select" id="ddlRice">
                                 <option selected>Select</option>
-                                <option value="None">None</option>
-                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">Daily</option>
+                                <option value="Occasionally">Once a week</option>
                                 <option value="Twice a week">Twice a week</option>
                                 <option value="Thrice a week">Thrice a week</option>
+                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">None</option>
                             </select>
                         </div>
                     </div>
@@ -687,10 +701,12 @@
                         <div class="col-12 col-sm-7">
                             <select class="custom-select" id="ddlBreadPav">
                                 <option selected>Select</option>
-                                <option value="None">None</option>
-                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">Daily</option>
+                                <option value="Occasionally">Once a week</option>
                                 <option value="Twice a week">Twice a week</option>
                                 <option value="Thrice a week">Thrice a week</option>
+                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">None</option>
                             </select>
                         </div>
                     </div>
@@ -699,10 +715,12 @@
                         <div class="col-12 col-sm-7">
                             <select class="custom-select" id="ddlChaatFastFoodFriedSnacks">
                                 <option selected>Select</option>
-                                <option value="None">None</option>
-                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">Daily</option>
+                                <option value="Occasionally">Once a week</option>
                                 <option value="Twice a week">Twice a week</option>
                                 <option value="Thrice a week">Thrice a week</option>
+                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">None</option>
                             </select>
                         </div>
                     </div>
@@ -711,22 +729,26 @@
                         <div class="col-12 col-sm-7">
                             <select class="custom-select" id="ddlNonVeg">
                                 <option selected>Select</option>
-                                <option value="None">None</option>
-                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">Daily</option>
+                                <option value="Occasionally">Once a week</option>
                                 <option value="Twice a week">Twice a week</option>
                                 <option value="Thrice a week">Thrice a week</option>
+                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">None</option>
                             </select>
-                        </div>                       
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Eggs <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
                             <select class="custom-select" id="ddlEggs">
                                 <option selected>Select</option>
-                                <option value="None">None</option>
-                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">Daily</option>
+                                <option value="Occasionally">Once a week</option>
                                 <option value="Twice a week">Twice a week</option>
                                 <option value="Thrice a week">Thrice a week</option>
+                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">None</option>
                             </select>
                         </div>
                     </div>
@@ -747,10 +769,12 @@
                         <div class="col-12 col-sm-7">
                             <select class="custom-select" id="ddlDesert">
                                 <option selected>Select</option>
-                                <option value="None">None</option>
-                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">Daily</option>
+                                <option value="Occasionally">Once a week</option>
                                 <option value="Twice a week">Twice a week</option>
                                 <option value="Thrice a week">Thrice a week</option>
+                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">None</option>
                             </select>
                         </div>
                     </div>
@@ -759,10 +783,12 @@
                         <div class="col-12 col-sm-7">
                             <select class="custom-select" id="ddlFruits">
                                 <option selected>Select</option>
-                                <option value="None">None</option>
-                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">Daily</option>
+                                <option value="Occasionally">Once a week</option>
                                 <option value="Twice a week">Twice a week</option>
                                 <option value="Thrice a week">Thrice a week</option>
+                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">None</option>
                             </select>
                         </div>
                     </div>
@@ -771,10 +797,12 @@
                         <div class="col-12 col-sm-7">
                             <select class="custom-select" id="ddlNuts">
                                 <option selected>Select</option>
-                                <option value="None">None</option>
-                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">Daily</option>
+                                <option value="Occasionally">Once a week</option>
                                 <option value="Twice a week">Twice a week</option>
                                 <option value="Thrice a week">Thrice a week</option>
+                                <option value="Occasionally">Occasionally</option>
+                                <option value="None">None</option>
                             </select>
                         </div>
                     </div>
@@ -1105,6 +1133,9 @@
                 Bedtime: $("#ddlBedTime").val() == undefined ? 0 : $('#ddlBedTime').val().trim(),
                 BedConsumption: $("#txtBedTime").val() == undefined ? '' : $("#txtBedTime").val().trim(),
 
+                MidnightMunchingTime: $("#ddlMidnightMunching").val() == undefined ? 0 : $('#ddlMidnightMunching').val().trim(),
+                MidnightConsumption: $("#txtMidnightMunching").val() == undefined ? '' : $("#txtMidnightMunching").val().trim(),
+
             }
 
             var assessment =
@@ -1407,11 +1438,11 @@
                 $("#txtMedication5").val(response.data.Data.Table1[4].Medication);
             }
             if (response.data.Data.Table.length > 0) {
-                //--------------------DietaryAndLifeStyleDetails-----------------------------------
+                //--------------------DietaryAndLifeStyleDetails-----------------------------------               
 
                 $("#ddlLifestyle").val(response.data.Data.Table[0].Lifestyle);
                 $("#ddlEatingHabits").val(response.data.Data.Table[0].EatingHabits);
-                $("#ddlFrequencyOfSmoking").val(response.data.Data.Table[0].UM_HealthIssues);
+                $("#ddlFrequencyOfSmoking").val(response.data.Data.Table[0].Frequencyofsmoking);
                 $("#ddlFrequencyOfAlcoholConsumption").val(response.data.Data.Table[0].Frequencyofalcoholconsumption);
                 $("#ddlWaterIntakePerDayType").val(response.data.Data.Table[0].WaterintakeperdayType);
                 $("#ddlWaterIntakePerDayDetails").val(response.data.Data.Table[0].Waterintakeperday);
@@ -1438,6 +1469,10 @@
                 $("#txtDinner").val(response.data.Data.Table[0].DinnerConsumption);
                 $("#ddlBedTime").val(response.data.Data.Table[0].Bedtime);
                 $("#txtBedTime").val(response.data.Data.Table[0].BedConsumption);
+                alert("uday");
+                debugger;
+                $("#ddlMidnightMunching").val(response.data.Data.Table[0].MidnightMunchingTime);
+                $("#txtMidnightMunching").val(response.data.Data.Table[0].MidnightConsumption);
 
                 //-------------------FoodFequency------------------------------------
                 $("#ddlRotiChapati").val(response.data.Data.Table[0].Roti);

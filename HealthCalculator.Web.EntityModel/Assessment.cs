@@ -136,6 +136,9 @@ namespace HealthCalculator.Web.EntityModel
         public string Bedtime { get; set; }
         public string BedConsumption { get; set; }
 
+        public string MidnightMunchingTime { get; set; }
+        public string MidnightConsumption { get; set; }
+
         public string AddedBy { get; set; }
         public DateTime AddedWhen { get; set; }
         public string UpdatedBy { get; set; }
@@ -253,6 +256,9 @@ namespace HealthCalculator.Web.EntityModel
         public string DinnerConsumption { get; set; }
         public string Bedtime { get; set; }
         public string BedConsumption { get; set; }
+        public string MidnightMunchingTime { get; set; }
+        public string MidnightConsumption { get; set; }
+
         public string Roti { get; set; }
         public string Rice { get; set; }
         public string BreadPav { get; set; }
