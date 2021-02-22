@@ -57,7 +57,7 @@ namespace HealthCalculator.Web.Controllers
                     filterContext.Result = new RedirectResult("~/Home/login");
                     return;
                 }
-                else if(RoleID!=3|| RoleID != 2)
+                else if(RoleID!=3)
                 {
                     filterContext.Result = new RedirectResult("~/Home/login");
                     base.OnActionExecuting(filterContext);
