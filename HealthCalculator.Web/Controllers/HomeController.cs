@@ -33,6 +33,18 @@ namespace HealthCalculator.Web.Controllers
             return View();
            
         }
+        public ActionResult UserDetails(string userId)
+        {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
+            return View();
+
+        }
 
 
         [SessionExpireFilterAttributeAdmin]

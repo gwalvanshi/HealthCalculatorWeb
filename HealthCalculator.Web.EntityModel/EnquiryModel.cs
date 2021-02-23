@@ -27,6 +27,7 @@ namespace HealthCalculator.Web.EntityModel
        public decimal ? BMI { get; set; }
        public decimal? WaterIntake { get; set; }
        public decimal? IdealBodyWeight { get; set; }
+        public System.DateTime? AddedWhen { get; set; }
     }
     public class VEnquiryModelControleView
     {

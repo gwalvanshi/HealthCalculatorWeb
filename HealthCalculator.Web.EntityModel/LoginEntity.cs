@@ -30,7 +30,7 @@ namespace HealthCalculator.Web.EntityModel
         public string authToken { get; set; }
 
         public System.DateTime issuedOn { get; set; }
-
+        public System.DateTime ? AddedWhen { get; set; }
         public System.DateTime expiresOn { get; set; }
 
         public string EmployeeCode

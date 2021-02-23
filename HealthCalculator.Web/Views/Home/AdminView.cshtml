@@ -59,25 +59,34 @@
     function LoadGrid(strVar)
     {
         var vType = 0;
+        var module = "";
         if (strVar==1)
         {
-            vType="7"
+            vType = "7"
+            module = "M";
         }
         else if (strVar==2)
         {
             vType = "2"
+            module = "A";
         }
         else if (strVar == 3) {
             vType = "3"
+            module = "T";
         }
         else if (strVar == 4) {
             vType = "6"
+            module = "7";
         }
         else if (strVar == 5) {
+            //user
             vType = "5"
+            module = "U";
         }
         else if (strVar == 6) {
+            //order
             vType = "4"
+            module = "O";
         }
         var obj1 = {
 
@@ -87,7 +96,7 @@
         }
         CommonAjaxMethod('Home/AdminNotificationEnquiryMessage', obj1, false, 'POST', function (response) {
            
-            Load(response.data.Data);
+            Load(response.data.Data, module);
             //$("#gridContainer").dxDataGrid(
             //    {
             //        dataSource: response.dataCollection,
@@ -142,9 +151,26 @@
         });
     }
 
-    function Load(ctr)
+    function Load(ctr, module)
     {
-        
+        var endPoint = "";
+        if (module == "A")
+        {
+            endPoint = "assessment";
+        }
+        if (module == "M")
+        {
+            endPoint = "helpDesk";
+        }
+        if (module == "T") {
+            endPoint = "tracker";
+        }
+        if (module == "O") {
+            endPoint = "ViewPlan";
+        }
+        if (module == "U") {
+            endPoint = "UserDetails";
+        }
              $("#gridContainer").dxDataGrid({
                  dataSource: ctr,
                 allowColumnReordering: true,
@@ -168,7 +194,15 @@
                     "LastName",
                     "Email",
                      "UserName",
-                    "MobileNo",                  
+                    "MobileNo",
+                     {
+                         caption: "Action Date",
+
+                         allowEditing: false,
+                         calculateCellValue: function (data) {
+                             return getdate(data.AddedWhen);
+                         }
+                     },
                     {
                         caption: "View User Details",
                         alignment: 'center',
@@ -179,7 +213,7 @@
                                                                      
                                   
                                     sessionStorage.setItem('SelectedUserId', options.data.userId);
-                                    window.location.href = "assessment";
+                                    window.location.href = endPoint + "?UserId=" + options.data.userId;
                                 }).appendTo(container);
                         }
                     }
@@ -246,8 +280,16 @@
                 "ContactNumber",
                 "BMI",
                 "WaterIntake",
-                "IdealBodyWeight"
-                ,
+                "IdealBodyWeight",
+                                 
+                    {
+                        caption: "Action Date",
+
+                        allowEditing: false,
+                        calculateCellValue: function (data) {
+                            return getdate(data.AddedWhen);
+                        }
+                    },
                 {
                     caption: "Details",
                     alignment: 'center',
@@ -264,6 +306,20 @@
 
             ]
         });
+    }
+
+    function getdate(strdate) {
+        var strRetrunDate;
+        if (strdate != null) {
+            var dateData = new Date(parseInt(strdate.replace("/Date(", "").replace(")/")));
+            var dd = dateData.getDate();
+            var mm = dateData.getMonth() + 1; //January is 0!
+            var yyyy = dateData.getFullYear();
+            if (dd < 10) { dd = '0' + dd }
+            if (mm < 10) { mm = '0' + mm }
+            strRetrunDate = yyyy + '-' + mm + '-' + dd;
+        }
+        return strRetrunDate;
     }
 </script>
 

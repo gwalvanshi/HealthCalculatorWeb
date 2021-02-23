@@ -470,6 +470,7 @@
     <Content Include="img\lock.png" />
     <Content Include="img\logo.png" />
     <Content Include="img\logo222.png" />
+    <Content Include="img\LogoBrowser.JPG" />
     <Content Include="img\logoDark.png" />
     <Content Include="img\masroom.jpg" />
     <Content Include="img\medal.jpg" />
@@ -740,6 +741,7 @@
     <Content Include="Views\Home\ViewEnquiryDetails.cshtml" />
     <Content Include="Views\Home\ProgramView.cshtml" />
     <Content Include="Views\Home\PrintSession.cshtml" />
+    <Content Include="Views\Home\UserDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
