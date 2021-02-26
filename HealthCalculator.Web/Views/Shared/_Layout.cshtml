@@ -102,14 +102,12 @@
                                                         <td>Duration</td>
                                                         <td class="text-center">₹</td>
                                                         <td class="text-center">$</td>
+														<td class="text-center">D</td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                 </tbody>
                                             </table>
-
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -121,6 +119,7 @@
                     &nbsp; &nbsp;
                     <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnProceed">&nbsp; &nbsp; Proceed &nbsp; &nbsp; </a>
 
+					@*<a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnok" onclick="ok()">&nbsp; &nbsp; ok &nbsp; &nbsp; </a>*@
                 </div>
             </div>
         </div>
@@ -3660,79 +3659,207 @@
         }
         }
 
+		//---------------------------------
+		function ok() {
 
-        @* ------------uday----------*@
-        $(document).ready(function () {
+			var cartdetails111 = sessionStorage.getItem("CartProgramID");
+			//alert(sessionStorage.getItem("CartProgramID"));
+			//var cartdetails = "1, 1 Month, 2999, 40.55, SMART WEIGHT LOSS~2, 2 Month, 5499, 74.38, SMART WEIGHT LOSS";
+			var cartdetails ="1,1 Month,2999,40.55,SMART WEIGHT LOSS~2,2 Month,5499,74.38,SMART WEIGHT LOSS~4,6 Month,14499,196.11,SMART WEIGHT LOSS~11,3 Month,10499,142,SMART MANAGEMENTOF DISEASES & DISORDERS"
+			var array = cartdetails.split("~");
+			//alert(array);
+			//array.splice(index, 1);
+			var deleted = delete array[1];
+		   // myArray.remove(0);
+			//alert(array);
+			//debugger;
+			var arrayinner;
 
+
+			var strinnerid = null;
+			var strid = null;
+			var newtbblData = "";
+
+			for (var i = 0; i < array.length; i++) {
+
+				if (array[i].match("1,") == true) {
+				//	alert("AS");
+				}
+				//arrayinner = array[i].split(",");
+			}
+		}
+		function deleteRows(delid) {
+			//alert(delid);
+			var cartdetailsdel = sessionStorage.getItem("CartProgramID");
+			var arraydel = cartdetailsdel.split("~");
+		   // alert(arraydel);
+			//array.splice(index, 1);
+			var deleted = delete arraydel[delid];
+			// myArray.remove(0);
+		   // alert(arraydel);
+			var vart = null;
+			for (var i = 0; i < arraydel.length; i++)
+			{               
+				if (i == 0)
+				{
+					if (arraydel[i] != "undefined") {
+						vart = arraydel[i];
+					}
+				}
+				else
+				{
+					//alert("AA");
+					//debugger;
+					if (arraydel[i] == "undefined") {
+						vart;//alert("RR"); debugger;
+					} 
+					else {
+						vart = vart + "~" + arraydel[i];
+					}
+					
+				}
+
+			}
+           // alert(sessionStorage.getItem("CartSession"));
+            //alert(sessionStorage.getItem("CartProgramID"));
+			//debugger;
+			sessionStorage.setItem("CartProgramID", vart);			
+			//alert(sessionStorage.getItem("CartProgramID"));
+          //  if (sessionStorage.getItem("CartProgramID") != "undefined") {
             if (sessionStorage.getItem("CartSession") != "") {
 
+					var varsp = parseInt($("#spQuantity").text());
+					//alert("TTT");
+					//debugger;
+					if (varsp == "1") {
+						varsp = 0;
+					}
+					else {
+						varsp = varsp - 1;
+					}
+
+					sessionStorage.setItem("CartSession", varsp);
                 $("#spQuantity").text(sessionStorage.getItem("CartSession"));
-               // deleteRows();
+				}
+		//	}
 
+            $('#myModal').modal('hide');
 
+			if ($("#spQuantity").text() != "0") {
+				displayCartpopup();
             }
 
-            $("#lnkcart").click(function (e)
+			
+ }
+
+
+		function displayCartpopup()
             {
-                // alert("a");
                 $("#tblCart").find('tbody').html("");
-                if (sessionStorage.getItem("CartProgramID") != "" && sessionStorage.getItem("CartProgramID") != null)
-                {
+			if (sessionStorage.getItem("CartProgramID") != "" && sessionStorage.getItem("CartProgramID") != null) {
 
                     var cartdetails = sessionStorage.getItem("CartProgramID");
-                    //alert(cartdetails);
                     var array = cartdetails.split("~");
-                    //alert(array.length);
                     var arrayinner;
-                    //alert("a1");
-                   // $("tblCart").html("");
-
-
-
 
                     var strinnerid = null;
                     var strid = null;
                     var newtbblData = "";
-                    //alert(array.length)
-                    for (var i = 0; i < array.length; i++)
-                    {
+				
+				for (var i = 0; i < array.length; i++) {
                         arrayinner = array[i].split(",");
-                        //alert("B");
-                        //alert(arrayinner.length);
-
-
-                        //td1.style.width = '60%';
-                        //td1.style.width = '15%';
-                        //td1.style.width = '15%';
-                       /// alert(arrayinner.length);
+					//if (arrayinner == "undefined") { alert("uday"); debugger;}
                         strinnerid = null;
-                        for (var j = 0; j < arrayinner.length; j++)
-                        {
+					if (arrayinner != "undefined") {
+						for (var j = 0; j < arrayinner.length; j++) {
 
                             strinnerid = arrayinner[0];
                         }
 
-                        newtbblData='<tr><td class="/"text-center"/">'+(i+1)+'</td><td>'+ arrayinner[4]+'</td><td>'+arrayinner[1]+' </td><td class="/"text-center"/">'+ arrayinner[2]+'</td><td class="/"text-center"/">'+arrayinner[3]+'</td></tr>';
+					newtbblData = '<tr><td class="/"text-center"/">' + (i + 1) + '</td><td>' + arrayinner[4] + '</td><td>' + arrayinner[1] + ' </td><td class="/"text-center"/">' + arrayinner[2] + '</td><td class="/"text-center"/">' + arrayinner[3] + '</td></td><td class="/"text-center"/"><button style="font-size:24px" text="delete" onclick="deleteRows(' + i + ')" ><i class="fa fa-trash-o"></i></button></td></tr>';
 
                         $("#tblCart").find('tbody').append(newtbblData);
 
-                        if (strid == null)
-                        {
+						if (strid == null) {
                             strid = strinnerid;
                         }
                         else {
                             strid = strid + "," + strinnerid;
                         }
+					}
+				}                
+				sessionStorage.setItem("CProgramID", strid);
+
+				$('#myModal').modal('show');
+
+			}
+
+
                     }
 
 
 
-                    // alert(strid);
-                    sessionStorage.setItem("CProgramID", strid);
 
-                    $('#myModal').modal('show');
+		@* ------------uday----------*@
+		$(document).ready(function () {
+
+			if (sessionStorage.getItem("CartSession") != "") {
+
+				$("#spQuantity").text(sessionStorage.getItem("CartSession"));
+			   // deleteRows();
 
                 }
+
+
+		   
+			$("#lnkcart").click(function (e)
+			{
+				displayCartpopup();
+
+			   // $("#tblCart").find('tbody').html("");
+				//if (sessionStorage.getItem("CartProgramID") != "" && sessionStorage.getItem("CartProgramID") != null)
+				//{
+				//    var cartdetails = sessionStorage.getItem("CartProgramID");                   
+				//    var array = cartdetails.split("~");                   
+				//    var arrayinner;
+
+				//    var strinnerid = null;
+				//    var strid = null;
+				//    var newtbblData = "";
+				//    //alert(array.length)
+				//    for (var i = 0; i < array.length; i++)
+				//    {
+				//        arrayinner = array[i].split(",");
+						
+				//        strinnerid = null;
+				//        for (var j = 0; j < arrayinner.length; j++)
+				//        {
+
+				//            strinnerid = arrayinner[0];
+				//        }
+
+				//       // newtbblData='<tr><td class="/"text-center"/">'+(i+1)+'</td><td>'+ arrayinner[4]+'</td><td>'+arrayinner[1]+' </td><td class="/"text-center"/">'+ arrayinner[2]+'</td><td class="/"text-center"/">'+arrayinner[3]+'</td></tr>';
+				//        //newtbblData = '<tr><td class="/"text-center"/">' + (i + 1) + '</td><td>' + arrayinner[4] + '</td><td>' + arrayinner[1] + ' </td><td class="/"text-center"/">' + arrayinner[2] + '</td><td class="/"text-center"/">' + arrayinner[3] + '</td></td><td class="/"text-center"/"><button style="font-size:24px" text="delete" onclick="deleteRows(' + i + '); ><i class="fa fa-trash-o"></i></button></td></tr>';
+				//        newtbblData = '<tr><td class="/"text-center"/">' + (i + 1) + '</td><td>' + arrayinner[4] + '</td><td>' + arrayinner[1] + ' </td><td class="/"text-center"/">' + arrayinner[2] + '</td><td class="/"text-center"/">' + arrayinner[3] + '</td></td><td class="/"text-center"/"><button style="font-size:24px" text="delete" onclick="deleteRows(' + i + ')" ><i class="fa fa-trash-o"></i></button></td></tr>';
+						
+				//        $("#tblCart").find('tbody').append(newtbblData);
+
+				//        if (strid == null)
+				//        {
+				//            strid = strinnerid;
+				//        }
+				//        else
+				//        {
+				//            strid = strid + "," + strinnerid;
+				//        }
+				//    }
+
+				//    // alert(strid);
+				//    sessionStorage.setItem("CProgramID", strid);
+
+				//    $('#myModal').modal('show');
+
+				//}
 
 
             });
