@@ -21,7 +21,7 @@ namespace HealthCalculator.Web.Controllers
         private const string Subject = "Eating Smart Health Rating";
 
         #region Program
-        public ActionResult PrintSession(string html)
+        public ActionResult PrintSession(string userId=null,string OrderId=null,string productId=null,string SessionId=null)
         {
             var chkTimeOut = Session.Timeout;
             if (chkTimeOut < 10)

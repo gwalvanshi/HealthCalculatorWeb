@@ -84,7 +84,7 @@
     @*-------------------uday----------------------*@
     <div id="tablez"></div>
     <div id='myModal' class='modal'>
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div id='myModalContent'>
                     <div class="container-fluid flowerBg">
@@ -102,7 +102,7 @@
                                                         <td>Duration</td>
                                                         <td class="text-center">₹</td>
                                                         <td class="text-center">$</td>
-														<td class="text-center">D</td>
+														<td class="text-center">Remove</td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -3776,7 +3776,7 @@
                             strinnerid = arrayinner[0];
                         }
 
-					newtbblData = '<tr><td class="/"text-center"/">' + (i + 1) + '</td><td>' + arrayinner[4] + '</td><td>' + arrayinner[1] + ' </td><td class="/"text-center"/">' + arrayinner[2] + '</td><td class="/"text-center"/">' + arrayinner[3] + '</td></td><td class="/"text-center"/"><button style="font-size:24px" text="delete" onclick="deleteRows(' + i + ')" ><i class="fa fa-trash-o"></i></button></td></tr>';
+						newtbblData = '<tr><td class="/"text-center"/">' + (i + 1) + '</td><td>' + arrayinner[4] + '</td><td>' + arrayinner[1] + ' </td><td class="/"text-center"/">' + arrayinner[2] + '</td><td class="/"text-center"/">' + arrayinner[3] + '</td></td><td class="/"text-center"/"><button text="Remove" onclick="deleteRows(' + i + ')" ></button></td></tr>';
 
                         $("#tblCart").find('tbody').append(newtbblData);
 

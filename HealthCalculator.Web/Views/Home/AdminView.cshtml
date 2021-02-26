@@ -220,8 +220,21 @@
                          return getdate(data.AddedWhen);
                      }
                  },
+                  {
+                      caption: "User Dashboard",
+                      alignment: 'center',
+                      cellTemplate: function (container, options) {
+                          $('<a />').addClass('dx-link')
+                              .text('View Dashboard')
+                              .on('dxclick', function () {
+
+                                  sessionStorage.setItem('SelectedUserId', options.data.userId);
+                                  window.location.href = "assessment?userId=" + options.data.userId;
+                              }).appendTo(container);
+                      }
+                  },
                 {
-                    caption: "View User Details",
+                    caption: "View Details",
                     alignment: 'center',
                     cellTemplate: function (container, options) {
                         $('<a />').addClass('dx-link')
@@ -291,8 +304,21 @@
                              return getdate(data.AddedWhen);
                          }
                      },
+                      {
+                          caption: "User Dashboard",
+                          alignment: 'center',
+                          cellTemplate: function (container, options) {
+                              $('<a />').addClass('dx-link')
+                                  .text('View Detail')
+                                  .on('dxclick', function () {
+
+                                      sessionStorage.setItem('SelectedUserId', options.data.userId);
+                                      window.location.href = "assessment?userId=" + options.data.userId;
+                                  }).appendTo(container);
+                          }
+                      },
                     {
-                        caption: "View User Details",
+                        caption: "View Details",
                         alignment: 'center',
                         cellTemplate: function (container, options) {
                             $('<a />').addClass('dx-link')

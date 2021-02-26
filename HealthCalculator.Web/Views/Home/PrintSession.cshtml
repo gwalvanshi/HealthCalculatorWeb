@@ -9,9 +9,356 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>PrintSession</title>
+    <link href="~/Content/style.css" rel="stylesheet" />
+   
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/DevScript/Common.js"></script>
+    <script>
+        var virtualPath = "@Url.Content("~/")";
+        var userId = "@Request.QueryString["userId"].ToString()";
+        var OrderId = "@Request.QueryString["OrderId"].ToString()";
+        var ProductId = "@Request.QueryString["productId"].ToString()";
+        var sessionId = "@Request.QueryString["SessionId"].ToString()";
+
+        CommonAjaxMethod('Program/GetEatingPattern', { userId: userId, orderId: OrderId, productId: ProductId, SessionId: sessionId }, false, 'GET', function (response) {
+
+                $('#ShowHideRising').hide();
+                $('#ShowHidePreBreak').hide();
+                $('#ShowHideBreak').hide();
+                $('#ShowHideMidMorning').hide();
+                $('#ShowHidePreWorkOut').hide();
+                $('#ShowHideDuringWorkOut').hide();
+                $('#ShowHidePrelunch').hide();
+                $('#ShowHidelunch').hide();
+                $('#ShowHideTeaEvening').hide();
+                $('#ShowHideLateEvening').hide();
+                $('#ShowHidePreDinner').hide();
+                $('#ShowHideDinner').hide();
+                $('#ShowHidePostDinner').hide();
+                $('#ShowHideBedTime').hide();
+                $('#ShowHideRecipes').hide();
+                $('#ShowHideNotes').hide();
+
+                if (response.dataCollection.length > 0)
+                {
+
+
+                    if (response.dataCollection[0].OnRising.length > 0)
+                    {
+                        $('#divOnRising').html(response.dataCollection[0].OnRising);
+                        $('#ShowHideRising').show();
+                    }
+
+                    if (response.dataCollection[0].PreBreakfast.length > 0) {
+                        $('#divPreBreak').html(response.dataCollection[0].PreBreakfast);
+                        $('#ShowHidePreBreak').show();
+                    }
+
+                    if (response.dataCollection[0].Breakfast.length > 0) {
+                        $('#divBreak').html(response.dataCollection[0].Breakfast);
+                        $('#ShowHideBreak').show();
+                    }
+
+                    if (response.dataCollection[0].MidMorning.length > 0) {
+                        $('#divMidMorning').html(response.dataCollection[0].MidMorning);
+                        $('#ShowHideMidMorning').show();
+
+                    }
+
+                    if (response.dataCollection[0].PreWorkout.length > 0) {
+                        $('#divPreWorkout').html(response.dataCollection[0].PreWorkout);
+                        $('#ShowHidePreWorkOut').show();
+
+                    }
+
+                    if (response.dataCollection[0].DuringWorkout.length > 0) {
+                        $('#divDuringWorkout').html(response.dataCollection[0].DuringWorkout);
+                        $('#ShowHideDuringWorkOut').show();
+
+
+                    }
+
+                    if (response.dataCollection[0].PreLunch.length > 0) {
+                        $('#divPreLunch').html(response.dataCollection[0].PreLunch);
+                        $('#ShowHidePrelunch').show();
+
+
+                    }
+                    if (response.dataCollection[0].Lunch.length > 0) {
+                        $('#divLunch').html(response.dataCollection[0].Lunch);
+                        $('#ShowHidelunch').show();
+
+
+                    }
+
+                    if (response.dataCollection[0].TeaEvening.length > 0) {
+                        $('#divTeaEvening').html(response.dataCollection[0].TeaEvening);
+                        $('#ShowHideTeaEvening').show();
+
+
+                    }
+
+                    if (response.dataCollection[0].LateEvening.length > 0) {
+                        $('#divLateEvening').html(response.dataCollection[0].LateEvening);
+                        $('#ShowHideLateEvening').show();
+
+
+                    }
+                    if (response.dataCollection[0].PreDinner.length > 0) {
+                        $('#divPreDinner').html(response.dataCollection[0].PreDinner);
+                        $('#ShowHidePreDinner').show();
+
+
+                    }
+                    if (response.dataCollection[0].Dinner.length > 0) {
+                        $('#divDinner').html(response.dataCollection[0].Dinner);
+                        $('#ShowHideDinner').show();
+
+
+                    }
+                    if (response.dataCollection[0].PostDinner.length > 0) {
+                        $('#divPostDinner').html(response.dataCollection[0].PostDinner);
+                        $('#ShowHidePostDinner').show();
+
+
+                    }
+                    if (response.dataCollection[0].BedTime.length > 0) {
+                        $('#divBedTime').html(response.dataCollection[0].BedTime);
+                        $('#ShowHideBedTime').show();
+
+
+                    }
+
+                    if (response.dataCollection[0].Recipes.length > 0) {
+                        $('#divRecipes').html(response.dataCollection[0].Recipes);
+                        $('#ShowHideRecipes').show();
+
+
+                    }
+
+                    if (response.dataCollection[0].Notes.length > 0) {
+                        $('#divNotes').html(response.dataCollection[0].Notes);
+                        $('#ShowHideNotes').show();
+
+
+                    }
+
+                
+            }
+           
+        });
+
+    </script>
 </head>
 <body>
-    <div> 
+    <div class="container-fluid mb-5 bg-white shadow middleContent">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <form class="bg-white printRow loginForm">
+                   
+                    <div class="text-center">
+                        <img src="~/Content/logo-print.png" class="img-fluid" />
+                    </div>
+                    <div class="text-center mt-5">
+                        <h6 class="text-sky semi mb-4">Print Short Detail Here</h6>
+                    </div>
+                    <div id="print-content">                       
+                            <div id="ShowHideRising">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">On Rising</p>
+                                        <hr class="mt-0 mb-4 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <div rows="10" class="form-control" id="divOnRising"></div>
+                                </div>
+                            </div>
+
+                            <div id="ShowHidePreBreak">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Pre Breakfast</p>
+                                        <hr class="mt-0 mb-4 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divPreBreak"></div>
+                                </div>
+                            </div>
+
+                            <div id="ShowHideBreak">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Breakfast</p>
+                                        <hr class="mt-0 mb-4 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divBreak"></div>
+                                </div>
+                            </div>
+                            <div id="ShowHideMidMorning">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Mid Morning</p>
+                                        <hr class="mt-0 mb-4 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divMidMorning"></div>
+                                </div>
+                            </div>
+                            <div id="ShowHidePreWorkOut">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Pre Workout</p>
+                                        <hr class="mt-0 mb-4 bg-dark" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divPreWorkout"></div>
+                                </div>
+                            </div>
+
+                            <div id="ShowHideDuringWorkOut">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">During Workout</p>
+                                        <hr class="mt-0 mb-3 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divDuringWorkout"></div>
+                                </div>
+                            </div>
+                            <div id="ShowHidePrelunch">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Pre Lunch</p>
+                                        <hr class="mt-0 mb-4 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divPreLunch"></div>
+                                </div>
+                            </div>
+
+                            @*<%-- uday-->*@
+                            <div id="ShowHidelunch">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Lunch</p>
+                                        <hr class="mt-0 mb-3 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divLunch"></div>
+                                </div>
+                            </div>
+
+                            <div id="ShowHideTeaEvening">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Tea Evening</p>
+                                        <hr class="mt-0 mb-3 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divTeaEvening"></div>
+                                </div>
+                            </div>
+                            <div id="ShowHideLateEvening">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Late Evening</p>
+                                        <hr class="mt-0 mb-3 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divLateEvening"></div>
+                                </div>
+                            </div>
+
+                            <div id="ShowHidePreDinner">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Pre Dinner</p>
+                                        <hr class="mt-0 mb-3 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divPreDinner"></div>
+                                </div>
+                            </div>
+                            <div id="ShowHideDinner">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Dinner</p>
+                                        <hr class="mt-0 mb-3 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divDinner"></div>
+                                </div>
+                            </div>
+                            <div id="ShowHidePostDinner">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Post Dinner</p>
+                                        <hr class="mt-0 mb-3 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divPostDinner"></div>
+                                </div>
+                            </div>
+
+                            <div id="ShowHideBedTime">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Bed Time</p>
+                                        <hr class="mt-0 mb-3 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divBedTime"></div>
+                                </div>
+                            </div>
+                            <div id="ShowHideRecipes">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Recipes</p>
+                                        <hr class="mt-0 mb-3 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divRecipes"></div>
+                                </div>
+                            </div>
+                            <div id="ShowHideNotes">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
+                                        <p class="semi mb-2 text-yellow">Notes</p>
+                                        <hr class="mt-0 mb-3 bg-dark" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div rows="10" class="form-control" id="divNotes"></div>
+                                </div>
+                            </div>
+                        
+                    </div>
+                    <div class="form-row d-print-none">
+                        <div class="col-12 form-group mt-3">
+                            <a class="btn btn-reg mb-2 hvr-sweep-to-top"  onclick="window.print()">&nbsp; &nbsp; PRINT NOW &nbsp; &nbsp; </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>

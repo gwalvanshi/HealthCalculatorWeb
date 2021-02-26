@@ -260,6 +260,8 @@
     <Content Include="Content\dx.material.teal.light.css" />
     <Content Include="Content\dx.softblue.compact.css" />
     <Content Include="Content\dx.softblue.css" />
+    <Content Include="Content\logo-print.png" />
+    <Content Include="Content\style.css" />
     <Content Include="emailer\images\giphy.gif" />
     <Content Include="emailer\Rating2.html" />
     <Content Include="emailer\Rating3.html" />

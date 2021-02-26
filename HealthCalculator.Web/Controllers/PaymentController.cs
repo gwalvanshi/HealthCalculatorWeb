@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using PayPal.Api;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -265,7 +266,7 @@ namespace HealthCalculator.Web.Controllers
             GenericService _genericService = new GenericService();
             IndexScreenParameterModel collection = new IndexScreenParameterModel();
             collection.ScreenID = "114";
-            collection.UserId = _requestData.UserId;
+            collection.UserId = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
             collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
                 {
                     new IndexScreenSearchParameterModel
@@ -275,8 +276,7 @@ namespace HealthCalculator.Web.Controllers
                         SearchParameterValue =_requestData.UserId.ToString()
                     }
                 };
-
-            var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                        var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
             var objCommunication =  _genericService.GetRecordsResult<LoginEntity>(stringContent1);
             _requestData.contactNumber = objCommunication.dataCollection[0].MobileNo;
             _requestData.email = objCommunication.dataCollection[0].Email;

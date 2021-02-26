@@ -253,8 +253,8 @@
                 </form>
                 <div id="print-content">
                     <form class="form-data" id="userform" style="display:none;">
-                        <input type="button" onclick="printDiv('print-content')" value="Print!" />
-
+                       
+                        <a href="#" class="btn btn-reg mb-2 hvr-sweep-to-top" id="btnPrint" target="_blank" onclick="printDiv(this)">&nbsp; &nbsp; Print Pattern&nbsp; &nbsp; </a>
                         <div id="ShowHideRising">
                             <div class="row">
                                 <div class="col-12 col-md-12">
@@ -488,13 +488,20 @@
         ctrl.href = '@Url.Content("~/Home/Logout")';
         ctrl.click();
     }
-    function printDiv(divName)
+    function printDiv(ctrl)
     {
-        var printContents = document.getElementById(divName).innerHTML;
-        w = window.open();
-        w.document.write(printContents);
-        w.print();
-        w.close();
+        if ($("#ddlSessionID2").val() != "0")
+        {
+            ctrl.href = '@Url.Content("~/Home/PrintSession?userId=")' + sessionStorage.getItem("userId") + "&OrderId=" + sessionStorage.getItem('OrderId') + "&productId=" + sessionStorage.getItem('ProductId') + "&SessionId=" + $("#ddlSessionID2").val();
+
+        ctrl.click();
+        }
+      else
+        {
+            alert("Please select session to print.")
+        }
+
+
     }
     window.onload = function ()
     {
@@ -744,19 +751,7 @@
 
                 if (sessionStorage.getItem('RoleID') == "1")
                 {
-                    var eatingpattern =
-                    {
-                        TableType: "EatingPattern",
-                        UserId: sessionStorage.getItem('userId'),
-                        IsSubmit: varsubmit,
-                        RoleId: sessionStorage.getItem('RoleID'),
-                        UserEatingPattern: UserEatingPattern
-                    }
-
-
-                    CommonAjaxMethod('Program/SaveEatingPattern', eatingpattern, false, 'POST', function (response) {
-
-                    });
+                   
 
                     $("#userform").show();
                     $("#adminform").hide();
