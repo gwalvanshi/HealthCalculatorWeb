@@ -3,5 +3,89 @@
     ViewBag.Title = "UserDetails";
 }
 
-<h2>UserDetails</h2>
+<div class="bg-yellow">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+                <ul class="list-inline menu-sec">
+                    <li class="list-inline-item"><a href="~/Home/AdminView">Back To Admin View</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="container-fluid flowerBg">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12 col-lg-11">
+            <div class="middleContent bg-gray shadow">
+                <div class="row">
+                    <div class="demo-container">
+                        <div id="gridContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function ()
+    {
+        var qData = "@Request.QueryString["userId"].ToString()";
+      
+        if (sessionStorage.getItem('RoleID') == "3") {
+            var obj1 = {
+
+                Type: "5",
+                OperationType: "UPDATE",
+                UserId: qData
+            }
+            CommonAjaxMethod('Home/AdminNotificationEnquiryMessage', obj1, false, 'POST', function (response) {
+
+            });
+        }
+        CommonAjaxMethod('Home/GetUserDetailsById', {userId=qData}, false, 'GET', function (response) {
+
+            Load(response.dataCollection);           
+        });
+    }
+
+    function Load(ctr)
+    {
+       
+        $("#gridContainer").dxDataGrid({
+            dataSource: ctr,
+            allowColumnReordering: true,
+            showBorders: true,
+              
+            searchPanel: {
+                visible: true
+            },
+            paging: {
+                pageSize: 10
+            },
+            groupPanel: {
+                visible: true
+            },
+            editing: {
+                mode: "form",
+                allowUpdating: false
+            },
+            columns: [
+                "FirstName",
+                "LastName",
+                "Email",
+                 "UserName",
+                "MobileNo",
+                 {
+                     caption: "Action Date",
+
+                     allowEditing: false,
+                     calculateCellValue: function (data) {
+                         return getdate(data.AddedWhen);
+                     }
+                 }                       
+            ]
+        });        
+    }
+</script>

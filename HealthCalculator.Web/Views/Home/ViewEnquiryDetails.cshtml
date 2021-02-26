@@ -53,6 +53,19 @@
             LoadEnquiry(response.data.Data.Table);
           
         });
+
+        if (sessionStorage.getItem('RoleID') == "3") {
+           
+            var obj1 = {
+
+                Type: "1",
+                OperationType: "UPDATE",
+                UserId: qData
+            }
+            CommonAjaxMethod('Home/AdminNotificationEnquiryMessage', obj1, false, 'POST', function (response) {
+
+            });
+        }
     };
 
 

@@ -54,6 +54,8 @@ namespace HealthCalculator.Web.EntityModel
         public int TrackerFilled { get; set; }
         public int Trackerfalldays { get; set; }
         public int MessageCount { get; set; }
+        public int CompletedCount { get; set; }
+        public int ActiveCount { get; set; }
 
     }
 }

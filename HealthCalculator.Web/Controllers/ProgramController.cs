@@ -348,7 +348,7 @@ namespace HealthCalculator.Web.Controllers
             }
         }
         [HttpGet]
-        public async Task<JsonResult> GetProductProgram()
+        public async Task<JsonResult> GetProductProgram(string userId)
         {
             try
             {
@@ -363,7 +363,7 @@ namespace HealthCalculator.Web.Controllers
                     {
                         SearchParameter = "UserId",
                         SearchParameterDataType = "int",
-                        SearchParameterValue = Session["UserID"].ToString()
+                        SearchParameterValue = userId
                     }
                 };
 

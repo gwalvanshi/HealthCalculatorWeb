@@ -8,6 +8,9 @@ namespace HealthCalculator.Web.EntityModel
 {
   public class EatingToolModel
     {
-        public bool IsValid { get; set; }     
+        public bool IsValid { get; set; }
+        public int Trackerfalldays { get; set; }
+        public int PatternCount { get; set; }
+        public int MessageCount { get; set; }
     }
 }

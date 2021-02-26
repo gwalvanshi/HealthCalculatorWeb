@@ -85,6 +85,9 @@ namespace HealthCalculator.Web.EntityModel
 
     public class UserTrackerDetails
     {
+        public int Trackerfalldays { get; set; }
+        public int PatternCount { get; set; }
+        public int MessageCount { get; set; }
         public Int64 UserId { get; set; }
         public int ProductId { get; set; }
         public Int64 OrderId { get; set; }

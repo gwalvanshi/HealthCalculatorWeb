@@ -33,7 +33,7 @@ namespace HealthCalculator.Web.Controllers
             return View();
            
         }
-        public ActionResult UserDetails(string userId)
+        public ActionResult UserDetails(string userId=null)
         {
             var chkTimeOut = Session.Timeout;
             if (chkTimeOut < 10)
@@ -481,7 +481,7 @@ namespace HealthCalculator.Web.Controllers
 
         [SessionExpireFilterAttribute]
         
-        public ActionResult ViewPlan()
+        public ActionResult ViewPlan(string userId = null)
         {
             var chkTimeOut = Session.Timeout;
             if (chkTimeOut < 10)
@@ -898,6 +898,36 @@ namespace HealthCalculator.Web.Controllers
             }
         }
         [HttpGet]
+        public async Task<JsonResult> GetUserDetailsById(string userId)
+        {
+            try
+            {
+                int loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "114";
+                collection.UserId = loggedIdUserID;
+                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "UserId",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue = userId
+                    }
+                };
+
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<LoginEntity>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+        [HttpGet]
         public async Task<JsonResult> GetUserPlanDetails(int userId)
         {
             try
@@ -979,6 +1009,7 @@ namespace HealthCalculator.Web.Controllers
                     SearchParameterValue = "0"
                 };
                 objList.Add(obj1);
+                collection.IndexScreenSearchParameterModel = objList;
                 var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
                 var objCommunication = await _genericService.GetRecords<VEnquiryModelView>(stringContent1);
 

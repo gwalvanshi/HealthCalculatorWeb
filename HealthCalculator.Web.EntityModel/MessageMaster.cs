@@ -8,6 +8,9 @@ namespace HealthCalculator.Web.EntityModel
 {
    public class MessageMaster
     {
+        public int Trackerfalldays { get; set; }
+        public int PatternCount { get; set; }
+        public int MessageCount { get; set; }
         public int Id { get; set; }
         public int UserID { get; set; }
         public string Attachement { get; set; }

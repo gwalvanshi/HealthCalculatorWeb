@@ -112,7 +112,7 @@
                                 else
                                 {
 
-                                    CommonAjaxMethod('Program/GetProductProgram', null, false, 'GET', function (response) {
+                                    CommonAjaxMethod('Program/GetProductProgram', { userId: response.data.userId }, false, 'GET', function (response) {
 
                                         var test = response.dataCollection;
 
@@ -127,7 +127,7 @@
                                             // window.location.href = "@Url.Action("smartWeightLoss", "Home")";
                                            // alert("Kindly purchase the product ");
                                         //}
-                                         window.location.href = "@Url.Action("assessment", "Home")";
+                                        window.location.href = "@Url.Action("assessment", "Home")"+"?userId=";
                                     });
 
 

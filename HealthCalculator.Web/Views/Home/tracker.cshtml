@@ -21,14 +21,14 @@
 
                     <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right d-none d-md-block font" style="color: red;" id="spTrackers"></span></a></li>
 
-                    <li class="list-inline-item"><a href="~/Home/MyEatingSmartTools">My Eating Smart Tool</a></li>
+                    <li class="list-inline-item"><a href="~/Home/MyEatingSmartTools?userId=">My Eating Smart Tool</a></li>
 
 
                     <li class="list-inline-item"> <a href="#" onclick="PatternHelp(this)">My Eating Pattern<span class="float-right d-none d-md-block" style="color: red;" id="spPattern"></span></a></li>
 
                     <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" style="color: red;" id="spMessage"></span></a></li>
 
-                    <li class="list-inline-item"><a href="~/Home/ViewPlan">View Plans</a></li>
+                    <li class="list-inline-item"><a href="~/Home/ViewPlan?userId=">View Plans</a></li>
                     <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
                 </ul>
             </div>
@@ -140,7 +140,7 @@
 <script type="text/javascript">
 
    function MessageHelp(ctrl) {
-        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        var selectedUserId = "@Request.QueryString["userId"].ToString()";
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
         }
@@ -149,7 +149,7 @@
     }
     function TrackersHelp(ctrl)
     {
-        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        var selectedUserId = "@Request.QueryString["userId"].ToString()";
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
         }
@@ -158,7 +158,7 @@
     }
     function PatternHelp(ctrl)
     {
-        var selectedUserId = sessionStorage.getItem('SelectedUserId');
+        var selectedUserId = "@Request.QueryString["userId"].ToString()";
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
         }
@@ -172,12 +172,46 @@
         ctrl.click();
     }
 
-    $(document).ready(function () {
-        $("#spMessage").text(" (" + sessionStorage.getItem('MessageCount') + ")");
-        $("#spTrackers").text(" (" + sessionStorage.getItem('Trackerfalldays') + ")");
-        $("#spPattern").text(" (" + sessionStorage.getItem('PatternCount') + ")");
+    $(document).ready(function ()
+    {
+        var qData = "@Request.QueryString["userId"].ToString()";
+        if (qData != "")
+        {
+            qData = "@Request.QueryString["userId"].ToString()";
+            sessionStorage.setItem('userId', qData);
 
-        $("#HeaderValue").text("ACCOUNT SETTINGS | " + sessionStorage.getItem('EmployeeName'));
+        }
+        if (sessionStorage.getItem('RoleID') == "3") {
+            var obj1 = {
+
+                Type: "3",
+                OperationType: "UPDATE",
+                UserId: qData
+            }
+            CommonAjaxMethod('Home/AdminNotificationEnquiryMessage', obj1, false, 'POST', function (response) {
+
+            });
+        }
+       var assessment =
+       {
+           TableType: "GetRecord",
+           UserId: sessionStorage.getItem('userId')
+       }
+       CommonAjaxMethod('Program/GetAsseeement', assessment, false, 'POST', function (response) {
+           if (response.data.Data.Table.length > 0) {
+               $("#spMessage").text(" (" + response.data.Data.Table[0].MessageCount + ")");
+               $("#spTrackers").text(" (" + response.data.Data.Table[0].Trackerfalldays + ")");
+               $("#spPattern").text(" (" + response.data.Data.Table[0].PatternCount + ")");
+           }
+
+        });
+
+
+       CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
+           $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + " " + response.dataCollection[0].LastName);
+
+       });
+
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);

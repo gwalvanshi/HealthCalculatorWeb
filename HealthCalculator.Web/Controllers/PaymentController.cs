@@ -260,6 +260,28 @@ namespace HealthCalculator.Web.Controllers
             _requestData.amount = Convert.ToInt32(guid.Split('-')[0].ToString());
             _requestData.OrderId = Convert.ToInt32(guid.Split('-')[1].ToString());
             _requestData.UserId= Convert.ToInt32(guid.Split('-')[2].ToString());
+
+            //int loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+            GenericService _genericService = new GenericService();
+            IndexScreenParameterModel collection = new IndexScreenParameterModel();
+            collection.ScreenID = "114";
+            collection.UserId = _requestData.UserId;
+            collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "UserId",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue =_requestData.UserId.ToString()
+                    }
+                };
+
+            var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+            var objCommunication =  _genericService.GetRecordsResult<LoginEntity>(stringContent1);
+            _requestData.contactNumber = objCommunication.dataCollection[0].MobileNo;
+            _requestData.email = objCommunication.dataCollection[0].Email;
+            _requestData.address = "NA";
+            _requestData.name = objCommunication.dataCollection[0].FirstName + " " + objCommunication.dataCollection[0].LastName;
             return View(_requestData);
         }
         public ActionResult PaymentPage()

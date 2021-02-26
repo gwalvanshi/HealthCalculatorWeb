@@ -2,7 +2,17 @@
 @{
     ViewBag.Title = "Plan";
 }
-
+<div class="bg-yellow">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+                <ul class="list-inline menu-sec">
+                    <li class="list-inline-item"><a href="~/Home/AdminView">Back To Admin View</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid flowerBg">
     <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-11">
@@ -35,10 +45,27 @@
 
     window.onload = function ()
     {
-        var selectedUserId = sessionStorage.getItem('SelectedUserId');
-        if (selectedUserId != "") {
-            sessionStorage.setItem('userId', selectedUserId);
+        var qData = "@Request.QueryString["userId"].ToString()";
+        if (qData != "")
+        {
+            qData = "@Request.QueryString["userId"].ToString()";
+            sessionStorage.setItem('userId', qData);
+          
         }
+
+        if (sessionStorage.getItem('RoleID') == "3") {
+
+            var obj1 = {
+
+                Type: "4",
+                OperationType: "UPDATE",
+                UserId: qData
+            }
+            CommonAjaxMethod('Home/AdminNotificationEnquiryMessage', obj1, false, 'POST', function (response) {
+
+            });
+        }
+
         CommonAjaxMethod('Home/GetUserPlanDetails', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
             Load(response.dataCollection);
             //$("#gridContainer").dxDataGrid(
