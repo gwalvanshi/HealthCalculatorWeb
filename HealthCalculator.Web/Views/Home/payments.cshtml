@@ -16,23 +16,6 @@
     </div>
 </div>
 
-<div class="bg-yellow">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col">
-                <ul class="list-inline menu-sec">
-                    <li class="list-inline-item"><a href="~/Home/assessment">My Assessment Tool</a></li>
-                    <li class="list-inline-item"><a href="~/Home/tracker">My Trackers</a></li>
-                    <li class="list-inline-item"><a href="">My Eating Smart Tool</a></li>
-                    <li class="list-inline-item"><a href="~/Home/MyEatingPattern">My Eating Pattern</a></li>
-                    <li class="list-inline-item"><a href="~/Home/helpDesk">Admin Messages</a></li>                 
-                    <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container-fluid flowerBg">
     <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-11">
@@ -45,10 +28,33 @@
                             <hr class="mt-0 mb-3 bg-dark" />
                             <input type="hidden" id="hdnTotalDoller" />
                             <input type="hidden" id="hdnTotalINR" />
+                            <input type="hidden" id="hdnCouponId" />
                         </div>
                     </div>
                     <div>
                         <table class="table" id="tblPayment"></table>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12 col-sm-12">
+                          Total Amount to Pay
+                        </div>
+                        <div class="col-12 col-sm-12">
+                           INR Amount: <input type="text" class="form-control border" id="txtINR" readonly="readonly"/>
+                        </div>
+                        <div class="col-12 col-sm-12">
+                            Doller Amount: <input type="text" class="form-control border" id="txtDoller" readonly="readonly"  />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                       
+                        <div class="col-12 col-sm-12">
+                           Coupon: <input type="text" class="form-control border" id="txtCoupon" placeholder="Coupon" maxlength="50" />
+                        </div>
+                        <div class="col-12 col-sm-12">
+                            <a  class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnCoupon" onclick="return ApplyCoupon()" href="#">&nbsp; &nbsp; Apply Coupon &nbsp; &nbsp; </a>
+                        </div>
                     </div>
                     <div class="form-group row">
                         @*<div class="col-12 col-md-12">
@@ -72,6 +78,47 @@
 
     function ProceedToPayment()
     {
+
+    }
+    function ApplyCoupon()
+    {
+        var cou = $("#txtCoupon").val();
+        if (cou != "")
+        {
+            CommonAjaxMethod('Program/GetCoupan', { coupan: cou }, false, 'GET',
+                       function (response) {
+                           if (response.dataCollection.length > 0) 
+                           {
+                               var cINRAmount = $("#txtINR").val();
+                               var cDolleramount = $("#txtDoller").val();
+                              
+
+                               var UpdateOrderDetailsForUser = {
+                                   OrderAmountINR:(cINRAmount - response.dataCollection[0].Amount),
+                                   OrderAmountDoller:(cDolleramount - response.dataCollection[0].DollerAmount),
+                                   Order_Id: sessionStorage.getItem("OrderId"),
+                                   UserId: sessionStorage.getItem("userId"),
+                                   CoupenId: response.dataCollection[0].CoupenId,
+                              }
+
+                               CommonAjaxMethod('Home/UpdateOrderDetailsForUser', UpdateOrderDetailsForUser, false, 'POST',
+                              function (resp)
+                              {
+                                  $("#txtINR").val((cINRAmount - response.dataCollection[0].Amount));
+                                  $("#txtDoller").val((cDolleramount - response.dataCollection[0].DollerAmount));
+
+                                  sessionStorage.setItem("TotalDoller", $("#txtDoller").val());
+                                  sessionStorage.setItem("TotalINR", $("#txtINR").val());
+                                  sessionStorage.setItem("CouponId", response.dataCollection[0].CoupenId);
+                                  alert("Your coupon is applied.");
+                              });
+                              
+                           }
+                           else {
+                               alert("Please enter valid coupon.");
+                           }
+                       });
+        }
 
     }
     $(document).ready(function () {
@@ -121,6 +168,9 @@
                     sessionStorage.setItem("OrderId", OrderId); 
                     sessionStorage.setItem("CartSession", "");
                     sessionStorage.setItem("CartProgramID", "");
+                    $("#txtINR").val(intINR);
+                    $("#txtDoller").val(intDoller.toFixed(2));
+                    
 
                 }
             }

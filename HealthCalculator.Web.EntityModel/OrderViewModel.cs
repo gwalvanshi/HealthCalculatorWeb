@@ -17,6 +17,18 @@ namespace HealthCalculator.Web.EntityModel
           
         
     }
+    public class CoupanModel
+    {
+
+        public int CoupenId { get; set; }
+        public string Coupen { get; set; }
+        public string Amount { get; set; }
+        public string DollerAmount { get; set; }
+        public bool IsActive { get; set; }
+
+
+    }
+   
     public class UserOrderViewModel
     {
         public int ProgramId { get; set; }
@@ -44,7 +56,7 @@ namespace HealthCalculator.Web.EntityModel
 
         public string IsPaymentDone { get; set; }
 
-
+        public int CoupenId { get; set; }
 
     }
 }
