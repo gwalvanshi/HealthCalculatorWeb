@@ -12,9 +12,9 @@
         <a href="#"  onclick="LoadGrid(3)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker Filled<span class="float-right d-none d-md-block" id="spTF"></span></a>
         <a href="#"  onclick="LoadGrid(4)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker 6th and 11th day falls today<span class="float-right d-none d-md-block" id="spTFF"></span></a>
         <a href="#"  onclick="LoadGrid(5)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Users <span class="float-right d-none d-md-block" id="spUsers"></span></a>
-        <a href="#"  onclick="LoadGrid(6)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Orders<span class="float-right d-none d-md-block" id="spOrder"></span></a>
-        <a href="#" onclick="LoadGrid(7)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Completed<span class="float-right d-none d-md-block" id="spCompleted"></span></a>
-        <a href="#" onclick="LoadGrid(8)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Active<span class="float-right d-none d-md-block" id="spActive"></span></a>
+        <a href="#"  onclick="LoadOrderGrid(6)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Orders<span class="float-right d-none d-md-block" id="spOrder"></span></a>
+        <a href="#" onclick="LoadOrderGrid(7)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Completed<span class="float-right d-none d-md-block" id="spCompleted"></span></a>
+        <a href="#" onclick="LoadOrderGrid(8)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Active<span class="float-right d-none d-md-block" id="spActive"></span></a>
         <a href="#" onclick="LoadAll()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">All Users</a>  
     </div>
     <div class="row justify-content-center">
@@ -35,7 +35,7 @@
     {
         CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response) {
          
-            Load(response.dataCollection);
+            LoadUsers(response.dataCollection);
             //$("#gridContainer").dxDataGrid(
             //    {
             //        dataSource: response.dataCollection,
@@ -57,6 +57,106 @@
             //});
         });
         
+    }
+
+    function LoadOrderGrid(strVar) {
+        var vType = 0;
+        var module = "";
+        if (strVar == 1) {
+            vType = "7"
+            module = "M";
+        }
+        else if (strVar == 2) {
+            vType = "2"
+            module = "A";
+        }
+        else if (strVar == 3) {
+            vType = "3"
+            module = "T";
+        }
+        else if (strVar == 4) {
+            vType = "6"
+            module = "T";
+        }
+        else if (strVar == 5) {
+            //user
+            vType = "5"
+            module = "U";
+        }
+        else if (strVar == 6) {
+            //order
+            vType = "4"
+            module = "O";
+        }
+        else if (strVar == 7) {
+            //order
+            vType = "9"
+            module = "C";
+        }
+        else if (strVar == 8) {
+            //order
+            vType = "10"
+            module = "AC";
+        }
+        var obj1 = {
+
+            Type: vType,
+            OperationType: "GET",
+            UserId: 1
+        }
+        CommonAjaxMethod('Home/AdminNotificationEnquiryMessage', obj1, false, 'POST', function (response) {
+
+            $("#gridContainer").dxDataGrid({
+                dataSource: response.data.Data,
+                allowColumnReordering: true,
+                showBorders: true,
+
+                searchPanel: {
+                    visible: true
+                },
+                paging: {
+                    pageSize: 10
+                },
+                groupPanel: {
+                    visible: true
+                },
+                editing: {
+                    mode: "form",
+                    allowUpdating: false
+                },
+                columns: [
+                    "FirstName",
+                    "LastName",
+                    "Email",
+                     "UserName",
+                    "MobileNo",
+                     {
+                         caption: "Action Date",
+
+                         allowEditing: false,
+                         calculateCellValue: function (data) {
+                             return getdate(data.AddedWhen);
+                         }
+                     },
+                      {
+                          caption: "Program Detail",
+                          alignment: 'center',
+                          cellTemplate: function (container, options) {
+                              $('<a />').addClass('dx-link')
+                                  .text('Program Detail')
+                                  .on('dxclick', function () {
+
+                                    
+                                      window.location.href = "UserDetails?userId=" + options.data.OrderDetail_Id;
+                                  }).appendTo(container);
+                          }
+                      }
+
+                ]
+            }); rders: true
+            //});
+        });
+
     }
     function LoadGrid(strVar)
     {
@@ -155,7 +255,7 @@
         CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response)
         {
             
-            Load(response.dataCollection);
+            LoadUsers(response.dataCollection);
             //$("#gridContainer").dxDataGrid(
             //    {
             //        dataSource: response.dataCollection,
@@ -165,93 +265,7 @@
         });
     }
 
-    function LoadUserDetails(ctr, module) {
-        var endPoint = "";
-        if (module == "A") {
-            endPoint = "assessment";
-        }
-        if (module == "M") {
-            endPoint = "helpDesk";
-        }
-        if (module == "T") {
-            endPoint = "tracker";
-        }
-        if (module == "O") {
-            endPoint = "ViewPlan";
-        }
-        if (module == "U") {
-            endPoint = "UserDetails";
-        }
-        if (module == "C") {
-            endPoint = "UserDetails";
-        }
-        if (module == "AC") {
-            endPoint = "UserDetails";
-        }
-        $("#gridContainer").dxDataGrid({
-            dataSource: ctr,
-            allowColumnReordering: true,
-            showBorders: true,
-
-            searchPanel: {
-                visible: true
-            },
-            paging: {
-                pageSize: 10
-            },
-            groupPanel: {
-                visible: true
-            },
-            editing: {
-                mode: "form",
-                allowUpdating: false
-            },
-            columns: [
-                "FirstName",
-                "LastName",
-                "Email",
-                 "UserName",
-                "MobileNo",
-                 {
-                     caption: "Action Date",
-
-                     allowEditing: false,
-                     calculateCellValue: function (data) {
-                         return getdate(data.AddedWhen);
-                     }
-                 },
-                  {
-                      caption: "User Dashboard",
-                      alignment: 'center',
-                      cellTemplate: function (container, options) {
-                          $('<a />').addClass('dx-link')
-                              .text('View Dashboard')
-                              .on('dxclick', function () {
-
-                                  sessionStorage.setItem('SelectedUserId', options.data.userId);
-                                  window.location.href = "assessment?userId=" + options.data.userId;
-                              }).appendTo(container);
-                      }
-                  },
-                {
-                    caption: "View Details",
-                    alignment: 'center',
-                    cellTemplate: function (container, options) {
-                        $('<a />').addClass('dx-link')
-                            .text('View Detail')
-                            .on('dxclick', function () {
-
-
-                                sessionStorage.setItem('SelectedUserId', options.data.userId);
-                                window.location.href = endPoint + "?userId=" + options.data.userId;
-                            }).appendTo(container);
-                    }
-                }
-               
-
-            ]
-        });
-    }
+  
     function Load(ctr, module)
     {
         var endPoint = "";
@@ -349,6 +363,71 @@
              });        
     }
 
+
+    function LoadUsers(ctr, module)
+    {
+       
+        $("#gridContainer").dxDataGrid({
+            dataSource: ctr,
+            allowColumnReordering: true,
+            showBorders: true,
+
+            searchPanel: {
+                visible: true
+            },
+            paging: {
+                pageSize: 10
+            },
+            groupPanel: {
+                visible: true
+            },
+            editing: {
+                mode: "form",
+                allowUpdating: false
+            },
+            columns: [
+                "FirstName",
+                "LastName",
+                "Email",
+                 "UserName",
+                "MobileNo",
+                 {
+                     caption: "Action Date",
+
+                     allowEditing: false,
+                     calculateCellValue: function (data) {
+                         return getdate(data.AddedWhen);
+                     }
+                 },
+                  {
+                      caption: "User Dashboard",
+                      alignment: 'center',
+                      cellTemplate: function (container, options) {
+                          $('<a />').addClass('dx-link')
+                              .text('View Detail')
+                              .on('dxclick', function () {
+
+                                  sessionStorage.setItem('SelectedUserId', options.data.userId);
+                                  window.location.href = "assessment?userId=" + options.data.userId;
+                              }).appendTo(container);
+                      }
+                  },
+                {
+                    caption: "Add Free Session",
+                    alignment: 'center',
+                    cellTemplate: function (container, options) {
+                        $('<a />').addClass('dx-link')
+                            .text('Free Session')
+                            .on('dxclick', function () {
+
+                                window.location.href = "AddFreeSession?userId=" + options.data.userId;
+                            }).appendTo(container);
+                    }
+                }
+
+            ]
+        });
+    }
 
     function LoadEnquiry(ctr) {
 

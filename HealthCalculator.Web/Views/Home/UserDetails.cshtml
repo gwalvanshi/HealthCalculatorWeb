@@ -33,18 +33,7 @@
     {
         var qData = "@Request.QueryString["userId"].ToString()";
       
-        if (sessionStorage.getItem('RoleID') == "3") {
-            var obj1 = {
-
-                Type: "5",
-                OperationType: "UPDATE",
-                UserId: qData
-            }
-            CommonAjaxMethod('Home/AdminNotificationEnquiryMessage', obj1, false, 'POST', function (response) {
-
-            });
-        }
-        CommonAjaxMethod('Home/GetUserDetailsById', {userId=qData}, false, 'GET', function (response) {
+        CommonAjaxMethod('Home/GetUserOrderDetailView', {orderid:qData}, false, 'GET', function (response) {
 
             Load(response.dataCollection);           
         });
@@ -77,15 +66,57 @@
                 "Email",
                  "UserName",
                 "MobileNo",
+                 "program",
+                 "ProductName",
+              
+                {
+                    caption: "Coupon",
+                    dataField: "Coupen"
+                   
+                },
+                 "OrderAmountDoller",
+                 "OrderAmountINR",
+                  {
+                      caption: "Order Date",
+
+                      allowEditing: false,
+                      calculateCellValue: function (data) {
+                          return getdate(data.AddedWhen);
+                      }
+                  }      ,
                  {
-                     caption: "Action Date",
+                     caption: "Start Date",
 
                      allowEditing: false,
                      calculateCellValue: function (data) {
-                         return getdate(data.AddedWhen);
+                         return getdate(data.StartActiveDate);
                      }
-                 }                       
+                 },
+                  {
+                      caption: "End Date",
+
+                      allowEditing: false,
+                      calculateCellValue: function (data) {
+                          return getdate(data.EndActiveDate);
+                      }
+                  }
+                                 
             ]
         });        
     }
+     function getdate(strdate) {
+        var strRetrunDate;
+        if (strdate != null) {
+            var dateData = new Date(parseInt(strdate.replace("/Date(", "").replace(")/")));
+            var dd = dateData.getDate();
+            var mm = dateData.getMonth() + 1; //January is 0!
+            var yyyy = dateData.getFullYear();
+            if (dd < 10) { dd = '0' + dd }
+            if (mm < 10) { mm = '0' + mm }
+            strRetrunDate = yyyy + '-' + mm + '-' + dd;
+        }
+        return strRetrunDate;
+    }
 </script>
+
+ 

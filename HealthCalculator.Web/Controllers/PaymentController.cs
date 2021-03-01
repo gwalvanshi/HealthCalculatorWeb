@@ -342,13 +342,16 @@ namespace HealthCalculator.Web.Controllers
             Random randomObj = new Random();
             string transactionId = randomObj.Next(10000000, 100000000).ToString();
             Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_dcqe3aqpMbfHdP", "f20iAuCr0Rz9ZE2dSvccDesd");
+           
             Dictionary<string, object> options = new Dictionary<string, object>();
             options.Add("amount", _requestData.amount * 100);  // Amount will in paise
             options.Add("receipt", transactionId);           
             options.Add("currency", "INR");
+           // options.Add("image", "https://eatingsmart.in/HealthWeb//img/logo-print.png");            
             options.Add("payment_capture", "0"); // 1 - automatic  , 0 - manual
                                                  //options.Add("notes", "-- You can put any notes here --");
             Razorpay.Api.Order orderResponse = client.Order.Create(options);
+            
             string orderId = orderResponse["id"].ToString();
             // Create order model for return on view
             OrderModel orderModel = new OrderModel

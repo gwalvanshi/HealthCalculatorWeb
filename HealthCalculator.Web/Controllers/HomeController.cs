@@ -33,6 +33,7 @@ namespace HealthCalculator.Web.Controllers
             return View();
            
         }
+        [SessionExpireFilterAttributeAdmin]
         public ActionResult UserDetails(string userId=null)
         {
             var chkTimeOut = Session.Timeout;
@@ -182,7 +183,7 @@ namespace HealthCalculator.Web.Controllers
             try
             {
 
-             
+                objEatingToolModel.IsValid = 0;
                 int loggedIdUserID = 0;
                 if (string.IsNullOrEmpty(userId))
                     loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
@@ -206,16 +207,18 @@ namespace HealthCalculator.Web.Controllers
                 objModelList = objCommunication.dataCollection;
                 if (string.IsNullOrEmpty(objCommunication.ErrorMessage))
                 {
-                    bool isValidTool = false;
+                    int isValidTool = 0;
 
                     if (objCommunication.dataCollection.Count > 0)
                     {
+                         isValidTool = 2;
                         foreach (var item in objCommunication.dataCollection)
                         {
                             if (item.ProgramId != 9 || item.ProgramId != 8 || item.ProgramId != 2)
                             {
-                                isValidTool = true;
-                            }
+                                isValidTool = 1;
+                            } 
+                                                    
                         }
                     }
                    
@@ -1176,6 +1179,34 @@ namespace HealthCalculator.Web.Controllers
                 var status = await _genericService.PerformDataOperationList<UserOrderViewModel>(stringContent);
 
                 return new JsonResult { Data = status };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+        public async Task<JsonResult> GetUserOrderDetailView(string orderid)
+        {
+            try
+            {
+                int loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "128";
+                collection.UserId = loggedIdUserID;
+                var objList = new List<IndexScreenSearchParameterModel>();
+                var obj1 = new IndexScreenSearchParameterModel
+                {
+                    SearchParameter = "OrderDetail_Id",
+                    SearchParameterDataType = "int",
+                    SearchParameterValue = orderid
+                };
+                objList.Add(obj1);
+                collection.IndexScreenSearchParameterModel = objList;
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<LoginEntity>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
             catch (Exception ex)
             {

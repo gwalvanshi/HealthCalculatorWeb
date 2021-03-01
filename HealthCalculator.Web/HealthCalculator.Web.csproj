@@ -470,6 +470,7 @@
     <Content Include="img\lahsoon.png" />
     <Content Include="img\leaf.png" />
     <Content Include="img\lock.png" />
+    <Content Include="img\logo-print.png" />
     <Content Include="img\logo.png" />
     <Content Include="img\logo222.png" />
     <Content Include="img\LogoBrowser.JPG" />
@@ -494,11 +495,13 @@
     <Content Include="img\sidraBg3.png" />
     <Content Include="img\sidraBg4.png" />
     <Content Include="img\sidraPatel.png" />
+    <Content Include="img\smiley.png" />
     <Content Include="img\src\css\lightslider.css" />
     <Content Include="img\src\img\controls - Copy.png" />
     <Content Include="img\src\img\controls.png" />
     <Content Include="img\src\js\lightslider.js" />
     <Content Include="img\success.png" />
+    <Content Include="img\thumbs.png" />
     <Content Include="img\tw.png" />
     <Content Include="img\uploadPhoto.png" />
     <Content Include="img\user.png" />

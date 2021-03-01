@@ -7,10 +7,14 @@
 <div class="container-fluid bg-sky">
     <div class="row">
         <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
-            <h2 class="semi text-white text-shadow" id="HeaderValue"></h2>
+            <h2 class="semi text-white text-shadow" id="HeaderValue">
+                <img src="@CommonMethods.ServerPath/img/thumbs.png" style="width: 40px; vertical-align: middle; margin-top: -15px;" />
+                <img src="@CommonMethods.ServerPath/img/smiley.png" class="smiley" style="width: 40px;" />
+            </h2>
         </div>
     </div>
 </div>
+
 <div class="bg-yellow">
     <div class="container">
         <div class="row justify-content-center">
@@ -85,11 +89,11 @@
                 <div id="DivDynamicSession">
 
                 </div>
-
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <div class="form-group row">
-                            <label class="semi mb-2 text-yellow">Inch Tracker <span class="float-right d-none d-md-block"> : </span></label>
+                <hr class="mt-0 mb-2 bg-dark" />
+                <div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <p class="semi mb-2 text-yellow">INCHES TRACKER</p>
                             <div class="col-12 col-sm-7">
                                 <select class="custom-select" id="ddlInch">
                                     <option selected>Select</option>
@@ -97,29 +101,37 @@
                                     <option value="CM">CM</option>
                                 </select>
                             </div>
+                           
                         </div>
                     </div>
-                    <hr class="mt-0 mb-2 bg-dark" />
-                </div>
-
-                <div class="bg-yellow container-minus mb-4 pt-2 pb-2">
-                    <div class="row pt-2">
-                        <div class="col-12 col-md-12 col-lg-6">
-                            <p class="semi mb-2 text-white">Date</p>
-                        </div>
-                        <div class="col-12 col-md-12 col-lg-3">
-                            <p class="semi mb-2 text-white">Chest</p>
-                        </div>
-                        <div class="col-12 col-md-12 col-lg-3">
-                            <p class="semi mb-2 text-white">Waist</p>
-                        </div>
-                        <div class="col-12 col-md-12 col-lg-3">
-                            <p class="semi mb-2 text-white">Hip</p>
+                    <div class="bg-yellow container-minus mb-4 pt-2 pb-2">
+                        <div class="row pt-2">
+                            <div class="col-12 col-md-12 col-lg-5">
+                                <p class="semi mb-2 text-white">Date</p>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-1">
+                                <p class="semi mb-2 text-white">Inches</p>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg">
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="semi mb-2 text-white">Chest</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="semi mb-2 text-white">Waist</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="semi mb-2 text-white">Hip</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div id="InchDivDynamicSession">
 
+
+                    <div id="InchDivDynamicSession">
+
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-12 text-right">
@@ -208,7 +220,7 @@
 
 
        CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
-           $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + " " + response.dataCollection[0].LastName);
+           $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + ",  believe in yourself. You can do it!");
 
        });
 
@@ -261,7 +273,7 @@
                         InchdivHTML += '<div class="row form-data pt-2">' +
                             '<div class="col-12 col-md-12 col-lg">' +
                             '<div class="row align-items-center h-100">' +
-                            '<div class=" col-12 col-md-7">' +
+                            '<div class="col col-md">' +
                             '<div class="form-group">' +
                             '<input type="date" class="form-control" readOnly="true" placeholder="Enter Date" id="txtTrackerDate1' + (i + 1) + '" />' +
                             '</div>' +
@@ -278,16 +290,16 @@
                             '</div>' +
                             '</div>' +
                             '<div class="col-12 col-md-12 col-lg-1 text-center">' +
-                            '<div class="form - group">' +
+                            '<div class="form-group">' +
                             '<p class=" mb-0 semi" style="line-height:39px; font-size:14px;"> Start</p>' +
                             '</div>' +
-                            '<div class=" form-group">' +
+                            '<div class="form-group">' +
                             '<p class=" mb-0 semi" style="line-height:39px; font-size:14px;"> End</p>' +
                             '</div>' +
                             '</div>' +
-                            '<div class="col-12 col-md-12 col-lg">' +
-                            '<div class="row align-items-center">' +
-                            '<div class="col-6 col-md-6">' +
+                            '<div class="col col-md-12 col-lg">' +
+                            '<div class="row align-items-center h-100 no-gutters">' +
+                            '<div class="col col-md">' +
                             '<div class="form-group">' +
                             '<input type="text" class="form-control" placeholder = "Enter Chest" id = "txtChest1' + (i + 1) + '" />' +
                             '</div>' +
@@ -295,7 +307,7 @@
                             '<input type="text" class="form-control" placeholder = "Enter Chest" id = "txtChest2' + (i + 1) + '" />' +
                             '</div>' +
                             '</div>' +
-                            '<div class="col-6 col-md-6">' +
+                            '<div class="col col-md">' +
                             '<div class="form-group">' +
                             '<input type="text" class="form-control"  placeholder="Enter Waist" id="txtWaist1' + (i + 1) + '" />' +
                             '</div>' +
@@ -305,7 +317,7 @@
 
                             '</div>' +
 
-                            '<div class="col-6 col-md-6">' +
+                            '<div class="col col-md">' +
                             '<div class="form-group">' +
                             '<input type="text" class="form-control"  placeholder="Enter hip" id="txthip1' + (i + 1) + '" />' +
                             '</div>' +
@@ -323,12 +335,12 @@
                         InchdivHTML += '<div class="row form-data pt-2">' +
                             '<div class="col-12 col-md-12 col-lg">' +
                             '<div class="row align-items-center h-100">' +
-                            '<div class=" col-12 col-md-7">' +
+                            '<div class="col col-md">' +
                             '<div class="form-group">' +
-                            '<input type="date" class="form-control"  placeholder="Enter Date" id="txtTrackerDate1' + (i + 1) + '" />' +
+                            '<input type="date" class="form-control" placeholder="Enter Date" id="txtTrackerDate1' + (i + 1) + '" />' +
                             '</div>' +
                             '<div class=" form-group">' +
-                            '<input type="date" class="form-control"  placeholder = "Enter Date"  id ="txtTrackerDate2' + (i + 1) + '" />' +
+                            '<input type="date" class="form-control"   placeholder = "Enter Date"  id ="txtTrackerDate2' + (i + 1) + '" />' +
                             '</div>' +
 
                             '</div>' +
@@ -340,39 +352,39 @@
                             '</div>' +
                             '</div>' +
                             '<div class="col-12 col-md-12 col-lg-1 text-center">' +
-                            '<div class="form - group">' +
+                            '<div class="form-group">' +
                             '<p class=" mb-0 semi" style="line-height:39px; font-size:14px;"> Start</p>' +
                             '</div>' +
-                            '<div class=" form-group">' +
+                            '<div class="form-group">' +
                             '<p class=" mb-0 semi" style="line-height:39px; font-size:14px;"> End</p>' +
                             '</div>' +
                             '</div>' +
-                            '<div class="col-12 col-md-12 col-lg">' +
-                            '<div class="row align-items-center">' +
-                            '<div class="col-6 col-md-6">' +
+                            '<div class="col col-md-12 col-lg">' +
+                            '<div class="row align-items-center h-100 no-gutters">' +
+                            '<div class="col col-md">' +
                             '<div class="form-group">' +
-                            '<input type="text" class="form-control" placeholder = "Enter Weight" id = "txtChest1' + (i + 1) + '" />' +
+                            '<input type="text" class="form-control" placeholder = "Enter Chest" id = "txtChest1' + (i + 1) + '" />' +
                             '</div>' +
                             '<div class="form-group">' +
-                            '<input type="text" class="form-control" placeholder = "Enter Weight" id = "txtChest2' + (i + 1) + '" />' +
+                            '<input type="text" class="form-control" placeholder = "Enter Chest" id = "txtChest2' + (i + 1) + '" />' +
                             '</div>' +
                             '</div>' +
-                            '<div class="col-6 col-md-6">' +
+                            '<div class="col col-md">' +
                             '<div class="form-group">' +
-                            '<input type="text" class="form-control"  placeholder="Enter Weight Difference" id="txtWaist1' + (i + 1) + '" />' +
+                            '<input type="text" class="form-control"  placeholder="Enter Waist" id="txtWaist1' + (i + 1) + '" />' +
                             '</div>' +
                             '<div class="form-group">' +
-                            '<input type="text" class="form-control"  placeholder="Enter Weight Difference" id="txtWaist2' + (i + 1) + '"/>' +
+                            '<input type="text" class="form-control"   placeholder="Enter Waist" id="txtWaist2' + (i + 1) + '"/>' +
                             '</div>' +
 
                             '</div>' +
 
-                            '<div class="col-6 col-md-6">' +
+                            '<div class="col col-md">' +
                             '<div class="form-group">' +
-                            '<input type="text" class="form-control"  placeholder="Enter Weight Difference" id="txthip1' + (i + 1) + '" />' +
+                            '<input type="text" class="form-control"  placeholder="Enter hip" id="txthip1' + (i + 1) + '" />' +
                             '</div>' +
                             '<div class="form-group">' +
-                            '<input type="text" class="form-control"  placeholder="Enter Weight Difference" id="txthip2' + (i + 1) + '"/>' +
+                            '<input type="text" class="form-control"   placeholder="Enter hip" id="txthip2' + (i + 1) + '"/>' +
                             '</div>' +
 
                             '</div>' +

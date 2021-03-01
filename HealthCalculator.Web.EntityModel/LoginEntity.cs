@@ -17,8 +17,19 @@ namespace HealthCalculator.Web.EntityModel
     public class LoginEntity
 
     {
-
-
+        public DateTime? StartActiveDate { get; set; }
+        public DateTime? EndActiveDate { get; set; }
+        public string OrderAmountINR { get; set; }
+        public int ? Totaldays { get; set; }
+        public int order_id { get; set; }
+        public int ProductID { get; set; }
+        public bool? IsActive { get; set; }
+        public bool? IsCompleted { get; set; }
+        public string OrderAmountDoller { get; set; }
+        public string Coupen { get; set; }
+        public string program { get; set; }
+        public string ProductName { get; set; }
+	  
         public int tokenId { get; set; }
 
         public int LoginType { get; set; }
@@ -26,6 +37,9 @@ namespace HealthCalculator.Web.EntityModel
         public int Days { get; set; }
 
         public Int64 userId { get; set; }
+
+        public Int64 OrderId { get; set; }
+        public Int64 OrderDetail_Id { get; set; }
 
         public string authToken { get; set; }
 

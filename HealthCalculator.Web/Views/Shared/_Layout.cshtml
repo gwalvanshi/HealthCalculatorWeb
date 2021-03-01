@@ -24,6 +24,13 @@
     </style>
     <script>
         var virtualPath = "@Url.Content("~/")";
+
+        function Logout(ctrl) {
+            sessionStorage.clear();
+            ctrl.href = '@Url.Content("~/Home/Logout")';
+            ctrl.click();
+        }
+        
     </script>
 
     <style>
@@ -76,11 +83,25 @@
                         <li class="list-group-item"><a href="~/Home/faq">FAQs</a></li>
                         <li class="list-group-item"><a href="~/Home/contact">Contact Us</a></li>
                         <li class="list-group-item"><a href="#" id="lnkcart"><img src="@CommonMethods.ServerPath/img/cart2.png" class="cartIcon" /> <span class="qnt" id="spQuantity">0</span></a></li>
+                        <li class="list-group-item">
+                            <a href="#" class="semi dropdown-toggle" data-toggle="dropdown"><span class="qnt" id="spUserNameToDisplay">Guest User</span></a>                                                  
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="~/Home/AdminView" class="dropdown-item">Dashboard</a>
+                                <a href="~/Home/assessment?userId=" class="dropdown-item">Assessment Tool</a>
+                                <a href="~/Home/tracker?userId="  class="dropdown-item">Trackers</a>
+                                <a href="~/Home/MyEatingSmartTools?userId=" class="dropdown-item">Eating Smart Tool</a>
+                                <a href="~/Home/MyEatingPattern?userId="  class="dropdown-item">Eating Pattern</a>
+                                <a href="~/Home/helpdesk?userId=" class="dropdown-item">Admin Messages</a>
+                                <a href="~/Home/ViewPlan?userId=" class="dropdown-item">View Plan</a>
+                                <a href="" onclick="Logout(this)" class="dropdown-item">Logout</a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+ 
     @*-------------------uday----------------------*@
     <div id="tablez"></div>
     <div id='myModal' class='modal'>
@@ -3045,6 +3066,8 @@
                         <!--<li><a href="reviews">Reviews</a></li>-->
                         <li><a href="~/Home/contact">Contact Us</a></li>
                         <li><a href="~/Home/login">Login</a></li>
+                        <li><a href="~/Home/register">Register</a></li>
+           
                     </ul>
                 </div>
                 <div class="col-12 col-md-2">
@@ -3808,8 +3831,13 @@
 				$("#spQuantity").text(sessionStorage.getItem("CartSession"));
 			   // deleteRows();
 
-                }
+			}
+			CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response)
+			{
+			    if(response.dataCollection.length>0)
+			    $("#spUserNameToDisplay").text("Welcome ," + response.dataCollection[0].FirstName);
 
+			});
 
 		   
 			$("#lnkcart").click(function (e)

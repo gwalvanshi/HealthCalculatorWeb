@@ -4,22 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="~/js/tinymce.min.js"></script>
-@*<div class="container-fluid pl-0 pr-0">
-    <div class="row no-gutters banner eatingSmartToolsBanner align-items-center">
-        <div class="col-12 text-center">
-            <h2 class="bold mb-0 text-white">MY EATING PATTERN </h2>
-        </div>
-    </div>
-</div>*@
-<div>
-    <div class="container-fluid bg-sky">
-        <div class="row">
-            <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
-                <h2 class="semi text-white text-shadow" id="HeaderValue"></h2>
-            </div>
+<div class="container-fluid bg-sky">
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
+            <h2 class="semi text-white text-shadow" id="HeaderValue">
+                <img src="@CommonMethods.ServerPath/img/thumbs.png" style="width: 40px; vertical-align: middle; margin-top: -15px;" />
+                <img src="@CommonMethods.ServerPath/img/smiley.png" class="smiley" style="width: 40px;" />
+            </h2>
         </div>
     </div>
 </div>
+
 <div class="bg-yellow">
     <div class="container">
         <div class="row justify-content-center">
@@ -528,7 +523,7 @@
 
         });
         CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
-            $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + " " + response.dataCollection[0].LastName);
+            $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + ",  believe in yourself. You can do it!");
 
         });
         if (sessionStorage.getItem('RoleID') == "1")

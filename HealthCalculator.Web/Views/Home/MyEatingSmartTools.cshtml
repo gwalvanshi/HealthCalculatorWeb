@@ -3,6 +3,16 @@
     ViewBag.Title = "MY EATING SMART TOOLS";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container-fluid bg-sky">
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
+            <h2 class="semi text-white text-shadow" id="HeaderValue">
+                <img src="@CommonMethods.ServerPath/img/thumbs.png" style="width: 40px; vertical-align: middle; margin-top: -15px;" />
+                <img src="@CommonMethods.ServerPath/img/smiley.png" class="smiley" style="width: 40px;" />
+            </h2>
+        </div>
+    </div>
+</div>
 
 <div class="bg-yellow">
     <div class="container">
@@ -28,157 +38,155 @@
         </div>
     </div>
 </div>
-<div class="container">   
+<div class="container">
+    <div class="row mt-5 mb-3">
+        <div class="col-12 text-center">
+            <p>
+                These tools will be your best friend for a lifetime. They will guide you whenever <br />
+                handling food comes in the frame. Retaining the joy of food and eating smartly will take you a long way ahead.
+            </p>
+            <h5 class="text-yellow mt-5 semi">IT CONSISTS OF 4 TOOLS</h5>
+        </div>
+    </div>
     <div class="row justify-content-center">
-        <div class="col-11 col-lg-9 bg-gray p-5 mb-5">
-                                     
-                        @if(Model.IsValid==true)
-                        {
+        <div class="col-11 col-lg-9 bg-gray p-5 mb-5 shadow">
+        @if (Model.IsValid == 1)
+        {
+            <div class="row align-items-center combatBlock">
+                <div class="col-12 combatBlockContent pt-0 pl-3 pb-4">
+                    <h2 class="num mb-4">1</h2>
+                    <p>This 4 step process is backed by psychological concepts which will help you train your mind and combat cravings.</p>
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Combat-sweet-cravings-tool-1.jpg" class="img-fluid" />
+                </div>
 
-                            <div class="row align-items-center combatBlock">
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Combat-sweet-cravings-tool-1.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Combat-sweet-cravings-tool-2.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Combat-sweet-cravings-tool-2.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md col-lg combatBlockContent">
-                                    <h2 class="num mb-4">1</h2>
-                                    <p>This 4 step process is backed by psychological concepts which will help you train your mind and combat cravings.</p>
-                                </div>
-                            </div>
-                            <div class="row align-items-center flex-row-reverse combatBlock">
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-1.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-2.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-3.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-4.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md col-lg combatBlockContent">
-                                    <h2 class="num mb-4">2</h2>
-                                    <p>This tool will make you a smart shopper when it comes to picking packaged foods!</p>
-                                    <p>Thinking practically, it's not possible for us to avoid all kinds of packaged foods, we tend to pick some from the shelf.</p>
-                                    <p>So let’s be smart while picking them.</p>
-                                </div>
-                            </div>
-                            <div class="row align-items-center combatBlock">
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-1.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-2.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-3.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-4.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-5.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-6.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md col-lg combatBlockContent">
-                                    <h2 class="num mb-4">3</h2>
-                                    <p>Kitchen tools will guide you on your essentials, portions of food and cookwares to be used.</p>
-                                    <p>This will form the backbone when it comes to cooking and making smart combinations with your favourite foods.</p>
-                                </div>
-                            </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Combat-sweet-cravings-tool-2.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Combat-sweet-cravings-tool-3.jpg" class="img-fluid" />
+                </div>
 
-                            <div class="row align-items-center flex-row-reverse combatBlock">
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Eating-out-tool-1.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Eating-out-tool-2.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Eating-out-tool-3.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Eating-out-tool-4.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Eating-out-tool-5.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Eating-out-tool-6.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md col-lg combatBlockContent">
-                                    <h2 class="num mb-4">4</h2>
-                                    <p class="semi">How many of us love eating out occasionally?</p>
-                                    <p>This includes an entire menu divided into starters, main course and much more. So we eat out, but smartly!</p>
-                                </div>
-                            </div>
-                          
-                        }
-                        else
-                        {
-                            <div class="row align-items-center flex-row-reverse combatBlock">
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-1.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-2.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-3.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-4.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md col-lg combatBlockContent">
-                                    <h2 class="num mb-4">2</h2>
-                                    <p>This tool will make you a smart shopper when it comes to picking packaged foods!</p>
-                                    <p>Thinking practically, it's not possible for us to avoid all kinds of packaged foods, we tend to pick some from the shelf.</p>
-                                    <p>So let’s be smart while picking them.</p>
-                                </div>
-                            </div>
-                            <div class="row align-items-center combatBlock">
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-1.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-2.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-3.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-4.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-5.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-6.jpg" class="img-fluid" />
-                                </div>
-                                <div class="col-12 col-md col-lg combatBlockContent">
-                                    <h2 class="num mb-4">3</h2>
-                                    <p>Kitchen tools will guide you on your essentials, portions of food and cookwares to be used.</p>
-                                    <p>This will form the backbone when it comes to cooking and making smart combinations with your favourite foods.</p>
-                                </div>
-                            </div>
-                        
-                          }          
-           
-          
-           
+                <div class="col-12 combatBlockContent pt-0 pl-3 pb-4">
+                    <h2 class="num mb-4">2</h2>
+                    <p>This tool will make you a smart shopper when it comes to picking packaged foods!</p>
+                    <p>Thinking practically, it's not possible for us to avoid all kinds of packaged foods, we tend to pick some from the shelf.</p>
+                    <p>So let’s be smart while picking them.</p>
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-1.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-2.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-3.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-4.jpg" class="img-fluid" />
+                </div>
+
+                <div class="col-12 combatBlockContent pt-0 pl-3 pb-4">
+                    <h2 class="num mb-4">3</h2>
+                    <p>Kitchen tools will guide you on your essentials, portions of food and cookwares to be used.</p>
+                    <p>This will form the backbone when it comes to cooking and making smart combinations with your favourite foods.</p>
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-1.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-2.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-3.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-4.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-5.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-6.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 combatBlockContent pt-0 pl-3 pb-4">
+                    <h2 class="num mb-4">4</h2>
+                    <p class="semi">How many of us love eating out occasionally?</p>
+                    <p>This includes an entire menu divided into starters, main course and much more. So we eat out, but smartly!</p>
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Eating-out-tool-1.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Eating-out-tool-2.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Eating-out-tool-3.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Eating-out-tool-4.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Eating-out-tool-5.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Eating-out-tool-6.jpg" class="img-fluid" />
+                </div>
+            </div>
+        }
+     @if(Model.IsValid ==2)
+     {
+            <div class="row align-items-center combatBlock">
+               
+                <div class="col-12 combatBlockContent pt-0 pl-3 pb-4">
+                    <h2 class="num mb-4">1</h2>
+                    <p>This tool will make you a smart shopper when it comes to picking packaged foods!</p>
+                    <p>Thinking practically, it's not possible for us to avoid all kinds of packaged foods, we tend to pick some from the shelf.</p>
+                    <p>So let’s be smart while picking them.</p>
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-1.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-2.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-3.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Packaged-food-tool-4.jpg" class="img-fluid" />
+                </div>
+
+                <div class="col-12 combatBlockContent pt-0 pl-3 pb-4">
+                    <h2 class="num mb-4">2</h2>
+                    <p>Kitchen tools will guide you on your essentials, portions of food and cookwares to be used.</p>
+                    <p>This will form the backbone when it comes to cooking and making smart combinations with your favourite foods.</p>
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-1.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-2.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-3.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-4.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-5.jpg" class="img-fluid" />
+                </div>
+                <div class="col-12 text-center combatBlockImg">
+                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/Kitchen-tool-6.jpg" class="img-fluid" />
+                </div>             
+            </div>
+        }
+
         </div>
     </div>
 </div>
-
 <script>
     window.onload = function () {
         $('img').bind('contextmenu', function (e) {
@@ -187,8 +195,12 @@
 
         $("#spMessage").text(" (" + sessionStorage.getItem('MessageCount') + ")");
         $("#spTrackers").text(" (" + sessionStorage.getItem('Trackerfalldays')  + ")");
-        $("#spPattern").text(" (" + sessionStorage.getItem('PatternCount')  + ")");
+        $("#spPattern").text(" (" + sessionStorage.getItem('PatternCount') + ")");
 
+        CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
+            $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + ",  believe in yourself. You can do it!");
+
+        });
 
     };
      function MessageHelp(ctrl) {
