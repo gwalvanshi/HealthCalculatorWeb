@@ -355,7 +355,7 @@
                             </div>
                             <div class="btn btn-primary" style="display:none;" id="dvDownloadReport">
                                 @*<a  id="btnDownloadReport" onclick="downloadDocument()">&nbsp; &nbsp; Download Report &nbsp; &nbsp; </a>*@
-                                <a id="btnDownloadReport">&nbsp; &nbsp; Download Report &nbsp; &nbsp; </a>
+                                <a id="btnDownloadReport" target="_blank">&nbsp; &nbsp; Download Report &nbsp; &nbsp; </a>
                             </div>
                         </div>
                     </div>
@@ -1458,7 +1458,7 @@
                         $("#dvDownloadReport").hide();
                     }
 
-                    $("#hdnfileuploadReportPath").val("@CommonMethods.ServerPathDocs" + response.data.Data.Table[0].Reports);
+                    $("#hdnfileuploadReportPath").val("@CommonMethods.ServerPathDocs" + response.data.Data.Table[0].ReportPath);
 
                     if (sessionStorage.getItem('RoleID') == 1) {
                         if (response.data.Data.Table[0].IsSubmitUGI == false) { $("#btnSaveGenralInfo").show() }

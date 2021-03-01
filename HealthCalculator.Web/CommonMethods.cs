@@ -28,6 +28,43 @@ namespace HealthCalculator.Web
 
         //To set local
         // public const string ServerPath = "http://localhost:50026/";
+        public string SendContact(ContactDetails objContactDetails)
+        {
+            string returnMessage = string.Empty;
+            try
+            {
+                using (MailMessage mm = new MailMessage("hello@EATINGSMART.IN", "healthrating@eatingsmart.in"))
+                // using (MailMessage mm = new MailMessage("emailus @d2digitalservices.com", ToEmail))
+                {
+                    // mm.CC.Add(new MailAddress("healthrating@eatingsmart.in"));
+                    mm.Subject = objContactDetails.Subject;
+                    mm.Body = objContactDetails.Message;
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "mail.EATINGSMART.IN";
+                    smtp.EnableSsl = false;
+                    NetworkCredential NetworkCred = new NetworkCredential();
+                    //NetworkCred.UserName = "alerts@EATINGSMART.IN";
+                    //NetworkCred.Password = "d73Clh~9";
+                    NetworkCred.UserName = "hello@EATINGSMART.IN";
+                    NetworkCred.Password = "_6Jzn6o6";
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 26;
+                    // isValid = true;
+                    //smtp.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+                    //smtp.PickupDirectoryLocation = V;
+                    smtp.Send(mm);
+                    // return isValid;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return returnMessage;
+        }
+
         public bool SendEmail(string toEmail, string Subject, string content, List<Table> dt, EnquiryModel collection, List<Table1> dtRange)
         {
             string emailbody = string.Empty;

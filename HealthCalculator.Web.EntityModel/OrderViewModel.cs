@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace HealthCalculator.Web.EntityModel
 {
-   public class OrderViewModel
+    public class ContactDetails
+    {
+
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public string Subject { get; set; }
+        public string Phone { get; set; }
+        public string Message { get; set; }
+
+
+    }
+    public class OrderViewModel
     {
         
             public int OrderId { get; set; }

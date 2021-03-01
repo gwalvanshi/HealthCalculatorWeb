@@ -230,6 +230,7 @@ namespace HealthCalculator.Web.EntityModel
         public string YourGoals { get; set; }
         public object HealthIssues { get; set; }
         public object Reports { get; set; }
+        public object ReportPath { get; set; }
         public string UM_HealthIssues { get; set; }
         public string Medication { get; set; }
         public string Lifestyle { get; set; }

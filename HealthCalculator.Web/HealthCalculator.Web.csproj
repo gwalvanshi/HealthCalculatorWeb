@@ -729,7 +729,6 @@
     <Content Include="Views\Home\MyEatingPattern.cshtml" />
     <Content Include="Views\Home\helpDesk.cshtml" />
     <Content Include="Views\Home\payments.cshtml" />
-    <Content Include="Views\Home\_HtmlEditorPartial.cshtml" />
     <Content Include="Views\Payment\Success.cshtml" />
     <Content Include="Views\Payment\Failed.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />

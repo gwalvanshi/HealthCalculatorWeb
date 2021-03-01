@@ -17,6 +17,8 @@ namespace HealthCalculator.Web.Controllers
 {
     public class OrderModel
     {
+        
+        public string image { get; set; }
         public string orderId { get; set; }
         public string razorpayKey { get; set; }
         public int amount { get; set; }
@@ -342,7 +344,7 @@ namespace HealthCalculator.Web.Controllers
             Random randomObj = new Random();
             string transactionId = randomObj.Next(10000000, 100000000).ToString();
             Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_dcqe3aqpMbfHdP", "f20iAuCr0Rz9ZE2dSvccDesd");
-           
+            
             Dictionary<string, object> options = new Dictionary<string, object>();
             options.Add("amount", _requestData.amount * 100);  // Amount will in paise
             options.Add("receipt", transactionId);           

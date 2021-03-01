@@ -837,7 +837,38 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
+        [HttpPost]
+        public async Task<JsonResult>  SendContact(ContactDetails collection)
+        {
+            try
+            {
+                CommonMethods objCommonMethods = new CommonMethods();               
+                CommonMethods cm = new CommonMethods();
+                cm.SendContact(collection);
 
+                GraphType objGraphType = new GraphType();
+                objGraphType.EnquiryId = "1";
+                objGraphType.Type = "G02";
+
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "109";
+                SendObjData.UserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+                SendObjData.XML = stringTOXml;
+
+                GenericService _genericService = new GenericService();
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<WFLRootBoy>(stringContent);
+                return new JsonResult { Data = status, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+              
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
         [HttpPost]
         public async Task<JsonResult> Save(EnquiryModel collection)
         {

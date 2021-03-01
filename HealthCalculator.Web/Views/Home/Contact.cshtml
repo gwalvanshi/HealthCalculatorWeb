@@ -3,7 +3,12 @@
     ViewBag.Title = "contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .contactMand
+    {
 
+    }
+</style>
 <div class="container-fluid pl-0 pr-0 mb-3">
     <div class="row no-gutters banner contactBanner justify-content-center align-items-center">
         <div class="col-11 text-right">
@@ -29,22 +34,22 @@
             <form>
                 <div class="form-row">
                     <div class="col-12 col-md-6 form-group">
-                        <input type="text" class="form-control border" placeholder="Name">
+                        <input type="text" class="form-control border contactMand" id="txtContactName" placeholder="Name">
                     </div>
                     <div class="col-12 col-md-6 form-group">
-                        <input type="text" class="form-control border" placeholder="Email">
+                        <input type="text" class="form-control border contactMand" id="txtContactemail" placeholder="Email">
                     </div>
                     <div class="col-12 col-md-6 form-group">
-                        <input type="text" class="form-control border" placeholder="Phone">
+                        <input type="text" class="form-control border contactMand" id="txtContactphone" placeholder="Phone">
                     </div>
                     <div class="col-12 col-md-6 form-group">
-                        <input type="text" class="form-control border" placeholder="Subject">
+                        <input type="text" class="form-control border contactMand" id="txtContactsubject" placeholder="Subject">
                     </div>
                     <div class="col-12 col-md-12 col-lg-12 form-group">
-                        <textarea rows="8" class="form-control border" placeholder="Message"></textarea>
+                        <textarea rows="8" class="form-control border contactMand" id="txtContactMessage" placeholder="Message"></textarea>
                     </div>
                     <div class="col-12 col-md-12 col-lg-12 form-group">
-                        <a class="btn btn-reg mb-2 hvr-sweep-to-top">&nbsp; &nbsp; SEND NOW &nbsp; &nbsp; </a>
+                        <a class="btn btn-reg mb-2 hvr-sweep-to-top" href="#" onclick="return SendEmail();">&nbsp; &nbsp; SEND NOW &nbsp; &nbsp; </a>
                     </div>
                 </div>
             </form>
@@ -56,4 +61,61 @@
     <img src="@CommonMethods.ServerPath/img/img5.png" class="img-fluid contentBodyBg" />
 </div>
 
+<script>
+    function ValidateRequiredField()
+    {
+
+        var isRequired = true;
+        var x = document.getElementsByClassName("contactMand");
+        var i;
+        for (i = 0; i < x.length; i++) {
+
+            if (x[i].value == "") {
+                isRequired = false;
+            }
+        }
+        return isRequired;
+    }
+    function SendEmail()
+    { var vPath = "@Url.Content("~/")";
+        if(ValidateRequiredField())
+        {
+            var tblString = '<table><thead><tr><td>Name</td><td>Email</td><td>Phone</td><td>Subject</td><td>Message</td></tr></thead>' +
+                
+                '<tbody><tr">' +
+                    '<td>' + $("#txtContactName").val() +
+                    '</td>' +
+                    '<td>' + $("#txtContactemail").val() +
+
+                    '</td>' +
+                    '<td>' + $("#txtContactphone").val() +
+
+                    '</td>' +
+                    '<td>' + $("#txtContactsubject").val() +
+
+                    '</td>' +
+                    '<td>' + $("#txtContactMessage").text() +
+                     '</td>' +
+                    '</tr></tbody>';
+          
+            var data = {
+                Email: $("#txtContactemail").val(),
+                Name: $("#txtContactName").val(),
+                Subject: $("#txtContactsubject").val(),
+                Message: tblString,
+                Phone: $("#txtContactphone").val()
+            };
+            CommonAjaxMethod('Home/SendContact', data, false, 'POST', function (response) {
+                alert("Details has been sent.")
+            });
+           
+        }
+        else
+        {
+            alert("Please provide all details.")
+            return false;
+        }
+
+    }
+</script>
 
