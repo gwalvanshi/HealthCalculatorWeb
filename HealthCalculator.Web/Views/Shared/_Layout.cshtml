@@ -84,17 +84,28 @@
                         <li class="list-group-item"><a href="~/Home/contact">Contact Us</a></li>
                         <li class="list-group-item"><a href="#" id="lnkcart"><img src="@CommonMethods.ServerPath/img/cart2.png" class="cartIcon" /> <span class="qnt" id="spQuantity">0</span></a></li>
                         <li class="list-group-item">
-                            <a href="#" class="semi dropdown-toggle" data-toggle="dropdown"><span class="qnt" id="spUserNameToDisplay">Guest User</span></a>                                                  
-                              <div class="dropdown-menu dropdown-menu-right">
-                                <a href="~/Home/AdminView" class="dropdown-item">Dashboard</a>
+                            <a href="#" class="semi dropdown-toggle" data-toggle="dropdown"><span class="qnt" id="spUserNameToDisplay">Guest User</span></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                @if (Session["RoleID"] != null)
+                                {
+                                    if (Session["RoleID"].ToString() == "3")
+                                    {
+                                    <a href="~/Home/AdminView" class="dropdown-item">Dashboard</a>
+                                    }
+                                    
+                                }
                                 <a href="~/Home/assessment?userId=" class="dropdown-item">Assessment Tool</a>
-                                <a href="~/Home/tracker?userId="  class="dropdown-item">Trackers</a>
+                                <a href="~/Home/tracker?userId=" class="dropdown-item">Trackers</a>
                                 <a href="~/Home/MyEatingSmartTools?userId=" class="dropdown-item">Eating Smart Tool</a>
-                                <a href="~/Home/MyEatingPattern?userId="  class="dropdown-item">Eating Pattern</a>
+                                <a href="~/Home/MyEatingPattern?userId=" class="dropdown-item">Eating Pattern</a>
                                 <a href="~/Home/helpdesk?userId=" class="dropdown-item">Admin Messages</a>
                                 <a href="~/Home/ViewPlan?userId=" class="dropdown-item">View Plan</a>
                                 <a href="" onclick="Logout(this)" class="dropdown-item">Logout</a>
                             </div>
+
+                          
+
+
                         </li>
                     </ul>
                 </div>
@@ -3770,9 +3781,7 @@
 
 			if ($("#spQuantity").text() != "0") {
 				displayCartpopup();
-            }
-
-			
+            }			
  }
 
 
@@ -3814,18 +3823,15 @@
 				sessionStorage.setItem("CProgramID", strid);
 
 				$('#myModal').modal('show');
-
 			}
-
-
-                    }
+        }
 
 
 
 
 		@* ------------uday----------*@
 		$(document).ready(function () {
-
+                     
 			if (sessionStorage.getItem("CartSession") != "") {
 
 				$("#spQuantity").text(sessionStorage.getItem("CartSession"));
