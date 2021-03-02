@@ -1283,8 +1283,9 @@
 
 
     function MessageHelp(ctrl) {
-        var selectedUserId = "@Request.QueryString["userId"].ToString()";
-        if (selectedUserId != "") {
+        @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
+        var selectedUserId = "@Request.QueryString["userId"]";
+        if (selectedUserId != null) {
             sessionStorage.setItem('userId', selectedUserId);
         }
         ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
@@ -1292,8 +1293,9 @@
     }
     function TrackersHelp(ctrl)
     {
-        var selectedUserId = "@Request.QueryString["userId"].ToString()";
-        if (selectedUserId != "") {
+        @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
+        var selectedUserId = "@Request.QueryString["userId"]";
+        if (selectedUserId != null) {
             sessionStorage.setItem('userId', selectedUserId);
         }
         ctrl.href = '@Url.Content("~/Home/tracker?userId=")' + selectedUserId;
@@ -1301,8 +1303,9 @@
     }
     function PatternHelp(ctrl)
     {
-        var selectedUserId = "@Request.QueryString["userId"].ToString()";
-        if (selectedUserId != "") {
+       @*// var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
+         var selectedUserId = "@Request.QueryString["userId"]";
+        if (selectedUserId != null) {
             sessionStorage.setItem('userId', selectedUserId);
         }
         ctrl.href = '@Url.Content("~/Home/MyEatingPattern?userId=")' + selectedUserId;
@@ -1314,10 +1317,13 @@
     $(document).ready(function () {
 
         var qData = "@Request.QueryString["userId"]";
-        if (qData != "")
+        if (qData != null)
         {
-            qData = "@Request.QueryString["userId"].ToString()";
-            sessionStorage.setItem('userId', qData);
+            @*qData = "@Request.QueryString["userId"].ToString()";*@
+            qData = "@Request.QueryString["userId"]";
+            if (qData != null) {
+                sessionStorage.setItem('userId', qData);
+            }
             CommonAjaxMethod('Program/GetProductProgram', { userId: qData }, false, 'GET', function (response) {
 
                 var test = response.dataCollection;
@@ -1325,7 +1331,7 @@
                 if (response.dataCollection.length > 0)
                 {
                     sessionStorage.setItem('ProductId', response.dataCollection[0].productId);
-                    sessionStorage.setItem('OrderId', response.dataCollection[0].Order_id);                  
+                    sessionStorage.setItem('OrderId', response.dataCollection[0].Order_id);
                 }
             });
         }
@@ -1337,7 +1343,7 @@
         CommonAjaxMethod('Home/GetUserDetailsById',{userId:sessionStorage.getItem('userId') }, false, 'GET', function (response)
         {
             displayUSerName = response.dataCollection[0].FirstName + " " + response.dataCollection[0].LastName;
-        
+
             $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName+",  believe in yourself. You can do it!");
 
         });
@@ -1360,8 +1366,8 @@
             TableType: "GetRecord",
             UserId: sessionStorage.getItem('userId')
         }
-       
-       
+
+
         //--------------------------------------------------------------------------------------
         if (sessionStorage.getItem('OrderId') != null && sessionStorage.getItem('ProductId') != null)
         {
