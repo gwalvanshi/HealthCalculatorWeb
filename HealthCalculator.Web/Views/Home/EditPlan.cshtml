@@ -29,32 +29,32 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Program <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="Program"  placeholder="Enter Name" readonly="readonly" />
+                            <input type="text" class="form-control border mandFree" id="Program"  placeholder="Enter Name" readonly="readonly" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Product <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="ProductName"  placeholder="Enter Name" readonly="readonly" />
+                            <input type="text" class="form-control border mandFree" id="ProductName"  placeholder="Enter Name" readonly="readonly" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Is Payment Done <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="IsPaymentDone"   readonly="readonly" />
+                            <input type="text" class="form-control border" id="IsPaymentDone"   readonly="readonly" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Total Days <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="Totaldays" maxlength="100" />
+                            <input type="text" class="form-control border mandFree" id="Totaldays" maxlength="100" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Do you want to Active/Deactive/Complete the session <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <select class="custom-select" id="ActivePlan">
-                                <option selected>Select</option>
+                            <select class="custom-select mandFree" id="ActivePlan">
+                                <option value="" selected>Select</option>
                                 <option value="Yes">Active</option>
                                 <option value="No">Deactive</option>
                                 <option value="NA">Completed</option>
@@ -64,13 +64,13 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Active Start Data <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="date" class="form-control border mandotory" id="StartActiveDate" maxlength="100" placeholder="Enter Start date">
+                            <input type="date" class="form-control border mandFree" id="StartActiveDate" maxlength="100" placeholder="Enter Start date">
                         </div>
                     </div>
                     <div class="form-group row" style="display:none;">
                         <label class="col-12 col-sm-5 col-form-label semi">Active End Date <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="date" class="form-control border mandotory" id="EndActiveDate" maxlength="100" placeholder="Enter end date">
+                            <input type="date" class="form-control border" id="EndActiveDate" maxlength="100" placeholder="Enter end date">
                         </div>
                     </div>
                     
@@ -87,11 +87,24 @@
 
 
 <script>
+    function ValidateRequiredField() {
 
+        var isRequired = true;
+        var x = document.getElementsByClassName("mandFree");
+        var i;
+        for (i = 0; i < x.length; i++) {
+
+            if (x[i].value == "") {
+                isRequired = false;
+            }
+        }
+        return isRequired;
+    }
     window.onload = function () {
         var qData = "@Request.QueryString["orderId"].ToString()";    
         
         $("#hdnOrderDetailsID").val(qData);
+
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
@@ -109,23 +122,27 @@
     }
 
 
-    function UpdatePlan()
-    {
-    var objData={
-        OrderDetail_Id: $("#hdnOrderDetailsID").val(),
-        Program: $("#Program").val(),
-        ProductName:$("#ProductName").val(),
-        StartActiveDate:$("#StartActiveDate").val(),
-        EndActiveDate:$("#EndActiveDate").val(),
-        Totaldays:$("#Totaldays").val(),
-        ActivePlan:$("#ActivePlan").val(),
-        IsPaymentDone:$("#IsPaymentDone").val()
-        }       
-
-    CommonAjaxMethod('Home/SaveOrderDetails', objData, false, 'POST', function (response)
+    function UpdatePlan() {
+        var objData = {
+            OrderDetail_Id: $("#hdnOrderDetailsID").val(),
+            Program: $("#Program").val(),
+            ProductName: $("#ProductName").val(),
+            StartActiveDate: $("#StartActiveDate").val(),
+            EndActiveDate: $("#EndActiveDate").val(),   
+            Totaldays: $("#Totaldays").val(),
+            ActivePlan: $("#ActivePlan").val(),
+            IsPaymentDone: $("#IsPaymentDone").val()
+        }
+        if (ValidateRequiredField()) {
+            CommonAjaxMethod('Home/SaveOrderDetails', objData, false, 'POST', function (response) {
+                alert("Plan updated successfully.");
+            });
+        }
+        else
         {
-            alert("Plan updated successfully.");
-        });
+            alert("Plan select mandotory details.");
+            return false;
+        }
     }
 </script>
 
