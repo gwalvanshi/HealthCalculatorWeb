@@ -3432,7 +3432,9 @@
 
             //if ($("#txtChildEmail").val() != "") {
             CommonAjaxMethod('Home/Save', EnquiryModel, false, 'POST', function (response) {
-                alert('You will get an email from our within 24 working hours. for more details you can call us on XXXX XXXX.');
+                $(".Progressloading1").hide();
+                //
+                alert('You will get an email from our team within 24 working hours. For more details you can call us on +918452811506.');
             });
         }
     }

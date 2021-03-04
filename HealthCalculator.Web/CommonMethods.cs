@@ -179,7 +179,7 @@ namespace HealthCalculator.Web
                     if (weightSel == "KG")
                         Weight1 = dtRange[i].Weight;
                     else
-                        Weight1 = dtRange[i].WeightLB;
+                        Weight1 =((int)(Convert.ToDouble(dtRange[i].WeightLB)+0.5)).ToString();
                     if (heighsel == "Feet")
                         Height1 = dtRange[i].HeightFI;
                     else
@@ -191,7 +191,7 @@ namespace HealthCalculator.Web
                     if (weightSel == "KG")
                         Weight2 = dtRange[i].Weight;
                     else
-                        Weight2 = dtRange[i].WeightLB;
+                        Weight2 = ((int)(Convert.ToDouble(dtRange[i].WeightLB) + 0.5)).ToString();
                     if (heighsel == "Feet")
                         Height2 = dtRange[i].HeightFI;
                     else
@@ -203,7 +203,7 @@ namespace HealthCalculator.Web
                     if (weightSel == "KG")
                         Weight3 = dtRange[i].Weight;
                     else
-                        Weight3 = dtRange[i].WeightLB;
+                        Weight3 = ((int)(Convert.ToDouble(dtRange[i].WeightLB) + 0.5)).ToString();
                     if (heighsel == "Feet")
                         Height3 = dtRange[i].HeightFI;
                     else
@@ -215,7 +215,7 @@ namespace HealthCalculator.Web
                     if (weightSel == "KG")
                         Weight4 = dtRange[i].Weight;
                     else
-                        Weight4 = dtRange[i].WeightLB;
+                        Weight4 = ((int)(Convert.ToDouble(dtRange[i].WeightLB) + 0.5)).ToString();
                     if (heighsel == "Feet")
                         Height4 = dtRange[i].HeightFI;
                     else
@@ -227,7 +227,7 @@ namespace HealthCalculator.Web
                     if (weightSel == "KG")
                         Weight5 = dtRange[i].Weight;
                     else
-                        Weight5 = dtRange[i].WeightLB;
+                        Weight5 = ((int)(Convert.ToDouble(dtRange[i].WeightLB) + 0.5)).ToString();
                     if (heighsel == "Feet")
                         Height5 = dtRange[i].HeightFI;
                     else
@@ -280,7 +280,7 @@ namespace HealthCalculator.Web
             string content = objReader.ReadToEnd();
             objReader.Close();
 
-            content = Regex.Replace(content, "@ClientName", FirstCharToUpper(collection.Instance_enquiry.State, gender));
+            content = Regex.Replace(content, "@ClientName", FirstCharToUpper(collection.Instance_enquiry.State, gender,"C"));
 
 
             content = Regex.Replace(content, "@TableWeight", TableWiegth);
@@ -498,7 +498,7 @@ namespace HealthCalculator.Web
             string content = objReader.ReadToEnd();
             objReader.Close();
             indicate = weightStatus(dt, collection);
-            content = Regex.Replace(content, "@ClientName", FirstCharToUpper(collection.Instance_enquiry.FirstName, Gender));
+            content = Regex.Replace(content, "@ClientName", FirstCharToUpper(collection.Instance_enquiry.FirstName, Gender,"A"));
             string WType = GetWeightType(dt, collection);
             string weightStatusCandidate = BMIStatus(dt);
             if (weightStatusCandidate != "Normal")
@@ -619,7 +619,7 @@ namespace HealthCalculator.Web
 
         }
 
-        public static string FirstCharToUpper(string s, string gender)
+        public static string FirstCharToUpper(string s, string gender, string type)
         {
             string retVal = string.Empty;
             // Check for empty string.  
@@ -629,10 +629,14 @@ namespace HealthCalculator.Web
             }
             // Return char and concat substring.  
             retVal = char.ToUpper(s[0]) + s.Substring(1);
-            if (gender == "Male")
-                retVal = "Mr. " + retVal;
-            else if (gender == "Female")
-                retVal = "Ms. " + retVal;
+
+            if (type == "A")
+            {
+                if (gender == "Male")
+                    retVal = "Mr. " + retVal;
+                else if (gender == "Female")
+                    retVal = "Ms. " + retVal;
+            }           
 
             return retVal;
         }

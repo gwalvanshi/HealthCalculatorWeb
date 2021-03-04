@@ -2,12 +2,37 @@
 @{
     ViewBag.Title = "Plan";
 }
+<div class="container-fluid bg-sky">
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
+            <h2 class="semi text-white text-shadow">
+                <span id="HeaderValue"></span>
+                <img src="@CommonMethods.ServerPath/img/thumbs.png" style="width: 40px; vertical-align: middle; margin-top: -15px;" />
+                <img src="@CommonMethods.ServerPath/img/smiley.png" class="smiley" style="width: 40px;" />
+            </h2>
+        </div>
+    </div>
+</div>
+
 <div class="bg-yellow">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col">
                 <ul class="list-inline menu-sec">
-                    <li class="list-inline-item"><a href="~/Home/AdminView">Back To Admin View</a></li>
+
+                    <li class="list-inline-item"><a href="~/Home/assessment">My Assessment Tool</a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right d-none d-md-block font" style="color: red;" id="spTrackers"></span></a></li>
+
+                    <li class="list-inline-item"><a href="~/Home/MyEatingSmartTools?userId=">My Eating Smart Tool</a></li>
+
+
+                    <li class="list-inline-item"> <a href="#" onclick="PatternHelp(this)">My Eating Pattern<span class="float-right d-none d-md-block" style="color: red;" id="spPattern"></span></a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" style="color: red;" id="spMessage"></span></a></li>
+
+                    <li class="list-inline-item"><a href="~/Home/ViewPlan?userId=">View Plans</a></li>
+                    <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -28,7 +53,38 @@
 </div>
 
 <script>
+    function MessageHelp(ctrl) {
+        var selectedUserId ="@Request.QueryString["userId"].ToString()";
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+    function TrackersHelp(ctrl)
+    {
+        var selectedUserId = "@Request.QueryString["userId"].ToString()";
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/tracker?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+    function PatternHelp(ctrl)
+    {
+        var selectedUserId ="@Request.QueryString["userId"].ToString()";
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/MyEatingPattern?userId=")' + selectedUserId;
+        ctrl.click();
+    }
 
+    function Logout(ctrl) {
+        sessionStorage.clear();
+        ctrl.href = '@Url.Content("~/Home/Logout")';
+        ctrl.click();
+    }
     function getdate(strdate) {
         var strRetrunDate;
         if (strdate != null) {
@@ -50,8 +106,21 @@
         {
             qData = "@Request.QueryString["userId"].ToString()";
             sessionStorage.setItem('userId', qData);
-          
+
         }
+        var assessment =
+       {
+           TableType: "GetRecord",
+           UserId: sessionStorage.getItem('userId')
+       }
+        CommonAjaxMethod('Program/GetAsseeement', assessment, false, 'POST', function (response) {
+            if (response.data.Data.Table.length > 0) {
+                $("#spMessage").text(" (" + response.data.Data.Table[0].MessageCount + ")");
+                $("#spTrackers").text(" (" + response.data.Data.Table[0].Trackerfalldays + ")");
+                $("#spPattern").text(" (" + response.data.Data.Table[0].PatternCount + ")");
+            }
+
+        });
 
         if (sessionStorage.getItem('RoleID') == "3") {
 
@@ -104,7 +173,7 @@
                     "ProductName",
                     {
                         caption: "StartActiveDate",
-                             
+
                         allowEditing: false,
                         calculateCellValue: function(data) {
                             return getdate(data.StartActiveDate);
@@ -112,14 +181,14 @@
                     },
                      {
                          caption: "EndActiveDate",
-                             
+
                          allowEditing: false,
                          calculateCellValue: function(data) {
                              return getdate(data.EndActiveDate);
                          }
                      }
                  ,
-                    
+
                     "Totaldays",
 
                      "INRRate",
@@ -136,7 +205,7 @@
                                 .text('Edit Plan')
                                 .on('dxclick', function ()
                                 {
-                                   
+
                                    var roleId= sessionStorage.getItem('RoleID');
                                     sessionStorage.setItem('SelectedUserId', "");
                                     if (roleId == "3" || roleId == "2")
@@ -148,7 +217,7 @@
                                        alert("You dont have sufficient perpmission on it.")
                                     }
 
-                                   
+
                                 }).appendTo(container);
                         }
                     }
