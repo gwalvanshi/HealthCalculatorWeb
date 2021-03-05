@@ -41,7 +41,7 @@
 <div class="container-fluid flowerBg">
     <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-11">
-            <div class="middleContent bg-gray shadow">
+            <div class="middleContent bg-gray shadow" style="overflow-x: scroll;">
                 <div class="row">
                     <div class="demo-container">
                         <div id="gridContainer"></div>
@@ -144,6 +144,10 @@
             //    showBorders: true
             //});
         });
+        CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
+            $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + ",  believe in yourself. You can do it!");
+
+        });
     }
 
     function Load(ctr)
@@ -153,7 +157,7 @@
                  dataSource: ctr,
                 allowColumnReordering: true,
                 showBorders: true,
-
+                columnMinWidth: 180,
                 searchPanel: {
                     visible: true
                 },
@@ -167,9 +171,14 @@
                     mode: "form",
                     allowUpdating: false
                 },
-                columnMinWidth: 100,
+               
                 columns: [
-                    "Program",
+                   
+                     {
+                         dataField: "Program",
+                         width: 300
+                     },
+
                     "ProductName",
                     {
                         caption: "StartActiveDate",
@@ -207,7 +216,7 @@
                                 {
 
                                    var roleId= sessionStorage.getItem('RoleID');
-                                    sessionStorage.setItem('SelectedUserId', "");
+                                   sessionStorage.setItem('SelectedUserId', options.data.UserId);
                                     if (roleId == "3" || roleId == "2")
                                     {
                                         window.location.href = "EditPlan?orderId=" + options.data.OrderDetail_Id;

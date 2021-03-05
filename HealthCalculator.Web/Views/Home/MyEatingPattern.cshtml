@@ -743,6 +743,21 @@
         }
         else
         {
+
+           var eatingpattern =
+           {
+               TableType: "EatingPattern1",
+               UserId: sessionStorage.getItem('userId'),
+               IsSubmit: varsubmit,
+               RoleId: sessionStorage.getItem('RoleID')
+              
+           }
+
+
+            CommonAjaxMethod('Program/SaveEatingPattern', eatingpattern, false, 'POST', function (response) {
+               
+            });
+
             CommonAjaxMethod('Program/GetEatingPattern', { userId: sessionStorage.getItem("userId"), orderId: sessionStorage.getItem('OrderId'), productId: sessionStorage.getItem('ProductId'), SessionId: varselectedID.value }, false, 'GET', function (response) {
 
                 if (sessionStorage.getItem('RoleID') == "1")

@@ -86,12 +86,12 @@
                         <li class="list-group-item">
                             <a href="#" class="semi dropdown-toggle" data-toggle="dropdown"><span class="qnt" id="spUserNameToDisplay">Guest User</span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                @if (Session["RoleID"] != null)
+                                @if(Session["RoleID"] != null)
                                 {
-                                    if (Session["RoleID"].ToString() == "3")
+                                    if(Session["RoleID"].ToString() == "3")
                                     {
-                                    <a href="~/Home/AdminView" class="dropdown-item">Dashboard</a>
-                                    }
+                                     <a href="~/Home/AdminView" class="dropdown-item">Admin Dashboard</a>
+                                    } 
                                     
                                 }
                                 <a href="~/Home/assessment?userId=" class="dropdown-item">Assessment Tool</a>
@@ -3840,12 +3840,7 @@
 			   // deleteRows();
 
 			}
-			CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response)
-			{
-			    if(response.dataCollection.length>0)
-			    $("#spUserNameToDisplay").text("Welcome ," + response.dataCollection[0].FirstName);
-
-			});
+			$("#spUserNameToDisplay").text("Welcome ," + sessionStorage.getItem('EmployeeName'));
 
 		   
 			$("#lnkcart").click(function (e)

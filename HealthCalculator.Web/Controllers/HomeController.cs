@@ -125,8 +125,9 @@ namespace HealthCalculator.Web.Controllers
             var objCommunication =  _genericService.GetRecordsResult<MessageMaster>(stringContent1);
             if (objCommunication.ErrorMessage == null)
             {
+                var fltData = objCommunication.dataCollection.OrderByDescending(a => a.MessageId);
+                var distinctData = fltData.Select(x => x.MessageId).Distinct().ToList();
                
-                var distinctData = objCommunication.dataCollection.Select(x => x.MessageId).Distinct().ToList();
                 for (int i = 0; i < distinctData.Count; i++)
                 {
                    

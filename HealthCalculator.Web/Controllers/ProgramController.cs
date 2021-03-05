@@ -660,6 +660,14 @@ namespace HealthCalculator.Web.Controllers
                 };
                 IndexScreenSearchParameterModelList.Add(obj4);
 
+                var obj5 = new IndexScreenSearchParameterModel
+                {
+                    SearchParameter = "IsSubmit",
+                    SearchParameterDataType = "int",
+                    SearchParameterValue = "1"
+                };
+                IndexScreenSearchParameterModelList.Add(obj5);
+
                 collection.IndexScreenSearchParameterModel = IndexScreenSearchParameterModelList;
 
                 var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");

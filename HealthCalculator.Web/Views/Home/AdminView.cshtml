@@ -15,11 +15,15 @@
         <a href="#"  onclick="LoadOrderGrid(6)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Orders<span class="float-right d-none d-md-block" id="spOrder"></span></a>
         <a href="#" onclick="LoadOrderGrid(7)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Completed<span class="float-right d-none d-md-block" id="spCompleted"></span></a>
         <a href="#" onclick="LoadOrderGrid(8)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Active<span class="float-right d-none d-md-block" id="spActive"></span></a>
-        <a href="#" onclick="LoadAll()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">All Users</a>  
+
+        <a href="#" onclick="LoadOrderGrid(9)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">DeActiveCount<span class="float-right d-none d-md-block" id="spDeActiveCount"></span></a>
+        
+        
+         <a href="#" onclick="LoadAll()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">All Users</a>  
     </div>
     <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-11">
-            <div class="middleContent bg-gray shadow">
+            <div class="middleContent bg-gray shadow" style="overflow-x: scroll;">
                 <div class="row">
                     <div class="demo-container">
                         <div id="gridContainer"></div>
@@ -98,6 +102,11 @@
             vType = "10"
             module = "AC";
         }
+        else if (strVar == 9) {
+            //order
+            vType = "11"
+            module = "AC";
+        }
         var obj1 = {
 
             Type: vType,
@@ -110,7 +119,7 @@
                 dataSource: response.data.Data,
                 allowColumnReordering: true,
                 showBorders: true,
-
+                columnMinWidth: 180,
                 searchPanel: {
                     visible: true
                 },
@@ -125,14 +134,30 @@
                     allowUpdating: false
                 },
                 columns: [
-                    "FirstName",
-                    "LastName",
-                    "Email",
-                     "UserName",
-                    "MobileNo",
+                    {
+                        dataField: "FirstName",
+                        width: 100
+                    },
+                     {
+                         dataField: "LastName",
+                         width: 100
+                     },
+                      {
+                          dataField: "Email",
+                          width: 100
+                      },
+                       {
+                           dataField: "UserName",
+                           width: 100
+                       },
+                       {
+                           dataField: "MobileNo",
+                           width: 100
+                       },
+                   
                      {
                          caption: "Action Date",
-
+                         width: 100,
                          allowEditing: false,
                          calculateCellValue: function (data) {
                              return getdate(data.AddedWhen);
@@ -140,6 +165,7 @@
                      },
                       {
                           caption: "Program Detail",
+                          width: 100,
                           alignment: 'center',
                           cellTemplate: function (container, options) {
                               $('<a />').addClass('dx-link')
@@ -242,7 +268,9 @@
             $("#spCompleted").text(" (" + response.data.Data[0].CompletedCount + ")");
             $("#spActive").text(" (" + response.data.Data[0].ActiveCount + ")");
          
-           
+            $("#DeActiveCount").text(" (" + response.data.Data[0].DeActiveCount + ")");
+            
+
            // Load(response.dataCollection);
             //$("#gridContainer").dxDataGrid(
             //    {
@@ -290,7 +318,7 @@
                  dataSource: ctr,
                 allowColumnReordering: true,
                 showBorders: true,
-              
+                columnMinWidth: 180,
                 searchPanel: {
                     visible: true
                 },
@@ -305,14 +333,29 @@
                     allowUpdating: false
                 },
                 columns: [
-                    "FirstName",
-                    "LastName",
-                    "Email",
-                     "UserName",
-                    "MobileNo",
+                    {
+                        dataField: "FirstName",
+                        width: 100
+                    },
+                     {
+                         dataField: "LastName",
+                         width: 100
+                     },
+                      {
+                          dataField: "Email",
+                          width: 100
+                      },
+                       {
+                           dataField: "UserName",
+                           width: 100
+                       },
+                       {
+                           dataField: "MobileNo",
+                           width: 100
+                       },
                      {
                          caption: "Action Date",
-
+                         width: 100,
                          allowEditing: false,
                          calculateCellValue: function (data) {
                              return getdate(data.AddedWhen);
@@ -321,6 +364,7 @@
                       {
                           caption: "User Dashboard",
                           alignment: 'center',
+                          width: 100,
                           cellTemplate: function (container, options) {
                               $('<a />').addClass('dx-link')
                                   .text('View Detail')
@@ -334,6 +378,7 @@
                     {
                         caption: "View Details",
                         alignment: 'center',
+                        width: 100,
                         cellTemplate: function (container, options) {
                             $('<a />').addClass('dx-link')
                                 .text('View Detail')
@@ -349,6 +394,7 @@
                     {
                         caption: "Add Free Session",
                         alignment: 'center',
+                        width: 100,
                         cellTemplate: function (container, options) {
                             $('<a />').addClass('dx-link')
                                 .text('Free Session')
@@ -371,7 +417,7 @@
             dataSource: ctr,
             allowColumnReordering: true,
             showBorders: true,
-
+            columnMinWidth: 180,
             searchPanel: {
                 visible: true
             },
@@ -386,14 +432,29 @@
                 allowUpdating: false
             },
             columns: [
-                "FirstName",
-                "LastName",
-                "Email",
-                 "UserName",
-                "MobileNo",
+               {
+                   dataField: "FirstName",
+                   width: 100
+               },
+                     {
+                         dataField: "LastName",
+                         width: 100
+                     },
+                      {
+                          dataField: "Email",
+                          width: 100
+                      },
+                       {
+                           dataField: "UserName",
+                           width: 100
+                       },
+                       {
+                           dataField: "MobileNo",
+                           width: 100
+                       },
                  {
                      caption: "Action Date",
-
+                     width: 120,
                      allowEditing: false,
                      calculateCellValue: function (data) {
                          return getdate(data.AddedWhen);
@@ -401,6 +462,7 @@
                  },
                   {
                       caption: "User Dashboard",
+                      width: 100,
                       alignment: 'center',
                       cellTemplate: function (container, options) {
                           $('<a />').addClass('dx-link')
@@ -414,6 +476,7 @@
                   },
                 {
                     caption: "Add Free Session",
+                    width: 100,
                     alignment: 'center',
                     cellTemplate: function (container, options) {
                         $('<a />').addClass('dx-link')
@@ -510,7 +573,17 @@
             var yyyy = dateData.getFullYear();
             if (dd < 10) { dd = '0' + dd }
             if (mm < 10) { mm = '0' + mm }
-            strRetrunDate = yyyy + '-' + mm + '-' + dd;
+
+
+            var hours = dateData.getHours();
+            var minutes = dateData.getMinutes();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+
+            strRetrunDate = yyyy + '-' + mm + '-' + dd +" " +strTime;
         }
         return strRetrunDate;
     }

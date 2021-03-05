@@ -56,6 +56,7 @@ namespace HealthCalculator.Web.EntityModel
         public int MessageCount { get; set; }
         public int CompletedCount { get; set; }
         public int ActiveCount { get; set; }
+        public int DeActiveCount { get; set; }
 
     }
 }

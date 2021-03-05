@@ -1289,7 +1289,7 @@
     function MessageHelp(ctrl) {
         @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
         var selectedUserId = "@Request.QueryString["userId"]";
-        if (selectedUserId != null) {
+        if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
         }
         ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
@@ -1299,7 +1299,7 @@
     {
         @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
         var selectedUserId = "@Request.QueryString["userId"]";
-        if (selectedUserId != null) {
+        if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
         }
         ctrl.href = '@Url.Content("~/Home/tracker?userId=")' + selectedUserId;
@@ -1309,7 +1309,7 @@
     {
        @*// var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
          var selectedUserId = "@Request.QueryString["userId"]";
-        if (selectedUserId != null) {
+        if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
         }
         ctrl.href = '@Url.Content("~/Home/MyEatingPattern?userId=")' + selectedUserId;
@@ -1321,11 +1321,11 @@
     $(document).ready(function () {
 
         var qData = "@Request.QueryString["userId"]";
-        if (qData != null)
+        if (qData != "")
         {
             @*qData = "@Request.QueryString["userId"].ToString()";*@
             qData = "@Request.QueryString["userId"]";
-            if (qData != null) {
+            if (qData != "") {
                 sessionStorage.setItem('userId', qData);
             }
             CommonAjaxMethod('Program/GetProductProgram', { userId: qData }, false, 'GET', function (response) {

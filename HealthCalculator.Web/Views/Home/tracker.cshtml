@@ -188,8 +188,10 @@
     $(document).ready(function ()
     {
         var qData = "@Request.QueryString["userId"].ToString()";
+       
         if (qData != "")
         {
+            alert(qData)
             qData = "@Request.QueryString["userId"].ToString()";
             sessionStorage.setItem('userId', qData);
 
@@ -225,10 +227,7 @@
 
        });
 
-        var selectedUserId = sessionStorage.getItem('SelectedUserId');
-        if (selectedUserId != "") {
-            sessionStorage.setItem('userId', selectedUserId);
-        }
+     
         var tracker =
         {
             TableType: "GetRecord",
@@ -549,6 +548,19 @@
         }
         return strRetrunDate;
     }
+    function getTodaydate() {
+        var strRetrunDate;
+       
+            var dateData = new Date();
+            var dd = dateData.getDate();
+            var mm = dateData.getMonth() + 1; //January is 0!
+            var yyyy = dateData.getFullYear();
+            if (dd < 10) { dd = '0' + dd }
+            if (mm < 10) { mm = '0' + mm }
+            strRetrunDate = yyyy + '-' + mm + '-' + dd;
+        
+        return strRetrunDate;
+    }
     function GetTrackerData()
     {
         CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: sessionStorage.getItem('userId') }, false, 'GET',
@@ -566,13 +578,18 @@
                   for (var i = 0; i < response.data.Data.Table.length; i++)
                   {
 
-
+                      var isValidDate=false;
                       var strDate = ""; //var dateValue;
 
                       if (response.data.Data.Table[i].TrackerDate != null)
                       {
 
                           strDate = getdate(response.data.Data.Table[i].TrackerDate);
+                          var todayDate = getTodaydate();
+                          if(strDate==todayDate)
+                          {
+                              isValidDate=true
+                          }
                       }
 
                         midCounter = (i % 3);
@@ -581,9 +598,25 @@
                             midcounterStart++;
                         }
                         midcounterSet++;
+                      
+                        if (sessionStorage.getItem('RoleID') == "1")
+                            {
+                                    if (isValidDate) {
+                                        $("#txtWeight" + midcounterSet + midcounterStart).val(response.data.Data.Table[i].Weight);
+                                        $("#txtDifference" + midcounterSet + midcounterStart).val(response.data.Data.Table[i].WeightDifference);
+                                    }
+                                    else {
+                                        $("#txtWeight" + midcounterSet + midcounterStart).attr('readonly', true);
+                                        $("#txtDifference" + midcounterSet + midcounterStart).attr('readonly', true);
+                                    }
+                        }
+                        else
+                        {
 
-                      $("#txtWeight" + midcounterSet + midcounterStart).val(response.data.Data.Table[i].Weight);
-                      $("#txtDifference" + midcounterSet + midcounterStart).val(response.data.Data.Table[i].WeightDifference);
+                              $("#txtWeight" + midcounterSet + midcounterStart).val(response.data.Data.Table[i].Weight);
+                              $("#txtDifference" + midcounterSet + midcounterStart).val(response.data.Data.Table[i].WeightDifference);
+                            }
+
                         $("#txtDate" + midcounterSet + midcounterStart).val(strDate);
                         if(midcounterSet==3)
                         {
@@ -600,12 +633,17 @@
                   for (var i = 0; i < response.data.Data.Table1.length; i++)
                   {
 
-
+                      var isValidDateI = false;
                       var strDate = ""; //var dateValue;
 
                       if (response.data.Data.Table1[i].InchTrackerDate != null) {
 
                           strDate = getdate(response.data.Data.Table1[i].InchTrackerDate);
+
+                         var todayDate = getTodaydate();
+                          if (strDate == todayDate) {
+                              isValidDateI = true
+                          }
                       }
 
                       midCounter = (i % 2);
@@ -614,9 +652,30 @@
                       }
                       midcounterSet++;
 
-                      $("#txtChest" + midcounterSet + midcounterStart).val(response.data.Data.Table1[i].Chest);
-                      $("#txtWaist" + midcounterSet + midcounterStart).val(response.data.Data.Table1[i].Waist);
-                      $("#txthip" + midcounterSet + midcounterStart).val(response.data.Data.Table1[i].Hip);
+                    
+
+                      if (sessionStorage.getItem('RoleID') == "1") 
+                      {
+                          if (isValidDateI) {
+                              $("#txtChest" + midcounterSet + midcounterStart).val(response.data.Data.Table1[i].Chest);
+                              $("#txtWaist" + midcounterSet + midcounterStart).val(response.data.Data.Table1[i].Waist);
+                              $("#txthip" + midcounterSet + midcounterStart).val(response.data.Data.Table1[i].Hip);
+                          }
+                          else {
+
+                              $("#txtChest" + midcounterSet + midcounterStart).attr('readonly', true);
+                              $("#txtWaist" + midcounterSet + midcounterStart).attr('readonly', true);
+                              $("#txthip" + midcounterSet + midcounterStart).attr('readonly', true);
+                             
+                          }
+                      }
+                      else {
+
+                          $("#txtChest" + midcounterSet + midcounterStart).val(response.data.Data.Table1[i].Chest);
+                          $("#txtWaist" + midcounterSet + midcounterStart).val(response.data.Data.Table1[i].Waist);
+                          $("#txthip" + midcounterSet + midcounterStart).val(response.data.Data.Table1[i].Hip);
+                      }
+                      
                       $("#txtTrackerDate" + midcounterSet + midcounterStart).val(strDate);
                       if (midcounterSet == 2) {
                           midcounterSet = 0;
