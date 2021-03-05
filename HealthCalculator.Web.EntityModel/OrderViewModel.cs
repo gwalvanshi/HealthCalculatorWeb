@@ -69,5 +69,8 @@ namespace HealthCalculator.Web.EntityModel
 
         public int CoupenId { get; set; }
 
+        public DateTime? StartDate { get; set; }
+        public bool? IsStarted { get; set; }
+
     }
 }

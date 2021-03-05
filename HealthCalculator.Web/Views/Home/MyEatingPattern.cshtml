@@ -729,8 +729,6 @@
 
     function bindData(varselectedID)
     {
-
-
         if (sessionStorage.getItem('RoleID') == "3" || sessionStorage.getItem('RoleID') == "2")
         {
 
@@ -895,24 +893,58 @@
                     $("#userform").hide();
                     $("#adminform").show();
 
+                    
                     if (response.dataCollection.length > 0) {
-                        tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
 
-                        tinymce.get('txtPreBreak').setContent(response.dataCollection[0].PreBreakfast);
-                        tinymce.get('txtBreak').setContent(response.dataCollection[0].Breakfast);
-                        tinymce.get('txtMidMorning').setContent(response.dataCollection[0].MidMorning);
-                        tinymce.get('txtPreWorkout').setContent(response.dataCollection[0].PreWorkout);
-                        tinymce.get('txtDuringWorkout').setContent(response.dataCollection[0].DuringWorkout);
-                        tinymce.get('txtPreLunch').setContent(response.dataCollection[0].PreLunch);
-                        tinymce.get('txtLunch').setContent(response.dataCollection[0].Lunch);
-                        tinymce.get('txtTeaEvening').setContent(response.dataCollection[0].TeaEvening);
-                        tinymce.get('txtLateEvening').setContent(response.dataCollection[0].LateEvening);
-                        tinymce.get('txtPreDinner').setContent(response.dataCollection[0].PreDinner);
-                        tinymce.get('txtDinner').setContent(response.dataCollection[0].Dinner);
-                        tinymce.get('txtPostDinner').setContent(response.dataCollection[0].PostDinner);
-                        tinymce.get('txtBedTime').setContent(response.dataCollection[0].BedTime);
-                        tinymce.get('txtRecipes').setContent(response.dataCollection[0].Recipes);
-                        tinymce.get('txtNotes').setContent(response.dataCollection[0].Notes);
+                        if (response.dataCollection[0].OnRising != null) {
+                            tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
+                        }
+
+                        if (response.dataCollection[0].PreBreakfast != null) {
+                            tinymce.get('txtPreBreak').setContent(response.dataCollection[0].PreBreakfast);
+                        }
+                        if (response.dataCollection[0].Breakfast != null) {
+                            tinymce.get('txtBreak').setContent(response.dataCollection[0].Breakfast);
+                        }
+                        if (response.dataCollection[0].MidMorning != null) {
+                            tinymce.get('txtMidMorning').setContent(response.dataCollection[0].MidMorning);
+                        }
+                        if (response.dataCollection[0].PreWorkout != null) {
+                            tinymce.get('txtPreWorkout').setContent(response.dataCollection[0].PreWorkout);
+                        }
+                        if (response.dataCollection[0].DuringWorkout != null) {
+                            tinymce.get('txtDuringWorkout').setContent(response.dataCollection[0].DuringWorkout);
+                        }
+                        if (response.dataCollection[0].PreLunch != null) {
+                            tinymce.get('txtPreLunch').setContent(response.dataCollection[0].PreLunch);
+                        }
+                        if (response.dataCollection[0].Lunch != null) {
+                            tinymce.get('txtLunch').setContent(response.dataCollection[0].Lunch);
+                        }
+                        if (response.dataCollection[0].TeaEvening != null) {
+                            tinymce.get('txtTeaEvening').setContent(response.dataCollection[0].TeaEvening);
+                        }
+                        if (response.dataCollection[0].LateEvening != null) {
+                            tinymce.get('txtLateEvening').setContent(response.dataCollection[0].LateEvening);
+                        }
+                        if (response.dataCollection[0].PreDinner != null) {
+                            tinymce.get('txtPreDinner').setContent(response.dataCollection[0].PreDinner);
+                        }
+                        if (response.dataCollection[0].Dinner != null) {
+                            tinymce.get('txtDinner').setContent(response.dataCollection[0].Dinner);
+                        }
+                        if (response.dataCollection[0].PostDinner != null) {
+                            tinymce.get('txtPostDinner').setContent(response.dataCollection[0].PostDinner);
+                        }
+                        if (response.dataCollection[0].BedTime != null) {
+                            tinymce.get('txtBedTime').setContent(response.dataCollection[0].BedTime);
+                        }
+                        if (response.dataCollection[0].Recipes != null) {
+                            tinymce.get('txtRecipes').setContent(response.dataCollection[0].Recipes);
+                        }
+                        if (response.dataCollection[0].Notes != null) {
+                            tinymce.get('txtNotes').setContent(response.dataCollection[0].Notes);
+                        }
                     }
                 }
 

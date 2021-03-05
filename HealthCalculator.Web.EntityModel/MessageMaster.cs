@@ -23,6 +23,10 @@ namespace HealthCalculator.Web.EntityModel
         public string UserName { get; set; }
         public List<MessageConversation> MessageConversationList { get; set; }
 
+        public bool IsMessageRead { get; set; }
+        public bool CheckedByAdmin { get; set; }
+        
+
     }
     public class MessageConversation
     {      
