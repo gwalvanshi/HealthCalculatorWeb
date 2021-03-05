@@ -108,21 +108,50 @@ namespace HealthCalculator.Web.Controllers
                 loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
             else
                 loggedIdUserID = Convert.ToInt32(userId);
+
             GenericService _genericService = new GenericService();
             IndexScreenParameterModel collection = new IndexScreenParameterModel();
+
             collection.ScreenID = "112";
             collection.UserId = loggedIdUserID;
-            collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+
+            var IndexScreenSearchParameterModelList = new List<IndexScreenSearchParameterModel>();
+
+            var obj1 = new IndexScreenSearchParameterModel
+            {
+                SearchParameter = "UserId",
+                SearchParameterDataType = "int",
+                SearchParameterValue = loggedIdUserID.ToString()
+            };
+            IndexScreenSearchParameterModelList.Add(obj1);
+
+            if (Session["RoleID"] != null)
+            {
+                if(Session["RoleID"].ToString() != "3")
                 {
-                    new IndexScreenSearchParameterModel
+                    var obj2 = new IndexScreenSearchParameterModel
                     {
-                        SearchParameter = "UserID",
-                        SearchParameterDataType = "int",
-                        SearchParameterValue = loggedIdUserID.ToString()
-                    }
-                };
+                        SearchParameter = "IsMessageRead",
+                        SearchParameterDataType = "bool",
+                        SearchParameterValue = "false"
+                    };
+                    IndexScreenSearchParameterModelList.Add(obj2);
+                }              
+
+            }
+            //collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+            //    {
+            //        new IndexScreenSearchParameterModel
+            //        {
+            //            SearchParameter = "UserID",
+            //            SearchParameterDataType = "int",
+            //            SearchParameterValue = loggedIdUserID.ToString()
+            //        }
+            //    };
             var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
             var objCommunication =  _genericService.GetRecordsResult<MessageMaster>(stringContent1);
+            
+                  
             if (objCommunication.ErrorMessage == null)
             {
                
