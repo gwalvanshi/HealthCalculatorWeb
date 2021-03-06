@@ -561,6 +561,17 @@ namespace HealthCalculator.Web.Controllers
             return View();
             // return RedirectToAction("Index", "User");
         }
+        public ActionResult CoupenMaster()
+        {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
+            return View();
+        }
 
         public ActionResult about()
         {
