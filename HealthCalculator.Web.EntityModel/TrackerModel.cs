@@ -81,6 +81,8 @@ namespace HealthCalculator.Web.EntityModel
     {
         public List<UserTrackerDetails> Table { get; set; }
         public List<UserInchTrackerDetails> Table1 { get; set; }
+
+        public List<UserInchTrackerDetails> Table2 { get; set; }
     }
 
     public class UserTrackerDetails

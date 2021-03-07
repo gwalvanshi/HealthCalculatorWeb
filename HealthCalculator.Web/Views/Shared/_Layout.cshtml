@@ -3840,7 +3840,10 @@
 			   // deleteRows();
 
 			}
+			if(sessionStorage.getItem('EmployeeName')!=null)
 			$("#spUserNameToDisplay").text("Welcome ," + sessionStorage.getItem('EmployeeName'));
+			else
+			    $("#spUserNameToDisplay").text("Welcome ,Guest User");
 
 		   
 			$("#lnkcart").click(function (e)

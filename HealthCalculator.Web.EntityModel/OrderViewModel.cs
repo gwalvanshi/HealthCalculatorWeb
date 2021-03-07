@@ -25,8 +25,9 @@ namespace HealthCalculator.Web.EntityModel
             public string PaymentorderId { get; set; }
             public string PaymentType { get; set; }
             public bool IsPaymentDone { get; set; }
-          
-        
+            public int CoupenId { get; set; }
+
+
     }
     public class CoupanModel
     {
@@ -70,7 +71,7 @@ namespace HealthCalculator.Web.EntityModel
         public int CoupenId { get; set; }
 
         public DateTime? StartDate { get; set; }
-        public bool? IsStarted { get; set; }
+        public int IsStarted { get; set; }
 
     }
 }

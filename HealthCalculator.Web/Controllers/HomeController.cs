@@ -677,8 +677,9 @@ namespace HealthCalculator.Web.Controllers
             // return RedirectToAction("Index", "User");
         }
 
-        public ActionResult PaymentOption()
+        public ActionResult PaymentOption(string Id = null, string OrderId = null, string UserId = null, string Type = null, string Cop=null,string INR=null)
         {
+            Session["PaypalData"] = Id + "-" + OrderId + "-" + UserId+"-"+ INR;
             var chkTimeOut = Session.Timeout;
             if (chkTimeOut < 10)
             {

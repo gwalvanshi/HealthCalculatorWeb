@@ -43,9 +43,8 @@ namespace HealthCalculator.Web.Controllers
     }
     public class PaymentController : BaseController
     {
-        public ActionResult PaymentView(string Id = null, string OrderId = null, string UserId = null, string Type=null)
-        {
-            Session["PaypalData"] = Id + "-" +OrderId + "-" + UserId;
+        public ActionResult PaymentView(string Type=null)
+        {          
             if (Type == "P")
             {
                 return RedirectToAction("PaymentWithPaypal", "Payment");
@@ -260,7 +259,7 @@ namespace HealthCalculator.Web.Controllers
                 guid = Convert.ToString(Session["PaypalData"]);
             }
             PaymentInitiateModel _requestData = new PaymentInitiateModel();
-            _requestData.amount = Convert.ToInt32(guid.Split('-')[0].ToString());
+            _requestData.amount = Convert.ToInt32(guid.Split('-')[3].ToString());
             _requestData.OrderId = Convert.ToInt32(guid.Split('-')[1].ToString());
             _requestData.UserId= Convert.ToInt32(guid.Split('-')[2].ToString());
 

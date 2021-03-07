@@ -127,13 +127,13 @@
 
         function RedirectToPayment(ctrl)
         {
-          
+
             var strVar=  document.getElementById("exampleRadios1").checked
             if (strVar == true) {
-                ctrl.href = '@Url.Content("~/Payment/PaymentView?Id=")' + sessionStorage.getItem("TotalINR") + '&OrderId=' + sessionStorage.getItem("OrderId") + '&UserId=' + sessionStorage.getItem("userId") + '&Type=R';
+                ctrl.href = '@Url.Content("~/Payment/PaymentView?Type=")'+'R';
             }
             else {
-                ctrl.href = '@Url.Content("~/Payment/PaymentView?Id=")' + sessionStorage.getItem("TotalDoller") + '&OrderId=' + sessionStorage.getItem("OrderId") + '&UserId=' + sessionStorage.getItem("userId") + '&Type=P';
+                ctrl.href = '@Url.Content("~/Payment/PaymentView?Type=")'+'P';
 
             }
             ctrl.click();
@@ -173,7 +173,7 @@
         //    onAuthorize: function (data, actions) {
         //        return actions.payment.execute().then(function ()
         //        {
-        //            
+        //
         //            // Show a confirmation message to the buyer
         //            window.alert('Thank you for your purchase!');
         //        });

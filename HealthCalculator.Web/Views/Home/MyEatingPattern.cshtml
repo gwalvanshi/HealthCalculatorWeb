@@ -435,6 +435,8 @@
                             </div>
                             <div class="form-group">
                                 <div rows="10" class="form-control" id="divNotes"></div>
+                                <input type="hidden" id="hdnProdId" />
+                                <input type="hidden" id="hdnOrderId" />
                             </div>
                         </div>
                     </form>
@@ -560,13 +562,14 @@
             CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: sessionStorage.getItem('userId') }, false, 'GET',
                 function (response) {
 
-                    if (response.data.Data.Table.length > 0) {
+                    if (response.data.Data.Table2.length > 0) {
 
-                        $("#lbllable").text(response.data.Data.Table[0].Program + " :: " + response.data.Data.Table[0].ProductName);
+                        $("#lbllable").text(response.data.Data.Table2[0].Program + " :: " + response.data.Data.Table2[0].ProductName);
+                        $("#hdnProdId").val(response.data.Data.Table2[0].ProductId);
+                        $("#hdnOrderId").val(response.data.Data.Table2[0].OrderId);
 
 
-
-                        for (var i = 0; i < response.data.Data.Table[0].GivenDays; i++)
+                        for (var i = 0; i < response.data.Data.Table2[0].GivenDays; i++)
                         {
 
                             var ID =(i + 1);
@@ -587,77 +590,6 @@
                 }
             );
 
-            //alert("ddd");
-            //debugger;
-            //for (var i = 0; i < mySession.length; i++) {
-
-            //     varddl.innerHTML = varddl.innerHTML +
-            //                    '<option value="' + list1[i]['ID'] + '">' + list1[i]['Name'] + '</option>';
-
-            //}
-
-            //-----UDAY----
-
-            //CommonAjaxMethod('Program/GetEatingPattern', { userId: sessionStorage.getItem("userId"), orderId: sessionStorage.getItem('OrderId'), productId: sessionStorage.getItem('ProductId'), SessionId: DDlValue}, false, 'GET', function (response)
-            //{
-
-            //    if (sessionStorage.getItem('RoleID') == "1")
-            //    {
-            //        $("#userform").show();
-            //        $("#adminform").hide();
-
-            //        if (response.dataCollection.length > 0)
-            //        {
-            //            $('#divOnRising').html(response.dataCollection[0].OnRising);
-            //            $('#divOnRising').html(response.dataCollection[0].OnRising);
-            //            $('#divPreBreak').html(response.dataCollection[0].PreBreakfast);
-            //            $('#divBreak').html(response.dataCollection[0].Breakfast);
-            //            $('#divMidMorning').html(response.dataCollection[0].MidMorning);
-            //            $('#divPreWorkout').html(response.dataCollection[0].PreWorkout);
-            //            $('#divDuringWorkout').html(response.dataCollection[0].DuringWorkout);
-            //            $('#divPreLunch').html(response.dataCollection[0].PreLunch);
-            //            $('#divLunch').html(response.dataCollection[0].Lunch);
-            //            $('#divTeaEvening').html(response.dataCollection[0].TeaEvening);
-            //            $('#divLateEvening').html(response.dataCollection[0].LateEvening);
-            //            $('#divPreDinner').html(response.dataCollection[0].PreDinner);
-            //            $('#divDinner').html(response.dataCollection[0].Dinner);
-            //            $('#divPostDinner').html(response.dataCollection[0].PostDinner);
-            //            $('#divBedTime').html(response.dataCollection[0].BedTime);
-            //            $('#divRecipes').html(response.dataCollection[0].Recipes);
-            //            $('#divNotes').html(response.dataCollection[0].Notes);
-            //        }
-            //    }
-            //    if (sessionStorage.getItem('RoleID') == "3" || sessionStorage.getItem('RoleID') == "2")
-            //    {
-
-            //        $("#userform").hide();
-            //        $("#adminform").show();
-
-            //        if (response.dataCollection.length > 0) {
-            //            tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
-            //            tinymce.get('txtOnRising').setContent(response.dataCollection[0].OnRising);
-            //            tinymce.get('txtPreBreak').setContent(response.dataCollection[0].PreBreakfast);
-            //            tinymce.get('txtBreak').setContent(response.dataCollection[0].Breakfast);
-            //            tinymce.get('txtMidMorning').setContent(response.dataCollection[0].MidMorning);
-            //            tinymce.get('txtPreWorkout').setContent(response.dataCollection[0].PreWorkout);
-            //            tinymce.get('txtDuringWorkout').setContent(response.dataCollection[0].DuringWorkout);
-            //            tinymce.get('txtPreLunch').setContent(response.dataCollection[0].PreLunch);
-            //            tinymce.get('txtLunch').setContent(response.dataCollection[0].Lunch);
-            //            tinymce.get('txtTeaEvening').setContent(response.dataCollection[0].TeaEvening);
-            //            tinymce.get('txtLateEvening').setContent(response.dataCollection[0].LateEvening);
-            //            tinymce.get('txtPreDinner').setContent(response.dataCollection[0].PreDinner);
-            //            tinymce.get('txtDinner').setContent(response.dataCollection[0].Dinner);
-            //            tinymce.get('txtPostDinner').setContent(response.dataCollection[0].PostDinner);
-            //            tinymce.get('txtBedTime').setContent(response.dataCollection[0].BedTime);
-            //            tinymce.get('txtRecipes').setContent(response.dataCollection[0].Recipes);
-            //            tinymce.get('txtNotes').setContent(response.dataCollection[0].Notes);
-            //        }
-            //    }
-
-
-            //});
-
-            //-----UDAY----
         }
     };
 
@@ -756,7 +688,8 @@
                
             });
 
-            CommonAjaxMethod('Program/GetEatingPattern', { userId: sessionStorage.getItem("userId"), orderId: sessionStorage.getItem('OrderId'), productId: sessionStorage.getItem('ProductId'), SessionId: varselectedID.value }, false, 'GET', function (response) {
+         
+            CommonAjaxMethod('Program/GetEatingPattern', { userId: sessionStorage.getItem("userId"), orderId: $("#hdnOrderId").val(), productId: $("#hdnProdId").val(), SessionId: varselectedID.value }, false, 'GET', function (response) {
 
                 if (sessionStorage.getItem('RoleID') == "1")
                 {
