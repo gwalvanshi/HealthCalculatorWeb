@@ -43,6 +43,7 @@
     <Compile Include="AgeModel.cs" />
     <Compile Include="Assessment.cs" />
     <Compile Include="CommonConstants.cs" />
+    <Compile Include="CoupenModel.cs" />
     <Compile Include="DropdownRequestModel.cs" />
     <Compile Include="DropdownResponseModel.cs" />
     <Compile Include="EatingPatternModel.cs" />

@@ -5,21 +5,20 @@
 
 <div class="container-fluid flowerBg">
     <div style="padding-top:10px;" class="row justify-content-center">
-     
-        <a href="#"  onclick="LoadGrid(1)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">User Message<span class="float-right d-none d-md-block" id="spMessage"></span></a>  
-        <a href="#"  onclick="LoadRatingGrid()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Health Rating<span class="float-right d-none d-md-block" id="spRating"></span></a>
-        <a href="#"  onclick="LoadGrid(2)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Assessment Filled<span class="float-right d-none d-md-block" id="spAssessment"></span></a>
-        <a href="#"  onclick="LoadGrid(3)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker Filled<span class="float-right d-none d-md-block" id="spTF"></span></a>
-        <a href="#"  onclick="LoadGrid(4)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker 6th and 11th day falls today<span class="float-right d-none d-md-block" id="spTFF"></span></a>
-        <a href="#"  onclick="LoadGrid(5)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Users <span class="float-right d-none d-md-block" id="spUsers"></span></a>
-        <a href="#"  onclick="LoadOrderGrid(6)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Orders<span class="float-right d-none d-md-block" id="spOrder"></span></a>
+
+        <a href="#" onclick="LoadGrid(1)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">User Message<span class="float-right d-none d-md-block" id="spMessage"></span></a>
+        <a href="#" onclick="LoadRatingGrid()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Health Rating<span class="float-right d-none d-md-block" id="spRating"></span></a>
+        <a href="#" onclick="LoadGrid(2)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Assessment Filled<span class="float-right d-none d-md-block" id="spAssessment"></span></a>
+        <a href="#" onclick="LoadGrid(3)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker Filled<span class="float-right d-none d-md-block" id="spTF"></span></a>
+        <a href="#" onclick="LoadGrid(4)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker 6th and 11th day falls today<span class="float-right d-none d-md-block" id="spTFF"></span></a>
+        <a href="#" onclick="LoadGrid(5)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Users <span class="float-right d-none d-md-block" id="spUsers"></span></a>
+        <a href="#" onclick="LoadOrderGrid(6)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Orders<span class="float-right d-none d-md-block" id="spOrder"></span></a>
         <a href="#" onclick="LoadOrderGrid(7)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Completed<span class="float-right d-none d-md-block" id="spCompleted"></span></a>
         <a href="#" onclick="LoadOrderGrid(8)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Active<span class="float-right d-none d-md-block" id="spActive"></span></a>
-
         <a href="#" onclick="LoadOrderGrid(9)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">DeActiveCount<span class="float-right d-none d-md-block" id="spDeActiveCount"></span></a>
-        
-        
-         <a href="#" onclick="LoadAll()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">All Users</a>  
+        <a href="#" onclick="LoadAll()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">All Users</a>
+        @*<a href="#" onclick="LoadPromocode()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Coupen Master</a>*@
+        <a href="~/Admin/CoupenMaster?userId=" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Coupen Master</a>
     </div>
     <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-11">
@@ -35,6 +34,14 @@
 </div>
 
 <script>
+
+    function LoadPromocode() {
+        alert("UDA");
+        window.location.href = "Admin/CoupenMaster?userId=" + options.data.userId;
+        //CommonAjaxMethod('Home/GetPromocodeView', { CoupenId: "0" }, false, 'GET', function (response) {
+        //    LoadPromocodedata(response.dataCollection);
+        //});
+    }
     function LoadAll()
     {
         CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response) {
