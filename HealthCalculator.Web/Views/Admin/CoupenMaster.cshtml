@@ -64,6 +64,8 @@
                             <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnSavePromoCodeCoupen" onclick="ClearPromoCodeCoupen()">&nbsp; &nbsp; Clear &nbsp; &nbsp; </a>
                         </div>
                     </div>
+
+
                     <div class="row justify-content-center">
                         <div class="col-12 col-md-12 col-lg-11">
                             <div class="middleContent bg-gray shadow">
@@ -95,7 +97,11 @@
         LoadPromocode();
     };
 
-    function SavePromoCodeCoupen() {      
+    function SavePromoCodeCoupen() {
+        alert($("#txtCoupen").val());
+        alert($("#txtAmount").val());
+        alert($("#txtDollerAmount").val());
+        alert($("#ddlActive").val());
 
         var CoupenModeldata =
         {
@@ -121,27 +127,25 @@
 
     }
     function deletePromoCode(CoupenId) {
+        CommonAjaxMethod('Admin/GetPromocodeView', { CoupenId: CoupenId }, false, 'GET', function (response) {
+            if (response.dataCollection.length > 0) {
 
-        var CoupenModeldata =
-        {
-            CoupenId: CoupenId,
-            Coupen: $("#txtCoupen").val(),
-            Amount: $("#txtAmount").val(),
-            DollerAmount: $("#txtDollerAmount").val(),
-            IsActive: $("#ddlActive").val(),
-        }
+                var Procodedata =
+                {
+                    CoupenId: response.dataCollection[0].CoupenId,
+                    Coupen: response.dataCollection[0].Coupen,
+                    Amount: response.dataCollection[0].Amount,
+                    DollerAmount: response.dataCollection[0].DollerAmount,
+                    IsActive: response.dataCollection[0].IsActive
+                }
 
-        var PromoCode =
-        {
-            TableType: "Delete",
-            CoupenModeldata: CoupenModeldata
-        }
-
-        CommonAjaxMethod('Admin/SavePromocode', PromoCode, false, 'POST', function (response) {
-            alert('Record deleted successfully!!!');
-
+                var PromoCode =
+                {
+                    TableType: "Delete",
+                    UserMedicalHistory: Procodedata
+                }
+            }
         });
-
         LoadPromocode();
     }
 
@@ -169,6 +173,8 @@
     function LoadPromocode() {
         CommonAjaxMethod('Admin/GetPromocodeView', { CoupenId: "0" }, false, 'GET', function (response) {
 
+            alert("uday");
+            debugger;
             LoadPromocodedata(response.dataCollection);
         });
     }
@@ -197,6 +203,14 @@
                 "DollerAmount",
                 "IsActive",
 
+                //{
+                //    caption: "Action Date",
+
+                //    allowEditing: false,
+                //    calculateCellValue: function (data) {
+                //        return getdate(data.AddedWhen);
+                //    }
+                //},
                 {
                     caption: "Update Coupen",
                     alignment: 'center',
@@ -204,8 +218,9 @@
                         $('<a />').addClass('dx-link')
                             .text('Update Coupen')
                             .on('dxclick', function () {
-                             
-                                loadupdatePromoCode(options.data.CoupenId)
+
+                                window.location.href = "ViewEnquiryDetails?Enquiry_Id=" + options.data.CoupenId;
+
                             }).appendTo(container);
                     }
                 },
@@ -216,8 +231,7 @@
                         $('<a />').addClass('dx-link')
                             .text('Delete Coupen')
                             .on('dxclick', function () {
-                              
-                                deletePromoCode(options.data.CoupenId)
+                                window.location.href = "ViewEnquiryDetails?Enquiry_Id=" + options.data.CoupenId;
 
                             }).appendTo(container);
                     }
