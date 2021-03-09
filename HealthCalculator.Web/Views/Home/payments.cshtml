@@ -5,12 +5,38 @@
 }
 
 @*<h2>payments</h2>*@
+<div class="container-fluid bg-sky">
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
+            <h2 class="semi text-white text-shadow">
+                <span id="HeaderValue"></span>
+                <img src="@CommonMethods.ServerPath/img/thumbs.png" style="width: 40px; vertical-align: middle; margin-top: -15px;" />
+                <img src="@CommonMethods.ServerPath/img/smiley.png" class="smiley" style="width: 40px;" />
+            </h2>
+        </div>
+    </div>
+</div>
 
-<div>
-    <div class="container-fluid bg-sky">
-        <div class="row">
-            <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
-                <h2 class="semi text-white text-shadow">payments</h2>
+<div class="bg-yellow">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+                <ul class="list-inline menu-sec">
+
+                    <li class="list-inline-item"><a href="~/Home/assessment?userId=">My Assessment Tool</a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right d-none d-md-block font" style="color: red;" id="spTrackers"></span></a></li>
+
+                    <li class="list-inline-item"><a href="~/Home/MyEatingSmartTools?userId=">My Eating Smart Tool</a></li>
+
+
+                    <li class="list-inline-item"> <a href="#" onclick="PatternHelp(this)">My Eating Pattern<span class="float-right d-none d-md-block" style="color: red;" id="spPattern"></span></a></li>
+
+                    <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" style="color: red;" id="spMessage"></span></a></li>
+
+                    <li class="list-inline-item"><a href="~/Home/ViewPlan?userId=">View Plans</a></li>
+                    <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -81,6 +107,39 @@
 <script src="~/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 
+    function MessageHelp(ctrl) {
+        var selectedUserId = "@Request.QueryString["userId"].ToString()";
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+    function TrackersHelp(ctrl)
+    {
+        var selectedUserId = "@Request.QueryString["userId"].ToString()";
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/tracker?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+    function PatternHelp(ctrl)
+    {
+        var selectedUserId = "@Request.QueryString["userId"].ToString()";
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        ctrl.href = '@Url.Content("~/Home/MyEatingPattern?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+
+    function Logout(ctrl) {
+        sessionStorage.clear();
+        ctrl.href = '@Url.Content("~/Home/Logout")';
+        ctrl.click();
+    }
+
     function RedirectToPayment(ctrl) {
 
         ctrl.href = '@Url.Content("~/Home/PaymentOption?Id=")' + $("#hdnTotalDoller").val() + '&OrderId=' + $("#hdnOrderId").val() + '&UserId=' + $("#hdnUserId").val() + '&Type=P&Cop=' + $("#hdnCoupon").val()+'&INR='+ $("#hdnTotalINR").val();
@@ -140,6 +199,30 @@
     }
     $(document).ready(function () {
 
+       
+        var UserNotification =
+         {
+             TableType: "GetRecord",
+             UserId: sessionStorage.getItem('userId')
+         }
+        CommonAjaxMethod('Program/GetUserNotification', UserNotification, false, 'POST', function (response) {
+
+            if (response.data.Data.length > 0) {
+                $("#spMessage").text(" (" + response.data.Data[0].MessageCount + ")");
+                if (response.data.Data[0].Trackerfalldays != "0") {
+                    $("#spTrackers").text(" (" + response.data.Data[0].Trackerfalldays + ")");
+                }
+                else {
+                    $("#spTrackers").text(" (" + response.data.Data[0].Trackerfilled + ")");
+                }
+                $("#spPattern").text(" (" + response.data.Data[0].PatternCount + ")");
+            }
+
+        });
+        CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
+            $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + ",  believe in yourself. You can do it!");
+
+        });
 
         var strProductId = sessionStorage.getItem("CProgramID");
         var orderId = "";

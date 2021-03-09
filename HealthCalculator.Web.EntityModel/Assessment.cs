@@ -194,7 +194,25 @@ namespace HealthCalculator.Web.EntityModel
         public List<RspoonseUserMedications> Table1 { get; set; }
         
     }
+    public class UserNotification
+    {
+        public int Trackerfalldays { get; set; }
+        public int PatternCount { get; set; }       
+        public int MessageCount { get; set; }
+        public int Trackerfilled { get; set; }
 
+    }
+    public class UserNotificationData
+    {
+        public string GUID { get; set; }
+        public int ReferenceID { get; set; }
+        public object FieldName { get; set; }
+        public bool IsValid { get; set; }
+        public bool UpdateRecord { get; set; }
+        public int ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+        public List<UserNotification> Data { get; set; }
+    }
     public class RspoonseAssessment
     {
         public int Trackerfalldays { get; set; }

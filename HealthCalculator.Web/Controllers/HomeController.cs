@@ -77,7 +77,7 @@ namespace HealthCalculator.Web.Controllers
         }
 
         [SessionExpireFilterAttribute]
-        public ActionResult payments()
+        public ActionResult payments(string userId=null)
         {
             var chkTimeOut = Session.Timeout;
             if (chkTimeOut < 10)
@@ -238,7 +238,7 @@ namespace HealthCalculator.Web.Controllers
                 if (string.IsNullOrEmpty(objCommunication.ErrorMessage))
                 {
                     int isValidTool = 0;
-
+                    //not for free session
                     if (objCommunication.dataCollection.Count > 0)
                     {
                          isValidTool = 2;

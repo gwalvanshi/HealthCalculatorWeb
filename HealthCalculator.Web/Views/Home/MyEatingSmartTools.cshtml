@@ -21,7 +21,7 @@
             <div class="col">
                 <ul class="list-inline menu-sec">
 
-                    <li class="list-inline-item"><a href="~/Home/assessment">My Assessment Tool</a></li>
+                    <li class="list-inline-item"><a href="~/Home/assessment?userId=">My Assessment Tool</a></li>
 
                     <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right d-none d-md-block font" style="color: red;" id="spTrackers"></span></a></li>
 
@@ -32,7 +32,7 @@
 
                     <li class="list-inline-item"> <a href="#" onclick="MessageHelp(this)">Admin Messages<span class="float-right d-none d-md-block" style="color: red;" id="spMessage"></span></a></li>
 
-                    <li class="list-inline-item"><a href="~/Home/ViewPlan">View Plans</a></li>
+                    <li class="list-inline-item"><a href="~/Home/ViewPlan?userId=">View Plans</a></li>
                     <li class="list-inline-item active"><a onclick="Logout(this)">Logout</a></li>
                 </ul>
             </div>
@@ -193,11 +193,25 @@
         $('img').bind('contextmenu', function (e) {
             return false;
         });
+        var UserNotification =
+         {
+             TableType: "GetRecord",
+             UserId: sessionStorage.getItem('userId')
+         }
+        CommonAjaxMethod('Program/GetUserNotification', UserNotification, false, 'POST', function (response) {
 
-        $("#spMessage").text(" (" + sessionStorage.getItem('MessageCount') + ")");
-        $("#spTrackers").text(" (" + sessionStorage.getItem('Trackerfalldays')  + ")");
-        $("#spPattern").text(" (" + sessionStorage.getItem('PatternCount') + ")");
+            if (response.data.Data.length > 0) {
+                $("#spMessage").text(" (" + response.data.Data[0].MessageCount + ")");
+                if (response.data.Data[0].Trackerfalldays != "0") {
+                    $("#spTrackers").text(" (" + response.data.Data[0].Trackerfalldays + ")");
+                }
+                else {
+                    $("#spTrackers").text(" (" + response.data.Data[0].Trackerfilled + ")");
+                }
+                $("#spPattern").text(" (" + response.data.Data[0].PatternCount + ")");
+            }
 
+        });
         CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
             $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + ",  believe in yourself. You can do it!");
 

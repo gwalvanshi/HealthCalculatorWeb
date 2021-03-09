@@ -295,6 +295,30 @@ namespace HealthCalculator.Web.Controllers
             }
         }
         [HttpPost]
+        public async Task<JsonResult> GetUserNotification(RequestType collection)
+        {
+            try
+            {
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "125";
+                SendObjData.UserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                SendObjData.Operation = "Add";
+                string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
+                SendObjData.XML = stringTOXml;
+
+                GenericService _genericService = new GenericService();
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<UserNotificationData>(stringContent);
+
+                return new JsonResult { Data = status };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+        [HttpPost]
         public async Task<JsonResult> SaveMessageNotification(MessageMaster collection)
         {
             try

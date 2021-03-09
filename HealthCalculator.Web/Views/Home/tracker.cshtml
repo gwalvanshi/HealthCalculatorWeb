@@ -22,7 +22,7 @@
             <div class="col">
                 <ul class="list-inline menu-sec">
 
-                    <li class="list-inline-item"><a href="~/Home/assessment">My Assessment Tool</a></li>
+                    <li class="list-inline-item"><a href="~/Home/assessment?userId=">My Assessment Tool</a></li>
 
                     <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right d-none d-md-block font" style="color: red;" id="spTrackers"></span></a></li>
 
@@ -207,20 +207,25 @@
 
             });
         }
-       var assessment =
-       {
-           TableType: "GetRecord",
-           UserId: sessionStorage.getItem('userId')
-       }
-       CommonAjaxMethod('Program/GetAsseeement', assessment, false, 'POST', function (response) {
-           if (response.data.Data.Table.length > 0) {
-               $("#spMessage").text(" (" + response.data.Data.Table[0].MessageCount + ")");
-               $("#spTrackers").text(" (" + response.data.Data.Table[0].Trackerfalldays + ")");
-               $("#spPattern").text(" (" + response.data.Data.Table[0].PatternCount + ")");
-           }
+        var UserNotification =
+          {
+              TableType: "GetRecord",
+              UserId: sessionStorage.getItem('userId')
+          }
+        CommonAjaxMethod('Program/GetUserNotification', UserNotification, false, 'POST', function (response) {
+
+            if (response.data.Data.length > 0) {
+                $("#spMessage").text(" (" + response.data.Data[0].MessageCount + ")");
+                if (response.data.Data[0].Trackerfalldays != "0") {
+                    $("#spTrackers").text(" (" + response.data.Data[0].Trackerfalldays + ")");
+                }
+                else {
+                    $("#spTrackers").text(" (" + response.data.Data[0].Trackerfilled + ")");
+                }
+                $("#spPattern").text(" (" + response.data.Data[0].PatternCount + ")");
+            }
 
         });
-
 
        CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
            $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + ",  believe in yourself. You can do it!");

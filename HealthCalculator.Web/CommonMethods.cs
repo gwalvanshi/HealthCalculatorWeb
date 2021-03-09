@@ -144,7 +144,10 @@ namespace HealthCalculator.Web
             string retVal = string.Empty;
             string ChildWeight = string.Empty;
             string ChildHeight = string.Empty;
-            int childAge = Convert.ToInt32(GetChildSaveValue(collection, "txtChildAge"));
+      
+            string totalAge= collection.Instance_enquiry.Pin_Code+"."+collection.Instance_enquiry.Country;
+            double childAge = Convert.ToDouble(totalAge);
+
             string gender = GetChildSaveValue(collection, "ddlChildGender");
             string weightSel = GetChildSaveValue(collection, "WeightSelection");
             if (weightSel == "KG")
@@ -237,7 +240,7 @@ namespace HealthCalculator.Web
 
 
 
-            if (childAge <= 2)
+            if (childAge <= 2.0)
             {
                 // Server
                 // filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/child02.html");
@@ -248,7 +251,7 @@ namespace HealthCalculator.Web
                     groathChart = string.Format(growthChart, "ShowGraph?Enq=" + dt[0].EnquiryId);
 
             }
-            else if (childAge > 2 && childAge <= 5)
+            else if (childAge > 2.0 && childAge <= 5.0)
             {
                 // Server
                 // filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/child.html");
@@ -261,7 +264,7 @@ namespace HealthCalculator.Web
                     groathChart = string.Format(growthChart, "ShowBMI0205Boy?Enq=" + dt[0].EnquiryId);
 
             }
-            else if (childAge > 5 && childAge <= 18)
+            else if (childAge > 5.0 && childAge <= 18.0)
             {
                 // Server
                 //filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/child.html");

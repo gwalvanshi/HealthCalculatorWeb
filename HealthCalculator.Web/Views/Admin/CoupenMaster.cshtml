@@ -21,7 +21,7 @@
             <div class="middleContent bg-gray shadow">
                 <div class="row">
                     <div class="col-12 col-md-12">
-                        <p class="semi mb-2 text-yellow">Add  Coupen</p>
+                        <p class="semi mb-2 text-yellow">Add  Coupon</p>
                         <hr class="mt-0 mb-4 bg-dark" />
                         <input type="hidden" id="hdnUserDetailsID" />
                     </div>
@@ -31,28 +31,28 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Coupen Name <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="txtCoupen" maxlength="100" placeholder="Enter Coupen Name" />
+                            <input type="text" class="form-control border mandCo" id="txtCoupen" maxlength="100" placeholder="Enter Coupon Name" />
                             <input type="hidden" id="hdnCoupenId" value="0" />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-12 col-sm-5 col-form-label semi">Coupen Amount <span class="float-right d-none d-md-block"> : </span></label>
+                        <label class="col-12 col-sm-5 col-form-label semi">Coupon Amount <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="txtAmount" maxlength="100" placeholder="Enter Amount" />
+                            <input type="text" class="form-control border mandCo" id="txtAmount" maxlength="100" placeholder="Enter Amount" />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-12 col-sm-5 col-form-label semi">Coupen Doller Amount <span class="float-right d-none d-md-block"> : </span></label>
+                        <label class="col-12 col-sm-5 col-form-label semi">Coupon Doller Amount <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border mandotory" id="txtDollerAmount" maxlength="100" placeholder="Enter Doller Amount" />
+                            <input type="text" class="form-control border mandCo" id="txtDollerAmount" maxlength="100" placeholder="Enter Doller Amount" />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-12 col-sm-5 col-form-label semi">Coupen IsActive <span class="float-right d-none d-md-block"> : </span></label>
+                        <label class="col-12 col-sm-5 col-form-label semi">Coupon IsActive <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
                             <select class="custom-select mandotory" id="ddlActive">
-                                <option value="0">False</option>
-                                <option value="1">True</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
                             </select>
                         </div>
                     </div>
@@ -87,67 +87,55 @@
 <script src="~/js/jquery-3.5.1.min.js"></script>
 <script>
     window.onload = function () {
-
-        var qData = "@Request.QueryString["userId"].ToString()";
-        if (qData != "")
-        {
-            qData = "@Request.QueryString["userId"].ToString()";
-            sessionStorage.setItem('userId', qData);
-        }
+            
         LoadPromocode();
     };
+    function ValidateRequiredField() {
 
-    function SavePromoCodeCoupen() {
-        alert($("#txtCoupen").val());
-        alert($("#txtAmount").val());
-        alert($("#txtDollerAmount").val());
-        alert($("#ddlActive").val());
+        var isRequired = true;
+        var x = document.getElementsByClassName("mandCo");
+        var i;
+        for (i = 0; i < x.length; i++) {
 
-        var CoupenModeldata =
-        {
-            CoupenId: $("#hdnCoupenId").val(),
-            Coupen: $("#txtCoupen").val() ,
-            Amount: $("#txtAmount").val(),
-            DollerAmount: $("#txtDollerAmount").val(),
-            IsActive: $("#ddlActive").val(),
-        }
-
-        var PromoCode =
-        {
-            TableType: "PromoCodeCoupen",
-            CoupenModeldata: CoupenModeldata
-        }
-
-        CommonAjaxMethod('Admin/SavePromocode', PromoCode, false, 'POST', function (response) {
-            alert('Record save successfully!!!');
-
-        });
-
-        LoadPromocode();
-
-    }
-    function deletePromoCode(CoupenId) {
-        CommonAjaxMethod('Admin/GetPromocodeView', { CoupenId: CoupenId }, false, 'GET', function (response) {
-            if (response.dataCollection.length > 0) {
-
-                var Procodedata =
-                {
-                    CoupenId: response.dataCollection[0].CoupenId,
-                    Coupen: response.dataCollection[0].Coupen,
-                    Amount: response.dataCollection[0].Amount,
-                    DollerAmount: response.dataCollection[0].DollerAmount,
-                    IsActive: response.dataCollection[0].IsActive
-                }
-
-                var PromoCode =
-                {
-                    TableType: "Delete",
-                    UserMedicalHistory: Procodedata
-                }
+            if (x[i].value == "") {
+                isRequired = false;
             }
-        });
-        LoadPromocode();
+        }
+        return isRequired;
     }
+    function SavePromoCodeCoupen() {
+        if (ValidateRequiredField()) {
+            var CoupenModeldata =
+            {
+                CoupenId: $("#hdnCoupenId").val(),
+                Coupen: $("#txtCoupen").val(),
+                Amount: $("#txtAmount").val(),
+                DollerAmount: $("#txtDollerAmount").val(),
+                IsActive: $("#ddlActive").val(),
+            }
+            var tblType = "";            
+            var PromoCode =
+            {
+                TableType: "PromoCodeCoupen",
+                CoupenModeldata: CoupenModeldata
+            }
+
+            CommonAjaxMethod('Admin/SavePromocode', PromoCode, false, 'POST', function (response) {
+                alert('Record save successfully!!!');
+
+                LoadPromocode();
+                ClearPromoCodeCoupen();
+
+            });
+        }
+        else
+        {
+            alert('Please select valid data!!!');
+        }
+       
+
+    }
+    
 
     function loadupdatePromoCode(CoupenId) {
         CommonAjaxMethod('Admin/GetPromocodeView', { CoupenId: CoupenId }, false, 'GET', function (response) {
@@ -162,19 +150,18 @@
         });
     }
     function ClearPromoCodeCoupen() {
-        $("#hdnCoupenId").val() = "0";
-        $("#txtCoupen").val() = null;
-        $("#txtAmount").val() = null;
-        $("#txtDollerAmount").val() = null;
-        $("#ddlActive").val() = null;
+        $("#hdnCoupenId").val(0);
+        $("#txtCoupen").val("");
+        $("#txtAmount").val("");
+        $("#txtDollerAmount").val("");
+        $("#ddlActive").val(0);
+
 
     }
 
     function LoadPromocode() {
         CommonAjaxMethod('Admin/GetPromocodeView', { CoupenId: "0" }, false, 'GET', function (response) {
-
-            alert("uday");
-            debugger;
+                    
             LoadPromocodedata(response.dataCollection);
         });
     }
@@ -198,11 +185,11 @@
                 allowUpdating: false
             },
             columns: [
-                "Coupen",
-                "Amount",
-                "DollerAmount",
-                "IsActive",
-
+              { caption: "Coupon", dataField: "Coupen" },
+                 {caption: "INR Amount",dataField:"Amount"},
+                 { caption: "$ Amount", dataField: "DollerAmount" },
+                  { caption: "Is Active", dataField: "ActiveData" },
+              
                 //{
                 //    caption: "Action Date",
 
@@ -212,33 +199,23 @@
                 //    }
                 //},
                 {
-                    caption: "Update Coupen",
+                    caption: "Edit Coupon",
                     alignment: 'center',
                     cellTemplate: function (container, options) {
                         $('<a />').addClass('dx-link')
-                            .text('Update Coupen')
-                            .on('dxclick', function () {
-
-                                window.location.href = "ViewEnquiryDetails?Enquiry_Id=" + options.data.CoupenId;
-
+                            .text('Edit')
+                            .on('dxclick', function ()
+                            {
+                                loadupdatePromoCode(options.data.CoupenId);
+                              
                             }).appendTo(container);
                     }
-                },
-                {
-                    caption: "Delete Coupen",
-                    alignment: 'center',
-                    cellTemplate: function (container, options) {
-                        $('<a />').addClass('dx-link')
-                            .text('Delete Coupen')
-                            .on('dxclick', function () {
-                                window.location.href = "ViewEnquiryDetails?Enquiry_Id=" + options.data.CoupenId;
-
-                            }).appendTo(container);
-                    }
-                }
+                }                
 
             ]
         });
     }
+
+   
 
 </script>

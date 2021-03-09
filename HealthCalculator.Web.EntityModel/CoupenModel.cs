@@ -13,6 +13,7 @@ namespace HealthCalculator.Web.EntityModel
         public string Amount { get; set; }
         public string DollerAmount { get; set; }
         public int IsActive{ get; set; }
+        public string ActiveData { get; set; }
 
     }
 

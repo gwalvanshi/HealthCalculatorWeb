@@ -34,7 +34,7 @@ namespace HealthCalculator.Web.Controllers
 {
     public class AdminController : Controller
     {
-
+        [SessionExpireFilterAttributeAdmin]
         public ActionResult CoupenMaster()
         {
             var chkTimeOut = Session.Timeout;
