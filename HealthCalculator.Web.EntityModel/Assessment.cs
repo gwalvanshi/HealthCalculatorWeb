@@ -292,15 +292,15 @@ namespace HealthCalculator.Web.EntityModel
         public string Nuts { get; set; }
         public string Comments { get; set; }
 
-        public bool IsSubmitUGI { get; set; }
-        public bool IsSubmitUP { get; set; }
-        public bool IsSubmitUA { get; set; }
-        public bool IsSubmitUMH { get; set; }
-        public bool IsSubmitUM { get; set; }
-        public bool IsSubmitUDALS { get; set; }
-        public bool IsSubmitUDC { get; set; }
-        public bool IsSubmitUFF { get; set; }
-        public bool IsSubmitUAKIS { get; set; }
+        public bool? IsSubmitUGI { get; set; }
+        public bool? IsSubmitUP { get; set; }
+        public bool? IsSubmitUA { get; set; }
+        public bool? IsSubmitUMH { get; set; }
+        //public bool IsSubmitUM { get; set; }
+        public bool? IsSubmitUDALS { get; set; }
+        public bool? IsSubmitUDC { get; set; }
+        public bool? IsSubmitUFF { get; set; }
+        public bool? IsSubmitUAKIS { get; set; }
 
     }
 
@@ -310,6 +310,6 @@ namespace HealthCalculator.Web.EntityModel
         public Int64 UserId { get; set; }
         public string HealthIssues { get; set; }
         public string Medication { get; set; }
-        public bool IsSubmitUM { get; set; }
+        public bool? IsSubmitUM { get; set; }
     }
 }
