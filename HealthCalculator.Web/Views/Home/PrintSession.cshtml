@@ -19,8 +19,26 @@
         var OrderId = "@Request.QueryString["OrderId"].ToString()";
         var ProductId = "@Request.QueryString["productId"].ToString()";
         var sessionId = "@Request.QueryString["SessionId"].ToString()";
+       
+
+      
+        function getprintlbldisplay(userId)
+        {           
+            CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: userId }, false, 'GET',
+                function (response) {
+                    if (response.data.Data.Table2.length > 0) {
+                        $("#lblPrintlable").text(response.data.Data.Table2[0].Program + " :: " + response.data.Data.Table2[0].ProductName);
+                    }
+                }
+            );
+            if ($("#lblPrintlable").text() == null) { $("#lblPrintlable").text("Print Short Detail Here");}
+
+        }
 
         CommonAjaxMethod('Program/GetEatingPattern', { userId: userId, orderId: OrderId, productId: ProductId, SessionId: sessionId }, false, 'GET', function (response) {
+
+            getprintlbldisplay(userId);
+              
 
                 $('#ShowHideRising').hide();
                 $('#ShowHidePreBreak').hide();
@@ -143,9 +161,9 @@
 
                     }
 
-                
+
             }
-           
+                
         });
 
     </script>
@@ -160,7 +178,7 @@
                         <img src="~/Content/logo-print.png" class="img-fluid" />
                     </div>
                     <div class="text-center mt-5">
-                        <h6 class="text-sky semi mb-4">Print Short Detail Here</h6>
+                        <h6 class="text-sky semi mb-4"><label class="col-12 col-sm-5 col-form-label semi" id="lblPrintlable"></label></h6>
                     </div>
                     <div id="print-content">                       
                             <div id="ShowHideRising">
