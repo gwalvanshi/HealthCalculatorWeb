@@ -880,6 +880,7 @@
                     }
                     var assessment =
                     {
+                        UserId: sessionStorage.getItem('userId'),
                         TableType: "UserGeneralInfo",
                         UserGeneralInfo: UserInfodata
                     }
@@ -905,8 +906,8 @@
             alert("Kindly first purchase the product .");
         }
         else
-        {
-            if ($("#hdnProfilePhotoPath").val() != '' || $("#hdnProfilePhotoPathAfter").val()) {
+        {         
+            if ($("#hdnProfilePhotoPath").val() != '' || $("#hdnProfilePhotoPathAfter").val() != '') {
 
                 var UserPhotoData =
                 {
@@ -916,6 +917,7 @@
                 }
                 var assessment =
                 {
+                    UserId: sessionStorage.getItem('userId'),
                     TableType: "UserPhoto",
                     UserPhoto: UserPhotoData
                 }
@@ -927,6 +929,7 @@
                 });
             }
             else {
+
                 alert("Please upload valid image.")
             }
         }
@@ -964,6 +967,7 @@
 
             var assessment =
             {
+                UserId: sessionStorage.getItem('userId'),
                 TableType: "UserAnthropometry",
                 UserAnthropometry: UserAnthropometrydata
             }
@@ -989,6 +993,7 @@
         else {
             //if (ValidationOnSave()) {
             //  if (ValidateRequiredField()) {
+        
             var UserMedicalHistorydata =
             {
                 UserId: sessionStorage.getItem('userId'),
@@ -999,6 +1004,7 @@
 
             var assessment =
             {
+                UserId: sessionStorage.getItem('userId'),
                 TableType: "UserMedicalHistory",
                 UserMedicalHistory: UserMedicalHistorydata
             }
@@ -1102,6 +1108,7 @@
 
             var assessment =
             {
+                UserId: sessionStorage.getItem('userId'),
                 TableType: "UserDietaryAndLifeStyleDetails",
                 UserDietaryAndLifeStyleDetails: UserDietaryAndLifeStyleDetailsdata
             }
@@ -1152,6 +1159,7 @@
 
             var assessment =
             {
+                UserId: sessionStorage.getItem('userId'),
                 TableType: "UserDirectCall",
                 UserDirectCall: UserDirectCalldata
             }
@@ -1192,6 +1200,7 @@
 
             var assessment =
             {
+                UserId: sessionStorage.getItem('userId'),
                 TableType: "UserFoodFequency",
                 UserFoodFequency: UserFoodFequencydata
             }
@@ -1224,6 +1233,7 @@
 
             var assessment =
             {
+                UserId: sessionStorage.getItem('userId'),
                 TableType: "UserAnyKeyInSights",
                 UserAnyKeyInSights: UserAnyKeyInSightsdata
             }
@@ -1287,31 +1297,36 @@
 
 
     function MessageHelp(ctrl) {
-        @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
+        @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@        
         var selectedUserId = "@Request.QueryString["userId"]";
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
         }
+        else { selectedUserId = sessionStorage.getItem('userId') }
+
         ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
         ctrl.click();
     }
     function TrackersHelp(ctrl)
     {
-        @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
+        @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@     
         var selectedUserId = "@Request.QueryString["userId"]";
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
         }
+        else { selectedUserId = sessionStorage.getItem('userId') }
+
         ctrl.href = '@Url.Content("~/Home/tracker?userId=")' + selectedUserId;
         ctrl.click();
     }
     function PatternHelp(ctrl)
     {
-       @*// var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
-         var selectedUserId = "@Request.QueryString["userId"]";
+       @*// var selectedUserId = "@Request.QueryString["userId"].ToString()";*@      
+        var selectedUserId = "@Request.QueryString["userId"]";
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
         }
+        else { selectedUserId=sessionStorage.getItem('userId')}
         ctrl.href = '@Url.Content("~/Home/MyEatingPattern?userId=")' + selectedUserId;
         ctrl.click();
     }
@@ -1321,13 +1336,17 @@
     $(document).ready(function () {
 
         var qData = "@Request.QueryString["userId"]";
+        if (qData == "") { qData = sessionStorage.getItem('userId'); }
+        else { sessionStorage.setItem('userId', qData); }
         if (qData != "")
         {
+          
             @*qData = "@Request.QueryString["userId"].ToString()";*@
-            qData = "@Request.QueryString["userId"]";
+            @*qData = "@Request.QueryString["userId"]";
             if (qData != "") {
                 sessionStorage.setItem('userId', qData);
-            }
+            }*@
+
             CommonAjaxMethod('Program/GetProductProgram', { userId: qData }, false, 'GET', function (response) {
 
                 var test = response.dataCollection;
@@ -1407,14 +1426,12 @@
                 //alert(d);
                 //alert(d1);
 
-                // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);
+                // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);               
                 //-------------------GenralInfo-----------------------------------
                
                 if (response.data.Data.Table.length > 0) {
                     $("#txtName").val(response.data.Data.Table[0].UserName);
-                    $("#ddlGenderp").val(response.data.Data.Table[0].Gender);
-
-                   
+                    $("#ddlGenderp").val(response.data.Data.Table[0].Gender);                   
 
                     sessionStorage.setItem('ProductId', response.data.Data.Table[0].ProductId);
                     sessionStorage.setItem('OrderId', response.data.Data.Table[0].OrderId);
@@ -1460,7 +1477,6 @@
                     $("#ddlCurrentlyWorkingp").val(response.data.Data.Table[0].CurrentlyWorking);
                     $("#txtOccupation").val(response.data.Data.Table[0].Occupation);
                     //-------------------Photo------------------------------------
-
                     $("#hdnProfilePhotoPath").val(response.data.Data.Table[0].PhotoURL);
                     $("#targetImg").attr('src', "@CommonMethods.ServerPathDocs" + response.data.Data.Table[0].PhotoURL);
 
@@ -1489,21 +1505,29 @@
 
                     if (sessionStorage.getItem('RoleID') == 1) {
                         if (response.data.Data.Table[0].IsSubmitUGI == false) { $("#btnSaveGenralInfo").show() }
+                        else if (response.data.Data.Table[0].IsSubmitUGI == null) { $("#btnSaveGenralInfo").show() }
                         else { $("#btnSaveGenralInfo").hide(); }
                         if (response.data.Data.Table[0].IsSubmitUP == false) { $("#btnSaveUserPhoto12").show() }
+                        else if (response.data.Data.Table[0].IsSubmitUP == null) { $("#btnSaveUserPhoto12").show() }
                         else { $("#btnSaveUserPhoto12").hide(); }
                         if (response.data.Data.Table[0].IsSubmitUA == false) { $("#btnSaveUserAnthropometry").show() }
+                        else if (response.data.Data.Table[0].IsSubmitUA == null) { $("#btnSaveUserAnthropometry").show() }
                         else { $("#btnSaveUserAnthropometry").hide(); }
                         if (response.data.Data.Table[0].IsSubmitUMH == false) { $("#btnSaveUserMedicalHistory").show() }
+                        else if (response.data.Data.Table[0].IsSubmitUMH == null) { $("#btnSaveUserMedicalHistory").show() }
                         else { $("#btnSaveUserMedicalHistory").hide(); }
 
                         if (response.data.Data.Table[0].IsSubmitUDALS == false) { $("#btnSaveUserDietaryAndLifeStyleDetails").show() }
+                        else if (response.data.Data.Table[0].IsSubmitUDALS == null) { $("#btnSaveUserDietaryAndLifeStyleDetails").show() }
                         else { $("#btnSaveUserDietaryAndLifeStyleDetails").hide(); }
                         if (response.data.Data.Table[0].IsSubmitUDC == false) { $("#btnSaveUserDirectCall").show() }
+                        else if (response.data.Data.Table[0].IsSubmitUDC == null) { $("#btnSaveUserDirectCall").show() }
                         else { $("#btnSaveUserDirectCall").hide(); }
                         if (response.data.Data.Table[0].IsSubmitUFF == false) { $("#btnSaveUserFoodFequency").show() }
+                        else if (response.data.Data.Table[0].IsSubmitUFF == null) { $("#btnSaveUserFoodFequency").show() }
                         else { $("#btnSaveUserFoodFequency").hide(); }
                         if (response.data.Data.Table[0].IsSubmitUAKIS == false) { $("#btnSaveUserAnyKeyInSights").show() }
+                        else if (response.data.Data.Table[0].IsSubmitUAKIS == null) { $("#btnSaveUserAnyKeyInSights").show() }
                         else { $("#btnSaveUserAnyKeyInSights").hide(); }
                     }
 
@@ -1539,6 +1563,7 @@
 
                     if (sessionStorage.getItem('RoleID') == 1) {
                         if (response.data.Data.Table1[0].IsSubmitUM == false) { $("#btnSaveUserMedications").show() }
+                        else if (response.data.Data.Table1[0].IsSubmitUM == null) { $("#btnSaveUserMedications").show() }
                         else { $("#btnSaveUserMedications").hide(); }
                     }
 
@@ -1699,8 +1724,6 @@
                     $("#targetImgAfter").attr('src', _file.target.result);
                     // $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
                     $("#imgPreviewAfter").show();
-
-
                     Uploadocument(imagetype);
                 }
             }
@@ -1734,6 +1757,7 @@
         }
 
         var files = fileUpload.files;
+        alert(files.length);
         if (files.length > 0) {
 
             // Create FormData object
@@ -1746,7 +1770,8 @@
 
             //We will change the below logic later error handling
             $.ajax({
-                url: virtualPath + '/Program/UploadDocument?userID=' + folderDetails,
+               // url: virtualPath + '/Program/UploadDocument?userID=' + folderDetails,
+                url:  '/Program/UploadDocument?userID=' + folderDetails,
                 type: "POST",
                 contentType: false, // Not to set any content header
                 processData: false, // Not to process data
@@ -1764,8 +1789,6 @@
                         else {
                             $("#hdnProfilePhotoPathAfter").val(result);
                         }
-
-
                     }
                     else {
                         alert(result.ErrorMessage);
@@ -1794,7 +1817,8 @@
 
             //We will change the below logic later error handling
             $.ajax({
-                url: virtualPath + '/Program/UploadDocumentReport?userID=' + folderDetails,
+            //    url: virtualPath + '/Program/UploadDocumentReport?userID=' + folderDetails,
+                url:  '/Program/UploadDocumentReport?userID=' + folderDetails,
                 type: "POST",
                 contentType: false, // Not to set any content header
                 processData: false, // Not to process data
