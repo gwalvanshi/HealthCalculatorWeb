@@ -147,6 +147,10 @@ namespace HealthCalculator.Web
       
             string totalAge= collection.Instance_enquiry.Pin_Code+"."+collection.Instance_enquiry.Country;
             double childAge = Convert.ToDouble(totalAge);
+            if(childAge>18.0)
+            {
+                childAge = 18.0;
+            }
 
             string gender = GetChildSaveValue(collection, "ddlChildGender");
             string weightSel = GetChildSaveValue(collection, "WeightSelection");

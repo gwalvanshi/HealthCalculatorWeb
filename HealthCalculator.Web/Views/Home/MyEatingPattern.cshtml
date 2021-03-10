@@ -531,6 +531,15 @@
             }
 
         });
+        if (sessionStorage.getItem('RoleID') == "1") {
+            var obj2 = {
+
+                Module: "2"
+            }
+            CommonAjaxMethod('Program/SaveUserNotification', obj2, false, 'POST', function (response) {
+
+            });
+        }
         CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
             $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + ",  believe in yourself. You can do it!");
 

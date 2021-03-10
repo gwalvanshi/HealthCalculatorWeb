@@ -187,7 +187,7 @@
 
                     "ProductName",
                     {
-                        caption: "StartActiveDate",
+                        caption: "Start Active Date",
 
                         allowEditing: false,
                         calculateCellValue: function(data) {
@@ -195,22 +195,47 @@
                         }
                     },
                      {
-                         caption: "EndActiveDate",
+                         caption: "End Active Date",
 
                          allowEditing: false,
                          calculateCellValue: function(data) {
                              return getdate(data.EndActiveDate);
                          }
-                     }
+                     },
                  ,
+                   {
+                       caption: "Total days",
+                       dataField: "Totaldays",
+                      
+                   },
+                    {
+                        caption: "INR Rate",
+                        dataField: "INRRate",
 
-                    "Totaldays",
+                    },
+                   
+                     {
+                         caption: "Doller Rate",
+                         dataField: "DollerRate",
 
-                     "INRRate",
-                    "DollerRate",
-                     "ActivePlan",
-                "IsPaymentDone",
-                "PaymentType",
+                     },
+
+                     {
+                         caption: "Is Active",
+                         dataField: "ActivePlan",
+
+                     },
+                   {
+                       caption: "Is Payment Done",
+                       dataField: "IsPaymentDone",
+
+                   },
+               {
+                   caption: "Payment Type",
+                   dataField: "PaymentType",
+
+               },
+              
 
                     {
                         caption: "Edit",

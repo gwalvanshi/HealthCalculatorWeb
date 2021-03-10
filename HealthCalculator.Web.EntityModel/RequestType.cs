@@ -11,7 +11,8 @@ namespace HealthCalculator.Web.EntityModel
         public string Type { get; set; }
         public string OperationType { get; set; }
         public int UserId { get; set; }
-      
+        public int Module { get; set; }
+
     }
 
     public class NotificationModelRoot

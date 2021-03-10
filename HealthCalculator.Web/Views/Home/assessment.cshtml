@@ -1348,7 +1348,8 @@
         {
             displayUSerName = response.dataCollection[0].FirstName + " " + response.dataCollection[0].LastName;
 
-            $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName+",  believe in yourself. You can do it!");
+            $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + ",  believe in yourself. You can do it!");
+            $("#txtName").val(displayUSerName);
 
         });
 
@@ -1408,7 +1409,7 @@
 
                 // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);
                 //-------------------GenralInfo-----------------------------------
-                $("#txtName").val(displayUSerName);
+               
                 if (response.data.Data.Table.length > 0) {
                     $("#txtName").val(response.data.Data.Table[0].UserName);
                     $("#ddlGenderp").val(response.data.Data.Table[0].Gender);

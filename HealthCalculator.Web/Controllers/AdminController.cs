@@ -34,6 +34,10 @@ namespace HealthCalculator.Web.Controllers
 {
     public class AdminController : Controller
     {
+        public ActionResult Tracker()
+        {
+            return View();
+        }
         [SessionExpireFilterAttributeAdmin]
         public ActionResult CoupenMaster()
         {

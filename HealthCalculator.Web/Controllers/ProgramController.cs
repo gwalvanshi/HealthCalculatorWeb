@@ -733,5 +733,28 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
+        [HttpPost]
+        public async Task<JsonResult> SaveUserNotification(RequestType collection)
+        {
+            try
+            {
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                SendObjData.ScreenID = "130";
+                SendObjData.UserID = Convert.ToInt32(Session["UserID"]);
+                SendObjData.Operation = "Add";
+                string stringTOXml = objCommonMethods.GetXMLFromObject(collection);
+                SendObjData.XML = stringTOXml;
+
+                GenericService _genericService = new GenericService();
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = await _genericService.PerformDataOperationList<RequestType>(stringContent);
+                return new JsonResult { Data = status };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
     }
 }

@@ -222,7 +222,15 @@
             }
 
         });
+        if (sessionStorage.getItem('RoleID') == "1") {
+            var obj2 = {
 
+                Module: "1"
+            }
+            CommonAjaxMethod('Program/SaveUserNotification', obj2, false, 'POST', function (response) {
+
+            });
+        }
         if (sessionStorage.getItem('RoleID') == "3") {
             var obj1 = {
 
