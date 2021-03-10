@@ -1279,19 +1279,3 @@ form .form-control {
 @media (max-width: 575.98px) {
 	
 }
-
-
-.tableMy td,
-  .tableMy th {
-    background-color: #fff !important;
-  }
-  
- 
-  .tableMy {
-    border-collapse: collapse !important;
-  }
-  .tableMy-bordered th,
-  .tableMy-bordered td {
-    border: 0px solid #ddd !important;
-  }
-}

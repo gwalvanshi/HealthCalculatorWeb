@@ -43,6 +43,7 @@ namespace HealthCalculator.Web.EntityModel
    
     public class UserOrderViewModel
     {
+      
         public int ProgramId { get; set; }
         public string UserId { get; set; }
         public string OrderDetail_Id { get; set; }
@@ -57,6 +58,8 @@ namespace HealthCalculator.Web.EntityModel
         public string Discount { get; set; }
         public DateTime? StartActiveDate { get; set; }
         public DateTime? EndActiveDate { get; set; }
+        public string ProgramEndDate { get; set; }
+        public string ProgramStartDate { get; set; }
         public int? Totaldays { get; set; }
         public bool? IsActive { get; set; }
 

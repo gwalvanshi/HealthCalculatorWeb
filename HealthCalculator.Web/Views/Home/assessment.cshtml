@@ -850,7 +850,7 @@
     function SaveGenralInfo() {
         
         if (sessionStorage.getItem('ProductId') == "0") {
-            alert("Kindly first purchase the product .");
+            alert("Kindly purchase a program or activate your already purchased program.");
         }
         else
         {
@@ -903,7 +903,7 @@
     function SaveUserPhoto12() {
 
         if (sessionStorage.getItem('ProductId') == "0") {
-            alert("Kindly first purchase the product .");
+            alert("Kindly purchase a program or activate your already purchased program.");
         }
         else
         {         
@@ -941,7 +941,7 @@
     function SaveUserAnthropometry() {
 
         if (sessionStorage.getItem('ProductId') == "0") {
-            alert("Kindly first purchase the product .");
+            alert("Kindly purchase a program or activate your already purchased program.");
         }
         else {
 
@@ -988,7 +988,7 @@
 
     function SaveUserMedicalHistory() {
         if (sessionStorage.getItem('ProductId') == "0") {
-            alert("Kindly first purchase the product .");
+            alert("Kindly purchase a program or activate your already purchased program.");
         }
         else {
             //if (ValidationOnSave()) {
@@ -1024,7 +1024,7 @@
 
     function SaveUserMedications() {
         if (sessionStorage.getItem('ProductId') == "0") {
-            alert("Kindly first purchase the product .");
+            alert("Kindly purchase a program or activate your already purchased program.");
         }
         else {
             // if (ValidationOnSave()) {
@@ -1083,7 +1083,7 @@
     function SaveUserDietaryAndLifeStyleDetails()
     {
         if (sessionStorage.getItem('ProductId') == "0") {
-            alert("Kindly first purchase the product .");
+            alert("Kindly purchase a program or activate your already purchased program.");
         }
         else {
             //if (ValidationOnSave()) {
@@ -1128,7 +1128,7 @@
 
     function SaveUserDirectCall() {
         if (sessionStorage.getItem('ProductId') == "0") {
-            alert("Kindly first purchase the product .");
+            alert("Kindly purchase a program or activate your already purchased program.");
         }
         else {
             //if (ValidationOnSave()) {
@@ -1178,7 +1178,7 @@
 
     function SaveUserFoodFequency() {
         if (sessionStorage.getItem('ProductId') == "0") {
-            alert("Kindly first purchase the product .");
+            alert("Kindly purchase a program or activate your already purchased program.");
         }
         else {
             //if (ValidationOnSave()) {
@@ -1219,7 +1219,7 @@
 
     function SaveUserAnyKeyInSights() {
         if (sessionStorage.getItem('ProductId') == "0") {
-            alert("Kindly first purchase the product .");
+            alert("Kindly purchase a program or activate your already purchased program.");
         }
         else {
             //if (ValidationOnSave()) {
@@ -1339,13 +1339,8 @@
         if (qData == "") { qData = sessionStorage.getItem('userId'); }
         else { sessionStorage.setItem('userId', qData); }
         if (qData != "")
-        {
+        {        
           
-            @*qData = "@Request.QueryString["userId"].ToString()";*@
-            @*qData = "@Request.QueryString["userId"]";
-            if (qData != "") {
-                sessionStorage.setItem('userId', qData);
-            }*@
 
             CommonAjaxMethod('Program/GetProductProgram', { userId: qData }, false, 'GET', function (response) {
 

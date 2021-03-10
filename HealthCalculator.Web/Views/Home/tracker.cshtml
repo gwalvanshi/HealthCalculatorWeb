@@ -280,23 +280,24 @@
                         tblWRow++;
                         var tblrow = "";
                         if (tblWRow == 1) {
+                            tblWRowsesion++;
                             tblrow = '<tr>' +
                                '<td>' +
-                                   '<input type="date" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
+                                   '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
                                '</td>' +
-                               '<td></td>' +
+                               '<td rowspan="3"   style="vertical-align : middle;text-align:center;background: #32c6c6;"><div style="width:150px;" class="bg-sky text-white h-100">Session ' + tblWRowsesion + '</div></td>' +
                                '<td>Start</td>' +
                                '<td><input type="text"  style="width:100px;"  class="form-control" placeholder="Enter Weight"  id="txtWT' + (i + 1) + '"/></td>' +
                                '<td><input type="text" style="width:100px;" class="form-control" id="txtWD' + (i + 1) + '" placeholder="" readOnly="true" /></td>' +
                            '</tr>';
                         }
                         if (tblWRow == 2) {
-                            tblWRowsesion++;
+                          
                             tblrow = '<tr>' +
                                '<td>' +
-                                   '<input type="date" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
+                                   '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
                                '</td>' +
-                               '<td style="width:25px;">' + tblWRowsesion + '</td>' +
+                              
                                '<td>Mid</td>' +
                                '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Weight"  id="txtWT' + (i + 1) + '"/></td>' +
                                '<td><input type="text" style="width:100px;" class="form-control" id="txtWD' + (i + 1) + '" placeholder="" readOnly="true" /></td>' +
@@ -305,9 +306,9 @@
                         if (tblWRow == 3) {
                             tblrow = '<tr>' +
                                '<td>' +
-                                   '<input type="date" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
+                                   '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
                                '</td>' +
-                               '<td></td>' +
+                              
                                '<td>End</td>' +
                                '<td><input type="text" style="width:100px;"   class="form-control" placeholder="Enter Weight"  id="txtWT' + (i + 1) + '"/></td>' +
                                '<td><input type="text" style="width:100px;" class="form-control" id="txtWD' + (i + 1) + '" placeholder="" readOnly="true" /></td>' +
@@ -331,9 +332,9 @@
                         if (tblWRow == 1) {
                             tblrow = '<tr>' +
                                '<td>' +
-                                   '<input type="date" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
+                                   '<input type="date" style="width:200px;" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
                                '</td>' +
-                               '<td></td>' +
+                                '<td rowspan="3"   style="vertical-align : middle;text-align:center;background: #32c6c6;"><div style="width:150px;" class="bg-sky text-white h-100">Session ' + tblWRowsesion + '</div></td>' +
                                '<td>Start</td>' +
                                '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Weight"  id="txtWT' + (i + 1) + '"/></td>' +
                                '<td><input type="text" style="width:100px;" class="form-control" id="txtWD' + (i + 1) + '" placeholder="" readOnly="true" /></td>' +
@@ -343,9 +344,9 @@
                             tblWRowsesion++;
                             tblrow = '<tr>' +
                                '<td>' +
-                                   '<input type="date" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
+                                   '<input type="date" style="width:200px;" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
                                '</td>' +
-                               '<td style="width:25px;">' + tblWRowsesion + '</td>' +
+                           
                                '<td>Mid</td>' +
                                '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Weight"  id="txtWT' + (i + 1) + '"/></td>' +
                                '<td><input type="text" style="width:100px;" class="form-control" id="txtWD' + (i + 1) + '" placeholder="" readOnly="true" /></td>' +
@@ -354,9 +355,9 @@
                         if (tblWRow == 3) {
                             tblrow = '<tr>' +
                                '<td>' +
-                                   '<input type="date" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
+                                   '<input type="date" style="width:200px;" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
                                '</td>' +
-                               '<td></td>' +
+                             
                                '<td>End</td>' +
                                '<td><input type="text" style="width:100px;"   class="form-control" placeholder="Enter Weight"  id="txtWT' + (i + 1) + '"/></td>' +
                                '<td><input type="text" style="width:100px;" class="form-control" id="txtWD' + (i + 1) + '" placeholder="" readOnly="true" /></td>' +
@@ -382,9 +383,10 @@
                             tblIRowsesion++;
                             tblrowInch = '<tr>' +
                                '<td>' +
-                                   '<input type="date" readOnly="true" class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
+                                   '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
                                '</td>' +
-                               '<td>' + tblIRowsesion + '</td>' +
+                                 '<td rowspan="2"   style="vertical-align : middle;text-align:center;background: #32c6c6;"><div style="width:150px;" class="bg-sky text-white h-100">Session ' + tblIRowsesion + '</div></td>' +
+                          
                                '<td>Start</td>' +
                                '<td><input type="text" style="width:100px;"   class="form-control" placeholder="Enter Chest"  id="txtC' + (i + 1) + '"/></td>' +
                                 '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Waist"  id="txtW' + (i + 1) + '"/></td>' +
@@ -396,9 +398,9 @@
                             tblWRowsesion++;
                             tblrowInch = '<tr>' +
                                '<td>' +
-                                   '<input type="date" readOnly="true" class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
+                                   '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
                                '</td>' +
-                               '<td></td>' +
+                           
                                '<td>End</td>' +
                                 '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Chest"  id="txtC' + (i + 1) + '"/></td>' +
                                 '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Waist"  id="txtW' + (i + 1) + '"/></td>' +
@@ -423,9 +425,9 @@
                             tblIRowsesion++;
                             tblrowInch = '<tr>' +
                                '<td>' +
-                                   '<input type="date"   class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
+                                   '<input type="date" style="width:200px;"  class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
                                '</td>' +
-                               '<td>' + tblIRowsesion + '</td>' +
+                            '<td rowspan="2"   style="vertical-align : middle;text-align:center;background: #32c6c6;"><div style="width:150px;" class="bg-sky text-white h-100">Session ' + tblIRowsesion + '</div></td>' +
                                '<td>Start</td>' +
                                '<td><input type="text"  style="width:100px;"  class="form-control" placeholder="Enter Chest"  id="txtC' + (i + 1) + '"/></td>' +
                                 '<td><input type="text"  style="width:100px;"  class="form-control" placeholder="Enter Waist"  id="txtW' + (i + 1) + '"/></td>' +
@@ -436,9 +438,8 @@
                             tblWRowsesion++;
                             tblrowInch = '<tr>' +
                                '<td>' +
-                                   '<input type="date"   class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
-                               '</td>' +
-                               '<td></td>' +
+                                   '<input type="date"  style="width:200px;"  class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
+                               '</td>' +                             
                                '<td>End</td>' +
                                 '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Chest"  id="txtC' + (i + 1) + '"/></td>' +
                                 '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Waist"  id="txtW' + (i + 1) + '"/></td>' +

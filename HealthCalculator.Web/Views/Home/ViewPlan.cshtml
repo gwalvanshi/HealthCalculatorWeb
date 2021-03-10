@@ -184,25 +184,24 @@
                          dataField: "Program",
                          width: 300
                      },
+                       {
+                           caption: "Product Name",
+                           dataField: "ProductName",
+                           width: 300
+                       },
 
-                    "ProductName",
-                    {
-                        caption: "Start Active Date",
-
-                        allowEditing: false,
-                        calculateCellValue: function(data) {
-                            return getdate(data.StartActiveDate);
-                        }
-                    },
+                   
+                    
                      {
-                         caption: "End Active Date",
-
-                         allowEditing: false,
-                         calculateCellValue: function(data) {
-                             return getdate(data.EndActiveDate);
-                         }
-                     },
-                 ,
+                         caption: "Start Date",
+                         dataField: "ProgramStartDate"
+                     }
+                      ,
+                      {
+                           caption: "End Date",
+                           dataField: "ProgramEndDate"
+                     }
+                     ,
                    {
                        caption: "Total days",
                        dataField: "Totaldays",
