@@ -2,6 +2,7 @@
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="container-fluid pl-0 pr-0">
     <div class="row no-gutters mainBanner">
         <div class="col-12 text-center">
@@ -33,16 +34,7 @@
                     <div class="bannerAfter shadow">
                         <h2 class="mb-0 dib pr-2 light">Looking For A Happy & Healthy Lifestyle? <a href="#checkHealthMeter" class="btn btn-reg mt-2 mb-2 hvr-sweep-to-top" data-toggle="modal">CHECK YOUR HEALTH RATING</a>	</h2>
                     </div>
-                </div>
-                <!--
-                <div class="col-12 col-md text-center">
-                    <div class="sidraBannerBlock">
-                        <h6 class="mb-0 dib pr-2 bold"><span class="alex text-orange">Sidra Patel</span><br />
-                            <small class="semi">Nutritionist & lifestyle Consultant</small>
-                        </h6>
-                    </div>
-                </div>
-                -->
+                </div>               
             </div>
         </div>
     </div>
@@ -231,66 +223,123 @@
             <h1 class="text-sky mt-5 mb-4">HOW IT WORKS?</h1>
         </div>
     </div>
-    <div class="row position-relative">
-        <img src="@CommonMethods.ServerPath/img/img13.png" class="img-fluid howItWorksLeftBgImg d-none d-md-block" />
-        <img src="@CommonMethods.ServerPath/img/img14.png" class="img-fluid howItWorksRightBgImg d-none d-md-block" />
-        <div class="col-12 col-md-11">
-            <div class="row">
-                <div class="col-12 col-md-4 col-lg-3 workBlock">
-                    <img src="@CommonMethods.ServerPath/img/howWorks/7.png" class="img-fluid mb-3" />
-                    <p class="mb-3 semi">
-                        Take the health rating <br />
-                        and set your goals.
-                    </p>
+    <div class="d-none d-md-block">
+        <div class="row position-relative">
+            <img src="@CommonMethods.ServerPath/img/img13.png" class="img-fluid howItWorksLeftBgImg d-none d-md-block" />
+            <img src="@CommonMethods.ServerPath/img/img14.png" class="img-fluid howItWorksRightBgImg d-none d-md-block" />
+            <div class="col-12 col-md-11">
+                <div class="row">
+                    <div class="col-6 col-md-4 col-lg-3 workBlock t-xs-left">
+                        <img src="@CommonMethods.ServerPath/img/howWorks/7.png" class="img-fluid mb-3" />
+                        <p class="mb-3 semi">
+                            Take the health rating <br />
+                            and set your goals.
+                        </p>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 workBlock t-xs-right">
+                        <img src="@CommonMethods.ServerPath/img/arrow.png" class="arrow" />
+                        <img src="@CommonMethods.ServerPath/img/howWorks/8.png" class="img-fluid mb-3" />
+                        <p class="mb-3 semi">
+                            Pick the best program<br />
+                            suited
+                        </p>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 workBlock t-xs-left">
+                        <img src="@CommonMethods.ServerPath/img/arrow.png" class="arrow" />
+                        <img src="@CommonMethods.ServerPath/img/howWorks/9.png" class="img-fluid mb-3" />
+                        <p class="mb-3 semi">
+                            Fill a detailed<br />
+                            assessment
+                        </p>
+                    </div>
                 </div>
-                <div class="col-12 col-md-4 col-lg-3 workBlock">
-                    <img src="@CommonMethods.ServerPath/img/arrow.png" class="arrow" />
-                    <img src="@CommonMethods.ServerPath/img/howWorks/8.png" class="img-fluid mb-3" />
-                    <p class="mb-3 semi">
-                        Pick the best program<br />
-                        suited
-                    </p>
-                </div>
-                <div class="col-12 col-md-4 col-lg-3 workBlock">
-                    <img src="@CommonMethods.ServerPath/img/arrow.png" class="arrow" />
-                    <img src="@CommonMethods.ServerPath/img/howWorks/9.png" class="img-fluid mb-3" />
-                    <p class="mb-3 semi">
-                        Fill a detailed<br />
-                        assessment
-                    </p>
+            </div>
+        </div>
+        <div class="row justify-content-end position-relative">
+            <div class="col-12 col-md-11">
+                <div class="row justify-content-end">
+                    <div class="col-12 col-md-4 col-lg-3 workBlock t-xs-right">
+                        <img src="@CommonMethods.ServerPath/img/arrow-down.png" class="arrow d-none d-md-block" />
+                        <img src="@CommonMethods.ServerPath/img/arrow.png" class="arrow d-block d-md-none" />
+                        <img src="@CommonMethods.ServerPath/img/howWorks/10.png" class="img-fluid mb-3" />
+                        <p class="mb-3 semi">
+                            Follow our smart plans,
+                            accompanied  by eating smart
+                            tools which will be your
+                            best friend
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3 workBlock t-xs-left">
+                        <img src="@CommonMethods.ServerPath/img/arrow.png" class="arrow" />
+                        <img src="@CommonMethods.ServerPath/img/howWorks/11.png" class="img-fluid mb-3" />
+                        <p class="mb-3 semi">
+                            Track your progress<br />
+                            towards it.
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3 workBlock t-xs-right">
+                        <img src="@CommonMethods.ServerPath/img/arrow.png" class="arrow" />
+                        <img src="@CommonMethods.ServerPath/img/howWorks/12.png" class="img-fluid mb-3" />
+                        <p class="mb-3 semi">
+                            Enjoy life, the smarter<br />
+                            way!
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row justify-content-end position-relative">
-        <div class="col-12 col-md-11">
-            <div class="row justify-content-end">
-                <div class="col-12 col-md-4 col-lg-3 workBlock">
-                    <img src="@CommonMethods.ServerPath/img/arrow-down.png" class="arrow d-none d-md-block" />
-                    <img src="@CommonMethods.ServerPath/img/arrow.png" class="arrow d-block d-md-none" />
-                    <img src="@CommonMethods.ServerPath/img/howWorks/10.png" class="img-fluid mb-3" />
-                    <p class="mb-3 semi">
-                        Follow our smart plans,
-                        accompanied  by eating smart
-                        tools which will be your
-                        best friend
-                    </p>
-                </div>
-                <div class="col-12 col-md-4 col-lg-3 workBlock">
-                    <img src="@CommonMethods.ServerPath/img/arrow.png" class="arrow" />
-                    <img src="@CommonMethods.ServerPath/img/howWorks/11.png" class="img-fluid mb-3" />
-                    <p class="mb-3 semi">
-                        Track your progress<br />
-                        towards it.
-                    </p>
-                </div>
-                <div class="col-12 col-md-4 col-lg-3 workBlock">
-                    <img src="@CommonMethods.ServerPath/img/arrow.png" class="arrow" />
-                    <img src="@CommonMethods.ServerPath/img/howWorks/12.png" class="img-fluid mb-3" />
-                    <p class="mb-3 semi">
-                        Enjoy life, the smarter<br />
-                        way!
-                    </p>
+    <div class="d-block d-md-none">
+        <div class="row howWorksHome">
+            <div class="col-6 col-md-4 col-lg-3 workBlock">
+                <img src="@CommonMethods.ServerPath/img/howWorks/7-xs.png" class="img-fluid mb-3" />
+                <p class="mb-3 semi">
+                    Take the health rating <br />
+                    and set your goals.
+                </p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3 workBlock">
+                <img src="@CommonMethods.ServerPath/img/howWorks/8-xs.png" class="img-fluid mb-3" />
+                <p class="mb-3 semi">
+                    Pick the best program<br />
+                    suited
+                </p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3 workBlock">
+                <img src="@CommonMethods.ServerPath/img/howWorks/9-xs.png" class="img-fluid mb-3" />
+                <p class="mb-3 semi">
+                    Fill a detailed<br />
+                    assessment
+                </p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3 workBlock">
+                <img src="@CommonMethods.ServerPath/img/howWorks/10-xs.png" class="img-fluid mb-3" />
+                <p class="mb-3 semi">
+                    Follow our smart plans,
+                    accompanied  by eating smart
+                    tools which will be your
+                    best friend
+                </p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3 workBlock">
+                <img src="@CommonMethods.ServerPath/img/howWorks/11-xs.png" class="img-fluid mb-3" />
+                <p class="mb-3 semi">
+                    Track your progress<br />
+                    towards it.
+                </p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3 workBlock">
+                <img src="@CommonMethods.ServerPath/img/howWorks/12-xs.png" class="img-fluid mb-3" />
+                <p class="mb-3 semi">
+                    Enjoy life, the smarter<br />
+                    way!
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-11">
+                <div class="row justify-content-end">
+
                 </div>
             </div>
         </div>
@@ -353,8 +402,8 @@
                     <img src="@CommonMethods.ServerPath/img/calc.png" class="img-fluid mb-1" />
                 </div>
                 <h2 class="mb-1">LET'S CHECK YOUR <span class="bold text-orange">HEALTH RATING!</span></h2>
-                <div class="text-right mb-5">
-                    <a href="#checkHealthMeter" data-toggle="modal"  class="btn bg-sky hvr-sweep-to-top">&nbsp;&nbsp; CLICK HERE &nbsp;&nbsp;</a>
+                <div class="text-right mb-5">                   
+                    <a href="#checkHealthMeter" class="btn btn-reg mt-2 mb-2 hvr-sweep-to-top" data-toggle="modal"> CLICK HERE </a>	</h2>
                 </div>
             </div>
         </div>
@@ -428,11 +477,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-

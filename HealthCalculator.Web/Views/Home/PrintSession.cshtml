@@ -61,100 +61,99 @@
                 {
 
 
-                    if (response.dataCollection[0].OnRising.length > 0)
-                    {
+                    if (response.dataCollection[0].OnRising != null) {
                         $('#divOnRising').html(response.dataCollection[0].OnRising);
                         $('#ShowHideRising').show();
                     }
 
-                    if (response.dataCollection[0].PreBreakfast.length > 0) {
+                    if (response.dataCollection[0].PreBreakfast != null) {
                         $('#divPreBreak').html(response.dataCollection[0].PreBreakfast);
                         $('#ShowHidePreBreak').show();
                     }
 
-                    if (response.dataCollection[0].Breakfast.length > 0) {
+                    if (response.dataCollection[0].Breakfast != null) {
                         $('#divBreak').html(response.dataCollection[0].Breakfast);
                         $('#ShowHideBreak').show();
                     }
 
-                    if (response.dataCollection[0].MidMorning.length > 0) {
+                    if (response.dataCollection[0].MidMorning != null) {
                         $('#divMidMorning').html(response.dataCollection[0].MidMorning);
                         $('#ShowHideMidMorning').show();
 
                     }
 
-                    if (response.dataCollection[0].PreWorkout.length > 0) {
+                    if (response.dataCollection[0].PreWorkout != null) {
                         $('#divPreWorkout').html(response.dataCollection[0].PreWorkout);
                         $('#ShowHidePreWorkOut').show();
 
                     }
 
-                    if (response.dataCollection[0].DuringWorkout.length > 0) {
+                    if (response.dataCollection[0].DuringWorkout != null) {
                         $('#divDuringWorkout').html(response.dataCollection[0].DuringWorkout);
                         $('#ShowHideDuringWorkOut').show();
 
 
                     }
 
-                    if (response.dataCollection[0].PreLunch.length > 0) {
+                    if (response.dataCollection[0].PreLunch != null) {
                         $('#divPreLunch').html(response.dataCollection[0].PreLunch);
                         $('#ShowHidePrelunch').show();
 
 
                     }
-                    if (response.dataCollection[0].Lunch.length > 0) {
+                    if (response.dataCollection[0].Lunch != null) {
                         $('#divLunch').html(response.dataCollection[0].Lunch);
                         $('#ShowHidelunch').show();
 
 
                     }
 
-                    if (response.dataCollection[0].TeaEvening.length > 0) {
+                    if (response.dataCollection[0].TeaEvening != null) {
                         $('#divTeaEvening').html(response.dataCollection[0].TeaEvening);
                         $('#ShowHideTeaEvening').show();
 
 
                     }
 
-                    if (response.dataCollection[0].LateEvening.length > 0) {
+                    if (response.dataCollection[0].LateEvening != null) {
                         $('#divLateEvening').html(response.dataCollection[0].LateEvening);
                         $('#ShowHideLateEvening').show();
 
 
                     }
-                    if (response.dataCollection[0].PreDinner.length > 0) {
+                    if (response.dataCollection[0].PreDinner != null) {
                         $('#divPreDinner').html(response.dataCollection[0].PreDinner);
                         $('#ShowHidePreDinner').show();
 
 
                     }
-                    if (response.dataCollection[0].Dinner.length > 0) {
+                    if (response.dataCollection[0].Dinner != null) {
                         $('#divDinner').html(response.dataCollection[0].Dinner);
                         $('#ShowHideDinner').show();
 
 
                     }
-                    if (response.dataCollection[0].PostDinner.length > 0) {
+                    if (response.dataCollection[0].PostDinner != null) {
                         $('#divPostDinner').html(response.dataCollection[0].PostDinner);
                         $('#ShowHidePostDinner').show();
 
 
                     }
-                    if (response.dataCollection[0].BedTime.length > 0) {
+                    if (response.dataCollection[0].BedTime != null) {
                         $('#divBedTime').html(response.dataCollection[0].BedTime);
                         $('#ShowHideBedTime').show();
 
 
                     }
 
-                    if (response.dataCollection[0].Recipes.length > 0) {
+                    if (response.dataCollection[0].Recipes != null) {
                         $('#divRecipes').html(response.dataCollection[0].Recipes);
                         $('#ShowHideRecipes').show();
 
 
                     }
 
-                    if (response.dataCollection[0].Notes.length > 0) {
+                    if (response.dataCollection[0].Notes != null) {
                         $('#divNotes').html(response.dataCollection[0].Notes);
                         $('#ShowHideNotes').show();
 
@@ -171,6 +170,7 @@
 <body>
     <div class="container-fluid mb-5 bg-white shadow middleContent">
         <div class="row">
+            <input type="hidden" id="hdnLoginUserId" />
             <div class="col-12 col-md-12 col-lg-12">
                 <form class="bg-white printRow loginForm">
                    

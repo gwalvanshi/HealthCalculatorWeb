@@ -294,10 +294,12 @@ namespace HealthCalculator.Web.Controllers
                     Session["Access_Token"] = status.data.authToken;
 
                     Session["UserId"] = status.data.userId;
-
+                    var encriptUserId=  DataEncryption.Encrypt(status.data.userId.ToString());
                     Session["UserName"] = status.data.EmployeeName;
                     Session["RoleID"] = status.data.RoleID;
-                    
+                    status.data.EncriptUserId = encriptUserId;
+
+
 
                 }
 

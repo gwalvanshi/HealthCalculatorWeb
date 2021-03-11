@@ -41,58 +41,51 @@
         </div>
     </div>
 </div>
-
-<div class="container-fluid flowerBg">
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-12 col-lg-11">
+        <div class="col-12 col-md-11 col-lg-10">
             <div class="middleContent bg-gray shadow">
+                <p class="semi mb-2 text-yellow">Payment</p>
+                <hr class="mt-0 mb-3 bg-dark">
+               
                 <form class="form-data">
+                    <table class="table" id="tblPayment">                       
+                    </table>
 
                     <div class="row">
-                        <div class="col-12 col-md-12">
-                            <p class="semi mb-2 text-yellow">Payment</p>
-                            <hr class="mt-0 mb-3 bg-dark" />
-                            <input type="hidden" id="hdnTotalDoller" />
-                            <input type="hidden" id="hdnTotalINR" />
-                            <input type="hidden" id="hdnCouponId" />
+                        <div class="col-12 col-sm-12">
+                            Total Amount to Pay
+                        </div>
+                        <div class="col-12 col-sm">
+                            Promo Code:
+                            <input type="text" class="form-control border" id="txtCoupon" placeholder="Coupon" maxlength="50" />
+                        </div>
+                        <div class="col-12 col-sm">
+                            INR Amount:
+                            <input type="text" class="form-control border" id="txtINR" readonly="readonly" />
+                        </div>
+                        <div class="col-12 col-sm">
+                            Doller Amount:
+                            <input type="text" class="form-control border" id="txtDoller" readonly="readonly" />
+                        </div>
+                        <div class="col-12 col-sm-12 ">
+                            <a class="btn btn-reg mt-4 mb-4 hvr-sweep-to-top" id="btnCoupon" onclick="return ApplyCoupon()" href="#">&nbsp; &nbsp; Apply Promo Code &nbsp; &nbsp; </a>
                         </div>
                     </div>
-                    <div>
-                        <table class="table" id="tblPayment"></table>
-                    </div>
-                    
                     <div class="row">
-                        <div class="col-12 col-sm-12">
-                          Total Amount to Pay
-                        </div>
-                        <div class="col-12 col-sm-12">
-                           INR Amount: <input type="text" class="form-control border" id="txtINR" readonly="readonly"/>
-                        </div>
-                        <div class="col-12 col-sm-12">
-                            Doller Amount: <input type="text" class="form-control border" id="txtDoller" readonly="readonly"  />
-                        </div>
-                    </div>
 
-                    <div class="row">
-                       
-                        <div class="col-12 col-sm-12">
-                           Coupon: <input type="text" class="form-control border" id="txtCoupon" placeholder="Coupon" maxlength="50" />
-                        </div>
-                        <div class="col-12 col-sm-12">
-                            <a  class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnCoupon" onclick="return ApplyCoupon()" href="#">&nbsp; &nbsp; Apply Coupon &nbsp; &nbsp; </a>
-                        </div>
                     </div>
                     <div class="form-group row">
-                        @*<div class="col-12 col-md-12">
-                                <hr class="mt-0 mb-3 bg-dark" />
-                            </div>*@
+
                         <div class="col-12 col-sm-12 text-right">
                             <input type="hidden" id="hdnTotalINR" />
                             <input type="hidden" id="hdnTotalDoller" />
                             <input type="hidden" id="hdnOrderId" />
                             <input type="hidden" id="hdnUserId" />
-                            <input type="hidden" id="hdnCoupon" />
-                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnPayment"  href="#" onclick="RedirectToPayment(this)" target="_blank" >&nbsp; &nbsp; Payment &nbsp; &nbsp; </a>
+                            <input type="hidden" id="hdnCoupon" />                           
+                            <input type="hidden" id="hdnCouponId" />
+
+                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnPayment" href="#" onclick="RedirectToPayment(this)" target="_blank">&nbsp; &nbsp; Payment &nbsp; &nbsp; </a>
                         </div>
                     </div>
                 </form>
@@ -100,9 +93,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <script src="~/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">

@@ -4,11 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="container-fluid pl-0 pr-0 mb-5">
     <div class="row no-gutters banner smartEatingOutBanner justify-content-center align-items-center">
         <div class="col-10">
-            <div class="text-center">
-                <h2 class="bold mb-0">SMART EATING OUT</h2>
+            <div class="d-none d-md-block">
+                <div class="text-center">
+                    <h2 class="bold mb-0">SMART EATING OUT</h2>
+                </div>
+            </div>
+            <div class="d-block d-md-none banner-xs">
+                <img src="@CommonMethods.ServerPath/img/banner/eatingOut-xs.jpg" alt="" class="img-fluid" />
             </div>
         </div>
     </div>
@@ -18,8 +24,8 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-11 col-lg-10 text-center">
             <h1 class="alex mb-4">
-                <span class="comma1">'</span>Eating got better when the "I can't have that" <br />
-                turned to "I can have everything smartly" '
+                <span class="comma1">'</span>Eating got better when the <span class="comma1">"</span>I can't have that" <br />
+                turned to <span class="comma1">"</span>I can have everything smartly" '
             </h1>
             <p class="semi">
                 If you can’t cook at home, no problem, we can work smartly and give you eating out options.<br />
@@ -29,6 +35,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="bg-gray pt-4 pb-4">
     <div class="container">

@@ -157,6 +157,19 @@ h5 {
 	padding: 8px 10px;
 	display: inline-block;
 }
+.notiBlock .list-group .cartIcon {
+	position: relative;
+}
+.notiBlock .list-group .cartIcon .qnt {
+	position: absolute;
+	top: 0;
+	right: 19px;
+	bottom: 0;
+	left: 0px;
+	margin: auto;
+	font-weight: 600;
+	font-size: 14px;
+}
 .notiBlock .list-group .list-group-item .dropdown-menu {
 	background: #ffffff;
 }
@@ -677,6 +690,15 @@ form .form-control {
 	bottom: 7%;
 	right: 0;
 }
+.howWorksImage .proThumb .proImg {
+	border: 10px solid transparent;
+}
+.howWorksImage .proThumb:hover .proImg img {
+	transform: scale(1);
+}
+.howWorksImage .lSPager {
+	display: none;
+}
 
 
 
@@ -745,6 +767,7 @@ form .form-control {
 	transform: rotate(180deg) !important;
 	display: inline-block;
 	vertical-align: super;
+	line-height: 15px;
 }
 
 /* eatingSmartTools */
@@ -789,7 +812,7 @@ form .form-control {
 
 /* services */
 .smartBodyToningBuildingBanner {
-	background: url("../img/banner/smartBodyToningBuilding.jpg") top right no-repeat;
+	background: url("../img/banner/bodyToningBuilding.jpg") top right no-repeat;
 	background-size: cover;
 }
 .planningThumb {
@@ -865,7 +888,7 @@ form .form-control {
 
 /* smartChildNutritionBanner */
 .smartChildNutritionBanner {
-	background: url("../img/banner/smartChildNutrition.jpg") top center no-repeat;
+	background: url("../img/banner/childNutrition.jpg") top center no-repeat;
 	background-size: cover;
 }
 .bg-yellow-img {
@@ -875,7 +898,7 @@ form .form-control {
 
 /* smartChildSpecialProgramBanner */
 .smartChildSpecialProgramBanner {
-	background: url("../img/banner/smartChildSpecialProgram.jpg") top center no-repeat;
+	background: url("../img/banner/childSpecialProgram.jpg") top center no-repeat;
 	background-size: cover;
 }
 
@@ -906,13 +929,13 @@ form .form-control {
 
 /* smartEatingOut */
 .smartEatingOutBanner {
-	background: url("../img/banner/smartEatingOut.jpg") top center no-repeat;
+	background: url("../img/banner/eatingOut.jpg") top center no-repeat;
 	background-size: cover;
 }
 
 /* smartEnhancer */
 .smartEnhancerBanner {
-	background: url("../img/banner/smartEnhancer.jpg") top center no-repeat;
+	background: url("../img/banner/enhancer.jpg") top center no-repeat;
 	background-size: cover;
 }
 
@@ -1081,6 +1104,8 @@ form .form-control {
 
 
 
+
+
 /* Higher than 1450 (desktop devices)
 ====================================================================== */
 @media only screen and (min-width: 1450px) {
@@ -1162,6 +1187,16 @@ form .form-control {
 	.navbar-light .navbar-nav .nav-item + .nav-item::before {
 		display: none;
 	}
+	.mainBanner .bannerControl {
+		padding: 5px;
+	}
+	.carousel-control-next, .carousel-control-prev {
+		width: 30px;
+	}
+	.mainBanner .carousel-control-next-icon, 
+	.mainBanner .carousel-control-prev-icon {
+		padding: 10px;
+	}
 	.bannerAfter {
 		padding: 10px 20px;
 		margin-top: -30px;
@@ -1170,6 +1205,12 @@ form .form-control {
 		font-size: 16px;
 		margin-bottom: 10px;
 	}
+	.banner {
+		height: auto;
+		background: #fff;
+		padding: 0;
+	}
+
 	.sidraPatel {
 		padding-top: 25px;
 		padding-bottom: 25px;
@@ -1190,24 +1231,38 @@ form .form-control {
 		width: 30px;
 		right: -15px;
 	}
-	.workBlock .arrow {
-		position: absolute;
-		left: auto;
-		top: -20%;
-		transform: rotate(130deg);
-		right: 20%;
-	}
 	.workBlock {
 		background-position-x: 85%;
+		padding-top: 10px;
+		position: relative;
+	}
+	.workBlock::before {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		width: calc(100% - 40px);
+		border-bottom: 2px dashed #f4a800;
+		margin: auto;
+		left: 0;
+		right: 0;
+	}
+	.workBlock:nth-last-of-type(2):before {
+		cursor: '';
+		border-bottom: 2px dashed #f4a800;
 	}
 	.workBlock .numberBlock {
 		font-weight: 600;
-		font-size: 24px;
+		font-size: 40px;
 		width: 90px;
 		height: 90px;
-		line-height: 66px;
+		line-height: 90px;
 		margin-bottom: 15px;
+		display: inline-block;
+		float: left;
 	}
+	.workBlock p {
+		text-align: left;
+	} 
 	.workBlock .numberBlock img {
 		padding: 15px;
 	}
@@ -1216,6 +1271,15 @@ form .form-control {
 		max-width: 330px;
 		margin-right: auto;
 		margin-left: auto;
+	}
+	.howWorksImage .proThumb {
+		margin-bottom: 0;
+	}
+	.howWorksHome .workBlock::before {
+		border-bottom: 2px dashed transparent !important;
+	}
+	.howWorksHome .workBlock p {
+		text-align: center;
 	}
 	.proThumb .proText .marthin {
 		font-size: 36px;
@@ -1250,6 +1314,11 @@ form .form-control {
 		height: 90px !important;
 	}
 	
+	/* about us */
+	.aboutLeftBottomimg, .aboutRightBottomimg {
+		width: 150px;
+	}
+	
 	footer {
 		padding-top: 20px;
 		text-align: center;
@@ -1268,6 +1337,34 @@ form .form-control {
 	footer hr {
 		margin-top: 5px;
 	}
+	.banner {
+		height: auto;
+	}
+	
+	/* login */
+	.middleContent .loginScreen {
+		height: 350px;
+	}
+	.middleContent .loginForm {
+		height: 350px;
+	}
+	
+	.healthRating .healthRatingImg {
+		width: 100%;
+		margin: 0;
+		padding: 5px;
+	}
+	.col1lftbgimg {
+		position: absolute;
+		top: -80px;
+		left: 0px;
+	}
+
+	/* tracker */
+	.menu-sec {
+		flex-direction: column;
+	}
+	
 }
 
 /*Small devices (landscape phones, 576px and up)*/
@@ -1279,3 +1376,5 @@ form .form-control {
 @media (max-width: 575.98px) {
 	
 }
+
+

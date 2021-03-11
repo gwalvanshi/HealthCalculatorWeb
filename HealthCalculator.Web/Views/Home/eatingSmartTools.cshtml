@@ -4,10 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="container-fluid pl-0 pr-0">
     <div class="row no-gutters banner eatingSmartToolsBanner align-items-center">
         <div class="col-12 text-center">
-            <h2 class="bold mb-0 text-white">EATING SMART TOOLS </h2>
+            <div class="d-none d-md-block">
+                <h2 class="bold mb-0 text-white">EATING SMART TOOLS </h2>
+            </div>
+            <div class="d-block d-md-none banner-xs">
+                <img src="@CommonMethods.ServerPath/banner/eatingSmartTools-xs.jpg" alt="" class="img-fluid" />
+            </div>
         </div>
     </div>
 </div>
@@ -22,12 +28,11 @@
             <h5 class="text-yellow mt-5 semi">IT CONSISTS OF 4 TOOLS</h5>
         </div>
     </div>
-    <div class="row justify-content-center">      
-
+    <div class="row justify-content-center">
         <div class="col-11 col-lg-9 bg-gray p-5 mb-5">
             <div class="row align-items-center combatBlock">
                 <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/combat.jpg" class="img-fluid" />
+                    <img src="@CommonMethods.ServerPath/eatingSmartTools/combat.jpg" class="img-fluid" />
                 </div>
                 <div class="col-12 col-md col-lg combatBlockContent">
                     <h2 class="num mb-4">1</h2>
@@ -36,18 +41,18 @@
             </div>
             <div class="row align-items-center flex-row-reverse combatBlock">
                 <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/packagedFoodTool.jpg" class="img-fluid" />
+                    <img src="@CommonMethods.ServerPath/eatingSmartTools/packagedFoodTool.jpg" class="img-fluid" />
                 </div>
                 <div class="col-12 col-md col-lg combatBlockContent">
                     <h2 class="num mb-4">2</h2>
-                    <p>This tool will make you a smart shopper when it comes to picking packaged foods!</p>
+                    <p>This tool will make you a smart shopper, when it comes to picking packaged foods!</p>
                     <p>Thinking practically, it's not possible for us to avoid all kinds of packaged foods, we tend to pick some from the shelf.</p>
                     <p>So let’s be smart while picking them.</p>
                 </div>
             </div>
             <div class="row align-items-center combatBlock">
                 <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/kitchenTools.jpg" class="img-fluid" />
+                    <img src="@CommonMethods.ServerPath/eatingSmartTools/kitchenTools.jpg" class="img-fluid" />
                 </div>
                 <div class="col-12 col-md col-lg combatBlockContent">
                     <h2 class="num mb-4">3</h2>
@@ -57,7 +62,7 @@
             </div>
             <div class="row align-items-center flex-row-reverse combatBlock">
                 <div class="col-12 col-md-5 col-lg-5 text-center combatBlockImg">
-                    <img src="@CommonMethods.ServerPath/img/eatingSmartTools/eatingOutTool.jpg" class="img-fluid" />
+                    <img src="@CommonMethods.ServerPath/eatingSmartTools/eatingOutTool.jpg" class="img-fluid" />
                 </div>
                 <div class="col-12 col-md col-lg combatBlockContent">
                     <h2 class="num mb-4">4</h2>
@@ -68,5 +73,8 @@
         </div>
     </div>
 </div>
+
+
+
 
 

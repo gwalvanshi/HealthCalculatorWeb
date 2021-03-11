@@ -71,28 +71,31 @@
 </head>
 <body>
     <div class="Progressloading"></div>
-   
     <div class="notiBlock">
         <div class="container-fluid">
-            <div class="row align-items-center justify-content-center">
-                <div class="col text-center text-lg-left">
-                    <p class="mb-2 mt-2">We are fully operational and here to help. <span class="semi">Raise money</span> for COVID-19 relief.</p>
-                </div>
-                <div class="col-auto d-none d-lg-block">
+            <div class="row align-items-center justify-content-end">
+                <div class="col-auto text-right">
+
                     <ul class="list-group list-group-horizontal">
                         <li class="list-group-item"><a href="~/Home/faq">FAQs</a></li>
                         <li class="list-group-item"><a href="~/Home/contact">Contact Us</a></li>
-                        <li class="list-group-item"><a href="#" id="lnkcart"><img src="@CommonMethods.ServerPath/img/cart2.png" class="cartIcon" /> <span class="qnt" id="spQuantity">0</span></a></li>
                         <li class="list-group-item">
+                            <a href="#" class="cartIcon" id="lnkcart">
+                                <img src="@CommonMethods.ServerPath/img/cart2.png" />
+                                
+                                <span class="qnt" id="spQuantity">0</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item">                         
                             <a href="#" class="semi dropdown-toggle" data-toggle="dropdown"><span class="qnt" id="spUserNameToDisplay">Guest User</span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                @if(Session["RoleID"] != null)
+                                @if (Session["RoleID"] != null)
                                 {
-                                    if(Session["RoleID"].ToString() == "3")
+                                    if (Session["RoleID"].ToString() == "3")
                                     {
-                                     <a href="~/Home/AdminView" class="dropdown-item">Admin Dashboard</a>
-                                    } 
-                                    
+                                        <a href="~/Home/AdminView" class="dropdown-item">Admin Dashboard</a>
+                                    }
+
                                 }
                                 <a href="~/Home/assessment?userId=" class="dropdown-item">Assessment Tool</a>
                                 <a href="~/Home/tracker?userId=" class="dropdown-item">Trackers</a>
@@ -103,15 +106,12 @@
                                 <a href="" onclick="Logout(this)" class="dropdown-item">Logout</a>
                             </div>
 
-                          
-
-
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
+    </div>  
  
     @*-------------------uday----------------------*@
     <div id="tablez"></div>
@@ -3089,10 +3089,7 @@
                 </div>
                 <div class="col-12 text-center text-md-right">
                     <hr />
-                    <p class="mb-2">
-                        Site designed by ExellarTech &nbsp;&nbsp;
-                        <span>2020 eating smart. All rights reserved</span>
-                    </p>
+                    <p class="mb-2"><span>@CommonMethods.CompanyRights</span></p>
                 </div>
             </div>
         </div>
@@ -3394,7 +3391,7 @@
             EnquiryModel.Instance_Enquiry_Transaction.push(txtChildParentGurdian);
 
 
-            
+
             var heightselection = "";
             //1 = Centemer 2 = feet,Inches
             if ($("#ChildheightSelect").val() == "1") {
@@ -3564,7 +3561,7 @@
             }
             var paramWeightSelection = "";
             //1 = KG  2 = Pounds
-           
+
             if ($("#WeightSelect").val() == "1") {
                 paramWeightSelection = { ControlName: "WeightSelect", OptionValue: "KG", OtherOption: "" }
                 var paramKG = { ControlName: "ddlKilo", OptionValue: $("#ddlKilo").val(), OtherOption: "" }
@@ -3734,7 +3731,7 @@
 		   // alert(arraydel);
 			var vart = null;
 			for (var i = 0; i < arraydel.length; i++)
-			{               
+			{
 				if (i == 0)
 				{
 					if (arraydel[i] != "undefined") {
@@ -3747,18 +3744,18 @@
 					//debugger;
 					if (arraydel[i] == "undefined") {
 						vart;//alert("RR"); debugger;
-					} 
+					}
 					else {
 						vart = vart + "~" + arraydel[i];
 					}
-					
+
 				}
 
 			}
            // alert(sessionStorage.getItem("CartSession"));
             //alert(sessionStorage.getItem("CartProgramID"));
 			//debugger;
-			sessionStorage.setItem("CartProgramID", vart);			
+			sessionStorage.setItem("CartProgramID", vart);
 			//alert(sessionStorage.getItem("CartProgramID"));
           //  if (sessionStorage.getItem("CartProgramID") != "undefined") {
             if (sessionStorage.getItem("CartSession") != "") {
@@ -3782,7 +3779,7 @@
 
 			if ($("#spQuantity").text() != "0") {
 				displayCartpopup();
-            }			
+            }
  }
 
 
@@ -3798,7 +3795,7 @@
                     var strinnerid = null;
                     var strid = null;
                     var newtbblData = "";
-				
+
 				for (var i = 0; i < array.length; i++) {
                         arrayinner = array[i].split(",");
 					//if (arrayinner == "undefined") { alert("uday"); debugger;}
@@ -3820,7 +3817,7 @@
                             strid = strid + "," + strinnerid;
                         }
 					}
-				}                
+				}
 				sessionStorage.setItem("CProgramID", strid);
 
 				$('#myModal').modal('show');
@@ -3832,7 +3829,7 @@
 
 		@* ------------uday----------*@
 		$(document).ready(function () {
-                     
+
 			if (sessionStorage.getItem("CartSession") != "") {
 
 				$("#spQuantity").text(sessionStorage.getItem("CartSession"));
@@ -3840,11 +3837,11 @@
 
 			}
 			if(sessionStorage.getItem('EmployeeName')!=null)
-			$("#spUserNameToDisplay").text("Welcome ," + sessionStorage.getItem('EmployeeName'));
+			$("#spUserNameToDisplay").text("Welcome " + sessionStorage.getItem('EmployeeName'));
 			else
-			    $("#spUserNameToDisplay").text("Welcome ,Guest User");
+			    $("#spUserNameToDisplay").text("Welcome Guest User");
 
-		   
+
 			$("#lnkcart").click(function (e)
 			{
 				displayCartpopup();
@@ -3852,8 +3849,8 @@
 			   // $("#tblCart").find('tbody').html("");
 				//if (sessionStorage.getItem("CartProgramID") != "" && sessionStorage.getItem("CartProgramID") != null)
 				//{
-				//    var cartdetails = sessionStorage.getItem("CartProgramID");                   
-				//    var array = cartdetails.split("~");                   
+				//    var cartdetails = sessionStorage.getItem("CartProgramID");
+				//    var array = cartdetails.split("~");
 				//    var arrayinner;
 
 				//    var strinnerid = null;
@@ -3863,7 +3860,7 @@
 				//    for (var i = 0; i < array.length; i++)
 				//    {
 				//        arrayinner = array[i].split(",");
-						
+
 				//        strinnerid = null;
 				//        for (var j = 0; j < arrayinner.length; j++)
 				//        {
@@ -3874,7 +3871,7 @@
 				//       // newtbblData='<tr><td class="/"text-center"/">'+(i+1)+'</td><td>'+ arrayinner[4]+'</td><td>'+arrayinner[1]+' </td><td class="/"text-center"/">'+ arrayinner[2]+'</td><td class="/"text-center"/">'+arrayinner[3]+'</td></tr>';
 				//        //newtbblData = '<tr><td class="/"text-center"/">' + (i + 1) + '</td><td>' + arrayinner[4] + '</td><td>' + arrayinner[1] + ' </td><td class="/"text-center"/">' + arrayinner[2] + '</td><td class="/"text-center"/">' + arrayinner[3] + '</td></td><td class="/"text-center"/"><button style="font-size:24px" text="delete" onclick="deleteRows(' + i + '); ><i class="fa fa-trash-o"></i></button></td></tr>';
 				//        newtbblData = '<tr><td class="/"text-center"/">' + (i + 1) + '</td><td>' + arrayinner[4] + '</td><td>' + arrayinner[1] + ' </td><td class="/"text-center"/">' + arrayinner[2] + '</td><td class="/"text-center"/">' + arrayinner[3] + '</td></td><td class="/"text-center"/"><button style="font-size:24px" text="delete" onclick="deleteRows(' + i + ')" ><i class="fa fa-trash-o"></i></button></td></tr>';
-						
+
 				//        $("#tblCart").find('tbody').append(newtbblData);
 
 				//        if (strid == null)
@@ -3911,7 +3908,7 @@
                 }
                 else {
 
-                    window.location.href = '@Url.Action("payments", "Home")';
+                    window.location.href = "@Url.Action("payments", "Home")" + "?userId=" + sessionStorage.getItem("userId");
                 }
 
 

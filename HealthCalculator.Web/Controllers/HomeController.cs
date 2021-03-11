@@ -77,7 +77,7 @@ namespace HealthCalculator.Web.Controllers
         }
 
         [SessionExpireFilterAttribute]
-        public ActionResult payments(string userId=null)
+        public ActionResult payments(string userId)
         {
             var chkTimeOut = Session.Timeout;
             if (chkTimeOut < 10)

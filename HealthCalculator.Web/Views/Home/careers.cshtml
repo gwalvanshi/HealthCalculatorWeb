@@ -4,10 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="container-fluid pl-0 pr-0 mb-5">
     <div class="row no-gutters banner careersBanner align-items-center">
         <div class="col-12 text-center">
-            <h2 class="bold mb-2">Join The Eating Smart Family!</h2>
+            <div class="d-none d-md-block">
+                <h2 class="bold mb-2">Join The Eating Smart Family!</h2>
+            </div>
+            <div class="d-block d-md-none banner-xs">
+                <img src="@CommonMethods.ServerPath/banner/careers-xs.jpg" alt="" class="img-fluid" />
+            </div>
         </div>
     </div>
 </div>

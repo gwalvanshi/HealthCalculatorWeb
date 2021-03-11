@@ -19,6 +19,7 @@ namespace HealthCalculator.Web
 
         // Set server
         public const string ServerPath = "https://eatingsmart.in/HealthWeb/";
+        public const string CompanyRights = "@2020 Eating Smart. All rights reserved";
         public const string ServerPathDocs = "https://eatingsmart.in/";
         private const string V = @"C:\\Harish\\Projects\\email\";
         //Server

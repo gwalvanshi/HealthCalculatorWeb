@@ -3,12 +3,19 @@
     ViewBag.Title = "testimonials";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<?php include("include/functions.php"); ?>
+<?php getHead(); ?>
 
 <div class="container-fluid pl-0 pr-0 mb-5">
     <div class="row no-gutters banner testiBanner align-items-center justify-content-center">
-        <div class="col-10">
-            <h2 class="bold mb-0">Clients Are Happy</h2>
-            <h1 class="alex text-yellow semi">as always!</h1>
+        <div class="col-12 col-md-10">
+            <div class="d-none d-md-block">
+                <h2 class="bold mb-0">Clients Are Happy</h2>
+                <h1 class="alex text-yellow semi">as always!</h1>
+            </div>
+            <div class="d-block d-md-none banner-xs">
+                <img src="@CommonMethods.ServerPath/banner/testimonials-xs.jpg" alt="" class="img-fluid" />
+            </div>
         </div>
     </div>
 </div>
@@ -18,7 +25,7 @@
         <div class="col-12 col-md-6 col-lg-4">
             <div class="testiThumb">
                 <div class="testiImg">
-                    <img src="@CommonMethods.ServerPath/img/user.png" class="img-fluid" />
+                    <img src="@CommonMethods.ServerPath/user.png" class="img-fluid" />
                 </div>
                 <div class="testiContent">
                     <p><i>Sidra, a big thank you to you for this incredible weight loss journey of mine...</i></p>
@@ -31,7 +38,7 @@
         <div class="col-12 col-md-6 col-lg-4">
             <div class="testiThumb">
                 <div class="testiImg">
-                    <img src="@CommonMethods.ServerPath/img/user.png" class="img-fluid" />
+                    <img src="@CommonMethods.ServerPath/user.png" class="img-fluid" />
                 </div>
                 <div class="testiContent">
                     <p><i>Thank u for the motivation and patience firstly. Super the session was...</i></p>
@@ -44,7 +51,7 @@
         <div class="col-12 col-md-6 col-lg-4">
             <div class="testiThumb">
                 <div class="testiImg">
-                    <img src="@CommonMethods.ServerPath/img/user.png" class="img-fluid" />
+                    <img src="@CommonMethods.ServerPath/user.png" class="img-fluid" />
                 </div>
                 <div class="testiContent">
                     <p><i>Hello Aruna here, I feel lots of difference in weight loss these days...</i></p>
@@ -57,7 +64,7 @@
         <div class="col-12 col-md-6 col-lg-4">
             <div class="testiThumb">
                 <div class="testiImg">
-                    <img src="@CommonMethods.ServerPath/img/user.png" class="img-fluid" />
+                    <img src="@CommonMethods.ServerPath/user.png" class="img-fluid" />
                 </div>
                 <div class="testiContent">
                     <p><i>Thank you sidra once again for all your support and effort, especially for giving me...</i></p>
@@ -70,7 +77,7 @@
         <div class="col-12 col-md-6 col-lg-4">
             <div class="testiThumb">
                 <div class="testiImg">
-                    <img src="@CommonMethods.ServerPath/img/user.png" class="img-fluid" />
+                    <img src="@CommonMethods.ServerPath/user.png" class="img-fluid" />
                 </div>
                 <div class="testiContent">
                     <p><i>Hi Sidra, I got my tests done before starting my IVF treatment, through your program my AMH...</i></p>
@@ -83,7 +90,7 @@
         <div class="col-12 col-md-6 col-lg-4">
             <div class="testiThumb">
                 <div class="testiImg">
-                    <img src="@CommonMethods.ServerPath/img/user.png" class="img-fluid" />
+                    <img src="@CommonMethods.ServerPath/user.png" class="img-fluid" />
                 </div>
                 <div class="testiContent">
                     <p><i>Hello Sidra, thank you so much. The diet looks doable . And I am already confident about...</i></p>
@@ -112,7 +119,7 @@
                     <div class="col-12 col-lg-auto text-center">
                         <div class="testiThumb">
                             <div class="testiImg">
-                                <img src="@CommonMethods.ServerPath/img/user.png" class="img-fluid" />
+                                <img src="@CommonMethods.ServerPath/user.png" class="img-fluid" />
                             </div>
                             <div class="testiContent">
                                 <h5 class="semi mb-2">Payal Khanna</h5>
@@ -145,7 +152,7 @@
                     <div class="col-12 col-lg-auto text-center">
                         <div class="testiThumb">
                             <div class="testiImg">
-                                <img src="@CommonMethods.ServerPath/img/user.png" class="img-fluid" />
+                                <img src="@CommonMethods.ServerPath/user.png" class="img-fluid" />
                             </div>
                             <div class="testiContent">
                                 <h5 class="semi mb-2">Varun Bhojani</h5>
@@ -176,7 +183,7 @@
                     <div class="col-12 col-lg-auto text-center">
                         <div class="testiThumb">
                             <div class="testiImg">
-                                <img src="@CommonMethods.ServerPath/img/user.png" class="img-fluid" />
+                                <img src="@CommonMethods.ServerPath/user.png" class="img-fluid" />
                             </div>
                             <div class="testiContent">
                                 <h5 class="semi mb-2">Aruna Iyer</h5>
@@ -207,7 +214,7 @@
                     <div class="col-12 col-lg-auto text-center">
                         <div class="testiThumb">
                             <div class="testiImg">
-                                <img src="@CommonMethods.ServerPath/img/user.png" class="img-fluid" />
+                                <img src="@CommonMethods.ServerPath/user.png" class="img-fluid" />
                             </div>
                             <div class="testiContent">
                                 <h5 class="semi mb-2">Tasneem Kanchwala</h5>
@@ -238,7 +245,7 @@
                     <div class="col-12 col-lg-auto text-center">
                         <div class="testiThumb">
                             <div class="testiImg">
-                                <img src="@CommonMethods.ServerPath/img/user.png" class="img-fluid" />
+                                <img src="@CommonMethods.ServerPath/user.png" class="img-fluid" />
                             </div>
                             <div class="testiContent">
                                 <h5 class="semi mb-2">Rashmi Dube</h5>
@@ -269,7 +276,7 @@
                     <div class="col-12 col-lg-auto text-center">
                         <div class="testiThumb">
                             <div class="testiImg">
-                                <img src="@CommonMethods.ServerPath/img/user.png" class="img-fluid" />
+                                <img src="@CommonMethods.ServerPath/user.png" class="img-fluid" />
                             </div>
                             <div class="testiContent">
                                 <h5 class="semi mb-2">Ankita Alreja</h5>
@@ -278,7 +285,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg text-center">
-                        <p class="mt-2">"Hello Sidra, thank you so much. The diet looks doable . And I am already confident about following this. I wasn’t sure about myself whether I would be able to give my 100% . I need it tell you , you have made my life very easy. Thank you .</p>
+                        <p class="mt-2">"Hello Sidra, thank you so much. The diet looks doable . And I am already confident about following this. I wasn’t sure about myself whether I would be able to give my 100% . I need to tell you , you have made my life very easy. Thank you .</p>
                         <p>You know something earlier I used to get scared to even stand on a weighing scale . Now slowly and gradually I am becoming friends with the scale 😅😅</p>
                         <p>4 kgs in a month is unbelievable trust me. I remember when I used to workout so hard , at the point I lost 2 kgs in a month after slogging my ass rigorously for a month. After that I have never lost so many kilos in a month. I can’t wait to lose many kilos and get rid of the fat."</p>
                     </div>
@@ -287,6 +294,4 @@
         </div>
     </div>
 </div>
-
-
 

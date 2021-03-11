@@ -20,6 +20,7 @@ namespace HealthCalculator.Web.EntityModel
         public DateTime? StartActiveDate { get; set; }
         public DateTime? EndActiveDate { get; set; }
         public string OrderAmountINR { get; set; }
+        public string EncriptUserId { get; set; }
         public int ? Totaldays { get; set; }
         public int order_id { get; set; }
         public int ProductID { get; set; }
