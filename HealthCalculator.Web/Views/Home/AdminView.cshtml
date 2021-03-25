@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "AdminView";
 }
-
+@Styles.Render("~/Content/DevExtremeBundle")
 <div class="container-fluid flowerBg">
     <div style="padding-top:10px;" class="row justify-content-center">
         <input type="hidden" id="hdnLoginUserId" />
@@ -520,6 +520,7 @@
         $("#gridContainer").dxDataGrid({
             dataSource: ctr,
             allowColumnReordering: true,
+            columnMinWidth: 180,
             showBorders: true,
 
             searchPanel: {

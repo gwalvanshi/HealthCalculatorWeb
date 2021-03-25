@@ -8,9 +8,10 @@
         <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
             <input type="hidden" id="hdnLoginUserId" />
             <h2 class="semi text-white text-shadow">
-                <span id="HeaderValue"></span>
-                <img src="@CommonMethods.ServerPath/img/thumbs.png" style="width: 40px; vertical-align: middle; margin-top: -15px;" />
-                <img src="@CommonMethods.ServerPath/img/smiley.png" class="smiley" style="width: 40px;" />
+                <span class="mb-2 dib">ACCOUNT SECTION</span></br>
+                <span id="HeaderValue"></span> believe in yourself. You can do it!
+                <img src="@CommonMethods.ServerPath/img/smiley.png" class="smiley" style="width: 40px;margin-top: 4px;" />
+                <img src="@CommonMethods.ServerPath/img/thumbs.png" style="width: 40px; vertical-align: middle;" />
             </h2>
         </div>
     </div>
@@ -214,7 +215,7 @@
             
         });
         CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
-            $("#HeaderValue").text("ACCOUNT SETTINGS | " + response.dataCollection[0].FirstName + ",  believe in yourself. You can do it!");
+            $("#HeaderValue").text(response.dataCollection[0].FirstName + ",");
 
         });
     }

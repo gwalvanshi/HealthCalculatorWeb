@@ -51,7 +51,88 @@ namespace HealthCalculator.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Payment");
+                string guid = string.Empty;
+                if (Session["PaypalData"] != null)
+                {
+                    guid = Convert.ToString(Session["PaypalData"]);
+                }
+                PaymentInitiateModel _requestData = new PaymentInitiateModel();
+                _requestData.amount = Convert.ToInt32(guid.Split('-')[3].ToString());
+                _requestData.OrderId = Convert.ToInt32(guid.Split('-')[1].ToString());
+                _requestData.UserId = Convert.ToInt32(guid.Split('-')[2].ToString());
+
+                //int loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "114";
+                collection.UserId = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "UserId",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue =_requestData.UserId.ToString()
+                    }
+                };
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = _genericService.GetRecordsResult<LoginEntity>(stringContent1);
+                _requestData.contactNumber = objCommunication.dataCollection[0].MobileNo;
+                _requestData.email = objCommunication.dataCollection[0].Email;
+                _requestData.address = "NA";
+                _requestData.name = objCommunication.dataCollection[0].FirstName + " " + objCommunication.dataCollection[0].LastName;
+                OrderViewModel objGraphType = new OrderViewModel();
+                CommonMethods objCommonMethods = new CommonMethods();
+                GenericOperationModel SendObjData = new GenericOperationModel();
+                //GenericService _genericService = new GenericService();
+
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                // Generate random receipt number for order
+                Random randomObj = new Random();
+                string transactionId = randomObj.Next(10000000, 100000000).ToString();
+                Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_dcqe3aqpMbfHdP", "f20iAuCr0Rz9ZE2dSvccDesd");
+
+                Dictionary<string, object> options = new Dictionary<string, object>();
+                options.Add("amount", _requestData.amount * 100);  // Amount will in paise
+                options.Add("receipt", transactionId);
+                options.Add("currency", "INR");
+                // options.Add("image", "https://eatingsmart.in/HealthWeb//img/logo-print.png");            
+                options.Add("payment_capture", "0"); // 1 - automatic  , 0 - manual
+                                                     //options.Add("notes", "-- You can put any notes here --");
+                Razorpay.Api.Order orderResponse = client.Order.Create(options);
+
+                string orderId = orderResponse["id"].ToString();
+                // Create order model for return on view
+                OrderModel orderModel = new OrderModel
+                {
+                    orderId = orderResponse.Attributes["id"],
+                    razorpayKey = "rzp_test_dcqe3aqpMbfHdP",
+                    amount = _requestData.amount * 100,
+                    currency = "INR",
+                    name = _requestData.name,
+                    email = _requestData.email,
+                    contactNumber = _requestData.contactNumber,
+                    address = _requestData.address,
+                    description = "Testing description"
+                };
+                objGraphType.OrderId = Convert.ToInt32(_requestData.OrderId);
+                objGraphType.UserId = Convert.ToInt32(_requestData.UserId);
+                objGraphType.IsPaymentDone = false;
+                objGraphType.PaymentorderId = orderId;
+                objGraphType.PaymentType = "RazorPayTemp";
+
+                SendObjData.ScreenID = "116";
+                SendObjData.UserID = objGraphType.UserId;
+                SendObjData.Operation = "ADD";
+
+                string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+                SendObjData.XML = stringTOXml;
+
+
+                var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+                var status = _genericService.GetRecordsResult<OrderViewModel>(stringContent);
+                // Return on PaymentPage with Order data
+                return View("PaymentPage", orderModel);
             }
         }
         public ActionResult FailureView()

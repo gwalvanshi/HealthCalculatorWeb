@@ -10,13 +10,12 @@
 
 
     <link href="@CommonMethods.ServerPath/img/src/css/lightslider.css" rel="stylesheet" />
-    <link href="~/css/hover-min.css" rel="stylesheet" type="text/css" />
-    <link href="~/css/animate.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
-    @*@Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")*@
-    @Styles.Render("~/Content/DevExtremeBundle")
+    <link href="@CommonMethods.ServerPath/css/hover-min.css" rel="stylesheet" type="text/css" />
+    <link href="@CommonMethods.ServerPath/css/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="@CommonMethods.ServerPath/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="@CommonMethods.ServerPath/css/style.css" rel="stylesheet" type="text/css" />
+   
+   
 
     <style>
         .Mandtory {
@@ -71,6 +70,8 @@
 </head>
 <body>
     <div class="Progressloading"></div>
+
+
     <div class="notiBlock">
         <div class="container-fluid">
             <div class="row align-items-center justify-content-end">
@@ -3806,7 +3807,7 @@
                             strinnerid = arrayinner[0];
                         }
 
-						newtbblData = '<tr><td class="/"text-center"/">' + (i + 1) + '</td><td>' + arrayinner[4] + '</td><td>' + arrayinner[1] + ' </td><td class="/"text-center"/">' + arrayinner[2] + '</td><td class="/"text-center"/">' + arrayinner[3] + '</td></td><td class="/"text-center"/"><button text="Remove" onclick="deleteRows(' + i + ')" ></button></td></tr>';
+						newtbblData = '<tr><td class="/"text-center"/">' + (i + 1) + '</td><td>' + arrayinner[4] + '</td><td>' + arrayinner[1] + ' </td><td class="/"text-center"/">' + arrayinner[2] + '</td><td class="/"text-center"/">' + arrayinner[3] + '</td></td><td class="/"text-center"/"> <img src="@CommonMethods.ServerPath/img/trash.png" onclick="deleteRows(' + i + ')" /></td></tr>';
 
                         $("#tblCart").find('tbody').append(newtbblData);
 

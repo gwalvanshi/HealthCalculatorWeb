@@ -148,6 +148,7 @@ namespace HealthCalculator.Web.Controllers
             //            SearchParameterValue = loggedIdUserID.ToString()
             //        }
             //    };
+            collection.IndexScreenSearchParameterModel = IndexScreenSearchParameterModelList;
             var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
             var objCommunication =  _genericService.GetRecordsResult<MessageMaster>(stringContent1);
             

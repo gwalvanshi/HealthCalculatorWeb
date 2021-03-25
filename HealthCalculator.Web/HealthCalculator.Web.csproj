@@ -359,6 +359,7 @@
     <Content Include="img\banner\home1.jpg" />
     <Content Include="img\banner\home2.jpg" />
     <Content Include="img\banner\home3.jpg" />
+    <Content Include="img\banner\home4.jpg" />
     <Content Include="img\banner\howWorks-xs.jpg" />
     <Content Include="img\banner\howWorks.jpg" />
     <Content Include="img\banner\privacyPolicy-xs.jpg" />
@@ -367,6 +368,7 @@
     <Content Include="img\banner\smartBodyToningBuilding222.jpg" />
     <Content Include="img\banner\smartChildNutrition.jpg" />
     <Content Include="img\banner\smartChildSpecialProgram.jpg" />
+    <Content Include="img\banner\smartChildSpecialProgram222.jpg" />
     <Content Include="img\banner\smartEatingOut.jpg" />
     <Content Include="img\banner\smartEnhancer.jpg" />
     <Content Include="img\banner\smartManagementForDisease-xs.jpg" />
@@ -540,6 +542,7 @@
     <Content Include="img\src\js\lightslider.js" />
     <Content Include="img\success.png" />
     <Content Include="img\thumbs.png" />
+    <Content Include="img\trash.png" />
     <Content Include="img\tw.png" />
     <Content Include="img\uploadPhoto.png" />
     <Content Include="img\user.png" />

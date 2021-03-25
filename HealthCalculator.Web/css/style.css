@@ -504,11 +504,14 @@ form .form-control {
 .mainBanner .carousel-control-prev-icon {
 	padding: 25px;
 }
+.banner-xs img {
+	width: 100%;
+}
 
 
 /* blogs */
 .blogsBanner {
-	background: url("../img/banner/blogs.jpg") no-repeat;
+	background: url("../img/banner/blogs.jpg") top center no-repeat;
 	background-size: cover;
 	background-position-y: 28%;
 }
@@ -536,7 +539,7 @@ form .form-control {
 
 /* careers */
 .careersBanner {
-	background: url("../img/banner/careers.jpg") no-repeat;
+	background: url("../img/banner/careers.jpg") top center no-repeat;
 	background-size: cover;
 	background-position-y: 39%;
 }
@@ -569,7 +572,7 @@ form .form-control {
 
 /* contact */
 .contactBanner {
-	background: url("../img/banner/contact.jpg") top right no-repeat;
+	background: url("../img/banner/contact.jpg") top center no-repeat;
 	background-size: cover;
 	background-position-y: 55%;
 }
@@ -603,7 +606,7 @@ form .form-control {
 
 /* testimonials */
 .testiBanner {
-	background: url("../img/banner/testimonials.jpg") top right no-repeat;
+	background: url("../img/banner/testimonials.jpg") top center no-repeat;
 	background-size: cover;
 	background-position-y: 18%;
 }
@@ -666,7 +669,7 @@ form .form-control {
 
 /*** howWorksBanner ***/
 .howWorksBanner {
-	background: url("../img/banner/howWorks.jpg") bottom center no-repeat;
+	background: url("../img/banner/howWorks.jpg") top center no-repeat;
 	background-size: cover;
 	background-position-y: 18%;
 }
@@ -704,7 +707,7 @@ form .form-control {
 
 /* faq */
 .faqBanner {
-	background: url("../img/banner/faq.jpg") top right no-repeat;
+	background: url("../img/banner/faq.jpg") top center no-repeat;
 	background-size: cover;
 	background-position-y: 18%;
 }
@@ -739,7 +742,7 @@ form .form-control {
 
 /* about */
 .aboutBanner {
-	background: url("../img/banner/about.jpg") top right no-repeat;
+	background: url("../img/banner/about.jpg") top center no-repeat;
 	background-size: cover;
 	background-position-y: 38%;
 }
@@ -772,7 +775,7 @@ form .form-control {
 
 /* eatingSmartTools */
 .eatingSmartToolsBanner {
-	background: url("../img/banner/eatingSmartTools.jpg") top right no-repeat;
+	background: url("../img/banner/eatingSmartTools.jpg") top center no-repeat;
 	background-size: cover;
 	background-position-y: 18%;
 }
@@ -812,7 +815,7 @@ form .form-control {
 
 /* services */
 .smartBodyToningBuildingBanner {
-	background: url("../img/banner/bodyToningBuilding.jpg") top right no-repeat;
+	background: url("../img/banner/bodyToningBuilding.jpg") top center no-repeat;
 	background-size: cover;
 }
 .planningThumb {
