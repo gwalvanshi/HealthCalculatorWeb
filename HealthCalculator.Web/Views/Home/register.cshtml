@@ -3,29 +3,47 @@
     ViewBag.Title = "register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="container-fluid bg-sky">
+
     <div class="row">
+
         <div class="col-12 col-md-12 col-lg-12 text-center pt-3 pb-2">
             <input type="hidden" id="hdnLoginUserId" />
             <h2 class="semi text-white text-shadow">MY ACCOUNT</h2>
+
         </div>
+
     </div>
+
 </div>
 
+
 <div class="container-fluid flowerBg">
+
     <div class="row justify-content-center">
+
         <div class="col-12 col-md-12 col-lg-8">
+
             <div class="row justify-content-center align-items-center middleContent">
+
                 <div class="col-12 col-md-5 col-lg-5 d-flex align-items-center loginScreen">
+
                     <div>
+
                         <img src="@CommonMethods.ServerPath/img/briefcase.png" class="img-fluid mb-5" />
+
                         <h2 class="semi">REGISTER</h2>
+
                         <p>Be a part of Eating Smart and enjoy a healthy lifestyle!</p>
+
                     </div>
+
                 </div>
+
                 <div class="col-12 col-md-7 col-lg-7 d-flex align-items-center loginForm">
+
                     <form>
+
                         <div class="form">
                             <div class="col-12 col-md-12 form-group">
                                 <input type="text" class="form-control border mandotory" id="txtFristName" maxlength="50" placeholder="Enter First Name">
@@ -53,11 +71,19 @@
                             </div>
                         </div>
                     </form>
+
+                   
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
+
 <script>
   
     var isAllValid = true;

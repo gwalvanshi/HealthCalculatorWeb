@@ -642,7 +642,7 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
-        public async Task<JsonResult> GetEatingPattern(int userId,int orderId,int productId,int SessionID)
+        public async Task<JsonResult> GetEatingPattern(int userId,int orderId,int productId,int SessionID, int RoleId)
         {
             try
             {
@@ -684,13 +684,16 @@ namespace HealthCalculator.Web.Controllers
                 };
                 IndexScreenSearchParameterModelList.Add(obj4);
 
-                var obj5 = new IndexScreenSearchParameterModel
+                if (RoleId == 1)
                 {
-                    SearchParameter = "IsSubmit",
-                    SearchParameterDataType = "int",
-                    SearchParameterValue = "1"
-                };
-                IndexScreenSearchParameterModelList.Add(obj5);
+                    var obj5 = new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "IsSubmit",
+                        SearchParameterDataType = "int",
+                        SearchParameterValue = "1"
+                    };
+                    IndexScreenSearchParameterModelList.Add(obj5);
+                }
 
                 collection.IndexScreenSearchParameterModel = IndexScreenSearchParameterModelList;
 

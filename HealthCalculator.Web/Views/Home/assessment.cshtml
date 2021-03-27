@@ -350,7 +350,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-12 col-sm-5 col-form-label semi">Reports(upload zip in case multiple) <span class="float-right d-none d-md-block"> : </span></label>
+                        <label class="col-12 col-sm-5 col-form-label semi">Reports(Please upload zip, incase of multiple files) <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
                             <input type="text" class="form-control border " id="txtReports" maxlength="100" placeholder="Enter Reports" />
                             <div class="btn btn-primary">
@@ -359,10 +359,11 @@
                             </div>
                             <div class="btn btn-primary" style="display:none;" id="dvDownloadReport">
                                 @*<a  id="btnDownloadReport" onclick="downloadDocument()">&nbsp; &nbsp; Download Report &nbsp; &nbsp; </a>*@
-                                <a id="btnDownloadReport" target="_blank">&nbsp; &nbsp; Download Report &nbsp; &nbsp; </a>
+                                <a id="btnDownloadReport" href="#" onclick="DownloadReport(this)" target="_blank">&nbsp; &nbsp; Download Report &nbsp; &nbsp; </a>
                             </div>
                         </div>
                     </div>
+
 
                     <div class="form-group row">
                         <div class="col-12 col-sm-12 text-right">
@@ -890,7 +891,7 @@
                     }
 
                     CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                        alert('Record save successfully!!!');
+                        alert('Record saved successfully!!!');
                         if (sessionStorage.getItem('RoleID') == 1) 
                            { $("#btnSaveGenralInfo").hide(); }
                     });
@@ -927,7 +928,7 @@
                 }
 
                 CommonAjaxMethod('Program/SavePoto', assessment, false, 'POST', function (response) {
-                    alert('Record save successfully!!!');
+                    alert('Record saved successfully!!!');
                     if (sessionStorage.getItem('RoleID') == 1) { $("#btnSaveUserPhoto12").hide(); }
 
                 });
@@ -977,7 +978,7 @@
             }
 
             CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
+                alert('Record saved successfully!!!');
                 if (sessionStorage.getItem('RoleID') == 1) { $("#btnSaveUserAnthropometry").hide(); }
 
             });
@@ -1014,7 +1015,7 @@
             }
 
             CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
+                alert('Record saved successfully!!!');
                 if (sessionStorage.getItem('RoleID') == 1) { $("#btnSaveUserMedicalHistory").hide(); }
 
             });
@@ -1071,7 +1072,7 @@
             }
 
             CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
+                alert('Record saved successfully!!!');
                 if (sessionStorage.getItem('RoleID') == 1) { $("#btnSaveUserMedications").hide(); }
 
             });
@@ -1118,7 +1119,7 @@
             }
 
             CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
+                alert('Record saved successfully!!!');
                 if (sessionStorage.getItem('RoleID') == 1) { $("#btnSaveUserDietaryAndLifeStyleDetails").hide(); }
 
             });
@@ -1169,7 +1170,7 @@
             }
 
             CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
+                alert('Record saved successfully!!!');
                 if (sessionStorage.getItem('RoleID') == 1) { $("#btnSaveUserDirectCall").hide(); }
             });
             //    }
@@ -1210,7 +1211,7 @@
             }
 
             CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
+                alert('Record saved successfully!!!');
                 if (sessionStorage.getItem('RoleID') == 1) { $("#btnSaveUserFoodFequency").hide(); }
             });
             //    }
@@ -1243,7 +1244,7 @@
             }
 
             CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
-                alert('Record save successfully!!!');
+                alert('Record saved successfully!!!');
                 if (sessionStorage.getItem('RoleID') == 1) { $("#btnSaveUserAnyKeyInSights").hide(); }
 
             });
@@ -1301,7 +1302,7 @@
 
 
     function MessageHelp(ctrl) {
-        @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@        
+        @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
         var selectedUserId = "@Request.QueryString["userId"]";
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
@@ -1313,7 +1314,7 @@
     }
     function TrackersHelp(ctrl)
     {
-        @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@     
+        @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
         var selectedUserId = "@Request.QueryString["userId"]";
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
@@ -1325,7 +1326,7 @@
     }
     function PatternHelp(ctrl)
     {
-       @*// var selectedUserId = "@Request.QueryString["userId"].ToString()";*@      
+       @*// var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
         var selectedUserId = "@Request.QueryString["userId"]";
         if (selectedUserId != "") {
             sessionStorage.setItem('userId', selectedUserId);
@@ -1343,14 +1344,14 @@
         if (qData == "") { qData = sessionStorage.getItem('userId'); }
         else { sessionStorage.setItem('userId', qData); }
         if (qData != "")
-        {        
-          
+        {
+
 
             CommonAjaxMethod('Program/GetUserTrackerDetails', { userId: sessionStorage.getItem('userId') }, false, 'GET',
                function (response) {
 
                    if (response.data.Data.Table2.length > 0)
-                   {                     
+                   {
                        sessionStorage.setItem('ProductId', response.data.Data.Table2[0].ProductId);
                        sessionStorage.setItem('OrderId', response.data.Data.Table2[0].OrderId);
                    }
@@ -1362,7 +1363,7 @@
                     }
                }
            );
-        
+
         }
 
         SystemdropdownMasterData = [];
@@ -1398,7 +1399,7 @@
          }
        CommonAjaxMethod('Program/GetUserNotification', UserNotification, false, 'POST', function (response)
        {
-           
+
                if (response.data.Data.length > 0) {
                    $("#spMessage").text(" (" + response.data.Data[0].MessageCount + ")");
 
@@ -1433,14 +1434,14 @@
                 //alert(d);
                 //alert(d1);
 
-                // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);               
+                // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);
                 //-------------------GenralInfo-----------------------------------
-               
+
                 if (response.data.Data.Table.length > 0) {
                     $("#txtName").val(response.data.Data.Table[0].UserName);
-                    $("#ddlGenderp").val(response.data.Data.Table[0].Gender);                   
+                    $("#ddlGenderp").val(response.data.Data.Table[0].Gender);
 
-                  
+
 
                     var strDate = "";
                     var dateValue = response.data.Data.Table[0].BirthDate;
@@ -1824,7 +1825,7 @@
             //We will change the below logic later error handling
             $.ajax({
             //    url: virtualPath + '/Program/UploadDocumentReport?userID=' + folderDetails,
-                url:  '/Program/UploadDocumentReport?userID=' + folderDetails,
+                url: '/CommonMethods/UploadReportFiles?userID=' + folderDetails,
                 type: "POST",
                 contentType: false, // Not to set any content header
                 processData: false, // Not to process data
@@ -1847,18 +1848,14 @@
         }
     }
 
-    $(document).ready(function () {
 
-        $("#btnDownloadReport").click(function (e) {
-            e.preventDefault();
-            var uri = "@CommonMethods.ServerPath";
-            var fullname = $("#hdnfileuploadReportPath").val();
+    function DownloadReport(ctrl)
+    {
+          
+             var fullname = $("#hdnfileuploadReportPath").val();
+           ctrl.href = fullname;
+          ctrl.click();
 
-            window.location.href =fullname;
-        });
-
-    });
-
-
+    }
 
 </script>

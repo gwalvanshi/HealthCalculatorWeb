@@ -586,7 +586,7 @@ namespace HealthCalculator.Web.Controllers
             return View();
             // return RedirectToAction("Index", "User");
         }
-        public ActionResult howItWorks()
+        public ActionResult HowItWorks()
         {
             var chkTimeOut = Session.Timeout;
             if (chkTimeOut < 10)

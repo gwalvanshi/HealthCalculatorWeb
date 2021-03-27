@@ -37,7 +37,7 @@ namespace HealthCalculator.Web
                 using (MailMessage mm = new MailMessage("hello@EATINGSMART.IN", "healthrating@eatingsmart.in"))
                 // using (MailMessage mm = new MailMessage("emailus @d2digitalservices.com", ToEmail))
                 {
-                    // mm.CC.Add(new MailAddress("healthrating@eatingsmart.in"));
+                     mm.CC.Add(new MailAddress("patelsidra@gmail.com"));
                     mm.Subject = objContactDetails.Subject;
                     mm.Body = objContactDetails.Message;
                     mm.IsBodyHtml = true;

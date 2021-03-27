@@ -360,6 +360,7 @@
     <Content Include="img\banner\home2.jpg" />
     <Content Include="img\banner\home3.jpg" />
     <Content Include="img\banner\home4.jpg" />
+    <Content Include="img\banner\home5.jpg" />
     <Content Include="img\banner\howWorks-xs.jpg" />
     <Content Include="img\banner\howWorks.jpg" />
     <Content Include="img\banner\privacyPolicy-xs.jpg" />
@@ -690,7 +691,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\about.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -725,7 +726,7 @@
     <Content Include="Views\Home\ShowBMI0205Girl.cshtml" />
     <Content Include="Views\Home\ShowBMI0518Boy.cshtml" />
     <Content Include="Views\Home\ShowBMI0518Girl.cshtml" />
-    <Content Include="Views\Home\howItWorks.cshtml" />
+    <Content Include="Views\Home\HowItWorks.cshtml" />
     <Content Include="Views\Program\smartWeightLoss.cshtml" />
     <Content Include="Views\Program\smartManagementForDisease.cshtml" />
     <Content Include="Views\Program\smartBodyToningBuilding.cshtml" />
@@ -749,8 +750,8 @@
     <Content Include="Views\Home\blogs.cshtml" />
     <Content Include="Views\Home\careers.cshtml" />
     <Content Include="Views\Home\corporateWellness.cshtml" />
-    <Content Include="Views\Home\eatingSmartTools.cshtml" />
-    <Content Include="Views\Home\faq.cshtml" />
+    <Content Include="Views\Home\EatingSmartTools.cshtml" />
+    <Content Include="Views\Home\Faq.cshtml" />
     <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Home\privacyPolicy.cshtml" />
     <Content Include="Views\Home\register.cshtml" />
@@ -768,7 +769,7 @@
     <Content Include="Views\Home\tracker.cshtml" />
     <Content Include="Views\Home\MyEatingSmartTools.cshtml" />
     <Content Include="Views\Home\MyEatingPattern.cshtml" />
-    <Content Include="Views\Home\helpDesk.cshtml" />
+    <Content Include="Views\Home\HelpDesk.cshtml" />
     <Content Include="Views\Home\payments.cshtml" />
     <Content Include="Views\Payment\Success.cshtml" />
     <Content Include="Views\Payment\Failed.cshtml" />
