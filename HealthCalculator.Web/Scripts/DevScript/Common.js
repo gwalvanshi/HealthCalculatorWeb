@@ -4,6 +4,7 @@
 //Added wehn 9 April
 //start
 var LookUpType = 0;
+
 var GridColumnDetails = "";
 var GridColumnForRadioButton = "";
 var ResxColumnDetails = "";
