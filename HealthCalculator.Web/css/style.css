@@ -1286,6 +1286,7 @@ form .form-control {
 	}
 	.proThumb .proText .marthin {
 		font-size: 36px;
+		margin-top: 0;
 	}
 	.proThumb .proText h5 {
 		font-size: 18px;
@@ -1349,7 +1350,8 @@ form .form-control {
 		height: 350px;
 	}
 	.middleContent .loginForm {
-		height: 350px;
+		height: auto;
+		display: block !important;
 	}
 	
 	.healthRating .healthRatingImg {
@@ -1366,6 +1368,32 @@ form .form-control {
 	/* tracker */
 	.menu-sec {
 		flex-direction: column;
+	}
+
+	.middleContent {
+		background: rgba(0,0,0,0.2);
+		padding: 12px !important;
+		margin: 30px auto;
+	}
+
+	.paymentPg{
+		font-size:11px;
+	}
+	.paymentPg .form-data .form-control {
+			margin-bottom: 15px;
+	}
+	.paymentPg #btnCoupon {
+		margin-top: 0 !important;
+	}
+	.paymentOptionPg label img{
+		display: block;
+	}
+	.cartPopup .table td, .cartPopup .table th {
+		padding: .3rem;
+		font-size: 11px;
+	}
+	.cartPopup td img{
+		max-height: 20px;
 	}
 	
 }

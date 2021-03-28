@@ -5,7 +5,7 @@
 }
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center paymentPg">
         <div class="col-12 col-md-11 col-lg-10">
             <div class="middleContent bg-gray shadow">
                 <p class="semi mb-2 text-yellow">Payment</p>
@@ -22,6 +22,8 @@
                         <div class="col-12 col-sm">
                             Promo Code:
                             <input type="text" class="form-control border" id="txtCoupon" placeholder="Coupon" maxlength="50" />
+
+                            <a class="btn btn-reg mt-4 mb-4 hvr-sweep-to-top" id="btnCoupon" onclick="return ApplyCoupon()" href="#">&nbsp; &nbsp; Apply Promo Code &nbsp; &nbsp; </a>
                         </div>
                         <div class="col-12 col-sm">
                             INR Amount:
@@ -30,9 +32,6 @@
                         <div class="col-12 col-sm">
                             Doller Amount:
                             <input type="text" class="form-control border" id="txtDoller" readonly="readonly" />
-                        </div>
-                        <div class="col-12 col-sm-12 ">
-                            <a class="btn btn-reg mt-4 mb-4 hvr-sweep-to-top" id="btnCoupon" onclick="return ApplyCoupon()" href="#">&nbsp; &nbsp; Apply Promo Code &nbsp; &nbsp; </a>
                         </div>
                     </div>
                     <div class="row">

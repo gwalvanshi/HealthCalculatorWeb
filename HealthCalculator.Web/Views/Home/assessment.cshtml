@@ -186,52 +186,64 @@
                     <div class="form-group row">
                         <div class="col-12 col-sm-6">
                             <label class="col-form-label semi">Photo Before</label>
-                            <div class="form-group">
+                            <div class="form-group row">
                                 <div class="col-12 col-md-12 d-flex align-items-center">
-                                    <div class="col-md-4">
-                                        <div class="btn btn-primary">
-                                            <input type="file" id="imageBrowes" />
-                                            <input type="hidden" id="hdnProfilePhotoPath" />
-                                        </div>
-                                        <hr />
-                                        <div id="imgPreview" class="thumbnail">
-                                            <div class="col-12 col-md-12 d-flex align-items-center">
-                                                <img id="targetImg" src="@CommonMethods.ServerPath/img/uploadPhoto.png" class="img-fluid dib mr-3 mb-3" width="200" />
-
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="btn btn-primary">
+                                                <input type="file" id="imageBrowes" />
+                                                <input type="hidden" id="hdnProfilePhotoPath" />
                                             </div>
-                                            <div class="caption">
-                                                <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
-                                                <span id="description"></span>
+                                            <hr />
+                                            <div id="imgPreview" class="thumbnail">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-12 d-flex align-items-center">
+                                                        <img id="targetImg" src="@CommonMethods.ServerPath/img/uploadPhoto.png" class="img-fluid dib mr-3 mb-3" width="200" />
+
+                                                    </div>
+                                                </div>
+                                                <div class="caption">
+                                                    <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                                                    <span id="description"></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2 thumbnail" id="uploadedImage">
+                                    <div class="row">
+                                        <div class="col-md-2 thumbnail" id="uploadedImage">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
                             <label class="col-form-label semi">Photo After</label>
-                            <div class="form-group">
+                            <div class="form-group row">
                                 <div class="col-12 col-md-12 d-flex align-items-center">
-                                    <div class="col-md-4">
-                                        <div class="btn btn-primary">
-                                            <input type="file" id="imageBrowesAfter" />
-                                            <input type="hidden" id="hdnProfilePhotoPathAfter" />
-                                        </div>
-                                        <hr />
-                                        <div id="imgPreviewAfter" class="thumbnail">
-                                            <div class="col-12 col-md-12 d-flex align-items-center">
-                                                <img id="targetImgAfter" src="@CommonMethods.ServerPath/img/uploadPhoto.png" class="img-fluid dib mr-3 mb-3" width="200" />
-
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="btn btn-primary">
+                                                <input type="file" id="imageBrowesAfter" />
+                                                <input type="hidden" id="hdnProfilePhotoPathAfter" />
                                             </div>
-                                            <div class="caption">
-                                                <a href="#" onclick="ClearPreviewAfter()"><i class="glyphicon glyphicon-trash"></i></a>
-                                                <span id="descriptionAfter"></span>
+                                            <hr />
+                                            <div id="imgPreviewAfter" class="thumbnail">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-12 d-flex align-items-center">
+                                                        <img id="targetImgAfter" src="@CommonMethods.ServerPath/img/uploadPhoto.png" class="img-fluid dib mr-3 mb-3" width="200" />
+
+                                                    </div>
+                                                </div>
+                                                <div class="caption">
+                                                    <a href="#" onclick="ClearPreviewAfter()"><i class="glyphicon glyphicon-trash"></i></a>
+                                                    <span id="descriptionAfter"></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2 thumbnail" id="uploadedImageAfter">
+                                    <div class="row">
+                                        <div class="col-md-2 thumbnail" id="uploadedImageAfter">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -352,7 +364,9 @@
                     <div class="form-group row">
                         <label class="col-12 col-sm-5 col-form-label semi">Reports(Please upload zip, incase of multiple files) <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
-                            <input type="text" class="form-control border " id="txtReports" maxlength="100" placeholder="Enter Reports" />
+                            <div class="form-group">
+                                <input type="text" class="form-control border " id="txtReports" maxlength="100" placeholder="Enter Reports" />
+                            </div>
                             <div class="btn btn-primary">
                                 <input type="file" name="UploadedFileReport" id="fileuploadReport" />
                                 <input type="hidden" id="hdnfileuploadReportPath" />

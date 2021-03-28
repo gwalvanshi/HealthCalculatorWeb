@@ -116,7 +116,7 @@
  
     @*-------------------uday----------------------*@
     <div id="tablez"></div>
-    <div id='myModal' class='modal'>
+    <div id='myModal' class='modal cartPopup'>
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div id='myModalContent'>
@@ -130,12 +130,12 @@
                                             <table class="table" id="tblCart">
                                                 <thead>
                                                     <tr class="semi">
-                                                        <td class="text-center" style="width: 50px;">#</td>
+                                                        <td class="text-center">#</td>
                                                         <td>Program</td>
                                                         <td>Duration</td>
-                                                        <td class="text-center">₹</td>
-                                                        <td class="text-center">$</td>
-														<td class="text-center">Remove</td>
+                                                        <td>₹</td>
+                                                        <td>$</td>
+                                                        <td>Remove</td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -146,14 +146,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group row justify-content-center" style="bottom:auto">
+                            <div class="col-12 col-md-12 col-lg-11">
+
+                                <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnProceed">&nbsp; &nbsp; Proceed &nbsp; &nbsp; </a>
+
+                                @*<a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnok" onclick="ok()">&nbsp; &nbsp; ok &nbsp; &nbsp; </a>*@
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group row" style="bottom:auto">
-                    &nbsp; &nbsp;
-                    <a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnProceed">&nbsp; &nbsp; Proceed &nbsp; &nbsp; </a>
-
-					@*<a class="btn btn-reg mb-4 hvr-sweep-to-top" id="btnok" onclick="ok()">&nbsp; &nbsp; ok &nbsp; &nbsp; </a>*@
-                </div>
+               
             </div>
         </div>
 
@@ -3807,7 +3810,7 @@
                             strinnerid = arrayinner[0];
                         }
 
-						newtbblData = '<tr><td class="/"text-center"/">' + (i + 1) + '</td><td>' + arrayinner[4] + '</td><td>' + arrayinner[1] + ' </td><td class="/"text-center"/">' + arrayinner[2] + '</td><td class="/"text-center"/">' + arrayinner[3] + '</td></td><td class="/"text-center"/"> <img src="@CommonMethods.ServerPath/img/trash.png" onclick="deleteRows(' + i + ')" /></td></tr>';
+						newtbblData = '<tr><td>' + (i + 1) + '</td><td>' + arrayinner[4] + '</td><td>' + arrayinner[1] + ' </td><td>' + arrayinner[2] + '</td><td>' + arrayinner[3] + '</td><td> <img src="@CommonMethods.ServerPath/img/trash.png" onclick="deleteRows(' + i + ')" /></td></tr>';
 
                         $("#tblCart").find('tbody').append(newtbblData);
 
