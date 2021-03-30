@@ -1522,7 +1522,7 @@
                         $("#dvDownloadReport").hide();
                     }
 
-                    $("#hdnfileuploadReportPath").val("@CommonMethods.ServerPathDocs" + response.data.Data.Table[0].ReportPath);
+                    $("#hdnfileuploadReportPath").val(response.data.Data.Table[0].ReportPath);
 
                     if (sessionStorage.getItem('RoleID') == 1) {
                         if (response.data.Data.Table[0].IsSubmitUGI == false) { $("#btnSaveGenralInfo").show() }
@@ -1778,7 +1778,7 @@
         }
 
         var files = fileUpload.files;
-        alert(files.length);
+     
         if (files.length > 0) {
 
             // Create FormData object
@@ -1839,7 +1839,7 @@
             //We will change the below logic later error handling
             $.ajax({
             //    url: virtualPath + '/Program/UploadDocumentReport?userID=' + folderDetails,
-                url: '/CommonMethods/UploadReportFiles?userID=' + folderDetails,
+                url: '/CommonMethods/UploadDocumentReport?userID=' + folderDetails,
                 type: "POST",
                 contentType: false, // Not to set any content header
                 processData: false, // Not to process data
@@ -1851,8 +1851,7 @@
                 success: function (result) {
 
                     if (result.ErrorMessage == undefined) {
-                        $("#hdnfileuploadReportPath").val(result);
-                        $("#txtReports").val(result);
+                        $("#hdnfileuploadReportPath").val(result);                         
                     }
                     else {
                         alert(result.ErrorMessage);

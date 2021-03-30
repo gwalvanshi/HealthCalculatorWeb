@@ -642,12 +642,12 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
-        public async Task<JsonResult> GetEatingPattern(int userId,int orderId,int productId,int SessionID, int RoleId)
+        public async Task<JsonResult> GetEatingPattern(int userId,int orderId,int productId,int SessionID)
         {
             try
             {
                 int loggedIdUserID = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
-
+                int RoleID = Convert.ToInt32(Session["RoleID"]);
 
                 GenericService _genericService = new GenericService();
                 IndexScreenParameterModel collection = new IndexScreenParameterModel();
@@ -684,7 +684,7 @@ namespace HealthCalculator.Web.Controllers
                 };
                 IndexScreenSearchParameterModelList.Add(obj4);
 
-                if (RoleId == 1)
+                if (RoleID == 1)
                 {
                     var obj5 = new IndexScreenSearchParameterModel
                     {
