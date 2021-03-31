@@ -1,9 +1,13 @@
 ﻿<!DOCTYPE html>
-<html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="@CommonMethods.ServerPath/img/LogoBrowser.JPG" type="image/gif"  >
+    <link rel="shortcut icon" href="@CommonMethods.ServerPath/img/LogoBrowser.JPG" type="image/gif">
 
 
     <title>Home</title>
@@ -14,8 +18,8 @@
     <link href="@CommonMethods.ServerPath/css/animate.min.css" rel="stylesheet" type="text/css" />
     <link href="@CommonMethods.ServerPath/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="@CommonMethods.ServerPath/css/style.css" rel="stylesheet" type="text/css" />
-   
-   
+
+
 
     <style>
         .Mandtory {
@@ -29,7 +33,7 @@
             ctrl.href = '@Url.Content("~/Home/Logout")';
             ctrl.click();
         }
-        
+
     </script>
 
     <style>
@@ -83,11 +87,11 @@
                         <li class="list-group-item">
                             <a href="#" class="cartIcon" id="lnkcart">
                                 <img src="@CommonMethods.ServerPath/img/cart2.png" />
-                                
+
                                 <span class="qnt" id="spQuantity">0</span>
                             </a>
                         </li>
-                        <li class="list-group-item">                         
+                        <li class="list-group-item">
                             <a href="#" class="semi dropdown-toggle" data-toggle="dropdown"><span class="qnt" id="spUserNameToDisplay">Guest User</span></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 @if (Session["RoleID"] != null)
@@ -112,8 +116,8 @@
                 </div>
             </div>
         </div>
-    </div>  
- 
+    </div>
+
     @*-------------------uday----------------------*@
     <div id="tablez"></div>
     <div id='myModal' class='modal cartPopup'>
@@ -156,7 +160,7 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
 
@@ -233,7 +237,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <select id="txtAge" class="form-control">
-                                                    <option value="0">Age</option>                                               
+                                                    <option value="0">Age</option>
                                                     <option value="19">19</option>
                                                     <option value="20">20</option>
                                                     <option value="21">21</option>
@@ -1711,7 +1715,7 @@
                                                 <option>10 > hours</option>
                                             </select>
                                             <p class="semi mb-2">Fruits and vegetable intake/day:</p>
-                                            <select id="ddlFruitsVegi" class="form-control">                                               
+                                            <select id="ddlFruitsVegi" class="form-control">
                                                 <option>1 – 2 serving</option>
                                                 <option>3 – 4 serving</option>
                                                 <option>4> serving</option>
@@ -3037,7 +3041,7 @@
 
     </div>
     @RenderBody()
-    
+
     <footer>
         <div class="container-fluid">
             <div class="row">
@@ -3081,7 +3085,7 @@
                         <li><a href="~/Home/Contact">Contact Us</a></li>
                         <li><a href="~/Home/Login">Login</a></li>
                         <li><a href="~/Home/Register">Register</a></li>
-           
+
                     </ul>
                 </div>
                 <div class="col-12 col-md-2">

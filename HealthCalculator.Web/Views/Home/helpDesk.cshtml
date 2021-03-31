@@ -69,30 +69,31 @@
                         Please attach, upload and submit one file at one time or multiple files from the same folder only. Kindly attach, upload and then submit.
                     </div>
                 </div>
-               
-                <div class="col-12 col-md-12 col-lg">
-                    <div class="row align-items-center">
-                        <div class="col-6 col-md-6">
-                            <div class="btn btn-primary">
-                                <div class="form-group">
-                                    Attach Files : <input id="fileInput" type="file" multiple>
-                                    <input type="hidden" id="hdnfileName" />
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-3 col-md-3">
+
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-6">
+                        <div class="btn btn-primary mb-2">
                             <div class="form-group">
-                                <input type="button" id="btnupload" class="btn btn-reg mb-2 hvr-sweep-to-top" value="Upload" style="float:right" />
-                            </div>
-                        </div>
-                        <div class="col-3 col-md-3">
-                            <div class="form-group">
-                                <input type="button" id="btnClear" class="btn btn-reg mb-2 hvr-sweep-to-top" value="Clear Attachement" onclick="ClearAttach()" style="float:right" />
+                                Attach Files : <input id="fileInput" type="file" multiple>
+                                <input type="hidden" id="hdnfileName" />
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-6 col-md-3">
+                        <div class="form-group">
+                            <input type="button" id="btnupload" class="btn btn-reg mb-2 hvr-sweep-to-top displayBlock-xs" value="Upload" style="float:right" />
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="form-group">
+                            <input type="button" id="btnClear" class="btn btn-reg mb-2 hvr-sweep-to-top displayBlock-xs" value="Clear Attachement" onclick="ClearAttach()" style="float:right" />
+                        </div>
+                    </div>
                 </div>
+
+
                 <table class="table" id="FilesList" style="visibility:hidden">
                     <tr>
                         <th>
@@ -110,54 +111,56 @@
 
 
 
-                <table class="table">
-                    <tr>
-                        <th>
-                            Message
-                        </th>
-                        <th>
-                            Added by
-                        </th>
-                        <th>
-                            Added When
-                        </th>
-                        <th>
-                            Attachment(s)
-                        </th>
-                    </tr>
-                    @foreach (var item in Model)
-                    {
-
-                        <tr class="border">
-                            <td>
-                                @Html.Raw(item.Message)
-                            </td>
-                            <td>
-                                @Html.Raw(item.UserName)
-                            </td>
-                            <td>
-                                @Html.Raw(item.Addedwhen)
-                            </td>
-                            <td>
-                                <table>
-                                    @foreach (var item1 in item.MessageMasterDataList)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @if (!string.IsNullOrEmpty(item1.Attachement))
-                                                {
-                                                    <a href="@Html.Raw(item1.Attachement)" target="_blank">Download</a>
-                                                }
-                                            </td>
-                                        </tr>
-                                    }
-
-                                </table>
-                            </td>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Message
+                            </th>
+                            <th>
+                                Added by
+                            </th>
+                            <th>
+                                Added When
+                            </th>
+                            <th>
+                                Attachment(s)
+                            </th>
                         </tr>
+                        @foreach (var item in Model)
+                        {
 
-                    }
-                </table>
+                            <tr class="border">
+                                <td>
+                                    @Html.Raw(item.Message)
+                                </td>
+                                <td>
+                                    @Html.Raw(item.UserName)
+                                </td>
+                                <td>
+                                    @Html.Raw(item.Addedwhen)
+                                </td>
+                                <td>
+                                    <table>
+                                        @foreach (var item1 in item.MessageMasterDataList)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @if (!string.IsNullOrEmpty(item1.Attachement))
+                                                    {
+                                                        <a href="@Html.Raw(item1.Attachement)" target="_blank">Download</a>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </table>
+                                </td>
+                            </tr>
+
+                        }
+                    </table>
+</div>
             </div>
         </div>
     </div>
