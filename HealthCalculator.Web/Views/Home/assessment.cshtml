@@ -1791,8 +1791,8 @@
 
             //We will change the below logic later error handling
             $.ajax({
-               // url: virtualPath + '/Program/UploadDocument?userID=' + folderDetails,
-                url:  '/Program/UploadDocument?userID=' + folderDetails,
+                 url: virtualPath + '/Program/UploadDocument?userID=' + folderDetails,
+                //url:  '/Program/UploadDocument?userID=' + folderDetails,
                 type: "POST",
                 contentType: false, // Not to set any content header
                 processData: false, // Not to process data
@@ -1838,8 +1838,8 @@
 
             //We will change the below logic later error handling
             $.ajax({
-            //    url: virtualPath + '/Program/UploadDocumentReport?userID=' + folderDetails,
-                url: '/CommonMethods/UploadDocumentReport?userID=' + folderDetails,
+                url: virtualPath + '/Program/UploadDocumentReport?userID=' + folderDetails,
+                //url: virtualPath + '/CommonMethods/UploadReportFiles?userID=' + folderDetails,
                 type: "POST",
                 contentType: false, // Not to set any content header
                 processData: false, // Not to process data

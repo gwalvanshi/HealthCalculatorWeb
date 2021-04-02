@@ -125,20 +125,20 @@ namespace HealthCalculator.Web.Controllers
             };
             IndexScreenSearchParameterModelList.Add(obj1);
 
-            if (Session["RoleID"] != null)
-            {
-                if(Session["RoleID"].ToString() != "3")
-                {
-                    var obj2 = new IndexScreenSearchParameterModel
-                    {
-                        SearchParameter = "IsMessageRead",
-                        SearchParameterDataType = "bool",
-                        SearchParameterValue = "false"
-                    };
-                    IndexScreenSearchParameterModelList.Add(obj2);
-                }              
+            //if (Session["RoleID"] != null)
+            //{
+            //    if(Session["RoleID"].ToString() != "3")
+            //    {
+            //        var obj2 = new IndexScreenSearchParameterModel
+            //        {
+            //            SearchParameter = "IsMessageRead",
+            //            SearchParameterDataType = "bool",
+            //            SearchParameterValue = "false"
+            //        };
+            //        IndexScreenSearchParameterModelList.Add(obj2);
+            //    }              
 
-            }
+            //}
             //collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
             //    {
             //        new IndexScreenSearchParameterModel

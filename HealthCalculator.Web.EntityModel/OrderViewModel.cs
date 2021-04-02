@@ -45,6 +45,8 @@ namespace HealthCalculator.Web.EntityModel
     {
       
         public int ProgramId { get; set; }
+        
+        public string IsCompleted { get; set; }
         public string UserId { get; set; }
         public string OrderDetail_Id { get; set; }
         public string Order_Id { get; set; }
