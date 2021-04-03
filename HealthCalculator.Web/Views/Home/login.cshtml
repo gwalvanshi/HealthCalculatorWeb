@@ -93,7 +93,7 @@
                 {
                     if (response.data.EmployeeName!= null)
                     {
-
+                        var userID = response.data.userId;
                         sessionStorage.setItem('authToken', response.data.authToken);
                         sessionStorage.setItem('userId', response.data.userId);
                         sessionStorage.setItem('EmployeeName', response.data.EmployeeName);
@@ -112,17 +112,22 @@
                                 else
                                 {
 
-                                    CommonAjaxMethod('Program/GetProductProgram', { userId: response.data.userId }, false, 'GET', function (response) {
+                                    CommonAjaxMethod('Program/GetProductProgram', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (res) {
 
-                                        var test = response.dataCollection;
-                                        debugger;
-                                        if (response.dataCollection.length > 0)
+                                        var test = res.dataCollection;
+                                      
+                                        if (res.dataCollection.length > 0)
                                         {
-                                            sessionStorage.setItem('ProductId', response.dataCollection[0].productId);
-                                            sessionStorage.setItem('OrderId', response.dataCollection[0].Order_id);
-                                            sessionStorage.setItem('IsFreeSession', response.dataCollection[0].IsFreeSession);
+                                            sessionStorage.setItem('ProductId', res.dataCollection[0].productId);
+                                            sessionStorage.setItem('OrderId', res.dataCollection[0].Order_id);
+                                            sessionStorage.setItem('IsFreeSession', res.dataCollection[0].IsFreeSession);
 
                                         }
+                                        else
+                                        {
+                                            sessionStorage.setItem('IsFreeSession', "false");
+                                        }
+                                       
                                         //else
                                        // {
                                             // window.location.href = "@Url.Action("smartWeightLoss", "Home")";

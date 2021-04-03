@@ -1873,7 +1873,8 @@
     function MyEatingSmartTools(ctrl)
     {
         alert(sessionStorage.getItem('IsFreeSession'));
-        if (sessionStorage.getItem('IsFreeSession') == "false") {
+        if (sessionStorage.getItem('IsFreeSession') == "false") 
+        {
             var selectedUserId = "@Request.QueryString["userId"].ToString()";
             if (selectedUserId != "") {
                 sessionStorage.setItem('userId', selectedUserId);
@@ -1881,7 +1882,8 @@
             ctrl.href = '@Url.Content("~/Home/MyEatingSmartTools?userId=")' + selectedUserId;
             ctrl.click();
         }
-        else { 
+        else 
+        { 
             alert("You dont have sufficient permission on it.")
         return false;}
     }
