@@ -115,11 +115,12 @@
                                     CommonAjaxMethod('Program/GetProductProgram', { userId: response.data.userId }, false, 'GET', function (response) {
 
                                         var test = response.dataCollection;
-
+                                        debugger;
                                         if (response.dataCollection.length > 0)
                                         {
                                             sessionStorage.setItem('ProductId', response.dataCollection[0].productId);
                                             sessionStorage.setItem('OrderId', response.dataCollection[0].Order_id);
+                                            sessionStorage.setItem('IsFreeSession', response.dataCollection[0].IsFreeSession);
 
                                         }
                                         //else

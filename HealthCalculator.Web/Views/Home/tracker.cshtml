@@ -28,7 +28,7 @@
 
                     <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right     d-md-block font" style="color: red;" id="spTrackers"></span></a></li>
 
-                    <li class="list-inline-item"><a href="~/Home/MyEatingSmartTools?userId=">My Eating Smart Tool</a></li>
+                    <li class="list-inline-item"><a href="#" onclick="MyEatingSmartTools(this)">My Eating Smart Tool</a></li>
 
 
                     <li class="list-inline-item"> <a href="#" onclick="PatternHelp(this)">My Eating Pattern<span class="float-right   d-md-block" style="color: red;" id="spPattern"></span></a></li>
@@ -177,10 +177,10 @@
     $(document).ready(function ()
     {
         var qData = "@Request.QueryString["userId"].ToString()";
-       
+
         if (qData != "")
         {
-          
+
             qData = "@Request.QueryString["userId"].ToString()";
             sessionStorage.setItem('userId', qData);
 
@@ -188,7 +188,7 @@
         if (sessionStorage.getItem('RoleID') == "1") {
             var obj2 = {
 
-                Module: "3"              
+                Module: "3"
             }
             CommonAjaxMethod('Program/SaveUserNotification', obj2, false, 'POST', function (response) {
 
@@ -230,7 +230,7 @@
 
        });
 
-     
+
         var tracker =
         {
             TableType: "GetRecord",
@@ -262,7 +262,7 @@
                 $("#hdnlenght").val(response.data.Data.Table.length);
                 $("#ddlWeight").val(response.data.Data.Table[0].WeightIn);
                 $("#ddlInch").val(response.data.Data.Table1[0].WeightIn);
-            
+
                 $("#hdnIlenght").val(response.data.Data.Table1.length);
                 orderID = response.data.Data.Table[0].OrderId;
                 $("#lbllable").text(response.data.Data.Table[0].Program + " :: " + response.data.Data.Table[0].ProductName);
@@ -274,7 +274,7 @@
                 $("#tblWeight").find('tbody').html("");
                 $("#tblInch").find('tbody').html("");
 
-                
+
                 var tblWRowsesion = 0;
                 var tblIRowsesion = 0;
                 var tblWRow = 0;
@@ -285,7 +285,7 @@
                 {
                     if (sessionStorage.getItem('RoleID') == "1")
                     {
-                       
+
                         tblWRow++;
                         var tblrow = "";
                         if (tblWRow == 1) {
@@ -301,12 +301,12 @@
                            '</tr>';
                         }
                         if (tblWRow == 2) {
-                          
+
                             tblrow = '<tr>' +
                                '<td>' +
                                    '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
                                '</td>' +
-                              
+
                                '<td>Mid</td>' +
                                '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Weight"  id="txtWT' + (i + 1) + '"/></td>' +
                                '<td><input type="text" style="width:100px;" class="form-control" id="txtWD' + (i + 1) + '" placeholder="" readOnly="true" /></td>' +
@@ -317,7 +317,7 @@
                                '<td>' +
                                    '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
                                '</td>' +
-                              
+
                                '<td>End</td>' +
                                '<td><input type="text" style="width:100px;"   class="form-control" placeholder="Enter Weight"  id="txtWT' + (i + 1) + '"/></td>' +
                                '<td><input type="text" style="width:100px;" class="form-control" id="txtWD' + (i + 1) + '" placeholder="" readOnly="true" /></td>' +
@@ -333,7 +333,7 @@
                         {
                             $("#tblWeight").find('tbody').append(tblrow);
                         }
-                       
+
                     }
                     else {
                         tblWRow++;
@@ -355,7 +355,7 @@
                                '<td>' +
                                    '<input type="date" style="width:200px;" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
                                '</td>' +
-                           
+
                                '<td>Mid</td>' +
                                '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Weight"  id="txtWT' + (i + 1) + '"/></td>' +
                                '<td><input type="text" style="width:100px;" class="form-control" id="txtWD' + (i + 1) + '" placeholder="" readOnly="true" /></td>' +
@@ -366,7 +366,7 @@
                                '<td>' +
                                    '<input type="date" style="width:200px;" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
                                '</td>' +
-                             
+
                                '<td>End</td>' +
                                '<td><input type="text" style="width:100px;"   class="form-control" placeholder="Enter Weight"  id="txtWT' + (i + 1) + '"/></td>' +
                                '<td><input type="text" style="width:100px;" class="form-control" id="txtWD' + (i + 1) + '" placeholder="" readOnly="true" /></td>' +
@@ -395,7 +395,7 @@
                                    '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
                                '</td>' +
                                  '<td rowspan="2"   style="vertical-align : middle;text-align:center;background: #32c6c6;"><div style="width:150px;" class="bg-sky text-white h-100">Session ' + tblIRowsesion + '</div></td>' +
-                          
+
                                '<td>Start</td>' +
                                '<td><input type="text" style="width:100px;"   class="form-control" placeholder="Enter Chest"  id="txtC' + (i + 1) + '"/></td>' +
                                 '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Waist"  id="txtW' + (i + 1) + '"/></td>' +
@@ -409,14 +409,14 @@
                                '<td>' +
                                    '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
                                '</td>' +
-                           
+
                                '<td>End</td>' +
                                 '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Chest"  id="txtC' + (i + 1) + '"/></td>' +
                                 '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Waist"  id="txtW' + (i + 1) + '"/></td>' +
                                 '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Hip"  id="txtH' + (i + 1) + '"/></td>' +
                            '</tr>';
                         }
-                     
+
                         if (tblIRow == 2)
                         {
                             $("#tblInch").find('tbody').append(tblrowInch);
@@ -448,7 +448,7 @@
                             tblrowInch = '<tr>' +
                                '<td>' +
                                    '<input type="date"  style="width:200px;"  class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
-                               '</td>' +                             
+                               '</td>' +
                                '<td>End</td>' +
                                 '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Chest"  id="txtC' + (i + 1) + '"/></td>' +
                                 '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Waist"  id="txtW' + (i + 1) + '"/></td>' +
@@ -468,7 +468,7 @@
 
 
                 }
-               
+
                 GetTrackerData();
             }
 
@@ -496,7 +496,7 @@
     }
     function getTodaydate() {
         var strRetrunDate;
-       
+
             var dateData = new Date();
             var dd = dateData.getDate();
             var mm = dateData.getMonth() + 1; //January is 0!
@@ -504,7 +504,7 @@
             if (dd < 10) { dd = '0' + dd }
             if (mm < 10) { mm = '0' + mm }
             strRetrunDate = yyyy + '-' + mm + '-' + dd;
-        
+
         return strRetrunDate;
     }
     function GetTrackerData()
@@ -514,7 +514,7 @@
 
               if (response.data.Data.Table.length > 0)
               {
-   
+
                 //  var varlength = response.data.Data.length / 3;
 
                   for (var i = 0; i < response.data.Data.Table.length; i++)
@@ -534,8 +534,8 @@
                           }
                       }
 
-                       
-                      
+
+
                         if (sessionStorage.getItem('RoleID') == "1")
                             {
                             if (isValidDate)
@@ -543,7 +543,7 @@
                                         $("#txtWT" +( i+1)).val(response.data.Data.Table[i].Weight);
                                         $("#txtWD" +( i+1)).val(response.data.Data.Table[i].WeightDifference);
                                     }
-                                    else 
+                                    else
                                   {
                                         $("#txtWT" +(i+1)).val(response.data.Data.Table[i].Weight);
                                         $("#txtWD" +(i+1)).val(response.data.Data.Table[i].WeightDifference);
@@ -559,12 +559,12 @@
                              }
 
                         $("#txtWDate"+ (i + 1)).val(strDate);
-                       
+
 
                   }
 
 
-                 
+
 
                   for (var i = 0; i < response.data.Data.Table1.length; i++)
                   {
@@ -582,9 +582,9 @@
                           }
                       }
 
-                    
 
-                      if (sessionStorage.getItem('RoleID') == "1") 
+
+                      if (sessionStorage.getItem('RoleID') == "1")
                       {
                           if (isValidDateI) {
                               $("#txtC" + (i+1)).val(response.data.Data.Table1[i].Chest);
@@ -598,17 +598,17 @@
                               $("#txtC" + (i + 1)).attr('readonly', true);
                               $("#txtW" + (i + 1)).attr('readonly', true);
                               $("#txtH" + (i + 1)).attr('readonly', true);
-                             
+
                           }
                       }
                       else {
-                        
+
                           $("#txtC" + (i + 1)).val(response.data.Data.Table1[i].Chest);
                           $("#txtW" + (i + 1)).val(response.data.Data.Table1[i].Waist);
                           $("#txtH" + (i + 1)).val(response.data.Data.Table1[i].Hip);
                       }
-                      
-                      $("#txtIDate"+(i + 1)).val(strDate);                     
+
+                      $("#txtIDate"+(i + 1)).val(strDate);
                   }
               }
           }
@@ -628,7 +628,7 @@
 
         }
 
-     
+
 
         var varlenght = $("#hdnlenght").val();
         if ($("#hdnlenght").val() != '' || $("#hdnlenght").val())
@@ -649,7 +649,7 @@
                     WeightDifference: $("#txtWD" + (i + 1)).val() == undefined ? 0 : $("#txtWD" + (i + 1)).val().trim(),
                     TrackerDate: $("#txtWDate" + (i + 1)).val() == undefined ? 0 : $("#txtWDate" + (i + 1)).val().trim(),
                 }
-                mytracker.UserTrackerWeigth.push(list1);               
+                mytracker.UserTrackerWeigth.push(list1);
 
             }
 
@@ -668,12 +668,12 @@
                     Hip: $("#txtH" + (k + 1)).val() == undefined ? 0 : $("#txtH" + (k + 1)).val().trim(),
                     InchTrackerDate: $("#txtIDate" + (k + 1)).val() == undefined ? 0 : $("#txtIDate" + (k + 1)).val().trim(),
                 }
-                mytracker.UserTrackerInch.push(list1);               
+                mytracker.UserTrackerInch.push(list1);
 
 
             }
 
-         
+
            // alert("aa");
             //
             CommonAjaxMethod('Program/SaveTracker', mytracker, false, 'POST', function (response) {
@@ -682,6 +682,20 @@
 
             });
         }
+    }
+    function MyEatingSmartTools(ctrl)
+    {
+         if (sessionStorage.getItem('IsFreeSession') == "false") {
+            var selectedUserId = "@Request.QueryString["userId"].ToString()";
+            if (selectedUserId != "") {
+                sessionStorage.setItem('userId', selectedUserId);
+            }
+            ctrl.href = '@Url.Content("~/Home/MyEatingSmartTools?userId=")' + selectedUserId;
+            ctrl.click();
+        }
+        else {
+            alert("You dont have sufficient permission on it.")
+        return false;}
     }
 
 </script>

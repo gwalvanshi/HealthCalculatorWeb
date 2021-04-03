@@ -27,7 +27,7 @@
 
                     <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right     d-md-block font" style="color: red;" id="spTrackers"></span></a></li>
 
-                    <li class="list-inline-item"><a href="~/Home/MyEatingSmartTools?userId=">My Eating Smart Tool</a></li>
+                    <li class="list-inline-item"><a href="#" onclick="MyEatingSmartTools(this)">My Eating Smart Tool</a></li>
 
 
                     <li class="list-inline-item"> <a href="#" onclick="PatternHelp(this)">My Eating Pattern<span class="float-right   d-md-block" style="color: red;" id="spPattern"></span></a></li>
@@ -78,12 +78,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-12 col-sm-5 col-form-label semi">Do you want to Active/Deactive/Complete the session <span class="float-right d-none d-md-block"> : </span></label>
+                        <label class="col-12 col-sm-5 col-form-label semi">Do you want to Activate/Deactivate/Complete the session <span class="float-right d-none d-md-block"> : </span></label>
                         <div class="col-12 col-sm-7">
                             <select class="custom-select mandFree" id="ActivePlan">
                                 <option value="" selected>Select</option>
-                                <option value="Yes">Active</option>
-                                <option value="No">Deactive</option>
+                                <option value="Yes">Activate</option>
+                                <option value="No">Deactivate</option>
                                 <option value="NA">Completed</option>
                             </select>
                         </div>
@@ -178,8 +178,8 @@
         ctrl.click();
     }
     window.onload = function () {
-        var qData = "@Request.QueryString["orderId"].ToString()";    
-        
+        var qData = "@Request.QueryString["orderId"].ToString()";
+
         $("#hdnOrderDetailsID").val(qData);
 
         var selectedUserId = sessionStorage.getItem('SelectedUserId');
@@ -201,18 +201,27 @@
 
         });
 
-        CommonAjaxMethod('Home/GetUserPlanOrderDetails', {OrderdetailID:qData, userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) 
+        CommonAjaxMethod('Home/GetUserPlanOrderDetails', {OrderdetailID:qData, userId: sessionStorage.getItem('userId') }, false, 'GET', function (response)
         {
             $("#Program").val(response.dataCollection[0].Program);
             $("#ProductName").val(response.dataCollection[0].ProductName);
             $("#StartActiveDate").val(getdate(response.dataCollection[0].StartActiveDate));
-            $("#EndActiveDate").val(response.dataCollection[0].EndActiveDate); 
+            $("#EndActiveDate").val(response.dataCollection[0].EndActiveDate);
             $("#Totaldays").val(response.dataCollection[0].Totaldays);
-            $("#ActivePlan").val(response.dataCollection[0].ActivePlan);
-            $("#IsPaymentDone").val(response.dataCollection[0].IsPaymentDone);       
-            $("#StartDate").val(response.dataCollection[0].StartDate); 
-            $("#IsStarted").val(response.dataCollection[0].IsStarted); 
-            
+            if (response.dataCollection[0].IsCompleted == "Yes") {
+                $("#ActivePlan").val("NA");
+            }
+            else {
+
+
+                $("#ActivePlan").val(response.dataCollection[0].ActivePlan);
+            }
+
+
+            $("#IsPaymentDone").val(response.dataCollection[0].IsPaymentDone);
+            $("#StartDate").val(response.dataCollection[0].StartDate);
+            $("#IsStarted").val(response.dataCollection[0].IsStarted);
+
         });
         CommonAjaxMethod('Home/GetUserDetailsById', { userId: sessionStorage.getItem('userId') }, false, 'GET', function (response) {
             $("#HeaderValue").text(response.dataCollection[0].FirstName + ",");
@@ -227,7 +236,7 @@
             Program: $("#Program").val(),
             ProductName: $("#ProductName").val(),
             StartActiveDate: $("#StartActiveDate").val(),
-            EndActiveDate: $("#EndActiveDate").val(),   
+            EndActiveDate: $("#EndActiveDate").val(),
             Totaldays: $("#Totaldays").val(),
             ActivePlan: $("#ActivePlan").val(),
             IsPaymentDone: $("#IsPaymentDone").val(),
@@ -257,6 +266,20 @@
             strRetrunDate = yyyy + '-' + mm + '-' + dd;
         }
         return strRetrunDate;
+    }
+    function MyEatingSmartTools(ctrl)
+    {
+          if (sessionStorage.getItem('IsFreeSession') == "false") {
+            var selectedUserId = "@Request.QueryString["userId"].ToString()";
+            if (selectedUserId != "") {
+                sessionStorage.setItem('userId', selectedUserId);
+            }
+            ctrl.href = '@Url.Content("~/Home/MyEatingSmartTools?userId=")' + selectedUserId;
+            ctrl.click();
+        }
+        else {
+            alert("You dont have sufficient permission on it.")
+        return false;}
     }
 </script>
 

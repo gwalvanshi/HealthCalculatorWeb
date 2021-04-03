@@ -245,9 +245,9 @@ namespace HealthCalculator.Web.Controllers
                          isValidTool = 2;
                         foreach (var item in objCommunication.dataCollection)
                         {
-                            if (item.ProgramId != 9 || item.ProgramId != 8 || item.ProgramId != 2)
+                            if (item.ProgramId== 1|| item.ProgramId == 3 || item.ProgramId ==4 || item.ProgramId == 5 || item.ProgramId == 6 || item.ProgramId == 7 )
                             {
-                                isValidTool = 1;
+                               isValidTool = 1;
                             } 
                                                     
                         }

@@ -11,6 +11,7 @@ namespace HealthCalculator.Web.EntityModel
         public int productId { get; set; }
         public int Order_id { get; set; }
         public int UserId { get; set; }
+        public bool IsFreeSession { get; set; }
 
 
     }

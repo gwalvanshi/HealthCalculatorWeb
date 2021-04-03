@@ -88,35 +88,31 @@
     { var vPath = "@Url.Content("~/")";
         if(ValidateRequiredField())
         {
-            var tblString = '<table><thead><tr><td>Name</td><td>Email</td><td>Phone</td><td>Subject</td><td>Message</td></tr></thead>' +
-                
-                '<tbody><tr">' +
-                    '<td>' + $("#txtContactName").val() +
-                    '</td>' +
-                    '<td>' + $("#txtContactemail").val() +
+            var htmlTable = '<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="max-width:700px; width:100%;">' +
+                     '<tr>' +
+                         '<td>' +
+                             '<h2 style="color:#fff;font-size:22px;padding: 0px 20px;font-family:"Montserrat", sans-serif;margin-bottom:20px;font-weight:bold;">Contact Name :' + $("#txtContactName").val() + '</h2>'+
+                               '<h2 style="color:#fff;font-size:22px;padding: 0px 20px;font-family:"Montserrat", sans-serif;margin-bottom:20px;font-weight:bold;">Email :' + $("#txtContactemail").val() + '</h2>' +
+                                '<h2 style="color:#fff;font-size:22px;padding: 0px 20px;font-family:"Montserrat", sans-serif;margin-bottom:20px;font-weight:bold;">Contact :' + $("#txtContactsubject").val() + '</h2>' +
+                                '<h2 style="color:#fff;font-size:22px;padding: 0px 20px;font-family:"Montserrat", sans-serif;margin-bottom:20px;font-weight:bold;">Message :</h2>' +
+                                  '<p style="color:#fff;font-size:14px;padding: 0px 20px;font-family: "Montserrat", sans-serif;margin-bottom:20px;font-weight:600;line-height:25px;">' + $("#txtContactMessage").val() + '</p>' +
+                         '</td>' +
+                     '</tr>' +
+                '</table>';
 
-                    '</td>' +
-                    '<td>' + $("#txtContactphone").val() +
+           
 
-                    '</td>' +
-                    '<td>' + $("#txtContactsubject").val() +
-
-                    '</td>' +
-                    '<td>' + $("#txtContactMessage").text() +
-                     '</td>' +
-                    '</tr></tbody>';
-          
             var data = {
                 Email: $("#txtContactemail").val(),
                 Name: $("#txtContactName").val(),
                 Subject: $("#txtContactsubject").val(),
-                Message: tblString,
+                Message: htmlTable,
                 Phone: $("#txtContactphone").val()
             };
             CommonAjaxMethod('Home/SendContact', data, false, 'POST', function (response) {
                 alert("Your details have been submitted.")
             });
-           
+
         }
         else
         {

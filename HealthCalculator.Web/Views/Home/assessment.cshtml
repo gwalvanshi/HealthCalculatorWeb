@@ -29,7 +29,7 @@
 
                     <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right     d-md-block font"  style="color: red;" id="spTrackers"></span></a></li>
 
-                    <li class="list-inline-item"><a href="~/Home/MyEatingSmartTools?userId=">My Eating Smart Tool</a></li>
+                    <li class="list-inline-item"><a href="#" onclick="MyEatingSmartTools(this)">My Eating Smart Tool</a></li>
             
 
                     <li class="list-inline-item"> <a href="#" onclick="PatternHelp(this)">My Eating Pattern<span class="float-right   d-md-block"   style="color: red;"  id="spPattern"></span></a></li>
@@ -1869,6 +1869,21 @@
            ctrl.href = fullname;
           ctrl.click();
 
+    }
+    function MyEatingSmartTools(ctrl)
+    {
+        alert(sessionStorage.getItem('IsFreeSession'));
+        if (sessionStorage.getItem('IsFreeSession') == "false") {
+            var selectedUserId = "@Request.QueryString["userId"].ToString()";
+            if (selectedUserId != "") {
+                sessionStorage.setItem('userId', selectedUserId);
+            }
+            ctrl.href = '@Url.Content("~/Home/MyEatingSmartTools?userId=")' + selectedUserId;
+            ctrl.click();
+        }
+        else { 
+            alert("You dont have sufficient permission on it.")
+        return false;}
     }
 
 </script>

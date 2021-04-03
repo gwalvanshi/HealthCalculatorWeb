@@ -78,5 +78,7 @@ namespace HealthCalculator.Web.EntityModel
         public DateTime? StartDate { get; set; }
         public int IsStarted { get; set; }
 
+        public bool IsFreeSession { get; set; }
+
     }
 }
