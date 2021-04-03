@@ -1309,7 +1309,9 @@ form .form-control {
 	.combatBlock .combatBlockContent {
 		padding: 0px 30px 40px 20px;
 		text-align: center;
-		margin-top: -43px;
+	}
+	.myEatingSmartToolsPg{
+		padding: 12px !important;
 	}
 	.combatBlock:nth-of-type(even) .combatBlockContent {
 		text-align: center;
