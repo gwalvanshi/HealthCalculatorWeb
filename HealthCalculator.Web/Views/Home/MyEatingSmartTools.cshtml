@@ -254,7 +254,8 @@
     }
     function MyEatingSmartTools(ctrl)
     {
-        if (sessionStorage.getItem('IsFreeSession') == "false") {
+        if (sessionStorage.getItem('IsFreeSession') == "false")
+        {
             var selectedUserId = "@Request.QueryString["userId"].ToString()";
             if (selectedUserId != "") {
                 sessionStorage.setItem('userId', selectedUserId);

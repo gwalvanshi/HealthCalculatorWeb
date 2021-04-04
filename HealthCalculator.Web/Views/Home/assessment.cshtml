@@ -1658,7 +1658,7 @@
                 $("#btnSaveUserFoodFequency").hide();
                 $("#btnSaveUserAnyKeyInSights").hide();
 
-                alert("User not having any active product/prgram")
+                alert("Kindly purchase a program or activate your already purchased program.");
             }
 
 
@@ -1872,7 +1872,7 @@
     }
     function MyEatingSmartTools(ctrl)
     {
-        alert(sessionStorage.getItem('IsFreeSession'));
+      
         if (sessionStorage.getItem('IsFreeSession') == "false") 
         {
             var selectedUserId = "@Request.QueryString["userId"].ToString()";

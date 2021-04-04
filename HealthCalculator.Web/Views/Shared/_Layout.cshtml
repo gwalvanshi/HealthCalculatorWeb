@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="@CommonMethods.ServerPath/img/LogoBrowser.JPG" type="image/gif">
 
 
-    <title>Home</title>
+    <title>EatingSmart</title>
 
 
     <link href="@CommonMethods.ServerPath/img/src/css/lightslider.css" rel="stylesheet" />
@@ -18,9 +18,8 @@
     <link href="@CommonMethods.ServerPath/css/animate.min.css" rel="stylesheet" type="text/css" />
     <link href="@CommonMethods.ServerPath/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="@CommonMethods.ServerPath/css/style.css" rel="stylesheet" type="text/css" />
-
-
-
+    <link rel="apple-touch-icon" href="@CommonMethods.ServerPath/img/apple-touch-icon.png"  />  
+   
     <style>
         .Mandtory {
         }
@@ -1851,7 +1850,7 @@
                                                 <input id="contactNo" type="text" maxlength="10" class="form-control" placeholder="Mobile No." />
                                             </div>
                                             <div class="form-group">
-                                                <input id="location" type="text" class="form-control" maxlength="49" placeholder="Location" />
+                                                <input id="Userlocation" type="text" class="form-control" maxlength="49" placeholder="Location" />
                                             </div>
                                             <div class="nextStep d-flex justify-content-between mb-4">
                                                 <a rel="adultSrcC" class="btn bg-purple hvr-sweep-to-top">BACK TO STEP 3</a>
@@ -3132,6 +3131,7 @@
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/popper.min.js"></script>
     <script src="~/Scripts/DevScript/Common.js"></script>
+    <link rel="manifest" href="@CommonMethods.ServerPath/manifest.json">
     @Scripts.Render("~/Scripts/DevExtremeBundle")
 
 
@@ -3526,7 +3526,7 @@
             isValidAdult = false;
             return false;
             }
-        if ($("#location").val() == "" && isValidAdult == true) {
+        if ($("#Userlocation").val() == "" && isValidAdult == true) {
             alert("Please enter location.");
             isValidAdult = false;
             return false;
@@ -3544,7 +3544,7 @@
                     LastName: "",
                     Contactnumber: $("#contactNo").val(),
                     Email_ID: $("#txtEmailID").val(),
-                    City: $("location").val(),
+                    City: $("#Userlocation").val(),
                     State: "",
                     Address1: "",
                     Address2: "",
@@ -3930,7 +3930,15 @@
                });
 
         })
-
+        if ('serviceWorker' in navigator) {
+            console.log("Will the service worker register?");
+            navigator.serviceWorker.register('https://eatingsmart.in/HealthWeb/service-worker.js')
+              .then(function (reg) {
+                  console.log("Yes, it did.");
+              }).catch(function (err) {
+                  console.log("No it didn't. This happened:", err)
+              });
+        }
     @* ------------uday----------*@
     </script>
     @RenderSection("scripts", required: false)

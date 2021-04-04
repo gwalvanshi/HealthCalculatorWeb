@@ -18,7 +18,7 @@ namespace HealthCalculator.Web
     {
 
         // Set server
-     //  public const string ServerPath = "https://eatingsmart.in/HealthWeb/";
+        public const string ServerPath = "https://eatingsmart.in/HealthWeb/";
         public const string CompanyRights = "@2020 Eating Smart. All rights reserved";
         public const string ServerPathDocs = "https://eatingsmart.in/";
         private const string V = @"C:\\Harish\\Projects\\email\";
@@ -28,7 +28,7 @@ namespace HealthCalculator.Web
         // public string growthChart = "http://localhost:50026/Home/{0}";
 
         //To set local
-        public const string ServerPath = "http://localhost:50026/";
+       // public const string ServerPath = "http://localhost:50026/";
         public string SendContact(ContactDetails objContactDetails)
         {
             string returnMessage = string.Empty;
@@ -48,7 +48,7 @@ namespace HealthCalculator.Web
                     //NetworkCred.UserName = "alerts@EATINGSMART.IN";
                     //NetworkCred.Password = "d73Clh~9";
                     NetworkCred.UserName = "hello@EATINGSMART.IN";
-                    NetworkCred.Password = "_6Jzn6o6";
+                    NetworkCred.Password = "$Nh30e0o";
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = NetworkCred;
                     smtp.Port = 26;
@@ -97,7 +97,7 @@ namespace HealthCalculator.Web
                     //NetworkCred.UserName = "alerts@EATINGSMART.IN";
                     //NetworkCred.Password = "d73Clh~9";
                     NetworkCred.UserName = "hello@EATINGSMART.IN";
-                    NetworkCred.Password = "_6Jzn6o6";
+                    NetworkCred.Password = "$Nh30e0o";
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = NetworkCred;
                     smtp.Port = 26;

@@ -270,11 +270,11 @@
     function MyEatingSmartTools(ctrl)
     {
           if (sessionStorage.getItem('IsFreeSession') == "false") {
-            var selectedUserId = "@Request.QueryString["userId"].ToString()";
-            if (selectedUserId != "") {
-                sessionStorage.setItem('userId', selectedUserId);
-            }
-            ctrl.href = '@Url.Content("~/Home/MyEatingSmartTools?userId=")' + selectedUserId;
+            var selectedUserId = sessionStorage.getItem('SelectedUserId');
+                if (selectedUserId != "") {
+                    sessionStorage.setItem('userId', selectedUserId);
+                }           
+                ctrl.href = '@Url.Content("~/Home/MyEatingSmartTools?userId=")' + sessionStorage.getItem('userId');
             ctrl.click();
         }
         else {

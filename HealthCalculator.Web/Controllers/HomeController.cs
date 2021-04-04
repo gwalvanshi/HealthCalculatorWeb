@@ -245,6 +245,11 @@ namespace HealthCalculator.Web.Controllers
                          isValidTool = 2;
                         foreach (var item in objCommunication.dataCollection)
                         {
+                            if(item.ActivePlan.ToUpper()=="YES" && item.IsFreeSession==true)
+                            {
+                                isValidTool = 0;
+                                break;
+                            }
                             if (item.ProgramId== 1|| item.ProgramId == 3 || item.ProgramId ==4 || item.ProgramId == 5 || item.ProgramId == 6 || item.ProgramId == 7 )
                             {
                                isValidTool = 1;

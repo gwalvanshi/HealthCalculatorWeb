@@ -156,7 +156,7 @@
         }
         var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
         if (document.getElementById('txtPassword').value != document.getElementById('txtConfirmPassword').value) {
-            alert("Password and confirm password should be matached.")
+            alert("Password and confirmed password donot match.")
             return false;
         }
         else if (!document.getElementById('txtPassword').value.match(passw)) {

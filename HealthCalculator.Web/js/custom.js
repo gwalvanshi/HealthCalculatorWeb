@@ -12,7 +12,7 @@ $(document).ready(function() {
 		easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
 		responsive : [
             {
-                breakpoint:8000,
+                breakpoint:800,
                 settings: {
                     item:1,
                     slideMove:1,
@@ -20,7 +20,7 @@ $(document).ready(function() {
                   }
             },
             {
-                breakpoint:4800,
+                breakpoint:480,
                 settings: {
                     item:1,
                     slideMove:1
