@@ -44,7 +44,9 @@ namespace HealthCalculator.Web.Controllers
     public class PaymentController : BaseController
     {
         public ActionResult PaymentView(string Type=null)
-        {          
+        {
+            string key = ConfigurationManager.AppSettings["RPayKey"].ToString();
+            string secret = ConfigurationManager.AppSettings["RPaySecret"].ToString();
             if (Type == "P")
             {
                 return RedirectToAction("PaymentWithPaypal", "Payment");
@@ -90,7 +92,7 @@ namespace HealthCalculator.Web.Controllers
                 // Generate random receipt number for order
                 Random randomObj = new Random();
                 string transactionId = randomObj.Next(10000000, 100000000).ToString();
-                Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_dcqe3aqpMbfHdP", "f20iAuCr0Rz9ZE2dSvccDesd");
+                Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient(key, secret);
 
                 Dictionary<string, object> options = new Dictionary<string, object>();
                 options.Add("amount", _requestData.amount * 100);  // Amount will in paise
@@ -106,7 +108,7 @@ namespace HealthCalculator.Web.Controllers
                 OrderModel orderModel = new OrderModel
                 {
                     orderId = orderResponse.Attributes["id"],
-                    razorpayKey = "rzp_test_dcqe3aqpMbfHdP",
+                    razorpayKey = key,
                     amount = _requestData.amount * 100,
                     currency = "INR",
                     name = _requestData.name,
@@ -414,6 +416,8 @@ namespace HealthCalculator.Web.Controllers
         [HttpPost]
         public ActionResult CreateOrder(PaymentInitiateModel _requestData)
         {
+            string key = ConfigurationManager.AppSettings["RPayKey"].ToString();
+            string secret = ConfigurationManager.AppSettings["RPaySecret"].ToString();
             OrderViewModel objGraphType = new OrderViewModel();
             CommonMethods objCommonMethods = new CommonMethods();
             GenericOperationModel SendObjData = new GenericOperationModel();
@@ -423,7 +427,7 @@ namespace HealthCalculator.Web.Controllers
             // Generate random receipt number for order
             Random randomObj = new Random();
             string transactionId = randomObj.Next(10000000, 100000000).ToString();
-            Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_dcqe3aqpMbfHdP", "f20iAuCr0Rz9ZE2dSvccDesd");
+            Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient(key, secret);
             
             Dictionary<string, object> options = new Dictionary<string, object>();
             options.Add("amount", _requestData.amount * 100);  // Amount will in paise
@@ -439,7 +443,7 @@ namespace HealthCalculator.Web.Controllers
             OrderModel orderModel = new OrderModel
             {
                 orderId = orderResponse.Attributes["id"],
-                razorpayKey = "rzp_test_dcqe3aqpMbfHdP",
+                razorpayKey =  key,
                 amount = _requestData.amount * 100,
                 currency = "INR",
                 name = _requestData.name,
@@ -471,13 +475,15 @@ namespace HealthCalculator.Web.Controllers
         [HttpPost]
         public ActionResult Complete()
         {
+            string key = ConfigurationManager.AppSettings["RPayKey"].ToString();
+            string secret = ConfigurationManager.AppSettings["RPaySecret"].ToString();
             // Payment data comes in url so we have to get it from url
             // This id is razorpay unique payment id which can be use to get the payment details from razorpay server
             string paymentId = Request.Params["rzp_paymentid"];
             // This is orderId
             string orderId = Request.Params["rzp_orderid"];
           
-            Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient("rzp_test_dcqe3aqpMbfHdP", "f20iAuCr0Rz9ZE2dSvccDesd");
+            Razorpay.Api.RazorpayClient client = new Razorpay.Api.RazorpayClient(key, secret);
             Razorpay.Api.Payment payment = client.Payment.Fetch(paymentId);
             // This code is for capture the payment 
             Dictionary<string, object> options = new Dictionary<string, object>();
