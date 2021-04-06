@@ -19,12 +19,29 @@
     @Scripts.Render("~/Scripts/DevExtremeBundle")
 
     <style>
+        .Progressloading {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            background-color: white;
+            height: 400px;
+            margin-top: -200px;
+            width: 600px;
+            margin-left: -300px;
+            text-align: center;
+            background: url('../../loading.gif') no-repeat center 50%;
+            z-index: 101;
+        }
     </style>
+
+   
+
 </head>
 
 
 <body class="dx-viewport" style="background: #9292ee;">
-
+    <div class="Progressloading"></div>
     <table style="width:100%">
         <tr>
             <td style="width:10%"></td>
