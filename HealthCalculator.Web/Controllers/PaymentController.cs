@@ -98,7 +98,7 @@ namespace HealthCalculator.Web.Controllers
                 options.Add("amount", _requestData.amount * 100);  // Amount will in paise
                 options.Add("receipt", transactionId);
                 options.Add("currency", "INR");
-                // options.Add("image", "https://eatingsmart.in/HealthWeb//img/logo-print.png");            
+                // options.Add("image", "https://eatingsmart.in//img/logo-print.png");            
                 options.Add("payment_capture", "0"); // 1 - automatic  , 0 - manual
                                                      //options.Add("notes", "-- You can put any notes here --");
                 Razorpay.Api.Order orderResponse = client.Order.Create(options);
@@ -433,7 +433,7 @@ namespace HealthCalculator.Web.Controllers
             options.Add("amount", _requestData.amount * 100);  // Amount will in paise
             options.Add("receipt", transactionId);           
             options.Add("currency", "INR");
-           // options.Add("image", "https://eatingsmart.in/HealthWeb//img/logo-print.png");            
+           // options.Add("image", "https://eatingsmart.in//img/logo-print.png");            
             options.Add("payment_capture", "0"); // 1 - automatic  , 0 - manual
                                                  //options.Add("notes", "-- You can put any notes here --");
             Razorpay.Api.Order orderResponse = client.Order.Create(options);
