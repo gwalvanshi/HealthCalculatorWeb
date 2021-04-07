@@ -245,15 +245,22 @@ namespace HealthCalculator.Web.Controllers
                          isValidTool = 2;
                         foreach (var item in objCommunication.dataCollection)
                         {
-                            if(item.ActivePlan.ToUpper()=="YES" && item.IsFreeSession==true)
-                            {
-                                isValidTool = 0;
-                                break;
-                            }
-                            if (item.ProgramId== 1|| item.ProgramId == 3 || item.ProgramId ==4 || item.ProgramId == 5 || item.ProgramId == 6 || item.ProgramId == 7 )
+                            
+                            if ((item.ProgramId== 1 && item.IsFreeSession!=true)|| (item.ProgramId == 3 && item.IsFreeSession != true) || (item.ProgramId ==4 && item.IsFreeSession != true) || (item.ProgramId == 5 && item.IsFreeSession != true )|| (item.ProgramId == 6 && item.IsFreeSession != true )|| (item.ProgramId == 7 && item.IsFreeSession != true))
                             {
                                isValidTool = 1;
-                            } 
+                                break;
+                            }
+                           else if ((item.ProgramId == 2 && item.IsFreeSession != true) || (item.ProgramId == 8 && item.IsFreeSession != true) || (item.ProgramId == 9 && item.IsFreeSession != true))
+                            {
+                                isValidTool = 2;
+                                break;
+                            }
+                            else
+                            {
+                               isValidTool = 0;
+                               break;
+                            }
                                                     
                         }
                     }

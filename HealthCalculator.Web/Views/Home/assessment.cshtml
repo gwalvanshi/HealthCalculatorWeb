@@ -1355,8 +1355,14 @@
     $(document).ready(function () {
 
         var qData = "@Request.QueryString["userId"]";
-        if (qData == "") { qData = sessionStorage.getItem('userId'); }
-        else { sessionStorage.setItem('userId', qData); }
+        if (qData == "")
+        {
+            qData = sessionStorage.getItem('userId');
+        }
+        else
+        {
+            sessionStorage.setItem('userId', qData);
+        }
         if (qData != "")
         {
 
@@ -1524,7 +1530,8 @@
 
                     $("#hdnfileuploadReportPath").val(response.data.Data.Table[0].ReportPath);
 
-                    if (sessionStorage.getItem('RoleID') == 1) {
+                    if (sessionStorage.getItem('RoleID') == 1)
+                    {
                         if (response.data.Data.Table[0].IsSubmitUGI == false) { $("#btnSaveGenralInfo").show() }
                         else if (response.data.Data.Table[0].IsSubmitUGI == null) { $("#btnSaveGenralInfo").show() }
                         else { $("#btnSaveGenralInfo").hide(); }
@@ -1791,7 +1798,7 @@
 
             //We will change the below logic later error handling
             $.ajax({
-                 url: virtualPath + '/Program/UploadDocument?userID=' + folderDetails,
+                 url: '/Program/UploadDocument?userID=' + folderDetails,
                 //url:  '/Program/UploadDocument?userID=' + folderDetails,
                 type: "POST",
                 contentType: false, // Not to set any content header
@@ -1838,7 +1845,7 @@
 
             //We will change the below logic later error handling
             $.ajax({
-                url: virtualPath + '/Program/UploadDocumentReport?userID=' + folderDetails,
+                url: '/Program/UploadDocumentReport?userID=' + folderDetails,
                 //url: virtualPath + '/CommonMethods/UploadReportFiles?userID=' + folderDetails,
                 type: "POST",
                 contentType: false, // Not to set any content header
