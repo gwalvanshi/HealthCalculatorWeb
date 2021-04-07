@@ -18,12 +18,12 @@ namespace HealthCalculator.Web
     {
 
         // Set server
-        public const string ServerPath = "https://eatingsmart.in/HealthWeb/";
+        public const string ServerPath = "https://eatingsmart.in/";
         public const string CompanyRights = "@2020 Eating Smart. All rights reserved";
-        public const string ServerPathDocs = "https://eatingsmart.in/HealthWeb/";
+        public const string ServerPathDocs = "https://eatingsmart.in/";
         private const string V = @"C:\\Harish\\Projects\\email\";
         //Server
-        public string growthChart = "https://eatingsmart.in/HealthWeb/Home/{0}";
+        public string growthChart = "https://eatingsmart.in/Home/{0}";
         //Local
         // public string growthChart = "http://localhost:50026/Home/{0}";
 
@@ -248,7 +248,7 @@ namespace HealthCalculator.Web
             if (childAge <= 2.0)
             {
                 // Server
-                // filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/child02.html");
+                // filePath = HttpContext.Current.Server.MapPath("~/emailer/child02.html");
                 filePath = HttpContext.Current.Server.MapPath("~/emailer/child02.html");
                 if (gender == "Female")
                     groathChart = string.Format(growthChart, "ShowWFLGirl?Enq=" + dt[0].EnquiryId);
@@ -259,7 +259,7 @@ namespace HealthCalculator.Web
             else if (childAge > 2.0 && childAge <= 5.0)
             {
                 // Server
-                // filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/child.html");
+                // filePath = HttpContext.Current.Server.MapPath("~/emailer/child.html");
                 filePath = HttpContext.Current.Server.MapPath("~/emailer/child.html");
 
                 BMIStatus = GetChildBMIstatus(dt);
@@ -272,7 +272,7 @@ namespace HealthCalculator.Web
             else if (childAge > 5.0 && childAge <= 18.0)
             {
                 // Server
-                //filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/child.html");
+                //filePath = HttpContext.Current.Server.MapPath("~/emailer/child.html");
                 filePath = HttpContext.Current.Server.MapPath("~/emailer/child.html");
                 BMIStatus = GetChildBMIstatus(dt);
                 if (gender == "Female")
@@ -400,7 +400,7 @@ namespace HealthCalculator.Web
         public string GetHTMLData()
         {
             // Server
-            // string filePath = Server.MapPath("~/HealthWeb/emailer/adult.html");
+            // string filePath = Server.MapPath("~/emailer/adult.html");
             //Local
             string filePath = HttpContext.Current.Server.MapPath("~/emailer/adult.html");
 
@@ -415,7 +415,7 @@ namespace HealthCalculator.Web
         {
             // Server
 
-            string filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/adult.html");
+            string filePath = HttpContext.Current.Server.MapPath("~/emailer/adult.html");
             //Local
             // string filePath = HttpContext.Current.Server.MapPath("~/emailer/child.html");
 
@@ -429,7 +429,7 @@ namespace HealthCalculator.Web
         public string GetHTMLChild02Data()
         {
             // Server
-            // string filePath = Server.MapPath("~/HealthWeb/emailer/adult.html");
+            // string filePath = Server.MapPath("~/emailer/adult.html");
             //Local
             string filePath = HttpContext.Current.Server.MapPath("~/emailer/child02.html");
 
@@ -485,17 +485,17 @@ namespace HealthCalculator.Web
             //retVal = retVal + " which indicates that you fall under the <b>(" + BMIStatus(dt) + ")</b></span>";
             ////retVal = retVal + "<span style='color: #222222; font-family: Verdana; font-size: 11pt; font-weight: bold;'>[whichever status according to calculation]</span><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>category.</span></p>";
             //retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Overweight and obese individuals are at high risks for Type 2 Diabetes, cardiovascular and other serious diseases.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
-            //retVal = retVal + "<img src='https://eatingsmart.in/HealthWeb/img/EmailImages/BodyMassIndexImage.jpg' width='300' height ='200' /></span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt; text-decoration: underline;'>Basal Metabolic Rate [BMR] status</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #555555; background-color: #fbfbfb; font-family: Arial; font-size: 11.5pt;'>BMR, is a measure of the rate at which a person's body 'burns' energy, in the form of calories, when at rest.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
+            //retVal = retVal + "<img src='https://eatingsmart.in/img/EmailImages/BodyMassIndexImage.jpg' width='300' height ='200' /></span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt; text-decoration: underline;'>Basal Metabolic Rate [BMR] status</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #555555; background-color: #fbfbfb; font-family: Arial; font-size: 11.5pt;'>BMR, is a measure of the rate at which a person's body 'burns' energy, in the form of calories, when at rest.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
             //retVal = retVal + "Your BMR is &nbsp;<b>" + dt[0].BMR + "</b> kcal/day</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'><br /></span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt; text-decoration: underline;'>Hydration status</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Hydration is one of the most neglected aspect of a healthy lifestyle.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
             //retVal = retVal + "Keeping in mind your health status you need to consume &nbsp;<b>" + dt[0].WaterIntake + "</b> L/ day.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>*Exceptional if suffering from renal diseases.</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'><br /></span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>";
             //retVal = retVal + "Your health rating.</span></p> <b>" + healthRating(dt, collection)+ "</b>";
-            //retVal = retVal + "<img src='https://eatingsmart.in/HealthWeb/img/EmailImages/RatingImage.jpg' width='200' height ='100' /></br>";
+            //retVal = retVal + "<img src='https://eatingsmart.in/img/EmailImages/RatingImage.jpg' width='200' height ='100' /></br>";
             ////Interpretation
             //retVal = retVal + "<p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Interpretation:</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 1 star: Alarming health deficit</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Focusing on your health is very crucial at this stage</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>A smart lifestyle coupled with a positive state of mind will help you attain good health</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Taking small steps, will lay the foundation for a happy &amp; healthy life</span></li></ul><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Believe you can and you’re half way through &#128515 </span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 2 stars: At the fringe, high time we improve</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Our health status is on the verge of deteriorating, taking proactive steps at this stage will help you get back on track</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>This is the right time we strive hard in order to live a healthy and safe life ahead</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>A smart lifestyle coupled with a positive state of mind will help you attain good health</span></li></ul><p style='text-align: left; margin: 0pt 0pt 0pt 36pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 3 stars: Needs improvement</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Focusing on a smart lifestyle coupled with a positive state of mind will help you reduce the risks of many diseases in near future</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Evaluating each aspect of our health and taking proactive steps would be the best way to move forward</span></li></ul><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 8pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>For 4 stars</span><span style='color: #222222; font-family: Calibri; font-size: 14pt;'>: </span><span style='font-family: Verdana; font-size: 11pt;'>Little emphasis on eating &amp; lifestyle will get you 5 stars</span></p><ul style='margin-top: 0px; margin-bottom: 0px;'><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Good health is a state of physical as well as mental wellbeing, monitoring every aspect can help you stay in good health</span></li><li style='line-height: 1.07917; list-style-type: square; color: #222222; font-family: Wingdings; font-size: 11pt;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>Many a times we tend to neglect the very crucial but least weighed aspects of health like water intake, stress, sleep. It’s all a vicious cycle of health and well being</span></li></ul><p style='text-align: left; margin: 0pt 0pt 0pt 36pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>&nbsp;</span></p><p style='text-align: left; margin: 0pt 0pt 0pt 36pt; line-height: 1.07917;'><span style='color: #222222; font-family: Verdana; font-size: 11pt;'>You are what you eat &#128515</span></p>";
             //rating = healthRating(dt, collection);
              
             // Server
-            // string filePath = HttpContext.Current.Server.MapPath("~/HealthWeb/emailer/adult.html");
+            // string filePath = HttpContext.Current.Server.MapPath("~/emailer/adult.html");
             //Local
             string filePath = HttpContext.Current.Server.MapPath("~/emailer/adult.html");
 
@@ -566,7 +566,7 @@ namespace HealthCalculator.Web
                 objReader.Close();
 
 
-                rating = "https://eatingsmart.in/HealthWeb/emailer/images/Rating1.png";
+                rating = "https://eatingsmart.in/emailer/images/Rating1.png";
 
             }
             else if (rating == "2")
@@ -576,7 +576,7 @@ namespace HealthCalculator.Web
                 ratingContent = objReader1.ReadToEnd();
                 objReader.Close();
 
-                rating = "https://eatingsmart.in/HealthWeb/emailer/images/Rating2.png";
+                rating = "https://eatingsmart.in/emailer/images/Rating2.png";
             }
             else if (rating == "3")
             {
@@ -584,7 +584,7 @@ namespace HealthCalculator.Web
                 objReader1 = new System.IO.StreamReader(ratingPath);
                 ratingContent = objReader1.ReadToEnd();
                 objReader.Close();
-                rating = "https://eatingsmart.in/HealthWeb/emailer/images/Rating3.png";
+                rating = "https://eatingsmart.in/emailer/images/Rating3.png";
             }
             else if (rating == "4")
             {
@@ -592,7 +592,7 @@ namespace HealthCalculator.Web
                 objReader1 = new System.IO.StreamReader(ratingPath);
                 ratingContent = objReader1.ReadToEnd();
                 objReader.Close();
-                rating = "https://eatingsmart.in/HealthWeb/emailer/images/Rating4.png";
+                rating = "https://eatingsmart.in/emailer/images/Rating4.png";
             }
             else
             {
@@ -600,20 +600,20 @@ namespace HealthCalculator.Web
                 objReader1 = new System.IO.StreamReader(ratingPath);
                 ratingContent = objReader1.ReadToEnd();
                 objReader.Close();
-                rating = "https://eatingsmart.in/HealthWeb/emailer/images/Rating5.png";
+                rating = "https://eatingsmart.in/emailer/images/Rating5.png";
             }
 
             if (indicate == "Under weight")
             {
-                indicate = "https://eatingsmart.in/HealthWeb/emailer/images/giphy.gif";
+                indicate = "https://eatingsmart.in/emailer/images/giphy.gif";
             }
             else if (indicate == "Overweight")
             {
-                indicate = "https://eatingsmart.in/HealthWeb/emailer/images/giphy.gif";
+                indicate = "https://eatingsmart.in/emailer/images/giphy.gif";
             }
             else
             {
-                indicate = "https://eatingsmart.in/HealthWeb/emailer/images/giphy.gif";
+                indicate = "https://eatingsmart.in/emailer/images/giphy.gif";
             }
 
 
