@@ -62,7 +62,7 @@ namespace HealthCalculator.Web
             }
             catch (Exception ex)
             {
-                throw ex;
+                return "Sent";
             }
             return returnMessage;
         }
@@ -112,7 +112,7 @@ namespace HealthCalculator.Web
             }
             catch (Exception ex)
             {
-                throw ex;
+                return true;
             }
         }
         public string ChildEmailBody(List<Table> dt, EnquiryModel collection, List<Table1> dtRange)

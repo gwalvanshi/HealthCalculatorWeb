@@ -264,6 +264,11 @@
     <Content Include="Content\logo-print.png" />
     <Content Include="Content\style.css" />
     <Content Include="emailer\images\giphy.gif" />
+    <Content Include="emailer\images\st1.png" />
+    <Content Include="emailer\images\st2.png" />
+    <Content Include="emailer\images\st3.png" />
+    <Content Include="emailer\images\st4.png" />
+    <Content Include="emailer\images\st5.png" />
     <Content Include="emailer\Rating2.html" />
     <Content Include="emailer\Rating3.html" />
     <Content Include="emailer\Rating4.html" />
