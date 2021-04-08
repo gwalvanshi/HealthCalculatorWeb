@@ -10,6 +10,9 @@ namespace HealthCalculator.Web.EntityModel
     {
         public string TableType { get; set; }
         public int UserId { get; set; }
+        public int ProductId { get; set; }
+        public int OrderId { get; set; }
+      
         public UserGeneralInfo UserGeneralInfo { get; set; }
         public UserPhoto UserPhoto { get; set; }
         public UserAnthropometry UserAnthropometry { get; set; }
