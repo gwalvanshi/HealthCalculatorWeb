@@ -42,7 +42,7 @@ namespace HealthCalculator.Web.Controllers
                     string[] splString = fileName.Split('.');
 
                     long result = DateTime.Now.Year * 10000000000 + DateTime.Now.Month * 100000000 + DateTime.Now.Day * 1000000 + DateTime.Now.Hour * 10000 + DateTime.Now.Minute * 100 + DateTime.Now.Second + i;
-                    string newFile = "UserID_" + userID + "_" + splString[0] + "_" + result;
+                    string newFile = "UserID_" + userID + "_Report_" + result;
 
                     string uploadNewFileName = newFile + "." + splString[1];
                     string filePathTobeSaved = "";
@@ -102,7 +102,7 @@ namespace HealthCalculator.Web.Controllers
               //  string uploadNewFileName = newFile + "." + splString[1];
 
                 long result = DateTime.Now.Year * 10000000000 + DateTime.Now.Month * 100000000 + DateTime.Now.Day * 1000000 + DateTime.Now.Hour * 10000 + DateTime.Now.Minute * 100 + DateTime.Now.Second;
-                string newFile = "UserID_" + userID + "_" + splString[0] + "_" + result;
+                string newFile = "UserID_" + userID + "_Report_" + result;
 
                 string uploadNewFileName = newFile + "." + splString[1];
                 string filePathTobeSaved = "";
@@ -164,7 +164,7 @@ namespace HealthCalculator.Web.Controllers
                     string[] splString = fileName.Split('.');
                   
                     long result = DateTime.Now.Year * 10000000000 + DateTime.Now.Month * 100000000 + DateTime.Now.Day * 1000000 + DateTime.Now.Hour * 10000 + DateTime.Now.Minute * 100 + DateTime.Now.Second+ i;
-                    string newFile = "UserID_" + userID + "_" + splString[0]+"_" + result;
+                    string newFile = "UserID_" + userID + "_Message_" + result;
 
                     string uploadNewFileName = newFile + "." + splString[1];
                     string filePathTobeSaved = "";

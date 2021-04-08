@@ -224,15 +224,27 @@ namespace HealthCalculator.Web.Controllers
                 IndexScreenParameterModel collection = new IndexScreenParameterModel();
                 collection.ScreenID = "116";
                 collection.UserId = loggedIdUserID;
-                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                var IndexScreenSearchParameterModelList = new List<IndexScreenSearchParameterModel>();
+
+                var obj1 = new IndexScreenSearchParameterModel
                 {
-                    new IndexScreenSearchParameterModel
-                    {
-                        SearchParameter = "UserId",
-                        SearchParameterDataType = "int",
-                        SearchParameterValue = loggedIdUserID.ToString()
-                    }
+                    SearchParameter = "UserId",
+                    SearchParameterDataType = "int",
+                    SearchParameterValue = loggedIdUserID.ToString()
                 };
+                IndexScreenSearchParameterModelList.Add(obj1);
+
+                var obj2 = new IndexScreenSearchParameterModel
+                {
+                    SearchParameter = "IsFreeSession",
+                    SearchParameterDataType = "int",
+                    SearchParameterValue = "0"
+                };
+                IndexScreenSearchParameterModelList.Add(obj2);
+
+               
+                collection.IndexScreenSearchParameterModel = IndexScreenSearchParameterModelList;
+                
                 var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
                 var objCommunication =  _genericService.GetRecordsResult<UserOrderViewModel>(stringContent1);
                 objModelList = objCommunication.dataCollection;

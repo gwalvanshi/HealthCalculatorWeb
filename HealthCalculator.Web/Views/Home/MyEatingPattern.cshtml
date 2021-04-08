@@ -24,7 +24,7 @@
             <div class="col">
                 <ul class="list-inline menu-sec">
 
-                    <li class="list-inline-item"><a href="~/Home/assessment?userId=">My Assessment Tool</a></li>
+                    <li class="list-inline-item"><a href="#" onclick="Assessment(this)">My Assessment Tool</a></li>
 
                     <li class="list-inline-item"> <a href="#" onclick="TrackersHelp(this)">My Trackers<span class="float-right     d-md-block font" style="color: red;" id="spTrackers"></span></a></li>
 
@@ -621,6 +621,18 @@
             sessionStorage.setItem('userId', selectedUserId);
         }
         ctrl.href = '@Url.Content("~/Home/helpDesk?userId=")' + selectedUserId;
+        ctrl.click();
+    }
+     function Assessment(ctrl)
+    {
+        @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
+        var selectedUserId = "@Request.QueryString["userId"]";
+        if (selectedUserId != "") {
+            sessionStorage.setItem('userId', selectedUserId);
+        }
+        else { selectedUserId = sessionStorage.getItem('userId') }
+
+        ctrl.href = '@Url.Content("~/Home/assessment?userId=")' + selectedUserId;
         ctrl.click();
     }
     function SaveEatingPattern(varsubmit) {
