@@ -139,10 +139,60 @@ namespace HealthCalculator.Web.Controllers
         }
         public ActionResult FailureView()
         {
+            string guid = string.Empty;
+            if (Session["PaypalData"] != null)
+            {
+                guid = Convert.ToString(Session["PaypalData"]);
+            }
+            OrderViewModel objGraphType = new OrderViewModel();
+            CommonMethods objCommonMethods = new CommonMethods();
+            GenericOperationModel SendObjData = new GenericOperationModel();
+            GenericService _genericService = new GenericService();
+            objGraphType.OrderId = Convert.ToInt32(guid.Split('-')[1].ToString());
+            objGraphType.UserId = Convert.ToInt32(guid.Split('-')[2].ToString());
+            objGraphType.IsPaymentDone = false;
+            objGraphType.PaymentorderId = guid;
+            objGraphType.PaymentType = "PayPal";
+
+            SendObjData.ScreenID = "116";
+            SendObjData.UserID = objGraphType.UserId;
+            SendObjData.Operation = "ADD";
+
+            string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+            SendObjData.XML = stringTOXml;
+
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+            _genericService.GetRecordsResult<OrderViewModel>(stringContent);
             return View();
         }
         public ActionResult SuccessView()
         {
+            string guid = string.Empty;
+            if (Session["PaypalData"] != null)
+            {
+                guid = Convert.ToString(Session["PaypalData"]);
+            }
+            OrderViewModel objGraphType = new OrderViewModel();
+            CommonMethods objCommonMethods = new CommonMethods();
+            GenericOperationModel SendObjData = new GenericOperationModel();
+            GenericService _genericService = new GenericService();
+            objGraphType.OrderId = Convert.ToInt32(guid.Split('-')[1].ToString());
+            objGraphType.UserId = Convert.ToInt32(guid.Split('-')[2].ToString());
+            objGraphType.IsPaymentDone = true;
+            objGraphType.PaymentorderId = guid;
+            objGraphType.PaymentType = "PayPal";
+
+            SendObjData.ScreenID = "116";
+            SendObjData.UserID = objGraphType.UserId;
+            SendObjData.Operation = "ADD";
+
+            string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+            SendObjData.XML = stringTOXml;
+
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+            _genericService.GetRecordsResult<OrderViewModel>(stringContent);
             return View();
         }
 
@@ -546,10 +596,51 @@ namespace HealthCalculator.Web.Controllers
         }
         public ActionResult Success(string Trans= null)
         {
+            OrderViewModel objGraphType = new OrderViewModel();
+            CommonMethods objCommonMethods = new CommonMethods();
+            GenericOperationModel SendObjData = new GenericOperationModel();
+            GenericService _genericService = new GenericService();
+            objGraphType.OrderId = Convert.ToInt32(Trans);
+            objGraphType.UserId = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+            objGraphType.IsPaymentDone = true;
+            objGraphType.PaymentorderId = Trans;
+            objGraphType.PaymentType = "RazorPay";
+
+            SendObjData.ScreenID = "116";
+            SendObjData.UserID = objGraphType.UserId;
+            SendObjData.Operation = "ADD";
+
+            string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+            SendObjData.XML = stringTOXml;
+
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+            var status = _genericService.GetRecordsResult<OrderViewModel>(stringContent);
             return View();
         }
         public ActionResult Failed(string Trans=null)
         {
+            OrderViewModel objGraphType = new OrderViewModel();
+            CommonMethods objCommonMethods = new CommonMethods();
+            GenericOperationModel SendObjData = new GenericOperationModel();
+            GenericService _genericService = new GenericService();
+            objGraphType.OrderId = Convert.ToInt32(Trans);
+            objGraphType.UserId = Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+            objGraphType.IsPaymentDone = false;
+            objGraphType.PaymentorderId = Trans;
+            objGraphType.PaymentType = "RazorPay";
+
+            SendObjData.ScreenID = "116";
+            SendObjData.UserID = objGraphType.UserId;
+            SendObjData.Operation = "ADD";
+
+            string stringTOXml = objCommonMethods.GetXMLFromObject(objGraphType);
+            SendObjData.XML = stringTOXml;
+
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(SendObjData).ToString(), Encoding.UTF8, "application/json");
+            var status = _genericService.GetRecordsResult<OrderViewModel>(stringContent);
+
             return View();
         }
     }
