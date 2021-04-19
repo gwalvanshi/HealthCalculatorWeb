@@ -371,6 +371,7 @@
     <Content Include="img\banner\howWorks.jpg" />
     <Content Include="img\banner\privacyPolicy-xs.jpg" />
     <Content Include="img\banner\privacyPolicy.jpg" />
+    <Content Include="img\banner\refund-cancellation-xs.jpg" />
     <Content Include="img\banner\smartBodyToningBuilding.jpg" />
     <Content Include="img\banner\smartBodyToningBuilding222.jpg" />
     <Content Include="img\banner\smartChildNutrition.jpg" />
@@ -802,6 +803,7 @@
     <Content Include="Views\Home\UserDetails.cshtml" />
     <Content Include="Views\Admin\CoupenMaster.cshtml" />
     <Content Include="Views\Admin\Tracker.cshtml" />
+    <Content Include="Views\Home\RefundPolicy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,12 +1,10 @@
-﻿
+﻿﻿
 @{
     ViewBag.Title = "contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    .contactMand
-    {
-
+    .contactMand {
     }
 </style>
 
@@ -29,12 +27,23 @@
     <div class="row flex-row-reverse justify-content-between">
         <div class="col-12 col-lg-4">
             <h2 class="text-sky bold mt-4 mb-3">Contact Info</h2>
-            <p class="address mb-5">
-                <span>A</span> Mumbai. INDIA<br />
-                <span>C</span> +91 8452 811 506<br />
-                <span>E</span> info@eatingsmart.in<br />
-                <span>T</span> Mon-Sat 10:00 am-6:00pm IST
-            </p>
+            <div class="address mb-5">
+                <div>
+                    <span>A</span> 1002, Maqba heights,<br />
+                    15A Pali road, Bandra (west),<br />
+                    Mumbai - 400050<br />
+                </div>
+
+                <div>
+                    <span>C</span> +91 8452 811 506<br />
+                </div>
+                <div>
+                    <span>E</span> info@eatingsmart.in<br />
+                </div>
+                <div>
+                    <span>T</span> Mon-Sat 10:00 am-6:00pm IST
+                </div>
+            </div>
         </div>
         <div class="col-12 col-md-10 col-lg-7 mt-4">
             <h2 class="text-sky bold mb-4">Contact Form</h2>
@@ -63,7 +72,10 @@
         </div>
     </div>
 </div>
-<br /><br /><br /><br />
+<br />
+<br />
+<br />
+<br />
 <div class="contentBodyBg">
     <img src="@CommonMethods.ServerPath/img/img5.png" class="img-fluid contentBodyBg" />
 </div>
@@ -101,7 +113,7 @@
                      '</tr>' +
                 '</table>';
 
-           
+
 
             var data = {
                 Email: $("#txtContactemail").val(),

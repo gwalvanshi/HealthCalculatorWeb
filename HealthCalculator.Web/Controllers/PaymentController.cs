@@ -115,7 +115,7 @@ namespace HealthCalculator.Web.Controllers
                     email = _requestData.email,
                     contactNumber = _requestData.contactNumber,
                     address = _requestData.address,
-                    description = "Testing description"
+                    description = "Eating Smart with Sidra Patel"
                 };
                 objGraphType.OrderId = Convert.ToInt32(_requestData.OrderId);
                 objGraphType.UserId = Convert.ToInt32(_requestData.UserId);
@@ -500,7 +500,7 @@ namespace HealthCalculator.Web.Controllers
                 email = _requestData.email,
                 contactNumber = _requestData.contactNumber,
                 address = _requestData.address,
-                description = "Testing description"
+                description = "Eating Smart with Sidra Patel"
             };
             objGraphType.OrderId = Convert.ToInt32(_requestData.OrderId);
             objGraphType.UserId = Convert.ToInt32(_requestData.UserId);

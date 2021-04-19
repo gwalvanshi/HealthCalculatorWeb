@@ -161,14 +161,15 @@ namespace HealthCalculator.Web.Controllers
                     }
 
                     string fileName = fname;
-                    string[] splString = fileName.Split('.');
-                  
-                    long result = DateTime.Now.Year * 10000000000 + DateTime.Now.Month * 100000000 + DateTime.Now.Day * 1000000 + DateTime.Now.Hour * 10000 + DateTime.Now.Minute * 100 + DateTime.Now.Second+ i;
-                    string newFile = "UserID_" + userID + "_Message_" + result;
+                    long result = DateTime.Now.Year * 10000000000 + DateTime.Now.Month * 100000000 + DateTime.Now.Day * 1000000 + DateTime.Now.Hour * 10000 + DateTime.Now.Minute * 100 + DateTime.Now.Second + i;
+                    string newFile = result.ToString();
 
-                    string uploadNewFileName = newFile + "." + splString[1];
-                    string filePathTobeSaved = "";
-                   // string filePathTobeSaved = "";
+                    // string fileName = fname;
+                    //string[] splString = fileName.Split('.');
+                    //string newFile = userID + "_" + splString[0];
+
+                    string uploadNewFileName = newFile + fname;
+                     string filePathTobeSaved = "";
                     string baseurl = "";
 
                     baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["MessageDocuments"]);
@@ -177,9 +178,7 @@ namespace HealthCalculator.Web.Controllers
                     filePathTobeSaved = baseurl + "/" + uploadNewFileName;
                     Upload(filePathTobeSaved);
 
-                   // string baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["MessageDocuments"]);
-                    filePathTobeSaved = baseurl + "/" + uploadNewFileName;
-                    Upload(filePathTobeSaved);
+                    
                     if (files.Count == i + 1)
                     {
                         returrMessage += ConfigurationManager.AppSettings["MessageDocuments"].ToString().Replace("~", "") + "/" + uploadNewFileName;

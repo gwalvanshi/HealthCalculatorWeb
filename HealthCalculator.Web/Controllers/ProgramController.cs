@@ -44,11 +44,14 @@ namespace HealthCalculator.Web.Controllers
                     fname = file.FileName;
                 }
 
-                string fileName = fname;
-                string[] splString = fileName.Split('.');
-                string newFile = userID + "_" + splString[0]; 
-               
-                string uploadNewFileName = newFile + "." + splString[1];
+                long result = DateTime.Now.Year * 10000000000 + DateTime.Now.Month * 100000000 + DateTime.Now.Day * 1000000 + DateTime.Now.Hour * 10000 + DateTime.Now.Minute * 100 + DateTime.Now.Second;
+                string newFile = result.ToString();
+
+               // string fileName = fname;
+                //string[] splString = fileName.Split('.');
+                //string newFile = userID + "_" + splString[0];
+
+                string uploadNewFileName = newFile + fname;
                 string filePathTobeSaved = "";
                 string baseurl = "";
                
@@ -96,10 +99,14 @@ namespace HealthCalculator.Web.Controllers
                 {
                     fname = file.FileName;
                 }
-                string fileName = fname;
-                string newFile = "UserID_" + userID;
-                string[] splString = fileName.Split('.');
-                string uploadNewFileName = newFile + "." + splString[1];
+                long result = DateTime.Now.Year * 10000000000 + DateTime.Now.Month * 100000000 + DateTime.Now.Day * 1000000 + DateTime.Now.Hour * 10000 + DateTime.Now.Minute * 100 + DateTime.Now.Second;
+                string newFile = result.ToString();
+
+                // string fileName = fname;
+                //string[] splString = fileName.Split('.');
+                //string newFile = userID + "_" + splString[0];
+
+                string uploadNewFileName = newFile + fname;
                 string filePathTobeSaved = "";
                 string baseurl = HttpContext.Server.MapPath(ConfigurationManager.AppSettings["UploadReportFolder"]);
                 filePathTobeSaved = baseurl + "/" + uploadNewFileName;
