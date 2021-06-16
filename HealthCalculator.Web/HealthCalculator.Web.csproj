@@ -805,6 +805,7 @@
     <Content Include="Views\Admin\Tracker.cshtml" />
     <Content Include="Views\Home\RefundPolicy.cshtml" />
     <Content Include="Upload\MergeFiles.zip" />
+    <Content Include="Upload\New Folder.zip" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
