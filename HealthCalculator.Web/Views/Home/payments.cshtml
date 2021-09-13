@@ -74,6 +74,8 @@
     function ApplyCoupon()
     {
         var cou = $("#txtCoupon").val();
+        var percentD = 0;
+        var percentINR = 0;
         if (cou != "")
         {
             CommonAjaxMethod('Program/GetCoupan', { coupan: cou }, false, 'GET',
@@ -83,10 +85,14 @@
                                var cINRAmount = $("#txtINR").val();
                                var cDolleramount = $("#txtDoller").val();
 
-
+                               percentD = (response.dataCollection[0].DollerAmount / 100) * cDolleramount;
+                               percentINR = Math.round((response.dataCollection[0].Amount / 100) * cINRAmount);
+                               percentD = percentD.toFixed(2);
+                               cINRAmount = (cINRAmount - percentINR);
+                               cDolleramount = (cDolleramount - percentD);
                                var UpdateOrderDetailsForUser = {
-                                   OrderAmountINR:(cINRAmount - response.dataCollection[0].Amount),
-                                   OrderAmountDoller:(cDolleramount - response.dataCollection[0].DollerAmount),
+                                   OrderAmountINR:(cINRAmount),
+                                   OrderAmountDoller:(cDolleramount),
                                    Order_Id: sessionStorage.getItem("OrderId"),
                                    UserId: sessionStorage.getItem("userId"),
                                    CoupenId: response.dataCollection[0].CoupenId,
@@ -95,8 +101,10 @@
                                CommonAjaxMethod('Home/UpdateOrderDetailsForUser', UpdateOrderDetailsForUser, false, 'POST',
                               function (resp)
                               {
-                                  $("#txtINR").val((cINRAmount - response.dataCollection[0].Amount));
-                                  $("#txtDoller").val((cDolleramount - response.dataCollection[0].DollerAmount));
+                                 
+
+                                  $("#txtINR").val((cINRAmount));
+                                  $("#txtDoller").val((cDolleramount));
 
                                   sessionStorage.setItem("TotalDoller", $("#txtDoller").val());
                                   sessionStorage.setItem("TotalINR", $("#txtINR").val());
