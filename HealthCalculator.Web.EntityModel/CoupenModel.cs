@@ -23,4 +23,17 @@ namespace HealthCalculator.Web.EntityModel
         public CoupenModeldata CoupenModeldata { get; set; }
 
     }
+
+    public class ForgetPassword
+    {
+
+        public string Email { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
+
+        public string userMailId { get; set; }
+
+        public string Password { get; set; }
+
+    }
 }

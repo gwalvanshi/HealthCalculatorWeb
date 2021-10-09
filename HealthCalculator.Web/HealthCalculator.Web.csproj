@@ -806,6 +806,9 @@
     <Content Include="Views\Home\RefundPolicy.cshtml" />
     <Content Include="Upload\MergeFiles.zip" />
     <Content Include="Upload\New Folder.zip" />
+    <Content Include="Views\Home\ForgetPassword.cshtml" />
+    <Content Include="Views\Home\ReportView.cshtml" />
+    <Content Include="Views\Home\AddDiscount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -837,7 +840,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50025</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50026/</IISUrl>
+          <IISUrl>http://localhost:44399/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

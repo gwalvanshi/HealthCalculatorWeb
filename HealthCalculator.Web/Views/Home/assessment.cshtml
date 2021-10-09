@@ -907,8 +907,9 @@
 
                     CommonAjaxMethod('Program/SaveAsseeement', assessment, false, 'POST', function (response) {
                         alert('Record saved successfully!!!');
-                        if (sessionStorage.getItem('RoleID') == 1) 
-                           { $("#btnSaveGenralInfo").hide(); }
+                        if (sessionStorage.getItem('RoleID') == 1)
+                           // debugger;
+                           //{ $("#btnSaveGenralInfo").hide(); }
                     });
 
                 //}
@@ -944,7 +945,7 @@
 
                 CommonAjaxMethod('Program/SavePoto', assessment, false, 'POST', function (response) {
                     alert('Record saved successfully!!!');
-                    if (sessionStorage.getItem('RoleID') == 1) { $("#btnSaveUserPhoto12").hide(); }
+                   // if (sessionStorage.getItem('RoleID') == 1) { $("#btnSaveUserPhoto12").hide(); }
 
                 });
             }
@@ -1494,29 +1495,36 @@
 
                     if (sessionStorage.getItem('RoleID') == 1)
                     {
-                        if (response.data.Data.Table[0].IsSubmitUGI == false) { $("#btnSaveGenralInfo").show() }
+                        debugger;
+                        if (response.data.Data.Table[0].IsSubmitUGI == true || response.data.Data.Table[0].IsSubmitUGI == false) { $("#btnSaveGenralInfo").show() }
                         else if (response.data.Data.Table[0].IsSubmitUGI == null) { $("#btnSaveGenralInfo").show() }
                         else { $("#btnSaveGenralInfo").hide(); }
-                        if (response.data.Data.Table[0].IsSubmitUP == false) { $("#btnSaveUserPhoto12").show() }
+
+                        if (response.data.Data.Table[0].IsSubmitUP == true ||  response.data.Data.Table[0].IsSubmitUP == false) { $("#btnSaveUserPhoto12").show() }
                         else if (response.data.Data.Table[0].IsSubmitUP == null) { $("#btnSaveUserPhoto12").show() }
                         else { $("#btnSaveUserPhoto12").hide(); }
-                        if (response.data.Data.Table[0].IsSubmitUA == false) { $("#btnSaveUserAnthropometry").show() }
+
+                        if (response.data.Data.Table[0].IsSubmitUA == true || response.data.Data.Table[0].IsSubmitUA == false) { $("#btnSaveUserAnthropometry").show() }
                         else if (response.data.Data.Table[0].IsSubmitUA == null) { $("#btnSaveUserAnthropometry").show() }
                         else { $("#btnSaveUserAnthropometry").hide(); }
-                        if (response.data.Data.Table[0].IsSubmitUMH == false) { $("#btnSaveUserMedicalHistory").show() }
+
+                        if (response.data.Data.Table[0].IsSubmitUMH == true || response.data.Data.Table[0].IsSubmitUMH == false) { $("#btnSaveUserMedicalHistory").show() }
                         else if (response.data.Data.Table[0].IsSubmitUMH == null) { $("#btnSaveUserMedicalHistory").show() }
                         else { $("#btnSaveUserMedicalHistory").hide(); }
 
-                        if (response.data.Data.Table[0].IsSubmitUDALS == false) { $("#btnSaveUserDietaryAndLifeStyleDetails").show() }
+                        if (response.data.Data.Table[0].IsSubmitUDALS == true || response.data.Data.Table[0].IsSubmitUDALS == false) { $("#btnSaveUserDietaryAndLifeStyleDetails").show() }
                         else if (response.data.Data.Table[0].IsSubmitUDALS == null) { $("#btnSaveUserDietaryAndLifeStyleDetails").show() }
                         else { $("#btnSaveUserDietaryAndLifeStyleDetails").hide(); }
-                        if (response.data.Data.Table[0].IsSubmitUDC == false) { $("#btnSaveUserDirectCall").show() }
+
+                        if (response.data.Data.Table[0].IsSubmitUDC == true || response.data.Data.Table[0].IsSubmitUDC == false) { $("#btnSaveUserDirectCall").show() }
                         else if (response.data.Data.Table[0].IsSubmitUDC == null) { $("#btnSaveUserDirectCall").show() }
                         else { $("#btnSaveUserDirectCall").hide(); }
-                        if (response.data.Data.Table[0].IsSubmitUFF == false) { $("#btnSaveUserFoodFequency").show() }
+
+                        if (response.data.Data.Table[0].IsSubmitUFF == true || response.data.Data.Table[0].IsSubmitUFF == false) { $("#btnSaveUserFoodFequency").show() }
                         else if (response.data.Data.Table[0].IsSubmitUFF == null) { $("#btnSaveUserFoodFequency").show() }
                         else { $("#btnSaveUserFoodFequency").hide(); }
-                        if (response.data.Data.Table[0].IsSubmitUAKIS == false) { $("#btnSaveUserAnyKeyInSights").show() }
+
+                        if (response.data.Data.Table[0].IsSubmitUAKIS == true || response.data.Data.Table[0].IsSubmitUAKIS == false) { $("#btnSaveUserAnyKeyInSights").show() }
                         else if (response.data.Data.Table[0].IsSubmitUAKIS == null) { $("#btnSaveUserAnyKeyInSights").show() }
                         else { $("#btnSaveUserAnyKeyInSights").hide(); }
                     }
@@ -1617,6 +1625,7 @@
         else
         {
             if (sessionStorage.getItem('RoleID') == 1) {
+                debugger;
                 $("#btnSaveGenralInfo").hide();
                 $("#btnSaveUserPhoto12").hide();
                 $("#btnSaveUserAnthropometry").hide();

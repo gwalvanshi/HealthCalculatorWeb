@@ -10,7 +10,7 @@ using HealthCalculator.Web.Service;
 using Newtonsoft.Json;
 
 using System;
-
+using System.Collections.Generic;
 using System.Configuration;
 
 using System.Net.Http;
@@ -339,10 +339,83 @@ namespace HealthCalculator.Web.Controllers
 
         }
 
-       
+        [HttpPost]
+        public async Task<JsonResult> ForgetPassword(LoginEntity objForgetPassword)
+        {
+            try
+            {
+                int loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "114";
+                collection.UserId = loggedIdUserID;
+                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "UserName",
+                        SearchParameterDataType = "string",
+                        SearchParameterValue = objForgetPassword.Email
+                    }
+                };
+
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<LoginEntity>(stringContent1);
+                if (objCommunication != null)
+                {
+                    if (objCommunication.dataCollection.Count > 0)
+                    {
+                        string password = objCommunication.dataCollection[0].Password;
+                        CommonMethods cm = new CommonMethods();
+                        if (!string.IsNullOrEmpty(objCommunication.dataCollection[0].Email))
+                        {
+                            string NameOfUser = string.Empty;
+                            ForgetPassword fc = new ForgetPassword();
+                            fc.userMailId = objCommunication.dataCollection[0].Email;
+                            fc.Subject = "Your eating health password";
+                            if(!string.IsNullOrEmpty(objCommunication.dataCollection[0].FirstName) || !string.IsNullOrEmpty(objCommunication.dataCollection[0].LastName))
+                            {
+                                NameOfUser = objCommunication.dataCollection[0].FirstName + " " + objCommunication.dataCollection[0].LastName;
+                            }
+                            else
+                            {
+                                NameOfUser = "Valued Customer";
+                            }
+                            fc.Message = forgetPasswordMailBody(objCommunication.dataCollection[0].Password, NameOfUser);
+
+                            cm.SendMailForgetPassword(fc);
+                        }
+                    }
+                }
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+           
+        }
+
+        public string forgetPasswordMailBody(string password,string userName)
+        {
+            string retVal = string.Empty;
+            retVal = retVal + "Dear <b>" + userName + "</b>,<br/><br/>";
+            retVal = retVal + "Thanks for contacting to us <br/>";
+            retVal = retVal + "your current password :<b>" + password + "</b>.Please change password once you receive email.<br/><br/>";
+            retVal = retVal + "Thanks & Regards <br/><br/>@2020 Eating Smart. All rights reserved";
+            return retVal;
+
+        }
+
 
 
 
     }
 
+
+
+
+
 }
+
+

@@ -22,7 +22,7 @@ namespace HealthCalculator.Web
         public const string CompanyRights = "@2020 Eating Smart. All rights reserved";
           public const string ServerPathDocs = "https://eatingsmart.in/";
        // public const string ServerPathDocs = "http://localhost:50026/";
-        private const string V = @"C:\\Harish\\Projects\\email\";
+        private const string V = @"C:\\Harish\\Code\\MailDropBox\";
         //Server
         public string growthChart = "https://eatingsmart.in/Home/{0}";
         //Local
@@ -66,6 +66,44 @@ namespace HealthCalculator.Web
             }
             return returnMessage;
         }
+
+        public string SendMailForgetPassword(ForgetPassword objContactDetails)
+        {
+            string returnMessage = string.Empty;
+            try
+            {
+                using (MailMessage mm = new MailMessage("hello@EATINGSMART.IN", "healthrating@eatingsmart.in"))
+                // using (MailMessage mm = new MailMessage("emailus @d2digitalservices.com", ToEmail))
+                {
+                    mm.CC.Add(new MailAddress(objContactDetails.userMailId));
+                    mm.Subject = objContactDetails.Subject;
+                    mm.Body = objContactDetails.Message;
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "mail.EATINGSMART.IN";
+                    smtp.EnableSsl = false;
+                    NetworkCredential NetworkCred = new NetworkCredential();
+                    //NetworkCred.UserName = "alerts@EATINGSMART.IN";
+                    //NetworkCred.Password = "d73Clh~9";
+                    NetworkCred.UserName = "hello@EATINGSMART.IN";
+                    NetworkCred.Password = "?Xman002";
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 26;
+                   // isValid = true;
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
+                    smtp.PickupDirectoryLocation = V;
+                    smtp.Send(mm);
+                    // return isValid;
+                }
+            }
+            catch (Exception ex)
+            {
+                return "Sent";
+            }
+            return returnMessage;
+        }
+
 
         public bool SendEmail(string toEmail, string Subject, string content, List<Table> dt, EnquiryModel collection, List<Table1> dtRange)
         {

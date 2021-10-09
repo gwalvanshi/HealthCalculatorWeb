@@ -1,0 +1,1019 @@
+﻿
+@{
+    ViewBag.Title = "ReportView";
+}
+@Styles.Render("~/Content/DevExtremeBundle")
+<div class="container-fluid flowerBg">
+    <div style="padding-top:10px;" class="row justify-content-center">
+        <input type="hidden" id="hdnLoginUserId" />
+        <a href="#" onclick="LoadGrid(1)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Assessment Report<span class="float-right d-none d-md-block" id="spMessage"></span></a>
+        <a href="#" onclick="LoadTrackerGrid()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker Report<span class="float-right d-none d-md-block" id="spRating"></span></a>
+        <a href="#" onclick="LoadRatingGrid()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Health Report<span class="float-right d-none d-md-block" id="spRating"></span></a>
+        <a href="#" onclick="LoadEatingPatternGrid()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Eating Pattern Report<span class="float-right d-none d-md-block" id="spRating"></span></a>
+        @*<a href="#" onclick="LoadGrid(2)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Assessment Filled<span class="float-right d-none d-md-block" id="spAssessment"></span></a>
+        <a href="#" onclick="LoadGrid(3)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker Filled<span class="float-right d-none d-md-block" id="spTF"></span></a>
+        <a href="#" onclick="LoadGrid(4)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Tracker 6th and 11th day falls today<span class="float-right d-none d-md-block" id="spTFF"></span></a>
+        <a href="#" onclick="LoadGrid(5)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Users <span class="float-right d-none d-md-block" id="spUsers"></span></a>
+        <a href="#" onclick="LoadOrderGrid(6)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">New Orders<span class="float-right d-none d-md-block" id="spOrder"></span></a>
+        <a href="#" onclick="LoadOrderGrid(7)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Completed<span class="float-right d-none d-md-block" id="spCompleted"></span></a>
+        <a href="#" onclick="LoadOrderGrid(8)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Active<span class="float-right d-none d-md-block" id="spActive"></span></a>
+        <a href="#" onclick="LoadOrderGrid(9)" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">DeActiveCount<span class="float-right d-none d-md-block" id="spDeActiveCount"></span></a>
+        <a href="#" onclick="LoadAll()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">All Users</a>*@
+        @*<a href="#" onclick="LoadPromocode()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Coupen Master</a>*@
+        @*<a href="~/Admin/CoupenMaster" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Coupon Master</a>*@
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12 col-lg-11">
+            <div class="middleContent bg-gray shadow" style="overflow-x: scroll;">
+                <div class="row">
+                    <div class="demo-container">
+                        <div id="gridContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function LoadPromocode() {
+        window.location.href = "Admin/CoupenMaster?userId=" + options.data.userId;
+        //CommonAjaxMethod('Home/GetPromocodeView', { CoupenId: "0" }, false, 'GET', function (response) {
+        //    LoadPromocodedata(response.dataCollection);
+        //});
+    }
+    function LoadAll()
+    {
+        CommonAjaxMethod('Home/GetUserDetails', null, false, 'GET', function (response) {
+
+            LoadUsers(response.dataCollection);
+            //$("#gridContainer").dxDataGrid(
+            //    {
+            //        dataSource: response.dataCollection,
+            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
+            //    showBorders: true
+            //});
+        });
+    }
+    function LoadTrackerGrid() {
+
+        vType = "3"
+        module = "T";
+
+        var obj1 = {
+
+            Type: vType,
+            OperationType: "GET",
+            UserId: 1
+        }
+        CommonAjaxMethod('Home/GetTrackerReportView', obj1, false, 'POST', function (response) {
+
+            LoadTrackerReport(response.dataCollection);
+            //$("#gridContainer").dxDataGrid(
+            //    {
+            //        dataSource: response.dataCollection,
+            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
+            //    showBorders: true
+            //});
+        });
+
+    }
+    function LoadEatingPatternGrid() {
+
+        CommonAjaxMethod('Home/GetEatingPatternReportView', null, false, 'POST', function (response) {
+
+            LoadEatingPReport(response.dataCollection);
+            //$("#gridContainer").dxDataGrid(
+            //    {
+            //        dataSource: response.dataCollection,
+            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
+            //    showBorders: true
+            //});
+        });
+    }
+    function Load1(ctr, module) {
+        var endPoint = "";
+        if (module == "A") {
+            endPoint = "assessment";
+        }
+        if (module == "M") {
+            endPoint = "helpDesk";
+        }
+        if (module == "T") {
+            endPoint = "tracker";
+        }
+        if (module == "O") {
+            endPoint = "ViewPlan";
+        }
+        if (module == "U") {
+            endPoint = "UserDetails";
+        }
+        $("#gridContainer").dxDataGrid({
+            dataSource: ctr,
+            allowColumnReordering: true,
+            showBorders: true,
+            columnMinWidth: 180,
+            searchPanel: {
+                visible: true
+            },
+            paging: {
+                pageSize: 10
+            },
+            groupPanel: {
+                visible: true
+            },
+            editing: {
+                mode: "form",
+                allowUpdating: false
+            },
+            columns: [
+                {
+                    dataField: "FirstName",
+                    width: 100
+                },
+                {
+                    dataField: "LastName",
+                    width: 100
+                },
+                {
+                    dataField: "Email",
+                    width: 100
+                },
+                {
+                    dataField: "UserName",
+                    width: 100
+                },
+                {
+                    dataField: "MobileNo",
+                    width: 100
+                },
+                {
+                    caption: "Action Date",
+                    width: 100,
+                    allowEditing: false,
+                    calculateCellValue: function (data) {
+                        return getdate(data.AddedWhen);
+                    }
+                },
+                {
+                    caption: "User Dashboard",
+                    alignment: 'center',
+                    width: 100,
+                    cellTemplate: function (container, options) {
+                        $('<a />').addClass('dx-link')
+                            .text('View Detail')
+                            .on('dxclick', function () {
+
+                                sessionStorage.setItem('SelectedUserId', options.data.userId);
+                                window.location.href = "assessment?userId=" + options.data.userId;
+                            }).appendTo(container);
+                    }
+                },
+                {
+                    caption: "View Details",
+                    alignment: 'center',
+                    width: 100,
+                    cellTemplate: function (container, options) {
+                        $('<a />').addClass('dx-link')
+                            .text('View Detail')
+                            .on('dxclick', function () {
+
+
+                                sessionStorage.setItem('SelectedUserId', options.data.userId);
+                                window.location.href = endPoint + "?userId=" + options.data.userId;
+                            }).appendTo(container);
+                    }
+                }
+                ,
+                {
+                    caption: "Add Free Session",
+                    alignment: 'center',
+                    width: 100,
+                    cellTemplate: function (container, options) {
+                        $('<a />').addClass('dx-link')
+                            .text('Free Session')
+                            .on('dxclick', function () {
+
+                                window.location.href = "AddFreeSession?userId=" + options.data.userId;
+                            }).appendTo(container);
+                    }
+                }
+
+            ]
+        });
+    }
+
+    function LoadRatingGrid()
+    {
+        CommonAjaxMethod('Home/GetEnquiryRatingReportView', null, false, 'GET', function (response) {
+
+            LoadEnquiry(response.dataCollection);
+            //$("#gridContainer").dxDataGrid(
+            //    {
+            //        dataSource: response.dataCollection,
+            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
+            //    showBorders: true
+            //});
+        });
+
+    }
+
+    function LoadOrderGrid(strVar) {
+        var vType = 0;
+        var module = "";
+        if (strVar == 1) {
+            vType = "7"
+            module = "M";
+        }
+        else if (strVar == 2) {
+            vType = "2"
+            module = "A";
+        }
+        else if (strVar == 3) {
+            vType = "3"
+            module = "T";
+        }
+        else if (strVar == 4) {
+            vType = "6"
+            module = "T";
+        }
+        else if (strVar == 5) {
+            //user
+            vType = "5"
+            module = "U";
+        }
+        else if (strVar == 6) {
+            //order
+            vType = "4"
+            module = "O";
+        }
+        else if (strVar == 7) {
+            //order
+            vType = "9"
+            module = "C";
+        }
+        else if (strVar == 8) {
+            //order
+            vType = "10"
+            module = "AC";
+        }
+        else if (strVar == 9) {
+            //order
+            vType = "11"
+            module = "AC";
+        }
+        var obj1 = {
+
+            Type: vType,
+            OperationType: "GET",
+            UserId: 1
+        }
+        CommonAjaxMethod('Home/AdminNotificationEnquiryMessage', obj1, false, 'POST', function (response) {
+
+            $("#gridContainer").dxDataGrid({
+                dataSource: response.data.Data,
+                allowColumnReordering: true,
+                showBorders: true,
+                columnMinWidth: 180,
+                searchPanel: {
+                    visible: true
+                },
+                paging: {
+                    pageSize: 10
+                },
+                groupPanel: {
+                    visible: true
+                },
+                editing: {
+                    mode: "form",
+                    allowUpdating: false
+                },
+                columns: [
+                    {
+                        dataField: "FirstName",
+                        width: 100
+                    },
+                     {
+                         dataField: "LastName",
+                         width: 100
+                     },
+                      {
+                          dataField: "Email",
+                          width: 100
+                      },
+                       {
+                           dataField: "UserName",
+                           width: 100
+                       },
+                       {
+                           dataField: "MobileNo",
+                           width: 100
+                       },
+
+                     {
+                         caption: "Action Date",
+                         width: 100,
+                         allowEditing: false,
+                         calculateCellValue: function (data) {
+                             return getdate(data.AddedWhen);
+                         }
+                     },
+                      {
+                          caption: "Program Detail",
+                          width: 100,
+                          alignment: 'center',
+                          cellTemplate: function (container, options) {
+                              $('<a />').addClass('dx-link')
+                                  .text('Program Detail')
+                                  .on('dxclick', function () {
+
+
+                                      window.location.href = "UserDetails?userId=" + options.data.OrderDetail_Id;
+                                  }).appendTo(container);
+                          }
+                      }
+
+                ]
+            }); rders: true
+            //});
+        });
+
+    }
+    function LoadGrid(strVar)
+    {
+        CommonAjaxMethod('Home/GetAssessmentUserDetails', null, false, 'GET', function (response) {
+
+            LoadUsers(response.dataCollection);
+            //$("#gridContainer").dxDataGrid(
+            //    {
+            //        dataSource: response.dataCollection,
+            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
+            //    showBorders: true
+            //});
+        });
+
+    }
+    window.onload = function ()
+    {
+        var obj = {
+           Type:"",
+           OperationType:"",
+            UserId:1
+        }
+        CommonAjaxMethod('Home/GetAssessmentUserDetails', null, false, 'GET', function (response)
+        {
+            LoadUsers(response.dataCollection);
+            //$("#gridContainer").dxDataGrid(
+            //    {
+            //        dataSource: response.dataCollection,
+            //        columns: ["FirstName", "LastName", "Email", "UserName", "MobileNo"],
+            //    showBorders: true
+            //});
+        });
+    }
+
+
+    function Load(ctr, module)
+    {
+        var endPoint = "";
+        if (module == "A")
+        {
+            endPoint = "assessment";
+        }
+        if (module == "M")
+        {
+            endPoint = "helpDesk";
+        }
+        if (module == "T") {
+            endPoint = "tracker";
+        }
+        if (module == "O") {
+            endPoint = "ViewPlan";
+        }
+        if (module == "U") {
+            endPoint = "UserDetails";
+        }
+             $("#gridContainer").dxDataGrid({
+                 dataSource: ctr,
+                allowColumnReordering: true,
+                showBorders: true,
+                columnMinWidth: 180,
+                searchPanel: {
+                    visible: true
+                },
+                paging: {
+                    pageSize: 10
+                },
+                groupPanel: {
+                    visible: true
+                },
+                editing: {
+                    mode: "form",
+                    allowUpdating: false
+                },
+                columns: [
+                    {
+                        dataField: "FirstName",
+                        width: 100
+                    },
+                     {
+                         dataField: "LastName",
+                         width: 100
+                     },
+                      {
+                          dataField: "Email",
+                          width: 100
+                      },
+                       {
+                           dataField: "UserName",
+                           width: 100
+                       },
+                       {
+                           dataField: "MobileNo",
+                           width: 100
+                       },
+                     {
+                         caption: "Action Date",
+                         width: 100,
+                         allowEditing: false,
+                         calculateCellValue: function (data) {
+                             return getdate(data.AddedWhen);
+                         }
+                     },
+                      {
+                          caption: "User Dashboard",
+                          alignment: 'center',
+                          width: 100,
+                          cellTemplate: function (container, options) {
+                              $('<a />').addClass('dx-link')
+                                  .text('View Detail')
+                                  .on('dxclick', function () {
+
+                                      sessionStorage.setItem('SelectedUserId', options.data.userId);
+                                      window.location.href = "assessment?userId=" + options.data.userId;
+                                  }).appendTo(container);
+                          }
+                      },
+                    {
+                        caption: "View Details",
+                        alignment: 'center',
+                        width: 100,
+                        cellTemplate: function (container, options) {
+                            $('<a />').addClass('dx-link')
+                                .text('View Detail')
+                                .on('dxclick', function () {
+
+
+                                    sessionStorage.setItem('SelectedUserId', options.data.userId);
+                                    window.location.href = endPoint + "?userId=" + options.data.userId;
+                                }).appendTo(container);
+                        }
+                    }
+                    ,
+                    {
+                        caption: "Add Free Session",
+                        alignment: 'center',
+                        width: 100,
+                        cellTemplate: function (container, options) {
+                            $('<a />').addClass('dx-link')
+                                .text('Free Session')
+                                .on('dxclick', function () {
+
+                                    window.location.href = "AddFreeSession?userId=" + options.data.userId;
+                                }).appendTo(container);
+                        }
+                    }
+
+                ]
+             });
+    }
+
+    //function LoadUsers(ctr, module)
+    //{
+    //    var dataGrid = $("#gridContainer").dxDataGrid({
+    //        dataSource: ctr,
+    //        keyExpr: "UserId",
+    //        allowColumnReordering: true,
+    //        showBorders: true,
+    //        columnMinWidth: 150,
+    //        grouping: {
+    //            autoExpandAll: true,
+    //        },
+    //        searchPanel: {
+    //            visible: true
+    //        },
+    //        "export": {
+    //            enabled: true,
+    //            allowExportSelectedData: false,
+    //            FileName :"UserAssessmentDetail"
+    //        },
+    //        paging: {
+    //            pageSize: 50
+    //        },
+    //        groupPanel: {
+    //            visible: true
+    //        },
+    //        columns: [
+    //            "UserName", "GenderName", "Gender",
+    //            {
+    //                caption: "BirthDate",
+    //                width: 120,
+    //                allowEditing: false,
+    //                calculateCellValue: function (data) {
+    //                    return getdate(data.BirthDate);
+    //                }
+    //            },
+    //            "Age", "Country", "countryName", "State", "stateName", "City", "cityName", "EmailID", "PhoneNumber", "Caste", "MaritalStatus", "DoYouHaveChildren", "TypeOfFamily", "CurrentlyWorking", "Occupation", "PhotoURL", "PhotoURLAfter", "Weight", "WeightType", "Height", "HeightType", "TargetWeight", "TargetWeightType", "YourGoals", "HealthIssues", "Reports", "ReportPath", "Lifestyle", "EatingHabits", "Frequencyofsmoking", "Frequencyofalcoholconsumption", "WaterintakeperdayType", "Waterintakeperday", "Frequencyofrestaurantvisit", "Preferredcuisine", "Whocooksathome", "FoodAversions", "FoodPreferences", "FoodAllergies", "OnwakingupTime", "OnwakingupConsumption", "BreakfastTime", "BreakfastConsumption", "MidmorningTime", "MidmorningConsumption", "LunchTime", "LunchConsumption", "SnackTime", "SnackConsumption", "DinnerTime", "DinnerConsumption", "Bedtime", "BedConsumption", "MidnightMunchingTime", "MidnightConsumption", "Roti", "Rice", "BreadPav", "ChaatSnacks", "Nonveg", "Eggs", "Teacoffee", "Desert", "Fruits", "Nuts", "Comments",
+    //            ,
+    //            {
+    //                dataField: "UserName",
+    //                groupIndex: 0
+    //            }
+    //        ]
+    //    }).dxDataGrid("instance");
+
+    //    $("#autoExpand").dxCheckBox({
+    //        value: true,
+    //        text: "Expand All Groups",
+    //        onValueChanged: function (data) {
+    //            dataGrid.option("grouping.autoExpandAll", data.value);
+    //        }
+    //    });
+    //}
+
+    function LoadUsers(ctr, module)
+    {
+        $("#gridContainer").dxDataGrid({
+            dataSource: ctr,
+            allowColumnReordering: true,
+            showBorders: true,
+            columnMinWidth: 150,
+            searchPanel: {
+                visible: true
+            },
+            grouping: {
+                contextMenuEnabled: true,
+                expandMode: "rowClick"
+            },
+            groupPanel: {
+                visible: true   
+            },
+            paging: {
+                pageSize: 50
+            },
+            groupPanel: {
+                visible: true
+            },
+            editing: {
+                mode: "form",
+                allowUpdating: false
+            },
+            columns: [
+
+                "UserName",
+                {
+                    dataField: "GenderName",
+                    width: 100
+                },
+                {
+                    dataField: "Age",
+                    width: 20
+                },
+                {
+                    dataField: "countryName",
+                    width: 100
+                },
+                {
+                    dataField: "stateName",
+                    width: 100
+                },
+                {
+                    dataField: "cityName",
+                    width: 100
+                },
+                {
+                    caption: "BirthDate",
+                    width: 120,
+                    allowEditing: false,
+                    calculateCellValue: function (data) {
+                        return getdate(data.BirthDate);
+                    }
+                },
+                {
+                    dataField: "MaritalStatus",
+                    width: 100
+                },
+                {
+                    dataField: "DoYouHaveChildren",
+                    width: 100
+                },
+                {
+                    dataField: "TypeOfFamily",
+                    width: 100
+                },
+                {
+                    dataField: "CurrentlyWorking",
+                    width: 100
+                },
+                {
+                    dataField: "Occupation",
+                    width: 100
+                },
+                {
+                    dataField: "PhotoURL",
+                    width: 100
+                },
+                {
+                    dataField: "PhotoURLAfter",
+                    width: 100
+                },
+                {
+                    dataField: "Weight",
+                    width: 100
+                },
+                {
+                    dataField: "WeightType",
+                    width: 100
+                },
+                {
+                    dataField: "Height",
+                    width: 100
+                },
+                {
+                    dataField: "HeightType",
+                    width: 100
+                },
+                {
+                    dataField: "TargetWeight",
+                    width: 100
+                },
+                {
+                    dataField: "TargetWeightType",
+                    width: 100
+                },
+                {
+                    dataField: "YourGoals",
+                    width: 100
+                },
+                {
+                    dataField: "HealthIssues",
+                    width: 100
+                },
+                {
+                    dataField: "Reports",
+                    width: 100
+                },
+                {
+                    dataField: "ReportPath",
+                    width: 100
+                },
+                {
+                    dataField: "Lifestyle",
+                    width: 100
+                },
+                {
+                    dataField: "EatingHabits",
+                    width: 100
+                },
+                {
+                    dataField: "Frequencyofsmoking",
+                    width: 100
+                },
+                {
+                    dataField: "Frequencyofalcoholconsumption",
+                    width: 100
+                },
+                {
+                    dataField: "WaterintakeperdayType",
+                    width: 100
+                },
+                {
+                    dataField: "Frequencyofrestaurantvisit",
+                    width: 100
+                },
+                {
+                    dataField: "Preferredcuisine",
+                    width: 100
+                },
+                {
+                    dataField: "Whocooksathome",
+                    width: 100
+                },
+                {
+                    dataField: "FoodPreferences",
+                    width: 100
+                },
+                {
+                    dataField: "FoodAllergies",
+                    width: 100
+                },
+                {
+                    dataField: "OnwakingupTime",
+                    width: 100
+                },
+                {
+                    dataField: "OnwakingupConsumption",
+                    width: 100
+                },
+                {
+                    dataField: "BreakfastTime",
+                    width: 100
+                },
+                {
+                    dataField: "BreakfastConsumption",
+                    width: 100
+                },
+                {
+                    dataField: "MidmorningTime",
+                    width: 100
+                },
+                {
+                    dataField: "MidmorningConsumption",
+                    width: 100
+                },
+                {
+                    dataField: "LunchTime",
+                    width: 100
+                },
+                {
+                    dataField: "LunchConsumption",
+                    width: 100
+                },
+                {
+                    dataField: "SnackTime",
+                    width: 100
+                },
+                {
+                    dataField: "SnackConsumption",
+                    width: 100
+                },
+                {
+                    dataField: "DinnerTime",
+                    width: 100
+                },
+                {
+                    dataField: "DinnerConsumption",
+                    width: 100
+                },
+                {
+                    dataField: "Bedtime",
+                    width: 100
+                },
+                {
+                    dataField: "BedConsumption",
+                    width: 100
+                },
+                {
+                    dataField: "MidnightMunchingTime",
+                    width: 100
+                },
+                {
+                    dataField: "MidnightConsumption",
+                    width: 100
+                },
+                {
+                    dataField: "Roti",
+                    width: 100
+                },
+                {
+                    dataField: "Rice",
+                    width: 100
+                }
+                ,
+                {
+                    dataField: "BreadPav",
+                    width: 100
+                },
+                {
+                    dataField: "ChaatSnacks",
+                    width: 100
+                },
+                {
+                    dataField: "Nonveg",
+                    width: 100
+                },
+                {
+                    dataField: "Eggs",
+                    width: 100
+                },
+                {
+                    dataField: "Teacoffee",
+                    width: 100
+                },
+                {
+                    dataField: "Desert",
+                    width: 100
+                },
+                {
+                    dataField: "Fruits",
+                    width: 100
+                },
+                {
+                    dataField: "Nuts",
+                    width: 100
+                },
+                {
+                    dataField: "Comments",
+                    width: 100
+                }
+            ]
+        });
+    }
+
+    function LoadEatingPReport(ctr) {
+
+        $("#gridContainer").dxDataGrid({
+            dataSource: ctr,
+            allowColumnReordering: true,
+            columnMinWidth: 180,
+            showBorders: true,
+
+            searchPanel: {
+                visible: true
+            },
+            paging: {
+                pageSize: 50
+            },
+            groupPanel: {
+                visible: true
+            },
+            editing: {
+                mode: "form",
+                allowUpdating: false
+            },
+            columns: [
+                "Id",
+                "UserId",
+                "ProductId",
+                "OrderId",
+                "OnRising",
+                "PreBreakfast",
+                "Breakfast",
+                "MidMorning",
+                "PreWorkout",
+                "DuringWorkout",
+                "PreLunch",
+                "Lunch",
+                "TeaEvening",
+                "LateEvening",
+                "PreDinner",
+                "Dinner",
+                "PostDinner",
+                "BedTime",
+                "Recipes",
+                "Notes",
+                "IsSubmit",
+                "AddedBy",
+                "AddedWhen",
+                "UpdatedBy",
+                "UpdatedWhen",
+                "SessionId",
+                "CheckedByUser",
+                "IsActive"
+            ]
+        });
+
+    }
+
+    function LoadTrackerReport(ctr) {
+
+        $("#gridContainer").dxDataGrid({
+            dataSource: ctr,
+            allowColumnReordering: true,
+            columnMinWidth: 180,
+            showBorders: true,
+
+            searchPanel: {
+                visible: true
+            },
+            paging: {
+                pageSize: 50
+            },
+            groupPanel: {
+                visible: true
+            },
+            editing: {
+                mode: "form",
+                allowUpdating: false
+            },
+            columns: [
+                "UserID",
+                "UserCode",
+                "RoleID",
+                "FirstName",
+                "LastName",
+                "UserName",
+                "Password",
+                "PhoneNo",
+                "MobileNo",
+                "Email",
+                "CreatedDate",
+                "CreatedBy",
+                "DateModified",
+                "ModifiedBy",
+                "IsActive",
+                "IS_FIRST_LOGIN",
+                "IS_LOCKED",
+                "FAILED_ATTEMPTS",
+                "PasswordChangedDate",
+                "IsExternalUser",
+                "AddedWhen"
+            ]
+        });
+
+    }
+
+    function LoadEnquiry(ctr) {
+
+        $("#gridContainer").dxDataGrid({
+            dataSource: ctr,
+            allowColumnReordering: true,
+            columnMinWidth: 180,
+            showBorders: true,
+
+            searchPanel: {
+                visible: true
+            },
+            paging: {
+                pageSize: 50
+            },
+            groupPanel: {
+                visible: true
+            },
+            editing: {
+                mode: "form",
+                allowUpdating: false
+            },
+            columns: [
+                "EnquiryId",
+                "FirstName",
+                "LastName",
+                "Email_ID",
+                "AgeGroup",
+                "ContactNumber",
+                 {
+                     dataField: "City",
+                     caption: "Location",
+                 },
+                "BMI",
+                "WaterIntake",
+                "IdealBodyWeight",
+
+                    {
+                        caption: "Action Date",
+
+                        allowEditing: false,
+                        calculateCellValue: function (data) {
+                            return getdate(data.AddedWhen);
+                        }
+                },
+                "Address1",
+                "Address2",
+                "AgeGroup",
+                "exacttext",
+                "optionValue",
+                   "code"
+                //,{
+                //    caption: "Details",
+                //    alignment: 'center',
+                //    cellTemplate: function (container, options) {
+                //        $('<a />').addClass('dx-link')
+                //            .text('View Detail')
+                //            .on('dxclick', function () {
+
+                //                window.location.href = "ViewEnquiryDetails?Enquiry_Id=" + options.data.Enquiry_Id;
+
+                //            }).appendTo(container);
+                //    }
+                //}
+
+            ]
+        });
+    }
+
+    function getdate(strdate) {
+        var strRetrunDate;
+        if (strdate != null) {
+            var dateData = new Date(parseInt(strdate.replace("/Date(", "").replace(")/")));
+            var dd = dateData.getDate();
+            var mm = dateData.getMonth() + 1; //January is 0!
+            var yyyy = dateData.getFullYear();
+            if (dd < 10) { dd = '0' + dd }
+            if (mm < 10) { mm = '0' + mm }
+
+
+            var hours = dateData.getHours();
+            var minutes = dateData.getMinutes();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+
+            strRetrunDate = yyyy + '-' + mm + '-' + dd +" " +strTime;
+        }
+        return strRetrunDate;
+    }
+</script>
+

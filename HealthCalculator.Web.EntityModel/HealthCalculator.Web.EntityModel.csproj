@@ -48,6 +48,7 @@
     <Compile Include="DropdownResponseModel.cs" />
     <Compile Include="EatingPatternModel.cs" />
     <Compile Include="EatingToolModel.cs" />
+    <Compile Include="EnquiryAssessmentDetailReport.cs" />
     <Compile Include="EnquiryModel.cs" />
     <Compile Include="GenericGetRecordModel.cs" />
     <Compile Include="GenericOperationModel.cs" />
@@ -63,6 +64,9 @@
     <Compile Include="SysMasterTableModel.cs" />
     <Compile Include="TokenEntity.cs" />
     <Compile Include="TrackerModel.cs" />
+    <Compile Include="UserAssessmentDetails.cs" />
+    <Compile Include="UserEatingPatternModel.cs" />
+    <Compile Include="UserTrackerReport.cs" />
     <Compile Include="vSysMasttablewithfilter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

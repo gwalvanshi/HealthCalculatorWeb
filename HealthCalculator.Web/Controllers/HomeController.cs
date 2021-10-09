@@ -76,6 +76,20 @@ namespace HealthCalculator.Web.Controllers
             // return RedirectToAction("Index", "User");
         }
 
+        [SessionExpireFilterAttributeAdmin]
+        public ActionResult AddDiscount(int userId)
+        {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
         [SessionExpireFilterAttribute]
         public ActionResult payments(string userId)
         {
@@ -342,7 +356,20 @@ namespace HealthCalculator.Web.Controllers
             return View();
             // return RedirectToAction("Index", "User");
         }
-       
+
+        public ActionResult ForgetPassword()
+        {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
         public ActionResult contact()
         {
             var chkTimeOut = Session.Timeout;
@@ -598,6 +625,20 @@ namespace HealthCalculator.Web.Controllers
             return View();
             // return RedirectToAction("Index", "User");
         }
+        [SessionExpireFilterAttributeAdmin]
+        public ActionResult ReportView()
+        {
+            var chkTimeOut = Session.Timeout;
+            if (chkTimeOut < 10)
+            {
+                // set new time out to session  
+                Session.Timeout = 60;
+
+            }
+            return View();
+            // return RedirectToAction("Index", "User");
+        }
+
         public ActionResult CoupenMaster()
         {
             var chkTimeOut = Session.Timeout;
@@ -1010,6 +1051,38 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
+
+        [HttpGet]
+        public async Task<JsonResult> GetAssessmentUserDetails()
+        {
+            try
+            {
+                int loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "131";
+                collection.UserId = loggedIdUserID;
+                collection.IndexScreenSearchParameterModel = new List<IndexScreenSearchParameterModel>()
+                {
+                    new IndexScreenSearchParameterModel
+                    {
+                        SearchParameter = "code",
+                        SearchParameterDataType = "string",
+                        SearchParameterValue = "1"
+                    }
+                };
+
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<UserAssessmentDetails>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
         [HttpGet]
         public async Task<JsonResult> GetUserDetailsById(string userId)
         {
@@ -1133,6 +1206,95 @@ namespace HealthCalculator.Web.Controllers
                 return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
             }
         }
+
+        public async Task<JsonResult> GetEnquiryRatingReportView()
+        {
+            try
+            {
+                int loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "132";
+                collection.UserId = loggedIdUserID;
+                var objList = new List<IndexScreenSearchParameterModel>();
+                var obj1 = new IndexScreenSearchParameterModel
+                {
+                    SearchParameter = "code",
+                    SearchParameterDataType = "string",
+                    SearchParameterValue = "1"
+                };
+                objList.Add(obj1);
+                collection.IndexScreenSearchParameterModel = objList;
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<EnquiryAssessmentDetailReport>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
+        public async Task<JsonResult> GetTrackerReportView()
+        {
+            try
+            {
+                int loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "133";
+                collection.UserId = loggedIdUserID;
+                var objList = new List<IndexScreenSearchParameterModel>();
+                var obj1 = new IndexScreenSearchParameterModel
+                {
+                    SearchParameter = "Code",
+                    SearchParameterDataType = "string",
+                    SearchParameterValue = "1"
+                };
+                objList.Add(obj1);
+                collection.IndexScreenSearchParameterModel = objList;
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<UserTrackerReport>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
+        public async Task<JsonResult> GetEatingPatternReportView()
+        {
+            try
+            {
+                int loggedIdUserID = Convert.ToInt32(ConfigurationManager.AppSettings["DefaultUser"].ToString());
+                GenericService _genericService = new GenericService();
+                IndexScreenParameterModel collection = new IndexScreenParameterModel();
+                collection.ScreenID = "134";
+                collection.UserId = loggedIdUserID;
+                var objList = new List<IndexScreenSearchParameterModel>();
+                var obj1 = new IndexScreenSearchParameterModel
+                {
+                    SearchParameter = "Code",
+                    SearchParameterDataType = "string",
+                    SearchParameterValue = "1"
+                };
+                objList.Add(obj1);
+                collection.IndexScreenSearchParameterModel = objList;
+                var stringContent1 = new StringContent(JsonConvert.SerializeObject(collection).ToString(), Encoding.UTF8, "application/json");
+                var objCommunication = await _genericService.GetRecords<UserEatingPatternModel>(stringContent1);
+
+                return new JsonResult { Data = objCommunication, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult { Data = new HttpCustomResponse<bool>(ex) };
+            }
+        }
+
+
         [HttpPost]
         public async Task<JsonResult> SaveOrderDetailsForUser(UserOrderViewModel collection)
         {

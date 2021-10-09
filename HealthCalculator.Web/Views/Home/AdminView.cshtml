@@ -19,6 +19,7 @@
         <a href="#" onclick="LoadAll()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">All Users</a>
         @*<a href="#" onclick="LoadPromocode()" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Coupen Master</a>*@
         <a href="~/Admin/CoupenMaster" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Coupon Master</a>
+        <a href="~/Home/AddDiscount?userId=27" class="btn bg-sky hvr-sweep-to-top mr-3 mb-3">Add Discount</a>
     </div>
     <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-11">
@@ -34,7 +35,9 @@
 </div>
 
 <script>
-
+    function loadAddDiscount() {
+        window.location.href = "~/Home/AddDiscount?userId=" + options.data.userId;
+    }
     function LoadPromocode() {        
         window.location.href = "Admin/CoupenMaster?userId=" + options.data.userId;
         //CommonAjaxMethod('Home/GetPromocodeView', { CoupenId: "0" }, false, 'GET', function (response) {
@@ -449,7 +452,11 @@
                       {
                           dataField: "Email",
                           width: 100
-                      },
+                },
+                {
+                    dataField: "Password",
+                    width: 100
+                },
                        {
                            dataField: "UserName",
                            width: 100

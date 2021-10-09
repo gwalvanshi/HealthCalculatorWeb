@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "Add Discount Plan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="bg-yellow">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+                <input type="hidden" id="hdnLoginUserId" />
+                <ul class="list-inline menu-sec">
+                    <li class="list-inline-item"><a href="~/Home/AdminView">Back To Admin View</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid flowerBg">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12 col-lg-11">
+            <div class="middleContent bg-gray shadow">
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <p class="semi mb-2 text-yellow">Add  Discount</p>
+                        <hr class="mt-0 mb-4 bg-dark" />
+                        <input type="hidden" id="hdnUserDetailsID" />
+                    </div>
+                </div>
+                <form class="form-data">
+
+                    <div class="form-group row">
+                        <label class="col-12 col-sm-5 col-form-label semi">Program <span class="float-right d-none d-md-block"> : </span></label>
+                        <div class="col-12 col-sm-7">
+                            <select class="custom-select mandFree" id="ddlProgram" onchange="GetProduct(this)"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-12 col-sm-5 col-form-label semi">Product <span class="float-right d-none d-md-block"> : </span></label>
+                        <div class="col-12 col-sm-7">
+                            <select class="custom-select mandFree" id="ddlProduct"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-12 col-sm-5 col-form-label semi">IsPayment Done <span class="float-right d-none d-md-block"> : </span></label>
+                        <div class="col-12 col-sm-7">
+                            <select class="custom-select mandFree" id="ddlPaymentDone">
+                                <option value="" selected>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-12 col-sm-5 col-form-label semi">Payment Type <span class="float-right d-none d-md-block"> : </span></label>
+                        <div class="col-12 col-sm-7">
+                            <input type="text" class="form-control border mandFree" id="PType" maxlength="100" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-12 col-sm-5 col-form-label semi">INR(Charges) <span class="float-right d-none d-md-block"> : </span></label>
+                        <div class="col-12 col-sm-7">
+                            <input type="text" class="form-control border mandFree" id="INR" maxlength="10" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-12 col-sm-5 col-form-label semi">INR(Discount in %) <span class="float-right d-none d-md-block"> : </span></label>
+                        <div class="col-12 col-sm-7">
+                            <input type="text" class="form-control border mandFree" id="INRDiscount" maxlength="10" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-12 col-sm-5 col-form-label semi">$(Charges) <span class="float-right d-none d-md-block"> : </span></label>
+                        <div class="col-12 col-sm-7">
+                            <input type="text" class="form-control border mandFree" id="Doller" maxlength="10" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-12 col-sm-5 col-form-label semi">$(Discount in %) <span class="float-right d-none d-md-block"> : </span></label>
+                        <div class="col-12 col-sm-7">
+                            <input type="text" class="form-control border mandFree" id="DollerDiscount" maxlength="10" />
+                        </div>
+                    </div>
+
+                    @*<div class="form-group row">
+            <label class="col-12 col-sm-5 col-form-label semi">Today Days <span class="float-right d-none d-md-block"> : </span></label>
+            <div class="col-12 col-sm-7">
+                <input type="text" class="form-control border mandFree" id="Totaldays" maxlength="100" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-12 col-sm-5 col-form-label semi">Do you want to Active/Deactive the session <span class="float-right d-none d-md-block"> : </span></label>
+            <div class="col-12 col-sm-7">
+                <select class="custom-select mandFree" id="ActivePlan">
+                    <option value="" selected>Select</option>
+                    <option value="Yes">Active</option>
+                    <option value="No">Deactive</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-12 col-sm-5 col-form-label semi">Active Start Data <span class="float-right d-none d-md-block"> : </span></label>
+            <div class="col-12 col-sm-7">
+                <input type="date" class="form-control border" id="StartActiveDate" maxlength="100" placeholder="Enter Start date">
+            </div>
+        </div>
+        <div class="form-group row" style="display:none;">
+            <label class="col-12 col-sm-5 col-form-label semi">Active End Date <span class="float-right d-none d-md-block"> : </span></label>
+            <div class="col-12 col-sm-7">
+                <input type="date" class="form-control border" id="EndActiveDate" maxlength="100" placeholder="Enter end date">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-12 col-sm-5 col-form-label semi">Free Session <span class="float-right d-none d-md-block"> </span></label>
+            <div class="custom-control custom-checkbox">
+
+                <input type="checkbox" name="IsFreeSession" class="custom-control-input" id="IsFreeSession">
+
+                <label class="custom-control-label" for="IsFreeSession">Is Free</label>
+            </div>
+
+        </div>*@
+
+
+                    <div class="form-group row">
+                        <div class="col-12 col-sm-12 text-right">
+                            <a class="btn btn-reg mb-4 hvr-sweep-to-top" onclick="UpdatePlan()">&nbsp; &nbsp; SUBMIT &nbsp; &nbsp; </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/jquery-3.5.1.min.js"></script>
+<script>
+
+    function ValidateRequiredField() {
+
+        var isRequired = true;
+        var x = document.getElementsByClassName("mandFree");
+        var i;
+        for (i = 0; i < x.length; i++) {
+
+            if (x[i].value == "") {
+                isRequired = false;
+            }
+        }
+        return isRequired;
+    }
+    var SystemdropdownMasterData = [];
+
+    function GetProduct(ctrl)
+    {
+        SystemdropdownMasterData = [];
+        LoadSystemMasterDropdown("ddlProduct", 5, ctrl.value, "");
+    }
+
+    window.onload = function () {
+        var qData = "@Request.QueryString["userId"].ToString()";
+        $("#hdnUserDetailsID").val(qData);
+        LoadSystemMasterDropdown("ddlProgram", 4, "", "");
+    }
+
+
+    function UpdatePlan() {
+
+        var isFreeSession = document.getElementById('IsFreeSession').checked;
+
+        var objData = {
+            UserId: $("#hdnUserDetailsID").val(),
+            OrderAmountINR: $("#INR").val(),
+            OrderAmountDoller: $("#Doller").val(),
+            CoupenId: null,
+            ProductId: $("#ddlProduct").val(),
+            PaymentDone: $("#ddlPaymentDone").val(),
+            PaymentOrderId: null,
+            PaymentType: $("#PType").val(),
+            StartActiveDate: $("#StartActiveDate").val(),
+            EndActiveDate: $("#EndActiveDate").val(),
+            Totaldays: $("#Totaldays").val(),
+            ActivePlan: $("#ActivePlan").val(),
+            IsFreeSession: isFreeSession
+
+        }
+        if (ValidateRequiredField()) {
+            CommonAjaxMethod('Home/SaveOrderDetailsForUser', objData, false, 'POST', function (response) {
+                alert("Plan Added successfully.");
+            });
+        }
+        else
+        {
+            alert("Please select all details.");
+            return false;
+        }
+    }
+</script>
