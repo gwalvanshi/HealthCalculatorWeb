@@ -1411,9 +1411,10 @@
             CommonAjaxMethod('Program/GetAsseeement', assessment, false, 'POST', function (response) {
                 //var a = new Date("2015-03-25T12:00:00Z","dd-mm-yyyy");
                 //alert(a);
+                //debugger;
                 //var d = Date(response.data.Data.Table[0].BirthDate);
                 //var d1 = new Date(d)
-                //alert(d);
+               // alert(d);
                 //alert(d1);
 
                 // $("#txtDOB").datepicker.parseDate('dd-mm-yyyy', d);
@@ -1466,23 +1467,23 @@
                     $("#ddlCurrentlyWorkingp").val(response.data.Data.Table[0].CurrentlyWorking);
                     $("#txtOccupation").val(response.data.Data.Table[0].Occupation);
                     //-------------------Photo------------------------------------
-                    $("#hdnProfilePhotoPath").val(response.data.Data.Table[0].PhotoURL);
-                    $("#targetImg").attr('src', "@CommonMethods.ServerPathDocs" + response.data.Data.Table[0].PhotoURL);
+                    $("#hdnProfilePhotoPath").val(response.data.Data.Table2[0].PhotoURL);
+                    $("#targetImg").attr('src', "@CommonMethods.ServerPathDocs" + response.data.Data.Table2[0].PhotoURL);
 
-                    $("#hdnProfilePhotoPathAfter").val(response.data.Data.Table[0].PhotoURLAfter);
-                    $("#targetImgAfter").attr('src', "@CommonMethods.ServerPathDocs" + response.data.Data.Table[0].PhotoURLAfter);
+                    $("#hdnProfilePhotoPathAfter").val(response.data.Data.Table2[0].PhotoURLAfter);
+                    $("#targetImgAfter").attr('src', "@CommonMethods.ServerPathDocs" + response.data.Data.Table2[0].PhotoURLAfter);
 
                     //--------------------Anthropometry-----------------------------------
-                    $("#txtWeight").val(response.data.Data.Table[0].Weight);
-                    $("#ddlWeightType").val(response.data.Data.Table[0].WeightType);
-                    $("#txtHeight").val(response.data.Data.Table[0].Height);
-                    $("#ddlHeightType").val(response.data.Data.Table[0].HeightType);
-                    $("#txtTargetWeight").val(response.data.Data.Table[0].TargetWeight);
-                    $("#ddlTargetWeightType").val(response.data.Data.Table[0].TargetWeightType);
-                    $("#txtYourGoals").val(response.data.Data.Table[0].YourGoals);
+                    $("#txtWeight").val(response.data.Data.Table3[0].Weight);
+                    $("#ddlWeightType").val(response.data.Data.Table3[0].WeightType);
+                    $("#txtHeight").val(response.data.Data.Table3[0].Height);
+                    $("#ddlHeightType").val(response.data.Data.Table3[0].HeightType);
+                    $("#txtTargetWeight").val(response.data.Data.Table3[0].TargetWeight);
+                    $("#ddlTargetWeightType").val(response.data.Data.Table3[0].TargetWeightType);
+                    $("#txtYourGoals").val(response.data.Data.Table3[0].YourGoals);
                     //---------------------MedicalHistory----------------------------------
-                    $("#txtHealthIssues").val(response.data.Data.Table[0].HealthIssues);
-                    $("#txtReports").val(response.data.Data.Table[0].Reports);               
+                    $("#txtHealthIssues").val(response.data.Data.Table4[0].HealthIssues);
+                    $("#txtReports").val(response.data.Data.Table4[0].Reports);               
                     if (response.data.Data.Table[0].ReportPath != null)
                     {
                         $("#dvDownloadReport").show();
@@ -1491,7 +1492,7 @@
                         $("#dvDownloadReport").hide();
                     }
 
-                    $("#hdnfileuploadReportPath").val(response.data.Data.Table[0].ReportPath);
+                    $("#hdnfileuploadReportPath").val(response.data.Data.Table4[0].ReportPath);
 
                     if (sessionStorage.getItem('RoleID') == 1)
                     {
@@ -1570,53 +1571,53 @@
                 if (response.data.Data.Table.length > 0) {
                     //--------------------DietaryAndLifeStyleDetails-----------------------------------
 
-                    $("#ddlLifestyle").val(response.data.Data.Table[0].Lifestyle);
-                    $("#ddlEatingHabits").val(response.data.Data.Table[0].EatingHabits);
-                    $("#ddlFrequencyOfSmoking").val(response.data.Data.Table[0].Frequencyofsmoking);
-                    $("#ddlFrequencyOfAlcoholConsumption").val(response.data.Data.Table[0].Frequencyofalcoholconsumption);
-                    $("#ddlWaterIntakePerDayType").val(response.data.Data.Table[0].WaterintakeperdayType);
-                    $("#ddlWaterIntakePerDayDetails").val(response.data.Data.Table[0].Waterintakeperday);
-                    $("#ddlFrequencyOfRestaurantVisit").val(response.data.Data.Table[0].Frequencyofrestaurantvisit);
-                    $("#txtPreferredCuisine").val(response.data.Data.Table[0].Preferredcuisine);
-                    $("#txtWhoCooksAtHome").val(response.data.Data.Table[0].Whocooksathome);
-                    $("#txtFoodAversions").val(response.data.Data.Table[0].FoodAversions);
-                    $("#txtFoodPreferences").val(response.data.Data.Table[0].FoodPreferences);
-                    $("#txtFoodAllergies").val(response.data.Data.Table[0].FoodAllergies);
+                    $("#ddlLifestyle").val(response.data.Data.Table5[0].Lifestyle);
+                    $("#ddlEatingHabits").val(response.data.Data.Table5[0].EatingHabits);
+                    $("#ddlFrequencyOfSmoking").val(response.data.Data.Table5[0].Frequencyofsmoking);
+                    $("#ddlFrequencyOfAlcoholConsumption").val(response.data.Data.Table5[0].Frequencyofalcoholconsumption);
+                    $("#ddlWaterIntakePerDayType").val(response.data.Data.Table5[0].WaterintakeperdayType);
+                    $("#ddlWaterIntakePerDayDetails").val(response.data.Data.Table5[0].Waterintakeperday);
+                    $("#ddlFrequencyOfRestaurantVisit").val(response.data.Data.Table5[0].Frequencyofrestaurantvisit);
+                    $("#txtPreferredCuisine").val(response.data.Data.Table5[0].Preferredcuisine);
+                    $("#txtWhoCooksAtHome").val(response.data.Data.Table5[0].Whocooksathome);
+                    $("#txtFoodAversions").val(response.data.Data.Table5[0].FoodAversions);
+                    $("#txtFoodPreferences").val(response.data.Data.Table5[0].FoodPreferences);
+                    $("#txtFoodAllergies").val(response.data.Data.Table5[0].FoodAllergies);
                     //------------------Direct Call-------------------------------------
 
-                    $("#ddlOnWakingUp").val(response.data.Data.Table[0].OnwakingupTime);
-                    $("#txtOnWakingUp").val(response.data.Data.Table[0].OnwakingupConsumption);
-                    $("#ddlBreakfast").val(response.data.Data.Table[0].BreakfastTime);
-                    $("#txtBreakfast").val(response.data.Data.Table[0].BreakfastConsumption);
-                    $("#ddlMidMorning").val(response.data.Data.Table[0].MidmorningTime);
-                    $("#txtMidMorning").val(response.data.Data.Table[0].MidmorningConsumption);
+                    $("#ddlOnWakingUp").val(response.data.Data.Table6[0].OnwakingupTime);
+                    $("#txtOnWakingUp").val(response.data.Data.Table6[0].OnwakingupConsumption);
+                    $("#ddlBreakfast").val(response.data.Data.Table6[0].BreakfastTime);
+                    $("#txtBreakfast").val(response.data.Data.Table6[0].BreakfastConsumption);
+                    $("#ddlMidMorning").val(response.data.Data.Table6[0].MidmorningTime);
+                    $("#txtMidMorning").val(response.data.Data.Table6[0].MidmorningConsumption);
 
-                    $("#ddlLunch").val(response.data.Data.Table[0].LunchTime);
-                    $("#txtLunch").val(response.data.Data.Table[0].LunchConsumption);
-                    $("#ddlEveningTeaSnack").val(response.data.Data.Table[0].SnackTime);
-                    $("#txtEveningTeaSnack").val(response.data.Data.Table[0].SnackConsumption);
-                    $("#ddlDinner").val(response.data.Data.Table[0].DinnerTime);
-                    $("#txtDinner").val(response.data.Data.Table[0].DinnerConsumption);
-                    $("#ddlBedTime").val(response.data.Data.Table[0].Bedtime);
-                    $("#txtBedTime").val(response.data.Data.Table[0].BedConsumption);
+                    $("#ddlLunch").val(response.data.Data.Table6[0].LunchTime);
+                    $("#txtLunch").val(response.data.Data.Table6[0].LunchConsumption);
+                    $("#ddlEveningTeaSnack").val(response.data.Data.Table6[0].SnackTime);
+                    $("#txtEveningTeaSnack").val(response.data.Data.Table6[0].SnackConsumption);
+                    $("#ddlDinner").val(response.data.Data.Table6[0].DinnerTime);
+                    $("#txtDinner").val(response.data.Data.Table6[0].DinnerConsumption);
+                    $("#ddlBedTime").val(response.data.Data.Table6[0].Bedtime);
+                    $("#txtBedTime").val(response.data.Data.Table6[0].BedConsumption);
 
-                    $("#ddlMidnightMunching").val(response.data.Data.Table[0].MidnightMunchingTime);
-                    $("#txtMidnightMunching").val(response.data.Data.Table[0].MidnightConsumption);
+                    $("#ddlMidnightMunching").val(response.data.Data.Table6[0].MidnightMunchingTime);
+                    $("#txtMidnightMunching").val(response.data.Data.Table6[0].MidnightConsumption);
 
                     //-------------------FoodFequency------------------------------------
-                    $("#ddlRotiChapati").val(response.data.Data.Table[0].Roti);
-                    $("#ddlRice").val(response.data.Data.Table[0].Rice);
-                    $("#ddlBreadPav").val(response.data.Data.Table[0].BreadPav);
-                    $("#ddlChaatFastFoodFriedSnacks").val(response.data.Data.Table[0].ChaatSnacks)
-                    $("#ddlNonVeg").val(response.data.Data.Table[0].Nonveg);
-                    $("#ddlEggs").val(response.data.Data.Table[0].Eggs);
-                    $("#ddlTeaCoffee").val(response.data.Data.Table[0].Teacoffee);
-                    $("#ddlDesert").val(response.data.Data.Table[0].Desert);
-                    $("#ddlFruits").val(response.data.Data.Table[0].Fruits);
-                    $("#ddlNuts").val(response.data.Data.Table[0].Nuts);
+                    $("#ddlRotiChapati").val(response.data.Data.Table7[0].Roti);
+                    $("#ddlRice").val(response.data.Data.Table7[0].Rice);
+                    $("#ddlBreadPav").val(response.data.Data.Table7[0].BreadPav);
+                    $("#ddlChaatFastFoodFriedSnacks").val(response.data.Data.Table7[0].ChaatSnacks)
+                    $("#ddlNonVeg").val(response.data.Data.Table7[0].Nonveg);
+                    $("#ddlEggs").val(response.data.Data.Table7[0].Eggs);
+                    $("#ddlTeaCoffee").val(response.data.Data.Table7[0].Teacoffee);
+                    $("#ddlDesert").val(response.data.Data.Table7[0].Desert);
+                    $("#ddlFruits").val(response.data.Data.Table7[0].Fruits);
+                    $("#ddlNuts").val(response.data.Data.Table7[0].Nuts);
 
                     //------------------AnyKeyInSights-------------------------------------
-                    $("#txtAnyKeyInsight").val(response.data.Data.Table[0].Comments);
+                    $("#txtAnyKeyInsight").val(response.data.Data.Table8[0].Comments);
 
                 }
 
