@@ -195,7 +195,18 @@ namespace HealthCalculator.Web.EntityModel
         public List<RspoonseAssessment> Table { get; set; }
         // public List<UserMedications> Table1 { get; set; }
         public List<RspoonseUserMedications> Table1 { get; set; }
-        
+
+        public List<RspoonseAssessment> Table2 { get; set; }
+
+        public List<RspoonseAssessment> Table3 { get; set; }
+
+        public List<RspoonseAssessment> Table4 { get; set; }
+
+        public List<RspoonseAssessment> Table5 { get; set; }
+
+        public List<RspoonseAssessment> Table6 { get; set; }
+
+        public List<RspoonseAssessment> Table7 { get; set; }
     }
     public class UserNotification
     {

@@ -140,6 +140,94 @@
 </div>
 <script src="~/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
+
+    function getFormattedDate(date) {
+        let year = date.getFullYear();
+        let month = (1 + date.getMonth()).toString().padStart(2, '0');
+        let day = date.getDate().toString().padStart(2, '0');
+
+        return month + '/' + day + '/' + year;
+    }
+
+    function isObjEmpty(obj) {
+       /* for (var prop in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+                return false;
+            }
+        }
+
+        return JSON.stringify(obj) === JSON.stringify({}); */
+       // return Object.keys(obj).length === 0;
+        if (obj == null)
+            return true;
+        else
+            return false;
+
+        //const isNullUndefEmptyStr = Object.values(obj).every(value => {
+        //    // 👇️ check for multiple conditions
+        //    if (value === null || value === undefined || value === '') {
+        //        return true;
+        //    }
+        //    return false;
+        //});
+    }
+
+    function myFunction1(item, index) {
+        debugger;
+        for (let i = 0; i < 50; i++) {
+            var strDate = "";
+            var firstDate = document.getElementById("txtIDate" + (item + i));
+            if (!isObjEmpty(firstDate)) {
+                //alert(i);
+                var result = new Date(firstDate.value);
+                result.setDate(result.getDate() + 10);
+                //alert(result.toDateString());
+                if (result != null) {
+                    strDate = getdate1(result);
+                    //alert(strDate);
+                    if (!isObjEmpty(document.getElementById("txtIDate" + (item + i + 1)))) {
+                        document.getElementById("txtIDate" + (item + i + 1)).value = strDate;
+                    }
+                    else {
+                        // alert("elese" + (item + i + 1));
+                    }
+                }
+            }
+            else {
+                // alert("ObjectNull " + i);
+            }
+        }
+
+    }
+
+    function myFunction(item,index)
+    {
+        debugger;
+        for (let i = 0; i < 50; i++) {
+            var strDate = "";
+            var firstDate = document.getElementById("txtWDate" + (item + i));
+            if (!isObjEmpty(firstDate)) {
+                //alert(i);
+                var result = new Date(firstDate.value);
+                result.setDate(result.getDate() + 5);
+                //alert(result.toDateString());
+                if (result != null) {
+                    strDate = getdate1(result);
+                    //alert(strDate);
+                    if (!isObjEmpty(document.getElementById("txtWDate" + (item + i + 1)))) {
+                        document.getElementById("txtWDate" + (item + i + 1)).value = strDate;
+                    }
+                    else {
+                       // alert("elese" + (item + i + 1));
+                    }
+                }
+            }
+            else {
+               // alert("ObjectNull " + i);
+            }
+        }
+
+    }
      function Assessment(ctrl)
     {
         @*//var selectedUserId = "@Request.QueryString["userId"].ToString()";*@
@@ -304,7 +392,7 @@
                             tblWRowsesion++;
                             tblrow = '<tr>' +
                                '<td>' +
-                                   '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
+                                '<input type="date" style="width:200px;" readOnly="true" class="form-control" onchange="myFunction(' + (i + 1) + ')" placeholder="Enter Date" id="txtWDate' + (i + 1) + ' "  onchange="myFunction(' + (i + 1) +',this)" />' +
                                '</td>' +
                                '<td rowspan="3"   style="vertical-align : middle;text-align:center;background: #32c6c6;"><div style="width:150px;" class="bg-sky text-white h-100">Session ' + tblWRowsesion + '</div></td>' +
                                '<td>Start</td>' +
@@ -316,7 +404,7 @@
 
                             tblrow = '<tr>' +
                                '<td>' +
-                                   '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
+                                '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '" onchange="myFunction(' + (i + 1) +',this)" />' +
                                '</td>' +
 
                                '<td>Mid</td>' +
@@ -327,7 +415,7 @@
                         if (tblWRow == 3) {
                             tblrow = '<tr>' +
                                '<td>' +
-                                   '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
+                                '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '" onchange="myFunction(' + (i + 1) +',this)"  />' +
                                '</td>' +
 
                                '<td>End</td>' +
@@ -354,7 +442,7 @@
                             tblWRowsesion++;
                             tblrow = '<tr>' +
                                '<td>' +
-                                   '<input type="date" style="width:200px;" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
+                                '<input type="date" style="width:200px;" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  onchange="myFunction(' + (i + 1) +',this)" asp-format="{0:yyyy-MM-dd}" />' +
                                '</td>' +
                                 '<td rowspan="3"   style="vertical-align : middle;text-align:center;background: #32c6c6;"><div style="width:150px;" class="bg-sky text-white h-100">Session ' + tblWRowsesion + '</div></td>' +
                                '<td>Start</td>' +
@@ -366,7 +454,7 @@
 
                             tblrow = '<tr>' +
                                '<td>' +
-                                   '<input type="date" style="width:200px;" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
+                                '<input type="date" style="width:200px;" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '" onchange="myFunction(' + (i + 1) +',this)" asp-format="{0:yyyy-MM-dd}" />' +
                                '</td>' +
 
                                '<td>Mid</td>' +
@@ -377,11 +465,11 @@
                         if (tblWRow == 3) {
                             tblrow = '<tr>' +
                                '<td>' +
-                                   '<input type="date" style="width:200px;" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '"  />' +
+                                '<input type="date" style="width:200px;" class="form-control" placeholder="Enter Date" id="txtWDate' + (i + 1) + '" onchange="myFunction(' + (i + 1) +',this)" />' +
                                '</td>' +
 
                                '<td>End</td>' +
-                               '<td><input type="text" style="width:100px;"   class="form-control" placeholder="Enter Weight"  id="txtWT' + (i + 1) + '"/></td>' +
+                                '<td><input type="text" style="width:100px;"   class="form-control"  placeholder="Enter Weight"  id="txtWT' + (i + 1) + '"/></td>' +
                                '<td><input type="text" style="width:100px;" class="form-control" id="txtWD' + (i + 1) + '" placeholder="" readOnly="true" /></td>' +
                            '</tr>';
                         }
@@ -405,7 +493,7 @@
                             tblIRowsesion++;
                             tblrowInch = '<tr>' +
                                '<td>' +
-                                   '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
+                                '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '" onchange="myFunction1(' + (i + 1) +',this)" />' +
                                '</td>' +
                                  '<td rowspan="2"   style="vertical-align : middle;text-align:center;background: #32c6c6;"><div style="width:150px;" class="bg-sky text-white h-100">Session ' + tblIRowsesion + '</div></td>' +
 
@@ -420,7 +508,7 @@
                             tblWRowsesion++;
                             tblrowInch = '<tr>' +
                                '<td>' +
-                                   '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
+                                '<input type="date" style="width:200px;" readOnly="true" class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '" onchange="myFunction1(' + (i + 1) +',this)" />' +
                                '</td>' +
 
                                '<td>End</td>' +
@@ -447,7 +535,7 @@
                             tblIRowsesion++;
                             tblrowInch = '<tr>' +
                                '<td>' +
-                                   '<input type="date" style="width:200px;"  class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
+                                '<input type="date" style="width:200px;"  class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '" onchange="myFunction1(' + (i + 1) +',this)"  />' +
                                '</td>' +
                             '<td rowspan="2"   style="vertical-align : middle;text-align:center;background: #32c6c6;"><div style="width:150px;" class="bg-sky text-white h-100">Session ' + tblIRowsesion + '</div></td>' +
                                '<td>Start</td>' +
@@ -460,7 +548,7 @@
                             tblWRowsesion++;
                             tblrowInch = '<tr>' +
                                '<td>' +
-                                   '<input type="date"  style="width:200px;"  class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '"  />' +
+                                '<input type="date"  style="width:200px;"  class="form-control" placeholder="Enter Date" id="txtIDate' + (i + 1) + '" onchange="myFunction1(' + (i + 1) +',this)" />' +
                                '</td>' +
                                '<td>End</td>' +
                                 '<td><input type="text" style="width:100px;"  class="form-control" placeholder="Enter Chest"  id="txtC' + (i + 1) + '"/></td>' +
@@ -493,6 +581,20 @@
 
     })
 
+
+    function getdate1(strdate) {
+        var strRetrunDate;
+        if (strdate != null) {
+            var dateData = new Date(strdate.toString());
+            var dd = dateData.getDate();
+            var mm = dateData.getMonth() + 1; //January is 0!
+            var yyyy = dateData.getFullYear();
+            if (dd < 10) { dd = '0' + dd }
+            if (mm < 10) { mm = '0' + mm }
+            strRetrunDate = yyyy + '-' + mm + '-' + dd;
+        }
+        return strRetrunDate;
+    }
 
     function getdate(strdate) {
         var strRetrunDate;
